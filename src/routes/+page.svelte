@@ -1,11 +1,15 @@
 <script>
 	import { onMount } from 'svelte';
-	
-	let currentStep = 1;
-	let uploadedFiles = {
-		arc: null,
-		nextStep: null
-	};
+	import FileUpload from '$lib/FileUpload.svelte';
+	import { 
+		currentStep, 
+		arcFile, 
+		nextStepFile, 
+		uploadStates, 
+		uploadErrors,
+		canProceedToStep2
+	} from '$lib/stores.js';
+	import type { ArcFile, NextStepFile } from '$lib/xml-parser.js';
 	
 	const steps = [
 		'Upload Files',
@@ -15,6 +19,36 @@
 		'Deep Research',
 		'Generate Module'
 	];
+
+	function handleFileUploaded(event: CustomEvent<{ type: 'arc' | 'nextStep'; data: ArcFile | NextStepFile }>) {
+		const { type, data } = event.detail;
+		
+		if (type === 'arc') {
+			arcFile.set(data as ArcFile);
+			uploadStates.update(state => ({ ...state, arc: 'success' }));
+			uploadErrors.update(errors => ({ ...errors, arc: null }));
+		} else {
+			nextStepFile.set(data as NextStepFile);
+			uploadStates.update(state => ({ ...state, nextStep: 'success' }));
+			uploadErrors.update(errors => ({ ...errors, nextStep: null }));
+		}
+	}
+
+	function handleUploadError(event: CustomEvent<{ type: 'arc' | 'nextStep'; error: string }>) {
+		const { type, error } = event.detail;
+		
+		if (type === 'arc') {
+			uploadStates.update(state => ({ ...state, arc: 'error' }));
+			uploadErrors.update(errors => ({ ...errors, arc: error }));
+		} else {
+			uploadStates.update(state => ({ ...state, nextStep: 'error' }));
+			uploadErrors.update(errors => ({ ...errors, nextStep: error }));
+		}
+	}
+
+	function proceedToStep2() {
+		currentStep.set(2);
+	}
 
 	onMount(() => {
 		console.log('Pedagogue app initialized');
@@ -34,7 +68,7 @@
 	<div class="workflow">
 		<div class="steps">
 			{#each steps as step, index}
-				<div class="step" class:active={currentStep === index + 1} class:completed={currentStep > index + 1}>
+				<div class="step" class:active={$currentStep === index + 1} class:completed={$currentStep > index + 1}>
 					<span class="step-number">{index + 1}</span>
 					<span class="step-name">{step}</span>
 				</div>
@@ -42,30 +76,40 @@
 		</div>
 
 		<div class="content">
-			{#if currentStep === 1}
+			{#if $currentStep === 1}
 				<div class="upload-section">
 					<h2>Upload Module Files</h2>
 					<p>Upload your <code>&lt;arc&gt;</code> and <code>&lt;next-step&gt;</code> XML files to begin.</p>
 					
 					<div class="upload-areas">
-						<div class="upload-area">
-							<h3>Arc File</h3>
-							<div class="drop-zone">
-								<p>Drop arc.xml here or click to browse</p>
-							</div>
-						</div>
+						<FileUpload 
+							fileType="arc"
+							uploadState={$uploadStates.arc}
+							error={$uploadErrors.arc}
+							on:fileUploaded={handleFileUploaded}
+							on:uploadError={handleUploadError}
+						/>
 						
-						<div class="upload-area">
-							<h3>Next Step File</h3>
-							<div class="drop-zone">
-								<p>Drop next-step.xml here or click to browse</p>
-							</div>
-						</div>
+						<FileUpload 
+							fileType="nextStep"
+							uploadState={$uploadStates.nextStep}
+							error={$uploadErrors.nextStep}
+							on:fileUploaded={handleFileUploaded}
+							on:uploadError={handleUploadError}
+						/>
 					</div>
+
+					{#if $canProceedToStep2}
+						<div class="proceed-section">
+							<button type="button" class="proceed-button" on:click={proceedToStep2}>
+								Continue to Analysis →
+							</button>
+						</div>
+					{/if}
 				</div>
 			{:else}
 				<div class="placeholder">
-					<p>Step {currentStep} - {steps[currentStep - 1]}</p>
+					<p>Step {$currentStep} - {steps[$currentStep - 1]}</p>
 					<p>Implementation coming soon...</p>
 				</div>
 			{/if}
@@ -176,30 +220,34 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 2rem;
+		margin-bottom: 2rem;
 	}
 
-	.upload-area h3 {
-		margin-bottom: 1rem;
-		color: #495057;
-	}
-
-	.drop-zone {
-		border: 2px dashed #dee2e6;
-		border-radius: 8px;
-		padding: 3rem 2rem;
+	.proceed-section {
 		text-align: center;
+		padding-top: 2rem;
+		border-top: 1px solid #e9ecef;
+	}
+
+	.proceed-button {
+		background: #007bff;
+		color: white;
+		border: none;
+		border-radius: 8px;
+		padding: 1rem 2rem;
+		font-size: 1.1rem;
+		font-weight: 600;
 		cursor: pointer;
 		transition: all 0.3s ease;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 
-	.drop-zone:hover {
-		border-color: #007bff;
-		background-color: #f8f9ff;
-	}
-
-	.drop-zone p {
-		margin: 0;
-		color: #6c757d;
+	.proceed-button:hover {
+		background: #0056b3;
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 	}
 
 	.placeholder {
