@@ -1,3 +1,6 @@
+### Claude Code ###
+/.claude/settings.local.json
+
 ### Deno ###
 /.idea/
 /.vscode/
@@ -13,7 +16,7 @@
 .svelte-kit/
 package
 
-# LangGraph
+### LangGraph ###
 .langgraph_api/
 
 ### macOS ###
