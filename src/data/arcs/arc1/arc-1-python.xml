@@ -1,0 +1,9 @@
+<python-for-this-arc>
+	<essential-python-for-this-arc>
+	</essential-python-for-this-arc>
+
+	<stretch-python-for-this-arc>
+		1. environments & package management
+		2. async programming & API design
+	</stretch-python-for-this-arc>
+</python-for-this-arc>
