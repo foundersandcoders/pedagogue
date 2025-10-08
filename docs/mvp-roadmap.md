@@ -1,0 +1,57 @@
+# Pedagogue MVP: Implementation Priorities
+
+## Critical Path (Do These First)
+
+### 1. LangChain + Claude Integration
+- Create API route: `src/routes/api/generate/+server.ts`
+- LangChain's `ChatAnthropic` for Claude integration
+- Structured output parsing for XML generation
+- SSE streaming for progress feedback
+- **Why first:** Nothing works without this. Literally decorative otherwise.
+
+### 2. Structured Input Interface
+- Build `src/lib/StructuredInputForm.svelte`
+- Predefined fields per workflow step (date picker, multi-selects, text inputs)
+- Validation to prevent garbage inputs
+- **No chat interface** - this is purposeful data collection
+- **Why second:** Users need to provide context; forms enforce clarity better than chat.
+
+### 3. Deep Research Capability
+- **THIS IS THE ENTIRE POINT OF THE APP**
+- LangChain tool integration (Brave Search or Tavily)
+- Extended thinking mode option
+- Research progress indicators
+- **Why critical:** Without current research, we're just reformatting existing modules. The whole reason this exists is curriculum relevance.
+
+### 4. Module Export with Schema Validation
+- Define output XML schema (distinct from input format)
+- LangChain's `StructuredOutputParser` for adherence
+- Download formatted XML
+- Preview panel with syntax highlighting
+- Schema validation before export
+- **Why fourth:** Output delivery completes the value loop.
+
+### 5. Intelligent Step Navigation
+- Detect workflow state transitions automatically
+- Update `currentStep` store reactively
+- Manual override for edge cases
+- Clear visual indicators
+- **Why fifth:** UX polish that makes the tool feel coherent.
+
+### 6. Session Persistence
+- localStorage for progress backup
+- Restore on page load with confirmation
+- "Clear session" button
+- **Why sixth:** Production-ready reliability, but not blocking for initial functionality.
+
+## Beyond MVP
+
+- Comparison view (original vs. generated with diff)
+- Multiple generation variants
+- Template management
+- Version history tracking
+- Collaborative editing
+
+## Non-Negotiable Principle
+
+Research capability (#3) is not "nice to have"—it's the core value proposition. Everything else is infrastructure to support this.
