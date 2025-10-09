@@ -1,22 +1,13 @@
 <python-for-this-arc>
+  <overview>
+    During development, if using Python becomes advantageous (e.g. for an embedding library or PDF parsing), teams might dip their toes in Python here. For instance, a team might write a Python script to pre-process a PDF into text chunks, then use Node to handle the chatbot logic calling the API. This flexible approach builds cross-language savvy gradually. Others might do it all in JS if they find suitable packages.
+  </overview>
 	<essential-python-for-this-arc>
-	  1.
+	  1. environments & package management
+		2. async programming & API design
 	</essential-python-for-this-arc>
 	<stretch-python-for-this-arc>
-		1.
+		1. data processing with pandas/numpy
+		2. model serving & FastAPI
 	</stretch-python-for-this-arc>
 </python-for-this-arc>
-
-<python>
-		<essential>
-				- Python 1: environments & package management
-				- Python 2: async programming & API design
-		</essential>
-
-		<stretch>
-				- Python 3: data processing with pandas/numpy
-				- Python 4: model serving & FastAPI
-
-				During development, if using Python becomes advantageous (e.g. for an embedding library or PDF parsing), teams might dip their toes in Python here. For instance, a team might write a Python script to pre-process a PDF into text chunks, then use Node to handle the chatbot logic calling the API. This flexible approach builds cross-language savvy gradually. Others might do it all in JS if they find suitable packages.
-		</stretch>
-</python>
