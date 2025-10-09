@@ -12,15 +12,11 @@
   <Briefs>
     <Brief>
       <Overview>
-        <Name></Name>
+        <Name>Knowledge and Memory</Name>
 
-        <Task>
-          Develop a user-facing chatbot that can ingest and summarize long documents or answer questions about them.
-        </Task>
+        <Task>Develop a user-facing chatbot that can ingest and summarize long documents or answer questions about them.</Task>
 
-        <Focus>
-          Long-context handling (using models with extended context windows like Anthropic Claude) and summary/Q&A prompt patterns. Lays groundwork for retrieval techniques by addressing LLM limits and chunking.
-        </Focus>
+        <Focus>Long-context handling (using models with extended context windows like Anthropic Claude) and summary/"Q and A" prompt patterns. Lays groundwork for retrieval techniques by addressing LLM limits and chunking.</Focus>
       </Overview>
 
       <Detail>
@@ -40,7 +36,7 @@
             - Another is chunking the document and summarizing or retrieving parts.
             - In either case, they confront the problem of scale – an important concept in AI engineering.
           </Objective>
-          
+
           <Objective>
            	Summarization and Q&A prompting
             - They will design prompts for summarizing text and for answering questions given some context.
@@ -48,7 +44,7 @@
             - They might explore prompt structures like TL;DR summaries, extracting key points, or a QA format (“Using the provided text, answer the question…”).
             - This builds prompt engineering skills for non-code tasks.
           </Objective>
-          
+
           <Objective>
            	Introduction to Retrieval (light)
             - While full vector database integration is slated for a later arc, this project serves as a gentle introduction.
@@ -56,7 +52,7 @@
             - This isn’t mandatory – if using Claude with huge context, they could simply dump everything in – but resource limits might push them toward smarter methods.
             - By grappling with this, they lay groundwork for the dedicated RAG project later.
           </Objective>
-          
+
           <Objective>
            	User interface considerations
             - Now that the target user is an end-user (who just has a document and questions), teams should consider the UX.
@@ -74,14 +70,14 @@
           - The chatbot loads a long academic paper and allows the user to ask “What are the main findings?” or “How did the authors conduct experiment X?”
           - The AI then answers based on the paper’s content.
         </Example>
-        
+
         <Example>
           Legal Document Summarizer
           - Upload a lengthy contract or terms-of-service and get a summary in plain language, or ask pointed questions (“What is the cancellation policy in this contract?”).
         </Example>
-       	
+
         <Example>
-          Technical Docs Q&A
+          Technical Docs Knowledge Base
           - Feed in a large software manual or API documentation.
           - A user (perhaps a developer) can then query, “How do I authenticate with this API?” and the bot will fetch the answer.
         </Example>
@@ -98,56 +94,95 @@
 
     <Brief>
       <Overview>
-        Build an AI agent that can perform multi-step tasks by invoking external tools or APIs (e.g. an AI that answers user requests by calling weather or search APIs). Focus: Agent frameworks and function calling. Participants learn how giving an AI tool access extends its capabilities (search the web, do math, etc. via tools ￼). Introduces decision-making by LLMs and the ReAct reasoning paradigm in a practical way.
-        
-        <Name></Name>
+        <Name>User Agent</Name>
 
-        <Task>
-        </Task>
+        <Task>Build an AI agent that can perform multi-step tasks by invoking external tools or APIs (e.g. an AI that answers user requests by calling weather or search APIs).</Task>
 
-        <Focus>
-        </Focus>
+        <Focus>Agent frameworks and function calling. Participants learn how giving an AI tool access extends its capabilities (search the web, do math, etc. via tools ￼). Introduces decision-making by LLMs and the ReAct reasoning paradigm in a practical way.</Focus>
       </Overview>
 
       <Detail>
         <BriefDetail>
-          Create an AI agent that can autonomously perform a task by utilizing external tools or APIs in addition to just generating text. In practical terms, the agent should take a user request or goal, decide which actions to take (via tools), execute them, and then return a result to the user. This project introduces the concept of AI agents that go beyond static Q&A – they can interact with the world (or web/services) to fulfill a user’s intent. Examples might include: an AI that plans an itinerary by calling map and weather APIs, a research assistant that answers a question by searching the web and summarizing the findings, or a debugging assistant that runs code to test something. The project scope can be adjusted to the tools available, but at minimum each agent must integrate at least one external non-LLM service (API, database, or even a computational tool like a calculator).
+          - Create an AI agent that can autonomously perform a task by utilizing external tools or APIs in addition to just generating text.
+          - In practical terms, the agent should take a user request or goal, decide which actions to take (via tools), execute them, and then return a result to the user.
+          - This project introduces the concept of AI agents that go beyond static "Q and A" – they can interact with the world (or web/services) to fulfill a user’s intent.
+          - The project scope can be adjusted to the tools available, but at minimum each agent must integrate at least one external non-LLM service (API, database, or even a computational tool like a calculator).
         </BriefDetail>
 
         <Objectives>
-          This is a significant step up in complexity and introduces the idea of chain-of-thought prompting and decision making by LLMs. Learning goals:
-          •	Understanding AI agents and tool use: Participants learn why giving tools to LLMs is powerful – it extends what the AI can do (e.g., fetch real-time information, perform calculations) ￼. They also learn how to implement this. This could be via a library (like LangChain, which provides agent abstractions) or manually using OpenAI’s function calling (where the AI can request a function and you fulfill it). Either way, they grasp the loop of LLM decides action → action executed → result fed back → LLM continues.
-          •	Multi-step reasoning (ReAct framework): To make an agent effective, often we employ a prompt that encourages reasoning and action step by step. Participants will practice writing such prompts or configuring an agent framework. For example, they may use the ReAct prompting technique (Reason+Act) that lets the model think in steps (“I should do X next.”) ￼. This skill is crucial for building more complex AI workflows reliably.
-          •	Integration of APIs and handling real data: Teams will gain experience working with at least one third-party API or data source (beyond AI APIs). This could involve reading API docs, obtaining API keys for, say, a weather or search service, and parsing the responses. It’s a practical skill to combine AI with conventional software APIs. They also must handle errors – e.g., what if the API call fails or returns nothing? The agent should handle it gracefully, which introduces robustness considerations.
-          •	Balancing autonomy and control: Building an autonomous agent leads to questions of how much freedom the AI should have. Participants naturally will think about constraints (e.g., limiting how many times it can call a tool to avoid infinite loops ￼, or sandboxing what it can do). This raises awareness of AI safety considerations in a hands-on way (like preventing an agent from doing something harmful or wasting resources). We likely won’t hit serious safety issues in our simple projects, but the concept of curbing an AI’s actions is introduced.
           <Objective>
+            Understanding AI agents and tool use
+            Participants learn why giving tools to LLMs is powerful – it extends what the AI can do (e.g., fetch real-time information, perform calculations) ￼. They also learn how to implement this. This could be via a library (like LangChain, which provides agent abstractions) or manually using OpenAI’s function calling (where the AI can request a function and you fulfill it). Either way, they grasp the loop of LLM decides action → action executed → result fed back → LLM continues.
+          </Objective>
+
+          <Objective>
+            Multi-step reasoning (ReAct framework)
+            To make an agent effective, often we employ a prompt that encourages reasoning and action step by step. Participants will practice writing such prompts or configuring an agent framework. For example, they may use the ReAct prompting technique (Reason+Act) that lets the model think in steps (“I should do X next.”) ￼. This skill is crucial for building more complex AI workflows reliably.
+          </Objective>
+
+          <Objective>
+            Integration of APIs and handling real data
+            Teams will gain experience working with at least one third-party API or data source (beyond AI APIs). This could involve reading API docs, obtaining API keys for, say, a weather or search service, and parsing the responses. It’s a practical skill to combine AI with conventional software APIs. They also must handle errors – e.g., what if the API call fails or returns nothing? The agent should handle it gracefully, which introduces robustness considerations.
+          </Objective>
+
+          <Objective>
+            Balancing autonomy and control
+            Building an autonomous agent leads to questions of how much freedom the AI should have. Participants naturally will think about constraints (e.g., limiting how many times it can call a tool to avoid infinite loops ￼, or sandboxing what it can do). This raises awareness of AI safety considerations in a hands-on way (like preventing an agent from doing something harmful or wasting resources). We likely won’t hit serious safety issues in our simple projects, but the concept of curbing an AI’s actions is introduced.
           </Objective>
         </Objectives>
       </Detail>
 
       <Examples>
-        •	Web Research Agent: The user asks a question like “What were the key outcomes of the latest climate summit?” The agent then uses a search tool (calls a search API or scrapes a web page) to find information and then summarizes the answer. This involves a search tool and perhaps a browser-fetch tool.
-        •	Personal Assistant Agent: A user can give a command “Schedule a meeting with Alice next week” – the agent could check a (mock) calendar or scheduling API, pick a time, maybe send an email or create an event (this might be simulated if we don’t want to use real email APIs, but they could integrate Google Calendar API if they wish). This showcases multi-step action: check schedules → compose response.
-       	•	DevOps/Test Agent: (Though participants aren’t big on DevOps, some may still find this cool) – e.g. an agent that, when given a GitHub issue about a bug, automatically spins up a test environment or runs a test suite to reproduce it (using say a Docker tool or CI API) then reports back. This is more complex and might be too heavy for this timeframe, but a scaled-down version could be interesting (like it can run a specific script and return output).
-       	•	Data Analysis Agent: The user provides a dataset or a link to one and asks “What are the insights?” The agent could then load the data (using a Python tool/pandas via some bridging code), do a simple analysis (like compute averages), and then have the LLM explain the results. This chain shows using a Python tool for computation.
-       	•	Game-playing Agent: For fun, an agent that plays a text-based game or solves puzzles by deciding on actions. For example, a “Maze solver AI” that can call a move(direction) tool to navigate a maze and uses reasoning to figure out the path. This is more of an entertainment option but teaches the same principle of thought-action loops.
         <Example>
+          Web Research Agent
+          The user asks a question like “What were the key outcomes of the latest climate summit?” The agent then uses a search tool (calls a search API or scrapes a web page) to find information and then summarizes the answer. This involves a search tool and perhaps a browser-fetch tool.
+        </Example>
+
+        <Example>
+          Personal Assistant Agent
+          A user can give a command “Schedule a meeting with Alice next week” – the agent could check a (mock) calendar or scheduling API, pick a time, maybe send an email or create an event (this might be simulated if we don’t want to use real email APIs, but they could integrate Google Calendar API if they wish). This showcases multi-step action: check schedules → compose response.
+        </Example>
+
+        <Example>
+       	  DevOps/Test Agent
+          Though participants aren’t big on DevOps, some may still find this cool – e.g. an agent that, when given a GitHub issue about a bug, automatically spins up a test environment or runs a test suite to reproduce it (using say a Docker tool or CI API) then reports back. This is more complex and might be too heavy for this timeframe, but a scaled-down version could be interesting (like it can run a specific script and return output).
+        </Example>
+
+        <Example>
+         	Data Analysis Agent
+          The user provides a dataset or a link to one and asks “What are the insights?” The agent could then load the data (using a Python tool/pandas via some bridging code), do a simple analysis (like compute averages), and then have the LLM explain the results. This chain shows using a Python tool for computation.
+        </Example>
+
+        <Example>
+         	Game-playing Agent
+          For fun, an agent that plays a text-based game or solves puzzles by deciding on actions. For example, a “Maze solver AI” that can call a move(direction) tool to navigate a maze and uses reasoning to figure out the path. This is more of an entertainment option but teaches the same principle of thought-action loops.
         </Example>
       </Examples>
 
       <Notes>
+        <Note>
+          Given the diversity of possible tools, each team might pick a very different approach, which is great for breadth of learning. However, we’ll ensure everyone implements at least a simple tool like a calculator or search in their agent so the core concept is covered. (One trivial built-in tool is a calculator – many LangChain tutorials start with giving the LLM a calculator tool so it can answer math questions it normally would get wrong ￼.)
+        </Note>
+
+        <Note>
+          During building, groups who use Python might spin up a small Flask server or Jupyter environment to host their agent logic, whereas others using Node and OpenAI functions might keep it all in one script. By Week 12, we expect working demos where a user query leads the agent to take at least one tool action and then return an answer. The presentations will be exciting because they show AI systems doing things like retrieving live info or interacting with user data – very cutting-edge stuff that moves beyond static Q&A. We will likely see some agents succeed impressively and others struggle (for instance, the web research agent might sometimes fetch irrelevant info). This is valuable for learning; it will prompt discussions on how to improve tool use, and highlight that giving AI tools is powerful but requires careful design (thus leading well into evaluation and grounding topics in later projects).
+        </Note>
+
+        <Note>
+          By completing this project, participants step firmly into the realm of AI engineering (not just calling an API to get a chat answer, but orchestrating AI reasoning and actions). This skillset is highly sought after, as evidenced by many frameworks and hackathons around AI agents ￼. The project also underscores the importance of a human-in-the-loop mindset.
+        </Note>
       </Notes>
     </Brief>
   </Briefs>
 
   <Twists>
     <Twist>
-      <Name></Name>
-      
+      <Name>The Mutating Friend</Name>
+
       <Task>
         Build something that gives AI persistent, evolving context.
       </Task>
-      
+
       <Examples>
         - environment that remembers your interaction patterns across sessions
 				- documentation system that learns from your team's questions
@@ -156,26 +191,3 @@
     </Twist>
   </Twists>
 </Projects>
-
-<project4>
-  <overview4>
-    
-  </overview4>
-
-  <inbox4>
-    Given the diversity of possible tools, each team might pick a very different approach, which is great for breadth of learning. However, we’ll ensure everyone implements at least a simple tool like a calculator or search in their agent so the core concept is covered. (One trivial built-in tool is a calculator – many LangChain tutorials start with giving the LLM a calculator tool so it can answer math questions it normally would get wrong ￼.)
-
-    During building, groups who use Python might spin up a small Flask server or Jupyter environment to host their agent logic, whereas others using Node and OpenAI functions might keep it all in one script. By Week 12, we expect working demos where a user query leads the agent to take at least one tool action and then return an answer. The presentations will be exciting because they show AI systems doing things like retrieving live info or interacting with user data – very cutting-edge stuff that moves beyond static Q&A. We will likely see some agents succeed impressively and others struggle (for instance, the web research agent might sometimes fetch irrelevant info). This is valuable for learning; it will prompt discussions on how to improve tool use, and highlight that giving AI tools is powerful but requires careful design (thus leading well into evaluation and grounding topics in later projects).
-
-    By completing Project 4, participants step firmly into the realm of AI engineering (not just calling an API to get a chat answer, but orchestrating AI reasoning and actions). This skillset is highly sought after, as evidenced by many frameworks and hackathons around AI agents ￼. The project also underscores the importance of a human-in-the-loop mindset: even though the agent is autonomous, we as designers must anticipate and guardrail its behavior.
-  </inbox4>
-</project4>
-
-<project>
-	End User Feature with Custom Knowledge & Memory. This project centers on building a chatbot or Q&A assistant that can provide in-depth, factual answers by accessing external knowledge. Unlike a basic chatbot that relies only on its internal model knowledge (which might be limited or outdated), our bots will use Retrieval-Augmented Generation (RAG): pulling information from a provided dataset or documents and feeding it into the LLM to ground its answers ￼. Participants might create, for example, a documentation assistant for a programming library (where the bot retrieves relevant sections of documentation to answer user questions), or a research assistant that can cite facts from a knowledge base. Another angle is a chatbot with long-term memory – e.g. it remembers past conversation context or user preferences beyond the immediate chat history, possibly by storing conversation summaries or vector embeddings. This project introduces working with embeddings, vector databases, and perhaps multi-turn dialogue management.
-
-  •	Why: One limitation of LLMs is hallucination and lack of up-to-date info. RAG is a cutting-edge technique to address this, widely seen in GPT-powered search engines and assistants (e.g. Bing Chat citing sources). Knowledge chatbots are highly practical – many companies want custom AI assistants on their own docs. By doing this project, participants learn to combine database/query skills with LLMs, a key AI engineering skill in 2025. Also, handling longer conversations teaches how to manage context and state, crucial for advanced chatbot design.
-  •	Key Skills: Creating embeddings from text and storing them, using a vector DB or in-memory index to retrieve relevant context based on user queries, and incorporating that context into LLM prompts effectively. We also get into multi-turn conversation handling: deciding what to keep in the prompt (such as prior user questions/answers or a summary thereof) so the chatbot feels coherent. This project may involve more Python than previous ones, since Python has rich libraries (like Hugging Face Transformers, FAISS, or LlamaIndex/LangChain) for RAG pipelines – though some JavaScript-based solutions (like certain vector DB clients or LlamaIndex’s TypeScript version) exist ￼. It’s an opportunity for participants to start using Python in parts of their project (gradually building familiarity as desired).
-</project>
-
-
