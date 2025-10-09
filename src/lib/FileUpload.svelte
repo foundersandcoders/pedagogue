@@ -1,31 +1,43 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
     import {
-        parseArcXML,
-        parseNextStepXML,
+        parseProjectXML,
+        parsePythonXML,
+        parseResearchXML,
         validateUploadedFile,
         XMLParseError
     } from "./xml-parser.ts";
-    import type { ArcFile, NextStepFile } from "./xml-parser.ts";
+    import type { ProjectFile, PythonFile, ResearchFile } from "./xml-parser.ts";
 
-    export let fileType: "arc" | "nextStep";
+    export let fileType: "project" | "python" | "research";
     export let uploadState: "idle" | "uploading" | "success" | "error" = "idle";
     export let error: string | null = null;
 
     const dispatch = createEventDispatcher<{
         fileUploaded: {
-            type: "arc" | "nextStep";
-            data: ArcFile | NextStepFile;
+            type: "project" | "python" | "research";
+            data: ProjectFile | PythonFile | ResearchFile;
         };
-        uploadError: { type: "arc" | "nextStep"; error: string };
+        uploadError: { type: "project" | "python" | "research"; error: string };
     }>();
 
     let fileInput: HTMLInputElement;
     let dragCounter = 0;
     let isDragOver = false;
 
-    const title = fileType === "arc" ? "Arc File" : "Next Step File";
-    const expectedFile = fileType === "arc" ? "arc.xml" : "next-step.xml";
+    const titles = {
+        project: "Project File",
+        python: "Python File",
+        research: "Research Topics"
+    };
+    const expectedFiles = {
+        project: "project.xml",
+        python: "python.xml",
+        research: "research.xml"
+    };
+
+    const title = titles[fileType];
+    const expectedFile = expectedFiles[fileType];
 
     async function handleFile(file: File) {
         // Validate file
@@ -48,11 +60,13 @@
             const content = await file.text();
 
             // Parse based on file type
-            let parsedData: ArcFile | NextStepFile;
-            if (fileType === "arc") {
-                parsedData = parseArcXML(content);
+            let parsedData: ProjectFile | PythonFile | ResearchFile;
+            if (fileType === "project") {
+                parsedData = parseProjectXML(content);
+            } else if (fileType === "python") {
+                parsedData = parsePythonXML(content);
             } else {
-                parsedData = parseNextStepXML(content);
+                parsedData = parseResearchXML(content);
             }
 
             uploadState = "success";

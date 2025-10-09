@@ -10,8 +10,9 @@ import { HumanMessage, SystemMessage } from '@langchain/core/messages';
  */
 
 interface GenerateRequest {
-	arcData?: any;
-	nextStepData?: any;
+	projectData?: any;
+	pythonData?: any;
+	researchData?: any;
 	structuredInput?: Record<string, any>;
 	enableResearch?: boolean;
 	useExtendedThinking?: boolean;
@@ -31,9 +32,9 @@ export const POST: RequestHandler = async ({ request }) => {
 		const body: GenerateRequest = await request.json();
 
 		// Validate required inputs
-		if (!body.arcData || !body.nextStepData) {
+		if (!body.projectData || !body.pythonData || !body.researchData) {
 			throw error(400, {
-				message: 'Missing required data. Both arcData and nextStepData are required.'
+				message: 'Missing required data. projectData, pythonData, and researchData are all required.'
 			});
 		}
 
@@ -66,19 +67,23 @@ export const POST: RequestHandler = async ({ request }) => {
  * Build the generation prompt from input data
  */
 function buildGenerationPrompt(body: GenerateRequest): string {
-	const arcInfo = JSON.stringify(body.arcData, null, 2);
-	const nextStepInfo = JSON.stringify(body.nextStepData, null, 2);
+	const projectInfo = JSON.stringify(body.projectData, null, 2);
+	const pythonInfo = JSON.stringify(body.pythonData, null, 2);
+	const researchInfo = JSON.stringify(body.researchData, null, 2);
 	const structuredInfo = body.structuredInput ? JSON.stringify(body.structuredInput, null, 2) : 'None provided';
 
 	return `You are an expert curriculum designer for peer-led coding courses. Generate a comprehensive module specification based on the provided context.
 
 INPUT DATA:
 
-Arc Context:
-${arcInfo}
+Project Context:
+${projectInfo}
 
-Next Step Context:
-${nextStepInfo}
+Python Requirements:
+${pythonInfo}
+
+Research Topics:
+${researchInfo}
 
 Structured Input:
 ${structuredInfo}
@@ -88,10 +93,10 @@ Extended Thinking: ${body.useExtendedThinking ? 'Yes' : 'No'}
 
 TASK:
 Generate a detailed module specification in XML format that:
-1. Synthesizes the arc objectives with the next-step requirements
+1. Synthesizes the project requirements with Python skills and research topics
 2. Creates clear learning objectives
-3. Defines practical project ideas
-4. Includes relevant DevOps and technical details
+3. Defines practical project ideas based on the briefs provided
+4. Includes relevant technical details
 5. Maintains alignment with peer-led teaching philosophy
 
 OUTPUT FORMAT:

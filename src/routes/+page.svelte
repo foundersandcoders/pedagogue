@@ -1,20 +1,23 @@
 <script>
 	import { onMount } from 'svelte';
 	import FileUpload from '$lib/FileUpload.svelte';
+	import StructuredInputForm from '$lib/StructuredInputForm.svelte';
 	import {
 		currentStep,
-		arcFile,
-		nextStepFile,
+		projectFile,
+		pythonFile,
+		researchFile,
 		uploadStates,
 		uploadErrors,
-		canProceedToStep2
+		canProceedToStep2,
+		structuredInput
 	} from '$lib/stores.ts';
 
 	const steps = [
 		'Upload Files',
-		'Analyse Files',
+		'Add Context',
 		'Ask Questions',
-		'Confirm Understanding', 
+		'Confirm Understanding',
 		'Deep Research',
 		'Generate Module'
 	];
@@ -22,31 +25,47 @@
 	function handleFileUploaded(event) {
 		const { type, data } = event.detail;
 
-		if (type === 'arc') {
-			arcFile.set(data);
-			uploadStates.update(state => ({ ...state, arc: 'success' }));
-			uploadErrors.update(errors => ({ ...errors, arc: null }));
+		if (type === 'project') {
+			projectFile.set(data);
+			uploadStates.update(state => ({ ...state, project: 'success' }));
+			uploadErrors.update(errors => ({ ...errors, project: null }));
+		} else if (type === 'python') {
+			pythonFile.set(data);
+			uploadStates.update(state => ({ ...state, python: 'success' }));
+			uploadErrors.update(errors => ({ ...errors, python: null }));
 		} else {
-			nextStepFile.set(data);
-			uploadStates.update(state => ({ ...state, nextStep: 'success' }));
-			uploadErrors.update(errors => ({ ...errors, nextStep: null }));
+			researchFile.set(data);
+			uploadStates.update(state => ({ ...state, research: 'success' }));
+			uploadErrors.update(errors => ({ ...errors, research: null }));
 		}
 	}
 
 	function handleUploadError(event) {
 		const { type, error } = event.detail;
 
-		if (type === 'arc') {
-			uploadStates.update(state => ({ ...state, arc: 'error' }));
-			uploadErrors.update(errors => ({ ...errors, arc: error }));
+		if (type === 'project') {
+			uploadStates.update(state => ({ ...state, project: 'error' }));
+			uploadErrors.update(errors => ({ ...errors, project: error }));
+		} else if (type === 'python') {
+			uploadStates.update(state => ({ ...state, python: 'error' }));
+			uploadErrors.update(errors => ({ ...errors, python: error }));
 		} else {
-			uploadStates.update(state => ({ ...state, nextStep: 'error' }));
-			uploadErrors.update(errors => ({ ...errors, nextStep: error }));
+			uploadStates.update(state => ({ ...state, research: 'error' }));
+			uploadErrors.update(errors => ({ ...errors, research: error }));
 		}
 	}
 
 	function proceedToStep2() {
 		currentStep.set(2);
+	}
+
+	function handleFormSubmit(event) {
+		structuredInput.set(event.detail);
+		currentStep.set(3);
+	}
+
+	function handleFormChange(event) {
+		structuredInput.set(event.detail);
 	}
 
 	onMount(() => {
@@ -78,21 +97,29 @@
 			{#if $currentStep === 1}
 				<div class="upload-section">
 					<h2>Upload Module Files</h2>
-					<p>Upload your <code>&lt;arc&gt;</code> and <code>&lt;next-step&gt;</code> XML files to begin.</p>
-					
+					<p>Upload your three XML files to begin: project, python requirements, and research topics.</p>
+
 					<div class="upload-areas">
-						<FileUpload 
-							fileType="arc"
-							uploadState={$uploadStates.arc}
-							error={$uploadErrors.arc}
+						<FileUpload
+							fileType="project"
+							uploadState={$uploadStates.project}
+							error={$uploadErrors.project}
 							on:fileUploaded={handleFileUploaded}
 							on:uploadError={handleUploadError}
 						/>
-						
-						<FileUpload 
-							fileType="nextStep"
-							uploadState={$uploadStates.nextStep}
-							error={$uploadErrors.nextStep}
+
+						<FileUpload
+							fileType="python"
+							uploadState={$uploadStates.python}
+							error={$uploadErrors.python}
+							on:fileUploaded={handleFileUploaded}
+							on:uploadError={handleUploadError}
+						/>
+
+						<FileUpload
+							fileType="research"
+							uploadState={$uploadStates.research}
+							error={$uploadErrors.research}
 							on:fileUploaded={handleFileUploaded}
 							on:uploadError={handleUploadError}
 						/>
@@ -101,10 +128,18 @@
 					{#if $canProceedToStep2}
 						<div class="proceed-section">
 							<button type="button" class="proceed-button" on:click={proceedToStep2}>
-								Continue to Analysis →
+								Continue to Context →
 							</button>
 						</div>
 					{/if}
+				</div>
+			{:else if $currentStep === 2}
+				<div class="analysis-section">
+					<StructuredInputForm
+						formData={$structuredInput}
+						on:submit={handleFormSubmit}
+						on:change={handleFormChange}
+					/>
 				</div>
 			{:else}
 				<div class="placeholder">
@@ -217,9 +252,15 @@
 
 	.upload-areas {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 2rem;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 1.5rem;
 		margin-bottom: 2rem;
+	}
+
+	@media (max-width: 1024px) {
+		.upload-areas {
+			grid-template-columns: 1fr;
+		}
 	}
 
 	.proceed-section {

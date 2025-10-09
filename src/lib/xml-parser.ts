@@ -2,21 +2,16 @@
  * XML parsing and validation utilities for Pedagogue
  */
 
-export interface ArcFile {
-	options: ArcOption[];
+export interface ProjectFile {
+	rawContent: string;
 }
 
-export interface ArcOption {
-	overview: string;
-	brief: string;
-	objectives: string[];
-	exampleProjects: string[];
-	notes?: string;
+export interface PythonFile {
+	rawContent: string;
 }
 
-export interface NextStepFile {
-	overview: string;
-	devOpsDetail: string;
+export interface ResearchFile {
+	rawContent: string;
 }
 
 export class XMLParseError extends Error {
@@ -27,116 +22,87 @@ export class XMLParseError extends Error {
 }
 
 /**
- * Parse and validate an Arc XML file
+ * Parse and validate a Project XML file
  */
-export function parseArcXML(xmlContent: string): ArcFile {
+export function parseProjectXML(xmlContent: string): ProjectFile {
 	try {
-		// Basic XML validation - check for required structure
-		if (!xmlContent.includes('<arc>') || !xmlContent.includes('</arc>')) {
-			throw new XMLParseError('Invalid Arc XML: Missing <arc> root element');
+		// Basic XML validation
+		if (!xmlContent.includes('<projects>') || !xmlContent.includes('</projects>')) {
+			throw new XMLParseError('Invalid Project XML: Missing <projects> root element');
 		}
 
 		const parser = new DOMParser();
 		const doc = parser.parseFromString(xmlContent, 'text/xml');
-		
+
 		// Check for parser errors
 		const parserError = doc.querySelector('parsererror');
 		if (parserError) {
 			throw new XMLParseError('XML parsing failed', parserError.textContent || undefined);
 		}
 
-		const options: ArcOption[] = [];
-		const optionElements = doc.querySelectorAll('arc > option-1, arc > option-2');
-
-		if (optionElements.length === 0) {
-			throw new XMLParseError('Invalid Arc XML: No option elements found');
-		}
-
-		optionElements.forEach((option, index) => {
-			const overview = option.querySelector('overview')?.textContent?.trim() || '';
-			const brief = option.querySelector('brief')?.textContent?.trim() || '';
-			const notes = option.querySelector('notes')?.textContent?.trim() || '';
-
-			// Parse objectives
-			const objectivesElement = option.querySelector('objectives');
-			const objectives = objectivesElement ? 
-				extractBulletPoints(objectivesElement.textContent || '') : [];
-
-			// Parse example projects  
-			const exampleProjectsElement = option.querySelector('example-projects');
-			const exampleProjects = exampleProjectsElement ?
-				extractBulletPoints(exampleProjectsElement.textContent || '') : [];
-
-			if (!overview || !brief) {
-				throw new XMLParseError(`Invalid Arc XML: Option ${index + 1} missing required overview or brief`);
-			}
-
-			options.push({
-				overview,
-				brief,
-				objectives,
-				exampleProjects,
-				notes: notes || undefined
-			});
-		});
-
-		return { options };
+		// Store raw content for Claude to process
+		return { rawContent: xmlContent };
 
 	} catch (error) {
 		if (error instanceof XMLParseError) {
 			throw error;
 		}
-		throw new XMLParseError('Failed to parse Arc XML', error instanceof Error ? error.message : String(error));
+		throw new XMLParseError('Failed to parse Project XML', error instanceof Error ? error.message : String(error));
 	}
 }
 
 /**
- * Parse and validate a Next Step XML file
+ * Parse and validate a Python XML file
  */
-export function parseNextStepXML(xmlContent: string): NextStepFile {
+export function parsePythonXML(xmlContent: string): PythonFile {
 	try {
-		if (!xmlContent.includes('<next-step>') || !xmlContent.includes('</next-step>')) {
-			throw new XMLParseError('Invalid Next Step XML: Missing <next-step> root element');
+		if (!xmlContent.includes('<python-for-this-arc>') || !xmlContent.includes('</python-for-this-arc>')) {
+			throw new XMLParseError('Invalid Python XML: Missing <python-for-this-arc> root element');
 		}
 
 		const parser = new DOMParser();
 		const doc = parser.parseFromString(xmlContent, 'text/xml');
-		
+
 		const parserError = doc.querySelector('parsererror');
 		if (parserError) {
 			throw new XMLParseError('XML parsing failed', parserError.textContent || undefined);
 		}
 
-		const overview = doc.querySelector('next-step > overview')?.textContent?.trim() || '';
-		const devOpsDetail = doc.querySelector('next-step > dev-ops-detail')?.textContent?.trim() || '';
-
-		if (!overview || !devOpsDetail) {
-			throw new XMLParseError('Invalid Next Step XML: Missing required overview or dev-ops-detail');
-		}
-
-		return {
-			overview,
-			devOpsDetail
-		};
+		return { rawContent: xmlContent };
 
 	} catch (error) {
 		if (error instanceof XMLParseError) {
 			throw error;
 		}
-		throw new XMLParseError('Failed to parse Next Step XML', error instanceof Error ? error.message : String(error));
+		throw new XMLParseError('Failed to parse Python XML', error instanceof Error ? error.message : String(error));
 	}
 }
 
 /**
- * Extract bullet points from text content
+ * Parse and validate a Research XML file
  */
-function extractBulletPoints(text: string): string[] {
-	return text
-		.split(/\n/)
-		.map(line => line.trim())
-		.filter(line => line.startsWith('-') || line.startsWith('|'))
-		.map(line => line.replace(/^[-|]\s*/, '').trim())
-		.filter(line => line.length > 0);
+export function parseResearchXML(xmlContent: string): ResearchFile {
+	try {
+		if (!xmlContent.includes('<research-topics>') || !xmlContent.includes('</research-topics>')) {
+			throw new XMLParseError('Invalid Research XML: Missing <research-topics> root element');
+		}
+
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(xmlContent, 'text/xml');
+
+		const parserError = doc.querySelector('parsererror');
+		if (parserError) {
+			throw new XMLParseError('XML parsing failed', parserError.textContent || undefined);
+		}
+
+		return { rawContent: xmlContent };
+
+	} catch (error) {
+		if (error instanceof XMLParseError) {
+			throw error;
+		}
+		throw new XMLParseError('Failed to parse Research XML', error instanceof Error ? error.message : String(error));
+	}
 }
 
 /**
