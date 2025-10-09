@@ -1,65 +1,90 @@
-<projects>
-  <projects-process>
-    <projects-process-essential>
+<Projects>
+  <Process>
+    <Essential>
       Groups choose one of the available briefs and then work on it for this arc
-    </projects-process-essential>
+    </Essential>
 
-    <projects-process-encouraged>
+    <Encouraged>
       Groups are randomly assisnged one of the available twists. They should attempt to meet the brief by using the twist as inspiration for its purpose or approach.
-    </projects-process-encouraged>
-  </projects-process>
+    </Encouraged>
+  </Process>
 
-  <projects-briefs>
-    <projects-briefs-1>
-      <projects-briefs-1-overview>
-        - Name:
-        - Task:
-        - Focus:
-      </projects-briefs-1-overview>
+  <Briefs>
+    <Brief>
+      <Overview>
+        <Name></Name>
 
-      <projects-briefs-1-brief>
-      </projects-briefs-1-brief>
+        <Task>
+        </Task>
 
-      <projects-briefs-1-examples>
-      </projects-briefs-1-examples>
+        <Focus>
+        </Focus>
+      </Overview>
 
-      <projects-briefs-1-notes>
-      </projects-briefs-1-notes>
-    <projects-briefs-1>
+      <Detail>
+        <BriefDetail>
+        </BriefDetail>
 
-    <projects-briefs-2>
-      <projects-briefs-2-overview>
-        - Name:
-        - Task:
-        - Focus:
-      </projects-briefs-2-overview>
+        <Objectives>
+          <Objective>
+          </Objective>
+        </Objectives>
+      </Detail>
 
-      <projects-briefs-2-brief>
-      </projects-briefs-2-brief>
+      <Examples>
+        <Example>
+        </Example>
+      </Examples>
 
-      <projects-briefs-2-examples>
-      </projects-briefs-2-examples>
+      <Notes>
+      </Notes>
+    </Brief>
 
-      <projects-briefs-2-notes>
-      </projects-briefs-2-notes>
-    <projects-briefs-2>
-  </projects-briefs>
+    <Brief>
+      <Overview>
+        <Name></Name>
 
-  <projects-twists>
-    <projects-twists-1>
-      Name:
-      Task:
-      - Example 1:
-    </projects-twists-1>
+        <Task>
+        </Task>
 
-    <projects-twists-2>
-      Name:
-      Task:
-      - Example 1:
-      - Example 2:
-    </projects-twists-2>
-  </projects-twists>
-</projects>
+        <Focus>
+        </Focus>
+      </Overview>
+
+      <Detail>
+        <BriefDetail>
+        </BriefDetail>
+
+        <Objectives>
+          <Objective>
+          </Objective>
+        </Objectives>
+      </Detail>
+
+      <Examples>
+        <Example>
+        </Example>
+      </Examples>
+
+      <Notes>
+      </Notes>
+    </Brief>
+  </Briefs>
+
+  <Twists>
+    <Twist>
+      <Name></Name>
+      <Task></Task>
+      <Examples></Examples>
+    </Twist>
+
+    <Twist>
+      <Name></Name>
+      <Task></Task>
+      <Examples></Examples>
+    </Twist>
+  </Twists>
+</Projects>
 
 <overview5>
     Create a chatbot that provides reliable answers based on a provided knowledge base (company docs, FAQs, or any domain data) using Retrieval-Augmented Generation. Focus: Implementing embeddings and vector search to ground LLM outputs in facts ￼ ￼. Participants learn to build a pipeline where user queries trigger document retrieval followed by an LLM response that cites the retrieved info (mitigating hallucinations). This project solidifies working with external data and introduces basic data stores (could use a local vector DB like Chroma or a cloud service if budget permits).
