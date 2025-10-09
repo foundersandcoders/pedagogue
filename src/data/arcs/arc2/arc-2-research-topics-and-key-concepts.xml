@@ -1,6 +1,6 @@
-<research-topics>
-	<primary-topics>
-   	<primary-topic>
+<Research>
+	<PrimaryTopics>
+   	<PrimaryTopic>
       1. Long Context Models
         > Find out what models are available that can handle big inputs.
         - For example:
@@ -17,9 +17,9 @@
         - Investigate open-source embedding models
           - SBERT
           - InstructorXL
-    </primary-topic>
+    </PrimaryTopic>
 
-   	<primary-topic>
+   	<PrimaryTopic>
       1. Text Chunking and Summarization
         > Techniques to summarize or chunk documents
         - For instance:
@@ -41,9 +41,9 @@
           - JavaScript PDF parsers
         - If the documents are HTML or MD, find ways to parse them
         - Essentially, ensure teams know how to get raw text from the input documents for the AI to consume.
-    </primary-topic>
+    </PrimaryTopic>
 
-   	<primary-topic>
+   	<PrimaryTopic>
       1. AI for Code Review &amp; Quality
         > How are AI models being used to review code?
         - Investigate examples like:
@@ -69,9 +69,9 @@
         - For test generation: how to prompt for a unit test given a function’s code or spec
         - For documentation: using AI to generate a README or update a changelog.
         - Find any tools or papers on these topics to gauge feasibility and best approaches.
-    </primary-topic>
+    </PrimaryTopic>
 
-   	<primary-topic>
+   	<PrimaryTopic>
       1. Security and Privacy in CI AI
         > Discuss the implications of sending your code to an external API (like OpenAI) during CI
         - What do OpenAI/Anthropic’s terms say about data usage?
@@ -88,9 +88,9 @@
         - Outline the basic structure of an Action YAML and the environment it runs in, e.g.
           - runners
           - using Node or Python in actions
-    </primary-topic>
+    </PrimaryTopic>
 
-   	<primary-topic>
+   	<PrimaryTopic>
       1. Retrieval-Augmented Generation (RAG) 101
         > Understand the concept of RAG
         - Break down the typical steps
@@ -116,9 +116,9 @@
           - etc.
         – How do they work?
         - What are their free tiers or ease-of-use considerations?
-    </primary-topic>
+    </PrimaryTopic>
 
-   	<primary-topic>
+   	<PrimaryTopic>
       1. Preventing Hallucinations and Ensuring Accuracy
         > Strategies to make the bot cite sources or indicate uncertainty
         - Instructing the model “If you don’t find an answer in the provided documents, say you don’t know.”
@@ -135,35 +135,35 @@
         - Research how ChatGPT or Claude handle large contexts
           - e.g. window of 100k tokens in Claude 2
         - What are best practices to avoid the bot “forgetting” important details or repeating itself?
-    </primary-topic>
+    </PrimaryTopic>
 
-   	<primary-topic>
-    </primary-topic>
-  </primary-topics>
+   	<PrimaryTopic>
+    </PrimaryTopic>
+  </PrimaryTopics>
 
-	<stretch-topics>
-	  <stretch-topic>
+	<StretchTopics>
+	  <StretchTopic>
       Advanced Tools
       > Look into how agents can use tools like a Python REPL (executing code) or even image recognition. This might be beyond our project scope, but it can inspire those who want to push boundaries, perhaps to incorporate a small coding tool in their agent.
-    </stretch-topic>
+    </StretchTopic>
 
-   	<stretch-topic>
+   	<StretchTopic>
       DevOps Automation Trends
       > Broader look at how AI is impacting DevOps. Any emerging concept of “NoOps” with AI or using AI for infrastructure as code? This can be exploratory to inspire creative project angles (e.g. AI suggesting CI pipeline optimizations).
-    </stretch-topic>
+    </StretchTopic>
 
-   	<stretch-topic>
+   	<StretchTopic>
       Domain-Specific Challenges
       > If teams choose specialized domains (like a medical info bot or legal doc bot), research the additional responsibilities (ensuring up-to-date regulations, avoiding advice beyond the docs, etc.). Also, any known issues such as biases in embeddings for certain languages or topics.
-    </stretch-topic>
+    </StretchTopic>
 
-   	<stretch-topic>Graph databases for knowledge representation</stretch-topic>
-   	<stretch-topic>Fine-tuning vs few-shot learning</stretch-topic>
-   	<stretch-topic>Long-term memory architectures for LLMs</stretch-topic>
-    <stretch-topic>stateful conversations</stretch-topic>
-   	<stretch-topic>Open source model landscape (Llama, Mistral, Qwen)</stretch-topic>
-   	<stretch-topic>Edge deployment strategies</stretch-topic>
-   	<stretch-topic>Local inference</stretch-topic>
-   	<stretch-topic>quantisation trade-offs</stretch-topic>
-	</stretch-topics>
-</research-topics>
+   	<StretchTopic>Graph databases for knowledge representation</StretchTopic>
+   	<StretchTopic>Fine-tuning vs few-shot learning</StretchTopic>
+   	<StretchTopic>Long-term memory architectures for LLMs</StretchTopic>
+    <StretchTopic>stateful conversations</StretchTopic>
+   	<StretchTopic>Open source model landscape (Llama, Mistral, Qwen)</StretchTopic>
+   	<StretchTopic>Edge deployment strategies</StretchTopic>
+   	<StretchTopic>Local inference</StretchTopic>
+   	<StretchTopic>quantisation trade-offs</StretchTopic>
+	</StretchTopics>
+</Research>
