@@ -1,0 +1,62 @@
+<projects>
+  <projects-process>
+    <projects-process-essential>
+      Groups choose one of the available briefs and then work on it for this arc
+    </projects-process-essential>
+    
+    <projects-process-encouraged>
+      Groups are randomly assisnged one of the available twists. They should attempt to meet the brief by using the twist as inspiration for its purpose or approach.
+    </projects-process-encouraged>
+  </projects-process>
+
+  <projects-briefs>
+    <projects-briefs-1>
+      <projects-briefs-1-overview>
+        - Name: 
+        - Task: 
+        - Focus: 
+      </projects-briefs-1-overview>
+      
+      <projects-briefs-1-brief>
+      </projects-briefs-1-brief>
+      
+      <projects-briefs-1-examples>
+      </projects-briefs-1-examples>
+      
+      <projects-briefs-1-notes>
+      </projects-briefs-1-notes>
+    <projects-briefs-1>
+    
+    <projects-briefs-2>
+      <projects-briefs-2-overview>
+        - Name: 
+        - Task: 
+        - Focus: 
+      </projects-briefs-2-overview>
+      
+      <projects-briefs-2-brief>  
+      </projects-briefs-2-brief>
+      
+      <projects-briefs-2-examples>
+      </projects-briefs-2-examples>
+      
+      <projects-briefs-2-notes>
+      </projects-briefs-2-notes>
+    <projects-briefs-2>
+  </projects-briefs>
+  
+  <projects-twists>
+    <projects-twists-1>
+      Name: 
+      Task: 
+      - Example 1: 
+    </projects-twists-1>
+    
+    <projects-twists-2>
+      Name: 
+      Task: 
+      - Example 1: 
+      - Example 2: 
+    </projects-twists-2>
+  </projects-twists>
+</projects>
