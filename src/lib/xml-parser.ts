@@ -27,8 +27,8 @@ export class XMLParseError extends Error {
 export function parseProjectXML(xmlContent: string): ProjectFile {
 	try {
 		// Basic XML validation
-		if (!xmlContent.includes('<projects>') || !xmlContent.includes('</projects>')) {
-			throw new XMLParseError('Invalid Project XML: Missing <projects> root element');
+		if (!xmlContent.includes('<Projects>') || !xmlContent.includes('</Projects>')) {
+			throw new XMLParseError('Invalid Project XML: Missing <Projects> root element');
 		}
 
 		const parser = new DOMParser();
@@ -56,7 +56,7 @@ export function parseProjectXML(xmlContent: string): ProjectFile {
  */
 export function parsePythonXML(xmlContent: string): PythonFile {
 	try {
-		if (!xmlContent.includes('<python-for-this-arc>') || !xmlContent.includes('</python-for-this-arc>')) {
+		if (!xmlContent.includes('<Python>') || !xmlContent.includes('</Python>')) {
 			throw new XMLParseError('Invalid Python XML: Missing <python-for-this-arc> root element');
 		}
 
@@ -69,7 +69,6 @@ export function parsePythonXML(xmlContent: string): PythonFile {
 		}
 
 		return { rawContent: xmlContent };
-
 	} catch (error) {
 		if (error instanceof XMLParseError) {
 			throw error;
@@ -83,7 +82,7 @@ export function parsePythonXML(xmlContent: string): PythonFile {
  */
 export function parseResearchXML(xmlContent: string): ResearchFile {
 	try {
-		if (!xmlContent.includes('<research-topics>') || !xmlContent.includes('</research-topics>')) {
+		if (!xmlContent.includes('<Research>') || !xmlContent.includes('</Research>')) {
 			throw new XMLParseError('Invalid Research XML: Missing <research-topics> root element');
 		}
 
@@ -96,7 +95,6 @@ export function parseResearchXML(xmlContent: string): ResearchFile {
 		}
 
 		return { rawContent: xmlContent };
-
 	} catch (error) {
 		if (error instanceof XMLParseError) {
 			throw error;
@@ -111,18 +109,27 @@ export function parseResearchXML(xmlContent: string): ResearchFile {
 export function validateUploadedFile(file: File): { valid: boolean; error?: string } {
 	// Check file extension
 	if (!file.name.toLowerCase().endsWith('.xml')) {
-		return { valid: false, error: 'File must have .xml extension' };
+		return {
+		  valid: false,
+			error: 'File must have .xml extension'
+		};
 	}
 
 	// Check file size (max 1MB)
 	const maxSize = 1024 * 1024; // 1MB
 	if (file.size > maxSize) {
-		return { valid: false, error: 'File size must be less than 1MB' };
+		return {
+		  valid: false,
+			error: 'File size must be less than 1MB'
+		};
 	}
 
 	// Check MIME type
 	if (file.type && !['text/xml', 'application/xml', 'text/plain'].includes(file.type)) {
-		return { valid: false, error: 'Invalid file type. Expected XML file.' };
+		return {
+		  valid: false,
+			error: 'Invalid file type. Expected XML file.'
+		};
 	}
 
 	return { valid: true };
