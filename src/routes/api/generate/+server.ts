@@ -5,6 +5,25 @@ import { ChatAnthropic } from '@langchain/anthropic';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 
 /**
+ * Extract XML module specification from Claude's response
+ * Handles cases where Claude includes explanation text before/after the XML
+ */
+function extractModuleXML(content: string): string | null {
+	// Try to find XML content between <module> tags
+	const xmlMatch = content.match(/<module>[\s\S]*?<\/module>/);
+	if (xmlMatch) {
+		return `<?xml version="1.0" encoding="UTF-8"?>\n${xmlMatch[0]}`;
+	}
+
+	// If no match, check if the entire content is valid XML
+	if (content.trim().startsWith('<module>') && content.trim().endsWith('</module>')) {
+		return `<?xml version="1.0" encoding="UTF-8"?>\n${content.trim()}`;
+	}
+
+	return null;
+}
+
+/**
  * API endpoint for generating module content using Claude + LangChain
  * Supports SSE streaming for progress updates during generation
  */
@@ -314,10 +333,19 @@ async function generateModule(body: GenerateRequest, apiKey: string) {
 			? response.content
 			: JSON.stringify(response.content);
 
+		// Extract XML from the response
+		const xmlContent = extractModuleXML(content);
+
+		if (!xmlContent) {
+			console.warn('Failed to extract valid XML from response. Raw content:', content.substring(0, 200));
+		}
+
 		return json({
 			success: true,
 			message: 'Module generated successfully',
-			content: content,
+			content: content, // Full response including any explanations
+			xmlContent: xmlContent, // Extracted XML only
+			hasValidXML: xmlContent !== null,
 			metadata: {
 				modelUsed: 'claude-3-5-sonnet-20241022',
 				timestamp: new Date().toISOString(),
