@@ -1,324 +1,357 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	import { parseArcXML, parseNextStepXML, validateUploadedFile, XMLParseError } from './xml-parser.js';
-	import type { ArcFile, NextStepFile } from './xml-parser.js';
+    import { createEventDispatcher } from "svelte";
+    import {
+        parseProjectXML,
+        parsePythonXML,
+        parseResearchXML,
+        validateUploadedFile,
+        XMLParseError
+    } from "./xml-parser.ts";
+    import type { ProjectFile, PythonFile, ResearchFile } from "./xml-parser.ts";
 
-	export let fileType: 'arc' | 'nextStep';
-	export let uploadState: 'idle' | 'uploading' | 'success' | 'error' = 'idle';
-	export let error: string | null = null;
+    export let fileType: "project" | "python" | "research";
+    export let uploadState: "idle" | "uploading" | "success" | "error" = "idle";
+    export let error: string | null = null;
 
-	const dispatch = createEventDispatcher<{
-		fileUploaded: { type: 'arc' | 'nextStep'; data: ArcFile | NextStepFile };
-		uploadError: { type: 'arc' | 'nextStep'; error: string };
-	}>();
+    const dispatch = createEventDispatcher<{
+        fileUploaded: {
+            type: "project" | "python" | "research";
+            data: ProjectFile | PythonFile | ResearchFile;
+        };
+        uploadError: { type: "project" | "python" | "research"; error: string };
+    }>();
 
-	let fileInput: HTMLInputElement;
-	let dragCounter = 0;
-	let isDragOver = false;
+    let fileInput: HTMLInputElement;
+    let dragCounter = 0;
+    let isDragOver = false;
 
-	const title = fileType === 'arc' ? 'Arc File' : 'Next Step File';
-	const expectedFile = fileType === 'arc' ? 'arc.xml' : 'next-step.xml';
+    const titles = {
+        project: "Project File",
+        python: "Python File",
+        research: "Research Topics"
+    };
+    const expectedFiles = {
+        project: "project.xml",
+        python: "python.xml",
+        research: "research.xml"
+    };
 
-	async function handleFile(file: File) {
-		// Validate file
-		const validation = validateUploadedFile(file);
-		if (!validation.valid) {
-			error = validation.error!;
-			uploadState = 'error';
-			dispatch('uploadError', { type: fileType, error: validation.error! });
-			return;
-		}
+    const title = titles[fileType];
+    const expectedFile = expectedFiles[fileType];
 
-		uploadState = 'uploading';
-		error = null;
+    async function handleFile(file: File) {
+        // Validate file
+        const validation = validateUploadedFile(file);
+        if (!validation.valid) {
+            error = validation.error!;
+            uploadState = "error";
+            dispatch("uploadError", {
+                type: fileType,
+                error: validation.error!,
+            });
+            return;
+        }
 
-		try {
-			// Read file content
-			const content = await file.text();
+        uploadState = "uploading";
+        error = null;
 
-			// Parse based on file type
-			let parsedData: ArcFile | NextStepFile;
-			if (fileType === 'arc') {
-				parsedData = parseArcXML(content);
-			} else {
-				parsedData = parseNextStepXML(content);
-			}
+        try {
+            // Read file content
+            const content = await file.text();
 
-			uploadState = 'success';
-			dispatch('fileUploaded', { type: fileType, data: parsedData });
+            // Parse based on file type
+            let parsedData: ProjectFile | PythonFile | ResearchFile;
+            if (fileType === "project") {
+                parsedData = parseProjectXML(content);
+            } else if (fileType === "python") {
+                parsedData = parsePythonXML(content);
+            } else {
+                parsedData = parseResearchXML(content);
+            }
 
-		} catch (err) {
-			console.error('File processing error:', err);
-			
-			if (err instanceof XMLParseError) {
-				error = err.message;
-				if (err.details) {
-					error += ` (${err.details})`;
-				}
-			} else {
-				error = `Failed to process ${expectedFile}`;
-			}
-			
-			uploadState = 'error';
-			dispatch('uploadError', { type: fileType, error });
-		}
-	}
+            uploadState = "success";
+            dispatch("fileUploaded", { type: fileType, data: parsedData });
+        } catch (err) {
+            console.error("File processing error:", err);
 
-	function handleFileSelect(event: Event) {
-		const target = event.target as HTMLInputElement;
-		const file = target.files?.[0];
-		if (file) {
-			handleFile(file);
-		}
-	}
+            if (err instanceof XMLParseError) {
+                error = err.message;
+                if (err.details) {
+                    error += ` (${err.details})`;
+                }
+            } else {
+                error = `Failed to process ${expectedFile}`;
+            }
 
-	function handleDrop(event: DragEvent) {
-		event.preventDefault();
-		isDragOver = false;
-		dragCounter = 0;
+            uploadState = "error";
+            dispatch("uploadError", { type: fileType, error });
+        }
+    }
 
-		const file = event.dataTransfer?.files[0];
-		if (file) {
-			handleFile(file);
-		}
-	}
+    function handleFileSelect(event: Event) {
+        const target = event.target as HTMLInputElement;
+        const file = target.files?.[0];
+        if (file) {
+            handleFile(file);
+        }
+    }
 
-	function handleDragOver(event: DragEvent) {
-		event.preventDefault();
-	}
+    function handleDrop(event: DragEvent) {
+        event.preventDefault();
+        isDragOver = false;
+        dragCounter = 0;
 
-	function handleDragEnter(event: DragEvent) {
-		event.preventDefault();
-		dragCounter++;
-		isDragOver = true;
-	}
+        const file = event.dataTransfer?.files[0];
+        if (file) {
+            handleFile(file);
+        }
+    }
 
-	function handleDragLeave(event: DragEvent) {
-		event.preventDefault();
-		dragCounter--;
-		if (dragCounter === 0) {
-			isDragOver = false;
-		}
-	}
+    function handleDragOver(event: DragEvent) {
+        event.preventDefault();
+    }
 
-	function openFileDialog() {
-		if (uploadState !== 'uploading') {
-			fileInput.click();
-		}
-	}
+    function handleDragEnter(event: DragEvent) {
+        event.preventDefault();
+        dragCounter++;
+        isDragOver = true;
+    }
 
-	function reset() {
-		uploadState = 'idle';
-		error = null;
-		if (fileInput) {
-			fileInput.value = '';
-		}
-	}
+    function handleDragLeave(event: DragEvent) {
+        event.preventDefault();
+        dragCounter--;
+        if (dragCounter === 0) {
+            isDragOver = false;
+        }
+    }
+
+    function openFileDialog() {
+        if (uploadState !== "uploading") {
+            fileInput.click();
+        }
+    }
+
+    function reset() {
+        uploadState = "idle";
+        error = null;
+        if (fileInput) {
+            fileInput.value = "";
+        }
+    }
 </script>
 
 <div class="upload-area">
-	<h3>{title}</h3>
-	
-	<div 
-		class="drop-zone" 
-		class:drag-over={isDragOver}
-		class:uploading={uploadState === 'uploading'}
-		class:success={uploadState === 'success'}
-		class:error={uploadState === 'error'}
-		on:click={openFileDialog}
-		on:drop={handleDrop}
-		on:dragover={handleDragOver}
-		on:dragenter={handleDragEnter}
-		on:dragleave={handleDragLeave}
-		role="button"
-		tabindex="0"
-		on:keydown={(e) => e.key === 'Enter' && openFileDialog()}
-	>
-		{#if uploadState === 'uploading'}
-			<div class="upload-status">
-				<div class="spinner"></div>
-				<p>Processing {expectedFile}...</p>
-			</div>
-		{:else if uploadState === 'success'}
-			<div class="upload-status success">
-				<div class="checkmark">✓</div>
-				<p><strong>{expectedFile}</strong> uploaded successfully</p>
-				<button type="button" class="reset-button" on:click|stopPropagation={reset}>
-					Upload different file
-				</button>
-			</div>
-		{:else if uploadState === 'error'}
-			<div class="upload-status error">
-				<div class="error-icon">⚠</div>
-				<p class="error-message">{error}</p>
-				<button type="button" class="retry-button" on:click|stopPropagation={reset}>
-					Try again
-				</button>
-			</div>
-		{:else}
-			<div class="upload-prompt">
-				<div class="upload-icon">📄</div>
-				<p>Drop <code>{expectedFile}</code> here or click to browse</p>
-				<p class="upload-hint">XML files only, max 1MB</p>
-			</div>
-		{/if}
-	</div>
+    <h3>{title}</h3>
 
-	<input 
-		bind:this={fileInput}
-		type="file" 
-		accept=".xml,text/xml,application/xml" 
-		on:change={handleFileSelect}
-		style="display: none;"
-	>
+    <div
+        class="drop-zone"
+        class:drag-over={isDragOver}
+        class:uploading={uploadState === "uploading"}
+        class:success={uploadState === "success"}
+        class:error={uploadState === "error"}
+        on:click={openFileDialog}
+        on:drop={handleDrop}
+        on:dragover={handleDragOver}
+        on:dragenter={handleDragEnter}
+        on:dragleave={handleDragLeave}
+        role="button"
+        tabindex="0"
+        on:keydown={(e) => e.key === "Enter" && openFileDialog()}
+    >
+        {#if uploadState === "uploading"}
+            <div class="upload-status">
+                <div class="spinner"></div>
+                <p>Processing {expectedFile}...</p>
+            </div>
+        {:else if uploadState === "success"}
+            <div class="upload-status success">
+                <div class="checkmark">✓</div>
+                <p><strong>{expectedFile}</strong> uploaded successfully</p>
+                <button
+                    type="button"
+                    class="reset-button"
+                    on:click|stopPropagation={reset}
+                >
+                    Upload different file
+                </button>
+            </div>
+        {:else if uploadState === "error"}
+            <div class="upload-status error">
+                <div class="error-icon">⚠</div>
+                <p class="error-message">{error}</p>
+                <button
+                    type="button"
+                    class="retry-button"
+                    on:click|stopPropagation={reset}
+                >
+                    Try again
+                </button>
+            </div>
+        {:else}
+            <div class="upload-prompt">
+                <div class="upload-icon">📄</div>
+                <p>Drop <code>{expectedFile}</code> here or click to browse</p>
+                <p class="upload-hint">XML files only, max 1MB</p>
+            </div>
+        {/if}
+    </div>
+
+    <input
+        bind:this={fileInput}
+        type="file"
+        accept=".xml,text/xml,application/xml"
+        on:change={handleFileSelect}
+        style="display: none;"
+    />
 </div>
 
 <style>
-	.upload-area {
-		flex: 1;
-	}
+    .upload-area {
+        flex: 1;
+    }
 
-	.upload-area h3 {
-		margin-bottom: 1rem;
-		color: #495057;
-		font-weight: 600;
-	}
+    .upload-area h3 {
+        margin-bottom: 1rem;
+        color: #495057;
+        font-weight: 600;
+    }
 
-	.drop-zone {
-		border: 2px dashed #dee2e6;
-		border-radius: 8px;
-		padding: 3rem 2rem;
-		text-align: center;
-		cursor: pointer;
-		transition: all 0.3s ease;
-		min-height: 200px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+    .drop-zone {
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        padding: 3rem 2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-	.drop-zone:hover:not(.uploading) {
-		border-color: #007bff;
-		background-color: #f8f9ff;
-	}
+    .drop-zone:hover:not(.uploading) {
+        border-color: #007bff;
+        background-color: #f8f9ff;
+    }
 
-	.drop-zone.drag-over {
-		border-color: #007bff;
-		background-color: #f0f8ff;
-		border-style: solid;
-	}
+    .drop-zone.drag-over {
+        border-color: #007bff;
+        background-color: #f0f8ff;
+        border-style: solid;
+    }
 
-	.drop-zone.success {
-		border-color: #28a745;
-		background-color: #f8fff8;
-	}
+    .drop-zone.success {
+        border-color: #28a745;
+        background-color: #f8fff8;
+    }
 
-	.drop-zone.error {
-		border-color: #dc3545;
-		background-color: #fff8f8;
-	}
+    .drop-zone.error {
+        border-color: #dc3545;
+        background-color: #fff8f8;
+    }
 
-	.drop-zone.uploading {
-		cursor: wait;
-		border-color: #007bff;
-		background-color: #f8f9ff;
-	}
+    .drop-zone.uploading {
+        cursor: wait;
+        border-color: #007bff;
+        background-color: #f8f9ff;
+    }
 
-	.upload-status {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1rem;
-	}
+    .upload-status {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
 
-	.upload-prompt {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.5rem;
-	}
+    .upload-prompt {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
 
-	.upload-icon {
-		font-size: 2.5rem;
-		margin-bottom: 0.5rem;
-	}
+    .upload-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
 
-	.upload-prompt p {
-		margin: 0;
-		color: #6c757d;
-	}
+    .upload-prompt p {
+        margin: 0;
+        color: #6c757d;
+    }
 
-	.upload-hint {
-		font-size: 0.85rem;
-		color: #999 !important;
-	}
+    .upload-hint {
+        font-size: 0.85rem;
+        color: #999 !important;
+    }
 
-	.checkmark {
-		width: 3rem;
-		height: 3rem;
-		border-radius: 50%;
-		background-color: #28a745;
-		color: white;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 1.5rem;
-		font-weight: bold;
-	}
+    .checkmark {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: #28a745;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
 
-	.error-icon {
-		width: 3rem;
-		height: 3rem;
-		border-radius: 50%;
-		background-color: #dc3545;
-		color: white;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 1.2rem;
-	}
+    .error-icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: #dc3545;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
 
-	.error-message {
-		color: #dc3545;
-		font-weight: 500;
-		max-width: 300px;
-		word-break: break-word;
-	}
+    .error-message {
+        color: #dc3545;
+        font-weight: 500;
+        max-width: 300px;
+        word-break: break-word;
+    }
 
-	.reset-button, .retry-button {
-		background: transparent;
-		border: 2px solid currentColor;
-		border-radius: 6px;
-		padding: 0.5rem 1rem;
-		font-size: 0.9rem;
-		cursor: pointer;
-		transition: all 0.2s ease;
-		font-family: inherit;
-	}
+    .reset-button,
+    .retry-button {
+        background: transparent;
+        border: 2px solid currentColor;
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+    }
 
-	.reset-button {
-		color: #28a745;
-	}
+    .reset-button {
+        color: #28a745;
+    }
 
-	.reset-button:hover {
-		background-color: #28a745;
-		color: white;
-	}
+    .reset-button:hover {
+        background-color: #28a745;
+        color: white;
+    }
 
-	.retry-button {
-		color: #dc3545;
-	}
+    .retry-button {
+        color: #dc3545;
+    }
 
-	.retry-button:hover {
-		background-color: #dc3545;
-		color: white;
-	}
+    .retry-button:hover {
+        background-color: #dc3545;
+        color: white;
+    }
 
-	code {
-		background: #f8f9fa;
-		padding: 0.2rem 0.4rem;
-		border-radius: 4px;
-		font-family: 'SF Mono', Consolas, monospace;
-		font-size: 0.9em;
-	}
+    code {
+        background: #f8f9fa;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: "SF Mono", Consolas, monospace;
+        font-size: 0.9em;
+    }
 </style>

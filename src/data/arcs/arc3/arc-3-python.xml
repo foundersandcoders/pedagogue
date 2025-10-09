@@ -1,0 +1,15 @@
+<python-for-this-arc>
+	<essential-python-for-this-arc>
+	  1.
+	</essential-python-for-this-arc>
+	<stretch-python-for-this-arc>
+		1.
+	</stretch-python-for-this-arc>
+</python-for-this-arc>
+
+<python>
+		<essential>
+				- Python 3: data processing with pandas/numpy
+				- Python 4: model serving & FastAPI
+		</essential>
+</python>
