@@ -72,25 +72,39 @@ function buildGenerationPrompt(body: GenerateRequest): string {
 	const researchInfo = JSON.stringify(body.researchData, null, 2);
 	const structuredInfo = body.structuredInput ? JSON.stringify(body.structuredInput, null, 2) : 'None provided';
 
+	const researchInstructions = body.enableResearch
+		? `
+  RESEARCH INSTRUCTIONS:
+  You have access to web search to find current, relevant information about:
+  - Latest best practices and trends for the technologies mentioned
+  - Current industry standards and tooling
+  - Recent developments in AI and software development
+  - Real-world examples and case studies
+
+  Use web search to ensure the curriculum is up-to-date and reflects current industry practice.
+  Focus on reputable sources: vendor documentation, established tech publications, and academic sources.`
+		: '';
+
 	return `You are an expert curriculum designer for peer-led coding courses. Generate a comprehensive module specification based on the provided context.
-  
+
   INPUT DATA:
-  
+
   Project Context:
   ${projectInfo}
-  
+
   Python Recommendations:
   ${pythonInfo}
-  
+
   Research Topics:
   ${researchInfo}
-  
+
   Structured Input:
   ${structuredInfo}
-  
-  Research Enabled: ${body.enableResearch ? 'Yes' : 'No'}
+
+  Research Enabled: ${body.enableResearch ? 'Yes - Use web search to find current information' : 'No'}
   Extended Thinking: ${body.useExtendedThinking ? 'Yes' : 'No'}
-  
+  ${researchInstructions}
+
   TASK:
   Generate a detailed module specification in XML format that:
   1. Synthesizes the project requirements with Python skills and research topics
@@ -98,6 +112,7 @@ function buildGenerationPrompt(body: GenerateRequest): string {
   3. Defines practical project ideas based on the briefs provided
   4. Includes relevant technical details
   5. Maintains alignment with peer-led teaching philosophy
+  ${body.enableResearch ? '6. Incorporates current best practices and trends discovered through web research' : ''}
   
   OUTPUT FORMAT:
   Return valid XML with the following structure:
@@ -123,6 +138,39 @@ function buildGenerationPrompt(body: GenerateRequest): string {
 }
 
 /**
+ * Reputable domains for AI technology research
+ * Note: Some major news sites (BBC, Reuters, The Verge, Wired, Ars Technica)
+ * block Anthropic's crawler, so they're excluded from this list
+ */
+const AI_RESEARCH_DOMAINS = [
+	// AI Vendors
+	'anthropic.com',
+	'claude.ai',
+	'openai.com',
+	'deepmind.google',
+	'ai.google',
+	'microsoft.com',
+	// Tech News & Analysis
+	'techcrunch.com',
+	'venturebeat.com',
+	'thenextweb.com',
+	// Developer Resources
+	'github.com',
+	'stackoverflow.com',
+	'medium.com',
+	'dev.to',
+	'docs.python.org',
+	'python.org',
+	// LangChain Docs
+	'js.langchain.com',
+	'python.langchain.com',
+	// Academic & Research
+	'arxiv.org',
+	'acm.org',
+	'ieee.org'
+];
+
+/**
  * Create Server-Sent Events stream for real-time progress updates
  */
 function createSSEStream(body: GenerateRequest, apiKey: string) {
@@ -137,12 +185,26 @@ function createSSEStream(body: GenerateRequest, apiKey: string) {
 				);
 
 				// Initialize LangChain ChatAnthropic with streaming
-				const model = new ChatAnthropic({
+				let model = new ChatAnthropic({
 					anthropicApiKey: apiKey,
 					modelName: 'claude-3-5-sonnet-20241022',
 					temperature: 0.7,
 					streaming: true
 				});
+
+				// Conditionally add web search capability
+				if (body.enableResearch) {
+					controller.enqueue(
+						encoder.encode('data: {"type":"progress","message":"Enabling deep research with web search..."}\n\n')
+					);
+
+					model = model.bindTools([{
+						type: 'web_search_20250305',
+						name: 'web_search',
+						max_uses: 5,
+						allowed_domains: AI_RESEARCH_DOMAINS
+					}]);
+				}
 
 				controller.enqueue(
 					encoder.encode('data: {"type":"progress","message":"Analyzing input files..."}\n\n')
@@ -220,11 +282,21 @@ function createSSEStream(body: GenerateRequest, apiKey: string) {
 async function generateModule(body: GenerateRequest, apiKey: string) {
 	try {
 		// Initialize LangChain ChatAnthropic (non-streaming)
-		const model = new ChatAnthropic({
+		let model = new ChatAnthropic({
 			anthropicApiKey: apiKey,
 			modelName: 'claude-3-5-sonnet-20241022',
 			temperature: 0.7
 		});
+
+		// Conditionally add web search capability
+		if (body.enableResearch) {
+			model = model.bindTools([{
+				type: 'web_search_20250305',
+				name: 'web_search',
+				max_uses: 5,
+				allowed_domains: AI_RESEARCH_DOMAINS
+			}]);
+		}
 
 		// Build the prompt
 		const prompt = buildGenerationPrompt(body);
