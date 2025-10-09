@@ -20,13 +20,13 @@
       <projects-briefs-1-examples>
         Participants are encouraged to implement minimal but functional versions of these ideas – the goal is not to build a production-ready tool, but to demonstrate the concept. For instance, the “unit test writer” might only handle one simple function at a time, and that’s okay.
         1. AI Chatbot for Coding Questions: A terminal-based chatbot where you can paste a snippet of code or an error message. The AI explains it or suggests a fix.
-        2. Smart Snippet Generator: takes a plain English request (e.g. “I need a function to parse CSV files in Node”) & returns a code snippet fulfilling that request. This could run as a CLI command or even a simple web form.
+        2. Smart Snippet Generator: takes a plain English request (e.g. “I need a function to parse CSV files in Node”) &amp; returns a code snippet fulfilling that request. This could run as a CLI command or even a simple web form.
         3. Code Commenter: injects comments/documentation into your code. You feed it a source file and it uses an AI to generate docstring comments for each function.
         4. Unit Test Writer: A script that, given a function’s code, uses AI to draft basic unit tests for it.
       </projects-briefs-1-examples>
       <projects-briefs-1-notes>
       </projects-briefs-1-notes>
-    <projects-briefs-1>
+    </projects-briefs-1>
     <projects-briefs-2>
       <projects-briefs-2-overview>
         - Name: GitHub AI Helper
@@ -48,7 +48,7 @@
       </projects-briefs-2-examples>
       <projects-briefs-2-notes>
       </projects-briefs-2-notes>
-    <projects-briefs-2>
+    </projects-briefs-2>
   </projects-briefs>
   <projects-twists>
     <projects-twists-1>

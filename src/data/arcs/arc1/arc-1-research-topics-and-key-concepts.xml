@@ -15,29 +15,29 @@
       2. System Prompts
     </primary-topic-2>
     <primary-topic-3>
-     	AI API Usage: Limitations & Mitigations (Anthropic, Google & OpenAI)
-      1. context windows & token optimization strategies
+     	AI API Usage: Limitations &amp; Mitigations (Anthropic, Google &amp; OpenAI)
+      1. context windows &amp; token optimization strategies
       2. rate limits
       3. costs
     </primary-topic-3>
     <primary-topic-4>
-     	AI API Usage: Features & Methods (Anthropic, Google & OpenAI)
+     	AI API Usage: Features &amp; Methods (Anthropic, Google &amp; OpenAI)
       1. streaming responses
       2. structured outputs
       3. Temperature Tuning
       4. Chain of Thought Reasoning
-      5. function calling & tool use
+      5. function calling &amp; tool use
     </primary-topic-4>
     <primary-topic-5>
-      Security & Ethics
+      Security &amp; Ethics
       1. Ethical Considerations
         a. potential bias
         b. licensing issues
     		c. plagiarism issues
-      2. Security & Safeguards
+      2. Security &amp; Safeguards
     </primary-topic-5>
     <primary-topic-6>
- 	    AI in CI/CD & DevOps
+ 	    AI in CI/CD &amp; DevOps
       1. Current State of the Industry
         a. Example: Arm’s extension for Copilot uses GitHub Actions to integrate AI into the CI pipeline
         b. Example: GitHub’s example of Copilot auto-generating PRs via Actions
@@ -48,17 +48,17 @@
         d. examples of existing AI-related actions
     </primary-topic-6>
     <primary-topic-7>
-      Approaches & Tools for Using AI
+      Approaches &amp; Tools for Using AI
       1. LangChain/LlamaIndex basics
-      2. Prompt chaining & orchestration patterns
+      2. Prompt chaining &amp; orchestration patterns
       3. RAG (Retrieval-augmented generation) Basics
-      4. Embedding models & semantic search
+      4. Embedding models &amp; semantic search
     </primary-topic-7>
   </primary-topics>
 
 	<stretch-topics>
     1. Code AST manipulation basics
-		2. Multi-agent architectures & agent debates
+		2. Multi-agent architectures &amp; agent debates
 		3. RAG implementation via vector databases
 		4. IDE/editor extension architectures
 		5. agent communication protocols
