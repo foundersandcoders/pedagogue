@@ -5,7 +5,7 @@
   </overview>
 
   <objectives>
-    <objective>Build semantic HTML5 structures following web standards and accessibility best practices</objective>
+    <objective>Build semantic HTML5 structures following web standards and accessibility best practice.</objective>
     <objective>Style web pages using CSS3 including flexbox and responsive design principles</objective>
     <objective>Implement basic interactivity using vanilla JavaScript and DOM manipulation</objective>
     <objective>Practice Git workflow and collaboration in a team environment</objective>
@@ -15,7 +15,6 @@
   <projects>
     <project>
       <name>Personal Portfolio Site</name>
-
       <description>
         Create a responsive personal portfolio website showcasing your projects. Include a home page, about section, projects gallery, and contact form. Implement mobile-first design and accessibility features.
       </description>
@@ -23,7 +22,6 @@
 
     <project>
       <name>Interactive Quiz App</name>
-
       <description>
         Build a JavaScript-based quiz application with multiple-choice questions, score tracking, and immediate feedback. Focus on DOM manipulation and event handling.
       </description>
