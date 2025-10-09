@@ -1,16 +1,15 @@
 <Projects>
   <Process>
-    <Essential>
-      Groups choose one of the available briefs and then work on it for this arc
-    </Essential>
-
+    <Essential>Groups choose one of the available briefs and then work on it for this arc</Essential>
     <Encouraged>
-      Groups are randomly assisnged one of the available twists. They should attempt to meet the brief by using the twist as inspiration for its purpose or approach.
+      - Groups are randomly assigned one of the available twists.
+      - They should attempt to:
+        - meet the brief
+        - by using the twist as inspiration
     </Encouraged>
   </Process>
-
   <Briefs>
-    <Brief>
+    <!-- Knowledge & Memory --><Brief>
       <Overview>
         <Name>Knowledge and Memory</Name>
 
@@ -91,8 +90,7 @@
       <Notes>
       </Notes>
     </Brief>
-
-    <Brief>
+    <!-- User Agent --><Brief>
       <Overview>
         <Name>User Agent</Name>
 
@@ -174,20 +172,15 @@
       </Notes>
     </Brief>
   </Briefs>
-
   <Twists>
-    <Twist>
-      <Name>The Mutating Friend</Name>
-
-      <Task>
-        Build something that gives AI persistent, evolving context.
-      </Task>
-
+    <!-- It's Always Watching --> <Twist>
+      <Name>It's Always Watching...</Name>
+      <Task>Build something that gives AI persistent, evolving context.</Task>
       <Examples>
-        - environment that remembers your interaction patterns across sessions
-				- documentation system that learns from your team's questions
-				- assistant that builds institutional knowledge.
+        <Example>An interaction environment/frontend that remembers your interaction patterns across sessions</Example>
+        <Example>A documentation system that learns from your team's questions</Example>
+        <Example>An assistant that builds institutional knowledge</Example>
       </Examples>
-    </Twist>
+		</Twist>
   </Twists>
 </Projects>
