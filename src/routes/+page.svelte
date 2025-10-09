@@ -1,16 +1,15 @@
 <script>
 	import { onMount } from 'svelte';
 	import FileUpload from '$lib/FileUpload.svelte';
-	import { 
-		currentStep, 
-		arcFile, 
-		nextStepFile, 
-		uploadStates, 
+	import {
+		currentStep,
+		arcFile,
+		nextStepFile,
+		uploadStates,
 		uploadErrors,
 		canProceedToStep2
-	} from '$lib/stores.js';
-	import type { ArcFile, NextStepFile } from '$lib/xml-parser.js';
-	
+	} from '$lib/stores.ts';
+
 	const steps = [
 		'Upload Files',
 		'Analyse Files',
@@ -20,23 +19,23 @@
 		'Generate Module'
 	];
 
-	function handleFileUploaded(event: CustomEvent<{ type: 'arc' | 'nextStep'; data: ArcFile | NextStepFile }>) {
+	function handleFileUploaded(event) {
 		const { type, data } = event.detail;
-		
+
 		if (type === 'arc') {
-			arcFile.set(data as ArcFile);
+			arcFile.set(data);
 			uploadStates.update(state => ({ ...state, arc: 'success' }));
 			uploadErrors.update(errors => ({ ...errors, arc: null }));
 		} else {
-			nextStepFile.set(data as NextStepFile);
+			nextStepFile.set(data);
 			uploadStates.update(state => ({ ...state, nextStep: 'success' }));
 			uploadErrors.update(errors => ({ ...errors, nextStep: null }));
 		}
 	}
 
-	function handleUploadError(event: CustomEvent<{ type: 'arc' | 'nextStep'; error: string }>) {
+	function handleUploadError(event) {
 		const { type, error } = event.detail;
-		
+
 		if (type === 'arc') {
 			uploadStates.update(state => ({ ...state, arc: 'error' }));
 			uploadErrors.update(errors => ({ ...errors, arc: error }));

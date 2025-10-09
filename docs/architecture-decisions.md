@@ -47,7 +47,34 @@ In that case: delete all Deno config, use pure Node + SvelteKit. Rationality > a
 ## Status
 
 Decision made: 2025-10-08
-Implementation: Pending
-Expected emotional journey: Initial satisfaction → brief confusion → eventual contentment or rage-deletion
+Implementation attempted: 2025-10-09
+**Outcome: Rational rollback**
 
-Both outcomes valid.
+### What Happened
+
+Attempted full Deno runtime consolidation. Vite runs under Deno successfully with:
+- `--unstable-detect-cjs` for CommonJS modules
+- Full permission flags (`--allow-sys`, `--allow-run`, `--allow-ffi`)
+
+However, hit fundamental incompatibility:
+- SvelteKit's SSR uses Node's module loader internally
+- Node loader doesn't understand Deno's `npm:` specifier protocol
+- Frontend compiled fine, but server-side routes failed
+
+### Resolution
+
+Reverted to pure Node + SvelteKit:
+- Removed `npm:` specifiers from source files
+- Deleted `main.ts` wrapper (the "irrational" Deno→Node spawn)
+- Updated `deno.json` tasks to delegate to npm commands
+- Result: One runtime (Node), no abstraction ceremony
+
+### Lessons
+
+Priority 1 (rationality) correctly overrode Priority 3 (Deno preference).
+
+Deno's npm compatibility is excellent for running npm packages directly, but SvelteKit's architecture assumes Node's module system for SSR. The impedance mismatch creates friction without benefit.
+
+**Emotional journey:** Brief satisfaction → immediate friction → swift rational deletion → contentment
+
+Conclusion valid.

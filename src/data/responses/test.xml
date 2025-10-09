@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <overview>
+    This module introduces learners to modern frontend web development fundamentals through hands-on projects and peer collaboration. Students will learn core HTML5, CSS3, and basic JavaScript while building real-world projects that reinforce key concepts through practical application.
+  </overview>
+
+  <objectives>
+    <objective>Build semantic HTML5 structures following web standards and accessibility best practices</objective>
+    <objective>Style web pages using CSS3 including flexbox and responsive design principles</objective>
+    <objective>Implement basic interactivity using vanilla JavaScript and DOM manipulation</objective>
+    <objective>Practice Git workflow and collaboration in a team environment</objective>
+    <objective>Deploy and host static websites using modern hosting platforms</objective>
+  </objectives>
+
+  <projects>
+    <project>
+      <name>Personal Portfolio Site</name>
+
+      <description>
+        Create a responsive personal portfolio website showcasing your projects. Include a home page, about section, projects gallery, and contact form. Implement mobile-first design and accessibility features.
+      </description>
+    </project>
+
+    <project>
+      <name>Interactive Quiz App</name>
+
+      <description>
+        Build a JavaScript-based quiz application with multiple-choice questions, score tracking, and immediate feedback. Focus on DOM manipulation and event handling.
+      </description>
+    </project>
+  </projects>
+
+  <technical-requirements>
+    <requirement>Text editor (VS Code recommended)</requirement>
+    <requirement>Git and GitHub account</requirement>
+    <requirement>Modern web browser with developer tools</requirement>
+    <requirement>Node.js and npm for development tools</requirement>
+    <requirement>Basic command line knowledge</requirement>
+  </technical-requirements>
+
+  <notes>
+    This module emphasizes peer learning through:
+    - Pair programming sessions
+    - Code review workshops
+    - Group project presentations
+    - Peer debugging sessions
+    - Knowledge sharing sessions
+    Instructors should act as facilitators, encouraging peer-to-peer learning and problem-solving before providing direct solutions.
+  </notes>
+</module>
