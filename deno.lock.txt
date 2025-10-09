@@ -7,6 +7,7 @@
     "npm:@sveltejs/vite-plugin-svelte@^2.4.0": "2.5.3_svelte@4.2.20_vite@4.5.14",
     "npm:langchain@0.1": "0.1.37_zod@3.25.76",
     "npm:svelte@4": "4.2.20",
+    "npm:vite@*": "4.5.14",
     "npm:vite@^4.4.0": "4.5.14"
   },
   "npm": {

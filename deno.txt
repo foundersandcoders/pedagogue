@@ -1,8 +1,8 @@
 {
   "tasks": {
-    "dev": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run --watch=src/ main.ts",
-    "build": "deno run --allow-all build.ts",
-    "preview": "deno run --allow-net --allow-read preview.ts"
+    "dev": "npm run dev",
+    "build": "npm run build",
+    "preview": "npm run preview"
   },
   "imports": {
     "@std/": "https://deno.land/std@0.224.0/",
@@ -16,7 +16,11 @@
   },
   "compilerOptions": {
     "allowJs": true,
-    "lib": ["dom", "dom.iterable", "es2022"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es2022"
+    ],
     "allowSyntheticDefaultImports": true,
     "strict": true
   },

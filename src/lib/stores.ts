@@ -1,9 +1,5 @@
-/**
- * Svelte stores for managing application state
- */
-
 import { writable, derived } from 'svelte/store';
-import type { ArcFile, NextStepFile } from './xml-parser.js';
+import type { ArcFile, NextStepFile } from './xml-parser.ts';
 
 // Current step in the workflow (1-6)
 export const currentStep = writable<number>(1);
@@ -49,9 +45,9 @@ export const bothFilesUploaded = derived(
 // Derived store - can we proceed to next step?
 export const canProceedToStep2 = derived(
 	[bothFilesUploaded, uploadStates],
-	([$bothFilesUploaded, $uploadStates]) => 
-		$bothFilesUploaded && 
-		$uploadStates.arc === 'success' && 
+	([$bothFilesUploaded, $uploadStates]) =>
+		$bothFilesUploaded &&
+		$uploadStates.arc === 'success' &&
 		$uploadStates.nextStep === 'success'
 );
 
