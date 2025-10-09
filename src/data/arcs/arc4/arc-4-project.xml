@@ -3,7 +3,7 @@
     <projects-process-essential>
       Groups choose one of the available briefs and then work on it for this arc
     </projects-process-essential>
-    
+
     <projects-process-encouraged>
       Groups are randomly assisnged one of the available twists. They should attempt to meet the brief by using the twist as inspiration for its purpose or approach.
     </projects-process-encouraged>
@@ -12,51 +12,159 @@
   <projects-briefs>
     <projects-briefs-1>
       <projects-briefs-1-overview>
-        - Name: 
-        - Task: 
-        - Focus: 
+        - Name:
+        - Task:
+        - Focus:
       </projects-briefs-1-overview>
-      
+
       <projects-briefs-1-brief>
       </projects-briefs-1-brief>
-      
+
       <projects-briefs-1-examples>
       </projects-briefs-1-examples>
-      
+
       <projects-briefs-1-notes>
       </projects-briefs-1-notes>
     <projects-briefs-1>
-    
+
     <projects-briefs-2>
       <projects-briefs-2-overview>
-        - Name: 
-        - Task: 
-        - Focus: 
+        - Name:
+        - Task:
+        - Focus:
       </projects-briefs-2-overview>
-      
-      <projects-briefs-2-brief>  
+
+      <projects-briefs-2-brief>
       </projects-briefs-2-brief>
-      
+
       <projects-briefs-2-examples>
       </projects-briefs-2-examples>
-      
+
       <projects-briefs-2-notes>
       </projects-briefs-2-notes>
     <projects-briefs-2>
   </projects-briefs>
-  
+
   <projects-twists>
     <projects-twists-1>
-      Name: 
-      Task: 
-      - Example 1: 
+      Name:
+      Task:
+      - Example 1:
     </projects-twists-1>
-    
+
     <projects-twists-2>
-      Name: 
-      Task: 
-      - Example 1: 
-      - Example 2: 
+      Name:
+      Task:
+      - Example 1:
+      - Example 2:
     </projects-twists-2>
   </projects-twists>
 </projects>
+
+<project6>
+    <overview6>
+        A more open-ended, playful project where teams explore generative AI in a creative domain of their choice. Focus: Encouraging experimentation with AI capabilities beyond text chat. For example, a team might generate images from text (using Stable Diffusion or DALL·E), create an interactive story game using an LLM as the narrative engine, or build a music remix assistant. The emphasis is on creative learning – trying something new and potentially offbeat to broaden horizons. This project acts as a breather from structured objectives and lets participants apply their cumulative knowledge in unconstrained ways. (Research topics here would include the specific domain each team picks – e.g. “basics of text-to-image diffusion models” or “using LLMs for game dialogue”.) Ethical considerations are discussed if relevant (for instance, a team interested in deepfake technology must examine the serious ethical implications and ensure their experiment is harmless and consentful). The goal is not necessarily a portfolio piece, but rather to inspire innovation and risk-taking in a safe learning environment.
+    </overview6>
+    
+    <inbox6>
+        Brief: This project invites participants to experiment creatively with AI technologies. The brief is intentionally open-ended: Use AI to create something innovative, artistic, or playful that wouldn’t typically be part of a “serious” software project. The idea is to stretch the imagination and skills without the pressure of strict requirements. Teams can propose their own concepts. A few suggested directions include: generative art or images, AI-generated music or audio, interactive storytelling or games powered by AI, or humorous applications of AI. The only stipulation is that the project should involve techniques or models that go beyond plain text QA – ideally exploring a new modality or a creative application of language. This might mean using a text-to-image model, a speech synthesizer, or simply using an LLM in a novel interactive way.
+        
+        Objectives: After several focused, possibly enterprise-like projects, this one serves as both a motivational break and a chance to consolidate knowledge in a fun way. Key goals:
+       	•	Foster creativity and innovation: Participants get to step into the shoes of creators, not just engineers. By loosening the reins on what “problem” they must solve, we encourage them to find new problems or artistic expressions with AI. This freedom can spark new insights and keeps engagement high. Some may even choose to revisit an earlier project idea but twist it creatively (e.g. turn the Document QA bot into a trivia game).
+       	•	Explore new AI domains (multi-modality): Many may choose to try models beyond text. For example, working with image generation (Stable Diffusion, MidJourney, DALL·E) or text-to-speech and voice assistants. This broadens their exposure – even if superficially – to the wider AI ecosystem. They’ll learn the basics of how to prompt image models or how to work with audio data, depending on the project.
+       	•	Foster self-learning: Given the projects will diverge, each team effectively teaches themselves (and later the class) about the mini-domain they pick. One team might learn “how to fine-tune Stable Diffusion for our faces” (if they try deepfake fun), another might learn “how to use GPT to generate game narratives”. They become mini-experts and then share that knowledge. This strengthens their ability to learn independently – a crucial skill in the fast-moving AI field.
+       	•	Handle ethical discussions in context: Creative projects can raise unique ethical questions. For instance, an AI humor bot could inadvertently produce offensive content, or a deepfake audio project raises questions of consent. Because this is a low-stakes environment, it’s a perfect time to have those discussions openly. Each team will be prompted to consider the ethics of their creative idea. The course ethos is to robustly acknowledge debates: e.g. a team doing AI-generated art might discuss the controversy of AI “stealing” artists’ styles. A team doing a prank chatbot will discuss the line between funny and harmful. We ensure that all briefs can be executed without compromising personal ethics: alternatives or boundaries are set as needed.
+       	•	Reinforce enjoyment and passion: Ultimately, this project reminds everyone that learning AI can be fun and that they can direct these tools toward personal passions, not just business tasks. This can rejuvenate participants’ enthusiasm and possibly inspire project ideas for the final stretch.
+        
+        Possible Project Ideas: (Truly, the sky is the limit, but a few inspiring examples)
+       	•	AI Storyteller Game: Create an interactive fiction game where the player’s inputs are answered by an AI “dungeon master” that dynamically generates the story. (Sort of like AI Dungeon). Uses an LLM with careful prompt management to continue a narrative based on user choices.
+       	•	Generative Art Exhibit: Use a text-to-image model (like Stable Diffusion or DALL·E API) to create a series of images based on user prompts or perhaps even based on real-time data (e.g. weather → landscape painting). Package these images in a little gallery web app. Could also incorporate image-to-image transformations or style transfer for more creativity.
+       	•	AI Music Jamming: Use an AI model to generate music or beats. For instance, use an open model like MuseNet or Riffusion to create melodies from text descriptions. The team might build a simple UI where you choose a mood or type a lyric and it produces a tune. This likely requires exploring pretrained music models or APIs.
+       	•	Comedy or Satire Bot: An AI that takes serious text and turns it into something humorous. For example, input a formal article and it outputs a sarcastic summary, or a “Shakespearean insult generator” using an LLM fine-tuned or prompted for humor. This tests the model’s style transfer capabilities.
+       	•	Augmented Reality AI (conceptual): If someone is into AR, they might simulate an AI that “sees” the environment (maybe via describing an image from a camera) and says funny or insightful things about it. This would involve image captioning via an AI like BLIP or using GPT-4’s image understanding (if available). Even if not full AR, just doing image captioning with a twist can be a project.
+        
+        Given the open nature, each team will have a distinct plan. We will treat this somewhat like a mini-hackathon: teams propose their idea at the start of Week 16 so the facilitator (and peers) can ensure it’s viable and ethical. Then they dive in.
+
+    
+        During development, expect a lot of discovery and probably troubleshooting (especially if new modalities are involved). This is part of the learning – the facilitator can provide guidance or resources as needed (like pointing to Hugging Face Spaces or other communities). We keep the atmosphere light-hearted; it’s okay if some experiments only partially succeed.
+    
+        By Week 18, we’ll have a showcase of creative AI projects. These might be less formal in presentation – perhaps an “expo” where each team’s creation is experienced by the others in a rotating manner, or a fun live demo session. The outcomes will be celebrated regardless of polish, focusing on the novelty and learning. For instance, maybe the story game crashed after 5 moves, but hey, those 5 moves were hilarious and taught the team about prompt constraints. Or the art generator produced bizarre images – that’s a talking point about how AI sees the world.
+        
+        Crucially, this project likely rekindles energy and also sets a stage where participants realize AI isn’t just for work – it can be a medium for personal expression. That mindset can inspire more enthusiasm as we head into the final two projects which will have them buckle down on technical integration and open-source know-how again.
+    </inbox6>
+</project6>
+
+<project6>
+    - Create AI systems that adapt their behaviour based on context and user patterns.
+    - Could be a...
+		    - development assistant that shifts communication style based on cognitive load,
+		    - documentation system that reorganises based on team access patterns,
+		    - testing infrastructure that evolves its strategies.
+</project6>
+
+<overview8>
+		The final project in the course is designed to consolidate everything learned. There are two possible approaches here (to be decided by the cohort based on interest):
+		
+		•	Option A: Integrative Project. A guided brief that requires combining multiple techniques from the course. For example, “Build an AI-driven personal assistant app” – this could involve an open-source model running locally (Project 7 skill), tool usage for querying calendar/weather (Project 4 skill), and a knowledge base for personal notes (Project 5 skill). Essentially a capstone mini-product that showcases a full-stack AI system (front-end interface plus AI back-end with various components). This option provides a structured challenge that ensures all major competencies are exercised together.
+		•	Option B: Participant-Defined Project. An open brief where each team (or individual) proposes an AI project of their own choosing, leveraging course knowledge. This could be an opportunity to target a domain of personal passion or even to start a project that could live on after the course. The only requirement is that the project should meaningfully incorporate AI and be achievable in ~3 weeks. The cohort and facilitators would vet proposals to ensure scope is realistic and that it indeed pushes the students to integrate what they’ve learned. This option maximizes creative ownership and can be highly motivating as a culmination.
+		In either case, Project 8 is meant to solidify the learning outcomes and produce a capstone-worthy artifact. During the research session for this project, in addition to technical topics, we include a review of AI engineering best practices (prompt design tips, testing AI systems, ensuring reliability) and ethical considerations relevant to the chosen projects. By now, participants are also encouraged to think about how they would explain or demo their project to an external audience (simulating a stakeholder or employer demo). This wraps up the course with a celebration of how far everyone has come.
+</overview8>
+
+<inbox8>
+    Brief: The final project is somewhat flexible, as described in the outline. The cohort can choose between a guided integrative project or an open choice project. Either way, the aim is to synthesize everything learned into one polished prototype. If following Option A (guided): The brief could be “Build an AI-driven personal assistant that can handle a variety of tasks for the user.” This broad prompt would naturally require integrating multiple components: e.g., understanding user text (LLM), retrieving info (maybe RAG for personal notes or knowledge), using tools (calendar/email from agent work), possibly generating content or images (if user requests), etc., and possibly doing it on an open model to demonstrate that skill. Each team could tackle a slightly different user assistant (one focuses on scheduling, another on information lookup, etc.) but all under the theme of a unified “AI Assistant product.” If following Option B (open choice): each team will define their own goal. They might choose to deepen one of their previous projects (turn a prototype into a more complete app) or explore a new idea that they now feel capable of handling. The instructor will ensure that each chosen project still requires a combination of skills (so that it’s not too trivial and does involve AI in a meaningful way).
+    Objectives: This capstone-like experience is about consolidation, demonstrating mastery, and also preparing for post-course application of skills. Goals include:
+       	•	Full-stack development with AI: Teams will likely need to produce a more complete piece of software, not just a demo script. This may involve a user interface, error handling, and connecting multiple backend components. Essentially, this is practice in building an AI-enabled system (not just an isolated model). For instance, an AI assistant might have modules for different functions and a front-end that brings it all together. This is where software engineering meets AI – managing complexity, which is a nice finale for the course.
+       	•	Performance and robustness: In earlier projects, a quick prototype that works once was fine. Now, aiming for a polished product, participants must consider edge cases and reliability. They’ll revisit earlier shortcomings and address them. For example, if their RAG bot sometimes retrieved irrelevant text, they might implement a filter or give the user an option to see multiple answers. If their agent could loop, they ensure a loop counter. This improves their ability to evaluate and refine AI systems, a key skill going into real-world projects.
+       	•	Ethical and user-centric design: We will explicitly ask teams now to incorporate ethical guardrails and user considerations into their final project. That means things like: adding content filters for toxicity if it’s a public-facing chat, being transparent to the user that it’s an AI, handling user data carefully (maybe in memory only, not logging sensitive info). Each team should articulate how they addressed any ethical concerns relevant to their application. This demonstrates that they can build responsible AI products. For example, an assistant that gives medical or legal info should include a disclaimer or avoid certain answers; a content generator might have checks against hateful content. These considerations bring together the ethical threads discussed throughout the course into practical implementation ￼ ￼.
+       	•	Project management and ownership: Since this is the culmination, participants take more charge of scope and division of work. They might even practice a bit of agile-like planning: setting milestones over the 3 weeks (since by now they’ve experienced the cycle 7 times, they can plan better). This improves their ability to organize a project – deciding what’s MVP for the demo vs. nice-to-have features if time permits. It’s a soft skill but crucial, especially when building something slightly larger.
+       	•	Showcase and communication: Knowing this is the last project, participants will be mindful of how to present it compellingly. We encourage them to treat it like a portfolio piece: clean up the code repository, write a good readme, prepare a short pitch for the demo explaining the use-case and the tech behind it. This helps them consolidate their learning in a narrative form – they can now explain to others what they can do in AI engineering, using this project as evidence. We might even simulate a scenario where they present as if to a stakeholder or at a hackathon finals, to hone their communication.
+    Example Guided Project (if Option A): “Personal AI Concierge” – An assistant that can do multiple tasks: answer general questions (uses an LLM, maybe with web search if needed), manage personal data (schedules, to-dos via simple local DB or APIs), and perform creative tasks on request (write a short email, create an image meme, etc.). Each team could focus on a different slice (one could integrate an email-sending feature, another focuses on integration with a notes app, etc.), and together it forms an ecosystem of capabilities. Each team’s part should still be viable standalone, but we’ll have a theme connecting them. In the end, one could imagine combining all modules into one super assistant – a thematic arc culmination.
+    If Option B (Open Choice): To give a sense, here’s what teams might propose:
+    •	One team loved the RAG project and wants to turn it into a deployable web app that anyone in the company can use on internal docs. They focus on usability improvements, authentication (to restrict to company users), and scaling the indexing to more docs.
+    •	Another team was excited by the creative project and decides to build a small game that uses both text and image AI – e.g. a D&D generator that not only narrates but also creates an image for each scene. They integrate a text model and an image model, working on prompt pipelines between them.
+    •	Another team might take the GitHub Action and evolve it into a fuller “AI DevOps bot” that not only comments on PRs but can be chatted with on Slack to do things like run tests on demand or explain a deployment failure. They’d integrate the GH Action with a Slack interface, adding conversational ability.
+    •	Someone else might attempt something new like a voice assistant prototype (combining speech-to-text, an LLM, and text-to-speech in a pipeline) giving them a chance to use open-source voice models (e.g. Whisper for STT, Coqui TTS for speech) along with the dialogue management they learned. This leverages multi-modal exploration plus their agent knowledge to handle conversation flow.
+    Research/Planning (Week 22): Because projects may diverge, the initial session is a mix of research and project planning. Teams formalize their idea, identify what components they need to research, and then possibly split research internally. Topics will be very project-specific (like “how to use Slack API” or “which speech recognizer to use”), but also some common themes might be:
+    •	Deployment considerations: If anyone plans to actually deploy their app (even on a free platform), they’ll research that (maybe someone tries Streamlit sharing, or a simple Heroku deployment if no cost, or hosting a FastAPI on an internal server). Understanding packaging and deployment is a nice bonus at this stage.
+    •	Refining prompts and models: They’ll likely research any advanced prompt techniques needed for better reliability (like adding system messages with explicit instructions, or using evaluation loops where the model checks its answer – a technique some may find). Basically, taking what they did before and looking up if there are ways to improve quality (there are many blog posts on prompt refinement, few-shot learning, etc., which they can tap into).
+    •	User testing methods: Perhaps discuss how to gather feedback – since by now, they could test each other’s projects. One group might research “How to do a quick user study for an AI chatbot” – to get some users try and report issues. While we may not have external users, even peer testing and feedback can simulate that. Encouraging them to get an outsider (maybe someone else in the company not in the course) to try their final app and give input would be great.
+    •	Ethical final checklist: We’ll likely have one group present a “Responsible AI checklist” for releasing an AI product. This could include: checking for bias in responses, ensuring privacy of user data, providing disclaimers, not over-claiming what it can do, etc. There are resources on AI ethics that might be distilled into such a checklist ￼ ￼. This can serve as a guideline for all teams as they finalize their projects.
+    Weeks 23–24 are development and refinement. Because teams are now quite autonomous, the facilitator’s role is more of a consultant, checking in and offering help where needed. At this stage, participants will be using everything: one team might be wrestling with an API rate-limit (so they recall techniques to minimize calls, maybe caching results), another debugging why their open model server is crashing (recalling knowledge from Project 7 about memory). It’s a flurry of activity but a fitting capstone.
+    By the final presentations in Week 24, we expect near-production-quality demos. Each team will showcase not just the functionality but also speak to how it’s built (architecture), the challenges overcome, and importantly how it addresses real user needs or creative goals. It will be clear that they have transformed from learners to AI solution builders.
+    After presentations, we will allocate some time for a course retrospective and next steps. We reflect on the journey from Project 1 to 8, highlighting how far everyone has come. Participants can share what they found most surprising or exciting. We also ensure everyone is aware of how to continue learning post-course (there may be optional continuing sessions or simply encouragement to keep experimenting individually).
+</inbox8>
+
+<overview7>
+    Develop an application using an open-source language model instead of relying on closed APIs. For example, create a chatbot or utility powered by a model like Meta’s Llama 2 running locally or on a free cloud instance. Focus: Hands-on experience with open-source AI models – how to install or invoke them, performance considerations, and comparing their outputs to commercial models. Participants research the landscape of open LLMs vs proprietary ones (capabilities, advantages, limitations) ￼ ￼. Key learning points include setting up inference for a local model (e.g. using Hugging Face Transformers or llama.cpp), prompt tuning for a smaller model, and possibly lightweight fine-tuning or parameter adjustment if feasible (though full training from scratch is out of scope). This project reinforces understanding of model internals and gives insight into how one might build AI features without accessing an external API – a valuable skill as organizations explore private models for cost and privacy reasons. It also ties into discussion on licensing (open models’ code/data transparency) and maintenance. By the end, participants will have seen that open models can be viable (Meta’s Llama 2, for instance, was shown to approach GPT-4 level on some benchmarks after fine-tuning ￼) and understand when to choose open-source vs proprietary in real projects.
+</overview7>
+
+<inbox7>
+    Brief: Develop an application using an open-source Large Language Model as its core, rather than calling proprietary APIs. For example, create a chatbot, an assistant, or any AI-powered feature by deploying a model like Llama 2, GPT-J, or similar on your local machine or a server under your control. The app can be similar in idea to something done earlier (e.g. a mini chat assistant, Q&A bot, etc.), or a new concept – but the emphasis is on the technical challenge of using an open model. As part of the project, the team should also evaluate the open-source model’s performance against a known benchmark (even if informally comparing it to GPT-3.5 or others) and possibly customize it (via parameter tweaks, prompt tuning, or lightweight fine-tuning if feasible) for improved results.
+    
+    Objectives: This project is about demystifying the AI black box a bit and gaining self-sufficiency with AI tech. Key learning outcomes:
+   	•	Hands-on model deployment: Participants learn how to obtain and run an LLM on their hardware or a free cloud instance. This could involve working with Hugging Face Transformers library, using a local runtime like llama.cpp for Llama models, or leveraging containerized solutions. They’ll face practical concerns like model size (can it fit in RAM/VRAM?), inference speed (how to optimize or accept latency), and possibly GPU vs CPU differences. This experience is invaluable to understand what resources AI models need and how to manage them.
+   	•	Understanding model specifics: By using an open model, participants can explore details like the model’s architecture and training data (information often provided in model cards). They’ll research what the chosen model is good at and where it struggles. For instance, they may note “Llama 2-7B tends to make more grammar mistakes than GPT-4” or “Our 7B model can’t follow complex instructions well, but a 13B model might do better.” Such insights build intuition about model scale and quality. They may even try more than one model for comparison.
+   	•	Introduction to fine-tuning and customization: If time and resources allow, teams could attempt a small fine-tuning experiment: e.g. using a dataset of Q&A pairs to fine-tune the model on their domain (perhaps using a technique like LoRA which is parameter-efficient). Even if they don’t actually run a full fine-tune (which could be expensive), they will at least learn the concepts of how models can be updated with new data. Alternatively, they might do prompt tuning – crafting a fixed prompt prefix that guides the model better – which is a simpler way to adapt it. The idea is to see how open models can be improved or adapted by developers, highlighting the community aspect (many open models improve via community-contributed fine-tunes ￼).
+   	•	Critical evaluation of open vs closed models: By building something with an open model, participants can directly compare the experience to using, say, OpenAI’s API. They will note pros (no cost per request, full control, possibly privacy benefits because data isn’t sent out) and cons (maybe lower quality, more engineering effort to deploy, memory usage, etc.). This aligns with industry discussions where organizations weigh open-source LLMs against commercial ones ￼. For example, they might cite that open models foster transparency and collaboration ￼, but also see that closed models still have an edge in some capabilities or ease of use. This critical thinking is a learning goal – to treat AI models as tools with trade-offs, not magic.
+   	•	Broader ecosystem skills: Using open models often involves new tools: maybe Docker for a deployment image, or a command-line for llama.cpp, or managing dependencies for PyTorch/TensorFlow. Participants will likely troubleshoot installations and environment issues. While challenging, this builds resilience and practical know-how in dealing with AI software environments – a day in the life of an AI engineer dealing with various libraries and drivers! It’s also a taste of MLOps-lite (packaging a model for usage).
+    
+    Example Projects: The specific application built can be something modest, since the real heavy lifting here is getting the model to run. Some ideas:
+   	•	Local Chat Assistant: Essentially a ChatGPT clone but running offline. The team sets up, say, Llama-2-7B or 13B and builds a console or web chat interface for it. They might compare its answers to those from GPT-3.5 on a few questions to see differences. Possibly they could fine-tune it on their chat logs from previous projects to see if it improves.
+   	•	Code Assistant with Code LLM: Try using an open-source code-focused model (like StarCoder or CodeGen) to build a mini version of Project 1’s code helper, but offline. Then measure if it’s as good on some prompts as the OpenAI model was.
+   	•	Machine Translation or Specific Task: Use an open model for a narrower task – e.g. fine-tune a small model to act as a grammar corrector or translator, and integrate that into a little app (like a “Translate my sentence” web form). This could show that even if the model is not state-of-the-art generally, fine-tuning on a specific task can make it quite usable.
+   	•	Chain with Open Components: Perhaps re-implement a simpler version of Project 5 (RAG Q&A) but entirely with open tools: an open embedding model + open LLM. Demonstrate that it’s possible to do a closed-domain Q&A without calling OpenAI at all. This would be ambitious but doable for those who got the hang of RAG – they’d basically replace the proprietary parts with open equivalents.
+   	•	Community Model Benchmark: If someone is academically inclined, they could create a test suite of questions or tasks and evaluate 2–3 open models on them, presenting the results. This would be less of an app and more of an analysis, but it’s still valuable – like a mini research project on open model capabilities. They could, for instance, verify the claim that “ToolLlama is better at tool use than GPT-4” on a small scale ￼. However, given time, a functional app is preferred, but a bit of testing could be part of it.
+    
+    Research Topics (Week 19): Key areas to look at before implementation:
+   	•	Overview of Open LLM Landscape: Identify notable open-source models (Llama 2, Falcon, MPT, etc.) and their characteristics (size, training data, licenses). There are articles comparing them with closed models ￼. One group can present, for example, how Llama 2 was a breakthrough being nearly as good as GPT-3.5 ￼, or how smaller models can sometimes excel with fine-tuning on specific tasks ￼.
+   	•	Running Models Locally: Research the tooling needed. For example, one group tries out Hugging Face Transformers pipeline (“text-generation” pipeline) with a small model and reports memory usage and speed. Another group can look into optimization methods like quantization (4-bit quantization via llama.cpp or ONNX acceleration) that allow bigger models on smaller machines. They might find that quantized 13B can run on a laptop with 16GB RAM, for instance.
+   	•	Fine-tuning Techniques: Even if we may not do a full fine-tune, understanding it is useful. Research could include: what is fine-tuning vs. instruct-tuning vs. RLHF; what are LoRA adapters and how they allow fine-tuning large models on consumer hardware; examples of projects where fine-tuning made an open model perform as well as a larger one. Perhaps mention community-driven fine-tunes like Vicuna or Orca (models that were open and fine-tuned to be better).
+   	•	Open Source Ethics & License: Investigate the licensing aspect (some open models aren’t fully “open” in usage rights – e.g., Llama 2 has a license restricting use by big companies). Discuss intellectual property: using open models means you can inspect them, which helps with trust and ethical auditing ￼. Also, community accountability (bugs or biases in open models may be spotted by many eyes). Compare this to closed models where one must trust the provider. This ties to the debate on open vs closed in terms of safety and responsibility – e.g. open allows more transparency, but closed might allow companies to enforce safety filters more strongly. It’s a nuanced debate we want them to appreciate.
+   	•	Use Cases for Open Models: Look at real-world adoption: e.g., how some companies prefer open models for data privacy (keeping data in-house), or for cost savings if they can optimize them, as predicted in many 2024 tech forecasts ￼. This gives a business context – participants see that what they’re learning has practical significance as many are predicting open models to gain popularity ￼.
+    
+    During implementation, teams will go through set-up of the model (downloading maybe many GBs – could be done in the lab ahead of time to save class hours). They will solve issues like ensuring they have the right runtime (maybe needing to upgrade GPUs or use CPU mode). They might need to test different prompts since the open model might require more explicit instruction to behave well. For those who try fine-tuning, they might use a small sample (like 100 QA pairs) and run a training process (likely on Google Colab or similar if local machines are insufficient). They might only manage a small improvement, but that’s still illustrative.
+    
+    By week 21’s end, each team will demo their application. For a chatbot, a live interaction showing that the answers come from the local model (they can even shut off internet to prove it). They’ll likely also present a short comparison – e.g. “Here’s how our Llama-2 7B answered this question vs how ChatGPT did.” This comparative analysis consolidates their critical view. We’ll discuss as a group when one might choose an open model (for cost, control) and when a closed one (for sheer quality or ease) – a decision process they’ll likely encounter in future projects/jobs.
+    
+    Completing Project 7 gives participants the confidence that they are not dependent on proprietary AI services for building intelligent features. They can now operate at a deeper level of the stack if needed, which is empowering.
+</inbox7>

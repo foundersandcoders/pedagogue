@@ -3,7 +3,7 @@
     <projects-process-essential>
       Groups choose one of the available briefs and then work on it for this arc
     </projects-process-essential>
-    
+
     <projects-process-encouraged>
       Groups are randomly assisnged one of the available twists. They should attempt to meet the brief by using the twist as inspiration for its purpose or approach.
     </projects-process-encouraged>
@@ -12,51 +12,99 @@
   <projects-briefs>
     <projects-briefs-1>
       <projects-briefs-1-overview>
-        - Name: 
-        - Task: 
-        - Focus: 
+        - Name:
+        - Task:
+        - Focus:
       </projects-briefs-1-overview>
-      
+
       <projects-briefs-1-brief>
       </projects-briefs-1-brief>
-      
+
       <projects-briefs-1-examples>
       </projects-briefs-1-examples>
-      
+
       <projects-briefs-1-notes>
       </projects-briefs-1-notes>
     <projects-briefs-1>
-    
+
     <projects-briefs-2>
       <projects-briefs-2-overview>
-        - Name: 
-        - Task: 
-        - Focus: 
+        - Name:
+        - Task:
+        - Focus:
       </projects-briefs-2-overview>
-      
-      <projects-briefs-2-brief>  
+
+      <projects-briefs-2-brief>
       </projects-briefs-2-brief>
-      
+
       <projects-briefs-2-examples>
       </projects-briefs-2-examples>
-      
+
       <projects-briefs-2-notes>
       </projects-briefs-2-notes>
     <projects-briefs-2>
   </projects-briefs>
-  
+
   <projects-twists>
     <projects-twists-1>
-      Name: 
-      Task: 
-      - Example 1: 
+      Name:
+      Task:
+      - Example 1:
     </projects-twists-1>
-    
+
     <projects-twists-2>
-      Name: 
-      Task: 
-      - Example 1: 
-      - Example 2: 
+      Name:
+      Task:
+      - Example 1:
+      - Example 2:
     </projects-twists-2>
   </projects-twists>
 </projects>
+
+<overview5>
+    Create a chatbot that provides reliable answers based on a provided knowledge base (company docs, FAQs, or any domain data) using Retrieval-Augmented Generation. Focus: Implementing embeddings and vector search to ground LLM outputs in facts ￼ ￼. Participants learn to build a pipeline where user queries trigger document retrieval followed by an LLM response that cites the retrieved info (mitigating hallucinations). This project solidifies working with external data and introduces basic data stores (could use a local vector DB like Chroma or a cloud service if budget permits).
+</overview5>
+
+<inbox5>
+    Brief: Build a chatbot that can answer user queries based on a specific knowledge base or dataset provided, using Retrieval-Augmented Generation (RAG) techniques. The chatbot should deliver answers with references to the source material, ensuring accuracy. The knowledge base could be a collection of documents, a wiki, a product FAQ, or any corpus that isn’t part of the AI’s training data. For instance, one team might make a “Company Handbook Assistant” that employees can ask HR policy questions to, another might do a “Historical Archive Bot” that answers questions about historical texts. The key is that the bot must fetch relevant information from the provided data and use it to formulate its answers, rather than relying purely on the LLM’s internal knowledge (which might be outdated or hallucinated).
+
+    Objectives: This project is a direct application of the RAG pattern, which is a crucial emerging concept in LLM applications for grounding and accuracy. Learning goals:
+   	•	Implementing a retrieval pipeline: Participants will learn to create an end-to-end system where a user’s query is first processed to retrieve relevant documents (or snippets) from the knowledge base, and then those documents are fed into the LLM to generate a context-aware answer. This typically involves steps: indexing the docs, searching them, and constructing a prompt with the results.
+   	•	Using vector databases or embeddings: To retrieve by meaning, teams will likely use embeddings to represent documents and queries. They might set up a vector store (for example, using an open-source solution like Chroma or a free tier of Pinecone or Weaviate). They’ll gain hands-on experience with creating embeddings for text and performing similarity search ￼. If budget allows at this point, we could let them try a managed service (some budget is earmarked for this stage), but an offline solution is fine too. Understanding how vector search works is a key technical skill.
+   	•	Preventing hallucinations and ensuring citations: By having the bot cite sources (e.g. “According to Document X, …”), participants enforce a degree of reliability. They learn prompt strategies to have the LLM include excerpts or references from the retrieved text. This fosters good practices in AI transparency – not just answer, but show evidence ￼. It also draws attention to the difference between an answer coming from ground truth vs the model’s own guess. Participants will see how a well-grounded answer can eliminate a lot of hallucination, but also note that if retrieval pulls irrelevant text, the LLM can still go off-course. This highlights why good retrieval is as important as the model quality ￼.
+   	•	Scaling and optimization considerations: With possibly dozens or hundreds of pages of content, efficiency matters. Teams must figure out how to index data (maybe chunk documents into sections, which chunk size works best), and how many results to feed into the prompt without busting token limits. They might experiment with trade-offs: feeding fewer, highly relevant chunks vs. more chunks. This introduces them to performance tuning in AI systems – a peek into what building real production QA systems involves.
+   	•	Domain adaptation: Working with a custom dataset introduces the idea of domain-specific AI. The participants learn that out-of-the-box models can be tailored to specific information not in their training data, via retrieval. This is an alternative to fine-tuning. It reinforces the notion that there are multiple ways to adapt AI to new tasks (and RAG is often more feasible when training data is proprietary or rapidly changing).
+
+    Example Knowledge Domains: Some suggestions for what knowledge base to use (teams can choose based on interest):
+   	•	Internal Company Docs: If this were a company training, they could use actual internal docs. In our case, perhaps a dummy HR policies manual or a set of fictional company FAQs. The bot would answer things like “How do I file an expense report?” by retrieving the relevant policy.
+   	•	Tech Library Assistant: A bot trained on a collection of programming tutorials or documentation (say, a subset of MDN web docs or Python library docs). Users can ask programming questions and get answers with references to the docs.
+   	•	Educational Tutor: Use a collection of course notes or textbook chapters on a subject (like physics). The bot answers questions and cites the source material. This could be appealing for those interested in EdTech.
+   	•	Fictional Universe Lore: For a creative twist, load a bunch of wiki pages or text about a fictional world (e.g. Star Wars wiki or Lord of the Rings lore). Then the bot can answer geeky questions about that universe, citing the lore. This is fun and tests the bot’s ability to pinpoint obscure details.
+   	•	Legal/Compliance: A repository of laws or regulations, where the bot helps answer, e.g., “What’s the law about X in region Y?” with citation. This is more serious and shows a use-case in legal AI (with the critical need for source references due to high accuracy requirements).
+
+
+    During weeks 14–15, teams will build their knowledge index and the query pipeline. They will need to load the docs (potentially writing scripts to parse them, similar to Project 3 but larger scale). If using Python, libraries like faiss or chromadb might come in; if using JS, maybe there’s a simpler approach or calling out to a local service. It will be a bit of engineering to wire pieces together, but very rewarding when it works.
+
+    By the demo in Week 15, each team’s chatbot should be able to take a natural language question and return an answer with a cited source from their data. We’ll see things like: “According to Section 4.2 of the Handbook, employees are entitled to 15 days of vacation per year.” – which is a great tangible result. We’ll pay attention to whether the answers are actually correct and if sources truly support them. Any failure cases (like the bot giving an answer with wrong reference or saying “I couldn’t find that”) are teachable moments. This project, perhaps more than others, highlights the importance of data in AI applications – an AI is only as good as the data you give it, and participants will appreciate how curating and indexing knowledge is as much part of AI engineering as model prompting.
+
+    By now, participants have touched on nearly all major paradigms: prompt design, agents, RAG, and both closed and open models. The final projects will capitalize on this comprehensive skill set.
+</inbox5>
+
+<project>
+		Focus: Advanced AI – Agents and Function Calling. In this project, participants will design an AI system that can perform tasks autonomously by invoking external tools or functions. Instead of just responding with text, the AI will decide if certain queries or commands require it to take an action – such as calling an API, running a calculation, or looking up information – and then use the result to form its answer. This concept is inspired by frameworks like OpenAI’s function calling and agent loops (e.g. ReAct pattern) ￼. For instance, a team might build an “AI DevOps Agent” that, when asked, can fetch the status of a server or query a database (by calling predefined functions), or an “AI Research Assistant” that can hit a web search API when it needs current information and then summarize the result. Another idea is a math word problem solver – the agent parses a question, uses a calculator function for the arithmetic, and then responds with the solution. The emphasis is on creating a pipeline where the LLM’s output is not the final answer initially, but rather a structured plan or function call that the system executes to get to the final answer.
+   	•	Why: The future of AI applications lies in agentic behavior, where AI can act beyond chat – e.g. think of an AI that can book meetings, control IoT devices, or manage workflows. Already, OpenAI’s function calling allows developers to hook up chatbots with real tools ￼, and projects like AutoGPT demonstrated autonomous goal-driven agents. This project gives participants a forward-looking skill: orchestrating LLMs with external tools, which is highly in demand for complex AI-driven systems.
+   	•	Key Skills: Defining a set of allowable tools/functions (e.g., designing a JSON schema or API endpoints that the AI can use), prompting the LLM in a way that it knows when and how to use those functions (for example, with function calling we provide the function definitions to the model), and handling the loop of the agent (the model might return a function call, the system executes it, and then the model continues with new info). We also cover decision making and planning in prompts (maybe using a chain-of-thought approach where the model outlines steps). This project is a good point to integrate a bit more Python for those who haven’t yet, since many agent frameworks (LangChain, etc.) are Python-based; however, simpler function-calling can be done via OpenAI’s API from any language. We will be careful about safety here too – constraining what the agent can do to avoid undesired actions.
+
+
+    Week 1: Teams conceptualize an agent scenario. Each should decide on a couple of tools/functions their agent will have – for simplicity, maybe 2–3 max. One team might say: “Our agent is a travel planner: it can call a flight search API and a hotel API.” Another: “Our agent manages TODOs: it can add to a list and mark items done, based on user instructions.” They don’t need real APIs initially – can simulate them or use simple mock functions. During kickoff, they enumerate these functions and what inputs/outputs look like. Research topics are assigned. Initial implementation could involve writing stub functions and a basic prompt that instructs the model how and when to use them. If using OpenAI’s function calling, set up the function specs and do a quick test call.
+    Week 2: After absorbing the research (maybe someone demonstrates a LangChain tool use example), teams proceed to build the agent logic. This involves either using the OpenAI API with function calling or writing a loop manually: prompt the model, see if it outputs an action, execute it, feed the result back. By the end of Week 2, each agent should perform at least one tool invocation correctly in a test scenario. For example, if it’s a weather bot, you can ask “What’s the weather in London next Monday?” and it will call the weather function and then give an answer. The focus is on achieving this end-to-end tool use. Teams refine prompts a lot here, because getting the AI to output a well-structured function call can require prompt tuning (like giving examples of function usage).
+    Week 3: Teams extend and polish their agents. They might handle multiple tools in one query (e.g. “Plan me a date night” might require using both restaurant search and map APIs). They also add user-friendly touches: maybe the agent explains what it’s doing (“Searching for flights…”), or handles errors gracefully (“Sorry, I couldn’t find that information.”). Testing is crucial: they’ll try unusual requests to see if the agent responds sensibly or goes off track. On presentation day, each team walks through a demo scenario showing the agent in action, explaining how it makes decisions. For instance, one might show the model’s intermediate reasoning (chain-of-thought) if available. The session highlights how giving AI tools can greatly expand its capabilities, but also the complexities involved. With this advanced project completed, we allocate roles for the next one and introduce the concept of Project 6 – which will pivot to open-source models, giving participants a chance to step away from proprietary APIs and get hands-on with model deployment.
+</project>
+
+<project5>
+    - Build systems where multiple AI agents collaborate on complex tasks.
+    - Could be a...
+		    - distributed code migration tool,
+		    - multi-agent testing framework that finds edge cases through argument,
+		    - design system generator where specialists debate implementation details.
+</project5>
