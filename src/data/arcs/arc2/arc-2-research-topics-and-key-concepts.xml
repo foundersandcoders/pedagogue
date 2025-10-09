@@ -9,7 +9,7 @@
         - How do these work, what are their limits, and are they accessible with our keys?
         - One group could specifically research Anthropic Claude’s long context and maybe come with an example of its use.
         - The Google Cloud RAG page even mentions using Gemini’s long context window for grounding docs
-      2. Embedding Models & Costs
+      2. Embedding Models &amp; Costs
         > Research what embedding model to use for text
         - How much does it cost?
         - How fast is it to embed a typical document?
@@ -29,7 +29,7 @@
         - They might find some best practices or libraries, like:
           - Python’s NLTK to break text
           - Node’s similar packages
-      2. Embeddings & Similarity Search
+      2. Embeddings &amp; Similarity Search
         > An intro to the concept of embeddings as a way to find related text
         - Perhaps one group experiments with OpenAI’s text-embedding API in a script
           - convert chunks of a sample text to embeddings and see how to find which chunks best match a query
@@ -44,7 +44,7 @@
     </primary-topic>
 
    	<primary-topic>
-      1. AI for Code Review & Quality
+      1. AI for Code Review &amp; Quality
         > How are AI models being used to review code?
         - Investigate examples like:
           - GitHub’s PR review assistant
@@ -61,7 +61,7 @@
         - Research techniques like...
           - summarizing or truncating long code
           - focusing the AI on certain sections (e.g. “Here is the diff of this PR…”)
-        - Also consider token limits & how to stay within them for large codebases
+        - Also consider token limits &amp; how to stay within them for large codebases
           - analyzing only changed code
           - using a brief high-level summary
       3. AI-Generated Tests or Docs

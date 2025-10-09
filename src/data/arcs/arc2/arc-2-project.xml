@@ -38,7 +38,7 @@
           </Objective>
 
           <Objective>
-           	Summarization and Q&A prompting
+           	Summarization and Q&amp;A prompting
             - They will design prompts for summarizing text and for answering questions given some context.
             - This requires a different style than code prompting.
             - They might explore prompt structures like TL;DR summaries, extracting key points, or a QA format (“Using the provided text, answer the question…”).
@@ -165,7 +165,7 @@
         </Note>
 
         <Note>
-          During building, groups who use Python might spin up a small Flask server or Jupyter environment to host their agent logic, whereas others using Node and OpenAI functions might keep it all in one script. By Week 12, we expect working demos where a user query leads the agent to take at least one tool action and then return an answer. The presentations will be exciting because they show AI systems doing things like retrieving live info or interacting with user data – very cutting-edge stuff that moves beyond static Q&A. We will likely see some agents succeed impressively and others struggle (for instance, the web research agent might sometimes fetch irrelevant info). This is valuable for learning; it will prompt discussions on how to improve tool use, and highlight that giving AI tools is powerful but requires careful design (thus leading well into evaluation and grounding topics in later projects).
+          During building, groups who use Python might spin up a small Flask server or Jupyter environment to host their agent logic, whereas others using Node and OpenAI functions might keep it all in one script. By Week 12, we expect working demos where a user query leads the agent to take at least one tool action and then return an answer. The presentations will be exciting because they show AI systems doing things like retrieving live info or interacting with user data – very cutting-edge stuff that moves beyond static Q&amp;A. We will likely see some agents succeed impressively and others struggle (for instance, the web research agent might sometimes fetch irrelevant info). This is valuable for learning; it will prompt discussions on how to improve tool use, and highlight that giving AI tools is powerful but requires careful design (thus leading well into evaluation and grounding topics in later projects).
         </Note>
 
         <Note>
