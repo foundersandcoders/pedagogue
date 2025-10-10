@@ -3,18 +3,25 @@
   import type { StructuredInputData } from "./stores.ts";
 
   export let formData: StructuredInputData = {
-    moduleDuration: 3,
-    cohortSize: 12,
-    // TODO: divide skillLevel into dev skills & ai skills
-    // TODO: make devSkillLevel more granular
-    // TODO: replace devSkillLevel strings with yrs
-    // TODO: define aiSkillLevel as weeks studied so far
-    skillLevel: "intermediate",
-    deliveryDate: "",
-    keyTechnologies: [],
-    additionalContext: "",
-    enableResearch: true,
-    useExtendedThinking: false,
+    logistics: {
+      duration: 3,
+      startDate: "",
+    },
+    learners: {
+      cohortSize: 12,
+      experience: {
+        prereq: "1-3 years",
+        focus: "limited experience",
+      },
+    },
+    content: {
+      techs: [],
+      info: "",
+    },
+    model: {
+      enableResearch: true,
+      useExtendedThinking: true,
+    },
   };
 
   const dispatch = createEventDispatcher<{
@@ -23,7 +30,15 @@
   }>();
 
   let techInput = "";
-  let errors: Partial<Record<keyof StructuredInputData, string>> = {};
+  let errors: {
+    logistics?: {
+      duration?: string;
+      startDate?: string;
+    };
+    learners?: {
+      cohortSize?: string;
+    };
+  } = {};
 
   // Predefined technology options
   const techList = {
@@ -35,7 +50,6 @@
     devOps: ["AWS", "Docker", "GitHub Actions"],
     other: ["FastAPI", "GraphQL", "REST APIs"],
   };
-
   const commonTechnologies: string[] = [].concat(
     techList.language,
     techList.frontEnd,
@@ -48,17 +62,15 @@
 
   function addTechnology(tech: string) {
     const trimmed = tech.trim();
-    if (trimmed && !formData.keyTechnologies.includes(trimmed)) {
-      formData.keyTechnologies = [...formData.keyTechnologies, trimmed];
+    if (trimmed && !formData.content.techs.includes(trimmed)) {
+      formData.content.techs = [...formData.content.techs, trimmed];
       techInput = "";
       dispatch("change", formData);
     }
   }
 
   function removeTechnology(tech: string) {
-    formData.keyTechnologies = formData.keyTechnologies.filter(
-      (t) => t !== tech,
-    );
+    formData.content.techs = formData.content.techs.filter((t) => t !== tech);
     dispatch("change", formData);
   }
 
@@ -72,21 +84,27 @@
   function validateForm(): boolean {
     errors = {};
 
-    if (formData.moduleDuration < 1 || formData.moduleDuration > 52) {
-      errors.moduleDuration = "Duration must be between 1 and 52 weeks";
+    if (formData.logistics.duration < 1 || formData.logistics.duration > 52) {
+      if (!errors.logistics) errors.logistics = {};
+      errors.logistics.duration = "Duration must be between 1 and 52 weeks";
     }
 
-    if (formData.cohortSize < 1 || formData.cohortSize > 1000) {
-      errors.cohortSize = "Cohort size must be between 1 and 1000";
+    if (
+      formData.learners.cohortSize < 1 ||
+      formData.learners.cohortSize > 1000
+    ) {
+      if (!errors.learners) errors.learners = {};
+      errors.learners.cohortSize = "Cohort size must be between 1 and 1000";
     }
 
-    if (formData.deliveryDate) {
-      const deliveryDate = new Date(formData.deliveryDate);
+    if (formData.logistics.startDate) {
+      const startDate = new Date(formData.logistics.startDate);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
-      if (deliveryDate < today) {
-        errors.deliveryDate = "Delivery date cannot be in the past";
+      if (startDate < today) {
+        if (!errors.logistics) errors.logistics = {};
+        errors.logistics.startDate = "Delivery date cannot be in the past";
       }
     }
 
@@ -115,6 +133,7 @@
   </p>
 
   <form on:submit={handleSubmit}>
+    <!-- Basic Details -->
     <div class="form-grid">
       <!-- Module Duration -->
       <div class="form-field">
@@ -127,13 +146,13 @@
           type="number"
           min="1"
           max="52"
-          bind:value={formData.moduleDuration}
+          bind:value={formData.logistics.duration}
           on:input={handleChange}
-          class:error={errors.moduleDuration}
+          class:error={errors.logistics?.duration}
           required
         />
-        {#if errors.moduleDuration}
-          <span class="error-message">{errors.moduleDuration}</span>
+        {#if errors.logistics?.duration}
+          <span class="error-message">{errors.logistics?.duration}</span>
         {/if}
       </div>
 
@@ -148,36 +167,54 @@
           type="number"
           min="1"
           max="1000"
-          bind:value={formData.cohortSize}
+          bind:value={formData.learners.cohortSize}
           on:input={handleChange}
-          class:error={errors.cohortSize}
+          class:error={errors.learners?.cohortSize}
           required
         />
-        {#if errors.cohortSize}
-          <span class="error-message">{errors.cohortSize}</span>
+        {#if errors.learners?.cohortSize}
+          <span class="error-message">{errors.learners?.cohortSize}</span>
         {/if}
       </div>
 
-      <!-- Skill Level -->
+      <!-- Experience in Prerequisite Skills (e.g. Software Dev) -->
       <div class="form-field">
-        <label for="skill">
-          <!-- TODO: Change this to reflect number of weeks studied so far -->
-          Participant Skill Level
+        <label for="skillPrereq">
+          Learners' Experience in Related Fields
           <span class="required">*</span>
         </label>
         <select
-          id="skill"
-          bind:value={formData.skillLevel}
+          id="skillPrereq"
+          bind:value={formData.learners.experience.prereq}
           on:change={handleChange}
           required
         >
-          <option value="beginner">Beginner</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="advanced">Advanced</option>
+          <option value="<= 1 year">Less Than a Year</option>
+          <option value="1-3 years">1-3 Years</option>
+          <option value=">= 4 years">4 or More Years</option>
         </select>
       </div>
 
-      <!-- Delivery Date -->
+      <!-- Experience in Course Focus Skills (e.g. AI Engineering) -->
+      <div class="form-field">
+        <label for="skillFocus">
+          Learners' Experience in This Course's Focus
+          <span class="required">*</span>
+        </label>
+        <select
+          id="skillFocus"
+          bind:value={formData.learners.experience.focus}
+          on:change={handleChange}
+          required
+        >
+          <option value="no experience">No Experience</option>
+          <option value="limited experience">Limited Experience</option>
+          <option value="skilled amateur">Skilled Amateur</option>
+          <option value="current professional">Current Professional</option>
+        </select>
+      </div>
+
+      <!-- Start Date -->
       <div class="form-field">
         <label for="delivery">
           Expected Delivery Date
@@ -186,12 +223,12 @@
         <input
           id="delivery"
           type="date"
-          bind:value={formData.deliveryDate}
+          bind:value={formData.logistics.startDate}
           on:input={handleChange}
-          class:error={errors.deliveryDate}
+          class:error={errors.logistics?.startDate}
         />
-        {#if errors.deliveryDate}
-          <span class="error-message">{errors.deliveryDate}</span>
+        {#if errors.logistics?.startDate}
+          <span class="error-message">{errors.logistics?.startDate}</span>
         {/if}
         <span class="field-hint">
           Helps research find current, relevant information
@@ -202,7 +239,7 @@
     <!-- Key Technologies -->
     <div class="form-field full-width">
       <label for="technologies">
-        Key Technologies
+        Required Technologies & Techniques
         <span class="optional">(optional)</span>
       </label>
 
@@ -211,14 +248,14 @@
           <button
             type="button"
             class="tech-suggestion"
-            class:selected={formData.keyTechnologies.includes(tech)}
+            class:selected={formData.content.techs.includes(tech)}
             on:click={() =>
-              formData.keyTechnologies.includes(tech)
+              formData.content.techs.includes(tech)
                 ? removeTechnology(tech)
                 : addTechnology(tech)}
           >
             {tech}
-            {#if formData.keyTechnologies.includes(tech)}✓{/if}
+            {#if formData.content.techs.includes(tech)}✓{/if}
           </button>
         {/each}
       </div>
@@ -241,9 +278,9 @@
         </button>
       </div>
 
-      {#if formData.keyTechnologies.length > 0}
+      {#if formData.content.techs.length > 0}
         <div class="selected-technologies">
-          {#each formData.keyTechnologies as tech}
+          {#each formData.content.techs as tech}
             <span class="tech-tag">
               {tech}
               <button
@@ -258,21 +295,21 @@
       {/if}
     </div>
 
-    <!-- Additional Context -->
+    <!-- Additional Info -->
     <div class="form-field full-width">
-      <label for="context">
-        Additional Context
+      <label for="info">
+        Additional Information
         <span class="optional">(optional)</span>
       </label>
       <textarea
-        id="context"
+        id="info"
         rows="4"
         placeholder="Any specific requirements, constraints, or goals for this module..."
-        bind:value={formData.additionalContext}
+        bind:value={formData.content.info}
         on:input={handleChange}
       ></textarea>
       <span class="field-hint">
-        {formData.additionalContext.length} / 1000 characters
+        {formData.content.info.length} / 1000 characters
       </span>
     </div>
 
@@ -284,7 +321,7 @@
         <label class="checkbox-label">
           <input
             type="checkbox"
-            bind:checked={formData.enableResearch}
+            bind:checked={formData.model.enableResearch}
             on:change={handleChange}
           />
           <span class="checkbox-text">
@@ -298,7 +335,7 @@
         <label class="checkbox-label">
           <input
             type="checkbox"
-            bind:checked={formData.useExtendedThinking}
+            bind:checked={formData.model.useExtendedThinking}
             on:change={handleChange}
           />
           <span class="checkbox-text">

@@ -5,8 +5,8 @@
   import ModulePreview from "$lib/ModulePreview.svelte";
   import {
     currentStep,
-    projectFile,
-    pythonFile,
+    projectsFile,
+    skillsFile,
     researchFile,
     uploadStates,
     uploadErrors,
@@ -15,11 +15,7 @@
     generatedModule,
   } from "$lib/stores.ts";
 
-  const steps = [
-    "Upload Files",
-    "Add Context",
-    "Generate Module",
-  ];
+  const steps = ["Upload Files", "Add Context", "Generate Module"];
 
   let isGenerating = false;
   let generationError = null;
@@ -29,15 +25,15 @@
   function handleFileUploaded(event) {
     const { type, data } = event.detail;
 
-    if (type === "project") {
-      projectFile.set(data);
-      uploadStates.update((state) => ({ ...state, project: "success" }));
-      uploadErrors.update((errors) => ({ ...errors, project: null }));
-    } else if (type === "python") {
-      pythonFile.set(data);
-      uploadStates.update((state) => ({ ...state, python: "success" }));
-      uploadErrors.update((errors) => ({ ...errors, python: null }));
-    } else {
+    if (type === "projects") {
+      projectsFile.set(data);
+      uploadStates.update((state) => ({ ...state, projects: "success" }));
+      uploadErrors.update((errors) => ({ ...errors, projects: null }));
+    } else if (type === "skills") {
+      skillsFile.set(data);
+      uploadStates.update((state) => ({ ...state, skills: "success" }));
+      uploadErrors.update((errors) => ({ ...errors, skills: null }));
+    } else if (type === "research") {
       researchFile.set(data);
       uploadStates.update((state) => ({ ...state, research: "success" }));
       uploadErrors.update((errors) => ({ ...errors, research: null }));
@@ -90,8 +86,8 @@
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          projectData: $projectFile,
-          pythonData: $pythonFile,
+          projectsData: $projectsFile,
+          skillsData: $skillsFile,
           researchData: $researchFile,
           structuredInput: $structuredInput,
           enableResearch: $structuredInput.enableResearch,
@@ -115,7 +111,8 @@
         }
 
         if (!data.hasValidXML) {
-          generationError = "Generated content did not include valid XML module specification";
+          generationError =
+            "Generated content did not include valid XML module specification";
         }
       } else {
         throw new Error(data.message || "Generation failed");
@@ -151,8 +148,8 @@
     <p>AI-powered module specification generator for peer-led courses</p>
   </header>
 
-  <div class="workflow">
-    <div class="steps">
+  <main class="workflow">
+    <nav class="steps">
       {#each steps as step, index}
         <div
           class="step"
@@ -163,32 +160,31 @@
           <span class="step-name">{step}</span>
         </div>
       {/each}
-    </div>
+    </nav>
 
     <div class="content">
       <!-- TODO: Turn these divs into Components -->
       {#if $currentStep === 1}
-        <div class="upload-section">
+        <section class="upload-section">
           <h2>Upload Module Files</h2>
           <p>
-            Upload your three XML files to begin: project, python requirements,
-            and research topics.
+            Upload your three XML files to begin: project briefs, additional
+            skills, and research topics.
           </p>
 
           <div class="upload-areas">
             <FileUpload
-              fileType="project"
-              uploadState={$uploadStates.project}
-              error={$uploadErrors.project}
+              fileType="projects"
+              uploadState={$uploadStates.projects}
+              error={$uploadErrors.projects}
               on:fileUploaded={handleFileUploaded}
               on:uploadError={handleUploadError}
             />
 
-            <!-- TODO: Make python.xml optional -->
             <FileUpload
-              fileType="python"
-              uploadState={$uploadStates.python}
-              error={$uploadErrors.python}
+              fileType="skills"
+              uploadState={$uploadStates.skills}
+              error={$uploadErrors.skills}
               on:fileUploaded={handleFileUploaded}
               on:uploadError={handleUploadError}
             />
@@ -213,17 +209,17 @@
               </button>
             </div>
           {/if}
-        </div>
+        </section>
       {:else if $currentStep === 2}
-        <div class="analysis-section">
+        <section class="analysis-section">
           <StructuredInputForm
             formData={$structuredInput}
             on:submit={handleFormSubmit}
             on:change={handleFormChange}
           />
-        </div>
+        </section>
       {:else if $currentStep === 3}
-        <div class="generation-section">
+        <section class="generation-section">
           <div class="generation-header">
             <h2>Module Generation</h2>
             <button
@@ -285,15 +281,15 @@
               </button>
             </div>
           {/if}
-        </div>
+        </section>
       {:else}
-        <div class="placeholder">
+        <section class="placeholder">
           <p>Step {$currentStep} - {steps[$currentStep - 1]}</p>
           <p>Implementation coming soon...</p>
-        </div>
+        </section>
       {/if}
     </div>
-  </div>
+  </main>
 </div>
 
 <style>
@@ -441,12 +437,12 @@
     color: #666;
   }
 
-  code {
+  /*code {
     background: #f8f9fa;
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
     font-family: "SF Mono", Consolas, monospace;
-  }
+  }*/
 
   /* Generation Section Styles */
   .generation-header {

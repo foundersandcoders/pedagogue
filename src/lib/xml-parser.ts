@@ -1,12 +1,8 @@
-/**
- * XML parsing and validation utilities for Pedagogue
- */
-
-export interface ProjectFile {
+export interface ProjectsFile {
 	rawContent: string;
 }
 
-export interface PythonFile {
+export interface SkillsFile {
 	rawContent: string;
 }
 
@@ -24,11 +20,11 @@ export class XMLParseError extends Error {
 /**
  * Parse and validate a Project XML file
  */
-export function parseProjectXML(xmlContent: string): ProjectFile {
+export function parseProjectsXML(xmlContent: string): ProjectsFile {
 	try {
 		// Basic XML validation
 		if (!xmlContent.includes('<Projects>') || !xmlContent.includes('</Projects>')) {
-			throw new XMLParseError('Invalid Project XML: Missing <Projects> root element');
+			throw new XMLParseError('Invalid Projects XML: Missing <Projects> root element');
 		}
 
 		const parser = new DOMParser();
@@ -47,17 +43,17 @@ export function parseProjectXML(xmlContent: string): ProjectFile {
 		if (error instanceof XMLParseError) {
 			throw error;
 		}
-		throw new XMLParseError('Failed to parse Project XML', error instanceof Error ? error.message : String(error));
+		throw new XMLParseError('Failed to parse Projects XML', error instanceof Error ? error.message : String(error));
 	}
 }
 
 /**
- * Parse and validate a Python XML file
+ * Parse and validate a Skills XML file
  */
-export function parsePythonXML(xmlContent: string): PythonFile {
+export function parseSkillsXML(xmlContent: string): SkillsFile {
 	try {
-		if (!xmlContent.includes('<Python>') || !xmlContent.includes('</Python>')) {
-			throw new XMLParseError('Invalid Python XML: Missing <python-for-this-arc> root element');
+		if (!xmlContent.includes('<Skills>') || !xmlContent.includes('</Skills>')) {
+			throw new XMLParseError('Invalid Skills XML: Missing <Skills> root element');
 		}
 
 		const parser = new DOMParser();
@@ -73,7 +69,7 @@ export function parsePythonXML(xmlContent: string): PythonFile {
 		if (error instanceof XMLParseError) {
 			throw error;
 		}
-		throw new XMLParseError('Failed to parse Python XML', error instanceof Error ? error.message : String(error));
+		throw new XMLParseError('Failed to parse Skills XML', error instanceof Error ? error.message : String(error));
 	}
 }
 

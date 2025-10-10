@@ -51,8 +51,8 @@ function extractModuleXML(content: string): string | null {
  */
 
 interface GenerateRequest {
-	projectData?: any;
-	pythonData?: any;
+	projectsData?: any;
+	skillsData?: any;
 	researchData?: any;
 	structuredInput?: Record<string, any>;
 	enableResearch?: boolean;
@@ -73,9 +73,9 @@ export const POST: RequestHandler = async ({ request }) => {
 		const body: GenerateRequest = await request.json();
 
 		// Validate required inputs
-		if (!body.projectData || !body.pythonData || !body.researchData) {
+		if (!body.projectsData || !body.skillsData || !body.researchData) {
 			throw error(400, {
-				message: 'Missing required data. projectData, pythonData, and researchData are all required.'
+				message: 'Missing required data. projectsData, skillsData, and researchData are all required.'
 			});
 		}
 
@@ -108,8 +108,8 @@ export const POST: RequestHandler = async ({ request }) => {
  * Build the generation prompt from input data
  */
 function buildGenerationPrompt(body: GenerateRequest): string {
-	const projectInfo = JSON.stringify(body.projectData, null, 2);
-	const pythonInfo = JSON.stringify(body.pythonData, null, 2);
+	const projectsInfo = JSON.stringify(body.projectsData, null, 2);
+	const skillsInfo = JSON.stringify(body.skillsData, null, 2);
 	const researchInfo = JSON.stringify(body.researchData, null, 2);
 	const structuredInfo = body.structuredInput ? JSON.stringify(body.structuredInput, null, 2) : 'None provided';
 
@@ -131,10 +131,10 @@ function buildGenerationPrompt(body: GenerateRequest): string {
   INPUT DATA:
 
   Project Context:
-  ${projectInfo}
+  ${projectsInfo}
 
   Python Recommendations:
-  ${pythonInfo}
+  ${skillsInfo}
 
   Research Topics:
   ${researchInfo}
@@ -154,7 +154,7 @@ function buildGenerationPrompt(body: GenerateRequest): string {
   4. Includes relevant technical details
   5. Maintains alignment with peer-led teaching philosophy
   ${body.enableResearch ? '6. Incorporates current best practices and trends discovered through web research' : ''}
-  
+
   OUTPUT FORMAT:
   Return valid XML with the following structure:
   <module>
