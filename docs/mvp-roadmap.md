@@ -1,6 +1,6 @@
 # Pedagogue MVP: Implementation Priorities
 
-## Critical Path (Do These First)
+## Completed
 
 ### 1. LangChain + Claude Integration
 - Create API route: `src/routes/api/generate/+server.ts`
@@ -31,14 +31,19 @@
 - Schema validation before export
 - **Why fourth:** Output delivery completes the value loop.
 
-### 5. Intelligent Step Navigation
+## Critical Path (Do These First)
+
+### 5. Modify the Export Schema to Meet My Requirements
+- This task has not been planned in detail; work with the user to ascertain requirements
+
+### 6. Intelligent Step Navigation
 - Detect workflow state transitions automatically
 - Update `currentStep` store reactively
 - Manual override for edge cases
 - Clear visual indicators
 - **Why fifth:** UX polish that makes the tool feel coherent.
 
-### 6. Session Persistence
+### 7. Session Persistence
 - localStorage for progress backup
 - Restore on page load with confirmation
 - "Clear session" button
