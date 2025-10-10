@@ -35,6 +35,7 @@
 
 ### 5. Modify the Export Schema to Meet My Requirements
 - This task has not been planned in detail; work with the user to ascertain requirements
+-
 
 ### 6. Intelligent Step Navigation
 - Detect workflow state transitions automatically
@@ -42,6 +43,9 @@
 - Manual override for edge cases
 - Clear visual indicators
 - **Why fifth:** UX polish that makes the tool feel coherent.
+
+### 7. Implement Cascade Updates for Subsequent Modules
+- Not planned; refer to `./about-pedagogue.md` & `./executive-summary.md` then work with the user to implement this feature
 
 ### 7. Session Persistence
 - localStorage for progress backup
