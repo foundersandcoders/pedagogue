@@ -43,13 +43,13 @@
   function handleUploadError(event) {
     const { type, error } = event.detail;
 
-    if (type === "project") {
-      uploadStates.update((state) => ({ ...state, project: "error" }));
-      uploadErrors.update((errors) => ({ ...errors, project: error }));
-    } else if (type === "python") {
-      uploadStates.update((state) => ({ ...state, python: "error" }));
-      uploadErrors.update((errors) => ({ ...errors, python: error }));
-    } else {
+    if (type === "projects") {
+      uploadStates.update((state) => ({ ...state, projects: "error" }));
+      uploadErrors.update((errors) => ({ ...errors, projects: error }));
+    } else if (type === "skills") {
+      uploadStates.update((state) => ({ ...state, skills: "error" }));
+      uploadErrors.update((errors) => ({ ...errors, skills: error }));
+    } else if (type === "research") {
       uploadStates.update((state) => ({ ...state, research: "error" }));
       uploadErrors.update((errors) => ({ ...errors, research: error }));
     }
