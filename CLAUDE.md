@@ -1,0 +1,1 @@
+- Do not edit @src/data/templates/outputSchema.xml without permission

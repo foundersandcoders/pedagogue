@@ -31,11 +31,16 @@
 - Schema validation before export
 - **Why fourth:** Output delivery completes the value loop.
 
-## Critical Path (Do These First)
+### 5. Modify the Export Schema to Meet My Requirements ✅ COMPLETED
+- Implemented strict XML schema validation with automatic retry logic
+- Schema validator checks all cardinality requirements (min 3 objectives, min 5 research topics, etc.)
+- Automatic retry mechanism (max 3 attempts) with validation error feedback
+- XML comment stripping for clean output
+- Enhanced generation prompts with detailed schema requirements
+- SSE progress events for validation status
+- See `docs/schema-validation-implementation.md` for full details
 
-### 5. Modify the Export Schema to Meet My Requirements
-- This task has not been planned in detail; work with the user to ascertain requirements
--
+## Critical Path (Do These First)
 
 ### 6. Intelligent Step Navigation
 - Detect workflow state transitions automatically
