@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <overview>
+        This module focuses on building AI-powered document analysis systems using RAG (Retrieval-Augmented Generation) techniques. Large language models can sometimes produce incorrect information due to hallucination, but RAG addresses this by equipping LLMs with retrieval mechanisms to fetch relevant documents from external knowledge sources, combining the strengths of search systems with generative AI's fluency.
+
+        The course employs active learning methodologies that have been shown to benefit students by reinforcing learning and critical skills, with peer-led team learning (PLTL) approaches demonstrating stronger course outcomes. PLTL provides an active learning experience while creating leadership roles for undergraduates. Peer leaders gain valuable experience working with faculty and guiding peers, developing communication, teaching, leadership, and interpersonal skills while becoming more confident about their career path.
+    </overview>
+
+    <objectives>
+        <objective>Master RAG Architecture and Components
+            - Understand the key components of RAG systems:
+              * Document preparation and loading
+              * Embedding generation
+              * Vector database implementation
+              * Retriever development
+              * Integration with LLMs
+        </objective>
+
+        <objective>Implement Vector Search Capabilities
+            - Build vector search functionality to find similar items based on data characteristics rather than exact matches, using AI embedding models to create vector representations and measuring distances between data vectors and query vectors to find semantically similar content
+        </objective>
+
+        <objective>Develop Embedding Strategies
+            - Master the creation and use of embeddings (vectors representing text, images, audio, etc.) that capture semantics and important features, ensuring semantically similar entities map close to each other in vector space
+        </objective>
+
+        <objective>Build Production-Ready Systems
+            - Design systems capable of sub-100ms retrieval latency for responsive user experience, handling potentially billions of vectors to retrieve relevant context when users ask questions
+        </objective>
+    </objectives>
+
+    <projects>
+        <project>
+            <name>Document Analysis Chatbot</name>
+            <description>
+                Develop a smart document analysis system that can:
+                - Ingest and process large documents
+                - Convert content into embeddings using models like OpenAI's text-embedding-ada
+                - Store embeddings in vector databases (e.g., Pinecone or Weaviate)
+                - Convert user queries into embeddings
+                - Search for the most relevant content using vector similarity
+            </description>
+        </project>
+
+        <project>
+            <name>Multi-Modal RAG System</name>
+            <description>
+                Create a system that can:
+                - Store diverse data type embeddings
+                - Enable efficient multimodal data retrieval
+                - Process text, image, audio, and video data
+                - Embed images and text into a unified vector space
+                - Enable simultaneous vector searches across multiple media types
+            </description>
+        </project>
+    </projects>
+
+    <technical-requirements>
+        <requirement>
+            Required Technologies:
+            - Vector Databases (Faiss, Pinecone, Weaviate)
+            - Frameworks (LangChain, LlamaIndex)
+            - Hybrid search capabilities
+            - Rerankers
+            - Streaming data ingestion tools
+        </requirement>
+
+        <requirement>
+            Understanding of:
+            - Generative AI models and their exponential adoption
+            - RAG techniques for enhancing response accuracy
+            - Vector databases for storing unstructured data
+            - Mathematical representation of context and relationships between data
+        </requirement>
+    </technical-requirements>
+
+    <notes>
+        The peer-led approach will focus on:
+        1. Impact on student skills and confidence regarding teamwork, leadership and communication
+        2. Effectiveness in building problem-solving skills
+        3. Implementation through pilot programs followed by full deployment
+        4. Regular assessment through student peer leader surveys and focus groups
+
+        Research has shown that this approach leads to marked and statistically significant improvements in student performance across genders, and can be as effective in promoting achievement and retention in computer science education as it has been in math and science classes.
+    </notes>
+</module>

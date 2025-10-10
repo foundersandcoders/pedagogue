@@ -5,6 +5,28 @@ import { ChatAnthropic } from '@langchain/anthropic';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 
 /**
+ * Extract text content from Claude's response
+ * When web search is used, response.content is an array of blocks including citations
+ * This function extracts only the text blocks and concatenates them
+ */
+function extractTextContent(content: any): string {
+	if (typeof content === 'string') {
+		return content;
+	}
+
+	if (Array.isArray(content)) {
+		// Filter for text blocks only, ignoring citations and other metadata
+		return content
+			.filter(block => block.type === 'text')
+			.map(block => block.text)
+			.join('');
+	}
+
+	// Fallback for unexpected formats
+	return String(content);
+}
+
+/**
  * Extract XML module specification from Claude's response
  * Handles cases where Claude includes explanation text before/after the XML
  */
@@ -247,13 +269,15 @@ function createSSEStream(body: GenerateRequest, apiKey: string) {
 				const stream = await model.stream(messages);
 
 				for await (const chunk of stream) {
-					const content = chunk.content;
-					if (typeof content === 'string' && content) {
-						fullContent += content;
+					// Extract text content from chunk (handles both string and array formats)
+					const textChunk = extractTextContent(chunk.content);
+
+					if (textChunk) {
+						fullContent += textChunk;
 						// Send chunks of content as they arrive
 						const progressData = {
 							type: 'content',
-							chunk: content,
+							chunk: textChunk,
 							message: 'Streaming content...'
 						};
 						controller.enqueue(
@@ -328,22 +352,20 @@ async function generateModule(body: GenerateRequest, apiKey: string) {
 		// Invoke the model
 		const response = await model.invoke(messages);
 
-		// Extract content
-		const content = typeof response.content === 'string'
-			? response.content
-			: JSON.stringify(response.content);
+		// Extract text content (filters out citations and other metadata)
+		const textContent = extractTextContent(response.content);
 
-		// Extract XML from the response
-		const xmlContent = extractModuleXML(content);
+		// Extract XML from the clean text
+		const xmlContent = extractModuleXML(textContent);
 
 		if (!xmlContent) {
-			console.warn('Failed to extract valid XML from response. Raw content:', content.substring(0, 200));
+			console.warn('Failed to extract valid XML from response. Raw content:', textContent.substring(0, 200));
 		}
 
 		return json({
 			success: true,
 			message: 'Module generated successfully',
-			content: content, // Full response including any explanations
+			content: textContent, // Full text response (citations filtered out)
 			xmlContent: xmlContent, // Extracted XML only
 			hasValidXML: xmlContent !== null,
 			metadata: {
