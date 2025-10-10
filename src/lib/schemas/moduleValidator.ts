@@ -1,9 +1,10 @@
 /**
  * Module XML Schema Validator
  * Validates generated XML against the required output schema structure
+ * Works in both browser and Node.js environments
  */
 
-import { DOMParser } from '@xmldom/xmldom';
+import { DOMParser as NodeDOMParser } from '@xmldom/xmldom';
 
 export interface ValidationResult {
 	valid: boolean;
@@ -20,8 +21,9 @@ export function validateModuleXML(xmlString: string): ValidationResult {
 	const warnings: string[] = [];
 
 	try {
-		// Parse XML using DOMParser from @xmldom/xmldom
-		const parser = new DOMParser();
+		// Use browser DOMParser if available, otherwise Node.js DOMParser
+		const ParserClass = typeof window !== 'undefined' ? window.DOMParser : NodeDOMParser;
+		const parser = new ParserClass();
 		const doc = parser.parseFromString(xmlString, 'text/xml');
 
 		// Check for XML parsing errors

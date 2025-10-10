@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { validateModuleXML, type ModuleSpec } from './moduleSchema';
+	import { validateModuleXML } from './schemas/moduleValidator';
 	import { createEventDispatcher } from 'svelte';
 
 	export let xmlContent: string = '';
@@ -7,14 +7,13 @@
 
 	const dispatch = createEventDispatcher<{
 		download: { content: string; filename: string };
-		validated: { valid: boolean; module?: ModuleSpec };
+		validated: { valid: boolean };
 	}>();
 
 	$: validation = showValidation && xmlContent ? validateModuleXML(xmlContent) : null;
 	$: if (validation) {
 		dispatch('validated', {
-			valid: validation.valid,
-			module: validation.module
+			valid: validation.valid
 		});
 	}
 
