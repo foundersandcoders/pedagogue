@@ -4,23 +4,20 @@
 
 ### Critical Path (Do These First)
 
-#### 6. Use LangChain's Streaming Functionality to Provide Richer Feedback During Generation
-- Not planned; work with the user to implement this feature
-
-#### 7. Implement Changelog in Returned Modules
+#### 8. Implement Changelog in Returned Modules
 - Not yet planned;  work with the user to implement this feature
 
-#### 8. Intelligent Step Navigation
+#### 9. Intelligent Step Navigation
 - Detect workflow state transitions automatically
 - Update `currentStep` store reactively
 - Manual override for edge cases
 - Clear visual indicators
 - **Why fifth:** UX polish that makes the tool feel coherent.
 
-#### 9. Implement Cascade Updates for Subsequent Modules
+#### 10. Implement Cascade Updates for Subsequent Modules
 - Not planned; refer to `./about-pedagogue.md` & `./executive-summary.md` then work with the user to implement this feature
 
-#### 10. Session Persistence
+#### 11. Session Persistence
 - localStorage for progress backup
 - Restore on page load with confirmation
 - "Clear session" button
@@ -47,6 +44,7 @@
 
 #### New Features
 - [ ] Add dark mode to UI
+  - Should allow user to select light, dark or system
 - [ ] Add ability to upload previous modules for additional context
   - Strip boilerplate from uploads from previous modules before sending prompt
 
@@ -119,3 +117,6 @@
   - what exactly will be sent to Claude
   - what Claude will return
   - what sources of information Claude will use
+
+#### 7. Use LangChain's Streaming Functionality to Provide Richer Feedback During Generation
+- Not planned; work with the user to implement this feature
