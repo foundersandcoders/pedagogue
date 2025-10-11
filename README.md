@@ -1,4 +1,4 @@
-# Pedagogue
+![Pedagogue](./static/github-header-banner.png)
 
 An AI-powered curriculum generation tool for peer-led learning cohorts. Pedagogue uses Claude AI with optional web research to generate comprehensive, up-to-date module specifications based on your project briefs, skills requirements, and research topics.
 
