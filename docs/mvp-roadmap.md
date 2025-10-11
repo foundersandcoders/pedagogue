@@ -4,17 +4,6 @@
 
 ### Critical Path (Do These First)
 
-#### 6. Generate a README.md for Users
-- It should focus on how to use the tool
-- Should include specific guidance on:
-  - how to make sure the input files are correctly formatted (e.g. correct root elements)
-  - common `xml` "gotchas" (e.g. unescaped ampersands will make the file throw an error)
-  - how to correctly use the structured input form
-- Should include descriptions of:
-  - what exactly will be sent to Claude
-  - what Claude will return
-  - what sources of information Claude will use
-
 #### 6. Use LangChain's Streaming Functionality to Provide Richer Feedback During Generation
 - Not planned; work with the user to implement this feature
 
@@ -39,6 +28,7 @@
 
 ### Other MVP Tasks
 - [ ] Add guidance to prompt that steers Claude towards better Twists
+- [ ] Add instructions for including an Anthropic API key in `README.md`
 - [ ] Add boilerplate module text after generation
   - There are some instructional sections that stay constant between modules.
   - We can add them in between generation and download.
@@ -102,3 +92,14 @@
 - Enhanced generation prompts with detailed schema requirements
 - SSE progress events for validation status
 - See `docs/schema-validation-implementation.md` for full details
+
+#### 6. Generate a README.md for Users
+- It should focus on how to use the tool
+- Should include specific guidance on:
+  - how to make sure the input files are correctly formatted (e.g. correct root elements)
+  - common `xml` "gotchas" (e.g. unescaped ampersands will make the file throw an error)
+  - how to correctly use the structured input form
+- Should include descriptions of:
+  - what exactly will be sent to Claude
+  - what Claude will return
+  - what sources of information Claude will use
