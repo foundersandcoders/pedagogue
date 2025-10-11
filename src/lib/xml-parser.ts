@@ -1,14 +1,6 @@
-export interface ProjectsFile {
-	rawContent: string;
-}
-
-export interface SkillsFile {
-	rawContent: string;
-}
-
-export interface ResearchFile {
-	rawContent: string;
-}
+export interface ProjectsFile { rawContent: string }
+export interface SkillsFile { rawContent: string }
+export interface ResearchFile { rawContent: string }
 
 export class XMLParseError extends Error {
 	constructor(message: string, public readonly details?: string) {
@@ -38,11 +30,9 @@ export function parseProjectsXML(xmlContent: string): ProjectsFile {
 
 		// Store raw content for Claude to process
 		return { rawContent: xmlContent };
-
 	} catch (error) {
-		if (error instanceof XMLParseError) {
-			throw error;
-		}
+    if (error instanceof XMLParseError) { throw error };
+
 		throw new XMLParseError('Failed to parse Projects XML', error instanceof Error ? error.message : String(error));
 	}
 }
@@ -66,9 +56,8 @@ export function parseSkillsXML(xmlContent: string): SkillsFile {
 
 		return { rawContent: xmlContent };
 	} catch (error) {
-		if (error instanceof XMLParseError) {
-			throw error;
-		}
+		if (error instanceof XMLParseError) { throw error };
+
 		throw new XMLParseError('Failed to parse Skills XML', error instanceof Error ? error.message : String(error));
 	}
 }
@@ -92,9 +81,8 @@ export function parseResearchXML(xmlContent: string): ResearchFile {
 
 		return { rawContent: xmlContent };
 	} catch (error) {
-		if (error instanceof XMLParseError) {
-			throw error;
-		}
+    if (error instanceof XMLParseError) { throw error };
+
 		throw new XMLParseError('Failed to parse Research XML', error instanceof Error ? error.message : String(error));
 	}
 }
