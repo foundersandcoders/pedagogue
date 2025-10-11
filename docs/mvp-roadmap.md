@@ -12,16 +12,16 @@
 - Update `currentStep` store reactively
 - Manual override for edge cases
 - Clear visual indicators
-- **Why fifth:** UX polish that makes the tool feel coherent.
+- **Why:** UX polish that makes the tool feel coherent.
 
 #### 10. Implement Cascade Updates for Subsequent Modules
-- Not planned; refer to `./about-pedagogue.md` & `./executive-summary.md` then work with the user to implement this feature
+- Not yet planned; refer to `./about-pedagogue.md` & `./executive-summary.md` then work with the user to implement this feature
 
 #### 11. Session Persistence
 - localStorage for progress backup
 - Restore on page load with confirmation
 - "Clear session" button
-- **Why sixth:** Production-ready reliability, but not blocking for initial functionality.
+- **Why:** Production-ready reliability, but not blocking for initial functionality.
 
 ### Other MVP Tasks
 
