@@ -104,16 +104,22 @@
   </Projects>
 
   <AdditionalSkills>
-    <!-- Skills that are not vital but can supplement the main module focus -->
-    <!-- Skills should be granular -->
-    <!-- Good Example: "Package management in Python" -->
-    <!-- Bad Example: "Coding in Python" -->
-    <SkillsCategory> <!-- Repeat Category for each skills category -->
-      <Name>Name of Category (e.g. "Python"</Name>
+    <!-- Skills that are not vital but can supplement the main module focus
+      Skills should be granular
+      Examples:
+        Good: "Package management in Python"
+        Bad: "Coding in Python"
+      -->
+    <SkillsCategory> <!-- Repeat <Category> for each category -->
+      <Name>Category Name (e.g. "Python")</Name>
 
       <Skill>
         <SkillName>Memorable name of skill</SkillName>
-        <SkillDescription>2 sentences maximum</SkillDescription>
+        <Importance>e.g. Recommended, Stretch etc</Importance>
+        
+        <SkillDescription>
+          2 sentences maximum
+        </SkillDescription>
       </Skill>
     </SkillsCategory>
   </AdditionalSkills>
