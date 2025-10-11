@@ -20,9 +20,13 @@
       <!-- There should be at least 5 distinct primary topics -->
       <!-- They should relate to the content of <Projects> & <ModuleOverview> -->
       <PrimaryTopic> <!-- Repeat <PrimaryTopic> for each primary topic -->
-        Description of topic to research, including:
-        1. guidance for how to start researching it
-        2. suggestion for subdividing the topic if multiple learners tackle it
+        <TopicName></TopicName>
+        
+        <TopicDescription>
+          Description of topic to research, including:
+          1. guidance for how to start researching it
+          2. suggestion for subdividing the topic if multiple learners tackle it
+        </TopicDescription>
       </PrimaryTopic>
     </PrimaryTopics>
 

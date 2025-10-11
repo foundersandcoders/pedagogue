@@ -302,6 +302,7 @@ function validateProjects(root: Element, errors: string[], warnings: string[]): 
 
 function validateAdditionalSkills(root: Element, errors: string[], warnings: string[]): void {
 	const additionalSkillsSections = root.getElementsByTagName('AdditionalSkills');
+	
 	if (additionalSkillsSections.length === 0) {
 		errors.push('Missing required <AdditionalSkills> section');
 		return;
