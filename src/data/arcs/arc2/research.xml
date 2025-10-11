@@ -1,6 +1,11 @@
 <Research>
+  <Overview>
+    These are topics that might be useful foci for the initial research session at the beginning of the module.
+  </Overview>
+
 	<PrimaryTopics>
-   	<!-- Long Context/Embeddings Models --><PrimaryTopic>
+   	<!-- Long Context/Embeddings Models -->
+    <PrimaryTopic>
       1. Long Context Models
         > Find out what models are available that can handle big inputs.
         - For example:
@@ -18,7 +23,9 @@
           - SBERT
           - InstructorXL
     </PrimaryTopic>
-   	<!-- Handling Inputs --><PrimaryTopic>
+
+   	<!-- Handling Inputs -->
+    <PrimaryTopic>
       1. Text Chunking and Summarization
         > Techniques to summarize or chunk documents
         - For instance:
@@ -41,7 +48,9 @@
         - If the documents are HTML or MD, find ways to parse them
         - Essentially, ensure teams know how to get raw text from the input documents for the AI to consume.
     </PrimaryTopic>
-   	<!-- Handling Code --><PrimaryTopic>
+
+   	<!-- Handling Code -->
+    <PrimaryTopic>
       1. AI for Code Review &amp; Quality
         > How are AI models being used to review code?
         - Investigate examples like:
@@ -68,7 +77,9 @@
         - For documentation: using AI to generate a README or update a changelog.
         - Find any tools or papers on these topics to gauge feasibility and best approaches.
     </PrimaryTopic>
-   	<!-- CI/CD --><PrimaryTopic>
+
+   	<!-- CI/CD -->
+    <PrimaryTopic>
       1. Security and Privacy in CI AI
         > Discuss the implications of sending your code to an external API (like OpenAI) during CI
         - What do OpenAI/Anthropic’s terms say about data usage?
@@ -86,7 +97,9 @@
           - runners
           - using Node or Python in actions
     </PrimaryTopic>
-   	<!-- Knowledge --><PrimaryTopic>
+
+   	<!-- Knowledge -->
+    <PrimaryTopic>
       1. Retrieval-Augmented Generation (RAG) 101
         > Understand the concept of RAG
         - Break down the typical steps
@@ -113,7 +126,9 @@
         – How do they work?
         - What are their free tiers or ease-of-use considerations?
     </PrimaryTopic>
-   	<!-- Context & Control --><PrimaryTopic>
+
+   	<!-- Context & Control -->
+    <PrimaryTopic>
       1. Preventing Hallucinations and Ensuring Accuracy
         > Strategies to make the bot cite sources or indicate uncertainty
         - Instructing the model “If you don’t find an answer in the provided documents, say you don’t know.”

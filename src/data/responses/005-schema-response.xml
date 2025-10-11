@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <ModuleOverview>
+    <ModuleDescription>
+      This module explores how AI systems can access, process, and act upon information beyond their training data. Learners will build user-facing chatbots that handle long documents and autonomous agents that use external tools to accomplish multi-step tasks. Through hands-on projects, participants will master techniques for extending AI capabilities through retrieval, tool integration, and reasoning frameworks while confronting real-world challenges like context limits, API integration, and user experience design.
+    </ModuleDescription>
+
+    <ModuleObjectives>
+      <ModuleObjective>
+        <Name>Long-Context Document Processing</Name>
+        <Details>
+          Learners will understand how to work with documents that exceed standard LLM context windows. They'll gain practical experience with extended-context models like Claude, implement document chunking strategies, design effective summarization prompts, and build question-answering systems that extract information from lengthy texts. This includes handling PDFs and various document formats, managing token budgets, and creating user-friendly interfaces for document interaction.
+        </Details>
+      </ModuleObjective>
+
+      <ModuleObjective>
+        <Name>AI Agent Architecture and Tool Use</Name>
+        <Details>
+          Learners will build autonomous agents that extend beyond text generation by invoking external tools and APIs. They'll implement function calling patterns, design multi-step reasoning loops using frameworks like ReAct, integrate third-party services (weather APIs, search engines, databases), and handle the orchestration between AI decision-making and action execution. This includes understanding when to give AI autonomy versus human oversight, managing error cases, and preventing infinite loops or resource waste.
+        </Details>
+      </ModuleObjective>
+
+      <ModuleObjective>
+        <Name>Retrieval and Embedding Fundamentals</Name>
+        <Details>
+          Learners will gain foundational knowledge of how AI systems find relevant information within large document collections. They'll experiment with text embeddings, implement basic semantic search, understand the principles behind Retrieval-Augmented Generation (RAG), and explore trade-offs between different retrieval strategies. This serves as groundwork for more advanced vector database work in future modules while addressing immediate needs for intelligent information retrieval in their projects.
+        </Details>
+      </ModuleObjective>
+
+      <ModuleObjective>
+        <Name>Prompt Engineering for Non-Code Tasks</Name>
+        <Details>
+          Learners will develop skills in crafting prompts for text analysis, summarization, and question-answering rather than code generation. They'll explore different prompt structures (TL;DR patterns, extractive QA formats, reasoning chains), learn to instruct models to cite sources and indicate uncertainty, and design prompts that maintain accuracy while avoiding hallucinations. This includes techniques for handling conversational context and managing multi-turn interactions.
+        </Details>
+      </ModuleObjective>
+
+      <ModuleObjective>
+        <Name>Cross-Language Integration and API Design</Name>
+        <Details>
+          Learners will gain experience integrating multiple technologies and languages to build complete AI systems. They'll work with both JavaScript/Node and Python where appropriate, handle asynchronous operations across API boundaries, parse and process data from various sources (PDFs, web APIs, databases), and design clean interfaces between components. This includes practical API integration skills, error handling across service boundaries, and understanding when to use different tools for different parts of the system.
+        </Details>
+      </ModuleObjective>
+    </ModuleObjectives>
+  </ModuleOverview>
+
+  <ResearchTopics>
+    <PrimaryTopics>
+      <PrimaryTopic>
+        Long-Context Models and Their Capabilities: Research what models are available that can handle large inputs, focusing on Anthropic's Claude (100k+ token context), GPT-4 Turbo (128k context), and Google's Gemini (up to 1M tokens). Investigate their pricing, accessibility with available API keys, and practical limitations. Start by reading the official documentation for each provider, then look for benchmark comparisons and real-world case studies. If multiple learners tackle this, divide by provider (one person researches Claude, another GPT-4, another Gemini) or by use case (one focuses on cost analysis, another on performance benchmarks, another on implementation examples).
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        Text Chunking and Document Processing Strategies: Explore techniques for breaking large documents into manageable pieces while preserving meaning and context. Research recursive summarization (summarizing sections then summarizing summaries), semantic chunking (splitting by topic boundaries), and fixed-size chunking with overlap. Investigate libraries like LangChain's text splitters, Python's NLTK, or JavaScript alternatives. Start with blog posts about chunking strategies, then examine library documentation and GitHub examples. Divide work by exploring different chunking approaches, document formats (PDF vs HTML vs plain text), or programming language implementations.
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        Embeddings and Semantic Search Fundamentals: Understand how text embeddings enable semantic similarity search. Research OpenAI's text-embedding-ada-002 model, open-source alternatives like Sentence-BERT or Instructor-XL, and the mathematics behind cosine similarity. Experiment with converting sample texts to embeddings and calculating similarity scores. Start with OpenAI's embeddings guide, then explore Hugging Face's sentence-transformers library. If dividing the work, one person could focus on commercial embedding APIs (costs, speed, quality), another on open-source models, and another on building a simple similarity search prototype.
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        AI Agent Frameworks and Function Calling: Investigate frameworks that enable AI agents to use tools, focusing on LangChain's agent abstractions, OpenAI's function calling API, and Anthropic's tool use. Research the ReAct (Reasoning + Acting) prompting pattern and how it enables multi-step task completion. Start with OpenAI's function calling documentation and LangChain's agent quickstart. Look for examples of agents using search tools, calculators, or API calls. Divide by framework (LangChain vs raw function calling), by tool type (search vs computation vs data access), or by exploring different agent architectures (zero-shot vs few-shot vs conversational).
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        Practical API Integration and Error Handling: Research how to integrate external APIs into AI workflows, focusing on weather APIs (OpenWeatherMap), search APIs (Serper, Brave Search), and data sources. Learn about API authentication, rate limiting, parsing JSON responses, and handling failures gracefully. Investigate how to structure code that bridges between LLM outputs and API calls. Start by selecting one API and reading its documentation, then look for integration examples in AI projects on GitHub. Divide work by API type (search vs data vs computation), by programming language (Python vs JavaScript), or by focusing on different aspects (authentication, error handling, response parsing).
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        PDF and Document Parsing Tools: Identify libraries and techniques for extracting text from PDFs, Word documents, and web pages. Research Python options like PyPDF2, pdfplumber, and python-docx, as well as JavaScript alternatives like pdf-parse or Mozilla's PDF.js. Investigate challenges like handling scanned PDFs (OCR requirements), preserving document structure, and extracting tables or images. Start with library documentation and comparison articles, then test tools on sample documents. Divide by document type (PDF vs DOCX vs HTML), by programming language, or by complexity (simple text extraction vs structure preservation vs multimodal content).
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        Preventing Hallucinations and Ensuring Accuracy: Research strategies to make AI systems cite sources, indicate uncertainty, and avoid fabricating information. Investigate prompt patterns like "If you don't find an answer in the provided documents, say 'I don't know'", techniques for extracting citations, and methods for evaluating factual accuracy. Look into grounding techniques and retrieval-augmented generation principles. Start with research papers on hallucination reduction and blog posts about prompt engineering for accuracy. Divide by technique (prompt engineering vs retrieval grounding vs post-processing verification), by evaluation methods (human eval vs automated metrics), or by exploring different model behaviors.
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        Conversational Context Management: Explore techniques for maintaining context across multi-turn conversations, including conversation summarization, sliding window approaches, and persistent memory patterns. Research how ChatGPT and Claude handle long conversations and what strategies work best for different use cases. Investigate storing conversation history in databases versus keeping it in-prompt. Start with documentation on chat completion APIs and articles about conversation design. Divide by approach (summarization vs windowing vs external memory), by implementation (in-memory vs database-backed), or by use case (short-term chat vs long-term user relationships).
+      </PrimaryTopic>
+    </PrimaryTopics>
+
+    <StretchTopics>
+      <StretchTopic>Advanced agent tools like Python REPL execution or image recognition APIs</StretchTopic>
+      <StretchTopic>Vector database options (FAISS, Pinecone, Weaviate, Chroma) and their trade-offs</StretchTopic>
+      <StretchTopic>Fine-tuning versus few-shot learning for domain-specific tasks</StretchTopic>
+      <StretchTopic>Graph databases for knowledge representation and relationship mapping</StretchTopic>
+      <StretchTopic>Security and privacy implications of sending code or documents to external APIs</StretchTopic>
+      <StretchTopic>Open-source model landscape (Llama, Mistral, Qwen) for local deployment</StretchTopic>
+      <StretchTopic>Quantization trade-offs for running models locally with reduced resource requirements</StretchTopic>
+      <StretchTopic>Evaluation metrics for retrieval quality and answer accuracy</StretchTopic>
+      <StretchTopic>Multi-modal document processing (handling images, tables, charts within documents)</StretchTopic>
+      <StretchTopic>Agent safety considerations and sandboxing autonomous systems</StretchTopic>
+    </StretchTopics>
+  </ResearchTopics>
+
+  <Projects>
+    <ProjectBriefs>
+      <ProjectBrief>
+        <Overview>
+          <Name>Knowledge and Memory</Name>
+          <Task>Develop a user-facing chatbot that can ingest and summarize long documents or answer questions about them</Task>
+          <Focus>Long-context handling using extended context window models like Anthropic Claude, document chunking strategies, summarization and question-answering prompt patterns, basic retrieval techniques, and user interface design for document interaction</Focus>
+        </Overview>
+
+        <Criteria>
+          - Accept one or more documents as input (PDF, text, or other formats)
+          - Provide both summarization and question-answering capabilities
+          - Handle documents that exceed standard context windows through chunking or long-context models
+          - Return accurate information grounded in the document content
+          - Include a user interface (web, CLI, or chat interface) appropriate for end users
+          - Gracefully handle cases where information is not found in the documents
+          - Demonstrate understanding of token limits and context management
+        </Criteria>
+
+        <Skills>
+          <Skill>
+            <Name>Extended Context Models</Name>
+            <Details>
+              - Select and configure models with large context windows (Claude, GPT-4 Turbo, Gemini)
+              - Understand token counting and context window limits for chosen models
+              - Implement strategies to stay within context budgets while maximizing information retention
+              - Compare trade-offs between using extended context versus chunking approaches
+              - Handle API rate limits and costs associated with large context usage
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Document Processing and Chunking</Name>
+            <Details>
+              - Extract text from various document formats (PDF, DOCX, HTML, Markdown)
+              - Implement chunking strategies that preserve semantic meaning
+              - Handle edge cases like tables, code blocks, or special formatting
+              - Maintain document structure information (headings, sections) when relevant
+              - Create overlap between chunks to preserve context at boundaries
+              - Optimize chunk size based on model limits and retrieval needs
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Summarization and QA Prompt Design</Name>
+            <Details>
+              - Design prompts for extractive and abstractive summarization
+              - Create question-answering prompts that cite sources from documents
+              - Implement prompts that instruct models to indicate uncertainty
+              - Structure prompts to handle both specific queries and broad summarization requests
+              - Test and refine prompts for accuracy and relevance
+              - Handle multi-document scenarios where information may be distributed
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Basic Retrieval Implementation</Name>
+            <Details>
+              - Implement simple keyword or semantic search over document chunks
+              - Experiment with embeddings for finding relevant document sections
+              - Rank and select the most relevant chunks for a given query
+              - Balance between retrieving enough context and staying within token limits
+              - Understand when full-document processing is preferable to retrieval
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>User Experience for Document Chat</Name>
+            <Details>
+              - Design clear interfaces for document upload and interaction
+              - Provide helpful instructions about what users can ask
+              - Display source citations or relevant document sections with answers
+              - Handle long-running operations with appropriate feedback
+              - Create intuitive conversation flows for document exploration
+              - Consider accessibility and ease of use for non-technical users
+            </Details>
+          </Skill>
+        </Skills>
+
+        <Examples>
+          <Example>
+            <Name>Research Paper Assistant</Name>
+            <Description>
+              A chatbot that loads academic papers and allows researchers to ask questions like "What methodology did the authors use?" or "What are the main findings?" The system extracts text from PDF papers, uses Claude's extended context to process the entire paper, and answers questions while citing specific sections. It can also generate structured summaries highlighting introduction, methods, results, and conclusions.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Legal Document Analyzer</Name>
+            <Description>
+              A tool for analyzing contracts, terms of service, or legal documents. Users upload lengthy legal texts and can ask pointed questions ("What is the cancellation policy?" or "What are my obligations under this contract?") or request plain-language summaries. The system chunks documents by section, uses embeddings to find relevant clauses, and provides answers with exact citations to specific paragraphs or sections.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Technical Documentation Navigator</Name>
+            <Description>
+              A chatbot for developers working with large API documentation or software manuals. Users can ask "How do I authenticate with this API?" or "What parameters does the search endpoint accept?" The system processes documentation (potentially from multiple pages or files), retrieves relevant sections, and provides code examples and explanations drawn from the docs. It maintains conversation context to handle follow-up questions.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Book Study Companion</Name>
+            <Description>
+              An educational tool that helps students engage with textbooks or lengthy reading assignments. Students upload chapters or entire books and can ask comprehension questions, request chapter summaries, or explore themes and concepts. The system uses recursive summarization for book-level overviews and retrieval for specific questions, helping students understand complex material through interactive dialogue.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Corporate Knowledge Base Chat</Name>
+            <Description>
+              An internal tool that ingests company documentation, policy handbooks, or training materials. Employees can ask questions about procedures, policies, or guidelines and receive accurate answers with references to the source documents. The system handles multiple documents simultaneously, disambiguates between different policy versions, and maintains a conversation history to answer follow-up questions in context.
+            </Description>
+          </Example>
+        </Examples>
+      </ProjectBrief>
+
+      <ProjectBrief>
+        <Overview>
+          <Name>User Agent</Name>
+          <Task>Build an AI agent that can perform multi-step tasks by invoking external tools or APIs to accomplish user goals</Task>
+          <Focus>Agent frameworks and function calling, ReAct reasoning paradigm, API integration, multi-step task orchestration, tool selection and execution, error handling in autonomous systems, and balancing AI autonomy with control</Focus>
+        </Overview>
+
+        <Criteria>
+          - Accept user requests or goals in natural language
+          - Autonomously decide which tools or actions to take to fulfill the request
+          - Integrate at least one external non-LLM service (API, database, or computational tool)
+          - Execute multi-step reasoning and action sequences
+          - Return results to the user with explanation of actions taken
+          - Handle errors gracefully when tools fail or return unexpected results
+          - Implement safeguards to prevent infinite loops or excessive resource usage
+          - Demonstrate reasoning transparency (show the agent's decision-making process)
+        </Criteria>
+
+        <Skills>
+          <Skill>
+            <Name>Agent Architecture and Tool Use</Name>
+            <Details>
+              - Implement the agent loop: LLM decides action, action executes, result feeds back, LLM continues
+              - Use OpenAI function calling or similar tool-use APIs effectively
+              - Alternatively, implement agent logic using frameworks like LangChain or LlamaIndex
+              - Define tool schemas that the LLM can understand and invoke
+              - Handle the translation between LLM tool requests and actual function execution
+              - Manage tool output formatting for feeding back to the LLM
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>ReAct Prompting and Multi-Step Reasoning</Name>
+            <Details>
+              - Design prompts that encourage step-by-step reasoning (Thought, Action, Observation pattern)
+              - Implement or configure ReAct-style agent prompts
+              - Balance between giving the agent freedom and providing structure
+              - Handle cases where the agent needs multiple actions to complete a task
+              - Detect when the agent has sufficient information to answer
+              - Prevent the agent from getting stuck in reasoning loops
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>External API Integration</Name>
+            <Details>
+              - Select and integrate appropriate third-party APIs (search, weather, data sources)
+              - Handle API authentication and key management securely
+              - Parse and process API responses into formats the LLM can use
+              - Implement rate limiting and respect API usage constraints
+              - Handle API errors, timeouts, and edge cases gracefully
+              - Test API integration independently before connecting to the agent
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Tool Design and Selection</Name>
+            <Details>
+              - Create clear tool definitions with names, descriptions, and parameter schemas
+              - Design tools with appropriate granularity (not too broad, not too narrow)
+              - Implement at least one computational tool (calculator, data processor)
+              - Consider creating tools for search, data retrieval, or external service interaction
+              - Write tool descriptions that help the LLM understand when to use each tool
+              - Test that the LLM can successfully select appropriate tools for various tasks
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Agent Safety and Control</Name>
+            <Details>
+              - Implement limits on the number of tool calls to prevent infinite loops
+              - Add timeouts for long-running operations
+              - Create safeguards around sensitive operations (if applicable)
+              - Log agent decisions and actions for debugging and transparency
+              - Consider human-in-the-loop patterns for high-stakes decisions
+              - Handle cases where the agent cannot complete the task
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Asynchronous Operations and State Management</Name>
+            <Details>
+              - Handle asynchronous API calls and tool executions
+              - Manage agent state across multiple reasoning steps
+              - Coordinate between LLM calls and tool executions efficiently
+              - Handle concurrent operations when appropriate
+              - Maintain conversation context throughout the agent's execution
+            </Details>
+          </Skill>
+        </Skills>
+
+        <Examples>
+          <Example>
+            <Name>Web Research Agent</Name>
+            <Description>
+              An agent that answers questions requiring current information by searching the web. When asked "What were the key outcomes of the latest climate summit?" it uses a search API to find recent articles, extracts relevant information, and synthesizes an answer. The agent can perform multiple searches to gather comprehensive information, filter results for relevance, and cite sources in its response.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Personal Assistant Agent</Name>
+            <Description>
+              An agent that helps manage tasks and schedules. Users can say "Schedule a meeting with Alice next week" and the agent checks a calendar API, finds available times, and creates the event. It can also handle requests like "Remind me to call Bob tomorrow" or "What's on my schedule today?" by interacting with calendar and task management APIs. The agent reasons about time, availability, and user preferences.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Data Analysis Agent</Name>
+            <Description>
+              An agent that performs analysis on datasets. Given a CSV file or database connection, users can ask "What are the trends in sales data?" or "Which product category had the highest growth?" The agent uses Python tools to load data, compute statistics, generate visualizations, and explain findings. It can perform multi-step analysis, creating intermediate calculations to answer complex questions.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Travel Planning Agent</Name>
+            <Description>
+              An agent that helps plan trips by combining multiple information sources. When asked "Plan a weekend trip to Paris", it searches for flight options, hotel availability, and local attractions. It uses weather APIs to check conditions, search APIs to find recommendations, and potentially booking APIs to check availability. The agent reasons about budget, preferences, and logistics to create a comprehensive plan.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Technical Support Agent</Name>
+            <Description>
+              An agent that helps diagnose and solve technical problems. Users describe issues like "My application is running slowly" and the agent uses tools to check system resources, query logs, run diagnostic scripts, or search knowledge bases for solutions. It follows a troubleshooting process, gathering information through multiple tool calls and reasoning about likely causes before suggesting solutions.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Content Creation Agent</Name>
+            <Description>
+              An agent that assists with content creation by combining research and generation. When asked to "Write a blog post about renewable energy trends", it searches for recent news and statistics, uses calculation tools to verify numbers, and generates structured content with citations. It can fact-check its own output by searching for verification and iterate on drafts based on user feedback.
+            </Description>
+          </Example>
+        </Examples>
+      </ProjectBrief>
+    </ProjectBriefs>
+
+    <ProjectTwists>
+      <ProjectTwist>
+        <Name>It's Always Watching</Name>
+        <Task>Build something that gives AI persistent, evolving context across multiple sessions or interactions</Task>
+        <ExampleUses>
+          <Example>
+            A document chat system that remembers which sections users frequently ask about and proactively suggests related information in future sessions
+          </Example>
+          <Example>
+            An agent that builds a profile of user preferences and working patterns, adapting its tool selection and response style over time
+          </Example>
+          <Example>
+            A knowledge base that learns from team questions, identifying gaps in documentation and suggesting areas that need clarification
+          </Example>
+          <Example>
+            A chatbot that maintains long-term memory of user interactions, storing facts learned about the user in a database and referencing them in future conversations
+          </Example>
+          <Example>
+            An assistant that tracks which tools are most effective for different types of tasks and optimizes its decision-making based on historical success rates
+          </Example>
+        </ExampleUses>
+      </ProjectTwist>
+
+      <ProjectTwist>
+        <Name>Multi-Agent Collaboration</Name>
+        <Task>Create a system where multiple specialized AI agents work together to accomplish complex tasks</Task>
+        <ExampleUses>
+          <Example>
+            A research system with separate agents for searching, fact-checking, and synthesis that collaborate to produce well-researched answers
+          </Example>
+          <Example>
+            A document processing pipeline where one agent extracts information, another validates it, and a third formats it for presentation
+          </Example>
+          <Example>
+            A customer service system with agents specialized in different domains (billing, technical support, account management) that route and handle requests collaboratively
+          </Example>
+          <Example>
+            A content creation workflow where one agent generates drafts, another critiques and suggests improvements, and a third fact-checks and finalizes
+          </Example>
+        </ExampleUses>
+      </ProjectTwist>
+
+      <ProjectTwist>
+        <Name>Multimodal Understanding</Name>
+        <Task>Extend the system to handle not just text but also images, diagrams, or other media within documents or tool outputs</Task>
+        <ExampleUses>
+          <Example>
+            A document chatbot that can answer questions about charts, graphs, and diagrams embedded in PDFs using vision-capable models
+          </Example>
+          <Example>
+            An agent that can analyze screenshots or images as part of its tool repertoire, such as reading error messages from screenshots
+          </Example>
+          <Example>
+            A research assistant that extracts information from infographics and data visualizations, not just text
+          </Example>
+          <Example>
+            A technical documentation system that understands architecture diagrams and can answer questions about system design based on visual representations
+          </Example>
+        </ExampleUses>
+      </ProjectTwist>
+
+      <ProjectTwist>
+        <Name>Adversarial Robustness</Name>
+        <Task>Build defenses against users trying to manipulate the system through prompt injection or other attacks</Task>
+        <ExampleUses>
+          <Example>
+            A document chatbot that detects and rejects attempts to ignore document content through prompt injection in uploaded files
+          </Example>
+          <Example>
+            An agent that validates tool outputs to ensure they haven't been manipulated to mislead the AI's reasoning process
+          </Example>
+          <Example>
+            A system that monitors for unusual patterns indicating attempts to extract training data or bypass safety guidelines
+          </Example>
+          <Example>
+            A chatbot that uses separate models or validation steps to detect when users are trying to override system instructions
+          </Example>
+        </ExampleUses>
+      </ProjectTwist>
+
+      <ProjectTwist>
+        <Name>Explainable Decisions</Name>
+        <Task>Make the AI's reasoning process transparent and auditable, showing users exactly how conclusions were reached</Task>
+        <ExampleUses>
+          <Example>
+            A document QA system that highlights the exact passages used to answer each question and explains its reasoning process
+          </Example>
+          <Example>
+            An agent that logs and displays its full decision tree, showing why it chose each tool and how it interpreted results
+          </Example>
+          <Example>
+            A chatbot that provides confidence scores and alternative interpretations, helping users understand uncertainty in responses
+          </Example>
+          <Example>
+            A system that generates audit trails showing which documents or tools contributed to each part of a complex answer
+          </Example>
+        </ExampleUses>
+      </ProjectTwist>
+
+      <ProjectTwist>
+        <Name>Offline-First Architecture</Name>
+        <Task>Design the system to work with limited or intermittent connectivity, caching and optimizing for offline use</Task>
+        <ExampleUses>
+          <Example>
+            A document chatbot that pre-processes and embeds documents locally, allowing basic queries to work without API calls
+          </Example>
+          <Example>
+            An agent that queues actions when offline and executes them when connectivity is restored, with intelligent fallbacks
+          </Example>
+          <Example>
+            A system that uses smaller local models for simple tasks and only calls cloud APIs for complex reasoning
+          </Example>
+          <Example>
+            A chatbot that caches common queries and responses, providing instant answers for frequently asked questions without network calls
+          </Example>
+        </ExampleUses>
+      </ProjectTwist>
+    </ProjectTwists>
+  </Projects>
+
+  <AdditionalSkills>
+    <SkillsCategory>
+      <Name>Python for AI Engineering</Name>
+
+      <Skill>
+        <SkillName>Virtual Environments and Package Management</SkillName>
+        <SkillDescription>
+          Learn to create isolated Python environments using venv or conda, manage dependencies with pip and requirements.txt files, and understand why environment isolation matters for AI projects with many dependencies.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Asynchronous Programming in Python</SkillName>
+        <SkillDescription>
+          Understand async/await syntax for handling concurrent API calls, use asyncio for managing multiple LLM requests efficiently, and learn when asynchronous code improves performance in AI applications.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Data Processing with Pandas</SkillName>
+        <SkillDescription>
+          Learn to load and manipulate structured data using pandas DataFrames, perform basic analysis and transformations, and prepare data for use in AI prompts or agent tools.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Working with NumPy Arrays</SkillName>
+        <SkillDescription>
+          Understand NumPy arrays for handling embeddings and numerical data, perform vector operations like cosine similarity for semantic search, and efficiently process large numerical datasets.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Building APIs with FastAPI</SkillName>
+        <SkillDescription>
+          Create REST APIs to expose AI functionality using FastAPI, handle request validation and error responses, and serve AI models or agent systems through web endpoints.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>PDF and Document Processing</SkillName>
+        <SkillDescription>
+          Use libraries like PyPDF2, pdfplumber, or pypdf to extract text from PDFs, handle different document formats and encodings, and preprocess documents for AI consumption.
+        </SkillDescription>
+      </Skill>
+    </SkillsCategory>
+
+    <SkillsCategory>
+      <Name>JavaScript/Node.js for AI Applications</Name>
+
+      <Skill>
+        <SkillName>Promise-Based Async Patterns</SkillName>
+        <SkillDescription>
+          Master Promise chains and async/await for handling API calls, manage concurrent requests to LLM services efficiently, and handle errors in asynchronous workflows.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Express.js API Development</SkillName>
+        <SkillDescription>
+          Build web servers and APIs using Express.js to host AI chatbots or agents, handle routing, middleware, and request processing for AI applications.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>NPM Package Management</SkillName>
+        <SkillDescription>
+          Manage project dependencies using npm or yarn, understand semantic versioning and lock files, and select appropriate packages for AI integration tasks.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Working with Streams</SkillName>
+        <SkillDescription>
+          Use Node.js streams for processing large files or handling streaming API responses, implement streaming chat responses for better user experience.
+        </SkillDescription>
+      </Skill>
+    </SkillsCategory>
+
+    <SkillsCategory>
+      <Name>API Integration and Web Services</Name>
+
+      <Skill>
+        <SkillName>RESTful API Consumption</SkillName>
+        <SkillDescription>
+          Make HTTP requests using fetch or axios, parse JSON responses and handle various status codes, and implement proper error handling and retry logic.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Authentication and API Keys</SkillName>
+        <SkillDescription>
+          Securely manage API keys using environment variables, implement various authentication schemes (Bearer tokens, API keys, OAuth), and understand rate limiting and quota management.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Webhook Implementation</SkillName>
+        <SkillDescription>
+          Set up endpoints to receive webhook notifications from external services, verify webhook signatures for security, and integrate real-time events into AI workflows.
+        </SkillDescription>
+      </Skill>
+    </SkillsCategory>
+
+    <SkillsCategory>
+      <Name>Frontend Development for AI Interfaces</Name>
+
+      <Skill>
+        <SkillName>React Component Design</SkillName>
+        <SkillDescription>
+          Build interactive chat interfaces using React components, manage application state for conversation history, and handle real-time updates from AI responses.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>File Upload Handling</SkillName>
+        <SkillDescription>
+          Implement file upload interfaces for document ingestion, handle large files with progress indicators, and validate file types and sizes on the client side.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Responsive Chat UI Patterns</SkillName>
+        <SkillDescription>
+          Design chat interfaces that work across devices, implement message bubbles and conversation threading, and provide visual feedback during AI processing.
+        </SkillDescription>
+      </Skill>
+    </SkillsCategory>
+
+    <SkillsCategory>
+      <Name>Database and Storage</Name>
+
+      <Skill>
+        <SkillName>Document Storage and Retrieval</SkillName>
+        <SkillDescription>
+          Store uploaded documents and processed chunks in databases, implement efficient retrieval queries, and manage document metadata for organization.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Conversation History Management</SkillName>
+        <SkillDescription>
+          Store and retrieve conversation history for context maintenance, implement efficient queries for recent messages, and handle conversation branching or editing.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Caching Strategies</SkillName>
+        <SkillDescription>
+          Implement caching for frequently accessed data or responses, use in-memory caches (Redis) or file-based caching appropriately, and understand cache invalidation strategies.
+        </SkillDescription>
+      </Skill>
+    </SkillsCategory>
+  </AdditionalSkills>
+
+  <Notes>
+    This module serves as a bridge between basic LLM API usage and more advanced AI engineering concepts. The projects are designed to be achievable within a 3-week timeframe while introducing fundamental concepts that will be expanded in later modules. The Knowledge and Memory project provides a gentler introduction to retrieval concepts before a dedicated RAG module, while the User Agent project introduces autonomous systems and tool use that can be expanded into more complex multi-agent architectures later. Teams should be encouraged to start simple and iterate, focusing on getting a working system before adding complexity. The research topics are structured to support both projects, with some topics more relevant to one project than the other, allowing teams to focus their research based on their chosen brief. The additional skills are presented as optional enhancements rather than requirements, giving teams flexibility to use their existing language preferences while providing pathways to expand their toolkit where beneficial.
+  </Notes>
+</Module>

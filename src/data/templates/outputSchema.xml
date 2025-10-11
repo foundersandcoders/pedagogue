@@ -1,0 +1,102 @@
+<Module>
+  <ModuleOverview>
+    <ModuleDescription>
+      What topics this module covers and what we'll build
+    </ModuleDescription>
+
+    <ModuleObjectives>
+      <!-- There should be at least 3 tangibly separate objectives -->
+      <ModuleObjective> <!-- Repeat <Objective> for each objective -->
+        <Name>Quick memorable name for the objective</Name>
+        <Details>
+          An explanation of the practical skills &amp; theoretical knowledge learners will have upon completion
+        </Details>
+      </ModuleObjective>
+    </ModuleObjectives>
+  </ModuleOverview>
+
+  <ResearchTopics>
+    <PrimaryTopics>
+      <!-- There should be at least 5 distinct primary topics -->
+      <!-- They should relate to the content of <Projects> & <ModuleOverview> -->
+      <PrimaryTopic> <!-- Repeat <PrimaryTopic> for each primary topic -->
+        Description of topic to research, including:
+        1. guidance for how to start researching it
+        2. suggestion for subdividing the topic if multiple learners tackle it
+      </PrimaryTopic>
+    </PrimaryTopics>
+
+    <StretchTopics>
+      <!-- Stretch topics should be suggested if they are natural extensions of Primary Topics -->
+      <!-- They must not be essential to completing the briefs in <Projects> -->
+      <StretchTopic> <!-- Repeat <StretchTopic> for each stretch topic -->
+        One sentence description of topic
+      </StretchTopic>
+    </StretchTopics>
+  </ResearchTopics>
+
+  <Projects>
+    <ProjectBriefs>
+      <!-- There should be at least 2 distinct briefs -->
+      <ProjectBrief> <!-- Repeat <Project> for each project brief -->
+        <Overview>
+          <Name>Name of Project</Name>
+          <Task>One sentence description of successful outcome</Task>
+          <Focus>Techniques &amp; technologies that will help achieve the task</Focus>
+        </Overview>
+
+        <Criteria>Bullet point list of success criteria</Criteria>
+
+        <Skills>
+          <!-- There should be at least 3 distinct skills -->
+          <!-- Each skill should have been referenced in <Module/Objectives> -->
+          <Skill> <!-- Repeat <Skill> for all relevant skills -->
+           	<Name>Memorable name of skill, technology or technique</Name>
+            <Details>Bullet point list of criteria, guidance and explanation</Details>
+          </Skill>
+        </Skills>
+
+        <Examples>
+          <!-- There should be at least 3 significantly different examples -->
+          <Example> <!-- Repeat <Example> for each example -->
+            <Name>Memorable name of example</Name>
+            <Description>Brief description of example</Description>
+          </Example>
+        </Examples>
+      </ProjectBrief>
+    </ProjectBriefs>
+
+    <ProjectTwists>
+      <!-- There should be at least 2 interesting twists -->
+      <ProjectTwist> <!-- Repeat <Twist> for each twist -->
+        <Name>Memorable name of twist</Name>
+        <Task>Challenge that the twist poses</Task>
+        <ExampleUses>
+          <!-- There should be at least 2 distinct examples of incorporating the twist -->
+          <Example> <!-- Repeat <Example> for each example -->
+            Brief description of example
+          </Example>
+        </ExampleUses>
+      </ProjectTwist>
+    </ProjectTwists>
+  </Projects>
+
+  <AdditionalSkills>
+    <!-- Skills that are not vital but can supplement the main module focus -->
+    <!-- Skills should be granular -->
+    <!-- Good Example: "Package management in Python" -->
+    <!-- Bad Example: "Coding in Python" -->
+    <SkillsCategory> <!-- Repeat Category for each skills category -->
+      <Name>Name of Category (e.g. "Python"</Name>
+
+      <Skill>
+        <SkillName>Memorable name of skill</SkillName>
+        <SkillDescription>2 sentences maximum</SkillDescription>
+      </Skill>
+    </SkillsCategory>
+  </AdditionalSkills>
+
+  <Notes>
+    Any content that doesn't fit within the schema. Use rarely.
+  </Notes>
+</Module>

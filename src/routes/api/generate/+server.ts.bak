@@ -513,7 +513,7 @@ async function generateModule(body: GenerateRequest, apiKey: string) {
 						validationErrors: lastError,
 						attempts: attempt,
 						metadata: {
-							modelUsed: "claude-sonnet-4-5-20250929",
+							modelUsed: 'claude-3-5-sonnet-20241022',
 							timestamp: new Date().toISOString(),
 							enableResearch: body.enableResearch ?? false,
 							useExtendedThinking: body.useExtendedThinking ?? false
@@ -539,7 +539,7 @@ async function generateModule(body: GenerateRequest, apiKey: string) {
 					validationWarnings: validation.warnings,
 					attempts: attempt,
 					metadata: {
-						modelUsed: "claude-sonnet-4-5-20250929",
+						modelUsed: 'claude-3-5-sonnet-20241022',
 						timestamp: new Date().toISOString(),
 						enableResearch: body.enableResearch ?? false,
 						useExtendedThinking: body.useExtendedThinking ?? false
@@ -565,7 +565,7 @@ async function generateModule(body: GenerateRequest, apiKey: string) {
 						validationWarnings: validation.warnings,
 						attempts: attempt,
 						metadata: {
-							modelUsed: "claude-sonnet-4-5-20250929",
+							modelUsed: 'claude-3-5-sonnet-20241022',
 							timestamp: new Date().toISOString(),
 							enableResearch: body.enableResearch ?? false,
 							useExtendedThinking: body.useExtendedThinking ?? false
