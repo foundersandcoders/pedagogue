@@ -34,7 +34,8 @@
 - [x] Add instructions for including an Anthropic API key in `README.md`
 
 ##### Prompt & Schema
-- [ ] Add guidance to prompt that steers Claude towards better Twists
+- [ ] Steer Claude towards better Twists
+- [ ] Steer Claude away from "Facilitators should" phrases
 
 ##### Module Generation
 - [ ] Update files in `~/lib/schemas/` to match `~/src/data/templates/outputSchema.xml`
