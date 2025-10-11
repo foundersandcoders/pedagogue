@@ -219,7 +219,7 @@ function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[
 
       <TaskSteps>
         <Step1>
-          - Think hard about what learning outcomes emerge when the content of \`<ModuleInput>\` is considered as a whole.
+          Think hard about what learning outcomes emerge when the content of "<ModuleInput>" is considered as a whole.
         </Step1>
 
         <Step2>
@@ -232,11 +232,11 @@ function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[
 
         <Step3>
           ${body.enableResearch ? `
-            1. Use web searches to check that "<ModuleInput/ProjectsInput>" is not outdated compared to industry trends. Update the research topics if appropriate.
+            1. Use web searches to check that "<ModuleInput/ProjectsInput>" is not outdated compared to industry trends. Update the project briefs if appropriate.
             2. Make sure that the projects are relevant to the learning outcomes
             3.`
             : `1.`
-          } Keep the research topics in mind when completing the next steps
+          } Keep the project briefs in mind when completing the next steps
         </Step3>
 
         <Step4>
@@ -248,12 +248,12 @@ function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[
             : `1.`
           } Keep the research topics in mind when completing the next steps
         </Step4>
-        
+
         <Step5>
           Generate the module
         </Step5>
       </TaskSteps>
-      
+
       <TaskGuidelines>
         - Match the level of detail in the input examples
         - ProjectBriefs should include Overview, Criteria, Skills, and Examples
@@ -270,37 +270,41 @@ function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[
   </Prompt>`;
 }
 
-/**
- * Reputable domains for AI technology research
- * Note: Some major news sites (BBC, Reuters, The Verge, Wired, Ars Technica)
- * block Anthropic's crawler, so they're excluded from this list
- */
 const AI_RESEARCH_DOMAINS = [
-	// AI Vendors
+	// AI Platforms
 	'anthropic.com',
 	'claude.ai',
 	'openai.com',
 	'deepmind.google',
 	'ai.google',
 	'microsoft.com',
-	// Tech News & Analysis
-	'techcrunch.com',
-	'venturebeat.com',
-	'thenextweb.com',
-	// Developer Resources
-	'github.com',
-	'stackoverflow.com',
-	'medium.com',
-	'dev.to',
-	'docs.python.org',
-	'python.org',
-	// LangChain Docs
+	'huggingface.co/blog',
+	// Docs
 	'js.langchain.com',
 	'python.langchain.com',
+	'modelcontextprotocol.io',
+	'docs.python.org',
+	// Resources (Software Dev)
+	'dev.to',
+	'github.com',
+	'medium.com',
+	'python.org',
+	// News & Analysis
+	'techcrunch.com',
+	'thenextweb.com',
+	'venturebeat.com',
+	// Blogs & Newsletters
+	'deepgains.substack.com',
+	'newsletter.pragmaticengineer.com',
+	"simonwillison.net",
+	'sundeepteki.org/blog',
+	// Communities
+	'stackoverflow.com',
+	'news.ycombinator.com',
 	// Academic & Research
 	'arxiv.org',
 	'acm.org',
-	'ieee.org'
+	'ieee.org',
 ];
 
 /**
