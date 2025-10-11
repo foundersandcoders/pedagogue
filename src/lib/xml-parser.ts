@@ -42,7 +42,7 @@ export function parseProjectsXML(xmlContent: string): ProjectsFile {
  */
 export function parseSkillsXML(xmlContent: string): SkillsFile {
 	try {
-		if (!xmlContent.includes('<Skills>') || !xmlContent.includes('</Skills>')) {
+		if (!xmlContent.includes('<AdditionalSkills>') || !xmlContent.includes('</AdditionalSkills>')) {
 			throw new XMLParseError('Invalid Skills XML: Missing <Skills> root element');
 		}
 
@@ -67,8 +67,8 @@ export function parseSkillsXML(xmlContent: string): SkillsFile {
  */
 export function parseResearchXML(xmlContent: string): ResearchFile {
 	try {
-		if (!xmlContent.includes('<Research>') || !xmlContent.includes('</Research>')) {
-			throw new XMLParseError('Invalid Research XML: Missing <research-topics> root element');
+		if (!xmlContent.includes('<ResearchTopics>') || !xmlContent.includes('</ResearchTopics>')) {
+			throw new XMLParseError('Invalid Research XML: Missing <ResearchTopics> root element');
 		}
 
 		const parser = new DOMParser();
