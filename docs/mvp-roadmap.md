@@ -27,6 +27,7 @@
   - **Why sixth:** Production-ready reliability, but not blocking for initial functionality.
 
 ### Other MVP Tasks
+  - [ ] Add guidance to prompt that steers Claude towards better Twists
   - [ ] Add boilerplate module text after generation
     - There are some instructional sections that stay constant between modules.
     - We can add them in between generation and download.
