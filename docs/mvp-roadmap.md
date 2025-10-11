@@ -62,11 +62,6 @@
 
 ---
 
-## Non-Negotiable Rules
-1. Research capability (#3) is not "nice to have"—it's the core value proposition. Everything else is infrastructure to support this.
-
----
-
 ## Completed
 
 ### 1. LangChain + Claude Integration
