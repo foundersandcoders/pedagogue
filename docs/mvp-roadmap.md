@@ -25,8 +25,9 @@
 
 ### Other MVP Tasks
 - [ ] Add boilerplate module text after generation
-      There are some instructional sections that stay constant between modules.
-      We can add them in between generation and download.
+      - There are some instructional sections that stay constant between modules.
+      - We can add them in between generation and download.
+- [ ] Update files in `~/lib/schemas/` to match `~/src/data/templates/outputSchema.xml`
 - [ ] Add ability to upload previous modules for additional context
 - [ ] Strip boilerplate from uploads from previous modules before sending prompt
 
