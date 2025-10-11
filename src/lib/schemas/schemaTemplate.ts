@@ -60,9 +60,13 @@ Your output must be valid XML matching this EXACT structure:
     <PrimaryTopics>
       <!-- REQUIRED: At least 5 PrimaryTopic elements -->
       <PrimaryTopic>
-        Description of topic to research, including:
-        1. guidance for how to start researching it
-        2. suggestion for subdividing the topic if multiple learners tackle it
+        <TopicName>Name of topic</TopicName>
+
+        <TopicDescription>
+          Description of topic to research, including:
+          1. guidance for how to start researching it
+          2. suggestion for subdividing the topic if multiple learners tackle it
+        </TopicDescription>
       </PrimaryTopic>
       <!-- Repeat PrimaryTopic for each primary topic -->
     </PrimaryTopics>

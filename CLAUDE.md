@@ -1,1 +1,2 @@
 - Do not edit @src/data/templates/outputSchema.xml without permission
+- When editing the prompt template in @src/routes/api/generate/+server.ts, do not remove existing content until you have asked for permission

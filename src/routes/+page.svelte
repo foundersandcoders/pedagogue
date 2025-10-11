@@ -13,7 +13,7 @@
     canProceedToStep2,
     structuredInput,
     generatedModule,
-  } from "$lib/stores.ts";
+  } from "$lib/stores";
 
   const steps = ["Upload Files", "Add Context", "Generate Module"];
 
@@ -82,9 +82,7 @@
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           projectsData: $projectsFile,
           skillsData: $skillsFile,
@@ -94,7 +92,7 @@
           useExtendedThinking: $structuredInput.useExtendedThinking,
         }),
       });
-
+      
       if (!response.ok) {
         const error = await response.json();
         throw new Error(error.message || "Failed to generate module");
@@ -107,12 +105,11 @@
         generatedXML = data.xmlContent || "";
 
         if (generatedXML) {
-          generatedModule.set(generatedXML);
+          generatedModule.set(generatedXML)
         }
 
         if (!data.hasValidXML) {
-          generationError =
-            "Generated content did not include valid XML module specification";
+          generationError = "Generated content did not include valid XML module specification"
         }
       } else {
         throw new Error(data.message || "Generation failed");
@@ -148,7 +145,7 @@
     <p>AI-powered module specification generator for peer-led courses</p>
   </header>
 
-  <main class="workflow">
+  <div class="workflow">
     <nav class="steps">
       {#each steps as step, index}
         <div
@@ -162,7 +159,7 @@
       {/each}
     </nav>
 
-    <div class="content">
+    <main class="content">
       <!-- TODO: Turn these divs into Components -->
       {#if $currentStep === 1}
         <section class="upload-section">
@@ -222,6 +219,7 @@
         <section class="generation-section">
           <div class="generation-header">
             <h2>Module Generation</h2>
+
             <button
               type="button"
               class="back-button"
@@ -288,8 +286,8 @@
           <p>Implementation coming soon...</p>
         </section>
       {/if}
-    </div>
-  </main>
+    </main>
+  </div>
 </div>
 
 <style>

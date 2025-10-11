@@ -1,14 +1,6 @@
-export interface ProjectsFile {
-	rawContent: string;
-}
-
-export interface SkillsFile {
-	rawContent: string;
-}
-
-export interface ResearchFile {
-	rawContent: string;
-}
+export interface ProjectsFile { rawContent: string }
+export interface SkillsFile { rawContent: string }
+export interface ResearchFile { rawContent: string }
 
 export class XMLParseError extends Error {
 	constructor(message: string, public readonly details?: string) {
@@ -38,11 +30,9 @@ export function parseProjectsXML(xmlContent: string): ProjectsFile {
 
 		// Store raw content for Claude to process
 		return { rawContent: xmlContent };
-
 	} catch (error) {
-		if (error instanceof XMLParseError) {
-			throw error;
-		}
+    if (error instanceof XMLParseError) { throw error };
+
 		throw new XMLParseError('Failed to parse Projects XML', error instanceof Error ? error.message : String(error));
 	}
 }
@@ -52,7 +42,7 @@ export function parseProjectsXML(xmlContent: string): ProjectsFile {
  */
 export function parseSkillsXML(xmlContent: string): SkillsFile {
 	try {
-		if (!xmlContent.includes('<Skills>') || !xmlContent.includes('</Skills>')) {
+		if (!xmlContent.includes('<AdditionalSkills>') || !xmlContent.includes('</AdditionalSkills>')) {
 			throw new XMLParseError('Invalid Skills XML: Missing <Skills> root element');
 		}
 
@@ -66,9 +56,8 @@ export function parseSkillsXML(xmlContent: string): SkillsFile {
 
 		return { rawContent: xmlContent };
 	} catch (error) {
-		if (error instanceof XMLParseError) {
-			throw error;
-		}
+		if (error instanceof XMLParseError) { throw error };
+
 		throw new XMLParseError('Failed to parse Skills XML', error instanceof Error ? error.message : String(error));
 	}
 }
@@ -78,8 +67,8 @@ export function parseSkillsXML(xmlContent: string): SkillsFile {
  */
 export function parseResearchXML(xmlContent: string): ResearchFile {
 	try {
-		if (!xmlContent.includes('<Research>') || !xmlContent.includes('</Research>')) {
-			throw new XMLParseError('Invalid Research XML: Missing <research-topics> root element');
+		if (!xmlContent.includes('<ResearchTopics>') || !xmlContent.includes('</ResearchTopics>')) {
+			throw new XMLParseError('Invalid Research XML: Missing <ResearchTopics> root element');
 		}
 
 		const parser = new DOMParser();
@@ -92,9 +81,8 @@ export function parseResearchXML(xmlContent: string): ResearchFile {
 
 		return { rawContent: xmlContent };
 	} catch (error) {
-		if (error instanceof XMLParseError) {
-			throw error;
-		}
+    if (error instanceof XMLParseError) { throw error };
+
 		throw new XMLParseError('Failed to parse Research XML', error instanceof Error ? error.message : String(error));
 	}
 }

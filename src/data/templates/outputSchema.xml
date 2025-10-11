@@ -20,9 +20,13 @@
       <!-- There should be at least 5 distinct primary topics -->
       <!-- They should relate to the content of <Projects> & <ModuleOverview> -->
       <PrimaryTopic> <!-- Repeat <PrimaryTopic> for each primary topic -->
-        Description of topic to research, including:
-        1. guidance for how to start researching it
-        2. suggestion for subdividing the topic if multiple learners tackle it
+        <TopicName></TopicName>
+        
+        <TopicDescription>
+          Description of topic to research, including:
+          1. guidance for how to start researching it
+          2. suggestion for subdividing the topic if multiple learners tackle it
+        </TopicDescription>
       </PrimaryTopic>
     </PrimaryTopics>
 
@@ -41,18 +45,29 @@
       <ProjectBrief> <!-- Repeat <Project> for each project brief -->
         <Overview>
           <Name>Name of Project</Name>
-          <Task>One sentence description of successful outcome</Task>
-          <Focus>Techniques &amp; technologies that will help achieve the task</Focus>
+          
+          <Task>
+            One sentence description of successful outcome
+          </Task>
+          
+          <Focus>
+            Techniques &amp; technologies that will help achieve the task
+          </Focus>
         </Overview>
 
-        <Criteria>Bullet point list of success criteria</Criteria>
+        <Criteria>
+          Bullet point list of success criteria
+        </Criteria>
 
         <Skills>
-          <!-- There should be at least 3 distinct skills -->
+          <!-- There should be at least 3 distinct skills, technologies or techniques -->
           <!-- Each skill should have been referenced in <Module/Objectives> -->
-          <Skill> <!-- Repeat <Skill> for all relevant skills -->
-           	<Name>Memorable name of skill, technology or technique</Name>
-            <Details>Bullet point list of criteria, guidance and explanation</Details>
+          <Skill> <!-- Repeat <Skill> for all skills -->
+           	<Name>Memorable name of skill</Name>
+            
+            <Details>
+              Bullet point list of criteria, guidance and explanation
+            </Details>
           </Skill>
         </Skills>
 
@@ -60,7 +75,10 @@
           <!-- There should be at least 3 significantly different examples -->
           <Example> <!-- Repeat <Example> for each example -->
             <Name>Memorable name of example</Name>
-            <Description>Brief description of example</Description>
+            
+            <Description>
+              Brief description of example
+            </Description>
           </Example>
         </Examples>
       </ProjectBrief>
@@ -70,7 +88,11 @@
       <!-- There should be at least 2 interesting twists -->
       <ProjectTwist> <!-- Repeat <Twist> for each twist -->
         <Name>Memorable name of twist</Name>
-        <Task>Challenge that the twist poses</Task>
+        
+        <Task>
+          Challenge that the twist poses
+        </Task>
+        
         <ExampleUses>
           <!-- There should be at least 2 distinct examples of incorporating the twist -->
           <Example> <!-- Repeat <Example> for each example -->
@@ -82,16 +104,22 @@
   </Projects>
 
   <AdditionalSkills>
-    <!-- Skills that are not vital but can supplement the main module focus -->
-    <!-- Skills should be granular -->
-    <!-- Good Example: "Package management in Python" -->
-    <!-- Bad Example: "Coding in Python" -->
-    <SkillsCategory> <!-- Repeat Category for each skills category -->
-      <Name>Name of Category (e.g. "Python"</Name>
+    <!-- Skills that are not vital but can supplement the main module focus
+      Skills should be granular
+      Examples:
+        Good: "Package management in Python"
+        Bad: "Coding in Python"
+      -->
+    <SkillsCategory> <!-- Repeat <Category> for each category -->
+      <Name>Category Name (e.g. "Python")</Name>
 
       <Skill>
         <SkillName>Memorable name of skill</SkillName>
-        <SkillDescription>2 sentences maximum</SkillDescription>
+        <Importance>e.g. Recommended, Stretch etc</Importance>
+        
+        <SkillDescription>
+          2 sentences maximum
+        </SkillDescription>
       </Skill>
     </SkillsCategory>
   </AdditionalSkills>
