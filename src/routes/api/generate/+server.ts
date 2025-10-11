@@ -177,9 +177,9 @@ function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[
         ${researchInfo}
       </ResearchInput>
 
-      <OtherInput>
+      <CohortInput>
         ${structuredInfo}
-      </OtherInput>
+      </CohortInput>
     </ModuleInput>
 
     <Task>
@@ -218,13 +218,11 @@ function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[
       </TaskCriteria>
 
       <TaskSteps>
-        <Step1>
-          Think hard about what learning outcomes emerge when the content of "<ModuleInput>" is considered as a whole.
-        </Step1>
+        <Step1>Think hard about what learning outcomes emerge when the content of "<ModuleInput>" is considered as a whole.</Step1>
 
         <Step2>
           ${body.enableResearch ? `
-            1. Use web searches to check that these learning outcomes are not outdated compared to industry trends. Update the learning outcomes if appropriate.
+            1. Use web searches to check that these learning outcomes are not outdated compared to industry trends. Update the learning outcomes if appropriate, making sure they're appropriate to the cohort specified in "<ModuleInput/CohortInput>".
             2.`
             : `1.`
           } Keep the learning outcomes in mind when completing the next steps
@@ -232,7 +230,7 @@ function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[
 
         <Step3>
           ${body.enableResearch ? `
-            1. Use web searches to check that "<ModuleInput/ProjectsInput>" is not outdated compared to industry trends. Update the project briefs if appropriate.
+            1. Use web searches to check that "<ModuleInput/ProjectsInput>" is not outdated compared to industry trends. Update the project briefs if appropriate, making sure they're appropriate to the cohort specified in "<ModuleInput/CohortInput>".
             2. Make sure that the projects are relevant to the learning outcomes
             3.`
             : `1.`
@@ -241,7 +239,7 @@ function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[
 
         <Step4>
           ${body.enableResearch ? `
-            1. Use web searches to check that "<ModuleInput/ResearchInput>" is not outdated compared to industry trends. Update the research topics if appropriate.
+            1. Use web searches to check that "<ModuleInput/ResearchInput>" is not outdated compared to industry trends. Update the research topics if appropriate, making sure they're appropriate to the cohort specified in "<ModuleInput/CohortInput>".
             2. Make sure the research topics are relevant to the learning outcomes
             3. Make sure the research topics are useful in completing the projects
             4.`
@@ -249,9 +247,7 @@ function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[
           } Keep the research topics in mind when completing the next steps
         </Step4>
 
-        <Step5>
-          Generate the module
-        </Step5>
+        <Step5>Generate the module</Step5>
       </TaskSteps>
 
       <TaskGuidelines>
@@ -330,7 +326,7 @@ function createSSEStream(body: GenerateRequest, apiKey: string) {
 					modelName: 'claude-sonnet-4-5-20250929', // Claude Sonnet 4.5
 					temperature: 0.7,
 					maxTokens: 16384, // Sonnet 4.5 supports up to 64K output tokens
-					timeout: 120000, // 2 minute timeout
+					// timeout: 120000,
 					streaming: true
 				});
 
@@ -363,7 +359,7 @@ function createSSEStream(body: GenerateRequest, apiKey: string) {
 					const prompt = buildGenerationPrompt(body, attempt > 1 ? lastError : undefined);
 
 					const messages = [
-						new SystemMessage('You are an expert curriculum designer. Generate high-quality educational content in valid XML format.'),
+						new SystemMessage('You are an expert in (a) current AI engineering trends and (b) curriculum designer for peer-led AI Engineering courses.'),
 						new HumanMessage(prompt)
 					];
 
@@ -487,7 +483,6 @@ function createSSEStream(body: GenerateRequest, apiKey: string) {
 						}
 					}
 				}
-
 			} catch (err) {
 				const errorMessage = err instanceof Error ? err.message : 'Stream error';
 				controller.enqueue(
@@ -545,7 +540,7 @@ async function generateModule(body: GenerateRequest, apiKey: string) {
 			const prompt = buildGenerationPrompt(body, attempt > 1 ? lastError : undefined);
 
 			const messages = [
-				new SystemMessage('You are an expert curriculum designer. Generate high-quality educational content in valid XML format.'),
+				new SystemMessage('You are an expert in (a) current AI engineering trends and (b) curriculum designer for peer-led AI Engineering courses.'),
 				new HumanMessage(prompt)
 			];
 
@@ -652,7 +647,6 @@ async function generateModule(body: GenerateRequest, apiKey: string) {
 
 		// Should not reach here, but just in case
 		throw new Error('Unexpected end of retry loop');
-
 	} catch (err) {
 		console.error('Generation error:', err);
 		throw error(500, {
