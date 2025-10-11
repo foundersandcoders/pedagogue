@@ -1,5 +1,53 @@
 # Pedagogue MVP: Implementation Priorities
 
+## Roadmap to MVP
+
+### Critical Path (Do These First)
+
+#### 6. Use LangChain's Streaming Functionality to Provide Richer Feedback During Generation
+- Not planned; work with the user to implement this feature
+
+#### 6. Intelligent Step Navigation
+- Detect workflow state transitions automatically
+- Update `currentStep` store reactively
+- Manual override for edge cases
+- Clear visual indicators
+- **Why fifth:** UX polish that makes the tool feel coherent.
+
+#### 7. Implement Cascade Updates for Subsequent Modules
+- Not planned; refer to `./about-pedagogue.md` & `./executive-summary.md` then work with the user to implement this feature
+
+#### 7. Session Persistence
+- localStorage for progress backup
+- Restore on page load with confirmation
+- "Clear session" button
+- **Why sixth:** Production-ready reliability, but not blocking for initial functionality.
+
+### Other MVP Tasks
+- [ ] Add boilerplate module text after generation
+      There are some instructional sections that stay constant between modules.
+      We can add them in between generation and download.
+- [ ] Add ability to upload previous modules for additional context
+- [ ] Strip boilerplate from uploads from previous modules before sending prompt
+
+---
+
+## Beyond MVP
+
+- Comparison view (original vs. generated with diff)
+- Multiple generation variants
+- Template management
+- Version history tracking
+- Collaborative editing
+
+---
+
+## Non-Negotiable Rules
+
+1. Research capability (#3) is not "nice to have"—it's the core value proposition. Everything else is infrastructure to support this.
+
+---
+
 ## Completed
 
 ### 1. LangChain + Claude Integration
@@ -39,33 +87,3 @@
 - Enhanced generation prompts with detailed schema requirements
 - SSE progress events for validation status
 - See `docs/schema-validation-implementation.md` for full details
-
-## Critical Path (Do These First)
-
-### 6. Intelligent Step Navigation
-- Detect workflow state transitions automatically
-- Update `currentStep` store reactively
-- Manual override for edge cases
-- Clear visual indicators
-- **Why fifth:** UX polish that makes the tool feel coherent.
-
-### 7. Implement Cascade Updates for Subsequent Modules
-- Not planned; refer to `./about-pedagogue.md` & `./executive-summary.md` then work with the user to implement this feature
-
-### 7. Session Persistence
-- localStorage for progress backup
-- Restore on page load with confirmation
-- "Clear session" button
-- **Why sixth:** Production-ready reliability, but not blocking for initial functionality.
-
-## Beyond MVP
-
-- Comparison view (original vs. generated with diff)
-- Multiple generation variants
-- Template management
-- Version history tracking
-- Collaborative editing
-
-## Non-Negotiable Principle
-
-Research capability (#3) is not "nice to have"—it's the core value proposition. Everything else is infrastructure to support this.
