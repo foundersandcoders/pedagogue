@@ -16,6 +16,105 @@ The key value: **Pedagogue can use web search to ensure your curriculum reflects
 
 ---
 
+## Installation & Setup
+
+### Prerequisites
+
+- **Node.js** 16+ and npm
+- **Anthropic API key** (required)
+
+### 1. Get an Anthropic API Key
+
+1. Visit [console.anthropic.com](https://console.anthropic.com/)
+2. Sign up or log in to your Anthropic account
+3. Navigate to **API Keys** in the dashboard
+4. Click **Create Key** and copy your API key
+
+**Cost Information:**
+- Pay-as-you-go pricing based on tokens used
+- Claude Sonnet 4.5 costs approximately $3 per million input tokens, $15 per million output tokens
+- Typical module generation: 20,000-40,000 input tokens + 8,000-15,000 output tokens
+- **Estimated cost per module:** $0.20-$0.40 (with research enabled)
+- New accounts often include free credits to get started
+
+See [Anthropic's pricing page](https://www.anthropic.com/pricing) for current rates.
+
+### 2. Clone and Install
+
+```bash
+# Clone the repository
+git clone https://github.com/your-org/pedagogue.git
+cd pedagogue
+
+# Install dependencies
+npm install
+```
+
+### 3. Configure Environment
+
+```bash
+# Copy the example environment file
+cp .env.example .env
+```
+
+Open `.env` in your text editor and add your API key:
+
+```bash
+# Anthropic API Configuration
+ANTHROPIC_API_KEY=sk-ant-api03-xxxxx  # Replace with your actual key
+```
+
+**Important:**
+- Never commit your `.env` file to version control (it's already in `.gitignore`)
+- Keep your API key secure - treat it like a password
+- Don't share your key in screenshots, issues, or public forums
+
+### 4. Run the Application
+
+```bash
+# Start the development server
+npm run dev
+```
+
+The app will be available at **http://localhost:5173**
+
+Open this URL in your browser to start using Pedagogue.
+
+### 5. Verify Setup
+
+To confirm everything is working:
+
+1. Open http://localhost:5173
+2. Upload three minimal XML files (see [Input File Format](#input-file-format))
+3. Fill in the structured form
+4. Click "Generate Module"
+5. You should see progress updates and successful generation
+
+If you see "ANTHROPIC_API_KEY not configured" - check that:
+- Your `.env` file exists in the project root
+- The API key is correctly set in `.env`
+- You've restarted the dev server after adding the key
+
+### Deployment
+
+For production deployment:
+
+```bash
+# Build the application
+npm run build
+
+# Preview the production build
+npm run preview
+```
+
+See SvelteKit's [deployment documentation](https://kit.svelte.dev/docs/adapters) for platform-specific instructions (Vercel, Netlify, etc.).
+
+**Production environment variables:**
+- Set `ANTHROPIC_API_KEY` in your hosting platform's environment variables
+- Never hardcode API keys in your source code
+
+---
+
 ## Quick Start
 
 ### 1. Prepare Your Input Files
@@ -442,6 +541,19 @@ This ensures recommendations come from authoritative sources while staying curre
 
 ## Troubleshooting
 
+### "ANTHROPIC_API_KEY not configured"
+
+**Cause:** The application can't find your Anthropic API key.
+
+**Solutions:**
+1. Check that `.env` file exists in the project root directory
+2. Verify your API key is correctly set: `ANTHROPIC_API_KEY=sk-ant-api03-xxxxx`
+3. Restart the development server after adding/modifying `.env`
+4. Ensure there are no extra spaces around the `=` sign in `.env`
+5. For production deployments, confirm environment variables are set in your hosting platform
+
+See [Installation & Setup](#installation--setup) for detailed configuration instructions.
+
 ### "Failed to parse XML file"
 
 **Cause:** Invalid XML syntax in your input files.
@@ -478,6 +590,22 @@ This ensures recommendations come from authoritative sources while staying curre
 2. Use the "Additional Information" field to specify constraints
 3. Be specific about technologies (not "databases" but "PostgreSQL")
 4. Enable research if disabled (gets current best practices)
+
+### API Rate Limits or Billing Issues
+
+**Symptoms:**
+- 429 errors ("rate limit exceeded")
+- 402 errors ("insufficient credits")
+- Slow response times
+
+**Solutions:**
+1. **Rate limits:** Wait a minute and try again. Anthropic has per-minute rate limits on API usage
+2. **Insufficient credits:** Check your [Anthropic console](https://console.anthropic.com/) billing section
+   - Add credits to your account
+   - Verify your payment method is valid
+3. **High costs:** Each module generation costs $0.20-$0.40 with research enabled
+   - Disable research for testing/development to reduce costs
+   - Use simpler input files during iteration
 
 ---
 
@@ -547,7 +675,7 @@ Pedagogue is built for peer-led learning communities.
 
 For issues or questions: Create an issue in the repository or check the `/docs` folder for technical documentation.
 
-**Note:** You'll need your own Anthropic API key. Set `ANTHROPIC_API_KEY` in your environment variables before running Pedagogue.
+**Note:** You'll need an Anthropic API key to use Pedagogue. See the [Installation & Setup](#installation--setup) section above for detailed instructions.
 
 ---
 
