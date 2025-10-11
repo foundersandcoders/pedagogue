@@ -21,6 +21,9 @@
   let generationError = null;
   let generatedXML = "";
   let fullResponse = "";
+  let progressMessages = [];
+  let currentAttempt = 1;
+  let validationWarnings = [];
 
   function handleFileUploaded(event) {
     const { type, data } = event.detail;
@@ -78,48 +81,150 @@
     generationError = null;
     generatedXML = "";
     fullResponse = "";
+    progressMessages = [];
+    currentAttempt = 1;
+    validationWarnings = [];
 
+    // First, POST the data to initiate generation
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "text/event-stream"
+        },
         body: JSON.stringify({
           projectsData: $projectsFile,
           skillsData: $skillsFile,
           researchData: $researchFile,
           structuredInput: $structuredInput,
-          enableResearch: $structuredInput.enableResearch,
-          useExtendedThinking: $structuredInput.useExtendedThinking,
+          enableResearch: $structuredInput.model.enableResearch,
+          useExtendedThinking: $structuredInput.model.useExtendedThinking,
         }),
       });
-      
+
       if (!response.ok) {
         const error = await response.json();
         throw new Error(error.message || "Failed to generate module");
       }
 
-      const data = await response.json();
+      // Check if we got SSE response
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("text/event-stream")) {
+        // Handle SSE streaming
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = "";
 
-      if (data.success) {
-        fullResponse = data.content;
-        generatedXML = data.xmlContent || "";
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
 
-        if (generatedXML) {
-          generatedModule.set(generatedXML)
-        }
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split("\n");
 
-        if (!data.hasValidXML) {
-          generationError = "Generated content did not include valid XML module specification"
+          // Keep the last incomplete line in the buffer
+          buffer = lines.pop() || "";
+
+          for (const line of lines) {
+            if (line.startsWith("data: ")) {
+              const data = JSON.parse(line.slice(6));
+              handleSSEEvent(data);
+            }
+          }
         }
       } else {
-        throw new Error(data.message || "Generation failed");
+        // Fallback to regular JSON response
+        const data = await response.json();
+        handleJSONResponse(data);
       }
     } catch (error) {
       console.error("Generation error:", error);
       generationError = error.message;
-    } finally {
       isGenerating = false;
     }
+  }
+
+  function handleSSEEvent(data) {
+    switch (data.type) {
+      case "connected":
+        progressMessages = [...progressMessages, { type: "info", text: data.message }];
+        break;
+
+      case "progress":
+        progressMessages = [...progressMessages, { type: "info", text: data.message }];
+        break;
+
+      case "content":
+        // Accumulate content chunks
+        fullResponse += data.chunk;
+        break;
+
+      case "validation_started":
+        progressMessages = [...progressMessages, { type: "info", text: data.message }];
+        break;
+
+      case "validation_success":
+        progressMessages = [...progressMessages, { type: "success", text: data.message }];
+        break;
+
+      case "validation_failed":
+        progressMessages = [...progressMessages, {
+          type: "warning",
+          text: `${data.message}: ${data.errors.join(", ")}`
+        }];
+        currentAttempt = data.attempts || currentAttempt;
+        break;
+
+      case "complete":
+        fullResponse = data.content;
+        generatedXML = data.xmlContent || "";
+        validationWarnings = data.warnings || [];
+        currentAttempt = data.attempts || 1;
+
+        if (generatedXML) {
+          generatedModule.set(generatedXML);
+        }
+
+        progressMessages = [...progressMessages, {
+          type: "success",
+          text: `✓ Generation complete${currentAttempt > 1 ? ` (succeeded on attempt ${currentAttempt})` : ""}`
+        }];
+
+        isGenerating = false;
+        break;
+
+      case "error":
+        generationError = data.message;
+        if (data.errors && data.errors.length > 0) {
+          generationError += ": " + data.errors.join(", ");
+        }
+        progressMessages = [...progressMessages, { type: "error", text: generationError }];
+        isGenerating = false;
+        break;
+
+      default:
+        console.log("Unknown SSE event type:", data.type);
+    }
+  }
+
+  function handleJSONResponse(data) {
+    if (data.success) {
+      fullResponse = data.content;
+      generatedXML = data.xmlContent || "";
+      validationWarnings = data.validationWarnings || [];
+
+      if (generatedXML) {
+        generatedModule.set(generatedXML);
+      }
+
+      if (!data.hasValidXML) {
+        generationError = "Generated content did not include valid XML module specification";
+      }
+    } else {
+      throw new Error(data.message || "Generation failed");
+    }
+    isGenerating = false;
   }
 
   function regenerateModule() {
@@ -233,11 +338,30 @@
           {#if isGenerating}
             <div class="loading-state">
               <div class="spinner"></div>
-              <p>Generating module specification...</p>
-              {#if $structuredInput.enableResearch}
+              <h3>Generating module specification...</h3>
+              {#if $structuredInput.model.enableResearch}
                 <p class="loading-hint">
-                  Deep research enabled - this may take 30-60 seconds
+                  Deep research enabled - this may take 2-4 minutes
                 </p>
+              {/if}
+
+              {#if progressMessages.length > 0}
+                <div class="progress-log">
+                  {#each progressMessages as message}
+                    <div class="progress-message {message.type}">
+                      {#if message.type === "success"}
+                        <span class="icon">✓</span>
+                      {:else if message.type === "warning"}
+                        <span class="icon">⚠</span>
+                      {:else if message.type === "error"}
+                        <span class="icon">✗</span>
+                      {:else}
+                        <span class="icon">•</span>
+                      {/if}
+                      <span class="message-text">{message.text}</span>
+                    </div>
+                  {/each}
+                </div>
               {/if}
             </div>
           {:else if generationError}
@@ -255,6 +379,25 @@
             </div>
           {:else if generatedXML}
             <div class="result-section">
+              {#if currentAttempt > 1}
+                <div class="generation-meta">
+                  <p class="retry-info">
+                    ✓ Generation succeeded after {currentAttempt} attempt{currentAttempt > 1 ? 's' : ''}
+                  </p>
+                </div>
+              {/if}
+
+              {#if validationWarnings.length > 0}
+                <div class="validation-warnings">
+                  <h4>⚠ Validation Warnings</h4>
+                  <ul>
+                    {#each validationWarnings as warning}
+                      <li>{warning}</li>
+                    {/each}
+                  </ul>
+                </div>
+              {/if}
+
               <ModulePreview xmlContent={generatedXML} />
 
               <div class="action-buttons">
@@ -510,6 +653,75 @@
     color: #999 !important;
   }
 
+  .progress-log {
+    max-width: 600px;
+    margin: 2rem auto 0;
+    text-align: left;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .progress-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .progress-message .icon {
+    flex-shrink: 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .progress-message.info {
+    background: #e7f3ff;
+    color: #004085;
+  }
+
+  .progress-message.info .icon {
+    color: #0056b3;
+  }
+
+  .progress-message.success {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  .progress-message.success .icon {
+    color: #28a745;
+  }
+
+  .progress-message.warning {
+    background: #fff3cd;
+    color: #856404;
+  }
+
+  .progress-message.warning .icon {
+    color: #ffc107;
+  }
+
+  .progress-message.error {
+    background: #f8d7da;
+    color: #721c24;
+  }
+
+  .progress-message.error .icon {
+    color: #dc3545;
+  }
+
+  .progress-message .message-text {
+    flex: 1;
+    word-wrap: break-word;
+  }
+
   .error-state {
     text-align: center;
     padding: 3rem 2rem;
@@ -583,6 +795,44 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+  }
+
+  .generation-meta {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .retry-info {
+    color: #155724;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .validation-warnings {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+  }
+
+  .validation-warnings h4 {
+    color: #856404;
+    margin: 0 0 0.75rem 0;
+    font-size: 1rem;
+  }
+
+  .validation-warnings ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: #856404;
+  }
+
+  .validation-warnings li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
   }
 
   .action-buttons {
