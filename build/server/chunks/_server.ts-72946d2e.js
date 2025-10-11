@@ -4679,9 +4679,13 @@ Your output must be valid XML matching this EXACT structure:
     <PrimaryTopics>
       <!-- REQUIRED: At least 5 PrimaryTopic elements -->
       <PrimaryTopic>
-        Description of topic to research, including:
-        1. guidance for how to start researching it
-        2. suggestion for subdividing the topic if multiple learners tackle it
+        <TopicName>Name of topic</TopicName>
+
+        <TopicDescription>
+          Description of topic to research, including:
+          1. guidance for how to start researching it
+          2. suggestion for subdividing the topic if multiple learners tackle it
+        </TopicDescription>
       </PrimaryTopic>
       <!-- Repeat PrimaryTopic for each primary topic -->
     </PrimaryTopics>
@@ -5090,95 +5094,162 @@ function buildGenerationPrompt(body, validationErrors) {
   const skillsInfo = JSON.stringify(body.skillsData, null, 2);
   const researchInfo = JSON.stringify(body.researchData, null, 2);
   const structuredInfo = body.structuredInput ? JSON.stringify(body.structuredInput, null, 2) : "None provided";
-  const researchInstructions = body.enableResearch ? `
-RESEARCH INSTRUCTIONS:
-You have access to web search to find current, relevant information about:
-- Latest best practices and trends for the technologies mentioned
-- Current industry standards and tooling
-- Recent developments in AI and software development
-- Real-world examples and case studies
+  const researchInstructions = body.enableResearch ? `RESEARCH INSTRUCTIONS:
+      You have access to web search to find current, relevant information about:
+      - Latest best practices and trends for the technologies mentioned
+      - Current industry standards and tooling
+      - Recent developments in AI and software development
+      - Real-world examples and case studies
 
-Use web search to ensure the curriculum is up-to-date and reflects current industry practice.
-Focus on reputable sources: vendor documentation, established tech publications, and academic sources.` : "";
-  const retrySection = validationErrors && validationErrors.length > 0 ? `
+      Use web search to ensure the curriculum is up-to-date and reflects current industry practice.
+      Focus on reputable sources: vendor documentation, established tech publications, and academic sources.` : "";
+  const retrySection = validationErrors && validationErrors.length > 0 ? `⚠️ PREVIOUS ATTEMPT FAILED VALIDATION ⚠️
+      Your previous response had these validation errors:
+      ${validationErrors.map((err) => `- ${err}`).join("\n")}
 
-⚠️ PREVIOUS ATTEMPT FAILED VALIDATION ⚠️
-
-Your previous response had these validation errors:
-${validationErrors.map((err) => `- ${err}`).join("\n")}
-
-Please correct ALL of these issues in your next response. Pay special attention to:
-- Meeting minimum cardinality requirements (e.g., "at least 3 objectives")
-- Including all required sections and subsections
-- Using exact tag names (case-sensitive)
-- Ensuring proper XML structure with matching opening/closing tags
-` : "";
+      Please correct ALL of these issues in your next response. Pay special attention to:
+      - Meeting minimum cardinality requirements (e.g., "at least 3 objectives")
+      - Including all required sections and subsections
+      - Using exact tag names (case-sensitive)
+      - Ensuring proper XML structure with matching opening/closing tags` : "";
   const schemaRequirements = getSchemaRequirements();
-  return `You are an expert curriculum designer for peer-led AI Engineering courses. Generate a comprehensive module specification based on the provided context.
+  return `<Prompt>
+	  <Overview>
+			<RoleOverview>
+			  You are an expert in (a) current AI engineering trends and (b) curriculum designer for peer-led AI Engineering courses.
+			</RoleOverview>
 
-INPUT DATA:
+      <TaskOverview>
+        Go through <Task/TaskSteps> in order to generate a comprehensive module specification that:
+        1. is based on the provided "<ModuleInput>"
+        2. meets "<Task/TaskCriteria>"
+        3. adheres to "<SchemaRequirements>"
+      </TaskOverview>
+    </Overview>
 
-Project Context:
-${projectsInfo}
+    <ModuleInput>
+      <ProjectsInput>
+        ${projectsInfo}
+      </ProjectsInput>
 
-Additional Skills (e.g., Python):
-${skillsInfo}
+      <SkillsInput>
+        ${skillsInfo}
+      </SkillsInput>
 
-Research Topics:
-${researchInfo}
+      <ResearchInput>
+        ${researchInfo}
+      </ResearchInput>
 
-Structured Input (Context from course council):
-${structuredInfo}
+      <CohortInput>
+        ${structuredInfo}
+      </CohortInput>
+    </ModuleInput>
 
-Research Enabled: ${body.enableResearch ? "Yes - Use web search to find current information" : "No"}
-Extended Thinking: ${body.useExtendedThinking ? "Yes" : "No"}
-${researchInstructions}
-${retrySection}
+    <Task>
+      <TaskApproach>
+        <ResearchEnabled>
+          ${body.enableResearch ? "Yes - Use web search to find current information" : "No"}
+        <ResearchEnabled>
 
-TASK:
-Generate a detailed module specification that:
-1. Synthesizes the project requirements with additional skills and research topics
-2. Maintains the depth and detail level shown in the input examples
-3. Creates clear, actionable learning objectives
-4. Defines practical project briefs based on the provided examples
-5. Includes comprehensive research topics with guidance for learners
-6. Provides concrete examples for each project brief (minimum 3)
-7. Suggests interesting project twists to add challenge
-8. Maintains alignment with peer-led teaching philosophy
-${body.enableResearch ? "9. Incorporates current best practices and trends discovered through web research" : ""}
+        <ExtendedThinking>
+          ${body.useExtendedThinking ? "Yes" : "No"}
+        </ExtendedThinking>
 
-IMPORTANT GUIDELINES:
-- Match the level of detail in the input examples
-- ProjectBriefs should include Overview, Criteria, Skills, and Examples
-- Research topics should include practical guidance for how to research them
-- Skills should be granular and specific (e.g., "Package management in Python" not "Coding in Python")
-- Examples should be diverse and substantially different from each other
-- Project twists should add interesting challenges without being essential
+        <ResearchInstructions>
+          ${researchInstructions}
+        </ResearchInstructions>
 
-${schemaRequirements}`;
+        <RetrySection>
+          ${retrySection}
+        </RetrySection>
+      </TaskApproach>
+
+      <TaskCriteria>
+        Generate a detailed module specification that:
+        1. Synthesizes the project requirements with additional skills and research topics
+        2. Maintains the depth and detail level shown in the input examples
+        3. Creates clear, actionable learning objectives
+        4. Defines practical project briefs based on the provided examples
+        5. Includes comprehensive research topics with guidance for learners
+        6. Provides concrete examples for each project brief (minimum 3)
+        7. Suggests interesting project twists to add challenge
+        8. Maintains alignment with peer-led teaching philosophy
+        ${body.enableResearch ? "9. Incorporates current best practices and trends discovered through web research" : ""}
+      </TaskCriteria>
+
+      <TaskSteps>
+        <Step1>Think hard about what learning outcomes emerge when the content of "<ModuleInput>" is considered as a whole.</Step1>
+
+        <Step2>
+          ${body.enableResearch ? `
+            1. Use web searches to check that these learning outcomes are not outdated compared to industry trends. Update the learning outcomes if appropriate, making sure they're appropriate to the cohort specified in "<ModuleInput/CohortInput>".
+            2.` : `1.`} Keep the learning outcomes in mind when completing the next steps
+        </Step2>
+
+        <Step3>
+          ${body.enableResearch ? `
+            1. Use web searches to check that "<ModuleInput/ProjectsInput>" is not outdated compared to industry trends. Update the project briefs if appropriate, making sure they're appropriate to the cohort specified in "<ModuleInput/CohortInput>".
+            2. Make sure that the projects are relevant to the learning outcomes
+            3.` : `1.`} Keep the project briefs in mind when completing the next steps
+        </Step3>
+
+        <Step4>
+          ${body.enableResearch ? `
+            1. Use web searches to check that "<ModuleInput/ResearchInput>" is not outdated compared to industry trends. Update the research topics if appropriate, making sure they're appropriate to the cohort specified in "<ModuleInput/CohortInput>".
+            2. Make sure the research topics are relevant to the learning outcomes
+            3. Make sure the research topics are useful in completing the projects
+            4.` : `1.`} Keep the research topics in mind when completing the next steps
+        </Step4>
+
+        <Step5>Generate the module</Step5>
+      </TaskSteps>
+
+      <TaskGuidelines>
+        - Match the level of detail in the input examples
+        - ProjectBriefs should include Overview, Criteria, Skills, and Examples
+        - Research topics should include practical guidance for how to research them
+        - Skills should be granular and specific (e.g., "Package management in Python" not "Coding in Python")
+        - Examples should be diverse and substantially different from each other
+        - Project twists should add interesting challenges without being essential
+      </TaskGuidelines>
+    </Task>
+
+    <SchemaRequirements>
+      ${schemaRequirements}
+    </SchemaRequirements>
+  </Prompt>`;
 }
 const AI_RESEARCH_DOMAINS = [
-  // AI Vendors
+  // AI Platforms
   "anthropic.com",
   "claude.ai",
   "openai.com",
   "deepmind.google",
   "ai.google",
   "microsoft.com",
-  // Tech News & Analysis
-  "techcrunch.com",
-  "venturebeat.com",
-  "thenextweb.com",
-  // Developer Resources
-  "github.com",
-  "stackoverflow.com",
-  "medium.com",
-  "dev.to",
-  "docs.python.org",
-  "python.org",
-  // LangChain Docs
+  "huggingface.co/blog",
+  // Docs
   "js.langchain.com",
   "python.langchain.com",
+  "modelcontextprotocol.io",
+  "docs.python.org",
+  // Resources (Software Dev)
+  "dev.to",
+  "github.com",
+  "medium.com",
+  "python.org",
+  // News & Analysis
+  "techcrunch.com",
+  "thenextweb.com",
+  "venturebeat.com",
+  // Blogs & Newsletters
+  "deepgains.substack.com",
+  "newsletter.pragmaticengineer.com",
+  "simonwillison.net",
+  "sundeepteki.org/blog",
+  // Communities
+  "stackoverflow.com",
+  "news.ycombinator.com",
   // Academic & Research
   "arxiv.org",
   "acm.org",
@@ -5201,8 +5272,7 @@ function createSSEStream(body, apiKey) {
           temperature: 0.7,
           maxTokens: 16384,
           // Sonnet 4.5 supports up to 64K output tokens
-          timeout: 12e4,
-          // 2 minute timeout
+          // timeout: 120000,
           streaming: true
         });
         if (body.enableResearch) {
@@ -5227,7 +5297,7 @@ function createSSEStream(body, apiKey) {
           );
           const prompt = buildGenerationPrompt(body, attempt > 1 ? lastError : void 0);
           const messages = [
-            new SystemMessage("You are an expert curriculum designer. Generate high-quality educational content in valid XML format."),
+            new SystemMessage("You are an expert in (a) current AI engineering trends and (b) curriculum designer for peer-led AI Engineering courses."),
             new HumanMessage(prompt)
           ];
           controller.enqueue(
@@ -5387,7 +5457,7 @@ async function generateModule(body, apiKey) {
       console.log(`Generation attempt ${attempt}/${MAX_RETRIES}`);
       const prompt = buildGenerationPrompt(body, attempt > 1 ? lastError : void 0);
       const messages = [
-        new SystemMessage("You are an expert curriculum designer. Generate high-quality educational content in valid XML format."),
+        new SystemMessage("You are an expert in (a) current AI engineering trends and (b) curriculum designer for peer-led AI Engineering courses."),
         new HumanMessage(prompt)
       ];
       const response = await model.invoke(messages);
@@ -5483,4 +5553,4 @@ async function generateModule(body, apiKey) {
 }
 
 export { POST };
-//# sourceMappingURL=_server.ts-75ab501f.js.map
+//# sourceMappingURL=_server.ts-72946d2e.js.map
