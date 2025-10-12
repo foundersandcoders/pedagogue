@@ -28,11 +28,18 @@
 - [x] Add instructions for including an Anthropic API key in `README.md`
 
 ##### Prompt & Schema
-- [ ] Steer Claude towards better Twists
-- [ ] Steer Claude away from "Facilitators should" phrases
+- [x] Steer Claude towards better Twists
+  - Added ProjectTwistGuidelines explaining twists as conceptual curveballs, not technical features
+  - Included good examples: "The Helpful Saboteur", "The Unreliable Narrator", "The Contrarian", etc.
+  - Added anti-patterns showing what NOT to do (feature additions, capability expansions)
+  - Emphasis on reframing PURPOSE rather than adding FEATURES
+- [x] Steer Claude away from "Facilitators should" phrases
+  - Added guidance to write for LEARNERS, not facilitators (peer-led, self-directed approach)
 
 ##### Module Generation
-- [ ] Update files in `~/lib/schemas/` to match `~/src/data/templates/outputSchema.xml`
+- [x] Update files in `~/lib/schemas/` to match `~/src/data/templates/outputSchema.xml`
+  - Updated schemaTemplate.ts to include missing <Importance> field in AdditionalSkills section
+  - Ensures schema consistency between template and outputSchema.xml
 
 #### Export & Finalisation
 - [ ] Add boilerplate module text after generation
