@@ -26,6 +26,7 @@
 - [x] Add instructions for including an Anthropic API key in `README.md`
 
 #### UI
+- [ ] Create a more interesting aesthetic
 - [ ] Add dark mode to UI
   - Should allow user to select light, dark or system
 
