@@ -22,12 +22,14 @@
 
 ### Other MVP Tasks
 
-#### Improvements
-
-##### Documentation
+#### Documentation
 - [x] Add instructions for including an Anthropic API key in `README.md`
 
-##### Prompt & Schema
+#### UI
+- [ ] Add dark mode to UI
+  - Should allow user to select light, dark or system
+
+#### Prompt & Schema
 - [x] Steer Claude towards better Twists
   - Added ProjectTwistGuidelines explaining twists as conceptual curveballs, not technical features
   - Included good examples: "The Helpful Saboteur", "The Unreliable Narrator", "The Contrarian", etc.
@@ -36,7 +38,7 @@
 - [x] Steer Claude away from "Facilitators should" phrases
   - Added guidance to write for LEARNERS, not facilitators (peer-led, self-directed approach)
 
-##### Module Generation
+#### Module Generation
 - [x] Update files in `~/lib/schemas/` to match `~/src/data/templates/outputSchema.xml`
   - Updated schemaTemplate.ts to include missing <Importance> field in AdditionalSkills section
   - Ensures schema consistency between template and outputSchema.xml
@@ -46,23 +48,19 @@
   - There are some instructional sections that stay constant between modules.
   - We can add them in between generation and download.
 
-#### New Features
-- [ ] Add dark mode to UI
-  - Should allow user to select light, dark or system
-- [ ] Add ability to upload previous modules for additional context
-  - Strip boilerplate from uploads from previous modules before sending prompt
-
 ---
 
 ## Beyond MVP
 - [ ] Comparison view (original vs. generated with diff)
-- [ ] Update confidence scoring
+- [-] Update confidence scoring
 - [ ] Multiple generation variants
 - [ ] Template management
 - [ ] Version history tracking
 - [ ] Staleness (time since human review) tracking
 - [-] Collaborative editing
 - [ ] Update documentation to address developers (rather than just users)
+- [ ] Add ability to upload previous modules for additional context
+  - Strip boilerplate from uploads from previous modules before sending prompt
 
 ---
 
