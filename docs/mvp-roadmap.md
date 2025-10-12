@@ -4,9 +4,6 @@
 
 ### Critical Path (Do These First)
 
-#### 8. Implement Changelog in Returned Modules
-- Not yet planned;  work with the user to implement this feature
-
 #### 9. Intelligent Step Navigation
 - Detect workflow state transitions automatically
 - Update `currentStep` store reactively
@@ -115,3 +112,14 @@
 
 #### 7. Use LangChain's Streaming Functionality to Provide Richer Feedback During Generation
 - Not planned; work with the user to implement this feature
+
+### 8. Implement Changelog in Returned Modules ✅ COMPLETED
+- Implemented comprehensive change tracking and provenance metadata
+- Schema includes GenerationInfo (timestamp, model, sources), Changelog (section-level changes with confidence scoring), and ProvenanceTracking (human review tracking, sections needing review)
+- ChangelogViewer.svelte component displays changes with color-coded confidence badges
+- Schema validation for metadata structure in moduleValidator.ts
+- Diff detection utility (diffDetector.ts) for automatic change comparison
+- Integrated into module generation prompt with guidance on confidence levels
+- Enables cascade pattern: AI updates with human oversight, tracking AI update count
+- See `docs/changelog-schema-design.md` for full technical details
+- **Why important:** Core feature for maintaining curriculum quality over time. Allows councils to quickly identify what changed and focus review time on low-confidence updates
