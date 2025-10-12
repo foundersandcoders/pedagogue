@@ -14,6 +14,23 @@ Pedagogue takes your existing curriculum materials (projects, skills, research t
 
 The key value: **Pedagogue can use web search to ensure your curriculum reflects current industry practices and technologies**, not just what Claude knew at training time.
 
+### 📝 Change Tracking & Provenance
+
+Pedagogue now includes comprehensive change tracking to support the **cascade pattern** - where AI-generated modules are updated iteratively whilst maintaining human oversight:
+
+- **Automatic Changelog**: Every generated module includes a detailed changelog documenting what changed, why, and with what confidence level
+- **Confidence Scoring**: Changes are marked as high/medium/low confidence to help reviewers prioritize what needs scrutiny
+- **Research Citations**: When web research informs a decision, sources are automatically cited
+- **Provenance Tracking**: Metadata shows when the module was generated, by which AI model, and flags sections needing human review
+
+This enables councils to:
+- Quickly identify what's been updated since the last version
+- Focus review time on low-confidence changes
+- Understand the rationale behind AI-proposed updates
+- Track which sections have accumulated multiple AI updates without human review
+
+See `/docs/changelog-schema-design.md` for technical details.
+
 ---
 
 ## Installation & Setup
@@ -426,6 +443,28 @@ The generated module follows this structure:
 
 ```xml
 <Module>
+  <Metadata>
+    <!-- NEW: Automatic change tracking and provenance -->
+    <GenerationInfo>
+      <Timestamp>2025-10-11T14:30:00Z</Timestamp>
+      <Source>AI-Generated</Source>
+      <Model>claude-sonnet-4-5-20250929</Model>
+    </GenerationInfo>
+    <Changelog>
+      <!-- Documents what changed, why, and with what confidence -->
+      <Change>
+        <Section>ModuleObjectives/Objective[1]</Section>
+        <Type>content_update</Type>
+        <Confidence>high</Confidence>
+        <Summary>Updated to reflect latest best practices</Summary>
+        <Rationale>Industry has moved to newer patterns...</Rationale>
+        <ResearchSources>
+          <Source url="...">Documentation reference</Source>
+        </ResearchSources>
+      </Change>
+    </Changelog>
+  </Metadata>
+
   <ModuleOverview>
     <ModuleDescription>...</ModuleDescription>
     <ModuleObjectives>

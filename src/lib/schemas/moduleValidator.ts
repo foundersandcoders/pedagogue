@@ -40,6 +40,9 @@ export function validateModuleXML(xmlString: string): ValidationResult {
 			return { valid: false, errors, warnings };
 		}
 
+		// Validate Metadata section (optional, but recommended for change tracking)
+		validateMetadata(root, errors, warnings);
+
 		// Validate ModuleOverview section
 		validateModuleOverview(root, errors, warnings);
 
@@ -340,6 +343,97 @@ function validateAdditionalSkills(root: Element, errors: string[], warnings: str
 			}
 			if (skillDescriptions.length === 0 || !skillDescriptions[0].textContent?.trim()) {
 				errors.push(`<SkillsCategory> #${catNum} <Skill> #${j + 1} missing <SkillDescription>`);
+			}
+		}
+	}
+}
+
+function validateMetadata(root: Element, errors: string[], warnings: string[]): void {
+	const metadataSections = root.getElementsByTagName('Metadata');
+
+	if (metadataSections.length === 0) {
+		// Metadata is optional for backward compatibility, but recommended
+		warnings.push('Missing optional <Metadata> section - change tracking not available');
+		return;
+	}
+
+	const metadata = metadataSections[0];
+
+	// Validate GenerationInfo (recommended if Metadata exists)
+	const generationInfoSections = metadata.getElementsByTagName('GenerationInfo');
+	if (generationInfoSections.length === 0) {
+		warnings.push('<Metadata> section exists but missing <GenerationInfo>');
+	} else {
+		const genInfo = generationInfoSections[0];
+
+		const timestamps = genInfo.getElementsByTagName('Timestamp');
+		if (timestamps.length === 0 || !timestamps[0].textContent?.trim()) {
+			warnings.push('<GenerationInfo> missing <Timestamp>');
+		}
+
+		const sources = genInfo.getElementsByTagName('Source');
+		if (sources.length === 0 || !sources[0].textContent?.trim()) {
+			warnings.push('<GenerationInfo> missing <Source>');
+		}
+
+		const models = genInfo.getElementsByTagName('Model');
+		if (models.length === 0 || !models[0].textContent?.trim()) {
+			warnings.push('<GenerationInfo> missing <Model>');
+		}
+	}
+
+	// Validate Changelog (optional even within Metadata)
+	const changelogSections = metadata.getElementsByTagName('Changelog');
+	if (changelogSections.length > 0) {
+		const changelog = changelogSections[0];
+		const changes = changelog.getElementsByTagName('Change');
+
+		for (let i = 0; i < changes.length; i++) {
+			const change = changes[i];
+			const changeNum = i + 1;
+
+			// Validate required fields in Change
+			const sections = change.getElementsByTagName('Section');
+			if (sections.length === 0 || !sections[0].textContent?.trim()) {
+				warnings.push(`<Change> #${changeNum} missing <Section> identifier`);
+			}
+
+			const types = change.getElementsByTagName('Type');
+			if (types.length === 0 || !types[0].textContent?.trim()) {
+				warnings.push(`<Change> #${changeNum} missing <Type>`);
+			}
+
+			const confidences = change.getElementsByTagName('Confidence');
+			if (confidences.length === 0 || !confidences[0].textContent?.trim()) {
+				warnings.push(`<Change> #${changeNum} missing <Confidence> level`);
+			} else {
+				// Validate confidence is one of the allowed values
+				const confValue = confidences[0].textContent?.trim().toLowerCase();
+				if (confValue && !['high', 'medium', 'low'].includes(confValue)) {
+					warnings.push(`<Change> #${changeNum} <Confidence> must be 'high', 'medium', or 'low' (found '${confValue}')`);
+				}
+			}
+
+			const summaries = change.getElementsByTagName('Summary');
+			if (summaries.length === 0 || !summaries[0].textContent?.trim()) {
+				warnings.push(`<Change> #${changeNum} missing <Summary>`);
+			}
+
+			// Rationale and ResearchSources are optional but recommended
+		}
+	}
+
+	// ProvenanceTracking is optional but useful
+	const provenanceSections = metadata.getElementsByTagName('ProvenanceTracking');
+	if (provenanceSections.length > 0) {
+		const provenance = provenanceSections[0];
+
+		// Validate AIUpdateCount if present
+		const updateCounts = provenance.getElementsByTagName('AIUpdateCount');
+		if (updateCounts.length > 0 && updateCounts[0].textContent?.trim()) {
+			const count = parseInt(updateCounts[0].textContent.trim());
+			if (isNaN(count) || count < 0) {
+				warnings.push('<AIUpdateCount> must be a non-negative integer');
 			}
 		}
 	}
