@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { validateModuleXML } from './schemas/moduleValidator';
 	import { createEventDispatcher } from 'svelte';
+	import ChangelogViewer from './ChangelogViewer.svelte';
 
 	export let xmlContent: string = '';
 	export let showValidation: boolean = true;
@@ -99,6 +100,11 @@
 				</div>
 			{/if}
 		</div>
+	{/if}
+
+	<!-- Changelog Viewer -->
+	{#if xmlContent}
+		<ChangelogViewer {xmlContent} />
 	{/if}
 
 	<div class="preview-content">

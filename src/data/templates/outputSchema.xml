@@ -1,4 +1,47 @@
 <Module>
+  <Metadata>
+    <!-- OPTIONAL: Generation tracking and change log -->
+    <!-- This section documents what changed, why, and with what confidence -->
+    <!-- Enables safe cascade pattern maintenance with human oversight -->
+    <GenerationInfo>
+      <Timestamp>ISO 8601 datetime of generation</Timestamp>
+      <Source>AI-Generated | Human-Reviewed | Hybrid</Source>
+      <Model>Model identifier used for generation</Model>
+      <InputSources>
+        <InputFile type="projects">Filename or identifier</InputFile>
+        <InputFile type="skills">Filename or identifier</InputFile>
+        <InputFile type="research">Filename or identifier</InputFile>
+      </InputSources>
+    </GenerationInfo>
+
+    <Changelog>
+      <!-- Documents specific changes made during this generation -->
+      <Change> <!-- Repeat for each significant change -->
+        <Section>XPath to changed section (e.g. ModuleObjectives/Objective[1])</Section>
+        <Type>content_update | examples_expanded | new_content | removed | reordered</Type>
+        <Confidence>high | medium | low</Confidence>
+        <Summary>One sentence description of change</Summary>
+        <Rationale>1-3 sentences explaining why this change was made</Rationale>
+        <ResearchSources>
+          <Source url="">Title/description of research source</Source>
+        </ResearchSources>
+      </Change>
+    </Changelog>
+
+    <ProvenanceTracking>
+      <!-- Tracks lineage for cascade pattern -->
+      <LastHumanReview>
+        <Date>ISO 8601 date</Date>
+        <Reviewer>Identifier (e.g., "Council Week 5")</Reviewer>
+      </LastHumanReview>
+      <AIUpdateCount>Number of AI generations since last human review</AIUpdateCount>
+      <SectionsNeedingReview>
+        <!-- Sections flagged for human attention (typically low confidence changes) -->
+        <Section confidence="low">XPath to section needing review</Section>
+      </SectionsNeedingReview>
+    </ProvenanceTracking>
+  </Metadata>
+
   <ModuleOverview>
     <ModuleDescription>
       What topics this module covers and what we'll build

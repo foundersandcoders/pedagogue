@@ -4658,6 +4658,48 @@ REQUIRED OUTPUT STRUCTURE:
 Your output must be valid XML matching this EXACT structure:
 
 <Module>
+  <Metadata>
+    <!-- REQUIRED: Document what changed, why, and with what confidence -->
+    <GenerationInfo>
+      <Timestamp>ISO 8601 datetime (e.g. 2025-10-11T14:30:00Z)</Timestamp>
+      <Source>AI-Generated</Source>
+      <Model>claude-sonnet-4-5-20250929</Model>
+      <InputSources>
+        <InputFile type="projects">projects.xml</InputFile>
+        <InputFile type="skills">skills.xml</InputFile>
+        <InputFile type="research">research.xml</InputFile>
+      </InputSources>
+    </GenerationInfo>
+
+    <Changelog>
+      <!-- Document EVERY significant change you make to the input materials -->
+      <!-- Be specific about what changed and WHY -->
+      <Change>
+        <Section>XPath identifier (e.g. ModuleObjectives/Objective[1])</Section>
+        <Type>content_update | examples_expanded | new_content | removed | reordered</Type>
+        <Confidence>high | medium | low</Confidence>
+        <Summary>One sentence: what changed</Summary>
+        <Rationale>
+          1-3 sentences explaining WHY this change was made.
+          Reference research findings, industry changes, or pedagogical decisions.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://...">Title/description of research source</Source>
+          <!-- Include multiple sources if applicable -->
+        </ResearchSources>
+      </Change>
+      <!-- Repeat <Change> for each significant modification -->
+    </Changelog>
+
+    <ProvenanceTracking>
+      <AIUpdateCount>1</AIUpdateCount>
+      <SectionsNeedingReview>
+        <!-- List any low-confidence changes that need human review -->
+        <Section confidence="low">Section identifier if applicable</Section>
+      </SectionsNeedingReview>
+    </ProvenanceTracking>
+  </Metadata>
+
   <ModuleOverview>
     <ModuleDescription>
       What topics this module covers and what we'll build
@@ -4772,6 +4814,21 @@ CRITICAL CARDINALITY REQUIREMENTS:
 - StretchTopics: optional section
 - Notes: optional section
 
+CONFIDENCE LEVEL GUIDANCE:
+- HIGH: Factual updates (API changes, deprecated features, version bumps, documentation updates)
+- MEDIUM: Framework/library updates that may evolve rapidly, industry trend adaptations
+- LOW: Pedagogical decisions, new content additions, subjective improvements, structural changes
+
+CHANGELOG REQUIREMENTS:
+- Document EVERY significant change you make (updates, additions, removals)
+- Be specific in <Section> identifiers (use XPath notation)
+- Explain WHY in <Rationale> - reference research, industry changes, or pedagogical reasoning
+- Include <ResearchSources> when you used web search to inform a decision
+- Set appropriate <Confidence> levels to help human reviewers prioritize
+- If you add/modify examples, note it as "examples_expanded"
+- If you update existing content for currency, note it as "content_update"
+- If you create entirely new sections, note it as "new_content"
+
 IMPORTANT RULES:
 1. Output ONLY valid XML - no explanatory text before or after
 2. Do NOT include any XML comments (<!-- ... -->) in your output
@@ -4780,6 +4837,8 @@ IMPORTANT RULES:
 5. Ensure all opening tags have matching closing tags
 6. All required sections must be present and populated
 7. Meet all minimum cardinality requirements
+8. ALWAYS include <Metadata> section with complete <Changelog>
+9. Document your reasoning in the changelog - this helps human reviewers
 `.trim();
 }
 function validateModuleXML(xmlString) {
@@ -4799,6 +4858,7 @@ function validateModuleXML(xmlString) {
       errors.push(`Root element must be <Module>, found <${root.tagName}>`);
       return { valid: false, errors, warnings };
     }
+    validateMetadata(root, errors, warnings);
     validateModuleOverview(root, errors, warnings);
     validateResearchTopics(root, errors, warnings);
     validateProjects(root, errors, warnings);
@@ -5029,6 +5089,73 @@ function validateAdditionalSkills(root, errors, warnings) {
       }
       if (skillDescriptions.length === 0 || !skillDescriptions[0].textContent?.trim()) {
         errors.push(`<SkillsCategory> #${catNum} <Skill> #${j + 1} missing <SkillDescription>`);
+      }
+    }
+  }
+}
+function validateMetadata(root, errors, warnings) {
+  const metadataSections = root.getElementsByTagName("Metadata");
+  if (metadataSections.length === 0) {
+    warnings.push("Missing optional <Metadata> section - change tracking not available");
+    return;
+  }
+  const metadata = metadataSections[0];
+  const generationInfoSections = metadata.getElementsByTagName("GenerationInfo");
+  if (generationInfoSections.length === 0) {
+    warnings.push("<Metadata> section exists but missing <GenerationInfo>");
+  } else {
+    const genInfo = generationInfoSections[0];
+    const timestamps = genInfo.getElementsByTagName("Timestamp");
+    if (timestamps.length === 0 || !timestamps[0].textContent?.trim()) {
+      warnings.push("<GenerationInfo> missing <Timestamp>");
+    }
+    const sources = genInfo.getElementsByTagName("Source");
+    if (sources.length === 0 || !sources[0].textContent?.trim()) {
+      warnings.push("<GenerationInfo> missing <Source>");
+    }
+    const models = genInfo.getElementsByTagName("Model");
+    if (models.length === 0 || !models[0].textContent?.trim()) {
+      warnings.push("<GenerationInfo> missing <Model>");
+    }
+  }
+  const changelogSections = metadata.getElementsByTagName("Changelog");
+  if (changelogSections.length > 0) {
+    const changelog = changelogSections[0];
+    const changes = changelog.getElementsByTagName("Change");
+    for (let i = 0; i < changes.length; i++) {
+      const change = changes[i];
+      const changeNum = i + 1;
+      const sections = change.getElementsByTagName("Section");
+      if (sections.length === 0 || !sections[0].textContent?.trim()) {
+        warnings.push(`<Change> #${changeNum} missing <Section> identifier`);
+      }
+      const types = change.getElementsByTagName("Type");
+      if (types.length === 0 || !types[0].textContent?.trim()) {
+        warnings.push(`<Change> #${changeNum} missing <Type>`);
+      }
+      const confidences = change.getElementsByTagName("Confidence");
+      if (confidences.length === 0 || !confidences[0].textContent?.trim()) {
+        warnings.push(`<Change> #${changeNum} missing <Confidence> level`);
+      } else {
+        const confValue = confidences[0].textContent?.trim().toLowerCase();
+        if (confValue && !["high", "medium", "low"].includes(confValue)) {
+          warnings.push(`<Change> #${changeNum} <Confidence> must be 'high', 'medium', or 'low' (found '${confValue}')`);
+        }
+      }
+      const summaries = change.getElementsByTagName("Summary");
+      if (summaries.length === 0 || !summaries[0].textContent?.trim()) {
+        warnings.push(`<Change> #${changeNum} missing <Summary>`);
+      }
+    }
+  }
+  const provenanceSections = metadata.getElementsByTagName("ProvenanceTracking");
+  if (provenanceSections.length > 0) {
+    const provenance = provenanceSections[0];
+    const updateCounts = provenance.getElementsByTagName("AIUpdateCount");
+    if (updateCounts.length > 0 && updateCounts[0].textContent?.trim()) {
+      const count = parseInt(updateCounts[0].textContent.trim());
+      if (isNaN(count) || count < 0) {
+        warnings.push("<AIUpdateCount> must be a non-negative integer");
       }
     }
   }
@@ -5553,4 +5680,4 @@ async function generateModule(body, apiKey) {
 }
 
 export { POST };
-//# sourceMappingURL=_server.ts-72946d2e.js.map
+//# sourceMappingURL=_server.ts-df2a67d9.js.map

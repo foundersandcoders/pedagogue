@@ -1,0 +1,1059 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <Metadata>
+    <GenerationInfo>
+      <Timestamp>2025-10-12T14:30:00Z</Timestamp>
+      <Source>AI-Generated</Source>
+      <Model>claude-sonnet-4-5-20250929</Model>
+      <InputSources>
+        <InputFile type="projects">projects.xml</InputFile>
+        <InputFile type="skills">skills.xml</InputFile>
+        <InputFile type="research">research.xml</InputFile>
+      </InputSources>
+    </GenerationInfo>
+
+    <Changelog>
+      <Change>
+        <Section>ResearchTopics/PrimaryTopics/PrimaryTopic[1]</Section>
+        <Type>content_update</Type>
+        <Confidence>high</Confidence>
+        <Summary>Updated long context models to reflect 2025 capabilities including Claude Sonnet 4 1M tokens and GPT-4.1 1M tokens</Summary>
+        <Rationale>
+          Research shows Claude Sonnet 4 now supports up to 1 million tokens (5x increase from 200K), and GPT-4.1 also offers 1M token context windows. Gemini 2.5 Pro offers 1M tokens with plans for 2M. These represent significant advances since the original content was written.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://www.anthropic.com/news/1m-context">Claude Sonnet 4 now supports 1M tokens of context</Source>
+          <Source url="https://medium.com/@cognidownunder/gpt-4-1-vs-claude-3-7-vs-gemini-2-5-pro-vs-grok-3-the-four-horsemen-of-the-ai-revolution-4fbcef192b11">GPT-4.1 and Gemini 2.5 Pro comparison showing 1M token windows</Source>
+        </ResearchSources>
+      </Change>
+
+      <Change>
+        <Section>ResearchTopics/PrimaryTopics/PrimaryTopic[4]</Section>
+        <Type>content_update</Type>
+        <Confidence>high</Confidence>
+        <Summary>Updated AI agent frameworks to include Microsoft Agent Framework, expanded on LangChain ecosystem, and added Model Context Protocol (MCP)</Summary>
+        <Rationale>
+          Microsoft introduced Agent Framework in 2025 as a production-ready solution with observability features. The agent framework landscape has matured significantly with LangGraph, CrewAI, and AutoGen becoming industry standards. MCP (Model Context Protocol) by Anthropic is now a standardization effort for tool use.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://azure.microsoft.com/en-us/blog/introducing-microsoft-agent-framework/">Microsoft Agent Framework announcement</Source>
+          <Source url="https://dev.to/copilotkit/ai-agent-protocols-every-developer-should-know-in-2025-39m3">MCP and A2A protocols for agent standardization</Source>
+          <Source url="https://medium.com/@elisowski/top-ai-agent-frameworks-in-2025-9bcedab2e239">Top AI Agent Frameworks in 2025</Source>
+        </ResearchSources>
+      </Change>
+
+      <Change>
+        <Section>ResearchTopics/PrimaryTopics/PrimaryTopic[2]</Section>
+        <Type>content_update</Type>
+        <Confidence>high</Confidence>
+        <Summary>Updated RAG techniques to include hybrid search, query rewriting, reranking, and adaptive retrieval strategies</Summary>
+        <Rationale>
+          RAG best practices have evolved significantly. Hybrid search (combining vector and keyword search), query augmentation, reranking, and adaptive retrieval are now standard techniques. Self-correcting RAG (SELF-RAG, CRAG) and multimodal RAG are emerging in 2025.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://www.microsoft.com/en-us/microsoft-cloud/blog/2025/02/04/common-retrieval-augmented-generation-rag-techniques-explained/">Common RAG techniques explained by Microsoft</Source>
+          <Source url="https://medium.com/@mehulpratapsingh/2025s-ultimate-guide-to-rag-retrieval-how-to-pick-the-right-method-and-why-your-ai-s-success-2cedcda99f8a">2025 RAG Guide including adaptive and self-correcting techniques</Source>
+          <Source url="https://arxiv.org/abs/2501.07391">Research paper on RAG best practices (January 2025)</Source>
+        </ResearchSources>
+      </Change>
+
+      <Change>
+        <Section>ResearchTopics/PrimaryTopics/PrimaryTopic[5]</Section>
+        <Type>content_update</Type>
+        <Confidence>high</Confidence>
+        <Summary>Updated vector database options to include Milvus, Qdrant, and Chroma as leading solutions, with FAISS for lightweight implementations</Summary>
+        <Rationale>
+          The vector database landscape has matured. Milvus is now the most popular open-source option (35K+ GitHub stars). Qdrant and Chroma are production-ready. FAISS remains valuable for simpler implementations. Azure AI Search and integrated vector databases in existing systems are also significant trends.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://medium.com/@zilliz_learn/top-5-open-source-vector-search-engines-a-comprehensive-comparison-guide-for-2025-ddd0c6c69894">Top 5 Open Source Vector Search Engines 2025</Source>
+          <Source url="https://learn.microsoft.com/en-us/azure/cosmos-db/vector-database">Azure Cosmos DB integrated vector database</Source>
+        </ResearchSources>
+      </Change>
+
+      <Change>
+        <Section>ResearchTopics/PrimaryTopics/PrimaryTopic[6]</Section>
+        <Type>new_content</Type>
+        <Confidence>medium</Confidence>
+        <Summary>Added new research topic on LangChain vs LlamaIndex framework selection</Summary>
+        <Rationale>
+          Research shows that understanding the difference between LangChain (general orchestration) and LlamaIndex (specialized for indexing/retrieval) is crucial for learners. Many developers use them together in hybrid approaches. This is a common point of confusion that warrants dedicated research.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://dev.to/arkhan/langchain-and-llamaindex-in-2025-how-developers-are-building-smarter-ai-workflows-40k">LangChain and LlamaIndex hybrid workflows in 2025</Source>
+          <Source url="https://stackoverflow.com/questions/76990736/differences-between-langchain-llamaindex">Developer discussion on framework differences</Source>
+        </ResearchSources>
+      </Change>
+
+      <Change>
+        <Section>Projects/ProjectBriefs/ProjectBrief[1]/Skills</Section>
+        <Type>content_update</Type>
+        <Confidence>high</Confidence>
+        <Summary>Updated document processing techniques to include modern chunking strategies and metadata enrichment</Summary>
+        <Rationale>
+          Best practices for document chunking have evolved. Semantic chunking (300-500 tokens), metadata enrichment, and proper preprocessing (handling tables, bullet points) are now standard. This improves retrieval precision significantly.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://medium.com/@vrajdcs/best-practices-for-retrieval-augmented-generation-rag-implementation-ccecb269fb42">RAG implementation best practices including chunking</Source>
+        </ResearchSources>
+      </Change>
+
+      <Change>
+        <Section>Projects/ProjectBriefs/ProjectBrief[2]/Skills/Skill[1]</Section>
+        <Type>content_update</Type>
+        <Confidence>high</Confidence>
+        <Summary>Updated tool use and function calling to reflect current standards including MCP and native function calling APIs</Summary>
+        <Rationale>
+          Function calling is now a standard feature in most LLM APIs (OpenAI, Anthropic, Google). MCP (Model Context Protocol) is emerging as a standardization layer. The ReAct framework remains relevant but is now one of several approaches.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://dev.to/copilotkit/ai-agent-protocols-every-developer-should-know-in-2025-39m3">MCP protocol for standardized tool use</Source>
+        </ResearchSources>
+      </Change>
+
+      <Change>
+        <Section>Projects/ProjectBriefs/ProjectBrief[2]/Examples</Section>
+        <Type>examples_expanded</Type>
+        <Confidence>medium</Confidence>
+        <Summary>Added Code Analysis Agent example to reflect growing use case of AI agents in software development</Summary>
+        <Rationale>
+          Research shows code analysis and software development agents are among the most popular and practical use cases in 2025. Claude Opus 4 is specifically marketed as "the world's best coding model" with strong agent capabilities.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://www.anthropic.com/news/claude-4">Claude Opus 4 announcement highlighting coding agent capabilities</Source>
+        </ResearchSources>
+      </Change>
+
+      <Change>
+        <Section>Projects/ProjectTwists/ProjectTwist[1]</Section>
+        <Type>content_update</Type>
+        <Confidence>medium</Confidence>
+        <Summary>Enhanced the persistent memory twist to align with Claude 4's new memory capabilities</Summary>
+        <Rationale>
+          Claude Opus 4 and Sonnet 4 now feature "significantly improved memory capabilities, extracting and saving key facts to maintain continuity and build tacit knowledge over time" when given access to local files. This makes persistent, evolving context a more realistic and powerful project direction.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://www.anthropic.com/news/claude-4">Claude 4 memory capabilities announcement</Source>
+        </ResearchSources>
+      </Change>
+
+      <Change>
+        <Section>ModuleObjectives</Section>
+        <Type>new_content</Type>
+        <Confidence>high</Confidence>
+        <Summary>Created comprehensive learning objectives synthesizing project requirements with current industry practices</Summary>
+        <Rationale>
+          Learning objectives were derived from analyzing the project briefs, research topics, and current industry trends. They focus on practical skills (long-context handling, agent orchestration, RAG implementation) that align with 2025 AI engineering practices while being appropriate for learners with limited experience.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview">Azure RAG overview showing enterprise patterns</Source>
+        </ResearchSources>
+      </Change>
+
+      <Change>
+        <Section>AdditionalSkills/SkillsCategory[1]</Section>
+        <Type>content_update</Type>
+        <Confidence>medium</Confidence>
+        <Summary>Expanded Python skills to include specific libraries and frameworks relevant to AI engineering</Summary>
+        <Rationale>
+          Python remains the dominant language for AI development. Added specific guidance on async programming (critical for API calls), environment management (essential for reproducibility), and data processing (Pandas/NumPy for agent tools). These are practical skills learners will need.
+        </Rationale>
+        <ResearchSources>
+          <Source url="https://medium.com/@elisowski/top-ai-agent-frameworks-in-2025-9bcedab2e239">Python-based frameworks dominate AI agent development</Source>
+        </ResearchSources>
+      </Change>
+    </Changelog>
+
+    <ProvenanceTracking>
+      <AIUpdateCount>1</AIUpdateCount>
+      <SectionsNeedingReview>
+        <Section confidence="medium">Projects/ProjectTwists - The persistent memory twist may be too advanced for learners with limited experience</Section>
+        <Section confidence="medium">ResearchTopics/PrimaryTopics/PrimaryTopic[6] - Framework comparison topic may need adjustment based on cohort's programming background</Section>
+      </SectionsNeedingReview>
+    </ProvenanceTracking>
+  </Metadata>
+
+  <ModuleOverview>
+    <ModuleDescription>
+      This module explores advanced techniques for working with AI systems that need to handle large amounts of information and take autonomous actions. Participants will build two types of applications: knowledge-intensive chatbots that can ingest and reason over long documents, and AI agents that can perform multi-step tasks by using external tools and APIs. Through hands-on projects, learners will gain practical experience with long-context models, retrieval-augmented generation (RAG), vector databases, agent frameworks, and function calling - core skills for modern AI engineering.
+    </ModuleDescription>
+
+    <ModuleObjectives>
+      <ModuleObjective>
+        <Name>Long-Context Handling and Document Intelligence</Name>
+        <Details>
+          Learners will understand how to work with AI models that can process extensive amounts of text (100K-1M tokens), including techniques for document chunking, summarization, and question-answering. They will gain practical experience with models like Claude Sonnet 4 (1M tokens) and GPT-4.1 (1M tokens), and understand when to use long-context models versus retrieval-based approaches. This includes hands-on skills in document preprocessing, prompt engineering for summarization and Q&amp;A, and managing context windows effectively.
+        </Details>
+      </ModuleObjective>
+
+      <ModuleObjective>
+        <Name>Retrieval-Augmented Generation (RAG) Fundamentals</Name>
+        <Details>
+          Participants will learn the foundational concepts of RAG systems, including how to convert documents into vector embeddings, store them in vector databases, retrieve relevant chunks based on semantic similarity, and inject them into LLM prompts. They will understand the RAG pipeline (indexing, retrieval, augmentation, generation), work with embedding models, implement basic similarity search, and grasp why RAG is essential for grounding AI responses in factual information. This serves as preparation for more advanced RAG techniques in later modules.
+        </Details>
+      </ModuleObjective>
+
+      <ModuleObjective>
+        <Name>AI Agents and Tool Use</Name>
+        <Details>
+          Learners will build autonomous AI agents that can decide which actions to take and execute them by calling external tools, APIs, or functions. They will understand the agent reasoning loop (perceive, reason, act), implement function calling using modern LLM APIs, work with agent frameworks (such as LangChain or simple custom implementations), and handle multi-step reasoning tasks. This includes practical experience with the ReAct pattern (Reasoning + Acting), managing agent state, and designing robust tool interfaces.
+        </Details>
+      </ModuleObjective>
+
+      <ModuleObjective>
+        <Name>Vector Databases and Semantic Search</Name>
+        <Details>
+          Participants will gain hands-on experience with vector databases and semantic search systems. They will learn how to generate embeddings using models like OpenAI's text-embedding-ada-002 or open-source alternatives, store vectors in databases like FAISS, Chroma, or Milvus, perform similarity searches, and integrate vector retrieval into applications. They will understand distance metrics (cosine similarity, Euclidean distance), indexing strategies, and the trade-offs between different vector database solutions.
+        </Details>
+      </ModuleObjective>
+
+      <ModuleObjective>
+        <Name>Prompt Engineering for Knowledge Work</Name>
+        <Details>
+          Learners will develop advanced prompt engineering skills specifically for knowledge-intensive tasks. This includes designing prompts for accurate summarization, structured question-answering with citations, handling ambiguous queries, instructing models to admit uncertainty, and formatting outputs consistently. They will learn techniques like few-shot prompting, chain-of-thought reasoning, and prompt templates that work reliably across different inputs and document types.
+        </Details>
+      </ModuleObjective>
+
+      <ModuleObjective>
+        <Name>Building User-Facing AI Applications</Name>
+        <Details>
+          Participants will consider the full user experience of AI applications, including designing intuitive interfaces for document upload and chat interactions, providing clear feedback during processing, handling errors gracefully, and explaining AI capabilities and limitations to users. They will build simple web interfaces or command-line tools that make their AI systems accessible to non-technical users, focusing on practical usability rather than complex UI frameworks.
+        </Details>
+      </ModuleObjective>
+    </ModuleObjectives>
+  </ModuleOverview>
+
+  <ResearchTopics>
+    <PrimaryTopics>
+      <PrimaryTopic>
+        <TopicName>Long-Context Models and Context Window Capabilities</TopicName>
+
+        <TopicDescription>
+          Research the current state of long-context language models and their practical applications:
+
+          1. Model Capabilities Survey
+            - Investigate Claude Sonnet 4 (1 million token context window) and its use cases for processing entire codebases or dozens of research papers in a single request
+            - Explore GPT-4.1 (1 million tokens) and Gemini 2.5 Pro (1-2 million tokens) capabilities and pricing
+            - Compare context window sizes: understand what 1M tokens means in practical terms (approximately 750,000 words or 8 copies of the React codebase)
+            - Research how these models maintain accuracy across long contexts (e.g., "Needle in a Haystack" evaluations)
+
+          2. Cost and Performance Trade-offs
+            - Calculate the cost of using long-context models for different document sizes
+            - Investigate latency implications: how long does it take to process 100K vs 500K vs 1M tokens?
+            - Research prompt caching techniques that can reduce costs for repeated queries on the same documents
+            - Compare long-context approaches vs. chunking + retrieval approaches: when is each appropriate?
+
+          3. Practical Implementation
+            - Find code examples of using Claude or GPT-4.1 with very long documents
+            - Research best practices for structuring prompts when working with extensive context
+            - Investigate limitations: what types of tasks work well with long context, and which still benefit from retrieval?
+
+          If multiple learners tackle this topic, subdivide by:
+          - Person A: Focus on Claude Sonnet 4 capabilities and examples
+          - Person B: Focus on GPT-4.1 and Gemini comparisons
+          - Person C: Focus on cost analysis and when to use long-context vs. RAG
+        </TopicDescription>
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        <TopicName>Document Processing and Chunking Strategies</TopicName>
+
+        <TopicDescription>
+          Investigate best practices for preparing documents for AI processing:
+
+          1. Text Extraction and Preprocessing
+            - Research libraries for extracting text from PDFs (PyPDF2, pdfplumber for Python; pdf-parse for Node.js)
+            - Investigate handling different document formats: Word documents, HTML, Markdown, plain text
+            - Explore OCR tools for scanned documents (Tesseract, cloud OCR APIs)
+            - Research techniques for preserving document structure (headings, lists, tables) during extraction
+
+          2. Chunking Techniques
+            - Investigate semantic chunking: splitting text into meaningful units (300-500 tokens per chunk is a common practice)
+            - Research recursive chunking strategies that maintain context overlap between chunks
+            - Explore different chunking approaches: by paragraph, by heading, by semantic similarity
+            - Find examples of how to handle edge cases: tables, code blocks, lists
+
+          3. Metadata Enrichment
+            - Research adding metadata to chunks (source document, page number, section heading, timestamp)
+            - Investigate how metadata can improve retrieval accuracy through filtering
+            - Explore document hierarchy: maintaining parent-child relationships between chunks
+
+          4. Summarization Approaches
+            - Research recursive summarization: summarizing sections, then summarizing the summaries
+            - Investigate map-reduce patterns for processing long documents in parallel
+            - Find examples of maintaining key information while reducing document length
+
+          If multiple learners research this, subdivide by:
+          - Person A: Text extraction tools and preprocessing
+          - Person B: Chunking strategies and overlap techniques
+          - Person C: Metadata and summarization approaches
+        </TopicDescription>
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        <TopicName>Embeddings and Vector Databases</TopicName>
+
+        <TopicDescription>
+          Explore the technology that enables semantic search and retrieval:
+
+          1. Understanding Embeddings
+            - Research what embeddings are: numerical representations that capture semantic meaning
+            - Investigate popular embedding models: OpenAI text-embedding-ada-002, text-embedding-3-small/large, open-source models like sentence-transformers
+            - Compare embedding dimensions (768, 1536, 3072) and their impact on accuracy and storage
+            - Research costs: how much does it cost to embed a typical document? (e.g., OpenAI charges per token)
+            - Explore domain-specific embeddings: do specialized models work better for technical, legal, or medical documents?
+
+          2. Vector Database Options
+            - Research FAISS: Meta's library for efficient similarity search, good for prototypes and up to 1B vectors, but lacks filtering
+            - Investigate Milvus: the most popular open-source vector database (35K+ GitHub stars), supports filtering and scales well
+            - Explore Chroma: designed specifically for LLM applications with simple APIs, good for RAG prototypes
+            - Research Qdrant: production-ready with strong filtering and hybrid search capabilities
+            - Investigate cloud options: Pinecone, Weaviate Cloud, Azure AI Search
+            - Compare performance: indexing speed, query latency, memory usage
+
+          3. Similarity Search Mechanics
+            - Research distance metrics: cosine similarity vs. Euclidean distance vs. dot product
+            - Investigate indexing algorithms: HNSW (Hierarchical Navigable Small World), IVF (Inverted File)
+            - Explore trade-offs: accuracy vs. speed vs. memory usage
+            - Find code examples of performing similarity search and retrieving top-k results
+
+          If multiple learners tackle this, subdivide by:
+          - Person A: Embedding models, costs, and generation process
+          - Person B: Vector database comparison (FAISS, Milvus, Chroma, Qdrant)
+          - Person C: Similarity search algorithms and performance tuning
+        </TopicDescription>
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        <TopicName>Retrieval-Augmented Generation (RAG) Techniques</TopicName>
+
+        <TopicDescription>
+          Research modern RAG implementations and best practices:
+
+          1. RAG Pipeline Fundamentals
+            - Understand the RAG flow: query → retrieve relevant chunks → augment prompt with chunks → generate response
+            - Research why RAG is essential: reducing hallucinations, incorporating up-to-date information, grounding responses in sources
+            - Investigate the difference between RAG and fine-tuning: when to use each approach
+            - Find success metrics: how much does RAG improve accuracy in question-answering tasks?
+
+          2. Advanced Retrieval Techniques (2025 Best Practices)
+            - Research hybrid search: combining vector similarity with keyword search (BM25) for better recall
+            - Investigate query augmentation: expanding user queries with synonyms or related terms before retrieval
+            - Explore reranking: using a second model to reorder retrieved chunks by relevance
+            - Research query rewriting: using an LLM to reformulate unclear queries before retrieval
+            - Investigate adaptive retrieval: systems that dynamically adjust retrieval strategy based on query type
+
+          3. Prompt Engineering for RAG
+            - Research effective prompt templates: "Answer the question using only the provided context. If you cannot answer from the context, say 'I don't know.'"
+            - Investigate citation techniques: prompting models to reference specific chunks or provide source attribution
+            - Explore handling insufficient context: what should the system do when retrieved chunks don't contain the answer?
+            - Research evaluation methods: how to measure if RAG responses are accurate and grounded
+
+          4. RAG Frameworks and Tools
+            - Investigate LangChain's RAG capabilities: document loaders, text splitters, vector store integrations, retrieval chains
+            - Research LlamaIndex: specialized for indexing and retrieval, often used alongside LangChain
+            - Explore Microsoft Azure AI Search RAG patterns and templates
+            - Find code examples and tutorials for building RAG systems
+
+          If multiple learners research this, subdivide by:
+          - Person A: RAG fundamentals and pipeline architecture
+          - Person B: Advanced retrieval techniques (hybrid search, reranking, query augmentation)
+          - Person C: RAG frameworks (LangChain, LlamaIndex) and implementation examples
+        </TopicDescription>
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        <TopicName>AI Agent Frameworks and Tool Use</TopicName>
+
+        <TopicDescription>
+          Investigate frameworks and patterns for building autonomous AI agents:
+
+          1. Agent Frameworks Landscape
+            - Research LangChain: the most popular framework with extensive integrations, supports agents, chains, and memory
+            - Investigate LangGraph: built on LangChain, uses graph-based workflows for complex multi-step agent logic
+            - Explore AutoGen: Microsoft's framework for multi-agent systems where agents communicate with each other
+            - Research CrewAI: focuses on role-based agents that collaborate to complete tasks
+            - Investigate Microsoft Agent Framework: production-ready with observability and enterprise features
+            - Explore Semantic Kernel: Microsoft's framework for embedding AI into applications
+
+          2. Function Calling and Tool Use
+            - Research native function calling in LLM APIs: OpenAI's function calling, Anthropic's tool use, Google's function declarations
+            - Investigate the Model Context Protocol (MCP): Anthropic's standardization effort for tool interfaces
+            - Explore how to define tools: JSON schemas, parameter descriptions, return types
+            - Research the agent loop: LLM decides tool → execute tool → feed result back to LLM → LLM continues
+            - Find examples of common tools: web search, calculator, database query, API calls
+
+          3. Agent Reasoning Patterns
+            - Research ReAct (Reasoning + Acting): prompting pattern where the model thinks step-by-step before acting
+            - Investigate Chain-of-Thought prompting for multi-step reasoning
+            - Explore agent memory: how agents maintain context across multiple tool calls
+            - Research error handling: what happens when a tool fails or returns unexpected results?
+            - Investigate agent safety: limiting tool access, preventing infinite loops, handling malicious inputs
+
+          4. Practical Implementation
+            - Find code examples of simple agents (e.g., a calculator agent, a web search agent)
+            - Research observability: how to debug agents and trace their decision-making process
+            - Investigate testing strategies: how to ensure agents behave reliably
+            - Explore deployment considerations: latency, cost, rate limits
+
+          If multiple learners tackle this, subdivide by:
+          - Person A: Framework comparison (LangChain, LangGraph, AutoGen, CrewAI)
+          - Person B: Function calling mechanics and MCP protocol
+          - Person C: Agent reasoning patterns (ReAct, memory, error handling) and implementation examples
+        </TopicDescription>
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        <TopicName>Framework Selection: LangChain vs LlamaIndex</TopicName>
+
+        <TopicDescription>
+          Understand when to use LangChain, LlamaIndex, or both together:
+
+          1. LangChain Strengths and Use Cases
+            - Research LangChain's modular architecture: chains, agents, tools, memory, callbacks
+            - Investigate its flexibility: can build chatbots, agents, complex workflows, multi-step reasoning
+            - Explore its extensive ecosystem: 700+ integrations with tools, databases, APIs
+            - Understand when to choose LangChain: general-purpose LLM applications, agent orchestration, complex workflows
+            - Find examples of LangChain agents and chains
+
+          2. LlamaIndex Strengths and Use Cases
+            - Research LlamaIndex's focus: optimized specifically for data indexing and retrieval
+            - Investigate its data connectors: easy ingestion from various sources (PDFs, APIs, databases)
+            - Explore its indexing strategies: vector indexes, keyword indexes, hybrid indexes, graph indexes
+            - Understand when to choose LlamaIndex: when retrieval quality is critical, when working with large document collections
+            - Find examples of LlamaIndex implementations
+
+          3. Using Them Together (Hybrid Approach)
+            - Research how LangChain and LlamaIndex complement each other: LlamaIndex handles indexing/retrieval, LangChain handles orchestration
+            - Investigate integration patterns: using LlamaIndex as a retriever within LangChain chains
+            - Explore real-world examples of hybrid architectures
+            - Understand the 2025 trend: hybrid workflows are becoming standard practice
+
+          4. Alternative Approaches
+            - Research when you might not need a framework: simple use cases can use direct API calls
+            - Investigate emerging alternatives: Haystack, Semantic Kernel, custom solutions
+            - Explore the trade-offs: framework abstraction vs. direct control
+
+          If multiple learners research this, subdivide by:
+          - Person A: Deep dive on LangChain capabilities and examples
+          - Person B: Deep dive on LlamaIndex capabilities and examples
+          - Person C: Integration patterns and when to use hybrid approaches
+        </TopicDescription>
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        <TopicName>Preventing Hallucinations and Ensuring Accuracy</TopicName>
+
+        <TopicDescription>
+          Research strategies to make AI systems more reliable and trustworthy:
+
+          1. Grounding Techniques
+            - Research prompt instructions that reduce hallucinations: "Only answer based on the provided context. If you don't know, say 'I don't know.'"
+            - Investigate citation mechanisms: prompting models to quote sources or reference specific documents
+            - Explore confidence indicators: asking models to rate their certainty or flag uncertain answers
+            - Research retrieval quality: how better retrieval reduces hallucinations in RAG systems
+
+          2. Evaluation Methods
+            - Investigate how to measure RAG accuracy: comparing generated answers to ground truth
+            - Research evaluation metrics: precision, recall, F1 score, answer relevance, faithfulness
+            - Explore human-in-the-loop evaluation: when and how to involve human reviewers
+            - Find evaluation frameworks: RAGAS (RAG Assessment), TruLens, LangSmith tracing
+
+          3. Self-Correcting RAG
+            - Research SELF-RAG: systems that critique their own retrievals and regenerate if needed
+            - Investigate CRAG (Corrective RAG): systems that trigger web searches when local retrievals are outdated
+            - Explore reflection tokens: models that assess relevance of retrieved information
+
+          4. Domain-Specific Considerations
+            - Research safety in high-stakes domains: legal, medical, financial applications
+            - Investigate compliance requirements: audit trails, source attribution, data governance
+            - Explore techniques for handling contradictory information in retrieved documents
+
+          If multiple learners tackle this, subdivide by:
+          - Person A: Grounding techniques and prompt engineering for accuracy
+          - Person B: Evaluation methods and metrics
+          - Person C: Self-correcting systems and domain-specific safety
+        </TopicDescription>
+      </PrimaryTopic>
+
+      <PrimaryTopic>
+        <TopicName>Conversation Memory and Stateful Interactions</TopicName>
+
+        <TopicDescription>
+          Investigate how to build AI systems that remember context across multiple interactions:
+
+          1. Memory Architectures
+            - Research conversation summarization: periodically summarizing chat history to maintain context within token limits
+            - Investigate persistent memory: storing facts about users in databases and retrieving them in future sessions
+            - Explore Claude 4's new memory capabilities: extracting and saving key facts to build knowledge over time
+            - Research memory types: short-term (within conversation), long-term (across sessions), semantic (facts and relationships)
+
+          2. Implementation Patterns
+            - Investigate buffer memory: keeping recent messages in context
+            - Research summary memory: maintaining a running summary of the conversation
+            - Explore entity memory: tracking entities (people, places, things) mentioned in conversation
+            - Find examples of implementing memory in LangChain or other frameworks
+
+          3. Retrieval from Memory
+            - Research how to retrieve relevant memories when they're needed
+            - Investigate vector-based memory retrieval: storing conversation snippets as embeddings
+            - Explore metadata filtering: retrieving memories from specific time periods or topics
+
+          4. Privacy and Data Management
+            - Research privacy implications of storing user conversations
+            - Investigate data retention policies and GDPR compliance
+            - Explore user control: allowing users to view, edit, or delete their stored information
+
+          If multiple learners research this, subdivide by:
+          - Person A: Memory architectures and types
+          - Person B: Implementation patterns and code examples
+          - Person C: Privacy, data management, and user control
+        </TopicDescription>
+      </PrimaryTopic>
+    </PrimaryTopics>
+
+    <StretchTopics>
+      <StretchTopic>Multimodal RAG: Extending retrieval to images, audio, and video using multimodal embeddings</StretchTopic>
+      <StretchTopic>GraphRAG: Using knowledge graphs alongside vector retrieval for more sophisticated reasoning</StretchTopic>
+      <StretchTopic>Fine-tuning vs. RAG vs. Few-shot learning: Understanding when each approach is most effective</StretchTopic>
+      <StretchTopic>Open-source model landscape: Running Llama 3, Mistral, or Qwen models locally for cost savings</StretchTopic>
+      <StretchTopic>Quantization and optimization: Running models on consumer hardware with reduced precision</StretchTopic>
+      <StretchTopic>Edge deployment: Running embeddings and small models on mobile devices or browsers</StretchTopic>
+      <StretchTopic>Agent safety and alignment: Preventing agents from taking harmful actions or leaking sensitive data</StretchTopic>
+      <StretchTopic>Multi-agent systems: Building teams of specialized agents that collaborate on complex tasks</StretchTopic>
+      <StretchTopic>Code execution tools: Allowing agents to write and run Python code for data analysis or calculations</StretchTopic>
+      <StretchTopic>Agentic RAG: Agents that plan multi-step retrieval strategies for complex queries</StretchTopic>
+    </StretchTopics>
+  </ResearchTopics>
+
+  <Projects>
+    <ProjectBriefs>
+      <ProjectBrief>
+        <Overview>
+          <Name>Knowledge and Memory</Name>
+
+          <Task>
+            Develop a user-facing chatbot that can ingest and summarize long documents or answer questions about them, serving as a "ChatGPT for your documents."
+          </Task>
+
+          <Focus>
+            Long-context handling using models with extended context windows (Claude Sonnet 4 with 1M tokens, GPT-4.1), document processing and chunking, embeddings and vector search, summarization and question-answering prompt patterns, and introduction to RAG concepts. This project lays groundwork for advanced retrieval techniques by addressing LLM context limits and document preprocessing.
+          </Focus>
+        </Overview>
+
+        <Criteria>
+          - Build an AI chatbot that ingests one or more large documents (PDFs, technical documentation, long texts) and provides useful outputs such as summaries or question-answering
+          - The chatbot should allow users to either ask specific questions about document content or request summaries, responding based on the document data
+          - Handle documents that exceed typical LLM context windows (e.g., documents longer than 100K tokens) using either long-context models or chunking + retrieval strategies
+          - Provide a simple user interface (web UI or command-line) where users can upload documents and interact with the chatbot
+          - Implement proper error handling for unsupported file types, processing failures, or questions that cannot be answered from the provided documents
+          - Consider user experience: provide clear feedback during document processing, explain what the system can and cannot do, and handle edge cases gracefully
+        </Criteria>
+
+        <Skills>
+          <Skill>
+            <Name>Working with Long-Context Models</Name>
+
+            <Details>
+              - Standard LLMs have context length limits (typically 4K-32K tokens), making it challenging to process entire long documents
+              - Learn to use models specifically designed for long inputs: Claude Sonnet 4 (1 million tokens), GPT-4.1 (1 million tokens), or Gemini 2.5 Pro
+              - Understand what these context windows mean in practical terms: 1M tokens ≈ 750,000 words or ~8 copies of the React codebase
+              - Explore prompt caching to reduce costs when repeatedly querying the same document
+              - Alternative approach: implement document chunking and retrieval when long-context models are unavailable or too expensive
+              - Confront the problem of scale: understand token limits, costs, and processing time trade-offs
+              - Research real-world examples: Claude Sonnet 4 can analyze entire codebases with 75,000+ lines of code in a single request
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Document Processing and Chunking</Name>
+
+            <Details>
+              - Extract text from various document formats: PDFs (using PyPDF2, pdfplumber), Word documents, HTML, Markdown
+              - Implement semantic chunking: split documents into meaningful units of 300-500 tokens with overlap between chunks
+              - Preserve document structure during processing: maintain headings, lists, tables, and formatting cues
+              - Handle edge cases: multi-column layouts, embedded images, tables, code blocks
+              - Add metadata to chunks: source document name, page number, section heading, timestamp
+              - If using retrieval approach: convert chunks to embeddings and store in a vector database (FAISS, Chroma, or Milvus)
+              - Implement basic similarity search to find relevant chunks for user queries
+              - This introduces RAG concepts that will be explored more deeply in later modules
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Summarization and Question-Answering Prompting</Name>
+
+            <Details>
+              - Design prompts specifically for summarization: "Provide a concise summary of the following document in 3-5 paragraphs, highlighting key points..."
+              - Implement question-answering prompts: "Using only the provided context, answer the following question. If you cannot answer from the context, say 'I don't know.'"
+              - Explore different summarization strategies: extractive (pulling key sentences) vs. abstractive (generating new summary text)
+              - For very long documents: implement recursive summarization (summarize sections, then summarize the summaries)
+              - Practice prompt engineering for non-code tasks: this requires different techniques than code generation
+              - Implement citation mechanisms: prompt the model to reference specific sections or pages when answering
+              - Handle uncertainty: instruct the model to admit when it doesn't have enough information to answer confidently
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Introduction to Embeddings and Vector Search</Name>
+
+            <Details>
+              - Understand embeddings: numerical representations that capture semantic meaning of text
+              - Generate embeddings using OpenAI's text-embedding-3-small/large or open-source alternatives (sentence-transformers)
+              - Store embeddings in a vector database: start with FAISS (simple, no server required) or Chroma (designed for LLM apps)
+              - Implement similarity search: convert user query to embedding, find top-k most similar document chunks
+              - Understand distance metrics: cosine similarity is most common for text embeddings
+              - This is not mandatory if using Claude with huge context, but resource limits or costs might push toward smarter retrieval methods
+              - Serves as gentle introduction to RAG concepts that will be covered more extensively in future modules
+              - Experiment with retrieval quality: how many chunks should you retrieve? How do you balance context size vs. relevance?
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>User Interface and Experience Design</Name>
+
+            <Details>
+              - Build a simple interface appropriate for end-users (not just developers): web UI or command-line tool
+              - For web UI: implement document upload, display processing status, provide chat interface for questions
+              - Consider using simple frameworks: Streamlit or Gradio for Python, basic HTML/CSS/JavaScript for Node.js
+              - Provide clear instructions: explain what types of documents are supported, what questions can be asked
+              - Show processing feedback: "Extracting text from PDF...", "Generating embeddings...", "Searching for relevant information..."
+              - Handle errors gracefully: unsupported file types, corrupted PDFs, queries that cannot be answered
+              - Display sources: show which parts of the document were used to answer questions
+              - This is an opportunity for team members with front-end skills to contribute meaningfully
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Cost and Performance Optimization</Name>
+
+            <Details>
+              - Calculate costs: long-context models charge per token (input + output), embeddings charge per token embedded
+              - Implement prompt caching: Claude and GPT-4.1 support caching frequently-used context to reduce costs
+              - Optimize chunk size: smaller chunks mean more precise retrieval but more API calls; larger chunks mean more context per call
+              - Consider batch processing: some APIs offer discounts for non-real-time processing
+              - Measure performance: track processing time for document ingestion, query response time, cost per query
+              - Make trade-offs explicit: long-context models are simpler but more expensive; chunking + retrieval is more complex but cheaper at scale
+            </Details>
+          </Skill>
+        </Skills>
+
+        <Examples>
+          <Example>
+            <Name>Research Paper Assistant</Name>
+
+            <Description>
+              Upload academic papers (PDFs) and ask questions like "What are the main findings?", "How did the authors conduct experiment X?", or "What limitations did the study have?" The AI reads the entire paper and provides answers grounded in the paper's content, citing specific sections or figures when relevant.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Legal Document Analyzer</Name>
+
+            <Description>
+              Upload contracts, terms of service, or legal documents and get plain-language summaries or ask specific questions like "What is the cancellation policy in this contract?" or "What are my obligations under this agreement?" Particularly useful for understanding dense legal language.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Technical Documentation Navigator</Name>
+
+            <Description>
+              Ingest large software manuals, API documentation, or technical guides. Developers can ask questions like "How do I authenticate with this API?" or "What are the rate limits?" and receive accurate answers extracted from the documentation, with links to relevant sections.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Book Summary and Analysis Tool</Name>
+
+            <Description>
+              Upload e-books or long articles and request chapter-by-chapter summaries, thematic analysis, or answers to specific questions about plot, characters, or concepts. Useful for students, researchers, or anyone who needs to quickly extract insights from lengthy texts.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Company Knowledge Base</Name>
+
+            <Description>
+              Ingest internal company documents (policies, procedures, meeting notes, project documentation) and create a searchable knowledge base. Employees can ask questions like "What is our remote work policy?" or "How do I submit expense reports?" and get instant, accurate answers.
+            </Description>
+          </Example>
+        </Examples>
+      </ProjectBrief>
+
+      <ProjectBrief>
+        <Overview>
+          <Name>User Agent</Name>
+
+          <Task>
+            Build an AI agent that can perform multi-step tasks by autonomously deciding which external tools or APIs to invoke (e.g., an AI that answers user requests by calling weather APIs, search engines, databases, or computational tools).
+          </Task>
+
+          <Focus>
+            Agent frameworks and function calling patterns. Participants learn how giving AI access to tools extends its capabilities beyond text generation (enabling web search, calculations, database queries, etc.). Introduces autonomous decision-making by LLMs, the ReAct reasoning paradigm, and practical considerations for building reliable agents.
+          </Focus>
+        </Overview>
+
+        <Criteria>
+          - Create an AI agent that autonomously performs tasks by utilizing external tools or APIs in addition to generating text
+          - The agent should take a user request or goal, decide which actions to take (via tools), execute them, and return a result
+          - Implement at least one external non-LLM service: API (weather, search, maps), database query, computational tool (calculator, code execution), or file system operation
+          - Use either function calling APIs (OpenAI, Anthropic, Google) or an agent framework (LangChain, LangGraph, CrewAI, AutoGen)
+          - Implement proper error handling: what happens if an API call fails, returns no results, or takes too long?
+          - Consider agent safety: limit the number of tool calls to prevent infinite loops, validate tool outputs, constrain what the agent can access
+          - Provide clear feedback to users: show the agent's reasoning process, which tools it's using, and why
+        </Criteria>
+
+        <Skills>
+          <Skill>
+            <Name>Understanding AI Agents and Tool Use</Name>
+
+            <Details>
+              - Learn why tool use is powerful: it extends AI capabilities beyond text generation to interact with the world
+              - Understand the agent loop: LLM decides action → execute action → feed result back to LLM → LLM continues or concludes
+              - Implement using function calling APIs: OpenAI's function calling, Anthropic's tool use, or Google's function declarations
+              - Alternative: use an agent framework like LangChain (provides agent abstractions), LangGraph (graph-based workflows), or CrewAI (role-based agents)
+              - Learn the Model Context Protocol (MCP): Anthropic's standardization effort for tool interfaces (emerging in 2025)
+              - Define tools with clear schemas: function name, description, parameters (with types and descriptions), return format
+              - Understand tool selection: how does the LLM decide which tool to use? (based on tool descriptions and user query)
+              - Research real-world examples: Claude Opus 4 can use tools during extended thinking, alternating between reasoning and tool use
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Multi-Step Reasoning and ReAct Framework</Name>
+
+            <Details>
+              - Implement the ReAct pattern (Reasoning + Acting): prompt the agent to think step-by-step before taking actions
+              - Example prompt structure: "Thought: I need to find X. Action: search_web('X'). Observation: [results]. Thought: Now I need to..."
+              - This explicit reasoning improves reliability and makes agent behavior more transparent
+              - Manage agent state: keep track of conversation history, tool results, and intermediate steps
+              - Implement stopping conditions: agent should know when it has enough information to answer the user's question
+              - Handle multi-step tasks: agent might need to call multiple tools in sequence (e.g., search → read → summarize → answer)
+              - Debug agent reasoning: log the agent's thoughts and actions to understand why it made certain decisions
+              - This skill is crucial for building complex AI workflows reliably
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>API Integration and Error Handling</Name>
+
+            <Details>
+              - Integrate at least one third-party API: weather (OpenWeatherMap), search (Brave Search, SerpAPI), maps (Google Maps), or data services
+              - Read API documentation: understand endpoints, authentication (API keys), request formats, and response structures
+              - Implement robust error handling: what if the API is down? Rate limited? Returns empty results? Times out?
+              - Parse API responses: extract relevant information from JSON or XML responses
+              - Handle authentication: securely store API keys (environment variables, not hardcoded)
+              - Respect rate limits: implement retry logic with exponential backoff
+              - Provide fallbacks: if a tool fails, can the agent try an alternative approach or inform the user gracefully?
+              - This practical skill combines AI with conventional software engineering
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Agent Safety and Control</Name>
+
+            <Details>
+              - Limit agent autonomy: prevent infinite loops by capping the number of tool calls (e.g., max 10 iterations)
+              - Validate tool outputs: check that results make sense before feeding them back to the agent
+              - Implement sandboxing: restrict what tools the agent can access (e.g., read-only database access, limited file system access)
+              - Consider cost controls: tool calls can be expensive (especially web search APIs), so implement budgets or warnings
+              - Handle malicious inputs: what if a user tries to trick the agent into doing something harmful?
+              - Provide transparency: show users what the agent is doing and why (builds trust)
+              - This introduces AI safety considerations in a hands-on, practical way
+              - Research emerging standards: Microsoft Agent Framework includes task adherence and prompt shields for safety
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Agent Frameworks and Observability</Name>
+
+            <Details>
+              - Choose an appropriate framework based on project complexity: simple agents can use direct function calling, complex agents benefit from frameworks
+              - LangChain: most popular, extensive integrations, supports chains and agents
+              - LangGraph: built on LangChain, uses graph-based workflows for complex multi-step logic
+              - AutoGen: Microsoft's framework for multi-agent systems where agents communicate with each other
+              - CrewAI: role-based agents that collaborate on tasks
+              - Implement observability: log agent decisions, tool calls, and results for debugging
+              - Use tracing tools: LangSmith, Azure AI Foundry, or custom logging to understand agent behavior
+              - Monitor performance: track latency, cost per query, success rate, and user satisfaction
+              - This skill bridges prototype development and production deployment
+            </Details>
+          </Skill>
+
+          <Skill>
+            <Name>Designing Effective Tools</Name>
+
+            <Details>
+              - Write clear tool descriptions: the LLM uses these to decide when to call each tool
+              - Example: "search_web: Searches the internet for information. Use this when you need current information or facts not in your training data. Parameters: query (string): The search query."
+              - Keep tools focused: each tool should do one thing well (single responsibility principle)
+              - Design tool parameters: use clear names, provide descriptions, specify types (string, number, boolean)
+              - Return structured data: tools should return JSON or structured text that's easy for the LLM to parse
+              - Test tools independently: make sure each tool works correctly before integrating with the agent
+              - Provide examples: show the LLM examples of when and how to use each tool in your system prompt
+            </Details>
+          </Skill>
+        </Skills>
+
+        <Examples>
+          <Example>
+            <Name>Web Research Agent</Name>
+
+            <Description>
+              User asks "What were the key outcomes of the latest climate summit?" The agent uses a web search tool to find current information, reads relevant articles, and synthesizes a summary answer. This demonstrates combining search capabilities with LLM reasoning to provide up-to-date information.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Travel Planning Assistant</Name>
+
+            <Description>
+              User requests "Plan a weekend trip to Paris." The agent uses multiple tools: weather API to check forecast, maps API to find attractions, search to find hotel recommendations, and calculator to estimate costs. It then compiles a comprehensive travel plan with itinerary and budget.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Data Analysis Agent</Name>
+
+            <Description>
+              User provides a CSV file and asks "What are the key insights from this sales data?" The agent uses a Python execution tool to load the data with pandas, compute statistics (averages, trends, correlations), generate visualizations, and then uses the LLM to explain the findings in plain language.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Code Analysis Agent</Name>
+
+            <Description>
+              Developer asks "Find potential security vulnerabilities in this codebase." The agent uses file system tools to read code files, a code analysis tool to check for common vulnerabilities (SQL injection, XSS), and search tools to look up CVEs for dependencies. It compiles a security report with recommendations.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Customer Support Agent</Name>
+
+            <Description>
+              Customer asks "Where is my order?" The agent uses database tools to query order status, shipping API to get tracking information, and email tools to send updates. It handles the entire support interaction autonomously, escalating to humans only when necessary.
+            </Description>
+          </Example>
+
+          <Example>
+            <Name>Meeting Scheduler Agent</Name>
+
+            <Description>
+              User requests "Schedule a meeting with Alice next week." The agent checks calendar APIs for both users' availability, finds a suitable time slot, creates the calendar event, and sends email notifications. This demonstrates multi-step coordination across multiple services.
+            </Description>
+          </Example>
+        </Examples>
+      </ProjectBrief>
+    </ProjectBriefs>
+
+    <ProjectTwists>
+      <ProjectTwist>
+        <Name>It's Always Watching...</Name>
+
+        <Task>
+          Build something that gives AI persistent, evolving context - a system that learns and remembers across sessions.
+        </Task>
+
+        <ExampleUses>
+          <Example>
+            A document chatbot that remembers which questions you've asked before and learns your interests, proactively surfacing related information from new documents you upload
+          </Example>
+
+          <Example>
+            An agent that maintains a knowledge graph of your work, tracking projects, tasks, and relationships between them, and can answer questions like "What did I work on last month that's related to this new project?"
+          </Example>
+
+          <Example>
+            A personal research assistant that builds a semantic index of everything you've read, watched, or discussed, and can surface relevant past insights when you're working on new problems
+          </Example>
+
+          <Example>
+            A team documentation system that learns from questions asked by team members, identifies knowledge gaps, and suggests documentation improvements or training topics
+          </Example>
+
+          <Example>
+            An agent that tracks your coding patterns and preferences across projects, and provides increasingly personalized suggestions and code review comments over time
+          </Example>
+        </ExampleUses>
+      </ProjectTwist>
+
+      <ProjectTwist>
+        <Name>The Explainer</Name>
+
+        <Task>
+          Build a system that doesn't just give answers, but explains its reasoning process transparently and teaches users to understand the domain.
+        </Task>
+
+        <ExampleUses>
+          <Example>
+            A document Q&amp;A system that not only answers questions but shows which parts of the document it used, explains why those sections are relevant, and suggests related questions to deepen understanding
+          </Example>
+
+          <Example>
+            An agent that narrates its tool-use decisions: "I'm going to search the web because your question asks about recent events. I found 3 sources. Let me compare them to give you a balanced answer..."
+          </Example>
+
+          <Example>
+            A code analysis agent that explains not just what's wrong, but why it's a problem, how it could be exploited, and walks through the fix step-by-step
+          </Example>
+
+          <Example>
+            A research assistant that builds concept maps showing relationships between ideas in documents, helping users understand the structure of complex topics
+          </Example>
+        </ExampleUses>
+      </ProjectTwist>
+
+      <ProjectTwist>
+        <Name>The Collaborator</Name>
+
+        <Task>
+          Build a multi-agent system where specialized agents work together, each with distinct roles and capabilities.
+        </Task>
+
+        <ExampleUses>
+          <Example>
+            A document analysis system with separate agents for extraction (reads documents), analysis (answers questions), and verification (checks answers against sources), working together to ensure accuracy
+          </Example>
+
+          <Example>
+            A research team of agents: one searches the web, one reads papers, one synthesizes findings, and one writes reports, collaborating to produce comprehensive research summaries
+          </Example>
+
+          <Example>
+            A code review system with multiple specialized agents: one checks style, one looks for bugs, one suggests performance improvements, and one evaluates security - each contributing their expertise
+          </Example>
+
+          <Example>
+            A customer support system where a triage agent routes questions to specialist agents (billing, technical, shipping), who collaborate to resolve complex issues
+          </Example>
+        </ExampleUses>
+      </ProjectTwist>
+
+      <ProjectTwist>
+        <Name>The Minimalist</Name>
+
+        <Task>
+          Build the simplest possible version that actually works well, focusing on core functionality and user experience over technical complexity.
+        </Task>
+
+        <ExampleUses>
+          <Example>
+            A document chatbot that uses only long-context models (no vector database, no chunking) but provides an exceptionally clean and intuitive user interface
+          </Example>
+
+          <Example>
+            An agent with just 2-3 carefully designed tools, but handles those use cases extremely reliably with excellent error handling and user feedback
+          </Example>
+
+          <Example>
+            A system that processes only one document type (e.g., only PDFs) but does it perfectly: flawless text extraction, smart summarization, accurate Q&amp;A
+          </Example>
+
+          <Example>
+            A command-line tool with no GUI, but with such clear prompts and helpful error messages that non-technical users can use it effectively
+          </Example>
+        </ExampleUses>
+      </ProjectTwist>
+    </ProjectTwists>
+  </Projects>
+
+  <AdditionalSkills>
+    <SkillsCategory>
+      <Name>Python for AI Engineering</Name>
+
+      <Skill>
+        <SkillName>Environments and Package Management</SkillName>
+        <SkillDescription>
+          Using virtual environments (venv, conda) to isolate project dependencies, managing packages with pip or poetry, and creating reproducible environments with requirements.txt or environment.yml files. Essential for avoiding dependency conflicts and ensuring code runs consistently across different machines.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Async Programming and API Design</SkillName>
+        <SkillDescription>
+          Understanding async/await patterns for concurrent API calls (critical when calling LLM APIs or external services), using libraries like aiohttp or httpx for async HTTP requests, and designing efficient data flows. This significantly reduces latency when agents need to call multiple tools or APIs.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Data Processing with Pandas and NumPy</SkillName>
+        <SkillDescription>
+          Using Pandas for data manipulation (loading CSVs, filtering, aggregating) and NumPy for numerical operations. Particularly useful for data analysis agents or when building tools that process structured data before feeding it to LLMs.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Model Serving and FastAPI</SkillName>
+        <SkillDescription>
+          Creating REST APIs with FastAPI to serve AI applications, handling request validation, implementing async endpoints, and deploying with Docker. This enables building production-ready AI services that can be integrated into larger systems.
+        </SkillDescription>
+      </Skill>
+    </SkillsCategory>
+
+    <SkillsCategory>
+      <Name>JavaScript/TypeScript for AI Applications</Name>
+
+      <Skill>
+        <SkillName>Node.js Async Patterns</SkillName>
+        <SkillDescription>
+          Using Promises, async/await, and handling concurrent API calls efficiently. Understanding event loop behavior and avoiding blocking operations when building responsive AI applications.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Frontend Integration with React or Vue</SkillName>
+        <SkillDescription>
+          Building interactive UIs for AI applications, handling streaming responses from LLMs, managing application state during multi-step agent operations, and providing real-time feedback to users during document processing or agent execution.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>LangChain.js and AI SDKs</SkillName>
+        <SkillDescription>
+          Using LangChain's JavaScript implementation for building AI applications in Node.js or browser environments, integrating with Vercel AI SDK for streaming responses, and understanding the differences between Python and JavaScript AI ecosystems.
+        </SkillDescription>
+      </Skill>
+    </SkillsCategory>
+
+    <SkillsCategory>
+      <Name>Development and Deployment</Name>
+
+      <Skill>
+        <SkillName>Environment Variables and Secrets Management</SkillName>
+        <SkillDescription>
+          Securely storing API keys and credentials using .env files (never committing them to git), using environment variable libraries (python-dotenv, dotenv for Node.js), and understanding best practices for secrets in production environments.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Docker and Containerization</SkillName>
+        <SkillDescription>
+          Creating Docker images for AI applications, managing dependencies in containers, and deploying to cloud platforms. Ensures applications run consistently across development and production environments.
+        </SkillDescription>
+      </Skill>
+
+      <Skill>
+        <SkillName>Logging and Debugging</SkillName>
+        <SkillDescription>
+          Implementing structured logging to trace agent decisions and tool calls, using debugging tools to understand LLM behavior, and setting up monitoring for production AI systems. Critical for understanding why agents make certain decisions and troubleshooting issues.
+        </SkillDescription>
+      </Skill>
+    </SkillsCategory>
+  </AdditionalSkills>
+
+  <Notes>
+    This module is designed for a 3-week intensive learning experience with 12 learners who have limited programming experience (≤1 year). The research session at the beginning is crucial for building shared knowledge across the cohort. Teams should be encouraged to choose projects that match their skill level and interests, with the understanding that simpler implementations (e.g., using long-context models without RAG) are perfectly acceptable for this stage of learning.
+
+    The project twists are optional challenges that can add depth without being essential to success. They're designed to inspire creative thinking about AI applications rather than being strict requirements.
+
+    Key pedagogical considerations:
+    - The module deliberately introduces RAG concepts gradually rather than requiring full implementation, as vector databases and embeddings can be complex for beginners
+    - Agent frameworks are presented as options rather than requirements, allowing teams to choose between framework-based and direct API approaches
+    - Emphasis on user experience and practical usability helps teams think beyond technical implementation
+    - Safety and reliability considerations are woven throughout to build good habits early
+
+    The research topics are extensive to support peer teaching and ensure the cohort develops comprehensive understanding even if individual projects focus on specific areas. Not every team needs to implement every technique - the goal is collective learning through diverse project approaches.
+  </Notes>
+</Module>
