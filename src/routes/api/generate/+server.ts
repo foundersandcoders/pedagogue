@@ -256,7 +256,34 @@ function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[
         - Research topics should include practical guidance for how to research them
         - Skills should be granular and specific (e.g., "Package management in Python" not "Coding in Python")
         - Examples should be diverse and substantially different from each other
-        - Project twists should add interesting challenges without being essential
+        - Write for LEARNERS, not facilitators (avoid "Facilitators should..." or "Instructors can..." - learners are self-directed)
+
+        <ProjectTwistGuidelines>
+          A "Twist" is a CONCEPTUAL CURVEBALL, not a technical feature addition.
+
+          Good twists REFRAME the problem space by adding a philosophical or purposeful constraint:
+          - "The Helpful Saboteur" - tool that deliberately introduces productive chaos (e.g., CLI suggesting radical refactorings, git hook playing devil's advocate)
+          - "The Unreliable Narrator" - system generating multiple perspectives on same data (e.g., docs for different audiences, competing interpretations)
+          - "The Contrarian" - agent that challenges assumptions by presenting counterarguments
+          - "The Archaeologist" - chatbot treating documents as artifacts, inferring from missing information
+          - "The Method Actor" - agent that commits to a persona and never breaks character
+
+          Twist characteristics:
+          • Has personality/character in the name (creates intrigue)
+          • Reframes the PURPOSE, not the implementation
+          • Implementation-agnostic (many technical approaches possible)
+          • Philosophically or practically interesting
+          • Makes learners think "what if we approached this DIFFERENTLY?"
+
+          ANTI-PATTERNS - These are NOT twists (they're stretch goals):
+          ✗ "Add persistent memory" - just a feature addition
+          ✗ "Support images/audio" - just capability expansion
+          ✗ "Use multiple agents" - just architectural pattern
+          ✗ "Add real-time streaming" - just technical implementation
+          ✗ "Make it work offline" - just deployment constraint
+
+          Remember: A twist changes how you THINK about the problem, not what FEATURES you build.
+        </ProjectTwistGuidelines>
       </TaskGuidelines>
     </Task>
 
