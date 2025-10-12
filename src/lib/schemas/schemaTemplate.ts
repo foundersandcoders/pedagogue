@@ -173,6 +173,7 @@ Your output must be valid XML matching this EXACT structure:
 
       <Skill>
         <SkillName>Memorable name of skill</SkillName>
+        <Importance>e.g. Recommended, Stretch etc</Importance>
         <SkillDescription>2 sentences maximum</SkillDescription>
       </Skill>
     </SkillsCategory>

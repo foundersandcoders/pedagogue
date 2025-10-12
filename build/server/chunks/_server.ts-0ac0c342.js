@@ -4792,6 +4792,7 @@ Your output must be valid XML matching this EXACT structure:
 
       <Skill>
         <SkillName>Memorable name of skill</SkillName>
+        <Importance>e.g. Recommended, Stretch etc</Importance>
         <SkillDescription>2 sentences maximum</SkillDescription>
       </Skill>
     </SkillsCategory>
@@ -5680,4 +5681,4 @@ async function generateModule(body, apiKey) {
 }
 
 export { POST };
-//# sourceMappingURL=_server.ts-df2a67d9.js.map
+//# sourceMappingURL=_server.ts-0ac0c342.js.map
