@@ -25,6 +25,11 @@
   let currentAttempt = 1;
   let validationWarnings = [];
 
+  // Automatic step navigation: advance from step 1 to step 2 when all files uploaded
+  $: if ($canProceedToStep2 && $currentStep === 1) {
+    currentStep.set(2);
+  }
+
   function handleFileUploaded(event) {
     const { type, data } = event.detail;
 
@@ -58,9 +63,6 @@
     }
   }
 
-  function proceedToStep2() {
-    currentStep.set(2);
-  }
 
   async function handleFormSubmit(event) {
     structuredInput.set(event.detail);
@@ -235,6 +237,10 @@
     currentStep.set(2);
   }
 
+  function goBackToFiles() {
+    currentStep.set(1);
+  }
+
   onMount(() => {
     console.log("Pedagogue app initialized");
   });
@@ -302,18 +308,22 @@
 
           {#if $canProceedToStep2}
             <div class="proceed-section">
-              <button
-                type="button"
-                class="proceed-button"
-                on:click={proceedToStep2}
-              >
-                Continue to Context →
-              </button>
+              <p class="success-message">✓ All files uploaded successfully</p>
             </div>
           {/if}
         </section>
       {:else if $currentStep === 2}
         <section class="analysis-section">
+          <div class="section-header">
+            <h2>Add Context</h2>
+            <button
+              type="button"
+              class="back-button"
+              on:click={goBackToFiles}
+            >
+              ← Back to Files
+            </button>
+          </div>
           <StructuredInputForm
             formData={$structuredInput}
             on:submit={handleFormSubmit}
@@ -551,25 +561,24 @@
     border-top: 1px solid #e9ecef;
   }
 
-  .proceed-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
+  .success-message {
+    color: #28a745;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+    font-size: 1.1rem;
+    margin: 0;
   }
 
-  .proceed-button:hover {
-    background: #0056b3;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .section-header h2 {
+    margin: 0;
   }
 
   .placeholder {
