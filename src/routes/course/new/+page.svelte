@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import CourseConfigForm from "$lib/course/CourseConfigForm.svelte";
+  import ModuleStructurePlanner from "$lib/course/ModuleStructurePlanner.svelte";
   import {
     currentCourse,
     courseWorkflowStep,
@@ -37,12 +38,6 @@
 
     // Move to next step
     courseWorkflowStep.set(2);
-
-    // TODO: Navigate to step 2 when implemented
-    console.log("Course config submitted:", formData);
-    alert(
-      "Course configuration saved! Module planning step coming in Phase 2."
-    );
   }
 
   function handleFormChange(event) {
@@ -52,6 +47,27 @@
       ...course,
       ...formData,
     }));
+  }
+
+  function handleModulePlannerSubmit(event) {
+    const { modules } = event.detail;
+
+    // Update current course with module structure
+    currentCourse.update((course) => ({
+      ...course,
+      modules,
+    }));
+
+    // Move to next step
+    courseWorkflowStep.set(3);
+
+    // TODO: This will trigger course structure generation API call
+    console.log("Module structure submitted:", modules);
+    alert("Module structure saved! Course structure generation coming next.");
+  }
+
+  function handleModulePlannerBack() {
+    courseWorkflowStep.set(1);
   }
 </script>
 
@@ -86,10 +102,16 @@
           on:submit={handleFormSubmit}
           on:change={handleFormChange}
         />
+      {:else if $courseWorkflowStep === 2 && $currentCourse}
+        <ModuleStructurePlanner
+          courseData={$currentCourse}
+          on:submit={handleModulePlannerSubmit}
+          on:back={handleModulePlannerBack}
+        />
       {:else}
         <section class="placeholder">
           <p>Step {$courseWorkflowStep} - {steps[$courseWorkflowStep - 1]}</p>
-          <p>Coming soon in Phase 2...</p>
+          <p>Coming soon...</p>
         </section>
       {/if}
     </main>
