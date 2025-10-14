@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import CourseConfigForm from "$lib/course/CourseConfigForm.svelte";
-  import ModuleStructurePlanner from "$lib/course/ModuleStructurePlanner.svelte";
+  import ArcStructurePlanner from "$lib/course/ArcStructurePlanner.svelte";
+  import ModuleWithinArcPlanner from "$lib/course/ModuleWithinArcPlanner.svelte";
   import CourseStructureReview from "$lib/course/CourseStructureReview.svelte";
   import {
     currentCourse,
@@ -13,8 +14,9 @@
 
   const steps = [
     "Course Config",
+    "Arc Planning",
     "Module Planning",
-    "Course Structure",
+    "Structure Review",
     "Module Generation",
     "Review & Export",
   ];
@@ -50,39 +52,56 @@
     }));
   }
 
-  function handleModulePlannerSubmit(event) {
-    const { modules } = event.detail;
+  function handleArcPlannerSubmit(event) {
+    const { arcs } = event.detail;
 
-    // Update current course with module structure
+    // Update current course with arc structure
     currentCourse.update((course) => ({
       ...course,
-      modules,
+      arcs,
     }));
 
-    // Move to next step - Course Structure Review will auto-generate
+    // Move to next step - Module Planning within arcs
     courseWorkflowStep.set(3);
   }
 
-  function handleModulePlannerBack() {
+  function handleArcPlannerBack() {
     courseWorkflowStep.set(1);
   }
 
-  function handleStructureReviewSubmit(event) {
-    const { modules, courseNarrative, progressionNarrative } = event.detail;
+  function handleModuleWithinArcPlannerSubmit(event) {
+    const { arcs } = event.detail;
 
-    // Update course with refined module data and narratives
+    // Update current course with arc+module structure
     currentCourse.update((course) => ({
       ...course,
-      modules,
+      arcs,
+    }));
+
+    // Move to next step - Course Structure Review will auto-generate
+    courseWorkflowStep.set(4);
+  }
+
+  function handleModuleWithinArcPlannerBack() {
+    courseWorkflowStep.set(2);
+  }
+
+  function handleStructureReviewSubmit(event) {
+    const { arcs, courseNarrative, progressionNarrative } = event.detail;
+
+    // Update course with refined arc/module data and narratives
+    currentCourse.update((course) => ({
+      ...course,
+      arcs,
       courseNarrative,
       progressionNarrative,
     }));
 
-    courseWorkflowStep.set(4);
+    courseWorkflowStep.set(5);
   }
 
   function handleStructureReviewBack() {
-    courseWorkflowStep.set(2);
+    courseWorkflowStep.set(3);
   }
 </script>
 
@@ -118,12 +137,18 @@
           on:change={handleFormChange}
         />
       {:else if $courseWorkflowStep === 2 && $currentCourse}
-        <ModuleStructurePlanner
+        <ArcStructurePlanner
           courseData={$currentCourse}
-          on:submit={handleModulePlannerSubmit}
-          on:back={handleModulePlannerBack}
+          on:submit={handleArcPlannerSubmit}
+          on:back={handleArcPlannerBack}
         />
       {:else if $courseWorkflowStep === 3 && $currentCourse}
+        <ModuleWithinArcPlanner
+          courseData={$currentCourse}
+          on:submit={handleModuleWithinArcPlannerSubmit}
+          on:back={handleModuleWithinArcPlannerBack}
+        />
+      {:else if $courseWorkflowStep === 4 && $currentCourse}
         <CourseStructureReview
           courseData={$currentCourse}
           on:submit={handleStructureReviewSubmit}

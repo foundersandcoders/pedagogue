@@ -4,8 +4,17 @@
 
 ### 1.1. CoBu MVP: Critical Path (Do These First)
 
-#### 1.1.7. Reimplement the Module Overview Generation Based on Thematic Arcs
-- Not yet planned; work with the user to define this task and execute it accordingly
+#### 1.1.7. Reimplement the Module Overview Generation Based on Thematic Arcs ✅ COMPLETED
+- Introduced "arcs" as thematic organizational layer between courses and modules
+- Created Arc interface with theme, arcThemeNarrative, and arcProgressionNarrative fields
+- Built ArcStructurePlanner component for defining broad thematic arcs
+- Built ModuleWithinArcPlanner component for organizing modules within arcs (with auto-generate option)
+- Updated API endpoint to handle arc-based course structure generation with AI
+- Updated CourseStructureReview to display collapsible arc hierarchy with nested modules
+- Updated workflow to: Config → Arc Planning → Module Planning → Structure Review → Generation → Export
+- Implemented backward compatibility migration for existing module-only courses
+- Arcs support thematic independence with temporal sequencing
+- **Why completed:** Arcs provide the thematic organizational structure needed for coherent course narratives while maintaining module-level detail
 
 #### 1.1.7. Build ModuleGenerationList Component (Step 4)
 - Create `src/lib/course/ModuleGenerationList.svelte`

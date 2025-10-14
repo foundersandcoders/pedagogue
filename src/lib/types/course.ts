@@ -2,6 +2,18 @@
  * Type definitions for course generation
  */
 
+export interface Arc {
+	id: string;
+	order: number; // 1, 2, 3...
+	title: string;
+	description: string;
+	theme: string; // Thematic focus (e.g., "Agentic Workflows", "Foundation Concepts")
+	durationWeeks: number;
+	arcThemeNarrative?: string; // AI-generated narrative explaining the arc's thematic focus
+	arcProgressionNarrative?: string; // AI-generated explanation of how modules within this arc connect
+	modules: ModuleSlot[];
+}
+
 export interface CourseData {
 	id: string;
 	title: string;
@@ -22,16 +34,17 @@ export interface CourseData {
 		};
 	};
 	structure: 'facilitated' | 'peer-led';
-	modules: ModuleSlot[];
+	arcs: Arc[]; // Thematic organizational layer containing modules
 	courseNarrative?: string; // AI-generated overall course narrative
-	progressionNarrative?: string; // AI-generated explanation of how modules connect
+	progressionNarrative?: string; // AI-generated explanation of how arcs connect (thematically independent but temporally sequenced)
 	createdAt: Date;
 	updatedAt: Date;
 }
 
 export interface ModuleSlot {
 	id: string;
-	order: number; // 1, 2, 3...
+	arcId: string; // Reference to parent arc
+	order: number; // Order within the arc (1, 2, 3...)
 	title: string;
 	description: string;
 	durationWeeks: number;
@@ -62,6 +75,21 @@ export interface CourseStructureGenerationRequest {
 		prereq: string;
 		focus: string;
 	};
+	arcs?: Array<{
+		// Optional arc skeleton for AI to enhance
+		order: number;
+		title: string;
+		description: string;
+		theme: string;
+		durationWeeks: number;
+		modules?: Array<{
+			// Optional module skeleton within arc
+			order: number;
+			title: string;
+			description: string;
+			durationWeeks: number;
+		}>;
+	}>;
 	enableResearch?: boolean;
 	supportingDocuments?: string[];
 }
@@ -69,14 +97,23 @@ export interface CourseStructureGenerationRequest {
 export interface CourseStructureGenerationResponse {
 	success: boolean;
 	courseNarrative?: string;
-	modules: Array<{
+	arcs: Array<{
 		order: number;
 		title: string;
 		description: string;
+		theme: string;
+		arcThemeNarrative: string; // AI-generated thematic focus explanation
+		arcProgressionNarrative: string; // How modules within this arc connect
 		suggestedDurationWeeks: number;
-		learningObjectives: string[];
-		keyTopics: string[];
+		modules: Array<{
+			order: number; // Order within the arc
+			title: string;
+			description: string;
+			suggestedDurationWeeks: number;
+			learningObjectives: string[];
+			keyTopics: string[];
+		}>;
 	}>;
-	progressionNarrative?: string;
+	progressionNarrative?: string; // How arcs connect across the course
 	errors?: string[];
 }

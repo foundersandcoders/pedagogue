@@ -1,11 +1,11 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte";
-  import type { CourseData, ModuleSlot } from "$lib/types/course";
+  import type { CourseData, Arc, ModuleSlot } from "$lib/types/course";
 
   export let courseData: CourseData;
 
   const dispatch = createEventDispatcher<{
-    submit: { modules: ModuleSlot[]; courseNarrative: string; progressionNarrative: string };
+    submit: { arcs: Arc[]; courseNarrative: string; progressionNarrative: string };
     back: void;
   }>();
 
@@ -13,8 +13,9 @@
   let error: string | null = null;
   let courseNarrative = "";
   let progressionNarrative = "";
-  let modules: ModuleSlot[] = [...courseData.modules];
-  let editingModule: string | null = null;
+  let arcs: Arc[] = [...courseData.arcs];
+  let expandedArcId: string | null = null;
+  let editingModuleId: string | null = null;
 
   onMount(async () => {
     await generateCourseStructure();
@@ -36,6 +37,19 @@
           cohortSize: courseData.learners.cohortSize,
           structure: courseData.structure,
           learnerExperience: courseData.learners.experience,
+          arcs: arcs.map(arc => ({
+            order: arc.order,
+            title: arc.title,
+            description: arc.description,
+            theme: arc.theme,
+            durationWeeks: arc.durationWeeks,
+            modules: arc.modules.length > 0 ? arc.modules.map(m => ({
+              order: m.order,
+              title: m.title,
+              description: m.description,
+              durationWeeks: m.durationWeeks
+            })) : undefined
+          })),
           supportingDocuments: [],
           enableResearch: true,
         }),
@@ -54,21 +68,43 @@
       courseNarrative = result.courseNarrative || "";
       progressionNarrative = result.progressionNarrative || "";
 
-      // Merge AI-generated data with existing module slots
-      modules = modules.map((module) => {
-        const aiModule = result.modules.find((m: any) => m.order === module.order);
-        if (aiModule) {
+      // Merge AI-generated data with existing arc structure
+      arcs = arcs.map((arc) => {
+        const aiArc = result.arcs.find((a: any) => a.order === arc.order);
+        if (aiArc) {
           return {
-            ...module,
-            title: aiModule.title || module.title,
-            description: aiModule.description || module.description,
-            durationWeeks: aiModule.suggestedDurationWeeks || module.durationWeeks,
-            learningObjectives: aiModule.learningObjectives || [],
-            keyTopics: aiModule.keyTopics || [],
+            ...arc,
+            title: aiArc.title || arc.title,
+            description: aiArc.description || arc.description,
+            theme: aiArc.theme || arc.theme,
+            durationWeeks: aiArc.suggestedDurationWeeks || arc.durationWeeks,
+            arcThemeNarrative: aiArc.arcThemeNarrative || '',
+            arcProgressionNarrative: aiArc.arcProgressionNarrative || '',
+            modules: aiArc.modules.map((aiModule: any) => {
+              // Try to find corresponding existing module
+              const existingModule = arc.modules.find(m => m.order === aiModule.order);
+              return {
+                id: existingModule?.id || crypto.randomUUID(),
+                arcId: arc.id,
+                order: aiModule.order,
+                title: aiModule.title,
+                description: aiModule.description,
+                durationWeeks: aiModule.suggestedDurationWeeks,
+                status: existingModule?.status || 'planned' as const,
+                learningObjectives: aiModule.learningObjectives || [],
+                keyTopics: aiModule.keyTopics || []
+              };
+            })
           };
         }
-        return module;
+        return arc;
       });
+
+      // Expand first arc by default
+      if (arcs.length > 0) {
+        expandedArcId = arcs[0].id;
+      }
+
     } catch (err) {
       console.error("Course structure generation failed:", err);
       error = err instanceof Error ? err.message : "Unknown error occurred";
@@ -78,7 +114,7 @@
   }
 
   function handleSubmit() {
-    dispatch("submit", { modules, courseNarrative, progressionNarrative });
+    dispatch("submit", { arcs, courseNarrative, progressionNarrative });
   }
 
   function handleBack() {
@@ -89,37 +125,43 @@
     generateCourseStructure();
   }
 
-  function toggleEditModule(moduleId: string) {
-    editingModule = editingModule === moduleId ? null : moduleId;
+  function toggleArcExpanded(arcId: string) {
+    expandedArcId = expandedArcId === arcId ? null : arcId;
   }
 
-  function addObjective(moduleIndex: number) {
-    modules[moduleIndex].learningObjectives = [
-      ...(modules[moduleIndex].learningObjectives || []),
+  function toggleEditModule(moduleId: string) {
+    editingModuleId = editingModuleId === moduleId ? null : moduleId;
+  }
+
+  function addObjective(arcIndex: number, moduleIndex: number) {
+    arcs[arcIndex].modules[moduleIndex].learningObjectives = [
+      ...(arcs[arcIndex].modules[moduleIndex].learningObjectives || []),
       "",
     ];
+    arcs = [...arcs]; // Trigger reactivity
   }
 
-  function removeObjective(moduleIndex: number, objIndex: number) {
-    if (modules[moduleIndex].learningObjectives) {
-      modules[moduleIndex].learningObjectives = modules[moduleIndex].learningObjectives!.filter(
-        (_, i) => i !== objIndex
-      );
+  function removeObjective(arcIndex: number, moduleIndex: number, objIndex: number) {
+    if (arcs[arcIndex].modules[moduleIndex].learningObjectives) {
+      arcs[arcIndex].modules[moduleIndex].learningObjectives =
+        arcs[arcIndex].modules[moduleIndex].learningObjectives!.filter((_, i) => i !== objIndex);
+      arcs = [...arcs];
     }
   }
 
-  function addTopic(moduleIndex: number) {
-    modules[moduleIndex].keyTopics = [
-      ...(modules[moduleIndex].keyTopics || []),
+  function addTopic(arcIndex: number, moduleIndex: number) {
+    arcs[arcIndex].modules[moduleIndex].keyTopics = [
+      ...(arcs[arcIndex].modules[moduleIndex].keyTopics || []),
       "",
     ];
+    arcs = [...arcs];
   }
 
-  function removeTopic(moduleIndex: number, topicIndex: number) {
-    if (modules[moduleIndex].keyTopics) {
-      modules[moduleIndex].keyTopics = modules[moduleIndex].keyTopics!.filter(
-        (_, i) => i !== topicIndex
-      );
+  function removeTopic(arcIndex: number, moduleIndex: number, topicIndex: number) {
+    if (arcs[arcIndex].modules[moduleIndex].keyTopics) {
+      arcs[arcIndex].modules[moduleIndex].keyTopics =
+        arcs[arcIndex].modules[moduleIndex].keyTopics!.filter((_, i) => i !== topicIndex);
+      arcs = [...arcs];
     }
   }
 </script>
@@ -129,8 +171,8 @@
     <div class="loading-state">
       <div class="spinner"></div>
       <h2>Generating Course Structure...</h2>
-      <p>Claude is analyzing your course requirements and creating detailed module outlines.</p>
-      <p class="loading-hint">This may take 30-60 seconds.</p>
+      <p>Claude is analyzing your arc-based course structure and creating detailed module outlines.</p>
+      <p class="loading-hint">This may take 30-90 seconds.</p>
     </div>
   {:else if error}
     <div class="error-state">
@@ -142,7 +184,7 @@
           🔄 Retry Generation
         </button>
         <button type="button" class="back-btn" on:click={handleBack}>
-          ← Back to Planning
+          ← Back to Module Planning
         </button>
       </div>
     </div>
@@ -150,7 +192,7 @@
     <div class="review-header">
       <h2>Course Structure Review</h2>
       <p class="description">
-        Review and refine the AI-generated course structure. You can edit any field before proceeding.
+        Review and refine the AI-generated course structure with arcs and modules. You can edit any field before proceeding.
       </p>
       <button type="button" class="regenerate-btn" on:click={handleRegenerate}>
         🔄 Regenerate Structure
@@ -168,148 +210,224 @@
       </div>
     </section>
 
-    <section class="modules-section">
-      <h3>Module Details ({modules.length} modules)</h3>
+    <section class="arcs-section">
+      <h3>Arc & Module Structure ({arcs.length} arcs, {arcs.reduce((sum, arc) => sum + arc.modules.length, 0)} modules)</h3>
 
-      {#each modules as module, index (module.id)}
-        <div class="module-card">
-          <div class="module-header">
-            <div class="module-title-row">
-              <span class="module-number">Module {module.order}</span>
-              <h4>{module.title}</h4>
-              <span class="module-duration">{module.durationWeeks} week{module.durationWeeks !== 1 ? 's' : ''}</span>
+      {#each arcs as arc, arcIndex (arc.id)}
+        <div class="arc-container">
+          <div class="arc-header" on:click={() => toggleArcExpanded(arc.id)}>
+            <div class="arc-title-row">
+              <span class="arc-number">Arc {arc.order}</span>
+              <h4>{arc.title}</h4>
+              <span class="arc-meta">{arc.theme} • {arc.durationWeeks}w • {arc.modules.length}m</span>
             </div>
             <button
               type="button"
-              class="edit-toggle"
-              on:click={() => toggleEditModule(module.id)}
+              class="expand-toggle"
+              aria-label={expandedArcId === arc.id ? 'Collapse arc' : 'Expand arc'}
             >
-              {editingModule === module.id ? '✓ Done' : '✏️ Edit'}
+              {expandedArcId === arc.id ? '▼' : '▶'}
             </button>
           </div>
 
-          {#if editingModule === module.id}
-            <div class="module-edit">
-              <div class="field">
-                <label for="title-{module.id}">Module Title</label>
-                <input
-                  id="title-{module.id}"
-                  type="text"
-                  bind:value={module.title}
-                />
-              </div>
-
-              <div class="field">
-                <label for="description-{module.id}">Description</label>
-                <textarea
-                  id="description-{module.id}"
-                  rows="3"
-                  bind:value={module.description}
-                ></textarea>
-              </div>
-
-              <div class="field">
-                <label for="duration-{module.id}">Duration (weeks)</label>
-                <input
-                  id="duration-{module.id}"
-                  type="number"
-                  min="1"
-                  max={courseData.logistics.totalWeeks}
-                  bind:value={module.durationWeeks}
-                />
-              </div>
-
-              <div class="field">
-                <label>
-                  Learning Objectives
-                  <button
-                    type="button"
-                    class="add-item-btn"
-                    on:click={() => addObjective(index)}
-                  >
-                    + Add
-                  </button>
-                </label>
-                {#if module.learningObjectives && module.learningObjectives.length > 0}
-                  {#each module.learningObjectives as objective, objIndex}
-                    <div class="list-item">
-                      <input
-                        type="text"
-                        bind:value={module.learningObjectives[objIndex]}
-                        placeholder="Learning objective..."
-                      />
-                      <button
-                        type="button"
-                        class="remove-item-btn"
-                        on:click={() => removeObjective(index, objIndex)}
-                      >
-                        ×
-                      </button>
-                    </div>
-                  {/each}
-                {:else}
-                  <p class="empty-list">No objectives yet. Click "+ Add" to create one.</p>
-                {/if}
-              </div>
-
-              <div class="field">
-                <label>
-                  Key Topics
-                  <button
-                    type="button"
-                    class="add-item-btn"
-                    on:click={() => addTopic(index)}
-                  >
-                    + Add
-                  </button>
-                </label>
-                {#if module.keyTopics && module.keyTopics.length > 0}
-                  {#each module.keyTopics as topic, topicIndex}
-                    <div class="list-item">
-                      <input
-                        type="text"
-                        bind:value={module.keyTopics[topicIndex]}
-                        placeholder="Key topic..."
-                      />
-                      <button
-                        type="button"
-                        class="remove-item-btn"
-                        on:click={() => removeTopic(index, topicIndex)}
-                      >
-                        ×
-                      </button>
-                    </div>
-                  {/each}
-                {:else}
-                  <p class="empty-list">No topics yet. Click "+ Add" to create one.</p>
-                {/if}
-              </div>
-            </div>
-          {:else}
-            <div class="module-summary">
-              <p class="module-description">{module.description}</p>
-
-              {#if module.learningObjectives && module.learningObjectives.length > 0}
-                <div class="objectives-preview">
-                  <strong>Learning Objectives:</strong>
-                  <ul>
-                    {#each module.learningObjectives as objective}
-                      <li>{objective}</li>
-                    {/each}
-                  </ul>
+          {#if expandedArcId === arc.id}
+            <div class="arc-content">
+              <div class="arc-info-edit">
+                <div class="field">
+                  <label for="arc-title-{arc.id}">Arc Title</label>
+                  <input
+                    id="arc-title-{arc.id}"
+                    type="text"
+                    bind:value={arc.title}
+                  />
                 </div>
-              {/if}
 
-              {#if module.keyTopics && module.keyTopics.length > 0}
-                <div class="topics-preview">
-                  <strong>Key Topics:</strong>
-                  <div class="topic-tags">
-                    {#each module.keyTopics as topic}
-                      <span class="topic-tag">{topic}</span>
-                    {/each}
+                <div class="field">
+                  <label for="arc-theme-{arc.id}">Theme</label>
+                  <input
+                    id="arc-theme-{arc.id}"
+                    type="text"
+                    bind:value={arc.theme}
+                  />
+                </div>
+
+                <div class="field full-width">
+                  <label for="arc-desc-{arc.id}">Arc Description</label>
+                  <textarea
+                    id="arc-desc-{arc.id}"
+                    rows="2"
+                    bind:value={arc.description}
+                  ></textarea>
+                </div>
+
+                <div class="field full-width">
+                  <label for="arc-theme-narrative-{arc.id}">Arc Theme Narrative</label>
+                  <textarea
+                    id="arc-theme-narrative-{arc.id}"
+                    rows="3"
+                    bind:value={arc.arcThemeNarrative}
+                    placeholder="Explain the thematic focus of this arc..."
+                  ></textarea>
+                </div>
+
+                <div class="field full-width">
+                  <label for="arc-progression-{arc.id}">Arc Progression Narrative</label>
+                  <textarea
+                    id="arc-progression-{arc.id}"
+                    rows="3"
+                    bind:value={arc.arcProgressionNarrative}
+                    placeholder="Explain how modules within this arc build on each other..."
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="modules-in-arc">
+                <h5>Modules in {arc.title}</h5>
+
+                {#each arc.modules as module, moduleIndex (module.id)}
+                  <div class="module-card">
+                    <div class="module-header">
+                      <div class="module-title-row">
+                        <span class="module-number">Module {module.order}</span>
+                        <h6>{module.title}</h6>
+                        <span class="module-duration">{module.durationWeeks} week{module.durationWeeks !== 1 ? 's' : ''}</span>
+                      </div>
+                      <button
+                        type="button"
+                        class="edit-toggle"
+                        on:click={() => toggleEditModule(module.id)}
+                      >
+                        {editingModuleId === module.id ? '✓ Done' : '✏️ Edit'}
+                      </button>
+                    </div>
+
+                    {#if editingModuleId === module.id}
+                      <div class="module-edit">
+                        <div class="field">
+                          <label for="title-{module.id}">Module Title</label>
+                          <input
+                            id="title-{module.id}"
+                            type="text"
+                            bind:value={module.title}
+                          />
+                        </div>
+
+                        <div class="field">
+                          <label for="description-{module.id}">Description</label>
+                          <textarea
+                            id="description-{module.id}"
+                            rows="3"
+                            bind:value={module.description}
+                          ></textarea>
+                        </div>
+
+                        <div class="field">
+                          <label for="duration-{module.id}">Duration (weeks)</label>
+                          <input
+                            id="duration-{module.id}"
+                            type="number"
+                            min="1"
+                            max={arc.durationWeeks}
+                            bind:value={module.durationWeeks}
+                          />
+                        </div>
+
+                        <div class="field">
+                          <label>
+                            Learning Objectives
+                            <button
+                              type="button"
+                              class="add-item-btn"
+                              on:click={() => addObjective(arcIndex, moduleIndex)}
+                            >
+                              + Add
+                            </button>
+                          </label>
+                          {#if module.learningObjectives && module.learningObjectives.length > 0}
+                            {#each module.learningObjectives as objective, objIndex}
+                              <div class="list-item">
+                                <input
+                                  type="text"
+                                  bind:value={module.learningObjectives[objIndex]}
+                                  placeholder="Learning objective..."
+                                />
+                                <button
+                                  type="button"
+                                  class="remove-item-btn"
+                                  on:click={() => removeObjective(arcIndex, moduleIndex, objIndex)}
+                                >
+                                  ×
+                                </button>
+                              </div>
+                            {/each}
+                          {:else}
+                            <p class="empty-list">No objectives yet. Click "+ Add" to create one.</p>
+                          {/if}
+                        </div>
+
+                        <div class="field">
+                          <label>
+                            Key Topics
+                            <button
+                              type="button"
+                              class="add-item-btn"
+                              on:click={() => addTopic(arcIndex, moduleIndex)}
+                            >
+                              + Add
+                            </button>
+                          </label>
+                          {#if module.keyTopics && module.keyTopics.length > 0}
+                            {#each module.keyTopics as topic, topicIndex}
+                              <div class="list-item">
+                                <input
+                                  type="text"
+                                  bind:value={module.keyTopics[topicIndex]}
+                                  placeholder="Key topic..."
+                                />
+                                <button
+                                  type="button"
+                                  class="remove-item-btn"
+                                  on:click={() => removeTopic(arcIndex, moduleIndex, topicIndex)}
+                                >
+                                  ×
+                                </button>
+                              </div>
+                            {/each}
+                          {:else}
+                            <p class="empty-list">No topics yet. Click "+ Add" to create one.</p>
+                          {/if}
+                        </div>
+                      </div>
+                    {:else}
+                      <div class="module-summary">
+                        <p class="module-description">{module.description}</p>
+
+                        {#if module.learningObjectives && module.learningObjectives.length > 0}
+                          <div class="objectives-preview">
+                            <strong>Learning Objectives:</strong>
+                            <ul>
+                              {#each module.learningObjectives as objective}
+                                <li>{objective}</li>
+                              {/each}
+                            </ul>
+                          </div>
+                        {/if}
+
+                        {#if module.keyTopics && module.keyTopics.length > 0}
+                          <div class="topics-preview">
+                            <strong>Key Topics:</strong>
+                            <div class="topic-tags">
+                              {#each module.keyTopics as topic}
+                                <span class="topic-tag">{topic}</span>
+                              {/each}
+                            </div>
+                          </div>
+                        {/if}
+                      </div>
+                    {/if}
                   </div>
-                </div>
-              {/if}
+                {/each}
+              </div>
             </div>
           {/if}
         </div>
@@ -317,12 +435,12 @@
     </section>
 
     <section class="narrative-section">
-      <h3>Progression Narrative</h3>
+      <h3>Progression Narrative (How Arcs Connect)</h3>
       <div class="narrative-content">
         <textarea
           bind:value={progressionNarrative}
           rows="5"
-          placeholder="How modules connect and build on each other..."
+          placeholder="How arcs connect across the course..."
         ></textarea>
       </div>
     </section>
@@ -340,7 +458,7 @@
 
 <style>
   .structure-review {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
   }
 
@@ -354,7 +472,7 @@
     width: 60px;
     height: 60px;
     border: 4px solid #e9ecef;
-    border-top-color: #28a745;
+    border-top-color: #0066cc;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 0 auto 2rem;
@@ -494,12 +612,12 @@
 
   .narrative-content textarea:focus {
     outline: none;
-    border-color: #28a745;
-    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+    border-color: #0066cc;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
   }
 
-  /* Modules Section */
-  .modules-section {
+  /* Arcs Section */
+  .arcs-section {
     background: white;
     border-radius: 8px;
     padding: 2rem;
@@ -507,7 +625,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
 
-  .modules-section h3 {
+  .arcs-section h3 {
     margin: 0 0 1.5rem 0;
     color: #333;
     font-size: 1.25rem;
@@ -515,13 +633,105 @@
     border-bottom: 2px solid #e9ecef;
   }
 
-  /* Module Cards */
-  .module-card {
+  /* Arc Container */
+  .arc-container {
     background: #f8f9fa;
     border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border: 2px solid #e9ecef;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+
+  .arc-container:hover {
+    border-color: #0066cc;
+  }
+
+  .arc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    cursor: pointer;
+    background: white;
+    transition: background 0.2s;
+  }
+
+  .arc-header:hover {
+    background: #f8fbff;
+  }
+
+  .arc-title-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+  }
+
+  .arc-number {
+    font-weight: 700;
+    color: #0066cc;
+    font-size: 0.9rem;
+    background: #e7f3ff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+  }
+
+  .arc-header h4 {
+    margin: 0;
+    color: #333;
+    font-size: 1.2rem;
+    flex: 1;
+  }
+
+  .arc-meta {
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .expand-toggle {
+    background: none;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+
+  .expand-toggle:hover {
+    background: #e9ecef;
+  }
+
+  .arc-content {
+    padding: 1.5rem;
+    border-top: 2px solid #dee2e6;
+  }
+
+  .arc-info-edit {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .modules-in-arc h5 {
+    margin: 0 0 1rem 0;
+    color: #495057;
+    font-size: 1.1rem;
+  }
+
+  /* Module Cards */
+  .module-card {
+    background: white;
+    border-radius: 6px;
     padding: 1.5rem;
     margin-bottom: 1rem;
-    border: 2px solid #e9ecef;
+    border: 2px solid #dee2e6;
     transition: all 0.2s;
   }
 
@@ -546,25 +756,22 @@
   .module-number {
     font-weight: 700;
     color: #28a745;
-    font-size: 0.9rem;
-    background: white;
+    font-size: 0.85rem;
+    background: #f0fff4;
     padding: 0.25rem 0.75rem;
     border-radius: 4px;
   }
 
-  .module-header h4 {
+  .module-header h6 {
     margin: 0;
     color: #333;
-    font-size: 1.1rem;
+    font-size: 1rem;
     flex: 1;
   }
 
   .module-duration {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #666;
-    background: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
   }
 
   .edit-toggle {
@@ -585,7 +792,7 @@
   /* Module Summary View */
   .module-summary {
     padding: 1rem;
-    background: white;
+    background: #f8f9fa;
     border-radius: 6px;
   }
 
@@ -637,12 +844,16 @@
   /* Module Edit View */
   .module-edit {
     padding: 1rem;
-    background: white;
+    background: #f8f9fa;
     border-radius: 6px;
   }
 
   .field {
     margin-bottom: 1.5rem;
+  }
+
+  .field.full-width {
+    grid-column: 1 / -1;
   }
 
   .field:last-child {
@@ -787,8 +998,12 @@
       margin-top: 1rem;
     }
 
-    .module-title-row {
+    .arc-title-row {
       flex-wrap: wrap;
+    }
+
+    .arc-info-edit {
+      grid-template-columns: 1fr;
     }
 
     .actions {

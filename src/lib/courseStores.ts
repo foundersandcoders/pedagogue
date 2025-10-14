@@ -1,5 +1,5 @@
 import { writable, derived } from 'svelte/store';
-import type { CourseData, ModuleSlot } from './types/course';
+import type { CourseData, ModuleSlot, Arc } from './types/course';
 
 /**
  * Svelte stores for course generation workflow
@@ -8,7 +8,7 @@ import type { CourseData, ModuleSlot } from './types/course';
 // Current course being worked on
 export const currentCourse = writable<CourseData | null>(null);
 
-// Current step in course workflow (1-5)
+// Current step in course workflow (1-6: Config → Arc Planning → Module Planning → Structure Review → Generation → Export)
 export const courseWorkflowStep = writable<number>(1);
 
 // List of saved courses (loaded from localStorage)
@@ -17,12 +17,24 @@ export const savedCourses = writable<CourseData[]>([]);
 // Track which module is currently being generated
 export const activeModuleGeneration = writable<string | null>(null);
 
-// Derived store - total weeks used by all modules
+// Derived store - total weeks used by all arcs
+export const totalArcWeeks = derived(
+	currentCourse,
+	($currentCourse) => {
+		if (!$currentCourse) return 0;
+		return $currentCourse.arcs.reduce((sum, arc) => sum + arc.durationWeeks, 0);
+	}
+);
+
+// Derived store - total weeks used by all modules (across all arcs)
 export const totalModuleWeeks = derived(
 	currentCourse,
 	($currentCourse) => {
 		if (!$currentCourse) return 0;
-		return $currentCourse.modules.reduce((sum, module) => sum + module.durationWeeks, 0);
+		return $currentCourse.arcs.reduce((arcSum, arc) => {
+			const arcModuleWeeks = arc.modules.reduce((modSum, module) => modSum + module.durationWeeks, 0);
+			return arcSum + arcModuleWeeks;
+		}, 0);
 	}
 );
 
@@ -30,12 +42,14 @@ export const totalModuleWeeks = derived(
 export const allModulesComplete = derived(
 	currentCourse,
 	($currentCourse) => {
-		if (!$currentCourse || $currentCourse.modules.length === 0) return false;
-		return $currentCourse.modules.every(module => module.status === 'complete');
+		if (!$currentCourse || $currentCourse.arcs.length === 0) return false;
+		return $currentCourse.arcs.every(arc =>
+			arc.modules.length > 0 && arc.modules.every(module => module.status === 'complete')
+		);
 	}
 );
 
-// Derived store - count modules by status
+// Derived store - count modules by status (across all arcs)
 export const moduleStatusCounts = derived(
 	currentCourse,
 	($currentCourse) => {
@@ -43,12 +57,25 @@ export const moduleStatusCounts = derived(
 			return { planned: 0, generating: 0, complete: 0, error: 0 };
 		}
 
-		return $currentCourse.modules.reduce((counts, module) => {
+		const allModules = $currentCourse.arcs.flatMap(arc => arc.modules);
+		return allModules.reduce((counts, module) => {
 			counts[module.status]++;
 			return counts;
 		}, { planned: 0, generating: 0, complete: 0, error: 0 } as Record<ModuleSlot['status'], number>);
 	}
 );
+
+// Derived store - get modules by arc ID
+export function modulesByArc(arcId: string) {
+	return derived(
+		currentCourse,
+		($currentCourse) => {
+			if (!$currentCourse) return [];
+			const arc = $currentCourse.arcs.find(a => a.id === arcId);
+			return arc?.modules || [];
+		}
+	);
+}
 
 // Initialize a new course
 export function initializeCourse(partial: Partial<CourseData>): CourseData {
@@ -71,7 +98,7 @@ export function initializeCourse(partial: Partial<CourseData>): CourseData {
 			}
 		},
 		structure: partial.structure || 'peer-led',
-		modules: partial.modules || [],
+		arcs: partial.arcs || [],
 		createdAt: new Date(),
 		updatedAt: new Date()
 	};
@@ -101,14 +128,41 @@ if (typeof window !== 'undefined') {
 		const saved = localStorage.getItem('currentCourse');
 		if (saved) {
 			const parsed = JSON.parse(saved);
+
 			// Convert date strings back to Date objects
 			parsed.createdAt = new Date(parsed.createdAt);
 			parsed.updatedAt = new Date(parsed.updatedAt);
-			parsed.modules.forEach((module: ModuleSlot) => {
-				if (module.moduleData?.generatedAt) {
-					module.moduleData.generatedAt = new Date(module.moduleData.generatedAt);
-				}
-			});
+
+			// Backward compatibility: migrate old module-based structure to arc-based
+			if (parsed.modules && !parsed.arcs) {
+				console.log('Migrating old course structure to arc-based format');
+				parsed.arcs = [{
+					id: crypto.randomUUID(),
+					order: 1,
+					title: 'Main Course Content',
+					description: 'Migrated from previous module-only structure',
+					theme: 'General',
+					durationWeeks: parsed.modules.reduce((sum: number, m: ModuleSlot) => sum + m.durationWeeks, 0),
+					modules: parsed.modules.map((module: ModuleSlot, index: number) => ({
+						...module,
+						arcId: parsed.arcs[0].id,
+						order: index + 1
+					}))
+				}];
+				delete parsed.modules;
+			}
+
+			// Convert module dates
+			if (parsed.arcs) {
+				parsed.arcs.forEach((arc: Arc) => {
+					arc.modules.forEach((module: ModuleSlot) => {
+						if (module.moduleData?.generatedAt) {
+							module.moduleData.generatedAt = new Date(module.moduleData.generatedAt);
+						}
+					});
+				});
+			}
+
 			currentCourse.set(parsed);
 		}
 	} catch (e) {
@@ -120,10 +174,29 @@ if (typeof window !== 'undefined') {
 		const savedList = localStorage.getItem('savedCourses');
 		if (savedList) {
 			const parsed = JSON.parse(savedList);
-			// Convert date strings
+			// Convert date strings and migrate if needed
 			parsed.forEach((course: CourseData) => {
 				course.createdAt = new Date(course.createdAt);
 				course.updatedAt = new Date(course.updatedAt);
+
+				// Backward compatibility migration
+				if ((course as any).modules && !course.arcs) {
+					const modules = (course as any).modules;
+					course.arcs = [{
+						id: crypto.randomUUID(),
+						order: 1,
+						title: 'Main Course Content',
+						description: 'Migrated from previous module-only structure',
+						theme: 'General',
+						durationWeeks: modules.reduce((sum: number, m: ModuleSlot) => sum + m.durationWeeks, 0),
+						modules: modules.map((module: ModuleSlot, index: number) => ({
+							...module,
+							arcId: course.arcs[0].id,
+							order: index + 1
+						}))
+					}];
+					delete (course as any).modules;
+				}
 			});
 			savedCourses.set(parsed);
 		}
