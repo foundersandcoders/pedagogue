@@ -1,16 +1,18 @@
 # Pedagogue MVP: Implementation Priorities
 
-## Roadmap to MVP
+## CoBu (Course Builder) MVP
 
-### Critical Path (Do These First)
+### CoBu MVP: Critical Path (Do These First)
 
-#### 9. Intelligent Step Navigation ✅ COMPLETED
-- Automatic step advancement: step 1→2 triggers when all files uploaded successfully
-- Reactive navigation using `$: if ($canProceedToStep2 && $currentStep === 1)` pattern
-- Manual overrides: "Back to Files" and "Back to Context" buttons for navigation
-- Visual indicators: completed steps show with green checkmarks, active step highlighted
-- Success message replaces manual "Continue" button for clearer UX
-- **Why:** UX polish that makes the tool feel coherent.
+- [ ] This section of the plan needs to be created so that the developer can have oversight of the process
+
+### CoBu MVP: Miscellaneous Tasks
+
+---
+
+## MoGen (Module Generator) MVP
+
+### MoGen MVP: Critical Path (Do These First)
 
 #### 10. Implement Cascade Updates for Subsequent Modules
 - Not yet planned; refer to `./about-pedagogue.md` & `./executive-summary.md` then work with the user to implement this feature
@@ -21,17 +23,17 @@
 - "Clear session" button
 - **Why:** Production-ready reliability, but not blocking for initial functionality.
 
-### Other MVP Tasks
+### MoGen MVP: Miscellaneous Tasks
 
-#### Documentation
+#### MoGen Documentation
 - [x] Add instructions for including an Anthropic API key in `README.md`
 
-#### UI
+#### MoGen UI
 - [ ] Create a more interesting aesthetic
 - [ ] Add dark mode to UI
   - Should allow user to select light, dark or system
 
-#### Prompt & Schema
+#### MoGen Prompt & Schema
 - [x] Steer Claude towards better Twists
   - Added ProjectTwistGuidelines explaining twists as conceptual curveballs, not technical features
   - Included good examples: "The Helpful Saboteur", "The Unreliable Narrator", "The Contrarian", etc.
@@ -40,19 +42,29 @@
 - [x] Steer Claude away from "Facilitators should" phrases
   - Added guidance to write for LEARNERS, not facilitators (peer-led, self-directed approach)
 
-#### Module Generation
+#### MoGen Output
 - [x] Update files in `~/lib/schemas/` to match `~/src/data/templates/outputSchema.xml`
   - Updated schemaTemplate.ts to include missing <Importance> field in AdditionalSkills section
   - Ensures schema consistency between template and outputSchema.xml
 
-#### Export & Finalisation
+#### MoGen Export
 - [ ] Add boilerplate module text after generation
   - There are some instructional sections that stay constant between modules.
   - We can add them in between generation and download.
 
 ---
 
+## AtLAs (Atomic Learning Assembler) MVP
+
+> Coming soon, ignore for now
+
+---
+
 ## Beyond MVP
+
+### Beyond MVP: CoBu
+
+### Beyond MVP: MoGen
 - [ ] Comparison view (original vs. generated with diff)
 - [-] Update confidence scoring
 - [ ] Multiple generation variants
@@ -68,28 +80,30 @@
 
 ## Completed
 
-### 1. LangChain + Claude Integration
+### MoGen MVP: Critical Path Progress
+
+#### 1. LangChain + Claude Integration
 - Create API route: `src/routes/api/generate/+server.ts`
 - LangChain's `ChatAnthropic` for Claude integration
 - Structured output parsing for XML generation
 - SSE streaming for progress feedback
 - **Why first:** Nothing works without this. Literally decorative otherwise.
 
-### 2. Structured Input Interface
+#### 2. Structured Input Interface
 - Build `src/lib/StructuredInputForm.svelte`
 - Predefined fields per workflow step (date picker, multi-selects, text inputs)
 - Validation to prevent garbage inputs
 - **No chat interface** - this is purposeful data collection
 - **Why second:** Users need to provide context; forms enforce clarity better than chat.
 
-### 3. Deep Research Capability
+#### 3. Deep Research Capability
 - **THIS IS THE ENTIRE POINT OF THE APP**
 - LangChain tool integration (Brave Search or Tavily)
 - Extended thinking mode option
 - Research progress indicators
 - **Why critical:** Without current research, we're just reformatting existing modules. The whole reason this exists is curriculum relevance.
 
-### 4. Module Export with Schema Validation
+#### 4. Module Export with Schema Validation
 - Define output XML schema (distinct from input format)
 - LangChain's `StructuredOutputParser` for adherence
 - Download formatted XML
@@ -97,7 +111,7 @@
 - Schema validation before export
 - **Why fourth:** Output delivery completes the value loop.
 
-### 5. Modify the Export Schema to Meet My Requirements ✅ COMPLETED
+#### 5. Modify the Export Schema to Meet My Requirements ✅ COMPLETED
 - Implemented strict XML schema validation with automatic retry logic
 - Schema validator checks all cardinality requirements (min 3 objectives, min 5 research topics, etc.)
 - Automatic retry mechanism (max 3 attempts) with validation error feedback
@@ -120,7 +134,7 @@
 #### 7. Use LangChain's Streaming Functionality to Provide Richer Feedback During Generation
 - Not planned; work with the user to implement this feature
 
-### 8. Implement Changelog in Returned Modules ✅ COMPLETED
+#### 8. Implement Changelog in Returned Modules ✅ COMPLETED
 - Implemented comprehensive change tracking and provenance metadata
 - Schema includes GenerationInfo (timestamp, model, sources), Changelog (section-level changes with confidence scoring), and ProvenanceTracking (human review tracking, sections needing review)
 - ChangelogViewer.svelte component displays changes with color-coded confidence badges
@@ -130,3 +144,11 @@
 - Enables cascade pattern: AI updates with human oversight, tracking AI update count
 - See `docs/changelog-schema-design.md` for full technical details
 - **Why important:** Core feature for maintaining curriculum quality over time. Allows councils to quickly identify what changed and focus review time on low-confidence updates
+
+#### 9. Intelligent Step Navigation ✅ COMPLETED
+- Automatic step advancement: step 1→2 triggers when all files uploaded successfully
+- Reactive navigation using `$: if ($canProceedToStep2 && $currentStep === 1)` pattern
+- Manual overrides: "Back to Files" and "Back to Context" buttons for navigation
+- Visual indicators: completed steps show with green checkmarks, active step highlighted
+- Success message replaces manual "Continue" button for clearer UX
+- **Why:** UX polish that makes the tool feel coherent.
