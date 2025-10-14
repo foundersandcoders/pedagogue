@@ -4,56 +4,59 @@
 
 ### 1.1. CoBu MVP: Critical Path (Do These First)
 
-#### 1.1.4. Build ModuleGenerationList Component (Step 4)
+#### 1.1.7. Reimplement the Module Overview Generation Based on Thematic Arcs
+- Not yet planned; work with the user to define this task and execute it accordingly
+
+#### 1.1.7. Build ModuleGenerationList Component (Step 4)
 - Create `src/lib/course/ModuleGenerationList.svelte`
 - Display all modules from refined course structure
 - Module-by-module generation using existing module workflow
 - Track generation status per module (planned, generating, complete, error)
 - Allow regeneration of individual modules
 - Progress tracking across all modules
-- **Why fourth:** Orchestrates the actual content generation using existing proven module generator
+- **Why seventh:** Orchestrates the actual content generation using existing proven module generator
 
-#### 1.1.5. Create /api/course/module/generate Endpoint
+#### 1.1.8. Create /api/course/module/generate Endpoint
 - Create `src/routes/api/course/module/+server.ts`
 - Accept module data with course context
 - Call existing module generation logic with course-aware prompts
 - Return XML module spec
-- **Why fifth:** API layer for course-aware module generation
+- **Why eighth:** API layer for course-aware module generation
 
-#### 1.1.6. Extend /api/generate with Course Context
+#### 1.1.9. Extend /api/generate with Course Context
 - Modify existing `src/routes/api/generate/+server.ts`
 - Accept optional course context parameter
 - Include course narrative and progression in prompts when provided
 - Ensure backward compatibility with standalone module generation
-- **Why sixth:** Reuses existing module generation with course awareness
+- **Why ninth:** Reuses existing module generation with course awareness
 
-#### 1.1.7. Build CourseOverview Component (Step 5)
+#### 1.1.10. Build CourseOverview Component (Step 5)
 - Create `src/lib/course/CourseOverview.svelte`
 - Display complete course with all generated modules
 - Show course narratives and module summaries
 - Export functionality trigger
 - Final review interface
-- **Why seventh:** Final review and export interface
+- **Why tenth:** Final review and export interface
 
-#### 1.1.8. Add Course XML Schema and Validator
+#### 1.1.11. Add Course XML Schema and Validator
 - Define course-level XML schema wrapping multiple modules
 - Validation for complete course structure
 - Include course narratives and metadata
-- **Why eighth:** Ensures exported courses meet quality standards
+- **Why eleventh:** Ensures exported courses meet quality standards
 
-#### 1.1.9. Implement Export Functionality
+#### 1.1.12. Implement Export Functionality
 - XML export for complete course
 - PDF export option
 - Individual module file exports
 - Course metadata inclusion
-- **Why ninth:** Delivers the final product to users
+- **Why twelfth:** Delivers the final product to users
 
-#### 1.1.10. Add localStorage Persistence
+#### 1.1.13. Add localStorage Persistence
 - Auto-save course progress to localStorage
 - Restore course on page reload
 - "Clear course" functionality
 - Save/load multiple courses
-- **Why tenth:** Production-ready reliability for course creation workflow
+- **Why thirteenth:** Production-ready reliability for course creation workflow
 
 ### 1.2. CoBu MVP: Miscellaneous Tasks
 - [ ] Create a milestoning system in the structure outline (e.g. "by this module, users should be able to do `xyz`")
