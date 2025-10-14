@@ -23,6 +23,8 @@ export interface CourseData {
 	};
 	structure: 'facilitated' | 'peer-led';
 	modules: ModuleSlot[];
+	courseNarrative?: string; // AI-generated overall course narrative
+	progressionNarrative?: string; // AI-generated explanation of how modules connect
 	createdAt: Date;
 	updatedAt: Date;
 }

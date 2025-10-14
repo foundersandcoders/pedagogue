@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import CourseConfigForm from "$lib/course/CourseConfigForm.svelte";
   import ModuleStructurePlanner from "$lib/course/ModuleStructurePlanner.svelte";
+  import CourseStructureReview from "$lib/course/CourseStructureReview.svelte";
   import {
     currentCourse,
     courseWorkflowStep,
@@ -58,16 +59,30 @@
       modules,
     }));
 
-    // Move to next step
+    // Move to next step - Course Structure Review will auto-generate
     courseWorkflowStep.set(3);
-
-    // TODO: This will trigger course structure generation API call
-    console.log("Module structure submitted:", modules);
-    alert("Module structure saved! Course structure generation coming next.");
   }
 
   function handleModulePlannerBack() {
     courseWorkflowStep.set(1);
+  }
+
+  function handleStructureReviewSubmit(event) {
+    const { modules, courseNarrative, progressionNarrative } = event.detail;
+
+    // Update course with refined module data and narratives
+    currentCourse.update((course) => ({
+      ...course,
+      modules,
+      courseNarrative,
+      progressionNarrative,
+    }));
+
+    courseWorkflowStep.set(4);
+  }
+
+  function handleStructureReviewBack() {
+    courseWorkflowStep.set(2);
   }
 </script>
 
@@ -107,6 +122,12 @@
           courseData={$currentCourse}
           on:submit={handleModulePlannerSubmit}
           on:back={handleModulePlannerBack}
+        />
+      {:else if $courseWorkflowStep === 3 && $currentCourse}
+        <CourseStructureReview
+          courseData={$currentCourse}
+          on:submit={handleStructureReviewSubmit}
+          on:back={handleStructureReviewBack}
         />
       {:else}
         <section class="placeholder">
