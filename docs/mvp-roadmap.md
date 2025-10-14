@@ -3,10 +3,10 @@
 ## CoBu (Course Builder) MVP
 
 ### CoBu MVP: Critical Path (Do These First)
-
 - [ ] This section of the plan needs to be created so that the developer can have oversight of the process
 
 ### CoBu MVP: Miscellaneous Tasks
+- [ ] Create a milestoning system in the structure outline (e.g. by this module, users should be able to  `xyz`)
 
 ---
 
