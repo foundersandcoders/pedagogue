@@ -321,6 +321,8 @@ const AI_RESEARCH_DOMAINS = [
 	'newsletter.pragmaticengineer.com',
 	"simonwillison.net",
 	'sundeepteki.org/blog',
+	'writer.com/engineering',
+	'abnormal.ai/blog/category/engineering',
 	// Communities
 	'stackoverflow.com',
 	'news.ycombinator.com',
