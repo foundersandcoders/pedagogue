@@ -3,10 +3,13 @@
  */
 interface Course {
   name: string,
+  information: CourseInformation,
+  content: CourseContent
+}
+interface CourseInformation {
   narrative: string,
   props: CourseProps,
   cohort: Cohort,
-  content: CourseContent
 }
 interface CourseProps {
   metadata: Metadata,
@@ -77,13 +80,9 @@ interface CohortAssumptions {
   teamSize: number
 }
 
-/** ATOMS
+/** MOLECULES
  *
  */
-interface LearningObjective {
-  name: string,
-  description: string
-}
 interface Metadata {}
 interface Progression {
   narrative: string
@@ -99,7 +98,9 @@ interface Theme {
   name: string,
   narrative: string
 }
-interface Topic {
-  name: string,
-  description: string
-}
+
+/** ATOMS
+ *
+ */
+type LearningObjective = string;
+type Topic = string;

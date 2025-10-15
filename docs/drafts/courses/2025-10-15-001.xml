@@ -1,0 +1,893 @@
+<Course>
+  <CourseName>AI Engineering Apprenticeship (Draft 1)</CourseName>
+
+  <CourseInformation>
+  	<CourseNarrative>
+      The AI Engineering Apprenticeship takes experienced developers on a transformative 42-week journey from AI-curious practitioners to confident AI engineers capable of building production-ready intelligent systems. The course recognizes that modern AI engineering requires both breadth and depth: understanding how to effectively leverage large language models and AI-enhanced workflows while also grasping the underlying principles that make these systems work. Throughout the year, learners will progress from foundational prompt engineering and model integration to sophisticated agentic systems, knowledge engineering, and ultimately production deployment and optimization.
+      The course is structured around five thematic arcs that build technical sophistication while maintaining practical applicability. Early arcs focus on establishing core competencies in AI interaction patterns and development workflows, middle arcs explore advanced architectural patterns for agentic and knowledge-based systems, and later arcs synthesize these skills into production-ready applications through intensive project work. Each arc is designed to be thematically coherent while building on capabilities developed in previous phases, ensuring learners can immediately apply their growing expertise to real-world challenges in their current roles.
+  	</CourseNarrative>
+
+  	<CourseProps>
+  		<CourseMetadata />
+  		<CourseLogistics>
+  			<TotalArcs>5</TotalArcs>
+  			<TotalModules>18</TotalModules>
+  		</CourseLogistics>
+
+  		<CourseTemporal>
+  			<StartDate />
+  			<TotalWeeks>42</TotalWeeks>
+  			<DaysPerWeek>1</DaysPerWeek>
+  			<TotalDays>42</TotalDays>
+  			<EndDate />
+  		</CourseTemporal>
+  	</CourseProps>
+
+  	<Cohort>
+  		<CohortAssumptions>
+   			<AssumedCohortSize>20</AssumedCohortSize>
+   			<AssumedTeamSize>4</AssumedTeamSize>
+  		</CohortAssumptions>
+  	</Cohort>
+	</CourseInformation>
+
+	<CourseContent>
+		<CourseProgression>
+			<CourseProgressionNarrative>
+   	    The five arcs of the AI Engineering Apprenticeship create a carefully sequenced journey that builds both technical capability and practical judgment. The course begins with Foundations that establish core AI engineering skills applicable across all domains, then explores two sophisticated architectural patterns in parallel—Agentic Systems for autonomous task completion and Knowledge Systems for grounding AI in factual information. These middle arcs are thematically independent, allowing learners to develop deep expertise in distinct areas of AI engineering. The Production AI Systems arc then synthesizes these capabilities by addressing the operational concerns that separate prototypes from production systems: evaluation, observability, and optimization.
+    		The Capstone arc serves as both culmination and demonstration of mastery, requiring learners to integrate techniques from all previous arcs into a cohesive, production-ready application. This final phase transforms accumulated knowledge into practical competence through the challenges of real-world system building. Throughout the course, the facilitated structure enables peer learning, with experienced developers sharing insights from their domains while learning from each other's approaches to common challenges. By course end, learners will have transformed from AI-curious developers into confident AI engineers capable of architecting, building, and operating sophisticated AI systems in their professional contexts.
+			</CourseProgressionNarrative>
+		</CourseProgression>
+
+		<CourseArcs>
+			<Arc> <!-- ARC 1 -->
+				<ArcName>Foundations of AI Engineering</ArcName>
+
+				<ArcProps>
+				  <ArcMetadata />
+					<ArcLogistics>
+				    <TotalModules>4</TotalModules>
+					</ArcLogistics>
+
+					<ArcTemporal>
+						<StartDate />
+						<TotalWeeks>8</TotalWeeks>
+						<DaysPerWeek>1</DaysPerWeek>
+						<TotalDays>8</TotalDays>
+						<EndDate />
+					</ArcTemporal>
+				</ArcProps>
+
+				<ArcContent>
+					<ArcDescription>
+					  Establishing core competencies in AI model interaction, prompt engineering fundamentals, and integration patterns that form the foundation for all subsequent AI engineering work. Includes incorporating AI-assisted workflows in the development process.
+					</ArcDescription>
+
+					<ArcThemes>
+  					<ArcTheme>
+  						<ArcThemeName>Introduction to AI Engineering</ArcThemeName>
+  						<ArcThemeNarrative>
+                This arc establishes the foundational mindset and technical skills required for AI engineering, focusing on how developers interact with, integrate, and leverage AI models in their daily work. Learners will develop fluency in prompt engineering, understand model capabilities and limitations, and begin incorporating AI into their development workflows. The emphasis is on practical integration patterns and building intuition about when and how to apply AI solutions.
+  						</ArcThemeNarrative>
+  					</ArcTheme>
+					</ArcThemes>
+
+					<ArcProgression>
+						<ArcProgressionNarrative>
+						  The arc progresses from understanding AI model fundamentals and basic interaction patterns to sophisticated prompt engineering techniques, then to practical integration architectures, and finally to AI-enhanced development workflows. Each module builds technical depth while expanding the contexts in which learners can confidently apply AI, moving from controlled experimentation to production integration patterns. By the end, learners will have transformed their daily development practice to leverage AI as a core tool.
+						</ArcProgressionNarrative>
+					</ArcProgression>
+
+					<ArcModules>
+						<Module> <!-- 1.1. AI Models and Interaction Fundamentals -->
+							<ModuleName>AI Models and Interaction Fundamentals</ModuleName>
+
+							<ModuleProps>
+							  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks>2</Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays>2</TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+							</ModuleProps>
+
+							<ModuleContent>
+								<ModuleDescription>
+								  Introduction to large language models, their capabilities, limitations, and basic interaction patterns. Learners will develop mental models for how AI systems process information and generate responses, establishing the foundation for all subsequent AI engineering work. Hands-on experimentation with multiple model providers and APIs builds practical familiarity.
+								</ModuleDescription>
+
+								<ModuleLearningObjectives>
+  								<LearningObjective>Explain the architecture and capabilities of modern large language models including transformers and attention mechanisms</LearningObjective>
+  								<LearningObjective>Interact effectively with AI models through multiple interfaces (chat, API, SDK) and evaluate response quality</LearningObjective>
+  								<LearningObjective>Identify appropriate use cases for AI models based on their strengths and limitations</LearningObjective>
+  								<LearningObjective>Implement basic API calls to multiple AI providers (OpenAI, Anthropic, etc.) with proper authentication and error handling</LearningObjective>
+  								<LearningObjective>Analyze model outputs for quality, bias, and reliability in different contexts</LearningObjective>
+								</ModuleLearningObjectives>
+
+								<ModuleKeyTopics>
+  								<KeyTopic>Large Language Model architecture and capabilities</KeyTopic>
+  								<KeyTopic>Model providers and API ecosystems (OpenAI, Anthropic, Google, open-source)</KeyTopic>
+  								<KeyTopic>Tokenization, context windows, and generation parameters</KeyTopic>
+  								<KeyTopic>Model limitations, hallucinations, and failure modes</KeyTopic>
+  								<KeyTopic>Basic API integration patterns and SDKs</KeyTopic>
+  								<KeyTopic>Cost considerations and rate limiting</KeyTopic>
+								</ModuleKeyTopics>
+							</ModuleContent>
+						</Module>
+
+						<Module> <!-- 1.2. Prompt Engineering Mastery -->
+							<ModuleName>Prompt Engineering Mastery</ModuleName>
+
+							<ModuleProps>
+							  <ModuleMetadata />
+								<ModuleTemporal>
+                  <StartDate />
+                  <Weeks>2</Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays>2</TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+							</ModuleProps>
+
+							<ModuleContent>
+								<ModuleDescription>
+								  Deep dive into prompt engineering techniques that reliably elicit desired behaviors from AI models. Learners will master structured prompting, few-shot learning, chain-of-thought reasoning, and prompt optimization strategies. Emphasis on systematic experimentation and evaluation methodologies for prompt quality.
+								</ModuleDescription>
+
+								<ModuleLearningObjectives>
+									<LearningObjective>Design effective prompts using structured techniques including role-based, few-shot, and chain-of-thought prompting</LearningObjective>
+									<LearningObjective>Implement systematic prompt evaluation and iteration workflows to improve output quality</LearningObjective>
+									<LearningObjective>Apply advanced prompting patterns including self-consistency, tree-of-thought, and ReAct frameworks</LearningObjective>
+									<LearningObjective>Create reusable prompt templates with variable injection for common use cases</LearningObjective>
+									<LearningObjective>Evaluate and compare prompt performance across different models and contexts</LearningObjective>
+								</ModuleLearningObjectives>
+
+								<ModuleKeyTopics>
+									<KeyTopic>Prompt anatomy and structure (system, user, assistant roles)</KeyTopic>
+									<KeyTopic>Few-shot learning and in-context learning techniques</KeyTopic>
+									<KeyTopic>Chain-of-thought and reasoning prompts</KeyTopic>
+									<KeyTopic>Prompt optimization and A/B testing methodologies</KeyTopic>
+									<KeyTopic>Advanced patterns: ReAct, self-consistency, constitutional AI</KeyTopic>
+									<KeyTopic>Prompt injection vulnerabilities and defensive prompting</KeyTopic>
+								</ModuleKeyTopics>
+							</ModuleContent>
+						</Module>
+
+						<Module> <!-- 1.3. AI Integration Architectures -->
+							<ModuleName>AI Integration Architectures</ModuleName>
+
+							<ModuleProps>
+							  <ModuleMetadata />
+								<ModuleTemporal>
+                  <StartDate />
+                  <Weeks>2</Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays>2</TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+							</ModuleProps>
+
+							<ModuleContent>
+								<ModuleDescription>
+								  Practical patterns for integrating AI capabilities into existing applications and systems. Learners will explore architectural decisions around synchronous vs asynchronous processing, streaming responses, caching strategies, and fallback mechanisms. Focus on building robust, production-ready integrations that handle edge cases gracefully.
+								</ModuleDescription>
+
+								<ModuleLearningObjectives>
+									<LearningObjective>Design integration architectures that incorporate AI capabilities into existing application stacks</LearningObjective>
+									<LearningObjective>Implement streaming response patterns for improved user experience with long-running AI operations</LearningObjective>
+									<LearningObjective>Build robust error handling, retry logic, and fallback mechanisms for AI service failures</LearningObjective>
+									<LearningObjective>Apply caching strategies to optimize cost and latency for repeated or similar queries</LearningObjective>
+									<LearningObjective>Integrate AI capabilities with databases, APIs, and other backend services in a cohesive architecture</LearningObjective>
+								</ModuleLearningObjectives>
+
+								<ModuleKeyTopics>
+									<KeyTopic>Synchronous vs asynchronous AI processing patterns</KeyTopic>
+									<KeyTopic>Streaming responses and server-sent events</KeyTopic>
+									<KeyTopic>Caching strategies (semantic caching, result caching)</KeyTopic>
+									<KeyTopic>Error handling, timeouts, and circuit breakers</KeyTopic>
+									<KeyTopic>Queue-based architectures for AI workloads</KeyTopic>
+									<KeyTopic>API gateway patterns and rate limit management</KeyTopic>
+								</ModuleKeyTopics>
+							</ModuleContent>
+						</Module>
+
+						<Module> <!-- 1.4. AI-Enhanced Development Workflows -->
+							<ModuleName>AI-Enhanced Development Workflows</ModuleName>
+
+							<ModuleProps>
+							  <ModuleMetadata />
+								<ModuleTemporal>
+                  <StartDate />
+                  <Weeks>2</Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays>2</TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+							</ModuleProps>
+
+							<ModuleContent>
+								<ModuleDescription>
+								  Transforming the development process itself by incorporating AI assistants for code generation, review, testing, and documentation. Learners will establish effective workflows for pair programming with AI, automated code review, test generation, and documentation creation. Emphasis on maintaining code quality and developer agency while maximizing AI assistance.
+								</ModuleDescription>
+
+								<ModuleLearningObjectives>
+									<LearningObjective>Establish effective pair programming workflows with AI coding assistants (GitHub Copilot, Cursor, etc.)</LearningObjective>
+									<LearningObjective>Generate comprehensive test suites using AI assistance while maintaining test quality and coverage</LearningObjective>
+									<LearningObjective>Leverage AI for code review, refactoring suggestions, and technical debt identification</LearningObjective>
+									<LearningObjective>Automate documentation generation while ensuring accuracy and maintainability</LearningObjective>
+									<LearningObjective>Evaluate when AI assistance improves vs hinders development velocity and code quality</LearningObjective>
+								</ModuleLearningObjectives>
+
+								<ModuleKeyTopics>
+									<KeyTopic>AI-powered IDEs and coding assistants</KeyTopic>
+									<KeyTopic>Prompt engineering for code generation</KeyTopic>
+									<KeyTopic>AI-assisted test generation and test-driven development</KeyTopic>
+									<KeyTopic>Automated code review and refactoring suggestions</KeyTopic>
+									<KeyTopic>Documentation generation and maintenance</KeyTopic>
+									<KeyTopic>Best practices for maintaining code quality with AI assistance</KeyTopic>
+								</ModuleKeyTopics>
+							</ModuleContent>
+						</Module>
+					</ArcModules>
+				</ArcContent>
+			</Arc>
+
+			<Arc> <!-- ARC 2: AGENTIC SYSTEMS -->
+				<ArcName>Agentic Systems</ArcName>
+
+				<ArcProps>
+				  <ArcMetadata />
+					<ArcLogistics>
+				    <TotalModules>4</TotalModules>
+					</ArcLogistics>
+
+					<ArcTemporal>
+						<StartDate />
+						<TotalWeeks>8</TotalWeeks>
+						<DaysPerWeek>1</DaysPerWeek>
+						<TotalDays>8</TotalDays>
+						<EndDate />
+					</ArcTemporal>
+				</ArcProps>
+
+				<ArcContent>
+					<ArcDescription>
+					  Building autonomous and semi-autonomous AI agents that can plan, execute multi-step tasks, use tools, and interact with external systems. Learners will progress from simple tool-using agents to sophisticated multi-agent systems with memory and planning capabilities.
+					</ArcDescription>
+
+					<ArcThemes>
+  					<ArcTheme>
+  						<ArcThemeName>Agentic Systems</ArcThemeName>
+
+  						<ArcThemeNarrative>
+                This arc explores the frontier of AI engineering: building agents that can autonomously accomplish complex tasks through planning, tool use, and iterative problem-solving. Learners will understand the architectural patterns that enable agents to break down problems, select appropriate tools, and execute multi-step workflows with minimal human intervention. The focus shifts from direct model interaction to designing systems where AI agents act as autonomous problem-solvers.
+  						</ArcThemeNarrative>
+  					</ArcTheme>
+					</ArcThemes>
+
+					<ArcProgression>
+						<ArcProgressionNarrative>
+						  The arc begins with foundational concepts of tool use and function calling, enabling models to interact with external systems. It then progresses to planning and reasoning frameworks that allow agents to decompose complex tasks, followed by memory systems that enable stateful, context-aware interactions. Finally, learners explore multi-agent architectures where specialized agents collaborate to solve complex problems, building toward sophisticated agentic systems.
+						</ArcProgressionNarrative>
+					</ArcProgression>
+
+					<ArcModules>
+						<Module> <!-- MODULE 2.1 -->
+  						<ModuleName>
+
+  						</ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+  								<ModuleTemporal>
+                    <StartDate />
+                    <Weeks></Weeks>
+                    <DaysPerWeek>1</DaysPerWeek>
+                    <TotalDays></TotalDays>
+                    <EndDate />
+                  </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+  							<ModuleDescription>
+
+  							</ModuleDescription>
+
+  							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+  							</ModuleLearningObjectives>
+
+  							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+  							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+
+						<Module> <!-- MODULE 2.2 -->
+  						<ModuleName>
+
+  						</ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+								<ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+    				</Module>
+
+						<Module> <!-- MODULE 2.3 -->
+						  <ModuleName>
+
+  						</ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+    				</Module>
+
+						<Module> <!-- MODULE 2.4 -->
+						  <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+					</ArcModules>
+				</ArcContent>
+			</Arc>
+
+			<Arc> <!-- ARC 3: KNOWLEDGE SYSTEMS -->
+				<ArcName>Knowledge Systems</ArcName>
+
+				<ArcProps>
+				  <ArcMetadata />
+					<ArcLogistics>
+				    <TotalModules>4</TotalModules>
+					</ArcLogistics>
+
+					<ArcTemporal>
+						<StartDate />
+						<TotalWeeks>8</TotalWeeks>
+						<DaysPerWeek>1</DaysPerWeek>
+						<TotalDays>8</TotalDays>
+						<EndDate />
+					</ArcTemporal>
+				</ArcProps>
+
+				<ArcContent>
+					<ArcDescription>
+					  Building systems that effectively store, retrieve, and reason over large knowledge bases using embeddings, vector databases, and retrieval-augmented generation (RAG). Learners will master the full lifecycle of knowledge engineering from ingestion to intelligent retrieval.
+					</ArcDescription>
+
+					<ArcThemes>
+  					<ArcTheme>
+  						<ArcThemeName>Knowledge Engineering</ArcThemeName>
+
+  						<ArcThemeNarrative>
+                This arc focuses on enabling AI systems to access and reason over vast amounts of domain-specific knowledge through retrieval-augmented generation and knowledge base engineering. Learners will master the technical stack for transforming unstructured data into queryable knowledge systems, from embedding generation to sophisticated retrieval strategies. The emphasis is on building systems that ground AI responses in factual information while maintaining performance at scale.
+  						</ArcThemeNarrative>
+  					</ArcTheme>
+					</ArcThemes>
+
+					<ArcProgression>
+						<ArcProgressionNarrative>
+						  The arc begins with embeddings and vector similarity as the foundation for semantic search, then progresses to building complete RAG pipelines with document ingestion and retrieval. It advances to sophisticated retrieval strategies that improve accuracy and relevance, and culminates in graph-based knowledge systems that capture relationships and enable complex reasoning. Each module adds layers of sophistication to how systems store, access, and leverage knowledge.
+						</ArcProgressionNarrative>
+					</ArcProgression>
+
+					<ArcModules>
+						<Module> <!-- MODULE 3.1 -->
+						  <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+
+						<Module> <!-- MODULE 3.2 -->
+				      <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+
+						<Module> <!-- MODULE 3.3 -->
+				      <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+
+						<Module> <!-- MODULE 3.4 -->
+						  <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+					</ArcModules>
+				</ArcContent>
+			</Arc>
+
+			<Arc> <!-- ARC 4: PRODUCTION SYSTEMS -->
+				<ArcName>Production AI Systems</ArcName>
+
+				<ArcProps>
+				  <ArcMetadata />
+					<ArcLogistics>
+				    <TotalModules>3</TotalModules>
+					</ArcLogistics>
+
+					<ArcTemporal>
+						<StartDate />
+						<TotalWeeks>9</TotalWeeks>
+						<DaysPerWeek>1</DaysPerWeek>
+						<TotalDays>9</TotalDays>
+						<EndDate />
+					</ArcTemporal>
+				</ArcProps>
+
+				<ArcContent>
+					<ArcDescription>
+					  Synthesizing all learned techniques to build production-ready AI applications with focus on evaluation, observability, optimization, and deployment. Learners will master the operational aspects of running AI systems at scale with reliability and cost-effectiveness.
+					</ArcDescription>
+
+					<ArcThemes>
+  					<ArcTheme>
+  						<ArcThemeName>Production Engineering and Optimization</ArcThemeName>
+
+  						<ArcThemeNarrative>
+                This arc bridges the gap between prototype AI systems and production-ready applications by focusing on evaluation, monitoring, optimization, and operational excellence. Learners will develop the engineering discipline required to deploy AI systems that meet production standards for reliability, performance, cost, and safety. The emphasis shifts from building features to building systems that can be maintained, debugged, and improved over time.
+  						</ArcThemeNarrative>
+  					</ArcTheme>
+					</ArcThemes>
+
+					<ArcProgression>
+						<ArcProgressionNarrative>
+						  The arc progresses from establishing rigorous evaluation frameworks that measure AI system quality, to implementing comprehensive observability that enables debugging and improvement, and finally to optimization strategies that balance quality, cost, and latency. Each module addresses a critical gap between experimental AI systems and production deployments, ensuring learners can confidently operate AI applications at scale.
+						</ArcProgressionNarrative>
+					</ArcProgression>
+
+					<ArcModules>
+						<Module> <!-- MODULE 4.1 -->
+						  <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+
+						<Module> <!-- MODULE 4.2 -->
+						  <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+
+						<Module> <!-- MODULE 4.3 -->
+						  <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+					</ArcModules>
+				</ArcContent>
+			</Arc>
+
+			<Arc> <!-- ARC 5: CAPSTONE PROJECTS -->
+				<ArcName>Capstone Projects</ArcName>
+
+				<ArcProps>
+				  <ArcMetadata />
+					<ArcLogistics>
+				    <TotalModules>3</TotalModules>
+					</ArcLogistics>
+
+					<ArcTemporal>
+						<StartDate />
+						<TotalWeeks>9</TotalWeeks>
+						<DaysPerWeek>1</DaysPerWeek>
+						<TotalDays>9</TotalDays>
+						<EndDate />
+					</ArcTemporal>
+				</ArcProps>
+
+				<ArcContent>
+					<ArcDescription>
+					  Applying all learned techniques to design, build, and deploy a comprehensive AI application that demonstrates mastery of AI engineering principles. Learners will work through the complete lifecycle from requirements gathering to production deployment.
+					</ArcDescription>
+
+					<ArcThemes>
+  					<ArcTheme>
+  						<ArcThemeName>Combining the techniques of all the previous arcs</ArcThemeName>
+
+  						<ArcThemeNarrative>
+                The capstone arc provides learners with the opportunity to synthesize all techniques learned throughout the course into a single, production-ready AI application. Working individually or in small teams, learners will navigate the full product development lifecycle including requirements analysis, architecture design, implementation, evaluation, and deployment. This arc emphasizes real-world constraints, trade-offs, and the integration challenges that arise when combining multiple AI techniques into cohesive systems.
+  						</ArcThemeNarrative>
+  					</ArcTheme>
+					</ArcThemes>
+
+					<ArcProgression>
+						<ArcProgressionNarrative>
+						  The capstone progresses through three major phases: planning and architecture where learners define requirements and design their systems, implementation and iteration where they build and refine their applications based on evaluation results, and deployment and presentation where they launch their systems and demonstrate their capabilities. Each phase builds on the previous one, with regular check-ins and peer feedback ensuring learners stay on track and learn from each other's approaches.
+						</ArcProgressionNarrative>
+					</ArcProgression>
+
+					<ArcModules>
+						<Module> <!-- MODULE 5.1 -->
+				      <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+
+						<Module> <!-- MODULE 5.2 -->
+				      <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+
+						<Module> <!-- MODULE 5.3 -->
+				      <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+  								<LearningObjective>
+
+  								</LearningObjective>
+   							</ModuleLearningObjectives>
+
+   							<ModuleKeyTopics>
+  								<KeyTopic>
+
+  								</KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+					</ArcModules>
+				</ArcContent>
+			</Arc>
+		</CourseArcs>
+	</CourseContent>
+</Course>

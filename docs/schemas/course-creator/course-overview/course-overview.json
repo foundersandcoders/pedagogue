@@ -1,24 +1,26 @@
 {
   "name": "",
-  "narrative": "",
-  "props": {
-    "metadata": {},
-    "logistics": {
-      "totalArcs": 0,
-      "totalModules": 0
+  "information": {
+    "narrative": "",
+    "props": {
+      "metadata": {},
+      "logistics": {
+        "totalArcs": 0,
+        "totalModules": 0
+      },
+      "temporal": {
+        "startDate": "",
+        "endDate": "",
+        "totalWeeks": 0,
+        "daysPerWeek": 0,
+        "totalDays": 0
+      }
     },
-    "temporal": {
-      "startDate": "",
-      "endDate": "",
-      "totalWeeks": 0,
-      "daysPerWeek": 0,
-      "totalDays": 0
-    }
-  },
-  "cohort": {
-    "assumptions": {
-      "cohortSize": 0,
-      "teamSize": 0
+    "cohort": {
+      "assumptions": {
+        "cohortSize": 0,
+        "teamSize": 0
+      }
     }
   },
   "content": {
@@ -68,16 +70,10 @@
               "content": {
                 "description": "",
                 "learningObjectives": [
-                  {
-                    "name": "",
-                    "description": ""
-                  }
+                  ""
                 ],
                 "keyTopics": [
-                  {
-                    "name": "",
-                    "description": ""
-                  }
+                  ""
                 ]
               }
             }
