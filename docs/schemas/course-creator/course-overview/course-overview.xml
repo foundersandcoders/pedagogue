@@ -1,0 +1,118 @@
+<Course>
+  <CourseName></CourseName>
+	<CourseNarrative></CourseNarrative>
+	
+	<CourseProps>
+		<CourseMetadata /> <!-- versioning -->
+		
+		<CourseLogistics>
+			<TotalArcs></TotalArcs>
+			<TotalModules></TotalModules>
+		</CourseLogistics>
+		
+		<CourseTemporal>
+			<StartDate></StartDate>
+			<TotalWeeks></TotalWeeks>
+			<DaysPerWeek></DaysPerWeek>
+			<TotalDays></TotalDays>
+			<EndDate></EndDate>
+		</CourseTemporal>
+	</CourseProps>
+	
+	<Cohort>
+  		<CohortAssumptions>
+  			<AssumedCohortSize></AssumedCohortSize>
+  			<AssumedTeamSize></AssumedTeamSize>
+  		</CohortAssumptions>
+	</Cohort>
+	
+	<CourseContent>
+		<CourseProgression>
+			<CourseProgressionNarrative>
+			</CourseProgressionNarrative>
+		</CourseProgression>
+		
+		<CourseArcs>
+			<Arc> <!-- Repeat for each Arc -->
+				<ArcName></ArcName>
+				
+				<ArcProps>
+				  <ArcMetadata>versioning info</ArcMetadata>
+					
+					<ArcLogistics>
+				    <TotalModules></TotalModules>
+					</ArcLogistics>
+					
+					<ArcTemporal>
+						<StartDate></StartDate>
+						<TotalWeeks></TotalWeeks>
+						<DaysPerWeek></DaysPerWeek>
+						<TotalDays></TotalDays>
+						<EndDate></EndDate>
+					</ArcTemporal>
+				</ArcProps>
+				
+				<ArcContent>
+					<ArcDescription>
+					</ArcDescription>
+					
+					<ArcThemes>
+  					<ArcTheme> <!-- repeat for each theme -->
+  						<ArcThemeName></ArcThemeName>
+  						
+  						<ArcThemeNarrative>
+  						</ArcThemeNarrative>
+  					</ArcTheme>
+					</ArcThemes>
+					
+					<ArcProgression>
+						<ArcProgressionNarrative>
+						</ArcProgressionNarrative>
+					</ArcProgression>
+					
+					<ArcModules>
+					  <!-- Repeat for each module -->
+						<Module>
+							<ModuleName></ModuleName>
+							
+							<ModuleProps>
+							  <ModuleMetadata>
+									<!-- versioning -->
+								</ModuleMetadata>
+								
+                <ModuleTemporal>
+                  <StartDate></StartDate>
+                  <Weeks></Weeks>
+                  <DaysPerWeek><!-- inherited from course --></DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate></EndDate>
+                </ModuleTemporal>
+							</ModuleProps>
+							
+							<ModuleContent>
+								<ModuleDescription>
+								</ModuleDescription>
+								
+								<ModuleLearningObjectives>
+								  <!-- Repeat for each learning objective -->
+									<LearningObjective>
+									  <Name></Name>
+										<Description></Description>
+									</LearningObjective>
+								</ModuleLearningObjectives>
+								
+								<ModuleKeyTopics>
+								  <!-- Repeat for each key topic -->
+									<KeyTopic>
+									  <Name></Name>
+										<Description></Description>
+									</KeyTopic>
+								</ModuleKeyTopics>
+							</ModuleContent>
+						</Module>
+					</ArcModules>
+				</ArcContent>
+			</Arc>
+		</CourseArcs>
+	</CourseContent>
+</Course>

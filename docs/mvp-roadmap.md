@@ -268,3 +268,8 @@
 - Visual indicators: completed steps show with green checkmarks, active step highlighted
 - Success message replaces manual "Continue" button for clearer UX
 - **Why:** UX polish that makes the tool feel coherent.
+
+---
+
+## 6. General Tasks
+- [ ] Steer Claude towards British English
