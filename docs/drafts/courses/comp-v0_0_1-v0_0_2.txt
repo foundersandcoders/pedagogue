@@ -1,0 +1,172 @@
+I'll compare the content of Arcs 1 & 2 between the two course drafts to identify the key differences.
+
+Arc 1: Foundations of AI Engineering
+
+High-Level Differences
+
+2025-10-15-001.xml (Original):
+- Theme: "Introduction to AI Engineering"
+- Focus: Establishing technical foundations with emphasis on model interaction, prompt engineering, integration architectures, and AI-enhanced development
+
+2025-10-17-002.xml (Revised):
+- Theme: Same - "Introduction to AI Engineering"
+- Focus: Shifted to workflow-first approach, starting with practical AI tools before diving into fundamentals
+
+Module-by-Module Comparison
+
+Arc 1, Module 1
+
+| Aspect              | 2025-10-15-001                                                          | 2025-10-17-002
+|---------------------|-------------------------------------------------------------------------|---------------
+| Title               | AI Models and Interaction Fundamentals                                  | AI-Enhanced Development Workflows
+| Focus               | Understanding LLM architecture, capabilities, and basic API calls       | Using AI coding assistants (Copilot, Cursor) in daily work
+| Approach            | Theory-first: Learn about AI models                                     | Practice-first: Use AI tools immediately
+| Learning Objectives | Explain architecture, interact with models via APIs, identify use cases | Integrate AI assistants, validate AI code, apply to testing/docs
+| Key Topics          | LLM architecture, tokenization, model limitations, API basics           | IDE integrations, prompt engineering for code, debugging, team practices
+
+Key Shift: From understanding models → to using AI tools productively from day 1
+
+Arc 1, Module 2
+
+| Aspect              | 2025-10-15-001                                                           | 2025-10-17-002
+|---------------------|--------------------------------------------------------------------------|---------------
+| Title               | Prompt Engineering Mastery                                               | Prompt Engineering and LLM Interaction
+| Focus               | Deep dive into advanced prompting techniques                             | Systematic prompt design with practical patterns
+| Scope               | Comprehensive: ReAct, self-consistency, constitutional AI                | Focused: Core patterns, few-shot, chain-of-thought
+| Learning Objectives | Includes "Create reusable prompt templates" and "Evaluate across models" | Similar but adds "Understand limitations and failure modes"
+| Tone                | "Mastery" - suggests advanced depth                                      | More balanced - systematic but not exhaustive
+
+Key Shift: From comprehensive mastery → to practical competency with emphasis on limitations
+
+Arc 1, Module 3
+
+| Aspect              | 2025-10-15-001                                              | 2025-10-17-002
+|---------------------|-------------------------------------------------------------|---------------
+| Title               | AI Integration Architectures                                | Machine Learning Fundamentals for AI Engineers
+| Focus               | Technical integration patterns (streaming, caching, queues) | Conceptual ML foundations (neural networks, training, evaluation)
+| Audience            | Engineers ready to architect systems                        | Engineers needing ML context to make informed decisions
+| Learning Objectives | Design integrations, implement streaming, build retry logic | Explain ML concepts, understand architectures, interpret metrics
+| Key Topics          | Sync/async patterns, caching strategies, circuit breakers   | Supervised/unsupervised learning, neural networks, overfitting
+
+Key Shift: From technical implementation patterns → to conceptual ML understanding
+
+Arc 1, Module 4
+
+| Aspect              | 2025-10-15-001                                         | 2025-10-17-002
+|---------------------|--------------------------------------------------------|---------------
+| Title               | AI-Enhanced Development Workflows                      | Working with AI APIs and SDKs
+| Focus               | Transforming dev process with AI assistants            | Practical API integration skills
+| Position            | End of arc (after integration knowledge)               | End of arc (after understanding fundamentals)
+| Learning Objectives | Pair programming with AI, test generation, code review | Integrate multiple providers, implement error handling, optimize costs
+| Key Topics          | AI IDEs, test generation, automated review             | Provider APIs, authentication, rate limiting, abstraction layers
+
+Key Shift: Swapped positions - workflows moved to Module 1, APIs moved to Module 4
+
+---
+Arc 2: Building AI-Powered Applications vs Agentic Systems
+
+Fundamental Restructuring
+
+2025-10-15-001.xml:
+- Arc Name: Agentic Systems
+- Theme: Building autonomous agents with tool use, planning, memory
+- Philosophy: Advanced architectural pattern - agents as autonomous problem-solvers
+
+2025-10-17-002.xml:
+- Arc Name: Building AI-Powered Applications
+- Theme: Application architecture and development practices
+- Philosophy: Engineering complete applications with AI as core feature
+
+Module-by-Module Comparison
+
+Arc 2, Module 1
+
+| Aspect              | 2025-10-15-001                                                    | 2025-10-17-002
+|---------------------|-------------------------------------------------------------------|---------------
+| Title               | Tool Use and Function Calling                                     | AI Application Architecture Patterns
+| Focus               | Enabling models to call functions and use tools                   | Structural patterns for AI applications
+| Approach            | Agent-centric: How AI agents interact with systems                | System-centric: How to architect AI applications
+| Learning Objectives | Implement function calling, design schemas, handle tool execution | Separate AI from business logic, queue processing, caching
+| Key Topics          | Function calling APIs, tool schemas, execution loops              | Microservices, queues, database design, observability
+
+Major Difference: Agent tool use → Application architecture foundations
+
+Arc 2, Module 2
+
+| Aspect              | 2025-10-15-001                                                  | 2025-10-17-002
+|---------------------|-----------------------------------------------------------------|---------------
+| Title               | Agent Planning and Reasoning                                    | Context Management and Conversation Design
+| Focus               | Planning frameworks for task decomposition                      | Managing conversational state and context
+| Paradigm            | Autonomous agents that plan and execute                         | Conversational AI with memory
+| Learning Objectives | Implement ReAct agents, plan-and-execute, task decomposition    | Manage conversation history, optimize context windows, build memory
+| Key Topics          | ReAct, task decomposition, agent frameworks (LangGraph, CrewAI) | Context window management, summarization, session persistence
+
+Major Difference: Agent autonomy and planning → Conversation state management
+
+Arc 2, Module 3
+
+| Aspect              | 2025-10-15-001                                                   | 2025-10-17-002
+|---------------------|------------------------------------------------------------------|---------------
+| Title               | Memory and State Management                                      | AI Agents and Tool Use
+| Focus               | Persistent memory for agents across interactions                 | Building agents that use tools and call functions
+| Scope               | Memory systems (conversation, semantic, episodic)                | Tool use + agent patterns
+| Learning Objectives | Implement memory systems, semantic retrieval, memory hierarchies | Function calling, tool schemas, agent frameworks, safety constraints
+| Key Topics          | Conversation memory, vector embeddings, experience replay        | Function calling, tool schemas, ReAct, agent frameworks
+
+Major Difference: Agents moved from Arc 2 Module 1 → Module 3, combined with tool use
+
+Arc 2, Module 4
+
+| Aspect              | 2025-10-15-001                                                    | 2025-10-17-002
+|---------------------|-------------------------------------------------------------------|---------------
+| Title               | Multi-Agent Systems                                               | UX Design and Testing for AI Features
+| Focus               | Coordinating multiple specialized agents                          | User experience patterns for AI features
+| Paradigm            | Advanced agentic architecture                                     | Product development and quality assurance
+| Learning Objectives | Design multi-agent systems, communication protocols, coordination | Design UI for AI, loading states, testing non-deterministic systems
+| Key Topics          | Supervisory agents, message passing, agent specialization         | UX patterns, managing expectations, evaluation frameworks
+
+Major Difference: Multi-agent coordination → UX and testing for AI products
+
+---
+Summary of Strategic Changes
+
+Arc 1 Philosophy Shift
+
+Original (2025-10-15-001): Theory → Practice progression
+1. Understand models first
+2. Master prompting
+3. Learn integration
+4. Apply to development
+
+Revised (2025-10-17-002): Practice → Theory progression
+1. Use AI tools immediately
+2. Learn prompting systematically
+3. Understand ML foundations
+4. Integrate APIs properly
+
+Arc 2 Complete Reframe
+
+Original (2025-10-15-001): Advanced agentic systems focus
+- Autonomous agents
+- Planning and reasoning
+- Memory systems
+- Multi-agent coordination
+- Audience: Engineers building sophisticated agent systems
+
+Revised (2025-10-17-002): Practical application development focus
+- Application architecture
+- Conversation management
+- Tool-using agents (simplified)
+- UX and testing
+- Audience: Engineers building complete AI products
+
+Key Pedagogical Changes
+
+1. Immediate Applicability: Revised version prioritizes tools learners can use from day 1
+2. Scaffolded Complexity: ML fundamentals now come after hands-on experience
+3. Product Focus: From AI-as-agent to AI-as-feature in broader applications
+4. Practical Scope: Agents are one module, not an entire arc's focus
+5. User-Centric: Added UX/testing module reflects product development reality
+
+The revised course appears designed for developers who want to build AI products, while the original was more oriented toward those building advanced AI
+systems.
