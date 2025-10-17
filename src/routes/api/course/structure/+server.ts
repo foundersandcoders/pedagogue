@@ -10,6 +10,45 @@ import type { CourseStructureGenerationRequest, CourseStructureGenerationRespons
  * Takes high-level course parameters and module skeleton, returns detailed structure
  */
 
+const AI_RESEARCH_DOMAINS = [
+	// AI Platforms
+	'anthropic.com',
+	'claude.ai',
+	'openai.com',
+	'deepmind.google',
+	'ai.google',
+	'microsoft.com',
+	'huggingface.co/blog',
+	// Docs
+	'js.langchain.com',
+	'python.langchain.com',
+	'modelcontextprotocol.io',
+	'docs.python.org',
+	// Resources (Software Dev)
+	'dev.to',
+	'github.com',
+	'medium.com',
+	'python.org',
+	// News & Analysis
+	'techcrunch.com',
+	'thenextweb.com',
+	'venturebeat.com',
+	// Blogs & Newsletters
+	'deepgains.substack.com',
+	'newsletter.pragmaticengineer.com',
+	"simonwillison.net",
+	'sundeepteki.org/blog',
+	'writer.com/engineering',
+	'abnormal.ai/blog/category/engineering',
+	// Communities
+	'stackoverflow.com',
+	'news.ycombinator.com',
+	// Academic & Research
+	'arxiv.org',
+	'acm.org',
+	'ieee.org',
+];
+
 export const POST: RequestHandler = async ({ request }) => {
 	const apiKey = env.ANTHROPIC_API_KEY;
 	if (!apiKey) {
@@ -30,7 +69,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		const prompt = buildCourseStructurePrompt(body);
 
 		// Initialize Claude
-		const model = new ChatAnthropic({
+		let model = new ChatAnthropic({
 			anthropicApiKey: apiKey,
 			modelName: 'claude-sonnet-4-5-20250929',
 			temperature: 0.7,
@@ -39,10 +78,12 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		// Add web search if enabled
 		if (body.enableResearch) {
-			model.bindTools([{
+			console.log('Enabling web research with trusted domains...');
+			model = model.bindTools([{
 				type: 'web_search_20250305',
 				name: 'web_search',
-				max_uses: 3
+				max_uses: 5,
+				allowed_domains: AI_RESEARCH_DOMAINS
 			}]);
 		}
 
@@ -86,6 +127,19 @@ function buildCourseStructurePrompt(data: CourseStructureGenerationRequest): str
 		? `\n\n<SupportingDocuments>\n${data.supportingDocuments.join('\n\n')}\n</SupportingDocuments>`
 		: '';
 
+	const researchInstructions = data.enableResearch
+		? `\n<ResearchInstructions>
+You have access to web search to find current, relevant information about:
+- Latest best practices and trends for the technologies and topics in this course
+- Current industry standards and tooling
+- Recent developments in AI and software development
+- Real-world examples and case studies
+
+Use web search to ensure the course structure is up-to-date and reflects current industry practice.
+Focus on reputable sources: vendor documentation, established tech publications, and academic sources.
+</ResearchInstructions>`
+		: '';
+
 	// Build arc structure description
 	let arcStructureSection = '';
 	if (data.arcs && data.arcs.length > 0) {
@@ -127,29 +181,34 @@ You are designing a course structure for a ${data.structure} ${data.totalWeeks}-
 </CourseDetails>
 ${supportingDocs}
 ${arcStructureSection}
+${researchInstructions}
 
 <Instructions>
 The course is organized using ARCS - thematic learning phases that group related modules.
 
 1. Generate a cohesive course narrative that explains the overall learning journey across all arcs
+${data.enableResearch ? '   - Use web search to validate that the course approach reflects current industry practice' : ''}
 
 2. For EACH ARC:
    - Generate an arcThemeNarrative explaining the thematic focus and what learners will explore
    - Generate an arcProgressionNarrative explaining how modules within THIS arc build on each other
    - If modules are provided, enhance them with detailed objectives and topics
    - If modules are NOT provided, intelligently break down the arc into 2-4 modules based on arc duration and theme
+${data.enableResearch ? '   - Use web search to ensure topics and technologies are current' : ''}
 
 3. For EACH MODULE (whether provided or generated):
    - Refined title (improve if needed, keep if good)
    - Rich description of what learners will focus on
    - 3-5 specific, measurable learning objectives
    - 4-6 key topics that will be covered
+${data.enableResearch ? '   - Use web search to validate learning objectives match current industry needs' : ''}
 
 4. Ensure:
    - Modules within each arc build on each other progressively
    - Arcs are thematically independent but temporally sequenced
    - Content complexity matches learners' experience levels
    - The ${data.structure} teaching structure is reflected in recommendations
+${data.enableResearch ? '   - All content reflects current best practices discovered through research' : ''}
 
 Format your response as a JSON object with this structure:
 {
