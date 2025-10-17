@@ -67,19 +67,19 @@
 							</ModuleProps>
 							<ModuleContent learning_objectives="5" key_topics="6" projects="0">
 								<ModuleLearningObjectives count="5">
-  								<LearningObjective order="">Explain the architecture and capabilities of modern large language models including transformers and attention mechanisms</LearningObjective>
-  								<LearningObjective order="">Interact effectively with AI models through multiple interfaces (chat, API, SDK) and evaluate response quality</LearningObjective>
-  								<LearningObjective order="">Identify appropriate use cases for AI models based on their strengths and limitations</LearningObjective>
-  								<LearningObjective order="">Implement basic API calls to multiple AI providers (OpenAI, Anthropic, etc.) with proper authentication and error handling</LearningObjective>
-  								<LearningObjective order="">Analyze model outputs for quality, bias, and reliability in different contexts</LearningObjective>
+  								<LearningObjective order="1">Explain the architecture and capabilities of modern large language models including transformers and attention mechanisms</LearningObjective>
+  								<LearningObjective order="2">Interact effectively with AI models through multiple interfaces (chat, API, SDK) and evaluate response quality</LearningObjective>
+  								<LearningObjective order="3">Identify appropriate use cases for AI models based on their strengths and limitations</LearningObjective>
+  								<LearningObjective order="4">Implement basic API calls to multiple AI providers (OpenAI, Anthropic, etc.) with proper authentication and error handling</LearningObjective>
+  								<LearningObjective order="5">Analyze model outputs for quality, bias, and reliability in different contexts</LearningObjective>
 								</ModuleLearningObjectives>
 								<ModuleKeyTopics count="6">
-  								<KeyTopic order="">Large Language Model architecture and capabilities</KeyTopic>
-  								<KeyTopic order="">Model providers and API ecosystems (OpenAI, Anthropic, Google, open-source)</KeyTopic>
-  								<KeyTopic order="">Tokenization, context windows, and generation parameters</KeyTopic>
-  								<KeyTopic order="">Model limitations, hallucinations, and failure modes</KeyTopic>
-  								<KeyTopic order="">Basic API integration patterns and SDKs</KeyTopic>
-  								<KeyTopic order="">Cost considerations and rate limiting</KeyTopic>
+  								<KeyTopic order="1">Large Language Model architecture and capabilities</KeyTopic>
+  								<KeyTopic order="2">Model providers and API ecosystems (OpenAI, Anthropic, Google, open-source)</KeyTopic>
+  								<KeyTopic order="3">Tokenization, context windows, and generation parameters</KeyTopic>
+  								<KeyTopic order="4">Model limitations, hallucinations, and failure modes</KeyTopic>
+  								<KeyTopic order="5">Basic API integration patterns and SDKs</KeyTopic>
+  								<KeyTopic order="6">Cost considerations and rate limiting</KeyTopic>
 								</ModuleKeyTopics>
 								<ModuleProjects count="0" /> <!-- not populated during phase 4 -->
 							</ModuleContent>
@@ -96,19 +96,19 @@
 							</ModuleProps>
 							<ModuleContent learning_objectives="5" key_topics="6" projects="0">
 								<ModuleLearningObjectives count="5">
-									<LearningObjective order="">Design effective prompts using structured techniques including role-based, few-shot, and chain-of-thought prompting</LearningObjective>
-									<LearningObjective order="">Implement systematic prompt evaluation and iteration workflows to improve output quality</LearningObjective>
-									<LearningObjective order="">Apply advanced prompting patterns including self-consistency, tree-of-thought, and ReAct frameworks</LearningObjective>
-									<LearningObjective order="">Create reusable prompt templates with variable injection for common use cases</LearningObjective>
-									<LearningObjective order="">Evaluate and compare prompt performance across different models and contexts</LearningObjective>
+									<LearningObjective order="1">Design effective prompts using structured techniques including role-based, few-shot, and chain-of-thought prompting</LearningObjective>
+									<LearningObjective order="2">Implement systematic prompt evaluation and iteration workflows to improve output quality</LearningObjective>
+									<LearningObjective order="3">Apply advanced prompting patterns including self-consistency, tree-of-thought, and ReAct frameworks</LearningObjective>
+									<LearningObjective order="4">Create reusable prompt templates with variable injection for common use cases</LearningObjective>
+									<LearningObjective order="5">Evaluate and compare prompt performance across different models and contexts</LearningObjective>
 								</ModuleLearningObjectives>
 								<ModuleKeyTopics count="6">
-									<KeyTopic order="">Prompt anatomy and structure (system, user, assistant roles)</KeyTopic>
-									<KeyTopic order="">Few-shot learning and in-context learning techniques</KeyTopic>
-									<KeyTopic order="">Chain-of-thought and reasoning prompts</KeyTopic>
-									<KeyTopic order="">Prompt optimization and A/B testing methodologies</KeyTopic>
-									<KeyTopic order="">Advanced patterns: ReAct, self-consistency, constitutional AI</KeyTopic>
-									<KeyTopic order="">Prompt injection vulnerabilities and defensive prompting</KeyTopic>
+									<KeyTopic order="1">Prompt anatomy and structure (system, user, assistant roles)</KeyTopic>
+									<KeyTopic order="2">Few-shot learning and in-context learning techniques</KeyTopic>
+									<KeyTopic order="3">Chain-of-thought and reasoning prompts</KeyTopic>
+									<KeyTopic order="4">Prompt optimization and A/B testing methodologies</KeyTopic>
+									<KeyTopic order="5">Advanced patterns: ReAct, self-consistency, constitutional AI</KeyTopic>
+									<KeyTopic order="6">Prompt injection vulnerabilities and defensive prompting</KeyTopic>
 								</ModuleKeyTopics>
 								<ModuleProjects count="0" /> <!-- not populated during phase 4 -->
 							</ModuleContent>
@@ -125,19 +125,19 @@
 							</ModuleProps>
 							<ModuleContent learning_objectives="5" key_topics="6" projects="0">
 								<ModuleLearningObjectives count="5">
-									<LearningObjective order="">Design integration architectures that incorporate AI capabilities into existing application stacks</LearningObjective>
-									<LearningObjective order="">Implement streaming response patterns for improved user experience with long-running AI operations</LearningObjective>
-									<LearningObjective order="">Build robust error handling, retry logic, and fallback mechanisms for AI service failures</LearningObjective>
-									<LearningObjective order="">Apply caching strategies to optimize cost and latency for repeated or similar queries</LearningObjective>
-									<LearningObjective order="">Integrate AI capabilities with databases, APIs, and other backend services in a cohesive architecture</LearningObjective>
+									<LearningObjective order="1">Design integration architectures that incorporate AI capabilities into existing application stacks</LearningObjective>
+									<LearningObjective order="2">Implement streaming response patterns for improved user experience with long-running AI operations</LearningObjective>
+									<LearningObjective order="3">Build robust error handling, retry logic, and fallback mechanisms for AI service failures</LearningObjective>
+									<LearningObjective order="4">Apply caching strategies to optimize cost and latency for repeated or similar queries</LearningObjective>
+									<LearningObjective order="5">Integrate AI capabilities with databases, APIs, and other backend services in a cohesive architecture</LearningObjective>
 								</ModuleLearningObjectives>
 								<ModuleKeyTopics count="6">
-									<KeyTopic order="">Synchronous vs asynchronous AI processing patterns</KeyTopic>
-									<KeyTopic order="">Streaming responses and server-sent events</KeyTopic>
-									<KeyTopic order="">Caching strategies (semantic caching, result caching)</KeyTopic>
-									<KeyTopic order="">Error handling, timeouts, and circuit breakers</KeyTopic>
-									<KeyTopic order="">Queue-based architectures for AI workloads</KeyTopic>
-									<KeyTopic order="">API gateway patterns and rate limit management</KeyTopic>
+									<KeyTopic order="1">Synchronous vs asynchronous AI processing patterns</KeyTopic>
+									<KeyTopic order="2">Streaming responses and server-sent events</KeyTopic>
+									<KeyTopic order="3">Caching strategies (semantic caching, result caching)</KeyTopic>
+									<KeyTopic order="4">Error handling, timeouts, and circuit breakers</KeyTopic>
+									<KeyTopic order="5">Queue-based architectures for AI workloads</KeyTopic>
+									<KeyTopic order="6">API gateway patterns and rate limit management</KeyTopic>
 								</ModuleKeyTopics>
 								<ModuleProjects count="0" /> <!-- not populated during phase 4 -->
 							</ModuleContent>
@@ -154,19 +154,19 @@
 							</ModuleProps>
 							<ModuleContent learning_objectives="5" key_topics="6" projects="0">
 								<ModuleLearningObjectives count="5">
-									<LearningObjective order="">Establish effective pair programming workflows with AI coding assistants (GitHub Copilot, Cursor, etc.)</LearningObjective>
-									<LearningObjective order="">Generate comprehensive test suites using AI assistance while maintaining test quality and coverage</LearningObjective>
-									<LearningObjective order="">Leverage AI for code review, refactoring suggestions, and technical debt identification</LearningObjective>
-									<LearningObjective order="">Automate documentation generation while ensuring accuracy and maintainability</LearningObjective>
-									<LearningObjective order="">Evaluate when AI assistance improves vs hinders development velocity and code quality</LearningObjective>
+									<LearningObjective order="1">Establish effective pair programming workflows with AI coding assistants (GitHub Copilot, Cursor, etc.)</LearningObjective>
+									<LearningObjective order="2">Generate comprehensive test suites using AI assistance while maintaining test quality and coverage</LearningObjective>
+									<LearningObjective order="3">Leverage AI for code review, refactoring suggestions, and technical debt identification</LearningObjective>
+									<LearningObjective order="4">Automate documentation generation while ensuring accuracy and maintainability</LearningObjective>
+									<LearningObjective order="5">Evaluate when AI assistance improves vs hinders development velocity and code quality</LearningObjective>
 								</ModuleLearningObjectives>
 								<ModuleKeyTopics count="6">
-									<KeyTopic order="">AI-powered IDEs and coding assistants</KeyTopic>
-									<KeyTopic order="">Prompt engineering for code generation</KeyTopic>
-									<KeyTopic order="">AI-assisted test generation and test-driven development</KeyTopic>
-									<KeyTopic order="">Automated code review and refactoring suggestions</KeyTopic>
-									<KeyTopic order="">Documentation generation and maintenance</KeyTopic>
-									<KeyTopic order="">Best practices for maintaining code quality with AI assistance</KeyTopic>
+									<KeyTopic order="1">AI-powered IDEs and coding assistants</KeyTopic>
+									<KeyTopic order="2">Prompt engineering for code generation</KeyTopic>
+									<KeyTopic order="3">AI-assisted test generation and test-driven development</KeyTopic>
+									<KeyTopic order="4">Automated code review and refactoring suggestions</KeyTopic>
+									<KeyTopic order="5">Documentation generation and maintenance</KeyTopic>
+									<KeyTopic order="6">Best practices for maintaining code quality with AI assistance</KeyTopic>
 								</ModuleKeyTopics>
 								<ModuleProjects count="0" /> <!-- not populated during phase 4 -->
 							</ModuleContent>
@@ -349,7 +349,7 @@
 				</ArcDescription>
 				<ArcProps>
 				  <ArcMetadata /><!-- placeholder for later implementation of versioning -->
-					<ArcLogistics modules="4" />
+					<ArcLogistics modules="3" />
 					<ArcTemporal weeks="9" days="9" start_date="" end_date="">
 					  <StartDate date=""/> <!-- optional -->
 						<EndDate date =""/> <!-- optional -->
@@ -358,7 +358,6 @@
 				<ArcContent modules="3" themes="1">
 					<Themes count="1">
   					<ArcTheme name="Production Engineering and Optimization">This arc bridges the gap between prototype AI systems and production-ready applications by focusing on evaluation, monitoring, optimization, and operational excellence. Learners will develop the engineering discipline required to deploy AI systems that meet production standards for reliability, performance, cost, and safety. The emphasis shifts from building features to building systems that can be maintained, debugged, and improved over time.</ArcTheme>
-  					</ArcTheme>
 					</Themes>
 					<ArcProgression>
 						<ArcProgressionNarrative>
@@ -378,7 +377,7 @@
 				</ArcDescription>
 				<ArcProps>
 				  <ArcMetadata /><!-- placeholder for later implementation of versioning -->
-					<ArcLogistics modules="4" />
+					<ArcLogistics modules="3" />
 					<ArcTemporal weeks="9" days="9" start_date="" end_date="">
 					  <StartDate date=""/> <!-- optional -->
 						<EndDate date =""/> <!-- optional -->
@@ -386,7 +385,7 @@
 				</ArcProps>
 				<ArcContent modules="3" themes="1">
 					<Themes count="1">
-  					<ArcTheme name="Combining the techniques of all the previous arcs">The capstone arc provides learners with the opportunity to synthesize all techniques learned throughout the course into a single, production-ready AI application. Working individually or in small teams, learners will navigate the full product development lifecycle including requirements analysis, architecture design, implementation, evaluation, and deployment. This arc emphasizes real-world constraints, trade-offs, and the integration challenges that arise when combining multiple AI techniques into cohesive systems.</ArcThemeNarrative></ArcTheme>
+  					<ArcTheme name="Combining the techniques of all the previous arcs">The capstone arc provides learners with the opportunity to synthesize all techniques learned throughout the course into a single, production-ready AI application. Working individually or in small teams, learners will navigate the full product development lifecycle including requirements analysis, architecture design, implementation, evaluation, and deployment. This arc emphasizes real-world constraints, trade-offs, and the integration challenges that arise when combining multiple AI techniques into cohesive systems.</ArcTheme>
 					</Themes>
 					<ArcProgression>
 						<ArcProgressionNarrative>The capstone progresses through three major phases: planning and architecture where learners define requirements and design their systems, implementation and iteration where they build and refine their applications based on evaluation results, and deployment and presentation where they launch their systems and demonstrate their capabilities. Each phase builds on the previous one, with regular check-ins and peer feedback ensuring learners stay on track and learn from each other's approaches.</ArcProgressionNarrative>
