@@ -1,4 +1,8 @@
 <Course>
+  <!-- I was only able to transcribe the following before the page reloaded and I lost the rest of the content
+    - overviews for arcs 1-5
+    - module details for arcs 1 & 2
+  -->
   <CourseName>AI Engineering Apprenticeship (Draft 1)</CourseName>
 
   <CourseInformation>
@@ -40,11 +44,12 @@
 		</CourseProgression>
 
 		<CourseArcs>
-			<Arc> <!-- ARC 1 -->
+			<Arc> <!-- ARC 1: FOUNDATIONS -->
 				<ArcName>Foundations of AI Engineering</ArcName>
 
 				<ArcProps>
 				  <ArcMetadata />
+
 					<ArcLogistics>
 				    <TotalModules>4</TotalModules>
 					</ArcLogistics>
@@ -240,6 +245,7 @@
 
 				<ArcProps>
 				  <ArcMetadata />
+
 					<ArcLogistics>
 				    <TotalModules>4</TotalModules>
 					</ArcLogistics>
@@ -275,82 +281,88 @@
 					</ArcProgression>
 
 					<ArcModules>
-						<Module> <!-- MODULE 2.1 -->
-  						<ModuleName>
-
-  						</ModuleName>
+						<!-- Module 2.1 --><Module>
+  						<ModuleName>Tool Use and Function Calling</ModuleName>
 
   						<ModuleProps>
-  						  <ModuleMetadata />
-
-  								<ModuleTemporal>
-                    <StartDate />
-                    <Weeks></Weeks>
-                    <DaysPerWeek>1</DaysPerWeek>
-                    <TotalDays></TotalDays>
-                    <EndDate />
-                  </ModuleTemporal>
+                <ModuleMetadata>
+                </ModuleMetadata>
+                
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks>2</Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays>2</TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
   						</ModuleProps>
 
   						<ModuleContent>
   							<ModuleDescription>
-
+                  Enabling AI models to interact with external systems through structured function calling and tool use patterns. Learners will implement function schemas, handle tool selection and execution, and build reliable tool-calling loops. Focus on creating robust interfaces between AI reasoning and external actions.
   							</ModuleDescription>
 
   							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+  								<LearningObjective>Implement function calling interfaces using OpenAI and Anthropic tool use APIs</LearningObjective>
+  								<LearningObjective>Design effective function schemas with clear descriptions, parameters, and validation rules</LearningObjective>
+  								<LearningObjective>Build tool execution loops that handle tool selection, parameter extraction, and result integration</LearningObjective>
+  								<LearningObjective>Create custom tools for database queries, API calls, file operations, and calculations</LearningObjective>
+  								<LearningObjective>Handle errors and edge cases in tool execution with appropriate fallback strategies</LearningObjective>
   							</ModuleLearningObjectives>
 
   							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+  								<KeyTopic>Function calling APIs and tool use patterns</KeyTopic>
+  								<KeyTopic>Function schema design and parameter specification</KeyTopic>
+  								<KeyTopic>Tool selection and execution loops</KeyTopic>
+  								<KeyTopic>Parallel tool calling and tool chaining</KeyTopic>
+  								<KeyTopic>Error handling in tool execution</KeyTopic>
+  								<KeyTopic>Building custom tool libraries and registries</KeyTopic>
   							</ModuleKeyTopics>
   						</ModuleContent>
 						</Module>
 
-						<Module> <!-- MODULE 2.2 -->
-  						<ModuleName>
-
-  						</ModuleName>
+						<!-- Module 2.2 --><Module>
+  						<ModuleName>Agent Planning and Reasoning</ModuleName>
 
   						<ModuleProps>
-  						  <ModuleMetadata />
-
-								<ModuleTemporal>
+                <ModuleMetadata>
+                </ModuleMetadata>
+                
+                <ModuleTemporal>
                   <StartDate />
-                  <Weeks></Weeks>
+                  <Weeks>2</Weeks>
                   <DaysPerWeek>1</DaysPerWeek>
-                  <TotalDays></TotalDays>
+                  <TotalDays>2</TotalDays>
                   <EndDate />
                 </ModuleTemporal>
   						</ModuleProps>
 
   						<ModuleContent>
    							<ModuleDescription>
-
+                  Implementing planning frameworks that enable agents to decompose complex tasks into executable steps. Learners will explore ReAct, plan-and-execute, and other reasoning patterns that allow agents to think through problems systematically. Emphasis on balancing autonomy with reliability and observability.
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective>Implement ReAct (Reasoning + Acting) agents that interleave thinking and action steps</LearningObjective>
+   								<LearningObjective>Build plan-and-execute agents that create task plans before execution</LearningObjective>
+   								<LearningObjective>Design observation and reflection loops that allow agents to learn from execution results</LearningObjective>
+   								<LearningObjective>Apply task decomposition strategies for breaking complex goals into manageable subtasks</LearningObjective>
+   								<LearningObjective>Implement guardrails and human-in-the-loop patterns for agent oversight</LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic>ReAct framework and reasoning traces</KeyTopic>
+   								<KeyTopic>Plan-and-execute architectures</KeyTopic>
+   								<KeyTopic>Task decomposition and subgoal generation</KeyTopic>
+   								<KeyTopic>Observation, reflection, and self-correction loops</KeyTopic>
+   								<KeyTopic>Agent frameworks (LangGraph, CrewAI, AutoGPT patterns)</KeyTopic>
+   								<KeyTopic>Human-in-the-loop and approval workflows</KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
     				</Module>
 
-						<Module> <!-- MODULE 2.3 -->
-						  <ModuleName>
-
-  						</ModuleName>
+						<!-- Module 2.3 --><Module>
+						  <ModuleName>Memory and State Management</ModuleName>
 
   						<ModuleProps>
   						  <ModuleMetadata />
@@ -366,25 +378,30 @@
 
   						<ModuleContent>
    							<ModuleDescription>
-
+                  Building agents with persistent memory that can maintain context across interactions and learn from past experiences. Learners will implement conversation memory, semantic memory retrieval, and episodic memory patterns. Focus on designing memory systems that scale while maintaining relevant context.
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective>Implement conversation memory systems that maintain context across multi-turn interactions</LearningObjective>
+   								<LearningObjective>Build semantic memory using vector databases for relevant information retrieval</LearningObjective>
+   								<LearningObjective>Design episodic memory patterns that store and retrieve past agent experiences</LearningObjective>
+   								<LearningObjective>Apply memory summarization and compression techniques for long-running agents</LearningObjective>
+   								<LearningObjective>Architect memory hierarchies that balance detail, relevance, and context window constraints</LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic>Conversation memory and context management</KeyTopic>
+   								<KeyTopic>Semantic memory with vector embeddings</KeyTopic>
+   								<KeyTopic>Episodic memory and experience replay</KeyTopic>
+   								<KeyTopic>Memory summarization and compression</KeyTopic>
+   								<KeyTopic>Memory retrieval strategies and relevance ranking</KeyTopic>
+   								<KeyTopic>State persistence and session management</KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
-    				</Module>
+            </Module>
 
-						<Module> <!-- MODULE 2.4 -->
-						  <ModuleName></ModuleName>
+						<!-- Module 2.4 --><Module>
+						  <ModuleName>Multi-Agent Systems</ModuleName>
 
   						<ModuleProps>
   						  <ModuleMetadata />
@@ -400,19 +417,24 @@
 
   						<ModuleContent>
    							<ModuleDescription>
-
+                  Architecting systems where multiple specialized agents collaborate to solve complex problems. Learners will design agent communication protocols, task delegation patterns, and coordination mechanisms. Emphasis on when multi-agent architectures provide value over single-agent systems and how to manage complexity.
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective>Design multi-agent architectures with specialized agents for distinct capabilities</LearningObjective>
+   								<LearningObjective>Implement agent communication protocols and message passing patterns</LearningObjective>
+   								<LearningObjective>Build coordination mechanisms including supervisory agents and democratic consensus</LearningObjective>
+   								<LearningObjective>Apply task delegation and routing strategies based on agent capabilities</LearningObjective>
+   								<LearningObjective>Evaluate trade-offs between single-agent and multi-agent approaches for different problem types</LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic>Multi-agent architecture patterns</KeyTopic>
+   								<KeyTopic>Agent communication protocols and message formats</KeyTopic>
+   								<KeyTopic>Supervisory agents and hierarchical coordination</KeyTopic>
+   								<KeyTopic>Democratic and consensus-based agent systems</KeyTopic>
+   								<KeyTopic>Task routing and agent specialization</KeyTopic>
+   								<KeyTopic>Debugging and observability in multi-agent systems</KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
 						</Module>
@@ -461,7 +483,7 @@
 
 					<ArcModules>
 						<Module> <!-- MODULE 3.1 -->
-						  <ModuleName></ModuleName>
+				      <ModuleName></ModuleName>
 
   						<ModuleProps>
   						  <ModuleMetadata />
@@ -477,25 +499,29 @@
 
   						<ModuleContent>
    							<ModuleDescription>
-
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
 						</Module>
 
 						<Module> <!-- MODULE 3.2 -->
-				      <ModuleName></ModuleName>
+              <ModuleName></ModuleName>
 
   						<ModuleProps>
   						  <ModuleMetadata />
@@ -511,24 +537,66 @@
 
   						<ModuleContent>
    							<ModuleDescription>
-
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
 						</Module>
 
 						<Module> <!-- MODULE 3.3 -->
+              <ModuleName></ModuleName>
+
+  						<ModuleProps>
+  						  <ModuleMetadata />
+
+                <ModuleTemporal>
+                  <StartDate />
+                  <Weeks></Weeks>
+                  <DaysPerWeek>1</DaysPerWeek>
+                  <TotalDays></TotalDays>
+                  <EndDate />
+                </ModuleTemporal>
+  						</ModuleProps>
+
+  						<ModuleContent>
+   							<ModuleDescription>
+   							</ModuleDescription>
+
+   							<ModuleLearningObjectives>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   							</ModuleLearningObjectives>
+ 
+   							<ModuleKeyTopics>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   							</ModuleKeyTopics>
+  						</ModuleContent>
+						</Module>
+
+						<Module> <!-- MODULE 3.4 -->
 				      <ModuleName></ModuleName>
 
   						<ModuleProps>
@@ -545,53 +613,23 @@
 
   						<ModuleContent>
    							<ModuleDescription>
-
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
-   							</ModuleKeyTopics>
-  						</ModuleContent>
-						</Module>
-
-						<Module> <!-- MODULE 3.4 -->
-						  <ModuleName></ModuleName>
-
-  						<ModuleProps>
-  						  <ModuleMetadata />
-
-                <ModuleTemporal>
-                  <StartDate />
-                  <Weeks></Weeks>
-                  <DaysPerWeek>1</DaysPerWeek>
-                  <TotalDays></TotalDays>
-                  <EndDate />
-                </ModuleTemporal>
-  						</ModuleProps>
-
-  						<ModuleContent>
-   							<ModuleDescription>
-
-   							</ModuleDescription>
-
-   							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
-   							</ModuleLearningObjectives>
-
-   							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
 						</Module>
@@ -640,7 +678,7 @@
 
 					<ArcModules>
 						<Module> <!-- MODULE 4.1 -->
-						  <ModuleName></ModuleName>
+				      <ModuleName></ModuleName>
 
   						<ModuleProps>
   						  <ModuleMetadata />
@@ -656,25 +694,29 @@
 
   						<ModuleContent>
    							<ModuleDescription>
-
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
 						</Module>
 
 						<Module> <!-- MODULE 4.2 -->
-						  <ModuleName></ModuleName>
+				      <ModuleName></ModuleName>
 
   						<ModuleProps>
   						  <ModuleMetadata />
@@ -690,25 +732,29 @@
 
   						<ModuleContent>
    							<ModuleDescription>
-
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
 						</Module>
 
 						<Module> <!-- MODULE 4.3 -->
-						  <ModuleName></ModuleName>
+				      <ModuleName></ModuleName>
 
   						<ModuleProps>
   						  <ModuleMetadata />
@@ -724,19 +770,23 @@
 
   						<ModuleContent>
    							<ModuleDescription>
-
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
 						</Module>
@@ -785,7 +835,7 @@
 
 					<ArcModules>
 						<Module> <!-- MODULE 5.1 -->
-				      <ModuleName></ModuleName>
+              <ModuleName></ModuleName>
 
   						<ModuleProps>
   						  <ModuleMetadata />
@@ -801,25 +851,29 @@
 
   						<ModuleContent>
    							<ModuleDescription>
-
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
 						</Module>
 
 						<Module> <!-- MODULE 5.2 -->
-				      <ModuleName></ModuleName>
+              <ModuleName></ModuleName>
 
   						<ModuleProps>
   						  <ModuleMetadata />
@@ -835,25 +889,29 @@
 
   						<ModuleContent>
    							<ModuleDescription>
-
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
 						</Module>
 
 						<Module> <!-- MODULE 5.3 -->
-				      <ModuleName></ModuleName>
+              <ModuleName></ModuleName>
 
   						<ModuleProps>
   						  <ModuleMetadata />
@@ -869,19 +927,23 @@
 
   						<ModuleContent>
    							<ModuleDescription>
-
    							</ModuleDescription>
 
    							<ModuleLearningObjectives>
-  								<LearningObjective>
-
-  								</LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
+   								<LearningObjective></LearningObjective>
    							</ModuleLearningObjectives>
-
+ 
    							<ModuleKeyTopics>
-  								<KeyTopic>
-
-  								</KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
+   								<KeyTopic></KeyTopic>
    							</ModuleKeyTopics>
   						</ModuleContent>
 						</Module>
