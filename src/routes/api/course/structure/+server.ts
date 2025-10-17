@@ -73,7 +73,8 @@ export const POST: RequestHandler = async ({ request }) => {
 			anthropicApiKey: apiKey,
 			modelName: 'claude-sonnet-4-5-20250929',
 			temperature: 0.7,
-			maxTokens: 8192
+			maxTokens: 16384, // Match module generation capacity for research-enhanced responses
+			timeout: 120000 // 2 minute timeout to accommodate web search operations
 		});
 
 		// Add web search if enabled
