@@ -1,7 +1,3 @@
-<!-- I was only able to transcribe the following before the page reloaded and I lost the rest of the content
-  1. overviews for arcs 1-5
-  2. module details for arcs 1 & 2
-  -->
 <Course name="AI Engineering Apprenticeship" doc_date="2025-10-14" doc_time="1546">
   <CourseProps arcs="5" modules="18" weeks="42" days="42">
     <CourseMetadata /><!-- placeholder for later implementation of versioning -->
