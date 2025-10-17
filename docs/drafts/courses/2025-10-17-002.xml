@@ -1,0 +1,696 @@
+<Course name="AI Engineering Apprenticeship" doc_date="2025-10-17" doc_time="1700">
+  <CourseProps arcs="5" modules="18" weeks="42" days="42">
+    <CourseMetadata /><!-- placeholder for later implementation of versioning -->
+ 		<CourseLogistics arcs="5" modules="18">
+ 			<TotalArcs>5</TotalArcs>
+ 			<TotalModules>18</TotalModules>
+ 		</CourseLogistics>
+ 		<CourseTemporal weeks="42" days="42" start_date="2026-01-14" end_date="">
+ 			<StartDate date="2026-01-14"/> <!-- optional -->
+ 			<TotalWeeks number="42"/>
+ 			<DaysPerWeek number="1"/>
+ 			<TotalDays number="42"/>
+ 			<EndDate date =""/> <!-- optional -->
+ 		</CourseTemporal>
+ 	</CourseProps>
+ 	<CohortProps learners="20" learners_type="assumed">
+		<CohortAssumptions learners="20">
+ 			<AssumedCohortSize>20</AssumedCohortSize>
+ 			<AssumedTeamSize>4</AssumedTeamSize>
+		</CohortAssumptions>
+ 	</CohortProps>
+  <CourseDescription paragraphs="2">
+    <DescriptionParagraph order="1">The AI Engineering Apprenticeship takes experienced developers on a transformative 42-week journey from AI consumers to AI builders. The course recognizes that modern AI engineering requires both practical implementation skills with frontier AI models and a foundational understanding of underlying machine learning principles. Learners progress from understanding AI fundamentals and prompt engineering, through building production-grade AI applications, to mastering advanced techniques like fine-tuning and RAG systems, culminating in a comprehensive capstone project that synthesizes their new expertise.</DescriptionParagraph>
+    <DescriptionParagraph order="2">This apprenticeship is structured around hands-on, project-based learning that respects participants&apos; existing software engineering experience while systematically building AI-specific competencies. Each arc introduces progressively sophisticated AI engineering challenges, moving from individual workflows and tools to complex system architecture and deployment. The facilitated structure ensures learners benefit from peer collaboration, code reviews, and guided exploration of rapidly evolving AI technologies, preparing them to lead AI initiatives within their organizations.</DescriptionParagraph>
+ 	</CourseDescription>
+	<CourseContent arcs="5" modules="18">
+		<CourseProgression paragraphs="2">
+			<ProgressionParagraph order="1">The AI Engineering Apprenticeship follows a carefully sequenced progression that builds from foundational skills through advanced techniques to comprehensive project execution. Arc 1 establishes essential competencies in AI-enhanced workflows and API integration that learners can immediately apply in their current roles. Arc 2 builds on this foundation by teaching application architecture and development patterns specific to AI systems, enabling participants to build complete features rather than just integrate APIs. Arc 3 introduces advanced techniques like RAG and fine-tuning that allow for sophisticated, domain-specific AI systems, while Arc 4 addresses the critical production concerns of deployment, monitoring, and responsible AI practices that distinguish prototype systems from enterprise-ready solutions.</ProgressionParagraph>
+			<ProgressionParagraph order="2">The capstone arc (Arc 5) provides the opportunity to synthesize all prior learning into a substantial project that demonstrates mastery across the full AI engineering lifecycle. Throughout the course, the facilitated structure enables peer learning, collaborative problem-solving, and exposure to diverse approaches and use cases from the cohort. By the conclusion, learners will have transformed from developers who use AI tools into AI engineers capable of architecting, building, and operating sophisticated AI-powered systems within their organizations.</ProgressionParagraph>
+		</CourseProgression>
+		<Arcs count="5">
+			<Arc order="1" name="Foundations of AI Engineering" modules="4" weeks="8">
+				<ArcDescription paragraphs="1">
+				  <DescriptionParagraph order="1">Establish core competencies in AI-enhanced development workflows, prompt engineering, and fundamental machine learning concepts that underpin modern AI systems.</DescriptionParagraph>
+				</ArcDescription>
+				<ArcProps>
+		      <ArcMetadata /><!-- placeholder for later implementation of versioning -->
+					<ArcLogistics modules="4" />
+					<ArcTemporal weeks="8" days="8" start_date="" end_date="">
+					  <StartDate date=""/><!-- optional -->
+						<EndDate date =""/><!-- optional -->
+					</ArcTemporal>
+				</ArcProps>
+				<ArcContent modules="4" themes="1">
+					<Themes count="1">
+  					<ArcTheme name="Introduction to AI Engineering" order="1">This foundational arc introduces learners to the AI engineering landscape, bridging their existing development expertise with AI-specific tools and methodologies. Participants explore how AI transforms the software development lifecycle while building essential skills in prompt engineering and understanding the machine learning foundations that power modern AI systems.</ArcTheme>
+					</Themes>
+					<ArcProgression>
+						<ArcProgressionNarrative>
+						  The arc begins with AI-enhanced development workflows that immediately impact daily productivity, then progresses to systematic prompt engineering techniques. Learners then explore the machine learning fundamentals necessary to understand model behavior, concluding with practical API integration skills that enable immediate application of AI capabilities in existing systems.
+						</ArcProgressionNarrative>
+					</ArcProgression>
+					<Modules count="4">
+						<Module in_arc="1" order="1" name="AI-Enhanced Development Workflows" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Explore how AI coding assistants, automated testing, and intelligent tooling transform the software development lifecycle. Learners establish best practices for leveraging AI tools while maintaining code quality, understanding when to trust AI suggestions, and integrating these tools into existing development processes.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Effectively integrate AI coding assistants (GitHub Copilot, Cursor, etc.) into daily development workflows</LearningObjective>
+  								<LearningObjective order="2">Evaluate and validate AI-generated code for correctness, security, and performance</LearningObjective>
+  								<LearningObjective order="3">Apply AI tools for automated testing, documentation generation, and code review</LearningObjective>
+  								<LearningObjective order="4">Establish team practices for responsible AI-assisted development</LearningObjective>
+  								<LearningObjective order="5">Measure productivity improvements while maintaining code quality standards</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">AI coding assistants and IDE integrations</KeyTopic>
+  								<KeyTopic order="2">Prompt engineering for code generation</KeyTopic>
+  								<KeyTopic order="3">AI-assisted debugging and refactoring</KeyTopic>
+  								<KeyTopic order="4">Automated test generation and documentation</KeyTopic>
+  								<KeyTopic order="5">Code quality validation and security considerations</KeyTopic>
+  								<KeyTopic order="6">Team collaboration with AI tools</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="1" order="2" name="Prompt Engineering and LLM Interaction" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Master systematic approaches to prompt design, understanding how to elicit desired behaviors from large language models. This module covers prompt patterns, few-shot learning, chain-of-thought reasoning, and techniques for improving consistency and reliability of LLM outputs.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Design effective prompts using established patterns and frameworks</LearningObjective>
+  								<LearningObjective order="2">Apply few-shot learning and chain-of-thought techniques to improve output quality</LearningObjective>
+  								<LearningObjective order="3">Implement prompt chaining and decomposition for complex tasks</LearningObjective>
+  								<LearningObjective order="4">Evaluate and iterate on prompt performance systematically</LearningObjective>
+  								<LearningObjective order="5">Understand limitations and failure modes of LLM-based systems</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">Prompt engineering fundamentals and best practices</KeyTopic>
+  								<KeyTopic order="2">Few-shot and zero-shot learning techniques</KeyTopic>
+  								<KeyTopic order="3">Chain-of-thought and reasoning frameworks</KeyTopic>
+  								<KeyTopic order="4">Prompt templates and systematic iteration</KeyTopic>
+  								<KeyTopic order="5">Output parsing and structured generation</KeyTopic>
+  								<KeyTopic order="6">Evaluation metrics for prompt effectiveness</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="1" order="3" name="Machine Learning Fundamentals for AI Engineers" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Build essential understanding of machine learning concepts that inform AI engineering decisions. This module demystifies neural networks, training processes, and model evaluation without requiring deep mathematical expertise, focusing on practical knowledge needed to work effectively with AI systems.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Explain core machine learning concepts including training, inference, and generalization</LearningObjective>
+  								<LearningObjective order="2">Understand neural network architectures and their applications to different problem types</LearningObjective>
+  								<LearningObjective order="3">Interpret model evaluation metrics and make informed decisions about model selection</LearningObjective>
+  								<LearningObjective order="4">Recognize common ML challenges including overfitting, bias, and data quality issues</LearningObjective>
+  								<LearningObjective order="5">Apply transfer learning concepts to leverage pre-trained models effectively</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">Supervised, unsupervised, and reinforcement learning paradigms</KeyTopic>
+  								<KeyTopic order="2">Neural network fundamentals and architectures</KeyTopic>
+  								<KeyTopic order="3">Training processes, loss functions, and optimization</KeyTopic>
+  								<KeyTopic order="4">Model evaluation and performance metrics</KeyTopic>
+  								<KeyTopic order="5">Overfitting, regularization, and generalization</KeyTopic>
+  								<KeyTopic order="6">Transfer learning and pre-trained models</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="1" order="4" name="Working with AI APIs and SDKs" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Develop practical skills for integrating AI capabilities into applications through APIs from OpenAI, Anthropic, Google, and other providers. Learners explore API design patterns, rate limiting, cost optimization, error handling, and building robust applications on top of AI services.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Integrate multiple AI provider APIs (OpenAI, Anthropic, Google, etc.) into applications</LearningObjective>
+  								<LearningObjective order="2">Implement robust error handling, retry logic, and fallback strategies</LearningObjective>
+  								<LearningObjective order="3">Optimize API usage for cost efficiency and performance</LearningObjective>
+  								<LearningObjective order="4">Design abstraction layers for provider-agnostic AI integration</LearningObjective>
+  								<LearningObjective order="5">Monitor and log AI API interactions for debugging and improvement</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">Major AI provider APIs and their capabilities</KeyTopic>
+  								<KeyTopic order="2">Authentication, rate limiting, and quota management</KeyTopic>
+  								<KeyTopic order="3">Streaming responses and asynchronous processing</KeyTopic>
+  								<KeyTopic order="4">Cost optimization and token management</KeyTopic>
+  								<KeyTopic order="5">Error handling and resilience patterns</KeyTopic>
+  								<KeyTopic order="6">API abstraction and multi-provider strategies</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+					</Modules>
+				</ArcContent>
+			</Arc>
+			<Arc order="2" name="Building AI-Powered Applications" modules="4" weeks="8">
+				<ArcDescription paragraphs="1">
+				  <DescriptionParagraph order="1">Progress from API integration to building complete AI-powered applications with proper architecture, state management, and user experience design for AI features.</DescriptionParagraph>
+				</ArcDescription>
+				<ArcProps>
+		      <ArcMetadata /><!-- placeholder for later implementation of versioning -->
+					<ArcLogistics modules="4" />
+					<ArcTemporal weeks="8" days="8" start_date="" end_date="">
+					  <StartDate date=""/><!-- optional -->
+						<EndDate date =""/><!-- optional -->
+					</ArcTemporal>
+				</ArcProps>
+				<ArcContent modules="4" themes="1">
+					<Themes count="1">
+  					<ArcTheme name="Application Architecture and Development" order="1">This arc focuses on the engineering practices required to build production-quality applications that incorporate AI as a core feature. Learners explore architectural patterns specific to AI applications, manage conversational state and context, and design user experiences that account for AI&apos;s probabilistic nature and potential failures.</ArcTheme>
+					</Themes>
+					<ArcProgression>
+						<ArcProgressionNarrative>
+						  Beginning with application architecture patterns, learners establish structural foundations for AI systems. The arc then addresses the unique challenges of managing conversational context and state in AI interactions, followed by specialized techniques for building AI agents with tool use. Finally, learners explore UX patterns and testing strategies specific to AI-powered features.
+						</ArcProgressionNarrative>
+					</ArcProgression>
+					<Modules count="4">
+						<Module in_arc="2" order="1" name="AI Application Architecture Patterns" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Explore architectural patterns for AI-powered applications, including microservices for AI features, queue-based processing, caching strategies, and separating AI logic from business logic. Learn to design systems that are maintainable, testable, and scalable as AI capabilities evolve.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Design application architectures that cleanly separate AI components from core business logic</LearningObjective>
+  								<LearningObjective order="2">Implement queue-based and asynchronous processing patterns for AI workloads</LearningObjective>
+  								<LearningObjective order="3">Apply caching strategies to optimize performance and reduce API costs</LearningObjective>
+  								<LearningObjective order="4">Build modular systems that accommodate multiple AI providers and models</LearningObjective>
+  								<LearningObjective order="5">Design for observability and debugging in AI-powered systems</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">Microservices and modular architecture for AI features</KeyTopic>
+  								<KeyTopic order="2">Queue-based processing and background jobs</KeyTopic>
+  								<KeyTopic order="3">Caching strategies for AI responses</KeyTopic>
+  								<KeyTopic order="4">Database design for AI application data</KeyTopic>
+  								<KeyTopic order="5">Configuration management for models and prompts</KeyTopic>
+  								<KeyTopic order="6">Logging, monitoring, and observability patterns</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="2" order="2" name="Context Management and Conversation Design" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Master techniques for managing conversational context, memory, and state in AI applications. This module covers conversation history management, context window optimization, summarization strategies, and designing multi-turn interactions that maintain coherence and relevance.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Implement effective conversation history management within token limits</LearningObjective>
+  								<LearningObjective order="2">Apply context window optimization techniques including summarization and selective retention</LearningObjective>
+  								<LearningObjective order="3">Design multi-turn conversational flows with appropriate state management</LearningObjective>
+  								<LearningObjective order="4">Build memory systems that retain relevant information across sessions</LearningObjective>
+  								<LearningObjective order="5">Handle context switching and topic management in extended conversations</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">Conversation history and context window management</KeyTopic>
+  								<KeyTopic order="2">Summarization techniques for long conversations</KeyTopic>
+  								<KeyTopic order="3">Memory systems and persistent context</KeyTopic>
+  								<KeyTopic order="4">Session management and state persistence</KeyTopic>
+  								<KeyTopic order="5">Context relevance scoring and pruning</KeyTopic>
+  								<KeyTopic order="6">Multi-turn conversation design patterns</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="2" order="3" name="AI Agents and Tool Use" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Build AI agents that can use tools, call functions, and interact with external systems. Learners explore function calling, tool selection strategies, agent frameworks, and patterns for creating autonomous systems that accomplish complex tasks through iterative reasoning and action.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Implement function calling and tool use with LLM APIs</LearningObjective>
+  								<LearningObjective order="2">Design tool schemas and descriptions that enable effective agent behavior</LearningObjective>
+  								<LearningObjective order="3">Build agents that chain multiple tool calls to accomplish complex tasks</LearningObjective>
+  								<LearningObjective order="4">Apply agent frameworks (LangChain, LlamaIndex, etc.) appropriately</LearningObjective>
+  								<LearningObjective order="5">Implement safety constraints and validation for agent actions</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">Function calling and structured outputs</KeyTopic>
+  								<KeyTopic order="2">Tool schema design and documentation</KeyTopic>
+  								<KeyTopic order="3">Agent reasoning patterns (ReAct, Plan-and-Execute)</KeyTopic>
+  								<KeyTopic order="4">Agent frameworks and orchestration tools</KeyTopic>
+  								<KeyTopic order="5">Error recovery and retry strategies for agents</KeyTopic>
+  								<KeyTopic order="6">Safety constraints and action validation</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="2" order="4" name="UX Design and Testing for AI Features" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Explore user experience patterns specific to AI-powered features, including handling uncertainty, managing user expectations, and designing for AI failures. Learn testing strategies for non-deterministic systems, including evaluation frameworks and human-in-the-loop validation.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Design user interfaces that appropriately communicate AI capabilities and limitations</LearningObjective>
+  								<LearningObjective order="2">Implement progressive disclosure and confidence indicators for AI outputs</LearningObjective>
+  								<LearningObjective order="3">Create effective loading states and feedback mechanisms for AI processing</LearningObjective>
+  								<LearningObjective order="4">Develop testing strategies for non-deterministic AI features</LearningObjective>
+  								<LearningObjective order="5">Build evaluation frameworks that combine automated metrics and human judgment</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">UX patterns for AI-powered features</KeyTopic>
+  								<KeyTopic order="2">Managing user expectations and trust</KeyTopic>
+  								<KeyTopic order="3">Loading states and streaming UI updates</KeyTopic>
+  								<KeyTopic order="4">Error handling and graceful degradation</KeyTopic>
+  								<KeyTopic order="5">Testing strategies for non-deterministic systems</KeyTopic>
+  								<KeyTopic order="6">Evaluation frameworks and human feedback loops</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+					</Modules>
+				</ArcContent>
+			</Arc>
+			<Arc order="3" name="Advanced AI Engineering Techniques" modules="4" weeks="8">
+				<ArcDescription paragraphs="1">
+				  <DescriptionParagraph order="1">Master advanced techniques including retrieval-augmented generation (RAG), embeddings, vector databases, and fine-tuning to build sophisticated AI systems tailored to specific domains and use cases.</DescriptionParagraph>
+				</ArcDescription>
+				<ArcProps>
+		      <ArcMetadata /><!-- placeholder for later implementation of versioning -->
+					<ArcLogistics modules="4" />
+					<ArcTemporal weeks="8" days="8" start_date="" end_date="">
+					  <StartDate date=""/><!-- optional -->
+						<EndDate date =""/><!-- optional -->
+					</ArcTemporal>
+				</ArcProps>
+				<ArcContent modules="4" themes="1">
+					<Themes count="1">
+  					<ArcTheme name="RAG, Embeddings, and Model Customization" order="1">This arc elevates learners from working with general-purpose AI models to building specialized systems optimized for specific domains and knowledge bases. Through embeddings and RAG architectures, participants learn to ground AI systems in proprietary data, while fine-tuning techniques enable customization of model behavior for specialized tasks.</ArcTheme>
+					</Themes>
+					<ArcProgression>
+						<ArcProgressionNarrative>
+						  The arc begins with embeddings and semantic search as foundational technologies, then progresses to building complete RAG systems that combine retrieval with generation. Learners then explore advanced RAG patterns for production systems, concluding with fine-tuning techniques that enable deeper model customization when RAG alone is insufficient.
+						</ArcProgressionNarrative>
+					</ArcProgression>
+					<Modules count="4">
+						<Module in_arc="3" order="1" name="Embeddings and Semantic Search" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Understand vector embeddings as numerical representations of meaning and build semantic search systems. This module covers embedding models, vector similarity metrics, and practical applications including search, clustering, and recommendation systems based on semantic understanding.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Explain how embeddings represent semantic meaning in vector space</LearningObjective>
+  								<LearningObjective order="2">Generate and work with embeddings from text, code, and other modalities</LearningObjective>
+  								<LearningObjective order="3">Implement semantic search using vector similarity metrics</LearningObjective>
+  								<LearningObjective order="4">Apply embeddings to clustering, classification, and recommendation tasks</LearningObjective>
+  								<LearningObjective order="5">Evaluate embedding quality and select appropriate models for different use cases</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">Vector embeddings and semantic representation</KeyTopic>
+  								<KeyTopic order="2">Embedding models (OpenAI, Sentence Transformers, etc.)</KeyTopic>
+  								<KeyTopic order="3">Similarity metrics (cosine, dot product, Euclidean)</KeyTopic>
+  								<KeyTopic order="4">Semantic search implementation</KeyTopic>
+  								<KeyTopic order="5">Clustering and classification with embeddings</KeyTopic>
+  								<KeyTopic order="6">Multi-modal embeddings and applications</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="3" order="2" name="Vector Databases and RAG Fundamentals" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Build retrieval-augmented generation (RAG) systems that ground AI responses in specific knowledge bases. Learners explore vector database technologies, chunking strategies, retrieval techniques, and basic RAG architectures that combine search with generation for accurate, sourced responses.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Design and implement vector databases for efficient similarity search at scale</LearningObjective>
+  								<LearningObjective order="2">Apply effective chunking and preprocessing strategies for different document types</LearningObjective>
+  								<LearningObjective order="3">Build basic RAG pipelines that retrieve relevant context and generate grounded responses</LearningObjective>
+  								<LearningObjective order="4">Optimize retrieval quality through query transformation and reranking</LearningObjective>
+  								<LearningObjective order="5">Evaluate RAG system performance using relevance and accuracy metrics</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">Vector database technologies (Pinecone, Weaviate, Qdrant, etc.)</KeyTopic>
+  								<KeyTopic order="2">Document chunking and preprocessing strategies</KeyTopic>
+  								<KeyTopic order="3">Basic RAG architecture and implementation</KeyTopic>
+  								<KeyTopic order="4">Query transformation and expansion techniques</KeyTopic>
+  								<KeyTopic order="5">Reranking and retrieval optimization</KeyTopic>
+  								<KeyTopic order="6">RAG evaluation metrics and methodologies</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="3" order="3" name="Advanced RAG Patterns and Production Systems" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Explore sophisticated RAG architectures including hybrid search, multi-stage retrieval, agentic RAG, and graph-based approaches. This module covers production considerations including incremental indexing, metadata filtering, handling diverse data sources, and monitoring RAG system performance at scale.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Implement hybrid search combining semantic and keyword-based retrieval</LearningObjective>
+  								<LearningObjective order="2">Build multi-stage RAG pipelines with query routing and specialized retrievers</LearningObjective>
+  								<LearningObjective order="3">Design agentic RAG systems that iteratively refine retrieval and generation</LearningObjective>
+  								<LearningObjective order="4">Integrate diverse data sources and handle real-time index updates</LearningObjective>
+  								<LearningObjective order="5">Monitor and optimize RAG systems in production environments</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">Hybrid search and multi-stage retrieval</KeyTopic>
+  								<KeyTopic order="2">Query routing and specialized retrievers</KeyTopic>
+  								<KeyTopic order="3">Agentic and iterative RAG patterns</KeyTopic>
+  								<KeyTopic order="4">Graph-based RAG and knowledge graphs</KeyTopic>
+  								<KeyTopic order="5">Incremental indexing and real-time updates</KeyTopic>
+  								<KeyTopic order="6">Production monitoring and optimization</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="3" order="4" name="Fine-Tuning and Model Customization" weeks="2" days="2" start_date="" end_date="">
+  						<ModuleDescription>Learn when and how to fine-tune models for specialized tasks and domains. This module covers fine-tuning techniques including full fine-tuning, LoRA, and prompt tuning, along with dataset preparation, training strategies, and evaluating custom models against base models and RAG alternatives.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="2" days="2" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="2"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="5" key_topics="6" projects="0">
+  							<ModuleLearningObjectives count="5">
+  								<LearningObjective order="1">Determine when fine-tuning is appropriate versus RAG or prompt engineering approaches</LearningObjective>
+  								<LearningObjective order="2">Prepare high-quality datasets for fine-tuning specific tasks</LearningObjective>
+  								<LearningObjective order="3">Implement fine-tuning using LoRA and other parameter-efficient techniques</LearningObjective>
+  								<LearningObjective order="4">Train and evaluate custom models for specialized domains or behaviors</LearningObjective>
+  								<LearningObjective order="5">Deploy and serve fine-tuned models in production environments</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="6">
+  								<KeyTopic order="1">Fine-tuning vs. RAG vs. prompt engineering tradeoffs</KeyTopic>
+  								<KeyTopic order="2">Dataset preparation and quality for fine-tuning</KeyTopic>
+  								<KeyTopic order="3">Parameter-efficient fine-tuning (LoRA, QLoRA)</KeyTopic>
+  								<KeyTopic order="4">Training infrastructure and optimization</KeyTopic>
+  								<KeyTopic order="5">Model evaluation and comparison methodologies</KeyTopic>
+  								<KeyTopic order="6">Deployment and serving of custom models</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+					</Modules>
+				</ArcContent>
+			</Arc>
+			<Arc order="4" name="Production AI Systems" modules="3" weeks="9">
+				<ArcDescription paragraphs="1">
+				  <DescriptionParagraph order="1">Develop expertise in deploying, monitoring, and maintaining AI systems in production, including MLOps practices, evaluation frameworks, safety considerations, and cost optimization.</DescriptionParagraph>
+				</ArcDescription>
+				<ArcProps>
+		      <ArcMetadata /><!-- placeholder for later implementation of versioning -->
+					<ArcLogistics modules="3" />
+					<ArcTemporal weeks="9" days="9" start_date="" end_date="">
+					  <StartDate date=""/><!-- optional -->
+						<EndDate date =""/><!-- optional -->
+					</ArcTemporal>
+				</ArcProps>
+				<ArcContent modules="3" themes="1">
+					<Themes count="1">
+  					<ArcTheme name="Deployment, Operations, and Responsible AI" order="1">This arc addresses the critical gap between prototype AI applications and production-ready systems. Learners explore the operational, safety, and governance challenges unique to AI systems, developing practices for reliable deployment, continuous evaluation, and responsible AI development that meets enterprise requirements.</ArcTheme>
+					</Themes>
+					<ArcProgression>
+						<ArcProgressionNarrative>
+						  Beginning with MLOps and deployment infrastructure, learners establish operational foundations for AI systems. The arc then addresses evaluation and monitoring frameworks necessary for maintaining quality, followed by comprehensive coverage of AI safety, security, and ethical considerations. The arc concludes with cost optimization and scaling strategies for sustainable production systems.
+						</ArcProgressionNarrative>
+					</ArcProgression>
+					<Modules count="3">
+						<Module in_arc="4" order="1" name="MLOps and AI System Deployment" weeks="3" days="3" start_date="" end_date="">
+  						<ModuleDescription>Master deployment patterns for AI systems including containerization, model versioning, A/B testing, and continuous integration/deployment adapted for AI workloads. Learners build deployment pipelines that handle the unique challenges of AI systems including model updates, prompt versioning, and managing multiple AI providers.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="3" days="3" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="3"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="6" key_topics="7" projects="0">
+  							<ModuleLearningObjectives count="6">
+  								<LearningObjective order="1">Design and implement CI/CD pipelines for AI-powered applications</LearningObjective>
+  								<LearningObjective order="2">Apply containerization and orchestration strategies for AI services</LearningObjective>
+  								<LearningObjective order="3">Implement model and prompt versioning with rollback capabilities</LearningObjective>
+  								<LearningObjective order="4">Build A/B testing frameworks for evaluating AI system changes</LearningObjective>
+  								<LearningObjective order="5">Manage multi-environment deployments with appropriate configuration management</LearningObjective>
+  								<LearningObjective order="6">Establish incident response procedures for AI system failures</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="7">
+  								<KeyTopic order="1">CI/CD for AI applications</KeyTopic>
+  								<KeyTopic order="2">Containerization and orchestration (Docker, Kubernetes)</KeyTopic>
+  								<KeyTopic order="3">Model and prompt versioning strategies</KeyTopic>
+  								<KeyTopic order="4">A/B testing and gradual rollouts</KeyTopic>
+  								<KeyTopic order="5">Environment management and configuration</KeyTopic>
+  								<KeyTopic order="6">Deployment monitoring and rollback procedures</KeyTopic>
+  								<KeyTopic order="7">Infrastructure as code for AI systems</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="4" order="2" name="Evaluation, Monitoring, and Observability" weeks="3" days="3" start_date="" end_date="">
+  						<ModuleDescription>Build comprehensive evaluation and monitoring systems for AI applications. This module covers automated evaluation frameworks, human-in-the-loop review processes, real-time monitoring, and observability practices that provide visibility into AI system behavior and performance in production.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="3" days="3" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="3"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="6" key_topics="7" projects="0">
+  							<ModuleLearningObjectives count="6">
+  								<LearningObjective order="1">Design automated evaluation frameworks combining metrics and LLM-as-judge approaches</LearningObjective>
+  								<LearningObjective order="2">Implement human-in-the-loop review and feedback collection systems</LearningObjective>
+  								<LearningObjective order="3">Build real-time monitoring dashboards for AI system health and performance</LearningObjective>
+  								<LearningObjective order="4">Apply observability practices to trace AI requests and debug issues</LearningObjective>
+  								<LearningObjective order="5">Establish alerting strategies for AI system degradation and failures</LearningObjective>
+  								<LearningObjective order="6">Create continuous evaluation loops for detecting model drift and quality issues</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="7">
+  								<KeyTopic order="1">Automated evaluation frameworks and metrics</KeyTopic>
+  								<KeyTopic order="2">LLM-as-judge evaluation techniques</KeyTopic>
+  								<KeyTopic order="3">Human feedback collection and review workflows</KeyTopic>
+  								<KeyTopic order="4">Real-time monitoring and alerting</KeyTopic>
+  								<KeyTopic order="5">Distributed tracing for AI requests</KeyTopic>
+  								<KeyTopic order="6">Model drift detection and quality monitoring</KeyTopic>
+  								<KeyTopic order="7">Observability tools and dashboards</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="4" order="3" name="AI Safety, Security, and Responsible Development" weeks="3" days="3" start_date="" end_date="">
+  						<ModuleDescription>Address safety, security, and ethical considerations in AI systems. Learners explore prompt injection and jailbreak prevention, content filtering, bias mitigation, privacy protection, and establishing governance frameworks for responsible AI development aligned with organizational values and regulatory requirements.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="3" days="3" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="3"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="6" key_topics="8" projects="0">
+  							<ModuleLearningObjectives count="6">
+  								<LearningObjective order="1">Identify and mitigate security vulnerabilities including prompt injection and data leakage</LearningObjective>
+  								<LearningObjective order="2">Implement content filtering and safety guardrails for AI outputs</LearningObjective>
+  								<LearningObjective order="3">Detect and address bias in AI systems across the development lifecycle</LearningObjective>
+  								<LearningObjective order="4">Apply privacy-preserving techniques and ensure compliance with data regulations</LearningObjective>
+  								<LearningObjective order="5">Establish governance frameworks and review processes for AI features</LearningObjective>
+  								<LearningObjective order="6">Design systems with appropriate human oversight and intervention capabilities</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="8">
+  								<KeyTopic order="1">Prompt injection and jailbreak prevention</KeyTopic>
+  								<KeyTopic order="2">Content filtering and moderation</KeyTopic>
+  								<KeyTopic order="3">Bias detection and mitigation strategies</KeyTopic>
+  								<KeyTopic order="4">Privacy protection and data handling</KeyTopic>
+  								<KeyTopic order="5">Compliance with AI regulations (GDPR, AI Act, etc.)</KeyTopic>
+  								<KeyTopic order="6">AI governance frameworks and ethics review</KeyTopic>
+  								<KeyTopic order="7">Human-in-the-loop safeguards and oversight</KeyTopic>
+  								<KeyTopic order="8">Transparency and explainability practices</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+					</Modules>
+				</ArcContent>
+			</Arc>
+			<Arc order="5" name="Capstone: End-to-End AI Engineering Project" modules="3" weeks="9">
+				<ArcDescription paragraphs="1">
+				  <DescriptionParagraph order="1">Synthesize learning from all previous arcs by designing, building, and deploying a complete AI-powered system that demonstrates mastery of AI engineering practices from conception through production deployment.</DescriptionParagraph>
+				</ArcDescription>
+				<ArcProps>
+		      <ArcMetadata /><!-- placeholder for later implementation of versioning -->
+					<ArcLogistics modules="3" />
+					<ArcTemporal weeks="9" days="9" start_date="" end_date="">
+					  <StartDate date=""/><!-- optional -->
+						<EndDate date =""/><!-- optional -->
+					</ArcTemporal>
+				</ArcProps>
+				<ArcContent modules="3" themes="1">
+					<Themes count="1">
+  					<ArcTheme name="Combining the techniques of previous arcs" order="1">The capstone arc provides learners with the opportunity to demonstrate comprehensive AI engineering competency through a substantial project. Working individually or in small teams, participants apply the full spectrum of techniques learned—from architecture and development through deployment and operations—while receiving peer feedback and facilitated guidance.</ArcTheme>
+					</Themes>
+					<ArcProgression>
+						<ArcProgressionNarrative>
+						  Learners begin with project planning and architecture design, establishing clear objectives and technical approaches. The development phase allows for iterative building with regular peer reviews and feedback sessions. The arc concludes with deployment, documentation, and presentation of the complete system, along with reflection on lessons learned and future improvements.
+						</ArcProgressionNarrative>
+					</ArcProgression>
+					<Modules count="3">
+						<Module in_arc="5" order="1" name="Capstone Planning and Architecture" weeks="3" days="3" start_date="" end_date="">
+  						<ModuleDescription>Define project scope, establish success criteria, and design comprehensive system architecture. Learners identify a meaningful problem within their domain, select appropriate AI techniques, plan technical implementation, and establish evaluation criteria. This phase includes peer review of proposals and facilitated architecture discussions.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="3" days="3" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="3"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="6" key_topics="8" projects="0">
+  							<ModuleLearningObjectives count="6">
+  								<LearningObjective order="1">Define a clear problem statement and success criteria for an AI-powered system</LearningObjective>
+  								<LearningObjective order="2">Design comprehensive system architecture incorporating appropriate AI techniques</LearningObjective>
+  								<LearningObjective order="3">Plan technical implementation including technology stack and development approach</LearningObjective>
+  								<LearningObjective order="4">Establish evaluation frameworks and quality metrics for the project</LearningObjective>
+  								<LearningObjective order="5">Create project timeline with milestones and deliverables</LearningObjective>
+  								<LearningObjective order="6">Present and defend architectural decisions to peers and facilitators</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="8">
+  								<KeyTopic order="1">Problem definition and scope setting</KeyTopic>
+  								<KeyTopic order="2">Requirements gathering and user story development</KeyTopic>
+  								<KeyTopic order="3">System architecture design and documentation</KeyTopic>
+  								<KeyTopic order="4">Technology selection and justification</KeyTopic>
+  								<KeyTopic order="5">Data strategy and knowledge base planning</KeyTopic>
+  								<KeyTopic order="6">Evaluation framework design</KeyTopic>
+  								<KeyTopic order="7">Project planning and risk assessment</KeyTopic>
+  								<KeyTopic order="8">Architecture review and peer feedback</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="5" order="2" name="Capstone Development and Iteration" weeks="3" days="3" start_date="" end_date="">
+  						<ModuleDescription>Build the core functionality of the capstone project through iterative development cycles. Learners implement key features, integrate AI components, establish evaluation processes, and refine based on testing and peer feedback. Regular check-ins and code reviews ensure projects stay on track and maintain quality standards.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="3" days="3" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="3"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="6" key_topics="7" projects="0">
+  							<ModuleLearningObjectives count="6">
+  								<LearningObjective order="1">Implement core AI functionality using techniques from previous arcs</LearningObjective>
+  								<LearningObjective order="2">Apply iterative development practices with regular evaluation and refinement</LearningObjective>
+  								<LearningObjective order="3">Integrate multiple AI components into a cohesive system</LearningObjective>
+  								<LearningObjective order="4">Conduct thorough testing including edge cases and failure modes</LearningObjective>
+  								<LearningObjective order="5">Incorporate peer feedback and facilitated guidance into development</LearningObjective>
+  								<LearningObjective order="6">Document code and design decisions for maintainability</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="7">
+  								<KeyTopic order="1">Iterative development and agile practices</KeyTopic>
+  								<KeyTopic order="2">Feature implementation and integration</KeyTopic>
+  								<KeyTopic order="3">Testing strategies for AI components</KeyTopic>
+  								<KeyTopic order="4">Code review and peer feedback sessions</KeyTopic>
+  								<KeyTopic order="5">Performance optimization and debugging</KeyTopic>
+  								<KeyTopic order="6">Documentation and code quality</KeyTopic>
+  								<KeyTopic order="7">Progress tracking and milestone completion</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+						<Module in_arc="5" order="3" name="Capstone Deployment and Presentation" weeks="3" days="3" start_date="" end_date="">
+  						<ModuleDescription>Deploy the capstone project to a production or production-like environment, complete comprehensive documentation, and present the system to the cohort. Learners demonstrate their complete AI engineering workflow, reflect on challenges and solutions, and provide peer feedback on other projects.</ModuleDescription>
+  						<ModuleProps>
+							  <ModuleMetadata /><!-- placeholder for later implementation of versioning -->
+                 <ModuleTemporal weeks="3" days="3" start_date="" end_date="">
+                   <StartDate date=""/><!-- optional -->
+                   <TotalWeeks number="3"/>
+                   <EndDate date =""/><!-- optional -->
+                 </ModuleTemporal>
+							</ModuleProps>
+  						<ModuleContent learning_objectives="6" key_topics="8" projects="0">
+  							<ModuleLearningObjectives count="6">
+  								<LearningObjective order="1">Deploy the complete system to a production or production-like environment</LearningObjective>
+  								<LearningObjective order="2">Create comprehensive documentation including architecture, deployment, and usage guides</LearningObjective>
+  								<LearningObjective order="3">Present the project effectively, demonstrating key features and technical decisions</LearningObjective>
+  								<LearningObjective order="4">Reflect critically on the development process, challenges faced, and lessons learned</LearningObjective>
+  								<LearningObjective order="5">Provide constructive peer feedback on other capstone projects</LearningObjective>
+  								<LearningObjective order="6">Identify future enhancements and scaling considerations</LearningObjective>
+  							</ModuleLearningObjectives>
+  							<ModuleKeyTopics count="8">
+  								<KeyTopic order="1">Production deployment and configuration</KeyTopic>
+  								<KeyTopic order="2">Documentation and knowledge transfer</KeyTopic>
+  								<KeyTopic order="3">Demonstration and presentation skills</KeyTopic>
+  								<KeyTopic order="4">Project retrospective and reflection</KeyTopic>
+  								<KeyTopic order="5">Peer review and feedback</KeyTopic>
+  								<KeyTopic order="6">Future roadmap and enhancement planning</KeyTopic>
+  								<KeyTopic order="7">Portfolio development and career application</KeyTopic>
+  								<KeyTopic order="8">Celebration and cohort closure</KeyTopic>
+  							</ModuleKeyTopics>
+                <ModuleProjects count="0" /> <!-- not populated during phase 4 -->
+  						</ModuleContent>
+						</Module>
+					</Modules>
+				</ArcContent>
+			</Arc>
+		</Arcs>
+	</CourseContent>
+</Course>

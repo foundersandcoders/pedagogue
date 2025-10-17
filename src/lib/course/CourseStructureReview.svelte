@@ -1,6 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte";
   import type { CourseData, Arc, ModuleSlot } from "$lib/types/course";
+  import { downloadCourseXml } from "$lib/course/courseXmlSerializer";
 
   export let courseData: CourseData;
 
@@ -163,6 +164,17 @@
         arcs[arcIndex].modules[moduleIndex].keyTopics!.filter((_, i) => i !== topicIndex);
       arcs = [...arcs];
     }
+  }
+
+  function handleDownloadXml() {
+    // Create an updated course data object with current edits
+    const updatedCourse: CourseData = {
+      ...courseData,
+      courseNarrative,
+      progressionNarrative,
+      arcs
+    };
+    downloadCourseXml(updatedCourse);
   }
 </script>
 
@@ -448,6 +460,9 @@
     <div class="actions">
       <button type="button" class="back-btn" on:click={handleBack}>
         ← Back to Module Planning
+      </button>
+      <button type="button" class="download-xml-btn" on:click={handleDownloadXml}>
+        📥 Download XML
       </button>
       <button type="button" class="submit-btn" on:click={handleSubmit}>
         Continue to Module Generation →
@@ -956,6 +971,7 @@
   }
 
   .back-btn,
+  .download-xml-btn,
   .submit-btn {
     padding: 1rem 2rem;
     border: none;
@@ -974,6 +990,17 @@
 
   .back-btn:hover {
     background: #e9ecef;
+  }
+
+  .download-xml-btn {
+    background: #0066cc;
+    color: white;
+  }
+
+  .download-xml-btn:hover {
+    background: #0052a3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
   }
 
   .submit-btn {
