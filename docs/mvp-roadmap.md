@@ -83,7 +83,7 @@
 - [ ] Add dark mode to UI
   - Should allow user to select light, dark or system
 
-#### 2.2.3. MoGen Prompt & Schema
+#### 2.2.3. MoGen Prompt & Input Schema
 - [x] Steer Claude towards better Twists
   - Added ProjectTwistGuidelines explaining twists as conceptual curveballs, not technical features
   - Included good examples: "The Helpful Saboteur", "The Unreliable Narrator", "The Contrarian", etc.
@@ -95,10 +95,11 @@
   Old: <Module><Name>Module's Name</Name></Module>
   New: <Module name="Module's Name" />
 
-#### 2.2.4. MoGen Output
+#### 2.2.4. MoGen Response & Output Schema
 - [x] Update files in `~/lib/schemas/` to match `~/src/data/templates/outputSchema.xml`
   - Updated schemaTemplate.ts to include missing <Importance> field in AdditionalSkills section
   - Ensures schema consistency between template and outputSchema.xml
+- [ ] Update output schema to use self-closing tags (similar to input schema)
 
 #### 2.2.5. MoGen Export
 - [ ] Add boilerplate module text after generation
