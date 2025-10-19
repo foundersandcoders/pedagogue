@@ -1,31 +1,8 @@
-<AdditionalSkills>
-  <Overview>
-    These are skills that are not part of the core purpose of the course, but developing them would be useful.
-  </Overview>
-
-  <SkillsCategory>
-    <Name>Python</Name>
-
-    <Overview>
-      During development, if using Python becomes advantageous for certain tasks (e.g. leveraging specific libraries or tools), teams might explore Python alongside their primary language. This flexible approach builds cross-language competency gradually.
-    </Overview>
-
-    <Skill>
-      <SkillName>Environments &amp; Package Management</SkillName>
-      <Importance>Stretch</Importance>
-
-      <SkillDescription>
-        Understanding virtual environments (venv, conda) and package management (pip, poetry) for Python projects. Useful if teams decide to use Python libraries for specific tasks.
-      </SkillDescription>
-    </Skill>
-
-    <Skill>
-      <SkillName>Async Programming &amp; API Design</SkillName>
-      <Importance>Stretch</Importance>
-
-      <SkillDescription>
-        Python's async/await patterns and how to design async APIs. Relevant for teams building services that need to handle concurrent API calls efficiently.
-      </SkillDescription>
-    </Skill>
+<AdditionalSkills skills_category_count="1">
+  <Overview>These are skills that are not part of the core purpose of the course, but developing them would be useful.</Overview>
+  <SkillsCategory order="1" name="Python" skills_count="2">
+    <Overview>During development, if using Python becomes advantageous for certain tasks (e.g. leveraging specific libraries or tools), teams might explore Python alongside their primary language. This flexible approach builds cross-language competency gradually.</Overview>
+    <Skill order="1" name="Environments and Package Management" importance="Stretch" />
+    <Skill order="2" name="Async Programming and API Design" importance="Stretch" />
   </SkillsCategory>
 </AdditionalSkills>

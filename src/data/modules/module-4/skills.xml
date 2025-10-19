@@ -1,102 +1,18 @@
-<AdditionalSkills>
-  <Overview>
-    These are skills that are not part of the core purpose of the course, but developing them would be useful.
-  </Overview>
-
-  <SkillsCategory>
-    <Name>Python</Name>
-
-    <Overview>
-      The specific Python skills needed for this module are largely dictated by the project chosen. Creative projects might require image processing libraries, audio libraries, or specialized frameworks. Open-source LLM projects will require deep familiarity with ML libraries and model deployment.
-    </Overview>
-
-    <Skill>
-      <SkillName>Machine Learning Libraries (PyTorch/TensorFlow)</SkillName>
-      <Importance>Essential</Importance>
-
-      <SkillDescription>
-        Deep understanding of PyTorch or TensorFlow for working with open-source models. Essential for model loading, inference, and potential fine-tuning.
-      </SkillDescription>
-    </Skill>
-
-    <Skill>
-      <SkillName>Model Deployment &amp; MLOps</SkillName>
-      <Importance>Essential</Importance>
-
-      <SkillDescription>
-        Skills in deploying models to production-like environments. Understanding Docker, model serving frameworks, and resource management. Critical for open-source LLM projects.
-      </SkillDescription>
-    </Skill>
-
-    <Skill>
-      <SkillName>Computer Vision Libraries (PIL, OpenCV)</SkillName>
-      <Importance>Recommended</Importance>
-
-      <SkillDescription>
-        For teams working with image generation or manipulation. Understanding image processing pipelines, transformations, and integration with diffusion models.
-      </SkillDescription>
-    </Skill>
-
-    <Skill>
-      <SkillName>Audio Processing Libraries</SkillName>
-      <Importance>Recommended</Importance>
-
-      <SkillDescription>
-        For teams exploring AI music generation or voice synthesis. Libraries like librosa, pydub, or specialized audio AI frameworks.
-      </SkillDescription>
-    </Skill>
-
-    <Skill>
-      <SkillName>Performance Optimization</SkillName>
-      <Importance>Recommended</Importance>
-
-      <SkillDescription>
-        Profiling and optimizing Python code, especially for ML workloads. Understanding memory management, quantization, and acceleration techniques.
-      </SkillDescription>
-    </Skill>
-
-    <Skill>
-      <SkillName>Environments &amp; Package Management</SkillName>
-      <Importance>Recommended</Importance>
-
-      <SkillDescription>
-        Advanced dependency management for complex AI projects with many libraries. Handling version conflicts and ensuring reproducibility.
-      </SkillDescription>
-    </Skill>
+<AdditionalSkills skills_category_count="2">
+  <Overview>These are skills that are not part of the core purpose of the course, but developing them would be useful.</Overview>
+  <SkillsCategory order="1" name="Python" skills_count="6">
+    <Overview>The specific Python skills needed for this module are largely dictated by the project chosen. Creative projects might require image processing libraries, audio libraries, or specialized frameworks. Open-source LLM projects will require deep familiarity with ML libraries and model deployment.</Overview>
+    <Skill order="1" name="Machine Learning Libraries (PyTorch/TensorFlow)" importance="Essential" />
+    <Skill order="2" name="Model Deployment and MLOps" importance="Essential" />
+    <Skill order="3" name="Computer Vision Libraries (PIL, OpenCV)" importance="Recommended" />
+    <Skill order="4" name="Audio Processing Libraries" importance="Recommended" />
+    <Skill order="5" name="Performance Optimization" importance="Recommended" />
+    <Skill order="6" name="Environments and Package Management" importance="Recommended" />
   </SkillsCategory>
-
-  <SkillsCategory>
-    <Name>System Administration &amp; DevOps</Name>
-
-    <Overview>
-      Working with open-source models often requires significant system administration skills, particularly for managing computational resources and deployment environments.
-    </Overview>
-
-    <Skill>
-      <SkillName>GPU Configuration &amp; Management</SkillName>
-      <Importance>Recommended</Importance>
-
-      <SkillDescription>
-        Understanding CUDA, GPU drivers, and managing GPU resources. Essential for teams running models locally or on cloud instances.
-      </SkillDescription>
-    </Skill>
-
-    <Skill>
-      <SkillName>Container Technologies (Docker)</SkillName>
-      <Importance>Recommended</Importance>
-
-      <SkillDescription>
-        Containerizing AI applications for consistent deployment. Particularly useful for packaging open-source model deployments.
-      </SkillDescription>
-    </Skill>
-
-    <Skill>
-      <SkillName>Cloud Platform Management</SkillName>
-      <Importance>Stretch</Importance>
-
-      <SkillDescription>
-        Using cloud platforms (AWS, GCP, Azure) for GPU instances and model hosting. Understanding free tiers and cost management.
-      </SkillDescription>
-    </Skill>
+  <SkillsCategory order="2" name="System Administration and DevOps" skills_count="3">
+    <Overview>Working with open-source models often requires significant system administration skills, particularly for managing computational resources and deployment environments.</Overview>
+    <Skill order="1" name="GPU Configuration and Management" importance="Recommended" />
+    <Skill order="2" name="Container Technologies (Docker)" importance="Recommended" />
+    <Skill order="3" name="Cloud Platform Management" importance="Stretch" />
   </SkillsCategory>
 </AdditionalSkills>

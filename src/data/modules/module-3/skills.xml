@@ -1,49 +1,10 @@
-<AdditionalSkills>
-  <Overview>
-    These are skills that are not part of the core purpose of the course, but developing them would be useful.
-  </Overview>
-
-  <SkillsCategory>
-    <Name>Python</Name>
-
-    <Overview>
-      At this stage in the course, Python becomes increasingly valuable for working with RAG systems, vector databases, and agent frameworks. Many of the most mature libraries in these areas are Python-based, making Python proficiency more essential than in earlier modules.
-    </Overview>
-
-    <Skill>
-      <SkillName>Data Processing with Pandas/Numpy</SkillName>
-      <Importance>Essential</Importance>
-
-      <SkillDescription>
-        Working with data structures for processing documents, chunking text, and managing embeddings. Essential for efficient RAG pipeline implementation.
-      </SkillDescription>
-    </Skill>
-
-    <Skill>
-      <SkillName>Model Serving &amp; FastAPI</SkillName>
-      <Importance>Essential</Importance>
-
-      <SkillDescription>
-        Creating API endpoints to serve AI models and agent systems. FastAPI is particularly useful for building production-ready services around RAG systems and multi-agent architectures.
-      </SkillDescription>
-    </Skill>
-
-    <Skill>
-      <SkillName>Async Programming &amp; API Design</SkillName>
-      <Importance>Recommended</Importance>
-
-      <SkillDescription>
-        Python's async/await patterns become crucial when orchestrating multiple API calls in agent systems or handling concurrent requests in RAG applications.
-      </SkillDescription>
-    </Skill>
-
-    <Skill>
-      <SkillName>Environments &amp; Package Management</SkillName>
-      <Importance>Recommended</Importance>
-
-      <SkillDescription>
-        Managing dependencies for complex projects involving multiple AI libraries, vector databases, and agent frameworks. Understanding virtual environments and package management is increasingly important.
-      </SkillDescription>
-    </Skill>
+<AdditionalSkills skills_category_count="1">
+  <Overview>These are skills that are not part of the core purpose of the course, but developing them would be useful.</Overview>
+  <SkillsCategory order="1" name="Python" skills_count="4">
+    <Overview>At this stage in the course, Python becomes increasingly valuable for working with RAG systems, vector databases, and agent frameworks. Many of the most mature libraries in these areas are Python-based, making Python proficiency more essential than in earlier modules.</Overview>
+    <Skill order="1" name="Data Processing with Pandas/Numpy" importance="Essential" />
+    <Skill order="2" name="Model Serving and FastAPI" importance="Essential" />
+    <Skill order="3" name="Async Programming and API Design" importance="Recommended" />
+    <Skill order="4" name="Environments and Package Management" importance="Recommended" />
   </SkillsCategory>
 </AdditionalSkills>

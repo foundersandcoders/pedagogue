@@ -1,146 +1,130 @@
-<ResearchTopics>
-  <Overview>
-    These are topics that might be useful foci for the initial research session at the beginning of the module.
-  </Overview>
-
-	<PrimaryTopics>
-    <PrimaryTopic>
-      <TopicName>AI Coding Assistants: Current State of the Industry</TopicName>
-
-      <TopicDescription>
-        1. Terminal-based assistants
-          - e.g. Claude Code
-          - How do they work? What workflows do they support?
-        2. IDE-based assistants
-          - e.g. Cursor IDE, GitHub Copilot
-          - What features do they offer?
-        3. Web environments
-          - e.g. OpenAI Codex
-          - What are the advantages of web-based tools?
-        4. Other formats
-          - What other types of AI coding assistants exist?
-          - What gaps might there be in the market?
-      </TopicDescription>
-    </PrimaryTopic>
-
-    <PrimaryTopic>
-      <TopicName>AI API Usage: Effective Prompt Strategies</TopicName>
-
-      <TopicDescription>
-        1. User Prompts
-          - Getting good outputs from code models
-          - Getting code vs. explanations – how to structure prompts differently
-          - Examples of effective prompts for different code tasks
-        2. System Prompts
-          - What are system prompts and how do they differ from user prompts?
-          - Best practices for system prompts in coding contexts
-          - How to use system prompts to constrain or guide model behavior
-      </TopicDescription>
-    </PrimaryTopic>
-
-    <PrimaryTopic>
-     	<TopicName>AI API Usage: Limitations &amp; Mitigations (Anthropic, Google &amp; OpenAI)</TopicName>
-
-      <TopicDescription>
-        1. Context windows &amp; token optimization strategies
-          - What are the context window limits for different models?
-          - How to fit large codebases or files within token limits
-          - Strategies for chunking or summarizing code
-        2. Rate limits
-          - What rate limits do different APIs have?
-          - How to handle rate limiting in your application
-        3. Costs
-          - Cost comparison between different API providers
-          - How to estimate costs for your use case
-          - Strategies to minimize API costs
-      </TopicDescription>
-    </PrimaryTopic>
-
-    <PrimaryTopic>
-     	<TopicName>AI API Usage: Features &amp; Methods (Anthropic, Google &amp; OpenAI)</TopicName>
-
-      <TopicDescription>
-        1. Streaming responses
-          - How to implement streaming for better UX
-          - When to use streaming vs. waiting for complete responses
-        2. Structured outputs
-          - How to get JSON or other structured data from models
-          - Using function calling or schema-guided generation
-        3. Temperature Tuning
-          - What is temperature and how does it affect outputs?
-          - Optimal temperature settings for code generation
-        4. Chain of Thought Reasoning
-          - What is CoT and why is it useful?
-          - How to prompt for step-by-step reasoning
-        5. Function calling &amp; tool use
-          - Overview of function calling capabilities
-          - How models can request to use tools or APIs
-      </TopicDescription>
-    </PrimaryTopic>
-
-    <PrimaryTopic>
-      <TopicName>Security &amp; Ethics</TopicName>
-
-      <TopicDescription>
-        1. Ethical Considerations
-          - Potential bias in AI-generated code
-            - Are there biases in how models approach problems?
-            - How to recognize and mitigate bias
-          - Licensing issues
-            - What license does AI-generated code have?
-            - Copyright concerns with training data
-          - Plagiarism issues
-            - Can AI reproduce copyrighted code?
-            - How to verify originality of generated code
-        2. Security &amp; Safeguards
-          - Risks of sending proprietary code to external APIs
-          - Data retention policies of different API providers
-          - Best practices for secure API usage
-          - When to use self-hosted models instead
-      </TopicDescription>
-    </PrimaryTopic>
-
-    <PrimaryTopic>
- 	    <TopicName>AI in CI/CD &amp; DevOps</TopicName>
-
-      <TopicDescription>
-        1. Current State of the Industry
-          - Example: Arm's extension for Copilot uses GitHub Actions to integrate AI into the CI pipeline
-          - Example: GitHub's example of Copilot auto-generating PRs via Actions
-          - What are companies doing with AI in their CI/CD pipelines?
-        2. GitHub Actions
-          - How to create custom actions
-          - JavaScript action vs Docker action – what are the trade-offs?
-          - How workflows are triggered (on push, on PR, on schedule, etc.)
-          - Examples of existing AI-related actions in the marketplace
-      </TopicDescription>
-    </PrimaryTopic>
-
-    <PrimaryTopic>
-      <TopicName>Approaches &amp; Tools for Using AI</TopicName>
-
-      <TopicDescription>
-        1. LangChain/LlamaIndex basics
-          - What are these frameworks and what do they offer?
-          - When to use a framework vs. calling APIs directly
-        2. Prompt chaining &amp; orchestration patterns
-          - Breaking complex tasks into multiple prompts
-          - How to chain outputs from one prompt as inputs to another
-        3. RAG (Retrieval-augmented generation) Basics
-          - What is RAG and why is it useful?
-          - High-level overview of how it works
-        4. Embedding models &amp; semantic search
-          - What are embeddings?
-          - How to use embeddings for code search or similarity
-      </TopicDescription>
-    </PrimaryTopic>
+<ResearchTopics primary_topic_count="7" stretch_topic_count="5">
+  <Overview>These are topics that might be useful foci for the initial research session at the beginning of the module.</Overview>
+	<PrimaryTopics count="7">
+    <Topic order="1" name="AI Coding Assistants: Current State of the Industry" subtopic_count="4">
+      <SubTopic order="1" name="Terminal-based assistants">
+        - e.g. Claude Code
+        - How do they work? What workflows do they support?
+      </SubTopic>
+      <SubTopic order="2" name="IDE-based assistants">
+        - e.g. Cursor IDE, GitHub Copilot
+        - What features do they offer?
+      </SubTopic>
+      <SubTopic order="3" name="Web environments">
+        - e.g. OpenAI Codex
+        - What are the advantages of web-based tools?
+      </SubTopic>
+      <SubTopic order="4" name="Other formats">
+        - What other types of AI coding assistants exist?
+        - What gaps might there be in the market?
+      </SubTopic>
+    </Topic>
+    <Topic order="2" name="AI API Usage: Effective Prompt Strategies" subtopic_count="2">
+      <SubTopic order="1" name="User Prompts">
+        - Getting good outputs from code models
+        - Getting code vs. explanations – how to structure prompts differently
+        - Examples of effective prompts for different code tasks
+      </SubTopic>
+      <SubTopic order="2" name="System Prompts">
+        - What are system prompts and how do they differ from user prompts?
+        - Best practices for system prompts in coding contexts
+        - How to use system prompts to constrain or guide model behavior
+      </SubTopic>
+    </Topic>
+    <Topic order="3" name="AI API Usage: Limitations &amp; Mitigations (Anthropic, Google &amp; OpenAI)" subtopic_count="3">
+      <SubTopic order="1" name="Context windows &amp; token optimization strategies">
+        - What are the context window limits for different models?
+        - How to fit large codebases or files within token limits
+        - Strategies for chunking or summarizing code
+      </SubTopic>
+      <SubTopic order="2" name="Rate limits">
+        - What rate limits do different APIs have?
+        - How to handle rate limiting in your application
+      </SubTopic>
+      <SubTopic order="3" name="Costs">
+        - Cost comparison between different API providers
+        - How to estimate costs for your use case
+        - Strategies to minimize API costs
+      </SubTopic>
+    </Topic>
+    <Topic order="4" name="AI API Usage: Features &amp; Methods (Anthropic, Google &amp; OpenAI)" subtopic_count="5">
+      <SubTopic order="1" name="Streaming responses">
+        - How to implement streaming for better UX
+        - When to use streaming vs. waiting for complete responses
+      </SubTopic>
+      <SubTopic order="2" name="Structured outputs">
+        - How to get JSON or other structured data from models
+        - Using function calling or schema-guided generation
+      </SubTopic>
+      <SubTopic order="3" name="Temperature Tuning">
+        - What is temperature and how does it affect outputs?
+        - Optimal temperature settings for code generation
+      </SubTopic>
+      <SubTopic order="4" name="Chain of Thought Reasoning">
+        - What is CoT and why is it useful?
+        - How to prompt for step-by-step reasoning
+      </SubTopic>
+      <SubTopic order="5" name="Function calling &amp; tool use">
+        - Overview of function calling capabilities
+        - How models can request to use tools or APIs
+      </SubTopic>
+    </Topic>
+    <Topic order="5" name="Security &amp; Ethics" subtopic_count="2">
+      <SubTopic order="1" name="Ethical Considerations">
+        - Potential bias in AI-generated code
+          - Are there biases in how models approach problems?
+          - How to recognize and mitigate bias
+        - Licensing issues
+          - What license does AI-generated code have?
+          - Copyright concerns with training data
+        - Plagiarism issues
+          - Can AI reproduce copyrighted code?
+          - How to verify originality of generated code
+      </SubTopic>
+      <SubTopic order="2" name="Security &amp; Safeguards">
+        - Risks of sending proprietary code to external APIs
+        - Data retention policies of different API providers
+        - Best practices for secure API usage
+        - When to use self-hosted models instead
+      </SubTopic>
+    </Topic>
+    <Topic order="6" name="AI in CI/CD &amp; DevOps" subtopic_count="2">
+      <SubTopic order="1" name="Current State of the Industry">
+        - Example: Arm's extension for Copilot uses GitHub Actions to integrate AI into the CI pipeline
+        - Example: GitHub's example of Copilot auto-generating PRs via Actions
+        - What are companies doing with AI in their CI/CD pipelines?
+      </SubTopic>
+      <SubTopic order="2" name="GitHub Actions">
+        - How to create custom actions
+        - JavaScript action vs Docker action – what are the trade-offs?
+        - How workflows are triggered (on push, on PR, on schedule, etc.)
+        - Examples of existing AI-related actions in the marketplace
+      </SubTopic>
+    </Topic>
+    <Topic order="7" name="Approaches &amp; Tools for Using AI" subtopic_count="4">
+      <SubTopic order="1" name="LangChain/LlamaIndex basics">
+        - What are these frameworks and what do they offer?
+        - When to use a framework vs. calling APIs directly
+      </SubTopic>
+      <SubTopic order="2" name="Prompt chaining &amp; orchestration patterns">
+        - Breaking complex tasks into multiple prompts
+        - How to chain outputs from one prompt as inputs to another
+      </SubTopic>
+      <SubTopic order="3" name="RAG (Retrieval-augmented generation) Basics">
+        - What is RAG and why is it useful?
+        - High-level overview of how it works
+      </SubTopic>
+      <SubTopic order="4" name="Embedding models &amp; semantic search">
+        - What are embeddings?
+        - How to use embeddings for code search or similarity
+      </SubTopic>
+    </Topic>
   </PrimaryTopics>
-
-	<StretchTopics>
-    <StretchTopic>Code AST manipulation basics</StretchTopic>
-		<StretchTopic>Multi-agent architectures &amp; agent debates</StretchTopic>
-		<StretchTopic>RAG implementation via vector databases</StretchTopic>
-		<StretchTopic>IDE/editor extension architectures</StretchTopic>
-		<StretchTopic>Agent communication protocols</StretchTopic>
+	<StretchTopics count="5">
+	  <Topic order="1" name="Code AST manipulation basics" subtopic_count="0"></Topic>
+		<Topic order="2" name="Multi-agent architectures &amp; agent debates" subtopic_count="0"></Topic>
+		<Topic order="3" name="RAG implementation via vector databases" subtopic_count="0"></Topic>
+		<Topic order="4" name="IDE/editor extension architectures" subtopic_count="0"></Topic>
+		<Topic order="5" name="Agent communication protocols" subtopic_count="0"></Topic>
 	</StretchTopics>
 </ResearchTopics>
