@@ -4,8 +4,8 @@
     <Note order="2" essential="false">Groups are randomly assigned one of the available twists.</Note>
     <Note order="3" essential="false">They should attempt to meet the brief by using the twist as inspiration</Note>
   </ProcessNotes>
-  <ProjectBriefs count="2">
-    <ProjectBrief order="1" name="Creative AI Exploration" skills_count="4" examples_count="4" notes_count="3">
+  <Briefs count="2">
+    <Brief order="1" name="Creative AI Exploration" skills_count="4" examples_count="4" notes_count="3">
       <Task>Experiment creatively with AI technologies to create something innovative, artistic, or playful that wouldn't typically be part of a "serious" software project.</Task>
       <Focus>Exploring generative AI in creative domains – encouraging experimentation with AI capabilities beyond text chat. For example, generating images from text, creating interactive stories, or building creative assistants.</Focus>
       <Criteria>
@@ -71,8 +71,8 @@
         <Note order="2">Treat this somewhat like a mini-hackathon: teams propose their idea at the start so facilitators can ensure it's viable and ethical.</Note>
         <Note order="3">This project likely rekindles energy and reminds everyone that learning AI can be fun and that they can direct these tools toward personal passions.</Note>
       </Notes>
-    </ProjectBrief>
-    <ProjectBrief order="2" name="Open-Source LLM Application" skills_count="4" examples_count="4" notes_count="2">
+    </Brief>
+    <Brief order="2" name="Open-Source LLM Application" skills_count="4" examples_count="4" notes_count="2">
       <Task>Develop an application using an open-source language model instead of relying on closed APIs.</Task>
       <Focus>Hands-on experience with open-source AI models – how to install or invoke them, performance considerations, and comparing their outputs to commercial models. Understanding model internals and building AI features without accessing external APIs.</Focus>
       <Criteria>
@@ -134,16 +134,16 @@
         <Note order="1">This project is about demystifying the AI black box and gaining self-sufficiency with AI tech.</Note>
         <Note order="2">Completing this gives participants confidence that they are not dependent on proprietary AI services for building intelligent features.</Note>
       </Notes>
-    </ProjectBrief>
-  </ProjectBriefs>
-  <ProjectTwists count="1">
-    <ProjectTwist order="1" name="The Adaptive System" examples_count="3">
+    </Brief>
+  </Briefs>
+  <Twists count="1">
+    <Twist order="1" name="The Adaptive System" examples_count="3">
       <Task>Create AI systems that adapt their behavior based on context and user patterns</Task>
       <Examples count="3">
         <Example order="1">Development assistant that shifts communication style based on cognitive load</Example>
         <Example order="2">Documentation system that reorganizes based on team access patterns</Example>
         <Example order="3">Testing infrastructure that evolves its strategies</Example>
       </Examples>
-    </ProjectTwist>
-  </ProjectTwists>
+    </Twist>
+  </Twists>
 </Projects>

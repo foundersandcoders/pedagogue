@@ -4,8 +4,8 @@
     <Note order="2" essential="false">Groups are randomly assigned one of the available twists.</Note>
     <Note order="3" essential="false">They should attempt to meet the brief by using the twist as inspiration</Note>
   </ProcessNotes>
-  <ProjectBriefs count="2">
-    <ProjectBrief order="1" name="AI Dev Companion" skills_count="3" examples_count="4" notes_count="0">
+  <Briefs count="2">
+    <Brief order="1" name="AI Dev Companion" skills_count="3" examples_count="4" notes_count="0">
       <Task>Build a personal AI-assisted development tool that helps with coding tasks.</Task>
       <Focus>Using large-language-model (LLM) APIs for developer productivity (e.g. code generation, explanation)</Focus>
       <Criteria>
@@ -50,8 +50,8 @@
       </Examples>
       <Notes count="0">
       </Notes>
-    </ProjectBrief>
-    <ProjectBrief order="2" name="GitHub AI Helper" skills_count="3" examples_count="4" notes_count="0">
+    </Brief>
+    <Brief order="2" name="GitHub AI Helper" skills_count="3" examples_count="4" notes_count="0">
       <Task>Create an AI-driven GitHub Action to automate a development workflow</Task>
       <Focus>Integration of AI into existing developer tools and workflows</Focus>
       <Criteria>
@@ -98,22 +98,22 @@
       </Examples>
       <Notes count="0">
       </Notes>
-    </ProjectBrief>
-  </ProjectBriefs>
-  <ProjectTwists count="2">
-    <ProjectTwist order="1" name="The Helpful Saboteur" examples_count="2">
+    </Brief>
+  </Briefs>
+  <Twists count="2">
+    <Twist order="1" name="The Helpful Saboteur" examples_count="2">
       <Task>Build a developer tool that deliberately introduces productive chaos</Task>
       <Examples count="2">
         <Example order="1">CLI that suggests radical refactorings</Example>
         <Example order="2">git hook that plays devil's advocate on commits</Example>
       </Examples>
-    </ProjectTwist>
-    <ProjectTwist order="2" name="The Unreliable Narrator" examples_count="2">
+    </Twist>
+    <Twist order="2" name="The Unreliable Narrator" examples_count="2">
       <Task>Create an AI system that generates multiple perspectives on the same data</Task>
       <Examples count="2">
         <Example order="1">documentation generator that writes for different audiences</Example>
         <Example order="2">data visualisation tool that presents competing interpretations</Example>
       </Examples>
-    </ProjectTwist>
-  </ProjectTwists>
+    </Twist>
+  </Twists>
 </Projects>

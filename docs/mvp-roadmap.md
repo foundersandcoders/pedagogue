@@ -127,7 +127,7 @@
 - [ ] Staleness (time since human review) tracking
 - [-] Collaborative editing
 - [ ] Update documentation to address developers (rather than just users)
-- [ ] Add ability to upload previous modules for additional context
+- [ ] Add ability to upload previous modules for context on learners' existing knowledge
   - Strip boilerplate from uploads from previous modules before sending prompt
 
 ---

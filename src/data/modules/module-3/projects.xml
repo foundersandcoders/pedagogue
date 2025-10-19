@@ -4,8 +4,8 @@
     <Note order="2" essential="false">Groups are randomly assigned one of the available twists.</Note>
     <Note order="3" essential="false">They should attempt to meet the brief by using the twist as inspiration</Note>
   </ProcessNotes>
-  <ProjectBriefs count="2">
-    <ProjectBrief order="1" name="RAG Knowledge Chatbot" skills_count="4" examples_count="4" notes_count="3">
+  <Briefs count="2">
+    <Brief order="1" name="RAG Knowledge Chatbot" skills_count="4" examples_count="4" notes_count="3">
       <Task>Build a chatbot that provides reliable answers based on a provided knowledge base (company docs, FAQs, or any domain data) using Retrieval-Augmented Generation.</Task>
       <Focus>Implementing embeddings and vector search to ground LLM outputs in facts. Participants learn to build a pipeline where user queries trigger document retrieval followed by an LLM response that cites the retrieved info (mitigating hallucinations).</Focus>
       <Criteria>
@@ -63,8 +63,8 @@
         <Note order="2">By the demo, each team's chatbot should be able to take a natural language question and return an answer with a cited source from their data. Any failure cases (like the bot giving an answer with wrong reference) are teachable moments.</Note>
         <Note order="3">This project highlights the importance of data in AI applications – an AI is only as good as the data you give it.</Note>
       </Notes>
-    </ProjectBrief>
-    <ProjectBrief order="2" name="Multi-Agent Collaboration System" skills_count="3" examples_count="3" notes_count="0">
+    </Brief>
+    <Brief order="2" name="Multi-Agent Collaboration System" skills_count="3" examples_count="3" notes_count="0">
       <Task>Build systems where multiple AI agents collaborate on complex tasks.</Task>
       <Focus>Advanced multi-agent frameworks, agent communication protocols, task decomposition strategies, and emergent behaviors in agent collectives.</Focus>
       <Criteria>
@@ -107,8 +107,8 @@
       </Examples>
       <Notes count="0">
       </Notes>
-    </ProjectBrief>
-  </ProjectBriefs>
-  <ProjectTwists count="0">
-  </ProjectTwists>
+    </Brief>
+  </Briefs>
+  <Twists count="0">
+  </Twists>
 </Projects>
