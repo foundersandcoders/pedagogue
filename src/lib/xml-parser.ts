@@ -14,8 +14,9 @@ export class XMLParseError extends Error {
  */
 export function parseProjectsXML(xmlContent: string): ProjectsFile {
 	try {
-		// Basic XML validation
-		if (!xmlContent.includes('<Projects>') || !xmlContent.includes('</Projects>')) {
+		const isValidProjectsXml = /^<Projects(\s+[^>]*)?>[\s\S]*<\/Projects>\s*$/m.test(xmlContent);
+
+		if (!isValidProjectsXml) {
 			throw new XMLParseError('Invalid Projects XML: Missing <Projects> root element');
 		}
 
@@ -42,8 +43,10 @@ export function parseProjectsXML(xmlContent: string): ProjectsFile {
  */
 export function parseSkillsXML(xmlContent: string): SkillsFile {
 	try {
-		if (!xmlContent.includes('<AdditionalSkills>') || !xmlContent.includes('</AdditionalSkills>')) {
-			throw new XMLParseError('Invalid Skills XML: Missing <Skills> root element');
+		const isValidSkillsXml = /^<AdditionalSkills(\s+[^>]*)?>[\s\S]*<\/AdditionalSkills>\s*$/m.test(xmlContent);
+
+		if (!isValidSkillsXml) {
+			throw new XMLParseError('Invalid Skills XML: Missing <AdditionalSkills> root element');
 		}
 
 		const parser = new DOMParser();
@@ -67,7 +70,9 @@ export function parseSkillsXML(xmlContent: string): SkillsFile {
  */
 export function parseResearchXML(xmlContent: string): ResearchFile {
 	try {
-		if (!xmlContent.includes('<ResearchTopics>') || !xmlContent.includes('</ResearchTopics>')) {
+		const isValidResearchXml = /^<ResearchTopics(\s+[^>]*)?>[\s\S]*<\/ResearchTopics>\s*$/m.test(xmlContent);
+
+		if (!isValidResearchXml) {
 			throw new XMLParseError('Invalid Research XML: Missing <ResearchTopics> root element');
 		}
 
@@ -91,7 +96,6 @@ export function parseResearchXML(xmlContent: string): ResearchFile {
  * Validate file type and size
  */
 export function validateUploadedFile(file: File): { valid: boolean; error?: string } {
-	// Check file extension
 	if (!file.name.toLowerCase().endsWith('.xml')) {
 		return {
 		  valid: false,
@@ -99,7 +103,6 @@ export function validateUploadedFile(file: File): { valid: boolean; error?: stri
 		};
 	}
 
-	// Check file size (max 1MB)
 	const maxSize = 1024 * 1024; // 1MB
 	if (file.size > maxSize) {
 		return {
@@ -108,7 +111,6 @@ export function validateUploadedFile(file: File): { valid: boolean; error?: stri
 		};
 	}
 
-	// Check MIME type
 	if (file.type && !['text/xml', 'application/xml', 'text/plain'].includes(file.type)) {
 		return {
 		  valid: false,
