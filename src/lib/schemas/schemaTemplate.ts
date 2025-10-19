@@ -35,19 +35,21 @@ export function getSchemaRequirements(): string {
 	return `
     <Rulesets>
       <Ruleset name="XML Structure">
-        Your output must be valid XML matching the EXACT structure inside RequiredOutputStructure
+        Your output must be valid XML matching the EXACT structure inside RequiredOutputStructure.
+        Pay close attention to element names (case-sensitive) and nesting structure.
       </Ruleset>
-      <Ruleset name="Cardinality">
-        <LearningObjectives child_minimum="3" child_name="LearningObjective" />
-        <PrimaryTopics child_minimum="5" child_name="Topic" />
-        <Briefs child_minimum="2" child_name="Brief" />
-        <Skills per="Brief" child_minimum="3" child_name="Skill" />
-        <Examples per="Brief" child_minimum="3" child_name="Example" />
-        <ProjectTwists: minimum 2 ProjectTwist elements
-        <Examples per="Twist" child_minimum="2" child_name="Example" />
-        <SkillsCategory child_minimum="1" child_name="Skill" />
-        <StretchTopics child_minimum="0" child_name="Skill" />
-        <Notes child_minimum="0" child_name="Note" />
+      <Ruleset name="Cardinality Requirements">
+        Minimum number of elements required:
+        - LearningObjectives: At least 3 LearningObjective elements
+        - PrimaryTopics: At least 5 Topic elements
+        - Briefs: At least 2 Brief elements
+        - Skills (per Brief): At least 3 Skill elements
+        - Examples (per Brief): At least 3 Example elements
+        - Twists: At least 2 Twist elements
+        - Examples (per Twist): At least 2 Example elements
+        - SkillsCategory: At least 1 category, each with at least 1 Skill
+        - StretchTopics: Optional (0 or more Topic elements)
+        - Notes: Optional (0 or more Note elements)
       </Ruleset>
       <Ruleset name="Changelog">
         - Document EVERY significant change you make (updates, additions, removals)
@@ -69,13 +71,16 @@ export function getSchemaRequirements(): string {
         7. Meet all minimum cardinality requirements
         8. ALWAYS include <Metadata> section with complete <Changelog>
         9. Document your reasoning in the changelog - this helps human reviewers
+        10. CRITICAL: Do NOT generate "order", "count", or "*_count" attributes (e.g., skills_count, examples_count)
+        11. ONLY include semantic attributes: "name", "importance", "type", "confidence", "section", "essential", "timestamp", "url"
+        12. Self-closing tags are allowed for elements without content (e.g., <Skill name="..." importance="Stretch" />)
       </Ruleset>
     </Rulesets>
     <RequiredOutputStructure>
       <Module>
         <Metadata>
           <!-- REQUIRED: Document what changed, why, and with what confidence -->
-          <GenerationInfo timestamp="ISO 8601 datetime (e.g. 2025-10-11T14:30:00Z)">
+          <GenerationInfo timestamp="ISO 8601 datetime (e.g. 2025-10-19T14:30:00Z)">
             <Source>AI-Generated</Source>
             <Model>claude-sonnet-4-5-20250929</Model>
             <InputSources>
@@ -88,7 +93,7 @@ export function getSchemaRequirements(): string {
             <!-- Document EVERY significant change you make to the input materials -->
             <!-- Be specific about what changed and WHY -->
             <Change
-              section="XPath identifier (e.g. ModuleObjectives/Objective[1])"
+              section="XPath identifier (e.g. LearningObjectives/LearningObjective[1])"
               type="content_update" | "examples_expanded" | "new_content" | "removed" | "reordered"
               confidence="high" | "medium" | "low"
             >
@@ -105,16 +110,18 @@ export function getSchemaRequirements(): string {
             </Change> <!-- Repeat <Change> for each significant modification -->
           </Changelog>
           <ProvenanceTracking>
-            <AIUpdate count="" />
+            <AIUpdate count="1" />
             <SectionsNeedingReview>
               <!-- List any low-confidence changes that need human review -->
               <Section confidence="low">Section identifier if applicable</Section>
             </SectionsNeedingReview>
           </ProvenanceTracking>
         </Metadata>
+
         <Description>What topics this module covers and what we'll build</Description>
+
         <LearningObjectives>
-          <!-- REQUIRED: At least 3 ModuleObjective elements -->
+          <!-- REQUIRED: At least 3 LearningObjective elements -->
           <LearningObjective name="Quick memorable name for the objective">
             An explanation of the practical skills & theoretical knowledge learners will have
           </LearningObjective> <!-- Repeat LearningObjective for each learning objective -->
@@ -140,31 +147,32 @@ export function getSchemaRequirements(): string {
         </ResearchTopics>
         <Projects>
           <Briefs>
-            <!-- REQUIRED: At least 2 ProjectBrief elements -->
+            <!-- REQUIRED: At least 2 Brief elements -->
             <Brief name="Name of Project">
               <Task>One sentence description of successful outcome</Task>
               <Focus>Techniques & technologies that will help achieve the task</Focus>
               <Criteria>Bullet point list of success criteria</Criteria>
               <Skills>
-                <!-- REQUIRED: At least 3 Skill elements per ProjectBrief -->
+                <!-- REQUIRED: At least 3 Skill elements per Brief -->
                 <Skill name="name of skill, technology or technique">
                   Bullet point list of criteria, guidance and explanation
-                </Skill><!-- Repeat Skill for each skill -->
+                </Skill> <!-- Repeat Skill for each skill -->
               </Skills>
               <Examples>
-                <!-- REQUIRED: At least 3 Example elements per ProjectBrief -->
+                <!-- REQUIRED: At least 3 Example elements per Brief -->
                 <Example name="Memorable name of example">
                   Brief description of example
                 </Example> <!-- Repeat Example for each example -->
               </Examples>
             </Brief> <!-- Repeat Brief for each project brief -->
           </Briefs>
+
           <Twists>
-            <!-- REQUIRED: At least 2 ProjectTwist elements -->
+            <!-- REQUIRED: At least 2 Twist elements -->
             <Twist name="Memorable name of twist">
               <Task>Challenge that the twist poses</Task>
               <Examples>
-                <!-- REQUIRED: At least 2 Example elements per ProjectTwist -->
+                <!-- REQUIRED: At least 2 Example elements per Twist -->
                 <Example>Brief description of example</Example> <!-- Repeat Example for each example -->
               </Examples>
             </Twist> <!-- Repeat Twist for each twist -->
