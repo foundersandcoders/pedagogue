@@ -412,8 +412,10 @@ function validateMetadata(root: Element, errors: string[], warnings: string[]): 
 	} else {
 		const genInfo = generationInfoSections[0];
 
+		// Check for timestamp - can be attribute OR child element
+		const timestampAttr = genInfo.getAttribute('timestamp');
 		const timestamps = genInfo.getElementsByTagName('Timestamp');
-		if (timestamps.length === 0 || !timestamps[0].textContent?.trim()) {
+		if (!timestampAttr && (timestamps.length === 0 || !timestamps[0].textContent?.trim())) {
 			warnings.push('<GenerationInfo> missing <Timestamp>');
 		}
 
@@ -438,23 +440,26 @@ function validateMetadata(root: Element, errors: string[], warnings: string[]): 
 			const change = changes[i];
 			const changeNum = i + 1;
 
-			// Validate required fields in Change
+			// Validate required fields in Change - can be attributes OR child elements
+			const sectionAttr = change.getAttribute('section');
 			const sections = change.getElementsByTagName('Section');
-			if (sections.length === 0 || !sections[0].textContent?.trim()) {
+			if (!sectionAttr && (sections.length === 0 || !sections[0].textContent?.trim())) {
 				warnings.push(`<Change> #${changeNum} missing <Section> identifier`);
 			}
 
+			const typeAttr = change.getAttribute('type');
 			const types = change.getElementsByTagName('Type');
-			if (types.length === 0 || !types[0].textContent?.trim()) {
+			if (!typeAttr && (types.length === 0 || !types[0].textContent?.trim())) {
 				warnings.push(`<Change> #${changeNum} missing <Type>`);
 			}
 
+			const confidenceAttr = change.getAttribute('confidence');
 			const confidences = change.getElementsByTagName('Confidence');
-			if (confidences.length === 0 || !confidences[0].textContent?.trim()) {
+			if (!confidenceAttr && (confidences.length === 0 || !confidences[0].textContent?.trim())) {
 				warnings.push(`<Change> #${changeNum} missing <Confidence> level`);
 			} else {
-				// Validate confidence is one of the allowed values
-				const confValue = confidences[0].textContent?.trim().toLowerCase();
+				// Validate confidence is one of the allowed values (from attribute or element)
+				const confValue = (confidenceAttr || confidences[0]?.textContent)?.trim().toLowerCase();
 				if (confValue && !['high', 'medium', 'low'].includes(confValue)) {
 					warnings.push(`<Change> #${changeNum} <Confidence> must be 'high', 'medium', or 'low' (found '${confValue}')`);
 				}
