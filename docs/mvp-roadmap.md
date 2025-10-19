@@ -91,6 +91,9 @@
   - Emphasis on reframing PURPOSE rather than adding FEATURES
 - [x] Steer Claude away from "Facilitators should" phrases
   - Added guidance to write for LEARNERS, not facilitators (peer-led, self-directed approach)
+- [ ] Change xml output format to use self-closing tags
+  Old: <Module><Name>Module's Name</Name></Module>
+  New: <Module name="Module's Name" />
 
 #### 2.2.4. MoGen Output
 - [x] Update files in `~/lib/schemas/` to match `~/src/data/templates/outputSchema.xml`
