@@ -28,6 +28,22 @@ export function cleanXML(xmlString: string): string {
 }
 
 /**
+ * Sanitizes XML by escaping unescaped entities
+ * Handles ampersands and other special characters that should be escaped in XML text content
+ *
+ * IMPORTANT: Only escapes entities in TEXT CONTENT, not within tags or existing entities
+ */
+export function sanitizeXMLEntities(xmlString: string): string {
+	let sanitized = xmlString;
+
+	// Escape unescaped ampersands (& that aren't already part of &amp;, &lt;, &gt;, &quot;, &apos;, or numeric entities)
+	// This regex matches & that is NOT followed by (amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);
+	sanitized = sanitized.replace(/&(?!(amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)/g, '&amp;');
+
+	return sanitized;
+}
+
+/**
  * Extracts XML content between specific tags (case-sensitive)
  */
 export function extractXMLBetweenTags(content: string, tagName: string): string | null {

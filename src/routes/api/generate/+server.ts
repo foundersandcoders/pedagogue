@@ -4,7 +4,7 @@ import type { RequestHandler } from './$types';
 import { ChatAnthropic } from '@langchain/anthropic';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 import { getSchemaRequirements } from '$lib/schemas/schemaTemplate.js';
-import { cleanXML } from '$lib/schemas/xmlUtils.js';
+import { cleanXML, sanitizeXMLEntities } from '$lib/schemas/xmlUtils.js';
 import { validateModuleXML } from '$lib/schemas/moduleValidator.js';
 
 /**
@@ -40,14 +40,18 @@ function extractModuleXML(content: string): string | null {
 	if (xmlMatch) {
 		const rawXML = xmlMatch[0];
 		// Clean the XML (remove comments and normalize whitespace)
-		const cleanedXML = cleanXML(rawXML);
+		let cleanedXML = cleanXML(rawXML);
+		// Sanitize XML entities (escape unescaped ampersands, etc.)
+		cleanedXML = sanitizeXMLEntities(cleanedXML);
 		return `<?xml version="1.0" encoding="UTF-8"?>\n${cleanedXML}`;
 	}
 
 	// If no match, check if the entire content is valid XML
 	const trimmed = content.trim();
 	if (trimmed.match(/^<Module>/i) && trimmed.match(/<\/Module>$/i)) {
-		const cleanedXML = cleanXML(trimmed);
+		let cleanedXML = cleanXML(trimmed);
+		// Sanitize XML entities (escape unescaped ampersands, etc.)
+		cleanedXML = sanitizeXMLEntities(cleanedXML);
 		return `<?xml version="1.0" encoding="UTF-8"?>\n${cleanedXML}`;
 	}
 
