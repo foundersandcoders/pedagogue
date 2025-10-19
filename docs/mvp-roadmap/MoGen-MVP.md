@@ -59,7 +59,47 @@
 ---
 
 ## 3. General Tasks
-- [ ] Steer Claude towards British English
+- [ ] 3.1. Steer Claude towards British English
+- [ ] 3.2. Fix the output validation error in `docs/drafts/modules/module3-2025-10-19-2158.xml`
+    *Think it's partly ampersand on line 228*
+    client.ts:122 [hmr] Failed to reload /src/lib/FileUpload.svelte. This could be due to syntax errors or importing non-existent modules. (see errors above)
+      warnFailedFetch	@	client.ts:122
+      fetchUpdate	@	client.ts:475
+      await in fetchUpdate
+      (anonymous)	@	client.ts:181
+      handleMessage	@	client.ts:179
+      (anonymous)	@	client.ts:96
+    ⚠ Validation Warnings
+      <GenerationInfo> missing <Timestamp>
+      <Change> #1 missing <Section> identifier
+      <Change> #1 missing <Type>
+      <Change> #1 missing <Confidence> level
+      <Change> #2 missing <Section> identifier
+      <Change> #2 missing <Type>
+      <Change> #2 missing <Confidence> level
+      <Change> #3 missing <Section> identifier
+      <Change> #3 missing <Type>
+      <Change> #3 missing <Confidence> level
+      <Change> #4 missing <Section> identifier
+      <Change> #4 missing <Type>
+      <Change> #4 missing <Confidence> level
+      <Change> #5 missing <Section> identifier
+      <Change> #5 missing <Type>
+      <Change> #5 missing <Confidence> level
+      <Change> #6 missing <Section> identifier
+      <Change> #6 missing <Type>
+      <Change> #6 missing <Confidence> level
+      <Change> #7 missing <Section> identifier
+      <Change> #7 missing <Type>
+      <Change> #7 missing <Confidence> level
+      <Change> #8 missing <Section> identifier
+      <Change> #8 missing <Type>
+      <Change> #8 missing <Confidence> level
+      <Change> #9 missing <Section> identifier
+      <Change> #9 missing <Type>
+      <Change> #9 missing <Confidence> level
+    ⚠ Validation Errors
+      XML parsing error: This page contains the following errors:error on line 228 at column 326: xmlParseEntityRef: no name Below is a rendering of the page up to the first error.
 
 ---
 
