@@ -4,8 +4,8 @@
     <Note order="2" essential="false">Groups are randomly assigned one of the available twists.</Note>
     <Note order="3" essential="false">They should attempt to meet the brief by using the twist as inspiration</Note>
   </ProcessNotes>
-  <ProjectBriefs count="2">
-    <ProjectBrief order="1" name="Knowledge and Memory" skills_count="4" examples_count="4" notes_count="0">
+  <Briefs count="2">
+    <Brief order="1" name="Knowledge and Memory" skills_count="4" examples_count="4" notes_count="0">
       <Task>Develop a user-facing chatbot that can ingest and summarize long documents or answer questions about them.</Task>
       <Focus>Long-context handling (using models with extended context windows like Anthropic Claude) and summary/"Q and A" prompt patterns. Lays groundwork for retrieval techniques by addressing LLM limits and chunking.</Focus>
       <Criteria>
@@ -60,8 +60,8 @@
       </Examples>
       <Notes count="0">
       </Notes>
-    </ProjectBrief>
-    <ProjectBrief order="2" name="User Agent" skills_count="3" examples_count="5" notes_count="3">
+    </Brief>
+    <Brief order="2" name="User Agent" skills_count="3" examples_count="5" notes_count="3">
       <Task>Build an AI agent that can perform multi-step tasks by invoking external tools or APIs (e.g. an AI that answers user requests by calling weather or search APIs).</Task>
       <Focus>Agent frameworks and function calling. Participants learn how giving an AI tool access extends its capabilities (search the web, do math, etc. via tools ￼). Introduces decision-making by LLMs and the ReAct reasoning paradigm in a practical way.</Focus>
       <Criteria>
@@ -106,16 +106,16 @@
         <Note order="2">During building, groups who use Python might spin up a small Flask server or Jupyter environment to host their agent logic, whereas others using Node and OpenAI functions might keep it all in one script. By Week 12, we expect working demos where a user query leads the agent to take at least one tool action and then return an answer. The presentations will be exciting because they show AI systems doing things like retrieving live info or interacting with user data – very cutting-edge stuff that moves beyond static Q&amp;A. We will likely see some agents succeed impressively and others struggle (for instance, the web research agent might sometimes fetch irrelevant info). This is valuable for learning; it will prompt discussions on how to improve tool use, and highlight that giving AI tools is powerful but requires careful design (thus leading well into evaluation and grounding topics in later projects).</Note>
         <Note order="3">By completing this project, participants step firmly into the realm of AI engineering (not just calling an API to get a chat answer, but orchestrating AI reasoning and actions). This skillset is highly sought after, as evidenced by many frameworks and hackathons around AI agents ￼. The project also underscores the importance of a human-in-the-loop mindset.</Note>
       </Notes>
-    </ProjectBrief>
-  </ProjectBriefs>
-  <ProjectTwists count="1">
-    <ProjectTwist order="1" name="It's Always Watching..." examples_count="3">
+    </Brief>
+  </Briefs>
+  <Twists count="1">
+    <Twist order="1" name="It's Always Watching..." examples_count="3">
       <Task>Build something that gives AI persistent, evolving context.</Task>
       <Examples count="3">
         <Example order="1">An interaction environment/frontend that remembers your interaction patterns across sessions</Example>
         <Example order="2">A documentation system that learns from your team's questions</Example>
         <Example order="3">An assistant that builds institutional knowledge</Example>
       </Examples>
-    </ProjectTwist>
-  </ProjectTwists>
+    </Twist>
+  </Twists>
 </Projects>
