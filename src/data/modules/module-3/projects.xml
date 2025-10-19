@@ -1,0 +1,232 @@
+<Projects>
+  <Process>
+    <Essential>Groups choose one of the available briefs and then work on it for this arc</Essential>
+    <Encouraged>
+      - Groups are randomly assigned one of the available twists.
+      - They should attempt to:
+        - meet the brief
+        - by using the twist as inspiration
+    </Encouraged>
+  </Process>
+
+  <ProjectBriefs>
+    <ProjectBrief>
+      <Overview>
+        <Name>RAG Knowledge Chatbot</Name>
+
+        <Task>
+          Build a chatbot that provides reliable answers based on a provided knowledge base (company docs, FAQs, or any domain data) using Retrieval-Augmented Generation.
+        </Task>
+
+        <Focus>
+          Implementing embeddings and vector search to ground LLM outputs in facts. Participants learn to build a pipeline where user queries trigger document retrieval followed by an LLM response that cites the retrieved info (mitigating hallucinations).
+        </Focus>
+      </Overview>
+
+      <Criteria>
+        - Build a chatbot that can answer user queries based on a specific knowledge base or dataset provided, using Retrieval-Augmented Generation (RAG) techniques.
+        - The chatbot should deliver answers with references to the source material, ensuring accuracy.
+        - The knowledge base could be a collection of documents, a wiki, a product FAQ, or any corpus that isn't part of the AI's training data.
+        - The key is that the bot must fetch relevant information from the provided data and use it to formulate its answers, rather than relying purely on the LLM's internal knowledge.
+      </Criteria>
+
+      <Skills>
+        <Skill>
+         	<Name>Implementing a retrieval pipeline</Name>
+
+          <Details>
+            - Create an end-to-end system where a user's query is first processed to retrieve relevant documents (or snippets) from the knowledge base.
+            - Feed those documents into the LLM to generate a context-aware answer.
+            - Typical steps: indexing the docs, searching them, and constructing a prompt with the results.
+          </Details>
+        </Skill>
+
+        <Skill>
+         	<Name>Using vector databases or embeddings</Name>
+
+          <Details>
+            - To retrieve by meaning, use embeddings to represent documents and queries.
+            - Set up a vector store (for example, using an open-source solution like Chroma or a free tier of Pinecone or Weaviate).
+            - Gain hands-on experience with creating embeddings for text and performing similarity search.
+            - Understand how vector search works as a key technical skill.
+          </Details>
+        </Skill>
+
+        <Skill>
+         	<Name>Preventing hallucinations and ensuring citations</Name>
+
+          <Details>
+            - Have the bot cite sources (e.g. "According to Document X, …") to enforce a degree of reliability.
+            - Learn prompt strategies to have the LLM include excerpts or references from the retrieved text.
+            - Foster good practices in AI transparency – not just answer, but show evidence.
+            - Understand the difference between an answer coming from ground truth vs the model's own guess.
+          </Details>
+        </Skill>
+
+        <Skill>
+         	<Name>Scaling and optimization considerations</Name>
+
+          <Details>
+            - With possibly dozens or hundreds of pages of content, efficiency matters.
+            - Figure out how to index data (maybe chunk documents into sections, which chunk size works best).
+            - Determine how many results to feed into the prompt without busting token limits.
+            - Experiment with trade-offs: feeding fewer, highly relevant chunks vs. more chunks.
+            - Introduction to performance tuning in AI systems.
+          </Details>
+        </Skill>
+      </Skills>
+
+      <Examples>
+        <Example>
+          <Name>Internal Company Docs Assistant</Name>
+
+          <Description>
+            - Use internal HR policies manual or company FAQs.
+            - The bot would answer things like "How do I file an expense report?" by retrieving the relevant policy.
+          </Description>
+        </Example>
+
+        <Example>
+          <Name>Tech Library Assistant</Name>
+
+          <Description>
+            - A bot trained on a collection of programming tutorials or documentation (say, a subset of MDN web docs or Python library docs).
+            - Users can ask programming questions and get answers with references to the docs.
+          </Description>
+        </Example>
+
+        <Example>
+          <Name>Educational Tutor</Name>
+
+          <Description>
+            - Use a collection of course notes or textbook chapters on a subject (like physics).
+            - The bot answers questions and cites the source material.
+          </Description>
+        </Example>
+
+        <Example>
+          <Name>Legal/Compliance Assistant</Name>
+
+          <Description>
+            - A repository of laws or regulations, where the bot helps answer, e.g., "What's the law about X in region Y?" with citation.
+            - Shows a use-case in legal AI with the critical need for source references due to high accuracy requirements.
+          </Description>
+        </Example>
+      </Examples>
+
+      <Notes>
+        <Note>
+          This project solidifies working with external data and introduces basic data stores (could use a local vector DB like Chroma or a cloud service if budget permits).
+        </Note>
+
+        <Note>
+          By the demo, each team's chatbot should be able to take a natural language question and return an answer with a cited source from their data. Any failure cases (like the bot giving an answer with wrong reference) are teachable moments.
+        </Note>
+
+        <Note>
+          This project highlights the importance of data in AI applications – an AI is only as good as the data you give it.
+        </Note>
+      </Notes>
+    </ProjectBrief>
+
+    <ProjectBrief>
+      <Overview>
+        <Name>Multi-Agent Collaboration System</Name>
+
+        <Task>
+          Build systems where multiple AI agents collaborate on complex tasks.
+        </Task>
+
+        <Focus>
+          Advanced multi-agent frameworks, agent communication protocols, task decomposition strategies, and emergent behaviors in agent collectives.
+        </Focus>
+      </Overview>
+
+      <Criteria>
+        - Design and implement a system where multiple AI agents work together to solve complex problems.
+        - Each agent should have a specialized role or capability.
+        - Agents should be able to communicate and coordinate their efforts.
+        - The system should demonstrate how distributed AI problem-solving can tackle tasks that would be difficult for a single agent.
+      </Criteria>
+
+      <Skills>
+        <Skill>
+          <Name>Multi-agent architecture design</Name>
+
+          <Details>
+            - Learn how to design systems where multiple agents with different specializations work together.
+            - Understand agent roles, responsibilities, and communication patterns.
+            - Design protocols for agent coordination and task delegation.
+          </Details>
+        </Skill>
+
+        <Skill>
+          <Name>Agent orchestration and coordination</Name>
+
+          <Details>
+            - Implement mechanisms for agents to communicate and share information.
+            - Handle task decomposition and distribution among agents.
+            - Manage consensus and decision-making in multi-agent systems.
+          </Details>
+        </Skill>
+
+        <Skill>
+          <Name>Emergent intelligence patterns</Name>
+
+          <Details>
+            - Observe how collective intelligence emerges from agent interactions.
+            - Understand how agents can debate and refine solutions through argument.
+            - Learn to recognize and leverage emergent behaviors in distributed systems.
+          </Details>
+        </Skill>
+      </Skills>
+
+      <Examples>
+        <Example>
+          <Name>Distributed code migration tool</Name>
+
+          <Description>
+            - Multiple agents analyze different parts of a codebase.
+            - Agents coordinate to plan and execute a complex migration or refactoring.
+          </Description>
+        </Example>
+
+        <Example>
+          <Name>Multi-agent testing framework</Name>
+
+          <Description>
+            - Specialized agents that find edge cases through argument and debate.
+            - One agent proposes test cases, another challenges them, a third synthesizes the best cases.
+          </Description>
+        </Example>
+
+        <Example>
+          <Name>Design system generator</Name>
+
+          <Description>
+            - Specialist agents debate implementation details.
+            - One focuses on accessibility, another on performance, another on aesthetics.
+            - They negotiate and converge on optimal design decisions.
+          </Description>
+        </Example>
+      </Examples>
+
+      <Notes>
+      </Notes>
+    </ProjectBrief>
+  </ProjectBriefs>
+
+  <ProjectTwists>
+    <ProjectTwist>
+      <Name></Name>
+
+      <Task>
+      </Task>
+
+      <ExampleUses>
+        <Example>
+        </Example>
+      </ExampleUses>
+    </ProjectTwist>
+  </ProjectTwists>
+</Projects>

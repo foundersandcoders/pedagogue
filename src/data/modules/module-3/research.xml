@@ -1,0 +1,174 @@
+<ResearchTopics>
+  <Overview>
+    These are topics that might be useful foci for the initial research session at the beginning of the module.
+  </Overview>
+
+	<PrimaryTopics>
+    <PrimaryTopic>
+      <TopicName>RAG Concepts and Case Studies</TopicName>
+
+      <TopicDescription>
+        1. Understanding RAG fundamentals
+          - Find explanations of why RAG is useful and how companies use it
+          - Examples: how Bing Search or enterprise chatbots use retrieval to give up-to-date info
+          - RAG "combines LLMs with external knowledge to get more accurate, up-to-date answers"
+        2. Real-world applications
+          - Research case studies of successful RAG implementations
+          - Understand the problems RAG solves vs. other approaches
+          - Compare RAG to fine-tuning and when to use each
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Vector Databases</TopicName>
+
+      <TopicDescription>
+        1. Vector database options
+          - Research at least one or two vector DB options
+          - Consider Chroma (open source and easy to run)
+          - Experiment with Pinecone's free tier or other cloud options
+          - Weaviate, Qdrant, Milvus as alternatives
+        2. Indexing and querying
+          - How to index data in a vector database
+          - How to perform similarity searches
+          - Possibly demonstrate a tiny example (e.g. indexing 5 sentences and querying one)
+        3. Trade-offs and considerations
+          - Local vs. cloud-hosted solutions
+          - Performance characteristics
+          - Cost implications
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Embedding Models</TopicName>
+
+      <TopicDescription>
+        1. Embedding model selection
+          - Research what embedding model to use for text
+          - OpenAI's text-embedding-ada-002 is a straightforward choice via API
+          - Local embedding models as alternatives (SBERT, InstructorXL)
+        2. Trade-offs
+          - OpenAI's embeddings are high-quality but cost per call
+          - Local models might be free but less performant
+          - Dimensionality considerations
+        3. How semantic similarity works
+          - Understand the concept of embedding space
+          - How cosine similarity and other distance metrics work
+          - How to choose appropriate similarity thresholds
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Prompting for QA with Context</TopicName>
+
+      <TopicDescription>
+        1. Prompt formatting strategies
+          - How to format the prompt when you have retrieved documents
+          - Strategies like "Answer the question using only the following context…"
+          - Instructing the model to say if it doesn't know or if info wasn't found
+        2. Citation and source referencing
+          - How to ask the LLM to provide the source
+          - Prompt templates that explicitly say: "Include a reference to the document in your answer"
+          - Find community prompts or literature on this
+        3. Handling context limitations
+          - How much context to include in the prompt
+          - Strategies for when retrieved documents exceed token limits
+          - Balancing relevance vs. comprehensiveness
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Evaluation of RAG Systems</TopicName>
+
+      <TopicDescription>
+        1. Evaluation approaches
+          - How to evaluate the chatbot's answers for factual accuracy
+          - Creating an evaluation set with known answers
+          - Unit tests for the chatbot
+        2. Metrics for RAG
+          - Precision and recall of retrieval
+          - Groundedness of responses
+          - Answer relevance and correctness
+          - Using AI evaluators to measure quality
+        3. Systematic testing
+          - Awareness of how to systematically test an AI QA system
+          - Industry practices for RAG evaluation
+          - Identifying and handling failure modes
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>AI Agents and Function Calling</TopicName>
+
+      <TopicDescription>
+        1. OpenAI Function Calling
+          - Understand OpenAI's function calling feature in the Chat API
+          - How developers specify functions (with name and parameters)
+          - How the model decides to output a JSON to call them
+          - Best practices to get reliable function calls
+        2. Agent Frameworks
+          - Explore libraries like LangChain agents or Microsoft's Semantic Kernel
+          - What do these frameworks provide?
+          - How agents implement reasoning loops (often using the ReAct framework)
+          - Simple agent examples from documentation
+        3. Case Studies of Autonomous Agents
+          - Research experiments like AutoGPT or BabyAGI
+          - What kinds of tasks were they able to automate?
+          - Challenges encountered (getting stuck in loops, irrelevant actions)
+          - Metrics or anecdotes on effectiveness and efficiency
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Tool Design and Safety for AI Agents</TopicName>
+
+      <TopicDescription>
+        1. Designing Tool APIs
+          - How to choose and design tools for AI agents
+          - Common tools: calculator, web search, knowledge lookup
+          - Model-Compute-Pipeline (MCP) standard for connecting LLMs to tools
+          - Error handling: what if the tool returns nothing useful?
+        2. Ensuring Safe and Relevant Actions
+          - How to keep the agent from doing unwanted things
+          - Constraining the tools available
+          - Strategies to keep the agent on track
+          - Requiring the agent to explain why it's calling a function
+          - Time-outs if too many steps
+        3. Ethical boundaries
+          - Privacy considerations when hooking to external APIs
+          - Data security and access controls
+          - Audit trails for agent actions
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Multi-Agent Systems</TopicName>
+
+      <TopicDescription>
+        1. Advanced multi-agent frameworks
+          - Research AutoGen, CrewAI, and similar frameworks
+          - How these frameworks enable agent collaboration
+          - Communication protocols between agents
+        2. Agent coordination patterns
+          - Task decomposition strategies
+          - Consensus mechanisms in AI systems
+          - Agent orchestration approaches
+        3. Emergent behaviors
+          - How distributed problem-solving works
+          - Emergent intelligence in agent collectives
+          - Mixture of experts approaches
+          - Agent negotiation and debate patterns
+      </TopicDescription>
+    </PrimaryTopic>
+  </PrimaryTopics>
+
+	<StretchTopics>
+	  <StretchTopic>Multi-turn and Memory in Agents: How agents carry state and manage results from previous function calls</StretchTopic>
+		<StretchTopic>Graph databases for knowledge representation in RAG systems</StretchTopic>
+		<StretchTopic>Hybrid search strategies combining vector and keyword search</StretchTopic>
+		<StretchTopic>Fine-tuning embedding models for domain-specific applications</StretchTopic>
+		<StretchTopic>Advanced chunking strategies and their impact on retrieval quality</StretchTopic>
+		<StretchTopic>Agent memory architectures and long-term context management</StretchTopic>
+		<StretchTopic>Verification and validation in multi-agent systems</StretchTopic>
+	</StretchTopics>
+</ResearchTopics>

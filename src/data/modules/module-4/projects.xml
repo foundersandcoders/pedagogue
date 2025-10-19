@@ -1,0 +1,284 @@
+<Projects>
+  <Process>
+    <Essential>Groups choose one of the available briefs and then work on it for this arc</Essential>
+    <Encouraged>
+      - Groups are randomly assigned one of the available twists.
+      - They should attempt to:
+        - meet the brief
+        - by using the twist as inspiration
+    </Encouraged>
+  </Process>
+
+  <ProjectBriefs>
+    <ProjectBrief>
+      <Overview>
+        <Name>Creative AI Exploration</Name>
+
+        <Task>
+          Experiment creatively with AI technologies to create something innovative, artistic, or playful that wouldn't typically be part of a "serious" software project.
+        </Task>
+
+        <Focus>
+          Exploring generative AI in creative domains – encouraging experimentation with AI capabilities beyond text chat. For example, generating images from text, creating interactive stories, or building creative assistants.
+        </Focus>
+      </Overview>
+
+      <Criteria>
+        - Use AI to create something innovative, artistic, or playful.
+        - The project should involve techniques or models that go beyond plain text QA – ideally exploring a new modality or a creative application of language.
+        - Teams can propose their own concepts with few constraints.
+        - Suggested directions include: generative art or images, AI-generated music or audio, interactive storytelling or games powered by AI, or humorous applications of AI.
+        - The emphasis is on creative learning – trying something new and potentially offbeat to broaden horizons.
+      </Criteria>
+
+      <Skills>
+        <Skill>
+         	<Name>Multi-modal AI exploration</Name>
+
+          <Details>
+            - Many may choose to try models beyond text.
+            - Work with image generation (Stable Diffusion, MidJourney, DALL·E).
+            - Explore text-to-speech and voice assistants.
+            - Learn the basics of how to prompt image models or work with audio data.
+            - Broadens exposure to the wider AI ecosystem.
+          </Details>
+        </Skill>
+
+        <Skill>
+         	<Name>Creative problem-solving and innovation</Name>
+
+          <Details>
+            - Step into the shoes of creators, not just engineers.
+            - Find new problems or artistic expressions with AI.
+            - Loosening constraints encourages new insights and keeps engagement high.
+            - May revisit earlier project ideas with creative twists.
+          </Details>
+        </Skill>
+
+        <Skill>
+         	<Name>Self-directed learning</Name>
+
+          <Details>
+            - Each team effectively teaches themselves about their chosen domain.
+            - Become mini-experts and share that knowledge with others.
+            - Strengthens ability to learn independently – crucial in the fast-moving AI field.
+          </Details>
+        </Skill>
+
+        <Skill>
+         	<Name>Ethical considerations in creative AI</Name>
+
+          <Details>
+            - Creative projects can raise unique ethical questions.
+            - AI humor bot could inadvertently produce offensive content.
+            - Deepfake projects raise questions of consent.
+            - Discuss controversies like AI "stealing" artists' styles.
+            - Ensure all briefs can be executed without compromising personal ethics.
+          </Details>
+        </Skill>
+      </Skills>
+
+      <Examples>
+        <Example>
+          <Name>AI Storyteller Game</Name>
+
+          <Description>
+            - Create an interactive fiction game where the player's inputs are answered by an AI "dungeon master".
+            - Dynamically generates the story based on user choices.
+            - Uses an LLM with careful prompt management to continue a narrative.
+          </Description>
+        </Example>
+
+        <Example>
+          <Name>Generative Art Exhibit</Name>
+
+          <Description>
+            - Use a text-to-image model (like Stable Diffusion or DALL·E API) to create a series of images.
+            - Based on user prompts or real-time data (e.g. weather → landscape painting).
+            - Package images in a gallery web app.
+            - Could incorporate image-to-image transformations or style transfer.
+          </Description>
+        </Example>
+
+        <Example>
+          <Name>AI Music Jamming</Name>
+
+          <Description>
+            - Use an AI model to generate music or beats.
+            - Use models like MuseNet or Riffusion to create melodies from text descriptions.
+            - Build a simple UI where you choose a mood or type a lyric and it produces a tune.
+          </Description>
+        </Example>
+
+        <Example>
+          <Name>Comedy or Satire Bot</Name>
+
+          <Description>
+            - An AI that takes serious text and turns it into something humorous.
+            - Input a formal article and it outputs a sarcastic summary.
+            - Or a "Shakespearean insult generator" using an LLM.
+            - Tests the model's style transfer capabilities.
+          </Description>
+        </Example>
+      </Examples>
+
+      <Notes>
+        <Note>
+          This project acts as a breather from structured objectives and lets participants apply their cumulative knowledge in unconstrained ways.
+        </Note>
+
+        <Note>
+          Treat this somewhat like a mini-hackathon: teams propose their idea at the start so facilitators can ensure it's viable and ethical.
+        </Note>
+
+        <Note>
+          This project likely rekindles energy and reminds everyone that learning AI can be fun and that they can direct these tools toward personal passions.
+        </Note>
+      </Notes>
+    </ProjectBrief>
+
+    <ProjectBrief>
+      <Overview>
+        <Name>Open-Source LLM Application</Name>
+
+        <Task>
+          Develop an application using an open-source language model instead of relying on closed APIs.
+        </Task>
+
+        <Focus>
+          Hands-on experience with open-source AI models – how to install or invoke them, performance considerations, and comparing their outputs to commercial models. Understanding model internals and building AI features without accessing external APIs.
+        </Focus>
+      </Overview>
+
+      <Criteria>
+        - Develop an application using an open-source LLM as its core (e.g. Llama 2, GPT-J, or similar).
+        - Deploy the model on your local machine or a server under your control.
+        - The app can be similar to something done earlier or a new concept – emphasis is on the technical challenge of using an open model.
+        - Evaluate the open-source model's performance against benchmarks.
+        - Possibly customize it via parameter tweaks, prompt tuning, or lightweight fine-tuning.
+      </Criteria>
+
+      <Skills>
+        <Skill>
+          <Name>Hands-on model deployment</Name>
+
+          <Details>
+            - Learn how to obtain and run an LLM on hardware or free cloud instance.
+            - Work with Hugging Face Transformers library, llama.cpp, or containerized solutions.
+            - Face practical concerns like model size, inference speed, GPU vs CPU differences.
+            - Understand what resources AI models need and how to manage them.
+          </Details>
+        </Skill>
+
+        <Skill>
+          <Name>Understanding model specifics</Name>
+
+          <Details>
+            - Explore details like model architecture and training data (from model cards).
+            - Research what the chosen model is good at and where it struggles.
+            - Build intuition about model scale and quality.
+            - Try multiple models for comparison if possible.
+          </Details>
+        </Skill>
+
+        <Skill>
+          <Name>Model customization and fine-tuning</Name>
+
+          <Details>
+            - Learn concepts of how models can be updated with new data.
+            - Potentially attempt small fine-tuning experiment using techniques like LoRA.
+            - Understand prompt tuning as a simpler way to adapt models.
+            - See how open models can be improved by developers and the community.
+          </Details>
+        </Skill>
+
+        <Skill>
+          <Name>Critical evaluation: open vs closed models</Name>
+
+          <Details>
+            - Compare experience to using commercial APIs like OpenAI.
+            - Note pros: no cost per request, full control, privacy benefits.
+            - Note cons: maybe lower quality, more engineering effort, memory usage.
+            - Understand when to choose open-source vs proprietary models.
+            - Treat AI models as tools with trade-offs, not magic.
+          </Details>
+        </Skill>
+      </Skills>
+
+      <Examples>
+        <Example>
+          <Name>Local Chat Assistant</Name>
+
+          <Description>
+            - A ChatGPT clone running offline.
+            - Set up Llama-2-7B or 13B and build a console or web chat interface.
+            - Compare its answers to GPT-3.5 on questions to see differences.
+          </Description>
+        </Example>
+
+        <Example>
+          <Name>Code Assistant with Code LLM</Name>
+
+          <Description>
+            - Use an open-source code-focused model (like StarCoder or CodeGen).
+            - Build an offline version of a code helper.
+            - Measure if it's as good as OpenAI model on some prompts.
+          </Description>
+        </Example>
+
+        <Example>
+          <Name>Specialized Task Model</Name>
+
+          <Description>
+            - Fine-tune a small model to act as a grammar corrector or translator.
+            - Integrate into a simple app (like a "Translate my sentence" web form).
+            - Show that even smaller models can be quite usable when fine-tuned on specific tasks.
+          </Description>
+        </Example>
+
+        <Example>
+          <Name>Fully Open RAG System</Name>
+
+          <Description>
+            - Re-implement RAG Q&A entirely with open tools: open embedding model + open LLM.
+            - Demonstrate it's possible to do closed-domain Q&A without calling proprietary APIs.
+          </Description>
+        </Example>
+      </Examples>
+
+      <Notes>
+        <Note>
+          This project is about demystifying the AI black box and gaining self-sufficiency with AI tech.
+        </Note>
+
+        <Note>
+          Completing this gives participants confidence that they are not dependent on proprietary AI services for building intelligent features.
+        </Note>
+      </Notes>
+    </ProjectBrief>
+  </ProjectBriefs>
+
+  <ProjectTwists>
+    <ProjectTwist>
+      <Name>The Adaptive System</Name>
+
+      <Task>
+        Create AI systems that adapt their behavior based on context and user patterns
+      </Task>
+
+      <ExampleUses>
+        <Example>
+          Development assistant that shifts communication style based on cognitive load
+        </Example>
+
+        <Example>
+          Documentation system that reorganizes based on team access patterns
+        </Example>
+
+        <Example>
+          Testing infrastructure that evolves its strategies
+        </Example>
+      </ExampleUses>
+    </ProjectTwist>
+  </ProjectTwists>
+</Projects>

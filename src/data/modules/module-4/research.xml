@@ -1,0 +1,203 @@
+<ResearchTopics>
+  <Overview>
+    These are topics that might be useful foci for the initial research session at the beginning of the module.
+  </Overview>
+
+	<PrimaryTopics>
+    <PrimaryTopic>
+      <TopicName>New Model Domains and Modalities</TopicName>
+
+      <TopicDescription>
+        1. Text-to-Image Models
+          - How do text-to-image models work?
+          - What libraries can we use easily? (Diffusion Web UIs, Hugging Face)
+          - Popular models: Stable Diffusion, DALL·E, MidJourney
+          - Prompt engineering for image generation
+        2. AI Music Generation
+          - What are good free resources for AI music generation?
+          - Models like MuseNet, Riffusion
+          - MIDI generation libraries
+        3. Other Modalities
+          - Text-to-speech and voice synthesis
+          - Audio processing and generation
+          - Multi-modal combinations (text + image + audio)
+        4. Finding and Using Pre-trained Models
+          - Navigating Hugging Face model hub
+          - Understanding model cards and capabilities
+          - API vs local deployment options
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Ethical and Social Implications of Creative AI</TopicName>
+
+      <TopicDescription>
+        1. AI Art and Artist Rights
+          - Lawsuits around AI art datasets
+          - Copyright and training data concerns
+          - Attribution and credit in AI-generated content
+        2. AI in Creative Writing
+          - Originality concerns with AI-generated text
+          - Plagiarism and authenticity
+          - The role of human creativity
+        3. Deepfakes and Trust
+          - Technical aspects of deepfakes
+          - Consent and privacy issues
+          - Detection and mitigation strategies
+        4. AI Humor and Offense
+          - Instances where AI chatbots said inappropriate things
+          - Why content filters matter
+          - Balancing creativity with responsibility
+        5. Identifying Project-Specific Issues
+          - Each team identifies controversial aspects of their project
+          - Research debates around their specific topic
+          - Develop mitigation strategies
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Open LLM Landscape</TopicName>
+
+      <TopicDescription>
+        1. Notable Open-Source Models
+          - Llama 2, Falcon, MPT, and their characteristics
+          - Model size, training data, and licenses
+          - Performance comparisons with closed models
+        2. Breakthrough Developments
+          - How Llama 2 approached GPT-3.5 performance
+          - Success stories of open model adoption
+          - Smaller models excelling with fine-tuning on specific tasks
+        3. Licensing and Legal Considerations
+          - Understanding different open-source licenses
+          - Usage restrictions (e.g., Llama 2's commercial limitations)
+          - Intellectual property considerations
+        4. Community and Ecosystem
+          - Community-driven improvements and fine-tunes (Vicuna, Orca)
+          - Role of open source in AI transparency
+          - Accountability and trust through transparency
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Running Models Locally</TopicName>
+
+      <TopicDescription>
+        1. Tooling and Frameworks
+          - Hugging Face Transformers pipeline
+          - llama.cpp for efficient local inference
+          - ONNX acceleration techniques
+        2. Resource Requirements
+          - Memory usage and speed considerations
+          - GPU vs CPU trade-offs
+          - Quantization techniques (4-bit, 8-bit)
+        3. Optimization Strategies
+          - Making models run on consumer hardware
+          - Quantized models (e.g., 13B running on 16GB RAM)
+          - Balancing quality and performance
+        4. Practical Experimentation
+          - Test with small models first
+          - Report memory usage and speed
+          - Compare quantized vs full-precision performance
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Fine-tuning Techniques</TopicName>
+
+      <TopicDescription>
+        1. Understanding Fine-tuning Approaches
+          - Fine-tuning vs instruct-tuning vs RLHF
+          - When to fine-tune vs when to use RAG or prompting
+          - Dataset requirements and preparation
+        2. Parameter-Efficient Methods
+          - LoRA (Low-Rank Adaptation) adapters
+          - How LoRA allows fine-tuning on consumer hardware
+          - Other PEFT (Parameter-Efficient Fine-Tuning) methods
+        3. Community Examples
+          - Projects where fine-tuning improved open models
+          - Vicuna and Orca as examples
+          - Domain-specific fine-tuning success stories
+        4. Practical Considerations
+          - Computing resources needed
+          - Using platforms like Google Colab
+          - Small-scale experiments (e.g., 100 Q&A pairs)
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Toolkits and Frameworks for Creative AI</TopicName>
+
+      <TopicDescription>
+        1. Image Generation Tools
+          - Stable Diffusion API or local install
+          - Diffusion Web UIs and their features
+          - Image-to-image and style transfer techniques
+        2. Audio and Music Libraries
+          - Python libraries for MIDI generation
+          - Audio processing frameworks
+          - Integration with AI models
+        3. Multi-modal Frameworks
+          - Tools that combine different modalities
+          - Pipeline design for complex workflows
+          - API orchestration
+        4. Knowledge Sharing
+          - Exchange findings during research share
+          - Cross-pollination of ideas between domains
+          - Reusable patterns and techniques
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Use Cases and Adoption of Open Models</TopicName>
+
+      <TopicDescription>
+        1. Industry Adoption
+          - Companies using open models for data privacy
+          - Cost savings through optimization
+          - Self-hosting vs API trade-offs
+        2. Real-world Applications
+          - Examples of successful open model deployments
+          - Performance in production environments
+          - Hybrid approaches (mixing open and closed models)
+        3. Future Trends
+          - Predictions for open model growth
+          - Emerging capabilities and improvements
+          - Market dynamics between open and closed models
+      </TopicDescription>
+    </PrimaryTopic>
+
+    <PrimaryTopic>
+      <TopicName>Adaptive AI Systems</TopicName>
+
+      <TopicDescription>
+        1. Reinforcement Learning Basics
+          - How AI systems can learn from feedback
+          - Simple RL concepts applicable to projects
+          - Online learning and adaptation
+        2. User Modeling and Personalization
+          - Tracking user patterns and preferences
+          - Building user profiles
+          - Privacy considerations in personalization
+        3. Evaluation and Continuous Improvement
+          - Metrics for generative AI
+          - A/B testing for AI features
+          - Building feedback loops
+        4. Prompt Optimization
+          - Techniques for improving prompts over time
+          - Learning from user interactions
+          - Automated prompt refinement
+      </TopicDescription>
+    </PrimaryTopic>
+  </PrimaryTopics>
+
+	<StretchTopics>
+	  <StretchTopic>Stretching AI capabilities: fine-tuning models on custom data (e.g., your own images)</StretchTopic>
+		<StretchTopic>Advanced deployment patterns: containerization and orchestration</StretchTopic>
+		<StretchTopic>Model compression techniques beyond quantization</StretchTopic>
+		<StretchTopic>Distributed inference and model parallelism</StretchTopic>
+		<StretchTopic>Real-time model monitoring and performance tracking</StretchTopic>
+		<StretchTopic>Advanced A/B testing frameworks for AI</StretchTopic>
+		<StretchTopic>Multi-objective optimization in adaptive systems</StretchTopic>
+		<StretchTopic>Federated learning basics for privacy-preserving adaptation</StretchTopic>
+	</StretchTopics>
+</ResearchTopics>
