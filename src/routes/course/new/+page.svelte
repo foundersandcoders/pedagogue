@@ -110,27 +110,28 @@
   <title>Pedagogue: CoBu (Course Builder)</title>
 </svelte:head>
 
-<div class="container">
-  <header>
+<div id="cobu-container" class="container">
+  <header id="cobu-header">
     <h1>Pedagogue: CoBu</h1>
     <p>Build a complete multi-week course with interconnected modules</p>
   </header>
 
-  <div class="workflow">
-    <nav class="steps">
-      {#each steps as step, index}
-        <div
+  <div id="cobu-workflow" class="workflow">
+    <!-- TODO: sort out layout of this menu -->
+    <nav id="cobu-steps" class="steps">
+      {#each steps as step, i}
+        <div id="cobu-step-{i + 1}"
           class="step"
-          class:active={$courseWorkflowStep === index + 1}
-          class:completed={$courseWorkflowStep > index + 1}
+          class:active={$courseWorkflowStep === i + 1}
+          class:completed={$courseWorkflowStep > i + 1}
         >
-          <span class="step-number">{index + 1}</span>
-          <span class="step-name">{step}</span>
+          <span id="cobu-step-{i + 1}-number" class="step-number">{i+1}</span>
+          <span id="cobu-step-{i + 1}-name" class="step-name">{step}</span>
         </div>
       {/each}
     </nav>
 
-    <main class="content">
+    <main id="cobu-content" class="content">
       {#if $courseWorkflowStep === 1 && $currentCourse}
         <CourseConfigForm
           formData={$currentCourse}

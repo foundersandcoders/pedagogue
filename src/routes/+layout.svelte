@@ -1,9 +1,11 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
+	
+	let { children } = $props();
 
-	$: isHomePage = $page.url.pathname === '/';
-	$: showBreadcrumb = !isHomePage;
+	const isHomePage:boolean = $derived($page.url.pathname === '/');
+	const showBreadcrumb:boolean = $derived(!isHomePage);
 </script>
 
 {#if showBreadcrumb}
@@ -13,7 +15,7 @@
 {/if}
 
 <main>
-	<slot />
+	{@render children()}
 </main>
 
 <style>
