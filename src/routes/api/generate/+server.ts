@@ -7,6 +7,8 @@ import { getSchemaRequirements } from '$lib/schemas/schemaTemplate.js';
 import { cleanXML, sanitizeXMLEntities } from '$lib/schemas/xmlUtils.js';
 import { validateModuleXML } from '$lib/schemas/moduleValidator.js';
 import { calculateCardinality } from '$lib/schemas/cardinalityCalculator.js';
+import { AI_RESEARCH_DOMAINS } from '$lib/config/research-domains.js';
+import { GenerateRequestSchema, formatZodError, type GenerateRequest } from '$lib/validation/api-schemas.js';
 
 /**
  * Extract text content from Claude's response
@@ -68,15 +70,6 @@ function extractModuleXML(content: string): string | null {
  * Supports SSE streaming for progress updates during generation
  */
 
-interface GenerateRequest {
-	projectsData?: any;
-	skillsData?: any;
-	researchData?: any;
-	structuredInput?: Record<string, any>;
-	enableResearch?: boolean;
-	useExtendedThinking?: boolean;
-}
-
 export const POST: RequestHandler = async ({ request }) => {
 	// Validate environment setup
 	const apiKey = env.ANTHROPIC_API_KEY;
@@ -87,10 +80,19 @@ export const POST: RequestHandler = async ({ request }) => {
 	}
 
 	try {
-		// Parse incoming request
-		const body: GenerateRequest = await request.json();
+		// Parse and validate incoming request with Zod
+		const rawBody = await request.json();
+		const validation = GenerateRequestSchema.safeParse(rawBody);
 
-		// Validate required inputs
+		if (!validation.success) {
+			throw error(400, {
+				message: 'Invalid request data: ' + formatZodError(validation.error).join(', ')
+			});
+		}
+
+		const body = validation.data;
+
+		// Additional validation for required file data
 		if (!body.projectsData || !body.skillsData || !body.researchData) {
 			throw error(400, {
 				message: 'Missing required data. projectsData, skillsData, and researchData are all required.'
@@ -301,45 +303,6 @@ function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[
     </SchemaRequirements>
   </Prompt>`;
 }
-
-const AI_RESEARCH_DOMAINS = [
-	// AI Platforms
-	'anthropic.com',
-	'claude.ai',
-	'openai.com',
-	'deepmind.google',
-	'ai.google',
-	'microsoft.com',
-	'huggingface.co/blog',
-	// Docs
-	'js.langchain.com',
-	'python.langchain.com',
-	'modelcontextprotocol.io',
-	'docs.python.org',
-	// Resources (Software Dev)
-	'dev.to',
-	'github.com',
-	'medium.com',
-	'python.org',
-	// News & Analysis
-	'techcrunch.com',
-	'thenextweb.com',
-	'venturebeat.com',
-	// Blogs & Newsletters
-	'deepgains.substack.com',
-	'newsletter.pragmaticengineer.com',
-	"simonwillison.net",
-	'sundeepteki.org/blog',
-	'writer.com/engineering',
-	'abnormal.ai/blog/category/engineering',
-	// Communities
-	'stackoverflow.com',
-	'news.ycombinator.com',
-	// Academic & Research
-	'arxiv.org',
-	'acm.org',
-	'ieee.org',
-];
 
 /**
  * Create Server-Sent Events stream for real-time progress updates

@@ -1,27 +1,9 @@
 import { writable, derived } from 'svelte/store';
 import type { ProjectsFile, SkillsFile, ResearchFile } from './xml-parser.ts';
+import type { StructuredInput } from './validation/api-schemas.js';
 
-export interface StructuredInputData {
-	logistics: {
-	  duration: number;
-		startDate: string;
-	}
-	learners: {
-  	cohortSize: number;
-  	experience: {
-  	  prereq: '<= 1 year' | '1-3 years' | '>= 4 years';
-  	  focus: 'no experience' | 'limited experience' | 'skilled amateur' | 'current professional';
-    }
-	}
-	content: {
-  	techs: string[];
-  	info: string;
-	}
-	model: {
-  	enableResearch: boolean;
-  	useExtendedThinking: boolean;
-	}
-}
+// Re-export for backward compatibility
+export type StructuredInputData = StructuredInput;
 
 // Current step in the workflow (1-6)
 export const currentStep = writable<number>(1);

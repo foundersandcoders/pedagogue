@@ -1,6 +1,16 @@
 /**
- * Module XML Schema Definition and Validation
- * This defines the expected structure for generated module specifications
+ * @deprecated LEGACY MODULE SCHEMA - DO NOT USE
+ *
+ * This file defines an OLD XML schema format with lowercase tags (<module>, <objectives>, etc.)
+ * that is NO LONGER USED in the current application.
+ *
+ * CURRENT SCHEMA: See src/data/templates/outputSchema.xml (capital tags: <Module>, <LearningObjectives>, etc.)
+ * CURRENT VALIDATOR: See src/lib/schemas/moduleValidator.ts
+ *
+ * This file is retained for historical reference only. If you're working with module XML,
+ * use the schemas/moduleValidator.ts instead.
+ *
+ * Last confirmed unused: 2025-10-20
  */
 
 export interface ModuleProject {

@@ -1,7 +1,17 @@
 /**
- * Module XML Schema Validator
- * Validates generated XML against the required output schema structure
- * Works in both browser and Node.js environments
+ * Module XML Schema Validator (AUTHORITATIVE)
+ *
+ * Validates generated module XML against the official output schema defined in:
+ * src/data/templates/outputSchema.xml
+ *
+ * This validator is used in production by:
+ * - API route: src/routes/api/generate/+server.ts
+ * - UI component: src/lib/ModulePreview.svelte
+ *
+ * Works in both browser and Node.js environments.
+ *
+ * NOTE: This is the ONLY validator that should be used for module XML.
+ * Do not confuse with src/lib/moduleSchema.ts (legacy, deprecated).
  */
 
 import { DOMParser as NodeDOMParser } from '@xmldom/xmldom';

@@ -3,50 +3,18 @@ import { env } from '$env/dynamic/private';
 import type { RequestHandler } from './$types';
 import { ChatAnthropic } from '@langchain/anthropic';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
-import type { CourseStructureGenerationRequest, CourseStructureGenerationResponse } from '$lib/types/course';
+import type { CourseStructureGenerationResponse } from '$lib/types/course';
+import { AI_RESEARCH_DOMAINS } from '$lib/config/research-domains.js';
+import {
+	CourseStructureGenerationRequestSchema,
+	formatZodError,
+	type CourseStructureGenerationRequest
+} from '$lib/validation/api-schemas.js';
 
 /**
  * API endpoint for generating course structure with AI-enhanced module details
  * Takes high-level course parameters and module skeleton, returns detailed structure
  */
-const AI_RESEARCH_DOMAINS = [
-	// AI Platforms
-	'anthropic.com',
-	'claude.ai',
-	'openai.com',
-	'deepmind.google',
-	'ai.google',
-	'microsoft.com',
-	'huggingface.co/blog',
-	// Docs
-	'js.langchain.com',
-	'python.langchain.com',
-	'modelcontextprotocol.io',
-	'docs.python.org',
-	// Resources (Software Dev)
-	'dev.to',
-	'github.com',
-	'medium.com',
-	'python.org',
-	// News & Analysis
-	'techcrunch.com',
-	'thenextweb.com',
-	'venturebeat.com',
-	// Blogs & Newsletters
-	'deepgains.substack.com',
-	'newsletter.pragmaticengineer.com',
-	"simonwillison.net",
-	'sundeepteki.org/blog',
-	'writer.com/engineering',
-	'abnormal.ai/blog/category/engineering',
-	// Communities
-	'stackoverflow.com',
-	'news.ycombinator.com',
-	// Academic & Research
-	'arxiv.org',
-	'acm.org',
-	'ieee.org',
-];
 
 export const POST: RequestHandler = async ({ request }) => {
 	const apiKey = env.ANTHROPIC_API_KEY;
@@ -57,12 +25,17 @@ export const POST: RequestHandler = async ({ request }) => {
 	}
 
 	try {
-		const body: CourseStructureGenerationRequest = await request.json();
+		// Parse and validate incoming request with Zod
+		const rawBody = await request.json();
+		const validation = CourseStructureGenerationRequestSchema.safeParse(rawBody);
 
-		// Validate input
-		if (!body.title || !body.description) {
-			throw error(400, { message: 'Course title and description are required' });
+		if (!validation.success) {
+			throw error(400, {
+				message: 'Invalid request data: ' + formatZodError(validation.error).join(', ')
+			});
 		}
+
+		const body = validation.data;
 
 		// Build prompt for course structure generation
 		const prompt = buildCourseStructurePrompt(body);
