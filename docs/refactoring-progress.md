@@ -69,7 +69,7 @@ Addressing architectural issues identified in code review focusing on:
 ### Phase 2: Extract AI Utilities ✅
 
 #### ✅ Task 2a: Extract AI Client Factory and Response Parser
-**Commit:** `[pending]` - Integration complete, ready to commit
+**Commit:** `0413fba`
 **Status:** ✅ Complete
 
 **Files Created:**
@@ -85,7 +85,7 @@ Addressing architectural issues identified in code review focusing on:
   - `parseCourseStructureResponse(text)` - Parse JSON course structure from AI response
 
 #### ✅ Task 2b: Integrate AI Utilities into API Routes
-**Commit:** `[pending]` - Integration complete, ready to commit
+**Commit:** `0413fba`
 **Status:** ✅ Complete
 
 **Files Modified:**
@@ -388,7 +388,7 @@ src/lib/
 ## Git History
 
 ```
-[READY] - refactor: Phase 2 - integrate AI utilities into API routes
+0413fba - refactor: Phase 2 - integrate AI utilities into API routes
 fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validation
 68bf1f6 - feat(MoGen output): calculate cardinality attributes
 769f4fb - chore: update module draft naming conventions
@@ -413,5 +413,5 @@ fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validatio
 **📋 Pending:** 5/8 tasks (Tasks 2c, 2d, 2e, 5, 6, 8, and Task 4 arc migration - deprioritized)
 **Build Status:** ✅ All changes compile
 **Branch:** `feat/new-course-generation`
-**Last Commit:** `fea0d91` (ready for new commit)
+**Last Commit:** `0413fba`
 **Safe to /compact:** ✅ Yes
