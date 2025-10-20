@@ -1,13 +1,10 @@
 import { error, json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import type { RequestHandler } from './$types';
-import { HumanMessage, SystemMessage } from '@langchain/core/messages';
-import { validateModuleXML } from '$lib/schemas/moduleValidator.js';
 import { GenerateRequestSchema, formatZodError, type GenerateRequest } from '$lib/validation/api-schemas.js';
 import { createChatClient, createStreamingClient, withWebSearch } from '$lib/generation/ai/client-factory.js';
-import { extractTextContent, extractModuleXML } from '$lib/generation/ai/response-parser.js';
-import { buildGenerationPrompt } from '$lib/generation/prompts/module-prompt-builder.js';
 import { createSSEStream } from '$lib/generation/streaming/sse-handler.js';
+import { withRetry } from '$lib/generation/orchestration/retry-handler.js';
 
 /**
  * API endpoint for generating module content using Claude + LangChain
@@ -77,9 +74,6 @@ export const POST: RequestHandler = async ({ request }) => {
  * Standard JSON response generation (non-streaming) with validation and retry
  */
 async function generateModule(body: GenerateRequest, apiKey: string) {
-	const MAX_RETRIES = 3;
-	let lastError: string[] = [];
-
 	try {
 		// Initialize client (non-streaming)
 		let model = createChatClient({ apiKey });
@@ -89,121 +83,34 @@ async function generateModule(body: GenerateRequest, apiKey: string) {
 			model = withWebSearch(model);
 		}
 
-		// Retry loop for validation
-		for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-			console.log(`Generation attempt ${attempt}/${MAX_RETRIES}`);
+		// Execute generation with retry logic
+		const result = await withRetry({
+			body,
+			model,
+			maxRetries: 3
+		});
 
-			// Build the prompt (include validation errors if retrying)
-			const prompt = buildGenerationPrompt(body, attempt > 1 ? lastError : undefined);
-
-			const messages = [
-				new SystemMessage('You are an expert in (a) current AI engineering trends and (b) curriculum designer for peer-led AI Engineering courses.'),
-				new HumanMessage(prompt)
-			];
-
-			// Invoke the model
-			const response = await model.invoke(messages);
-
-			// Extract text content (filters out citations and other metadata)
-			const textContent = extractTextContent(response.content);
-
-			// Debug logging
-			console.log(`Response length: ${textContent.length} characters`);
-			console.log(`Response starts with: ${textContent.substring(0, 100)}`);
-			console.log(`Response ends with: ${textContent.substring(textContent.length - 100)}`);
-
-			// Extract XML from the clean text
-			const xmlContent = extractModuleXML(textContent);
-
-			if (!xmlContent) {
-				console.warn('Failed to extract valid XML from response.');
-				console.warn('Response length:', textContent.length, 'characters');
-				console.warn('First 500 chars:', textContent.substring(0, 500));
-				console.warn('Last 500 chars:', textContent.substring(Math.max(0, textContent.length - 500)));
-
-				lastError = [
-					'Failed to extract valid XML from response.',
-					`Response length: ${textContent.length} characters`,
-					'Ensure output is complete with closing </Module> tag.'
-				];
-
-				if (attempt < MAX_RETRIES) {
-					continue; // Retry
-				} else {
-					// Last attempt failed
-					return json({
-						success: false,
-						message: 'Failed to generate valid XML after all retry attempts',
-						content: textContent,
-						xmlContent: null,
-						hasValidXML: false,
-						validationErrors: lastError,
-						attempts: attempt,
-						metadata: {
-							modelUsed: "claude-sonnet-4-5-20250929",
-							timestamp: new Date().toISOString(),
-							enableResearch: body.enableResearch ?? false,
-							useExtendedThinking: body.useExtendedThinking ?? false
-						}
-					});
-				}
+		// Build response based on result
+		const responseData = {
+			success: result.success,
+			message: result.success
+				? 'Module generated successfully'
+				: `Schema validation failed after ${result.attempt} attempts`,
+			content: result.fullContent,
+			xmlContent: result.xmlContent,
+			hasValidXML: result.success,
+			validationErrors: result.validationErrors,
+			validationWarnings: result.validationWarnings,
+			attempts: result.attempt,
+			metadata: {
+				modelUsed: "claude-sonnet-4-5-20250929",
+				timestamp: new Date().toISOString(),
+				enableResearch: body.enableResearch ?? false,
+				useExtendedThinking: body.useExtendedThinking ?? false
 			}
+		};
 
-			// Validate the XML against schema
-			console.log('Validating XML against schema...');
-			const validation = validateModuleXML(xmlContent);
-
-			if (validation.valid) {
-				// Success! Return the valid XML
-				console.log('Validation passed');
-				return json({
-					success: true,
-					message: 'Module generated successfully',
-					content: textContent, // Full text response (citations filtered out)
-					xmlContent: xmlContent, // Extracted and validated XML
-					hasValidXML: true,
-					validationErrors: [],
-					validationWarnings: validation.warnings,
-					attempts: attempt,
-					metadata: {
-						modelUsed: "claude-sonnet-4-5-20250929",
-						timestamp: new Date().toISOString(),
-						enableResearch: body.enableResearch ?? false,
-						useExtendedThinking: body.useExtendedThinking ?? false
-					}
-				});
-			} else {
-				// Validation failed
-				console.warn(`Validation failed on attempt ${attempt}:`, validation.errors);
-				lastError = validation.errors;
-
-				if (attempt < MAX_RETRIES) {
-					// Retry with validation errors
-					continue;
-				} else {
-					// All retries exhausted
-					return json({
-						success: false,
-						message: `Schema validation failed after ${MAX_RETRIES} attempts`,
-						content: textContent,
-						xmlContent: xmlContent,
-						hasValidXML: false,
-						validationErrors: validation.errors,
-						validationWarnings: validation.warnings,
-						attempts: attempt,
-						metadata: {
-							modelUsed: "claude-sonnet-4-5-20250929",
-							timestamp: new Date().toISOString(),
-							enableResearch: body.enableResearch ?? false,
-							useExtendedThinking: body.useExtendedThinking ?? false
-						}
-					});
-				}
-			}
-		}
-
-		// Should not reach here, but just in case
-		throw new Error('Unexpected end of retry loop');
+		return json(responseData);
 	} catch (err) {
 		console.error('Generation error:', err);
 		throw error(500, {

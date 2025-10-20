@@ -2,7 +2,6 @@
 
 **Started:** 2025-10-20
 **Current Branch:** `feat/new-course-generation`
-**Last Commit:** `fea0d91` - "refactor: Phase 1 - extract config, clarify schemas, add Zod validation"
 
 ## Overview
 
@@ -185,29 +184,55 @@ Addressing architectural issues identified in code review focusing on:
 
 ---
 
+#### ✅ Task 2e: Extract Retry Orchestration
+**Commit:** `TBD`
+**Status:** ✅ Complete
+
+**Files Created:**
+- `src/lib/generation/orchestration/retry-handler.ts` (211 lines)
+  - `withRetry()` - Unified retry orchestration for both streaming and non-streaming modes
+  - `GenerationResult` interface - Standard result type for all generation attempts
+  - `RetryCallbacks` interface - Progress callbacks for streaming integration
+  - `performAttempt()` - Single generation attempt with validation
+  - `generateWithStreaming()` - Content generation with chunk callbacks
+  - `generateWithoutStreaming()` - Standard invocation without streaming
+
+**Files Modified:**
+- `src/routes/api/generate/+server.ts`
+  - **Before:** 213 lines (with inline retry loop)
+  - **After:** 121 lines (using retry handler)
+  - **Reduction:** 92 lines (-43.2%)
+  - Removed inline retry loop logic (93 lines)
+  - generateModule() simplified to just setup + withRetry() call
+  - Cleaner separation between routing and generation orchestration
+
+- `src/lib/generation/streaming/sse-handler.ts`
+  - **Before:** 239 lines (with inline retry loop)
+  - **After:** 188 lines (using retry handler)
+  - **Reduction:** 51 lines (-21.3%)
+  - Removed duplicate retry loop logic
+  - Stream now uses callbacks to send SSE events during generation
+  - Better separation of concerns (SSE formatting vs generation logic)
+
+**Impact:**
+- Total code reduction: 143 lines eliminated across both paths
+- Retry logic now maintained in single location
+- Both streaming and non-streaming use identical retry behaviour
+- Callbacks pattern allows streaming to hook into retry flow
+- Easier to modify retry behaviour (maxRetries, validation, error accumulation)
+- Consistent error handling and validation across both modes
+- Build verification: ✅ Passed (no new warnings or errors)
+
+---
+
 ## Pending Tasks 📋
 
-### Phase 2 (Continue): Complete API Route Decomposition
+### Phase 2: ✅ COMPLETE
 
-#### 🔄 Task 2e: Extract Retry Orchestration
-
-**New File:** `src/lib/generation/orchestration/retry-handler.ts`
-
-**Extract:** Retry loop logic (both streaming and non-streaming versions)
-
-**New API:**
-```typescript
-export async function withRetry<T>(
-  operation: () => Promise<T>,
-  options: {
-    maxRetries: number;
-    validate: (result: T) => ValidationResult;
-    onRetry?: (attempt: number, errors: string[]) => void;
-  }
-): Promise<T>
-```
-
-**Expected Impact:** Consolidate duplicate retry logic from both generate modes
+**Summary:** Phase 2 successfully decomposed API routes into focused utilities
+- **Total lines eliminated:** 670+ lines across all tasks
+- **New structure:** AI utilities, prompt builders, streaming handlers, retry orchestration
+- **Pattern:** Composition-based with clear separation of concerns
 
 ---
 
@@ -365,16 +390,16 @@ src/lib/
 │   └── api-schemas.ts                ✅ DONE
 ├── generation/
 │   ├── ai/
-│   │   ├── client-factory.ts         ✅ DONE (not integrated)
-│   │   └── response-parser.ts        ✅ DONE (not integrated)
+│   │   ├── client-factory.ts         ✅ DONE
+│   │   └── response-parser.ts        ✅ DONE
 │   ├── prompts/
-│   │   ├── module-prompt-builder.ts  📋 TODO
-│   │   ├── course-prompt-builder.ts  📋 TODO
+│   │   ├── module-prompt-builder.ts  ✅ DONE
+│   │   ├── course-prompt-builder.ts  ✅ DONE
 │   │   └── components.ts             📋 TODO
 │   ├── streaming/
-│   │   └── sse-handler.ts            📋 TODO
+│   │   └── sse-handler.ts            ✅ DONE
 │   └── orchestration/
-│       └── retry-handler.ts          📋 TODO
+│       └── retry-handler.ts          ✅ DONE
 ├── store-utilities/
 │   ├── workflow-step.ts              📋 TODO
 │   └── persistence.ts                📋 TODO
@@ -391,16 +416,16 @@ src/lib/
 
 ## Next Session: Where to Start
 
-**Immediate next step:** Task 2e - Extract Retry Orchestration
+**Immediate next step:** Task 6 - Break Prompts into Composable Sections
 
-1. Create `src/lib/generation/orchestration/retry-handler.ts`
-2. Extract retry loop logic from both SSE and non-streaming generation functions
-3. Create unified `withRetry()` function that works with validation
-4. Update both generation paths to use the extracted retry handler
-5. Test build + manual generation (both streaming and non-streaming)
-6. Commit: "refactor: extract retry orchestration logic"
+1. Analyze `src/lib/generation/prompts/module-prompt-builder.ts` and `course-prompt-builder.ts`
+2. Identify shared prompt components (retry sections, research instructions, etc.)
+3. Create `src/lib/generation/prompts/components.ts` with reusable builders
+4. Refactor module and course prompt builders to use composable sections
+5. Test build + verify prompts still generate correctly
+6. Commit: "refactor: Phase 3 - break prompts into composable sections"
 
-**After that:** Continue with Phase 3 tasks (Task 6: prompt composability) or Phase 4 (Tasks 5, 8)
+**After that:** Continue with Phase 4 tasks (Tasks 5, 8: store utilities and error handling)
 
 ---
 
@@ -409,12 +434,12 @@ src/lib/
 - ✅ ~~Task 2b (integrate utilities): 1 hour~~ **DONE**
 - ✅ ~~Task 2c (extract prompts): 2 hours~~ **DONE**
 - ✅ ~~Task 2d (SSE streaming): 2 hours~~ **DONE**
-- ⏱️ Task 2e (retry logic): 1.5 hours
+- ✅ ~~Task 2e (retry logic): 1.5 hours~~ **DONE**
 - ⏱️ Task 6 (prompt composability): 2 hours
 - ⏱️ Task 5 (store utilities): 3 hours
 - ⏱️ Task 8 (error handling): 3 hours
 
-**Total remaining:** ~9.5 hours
+**Total remaining:** ~8 hours
 
 ---
 
@@ -443,10 +468,10 @@ fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validatio
 
 ## Status Summary
 
-**✅ Completed:** 6/8 tasks (Tasks 1, 2a, 2b, 2c, 2d, 3, 7)
+**✅ Completed:** 7/8 tasks (Tasks 1, 2a, 2b, 2c, 2d, 2e, 3, 7)
 **🔄 In Progress:** None
-**📋 Pending:** 3/8 tasks (Tasks 2e, 5, 6, 8, and Task 4 arc migration - deprioritized)
+**📋 Pending:** 3 tasks (Task 6: prompt composability, Task 5: store utilities, Task 8: error handling, and Task 4 arc migration - deprioritized)
 **Build Status:** ✅ All changes compile
 **Branch:** `feat/new-course-generation`
-**Last Commit:** `b1ba39f`
+**Last Commit:** `TBD (Task 2e complete, needs commit)`
 **Safe to /compact:** ✅ Yes

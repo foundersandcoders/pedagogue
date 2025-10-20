@@ -6,11 +6,8 @@
  */
 
 import type { ChatAnthropic } from '@langchain/anthropic';
-import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 import type { GenerateRequest } from '$lib/validation/api-schemas.js';
-import { validateModuleXML } from '$lib/schemas/moduleValidator.js';
-import { extractTextContent, extractModuleXML } from '$lib/generation/ai/response-parser.js';
-import { buildGenerationPrompt } from '$lib/generation/prompts/module-prompt-builder.js';
+import { withRetry, type GenerationResult } from '$lib/generation/orchestration/retry-handler.js';
 
 /**
  * SSE event types for module generation
@@ -76,8 +73,6 @@ export function createSSEStream(config: SSEStreamConfig): Response {
 
 	const stream = new ReadableStream({
 		async start(controller) {
-			let lastError: string[] = [];
-
 			try {
 				// Send initial connection confirmation
 				sendEvent(controller, {
@@ -93,130 +88,84 @@ export function createSSEStream(config: SSEStreamConfig): Response {
 					});
 				}
 
-				// Retry loop
-				for (let attempt = 1; attempt <= maxRetries; attempt++) {
-					sendEvent(controller, {
-						type: 'progress',
-						message: attempt === 1
-							? 'Analyzing input files...'
-							: `Retry attempt ${attempt}/${maxRetries} with refined instructions...`
-					});
+				// Execute generation with retry logic and streaming callbacks
+				const result = await withRetry({
+					body,
+					model,
+					maxRetries,
+					callbacks: {
+						onAttemptStart: (attempt, max, errors) => {
+							sendEvent(controller, {
+								type: 'progress',
+								message: attempt === 1
+									? 'Analyzing input files...'
+									: `Retry attempt ${attempt}/${max} with refined instructions...`
+							});
 
-					// Build the prompt (include validation errors if retrying)
-					const prompt = buildGenerationPrompt(body, attempt > 1 ? lastError : undefined);
+							if (attempt === 1 || errors.length > 0) {
+								sendEvent(controller, {
+									type: 'progress',
+									message: 'Generating module content with Claude...'
+								});
+							}
+						},
 
-					const messages = [
-						new SystemMessage('You are an expert in (a) current AI engineering trends and (b) curriculum designer for peer-led AI Engineering courses.'),
-						new HumanMessage(prompt)
-					];
-
-					sendEvent(controller, {
-						type: 'progress',
-						message: 'Generating module content with Claude...'
-					});
-
-					let fullContent = '';
-
-					// Stream the response
-					const responseStream = await model.stream(messages);
-
-					for await (const chunk of responseStream) {
-						// Extract text content from chunk (handles both string and array formats)
-						const textChunk = extractTextContent(chunk.content);
-
-						if (textChunk) {
-							fullContent += textChunk;
-							// Send chunks of content as they arrive
+						onContentChunk: (chunk) => {
 							sendEvent(controller, {
 								type: 'content',
-								chunk: textChunk,
+								chunk,
 								message: 'Streaming content...'
 							});
+						},
+
+						onValidationStart: () => {
+							sendEvent(controller, {
+								type: 'validation_started',
+								message: 'Validating generated content...'
+							});
+						},
+
+						onValidationResult: (result: GenerationResult) => {
+							if (result.success) {
+								sendEvent(controller, {
+									type: 'validation_success',
+									message: 'Schema validation passed!'
+								});
+							} else {
+								sendEvent(controller, {
+									type: 'validation_failed',
+									message: `Validation failed (attempt ${result.attempt}/${maxRetries})`,
+									errors: result.validationErrors,
+									warnings: result.validationWarnings
+								});
+							}
 						}
 					}
+				});
 
-					// Extract and validate XML
+				// Send final result
+				if (result.success) {
 					sendEvent(controller, {
-						type: 'validation_started',
-						message: 'Validating generated content...'
+						type: 'complete',
+						message: 'Generation complete',
+						content: result.fullContent,
+						xmlContent: result.xmlContent,
+						attempts: result.attempt,
+						warnings: result.validationWarnings
 					});
-
-					const xmlContent = extractModuleXML(fullContent);
-
-					if (!xmlContent) {
-						lastError = ['Failed to extract valid XML from response. Ensure output is wrapped in <Module>...</Module> tags.'];
-
-						sendEvent(controller, {
-							type: 'validation_failed',
-							message: `XML extraction failed (attempt ${attempt}/${maxRetries})`,
-							errors: lastError
-						});
-
-						if (attempt < maxRetries) {
-							continue; // Retry
-						} else {
-							// All retries exhausted
-							sendEvent(controller, {
-								type: 'error',
-								message: 'Failed to generate valid XML after all retry attempts',
-								errors: lastError,
-								content: fullContent
-							});
-							controller.close();
-							return;
-						}
-					}
-
-					// Validate against schema
-					const validation = validateModuleXML(xmlContent);
-
-					if (validation.valid) {
-						// Success!
-						sendEvent(controller, {
-							type: 'validation_success',
-							message: 'Schema validation passed!'
-						});
-
-						sendEvent(controller, {
-							type: 'complete',
-							message: 'Generation complete',
-							content: fullContent,
-							xmlContent: xmlContent,
-							attempts: attempt,
-							warnings: validation.warnings
-						});
-
-						controller.close();
-						return;
-
-					} else {
-						// Validation failed
-						lastError = validation.errors;
-
-						sendEvent(controller, {
-							type: 'validation_failed',
-							message: `Schema validation failed (attempt ${attempt}/${maxRetries})`,
-							errors: validation.errors,
-							warnings: validation.warnings
-						});
-
-						if (attempt < maxRetries) {
-							continue; // Retry
-						} else {
-							// All retries exhausted
-							sendEvent(controller, {
-								type: 'error',
-								message: `Schema validation failed after ${maxRetries} attempts`,
-								errors: validation.errors,
-								warnings: validation.warnings,
-								content: fullContent,
-								xmlContent: xmlContent
-							});
-							controller.close();
-							return;
-						}
-					}
+				} else {
+					sendEvent(controller, {
+						type: 'error',
+						message: `Generation failed after ${result.attempt} attempts`,
+						errors: result.validationErrors,
+						warnings: result.validationWarnings,
+						content: result.fullContent,
+						xmlContent: result.xmlContent
+					});
 				}
+
+				controller.close();
+
 			} catch (err) {
 				const errorMessage = err instanceof Error ? err.message : 'Stream error';
 				sendEvent(controller, {
