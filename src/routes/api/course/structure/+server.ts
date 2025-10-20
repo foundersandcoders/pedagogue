@@ -1,15 +1,15 @@
 import { error, json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import type { RequestHandler } from './$types';
-import { ChatAnthropic } from '@langchain/anthropic';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 import type { CourseStructureGenerationResponse } from '$lib/types/course';
-import { AI_RESEARCH_DOMAINS } from '$lib/config/research-domains.js';
 import {
 	CourseStructureGenerationRequestSchema,
 	formatZodError,
 	type CourseStructureGenerationRequest
 } from '$lib/validation/api-schemas.js';
+import { createChatClient, withWebSearch } from '$lib/generation/ai/client-factory.js';
+import { extractTextContent, parseCourseStructureResponse } from '$lib/generation/ai/response-parser.js';
 
 /**
  * API endpoint for generating course structure with AI-enhanced module details
@@ -40,24 +40,13 @@ export const POST: RequestHandler = async ({ request }) => {
 		// Build prompt for course structure generation
 		const prompt = buildCourseStructurePrompt(body);
 
-		// Initialize Claude
-		let model = new ChatAnthropic({
-			anthropicApiKey: apiKey,
-			modelName: 'claude-sonnet-4-5-20250929',
-			temperature: 0.7,
-			maxTokens: 16384, // Match module generation capacity for research-enhanced responses
-			timeout: 120000 // 2 minute timeout to accommodate web search operations
-		});
+		// Initialize client
+		let model = createChatClient({ apiKey });
 
 		// Add web search if enabled
 		if (body.enableResearch) {
 			console.log('Enabling web research with trusted domains...');
-			model = model.bindTools([{
-				type: 'web_search_20250305',
-				name: 'web_search',
-				max_uses: 5,
-				allowed_domains: AI_RESEARCH_DOMAINS
-			}]);
+			model = withWebSearch(model);
 		}
 
 		const messages = [
@@ -68,12 +57,8 @@ export const POST: RequestHandler = async ({ request }) => {
 		console.log('Generating course structure...');
 		const response = await model.invoke(messages);
 
-		// Parse response
-		const responseText = typeof response.content === 'string'
-			? response.content
-			: Array.isArray(response.content)
-				? response.content.filter(block => block.type === 'text').map(block => block.text).join('')
-				: String(response.content);
+		// Extract text content from response
+		const responseText = extractTextContent(response.content);
 
 		console.log('Course structure generated, parsing response...');
 
@@ -214,54 +199,4 @@ function buildCourseStructurePrompt(data: CourseStructureGenerationRequest): str
     Think carefully about creating logical thematic arcs with meaningful internal progression that take learners from their current level to meaningful competence.
     </Instructions>
   </Task>`;
-}
-
-function parseCourseStructureResponse(responseText: string): CourseStructureGenerationResponse {
-	try {
-		// Try to extract JSON from the response
-		const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-
-		if (!jsonMatch) {
-			throw new Error('No JSON found in response');
-		}
-
-		const parsed = JSON.parse(jsonMatch[0]);
-
-		// Validate structure
-		if (!parsed.arcs || !Array.isArray(parsed.arcs)) {
-			throw new Error('Invalid response structure: missing arcs array');
-		}
-
-		return {
-			success: true,
-			courseNarrative: parsed.courseNarrative || '',
-			arcs: parsed.arcs.map((arc: any, arcIndex: number) => ({
-				order: arc.order || arcIndex + 1,
-				title: arc.title || `Arc ${arcIndex + 1}`,
-				description: arc.description || '',
-				theme: arc.theme || '',
-				arcThemeNarrative: arc.arcThemeNarrative || '',
-				arcProgressionNarrative: arc.arcProgressionNarrative || '',
-				suggestedDurationWeeks: arc.suggestedDurationWeeks || 1,
-				modules: Array.isArray(arc.modules)
-					? arc.modules.map((m: any, moduleIndex: number) => ({
-						order: m.order || moduleIndex + 1,
-						title: m.title || `Module ${moduleIndex + 1}`,
-						description: m.description || '',
-						suggestedDurationWeeks: m.suggestedDurationWeeks || 1,
-						learningObjectives: Array.isArray(m.learningObjectives) ? m.learningObjectives : [],
-						keyTopics: Array.isArray(m.keyTopics) ? m.keyTopics : []
-					}))
-  				: []
-			})),
-			progressionNarrative: parsed.progressionNarrative || ''
-		};
-	} catch (err) {
-		console.error('Failed to parse course structure response:', err);
-		return {
-			success: false,
-			errors: ['Failed to parse AI response. Please try again.'],
-			arcs: []
-		};
-	}
 }

@@ -66,10 +66,11 @@ Addressing architectural issues identified in code review focusing on:
 
 ---
 
-### Phase 2: Extract AI Utilities (In Progress) 🔄
+### Phase 2: Extract AI Utilities ✅
 
 #### ✅ Task 2a: Extract AI Client Factory and Response Parser
-**Status:** Extraction complete, integration pending
+**Commit:** `[pending]` - Integration complete, ready to commit
+**Status:** ✅ Complete
 
 **Files Created:**
 - `src/lib/generation/ai/client-factory.ts`
@@ -83,60 +84,40 @@ Addressing architectural issues identified in code review focusing on:
   - `extractModuleXML(content)` - Extract, clean, sanitize, add cardinality to Module XML
   - `parseCourseStructureResponse(text)` - Parse JSON course structure from AI response
 
-**Next Step:** Update API routes to use these utilities (see Pending Tasks below)
+#### ✅ Task 2b: Integrate AI Utilities into API Routes
+**Commit:** `[pending]` - Integration complete, ready to commit
+**Status:** ✅ Complete
+
+**Files Modified:**
+- `src/routes/api/generate/+server.ts`
+  - **Before:** 658 lines (with inline implementations)
+  - **After:** 578 lines (using imported utilities)
+  - **Reduction:** 80 lines (-12.2%)
+  - Removed inline `extractTextContent()` and `extractModuleXML()` functions
+  - Replaced inline ChatAnthropic client creation with `createStreamingClient()` and `createChatClient()`
+  - Replaced inline web search binding with `withWebSearch()`
+
+- `src/routes/api/course/structure/+server.ts`
+  - **Before:** 268 lines (with inline implementations)
+  - **After:** 202 lines (using imported utilities)
+  - **Reduction:** 66 lines (-24.6%)
+  - Removed inline `parseCourseStructureResponse()` function
+  - Removed inline text extraction logic (replaced with `extractTextContent()`)
+  - Replaced inline ChatAnthropic client creation with `createChatClient()`
+  - Replaced inline web search binding with `withWebSearch()`
+
+**Impact:**
+- Total code reduction: 146 lines eliminated across both API routes
+- Centralized AI client configuration ensures consistency
+- Response parsing logic now maintained in single location
+- Both streaming and non-streaming paths use same utilities
+- Build verification: ✅ Passed (no new warnings or errors)
 
 ---
 
 ## Pending Tasks 📋
 
 ### Phase 2 (Continue): Complete API Route Decomposition
-
-#### 🔄 Task 2b: Update API Routes to Use Extracted Utilities
-
-**Location:** `src/routes/api/generate/+server.ts` (currently 695 lines)
-
-**Changes Needed:**
-
-1. **Import extracted utilities:**
-```typescript
-import { createStreamingClient, withWebSearch } from '$lib/generation/ai/client-factory.js';
-import { extractTextContent, extractModuleXML } from '$lib/generation/ai/response-parser.js';
-```
-
-2. **Replace inline client creation** (lines ~362-383):
-```typescript
-// OLD:
-let model = new ChatAnthropic({
-  anthropicApiKey: apiKey,
-  modelName: 'claude-sonnet-4-5-20250929',
-  temperature: 0.7,
-  maxTokens: 16384,
-  streaming: true
-});
-
-if (body.enableResearch) {
-  model = model.bindTools([{
-    type: 'web_search_20250305',
-    // ...
-  }]);
-}
-
-// NEW:
-const model = createStreamingClient({
-  apiKey,
-  enableResearch: body.enableResearch
-});
-```
-
-3. **Use extracted parsing functions** - Replace all instances of:
-   - Inline `extractTextContent()` implementation → import from response-parser
-   - Inline `extractModuleXML()` implementation → import from response-parser
-
-**Similar changes for:** `src/routes/api/course/structure/+server.ts` (lines ~71-88, ~96-103)
-
-**Expected Impact:** Reduce both API routes by ~40-60 lines each
-
----
 
 #### 🔄 Task 2c: Extract Prompt Builders
 
@@ -376,23 +357,23 @@ src/lib/
 
 ## Next Session: Where to Start
 
-**Immediate next step:** Task 2b - Integrate extracted AI utilities
+**Immediate next step:** Task 2c - Extract Prompt Builders
 
-1. Open `src/routes/api/generate/+server.ts`
-2. Import from `$lib/generation/ai/client-factory.js`
-3. Import from `$lib/generation/ai/response-parser.js`
-4. Replace inline implementations (see Task 2b details above)
-5. Test build + manual generation
-6. Repeat for `src/routes/api/course/structure/+server.ts`
-7. Commit: "refactor: integrate AI utilities into API routes"
+1. Create `src/lib/generation/prompts/module-prompt-builder.ts`
+2. Move `buildGenerationPrompt()` function from `src/routes/api/generate/+server.ts`
+3. Create `src/lib/generation/prompts/course-prompt-builder.ts`
+4. Move `buildCourseStructurePrompt()` function from `src/routes/api/course/structure/+server.ts`
+5. Update both API routes to import and use the extracted builders
+6. Test build + manual generation
+7. Commit: "refactor: extract prompt builders from API routes"
 
-**After that:** Continue with Task 2c (extract prompt builders)
+**After that:** Continue with Task 2d (extract SSE streaming logic)
 
 ---
 
 ## Estimated Time Remaining
 
-- ⏱️ Task 2b (integrate utilities): 1 hour
+- ✅ ~~Task 2b (integrate utilities): 1 hour~~ **DONE**
 - ⏱️ Task 2c (extract prompts): 2 hours
 - ⏱️ Task 2d (SSE streaming): 2 hours
 - ⏱️ Task 2e (retry logic): 1.5 hours
@@ -400,13 +381,14 @@ src/lib/
 - ⏱️ Task 5 (store utilities): 3 hours
 - ⏱️ Task 8 (error handling): 3 hours
 
-**Total remaining:** ~14.5 hours
+**Total remaining:** ~13.5 hours
 
 ---
 
 ## Git History
 
 ```
+[READY] - refactor: Phase 2 - integrate AI utilities into API routes
 fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validation
 68bf1f6 - feat(MoGen output): calculate cardinality attributes
 769f4fb - chore: update module draft naming conventions
@@ -426,9 +408,10 @@ fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validatio
 
 ## Status Summary
 
-**✅ Completed:** 3/8 tasks (Tasks 1, 3, 7)
-**🔄 In Progress:** 1/8 task (Task 2a complete, 2b-2e pending)
-**📋 Pending:** 4/8 tasks (Tasks 5, 6, 8, and Task 4 arc migration - deprioritized)
+**✅ Completed:** 4/8 tasks (Tasks 1, 2a, 2b, 3, 7)
+**🔄 In Progress:** None
+**📋 Pending:** 5/8 tasks (Tasks 2c, 2d, 2e, 5, 6, 8, and Task 4 arc migration - deprioritized)
 **Build Status:** ✅ All changes compile
 **Branch:** `feat/new-course-generation`
+**Last Commit:** `fea0d91` (ready for new commit)
 **Safe to /compact:** ✅ Yes

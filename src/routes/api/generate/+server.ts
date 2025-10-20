@@ -1,69 +1,12 @@
 import { error, json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import type { RequestHandler } from './$types';
-import { ChatAnthropic } from '@langchain/anthropic';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 import { getSchemaRequirements } from '$lib/schemas/schemaTemplate.js';
-import { cleanXML, sanitizeXMLEntities } from '$lib/schemas/xmlUtils.js';
 import { validateModuleXML } from '$lib/schemas/moduleValidator.js';
-import { calculateCardinality } from '$lib/schemas/cardinalityCalculator.js';
-import { AI_RESEARCH_DOMAINS } from '$lib/config/research-domains.js';
 import { GenerateRequestSchema, formatZodError, type GenerateRequest } from '$lib/validation/api-schemas.js';
-
-/**
- * Extract text content from Claude's response
- * When web search is used, response.content is an array of blocks including citations
- * This function extracts only the text blocks and concatenates them
- */
-function extractTextContent(content: any): string {
-	if (typeof content === 'string') {
-		return content;
-	}
-
-	if (Array.isArray(content)) {
-		// Filter for text blocks only, ignoring citations and other metadata
-		return content
-			.filter(block => block.type === 'text')
-			.map(block => block.text)
-			.join('');
-	}
-
-	// Fallback for unexpected formats
-	return String(content);
-}
-
-/**
- * Extract XML module specification from Claude's response
- * Handles cases where Claude includes explanation text before/after the XML
- * Strips comments, sanitizes entities, and adds cardinality attributes
- */
-function extractModuleXML(content: string): string | null {
-	// Try to find XML content between <Module> tags (capital M)
-	const xmlMatch = content.match(/<Module>[\s\S]*?<\/Module>/i);
-	if (xmlMatch) {
-		const rawXML = xmlMatch[0];
-		// Clean the XML (remove comments and normalize whitespace)
-		let cleanedXML = cleanXML(rawXML);
-		// Sanitize XML entities (escape unescaped ampersands, etc.)
-		cleanedXML = sanitizeXMLEntities(cleanedXML);
-		// Calculate and add cardinality attributes
-		cleanedXML = calculateCardinality(cleanedXML);
-		return `<?xml version="1.0" encoding="UTF-8"?>\n${cleanedXML}`;
-	}
-
-	// If no match, check if the entire content is valid XML
-	const trimmed = content.trim();
-	if (trimmed.match(/^<Module>/i) && trimmed.match(/<\/Module>$/i)) {
-		let cleanedXML = cleanXML(trimmed);
-		// Sanitize XML entities (escape unescaped ampersands, etc.)
-		cleanedXML = sanitizeXMLEntities(cleanedXML);
-		// Calculate and add cardinality attributes
-		cleanedXML = calculateCardinality(cleanedXML);
-		return `<?xml version="1.0" encoding="UTF-8"?>\n${cleanedXML}`;
-	}
-
-	return null;
-}
+import { createChatClient, createStreamingClient, withWebSearch } from '$lib/generation/ai/client-factory.js';
+import { extractTextContent, extractModuleXML } from '$lib/generation/ai/response-parser.js';
 
 /**
  * API endpoint for generating module content using Claude + LangChain
@@ -321,29 +264,18 @@ function createSSEStream(body: GenerateRequest, apiKey: string) {
 					encoder.encode('data: {"type":"connected","message":"Generation started"}\n\n')
 				);
 
-				// Initialize LangChain ChatAnthropic with streaming
-				let model = new ChatAnthropic({
-					anthropicApiKey: apiKey,
-					modelName: 'claude-sonnet-4-5-20250929', // Claude Sonnet 4.5
-					temperature: 0.7,
-					maxTokens: 16384, // Sonnet 4.5 supports up to 64K output tokens
-					// timeout: 120000,
-					streaming: true
-				});
-
-				// Conditionally add web search capability
+				// Conditionally show research message
 				if (body.enableResearch) {
 					controller.enqueue(
 						encoder.encode('data: {"type":"progress","message":"Enabling deep research with web search..."}\n\n')
 					);
-
-					model = model.bindTools([{
-						type: 'web_search_20250305',
-						name: 'web_search',
-						max_uses: 5,
-						allowed_domains: AI_RESEARCH_DOMAINS
-					}]);
 				}
+
+				// Initialize streaming client with optional web search
+				const model = createStreamingClient({
+					apiKey,
+					enableResearch: body.enableResearch
+				});
 
 				// Retry loop
 				for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
@@ -514,23 +446,12 @@ async function generateModule(body: GenerateRequest, apiKey: string) {
 	let lastError: string[] = [];
 
 	try {
-		// Initialize LangChain ChatAnthropic (non-streaming)
-		let model = new ChatAnthropic({
-			anthropicApiKey: apiKey,
-			modelName: 'claude-sonnet-4-5-20250929', // Claude Sonnet 4.5
-			temperature: 0.7,
-			maxTokens: 16384, // Sonnet 4.5 supports up to 64K output tokens
-			timeout: 120000 // 2 minute timeout
-		});
+		// Initialize client (non-streaming)
+		let model = createChatClient({ apiKey });
 
 		// Conditionally add web search capability
 		if (body.enableResearch) {
-			model = model.bindTools([{
-				type: 'web_search_20250305',
-				name: 'web_search',
-				max_uses: 5,
-				allowed_domains: AI_RESEARCH_DOMAINS
-			}]);
+			model = withWebSearch(model);
 		}
 
 		// Retry loop for validation
