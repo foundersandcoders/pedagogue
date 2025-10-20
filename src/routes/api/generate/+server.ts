@@ -7,6 +7,7 @@ import { GenerateRequestSchema, formatZodError, type GenerateRequest } from '$li
 import { createChatClient, createStreamingClient, withWebSearch } from '$lib/generation/ai/client-factory.js';
 import { extractTextContent, extractModuleXML } from '$lib/generation/ai/response-parser.js';
 import { buildGenerationPrompt } from '$lib/generation/prompts/module-prompt-builder.js';
+import { createSSEStream } from '$lib/generation/streaming/sse-handler.js';
 
 /**
  * API endpoint for generating module content using Claude + LangChain
@@ -47,8 +48,14 @@ export const POST: RequestHandler = async ({ request }) => {
 		const supportsSSE = acceptHeader?.includes('text/event-stream');
 
 		if (supportsSSE) {
+			// Create streaming client with optional web search
+			const model = createStreamingClient({
+				apiKey,
+				enableResearch: body.enableResearch
+			});
+
 			// Return SSE stream for progress updates
-			return createSSEStream(body, apiKey);
+			return createSSEStream({ body, model });
 		} else {
 			// Return standard JSON response
 			return await generateModule(body, apiKey);
@@ -65,197 +72,6 @@ export const POST: RequestHandler = async ({ request }) => {
 		});
 	}
 };
-
-/**
- * Create Server-Sent Events stream for real-time progress updates
- * Includes validation and automatic retry logic
- */
-function createSSEStream(body: GenerateRequest, apiKey: string) {
-	const stream = new ReadableStream({
-		async start(controller) {
-			const encoder = new TextEncoder();
-			const MAX_RETRIES = 3;
-			let lastError: string[] = [];
-
-			try {
-				// Send initial connection confirmation
-				controller.enqueue(
-					encoder.encode('data: {"type":"connected","message":"Generation started"}\n\n')
-				);
-
-				// Conditionally show research message
-				if (body.enableResearch) {
-					controller.enqueue(
-						encoder.encode('data: {"type":"progress","message":"Enabling deep research with web search..."}\n\n')
-					);
-				}
-
-				// Initialize streaming client with optional web search
-				const model = createStreamingClient({
-					apiKey,
-					enableResearch: body.enableResearch
-				});
-
-				// Retry loop
-				for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-					controller.enqueue(
-						encoder.encode(`data: ${JSON.stringify({
-							type: 'progress',
-							message: attempt === 1
-								? 'Analyzing input files...'
-								: `Retry attempt ${attempt}/${MAX_RETRIES} with refined instructions...`
-						})}\n\n`)
-					);
-
-					// Build the prompt (include validation errors if retrying)
-					const prompt = buildGenerationPrompt(body, attempt > 1 ? lastError : undefined);
-
-					const messages = [
-						new SystemMessage('You are an expert in (a) current AI engineering trends and (b) curriculum designer for peer-led AI Engineering courses.'),
-						new HumanMessage(prompt)
-					];
-
-					controller.enqueue(
-						encoder.encode('data: {"type":"progress","message":"Generating module content with Claude..."}\n\n')
-					);
-
-					let fullContent = '';
-
-					// Stream the response
-					const responseStream = await model.stream(messages);
-
-					for await (const chunk of responseStream) {
-						// Extract text content from chunk (handles both string and array formats)
-						const textChunk = extractTextContent(chunk.content);
-
-						if (textChunk) {
-							fullContent += textChunk;
-							// Send chunks of content as they arrive
-							const progressData = {
-								type: 'content',
-								chunk: textChunk,
-								message: 'Streaming content...'
-							};
-							controller.enqueue(
-								encoder.encode(`data: ${JSON.stringify(progressData)}\n\n`)
-							);
-						}
-					}
-
-					// Extract and validate XML
-					controller.enqueue(
-						encoder.encode('data: {"type":"validation_started","message":"Validating generated content..."}\n\n')
-					);
-
-					const xmlContent = extractModuleXML(fullContent);
-
-					if (!xmlContent) {
-						lastError = ['Failed to extract valid XML from response. Ensure output is wrapped in <Module>...</Module> tags.'];
-
-						controller.enqueue(
-							encoder.encode(`data: ${JSON.stringify({
-								type: 'validation_failed',
-								message: `XML extraction failed (attempt ${attempt}/${MAX_RETRIES})`,
-								errors: lastError
-							})}\n\n`)
-						);
-
-						if (attempt < MAX_RETRIES) {
-							continue; // Retry
-						} else {
-							// All retries exhausted
-							controller.enqueue(
-								encoder.encode(`data: ${JSON.stringify({
-									type: 'error',
-									message: 'Failed to generate valid XML after all retry attempts',
-									errors: lastError,
-									content: fullContent
-								})}\n\n`)
-							);
-							controller.close();
-							return;
-						}
-					}
-
-					// Validate against schema
-					const validation = validateModuleXML(xmlContent);
-
-					if (validation.valid) {
-						// Success!
-						controller.enqueue(
-							encoder.encode(`data: ${JSON.stringify({
-								type: 'validation_success',
-								message: 'Schema validation passed!'
-							})}\n\n`)
-						);
-
-						controller.enqueue(
-							encoder.encode(`data: ${JSON.stringify({
-								type: 'complete',
-								message: 'Generation complete',
-								content: fullContent,
-								xmlContent: xmlContent,
-								attempts: attempt,
-								warnings: validation.warnings
-							})}\n\n`)
-						);
-
-						controller.close();
-						return;
-
-					} else {
-						// Validation failed
-						lastError = validation.errors;
-
-						controller.enqueue(
-							encoder.encode(`data: ${JSON.stringify({
-								type: 'validation_failed',
-								message: `Schema validation failed (attempt ${attempt}/${MAX_RETRIES})`,
-								errors: validation.errors,
-								warnings: validation.warnings
-							})}\n\n`)
-						);
-
-						if (attempt < MAX_RETRIES) {
-							continue; // Retry
-						} else {
-							// All retries exhausted
-							controller.enqueue(
-								encoder.encode(`data: ${JSON.stringify({
-									type: 'error',
-									message: `Schema validation failed after ${MAX_RETRIES} attempts`,
-									errors: validation.errors,
-									warnings: validation.warnings,
-									content: fullContent,
-									xmlContent: xmlContent
-								})}\n\n`)
-							);
-							controller.close();
-							return;
-						}
-					}
-				}
-			} catch (err) {
-				const errorMessage = err instanceof Error ? err.message : 'Stream error';
-				controller.enqueue(
-					encoder.encode(`data: ${JSON.stringify({
-						type: 'error',
-						message: errorMessage
-					})}\n\n`)
-				);
-				controller.close();
-			}
-		}
-	});
-
-	return new Response(stream, {
-		headers: {
-			'Content-Type': 'text/event-stream',
-			'Cache-Control': 'no-cache',
-			'Connection': 'keep-alive'
-		}
-	});
-}
 
 /**
  * Standard JSON response generation (non-streaming) with validation and retry
