@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+  <Metadata>
+    <GenerationInfo timestamp="2025-10-20T14:30:00Z">
+      <Source>AI-Generated</Source>
+      <Model>claude-sonnet-4-5-20250929</Model>
+      <InputSources>
+        <InputFile type="projects">projects.xml</InputFile>
+        <InputFile type="skills">skills.xml</InputFile>
+        <InputFile type="research">research.xml</InputFile>
+      </InputSources>
+    </GenerationInfo>
+    <Changelog>
+      <Change section="LearningObjectives" type="new_content" confidence="high">
+        <Summary>Created comprehensive learning objectives synthesizing RAG, multi-agent systems, and Python skills</Summary>
+        <Rationale>Combined the three input areas (RAG chatbots, multi-agent systems, Python skills) into cohesive learning outcomes that reflect current industry practice. Objectives focus on practical implementation skills that align with 2025 best practices discovered through research.</Rationale>
+        <ResearchSources>
+          <Source url="https://arxiv.org/abs/2501.07391">January 2025 study on RAG best practices emphasizing query expansion, chunking strategies, and evaluation metrics</Source>
+          <Source url="https://www.microsoft.com/en-us/microsoft-cloud/blog/2025/02/13/5-key-features-and-benefits-of-retrieval-augmented-generation-rag/">Microsoft 2025 guidance on RAG emphasizing source attribution and reduced hallucinations</Source>
+          <Source url="https://azure.microsoft.com/en-us/blog/introducing-microsoft-agent-framework/">Microsoft Agent Framework announcement (2025) highlighting multi-agent orchestration patterns</Source>
+        </ResearchSources>
+      </Change>
+      <Change section="ResearchTopics/PrimaryTopics/Topic[1]" type="content_update" confidence="high">
+        <Summary>Updated RAG concepts to reflect 2025 innovations including adaptive retrieval and self-correcting systems</Summary>
+        <Rationale>Research shows RAG has evolved significantly with dynamic query strategies, hybrid search becoming standard, and self-correcting mechanisms (SELF-RAG) reducing hallucinations by 52%. Updated to reflect these current capabilities rather than 2023-era RAG.</Rationale>
+        <ResearchSources>
+          <Source url="https://medium.com/@mehulpratapsingh/2025s-ultimate-guide-to-rag-retrieval-how-to-pick-the-right-method-and-why-your-ai-s-success-2cedcda99f8a">2025 guide noting systems now dynamically adjust retrieval strategies and self-correcting RAG reduces hallucinations by 52%</Source>
+          <Source url="https://arxiv.org/html/2507.18910v1">Mid-2025 systematic review positioning RAG as essential framework for reliable, auditable language agents</Source>
+        </ResearchSources>
+      </Change>
+      <Change section="ResearchTopics/PrimaryTopics/Topic[2]" type="content_update" confidence="high">
+        <Summary>Updated vector database recommendations based on 2025 performance comparisons and real-world usage</Summary>
+        <Rationale>Research shows Chroma remains excellent for prototyping, Pinecone for managed solutions, but Qdrant now leads in performance (4x RPS gains). Added guidance on hybrid search and updated deployment considerations for learners with limited budgets.</Rationale>
+        <ResearchSources>
+          <Source url="https://medium.com/the-ai-forum/which-vector-database-should-you-use-choosing-the-best-one-for-your-needs-5108ec7ba133">Qdrant achieves highest RPS and lowest latencies; Chroma cannot scale beyond single node</Source>
+          <Source url="https://medium.com/@tanish.kandivlikar1412/a-data-scientists-guide-to-vector-databases-for-generative-ai-pinecone-weaviate-chroma-milvus-04a84a23370b">July 2025 guide: Chroma ideal for rapid prototyping, Pinecone for managed production</Source>
+        </ResearchSources>
+      </Change>
+      <Change section="ResearchTopics/PrimaryTopics/Topic[3]" type="content_update" confidence="high">
+        <Summary>Updated embedding model recommendations to reflect 2025 options and deprecation schedules</Summary>
+        <Rationale>OpenAI's text-embedding-ada-002, text-embedding-3-small, and text-embedding-3-large all have October 2025 deprecation dates. Updated guidance to include open-source alternatives (Sentence-BERT, E5/BGE models) and cost considerations. Added MTEB leaderboard as evaluation resource.</Rationale>
+        <ResearchSources>
+          <Source url="https://learn.microsoft.com/en-us/answers/questions/2180294/which-azure-ai-embedding-model-should-i-use-to-avo">Azure embedding models deprecating October 2025; need to plan for migrations</Source>
+          <Source url="https://medium.com/@alex-azimbaev/embedding-models-in-2025-technology-pricing-practical-advice-2ed273fead7f">June 2025: open-source models now rival proprietary ones; commodity pricing under $0.02/M tokens</Source>
+          <Source url="https://huggingface.co/blog/mteb">MTEB leaderboard provides holistic view of best text embedding models on variety of tasks</Source>
+        </ResearchSources>
+      </Change>
+      <Change section="ResearchTopics/PrimaryTopics/Topic[6-8]" type="content_update" confidence="high">
+        <Summary>Significantly updated multi-agent frameworks section to reflect 2025 landscape</Summary>
+        <Rationale>Multi-agent AI market exploded from $5.43B in 2024 to projected $236B by 2034. Microsoft merged AutoGen with Semantic Kernel into unified Agent Framework (2025). CrewAI gained $18M funding with 60% Fortune 500 adoption. LangGraph became production standard. Updated to reflect these major shifts and new patterns like orchestrator-worker, agentic retrieval.</Rationale>
+        <ResearchSources>
+          <Source url="https://azure.microsoft.com/en-us/blog/introducing-microsoft-agent-framework/">Microsoft Agent Framework (2025) converges AutoGen and Semantic Kernel with A2A protocol support</Source>
+          <Source url="https://medium.com/aimonks/the-top-5-open-source-frameworks-for-multi-agent-ai-systems-in-2025-4c303f6b89cb">Multi-agent AI market: $5.43B (2024) to $236B (2034), 45.82% CAGR</Source>
+          <Source url="https://www.anthropic.com/engineering/multi-agent-research-system">Anthropic's multi-agent research system uses orchestrator-worker pattern with specialized subagents</Source>
+        </ResearchSources>
+      </Change>
+      <Change section="ResearchTopics/StretchTopics" type="examples_expanded" confidence="medium">
+        <Summary>Added emerging 2025 topics including agentic retrieval, MCP protocol, and agent safety</Summary>
+        <Rationale>Research revealed several important emerging topics for advanced learners: Model Context Protocol (MCP) for tool connections, agentic retrieval patterns in Azure AI, agent safety and verification challenges. These represent cutting-edge developments appropriate for stretch exploration.</Rationale>
+        <ResearchSources>
+          <Source url="https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview">Azure AI Search now provides agentic retrieval with LLM-driven query decomposition</Source>
+          <Source url="https://dev.to/copilotkit/ai-agent-protocols-every-developer-should-know-in-2025-39m3">MCP (Model Context Protocol) enables dynamic tool connections; supported by major frameworks</Source>
+        </ResearchSources>
+      </Change>
+      <Change section="Projects/Briefs/Brief[1]" type="content_update" confidence="medium">
+        <Summary>Enhanced RAG chatbot brief with 2025 best practices including hybrid search and reranking</Summary>
+        <Rationale>Updated to include modern RAG techniques that are now standard: hybrid search (vector + keyword), reranking, query augmentation, and structured output formats. These significantly improve retrieval quality and are expected in production systems.</Rationale>
+        <ResearchSources>
+          <Source url="https://medium.com/@mehulpratapsingh/2025s-ultimate-guide-to-rag-retrieval-how-to-pick-the-right-method-and-why-your-ai-s-success-2cedcda99f8a">Hybrid search recommended as starting point for enterprise applications</Source>
+          <Source url="https://www.microsoft.com/en-us/microsoft-cloud/blog/2025/02/04/common-retrieval-augmented-generation-rag-techniques-explained/">Common RAG techniques: hybrid search, query rewriting, re-ranking are standard practices</Source>
+        </ResearchSources>
+      </Change>
+      <Change section="Projects/Briefs/Brief[2]" type="content_update" confidence="high">
+        <Summary>Updated multi-agent brief to reflect current framework ecosystem and patterns</Summary>
+        <Rationale>Multi-agent landscape has matured significantly. Updated examples to reflect real-world patterns: orchestrator-worker, role-based collaboration, agent debate/refinement. Removed references to outdated frameworks and added guidance on current options (LangGraph, CrewAI, Microsoft Agent Framework).</Rationale>
+        <ResearchSources>
+          <Source url="https://www.anthropic.com/engineering/multi-agent-research-system">Orchestrator-worker pattern with lead agent coordinating specialized subagents is production-proven</Source>
+          <Source url="https://medium.com/@iamanraghuvanshi/agentic-ai-3-top-ai-agent-frameworks-in-2025-langchain-autogen-crewai-beyond-2fc3388e7dec">2025 frameworks: LangGraph for production control, CrewAI for role-based teams, AutoGen for conversational</Source>
+        </ResearchSources>
+      </Change>
+      <Change section="Projects/Twists" type="new_content" confidence="low">
+        <Summary>Created conceptual twists that reframe problem-solving approaches</Summary>
+        <Rationale>Designed twists following the guideline that they should be conceptual curveballs rather than feature additions. Each twist introduces a philosophical constraint or alternative perspective that changes how learners think about the problem space, not just what features they build.</Rationale>
+        <ResearchSources />
+      </Change>
+      <Change section="AdditionalSkills/SkillsCategory[1]" type="content_update" confidence="medium">
+        <Summary>Refined Python skills to emphasize RAG/agent-specific needs and async patterns</Summary>
+        <Rationale>Python becomes more critical at this stage as mature RAG and agent libraries are Python-based. Emphasized async programming (essential for agent frameworks), data processing for chunking/embeddings, and API design for serving systems. These align with framework requirements discovered in research.</Rationale>
+        <ResearchSources>
+          <Source url="https://venturebeat.com/ai/microsoft-autogen-v0-4-a-turning-point-toward-more-intelligent-ai-agents-for-enterprise-developers">AutoGen v0.4 adopts asynchronous, event-driven architecture; async now table stakes</Source>
+        </ResearchSources>
+      </Change>
+    </Changelog>
+    <ProvenanceTracking>
+      <AIUpdate count="1" />
+      <SectionsNeedingReview>
+        <Section confidence="low">Projects/Twists - Conceptual twists are subjective; human review recommended</Section>
+        <Section confidence="low">ResearchTopics/StretchTopics - Emerging topics may evolve rapidly</Section>
+      </SectionsNeedingReview>
+    </ProvenanceTracking>
+  </Metadata>
+
+  <Description>This module explores advanced AI engineering techniques for building reliable, context-aware systems. Learners will implement Retrieval-Augmented Generation (RAG) to ground LLM outputs in factual knowledge bases, and design multi-agent systems where specialized AI agents collaborate on complex tasks. The module emphasizes practical skills in vector search, embedding models, agent orchestration, and evaluation strategies that are essential for production AI applications in 2025.</Description>
+
+  <LearningObjectives>
+    <LearningObjective name="Building Production RAG Systems">
+      Learners will design and implement end-to-end RAG pipelines that retrieve relevant information from knowledge bases and generate accurate, cited responses. They'll gain hands-on experience with vector databases, embedding models, chunking strategies, and hybrid search techniques. They'll understand how to evaluate retrieval quality, prevent hallucinations through grounding, and optimize for both accuracy and performance in real-world applications.
+    </LearningObjective>
+    <LearningObjective name="Multi-Agent System Architecture">
+      Learners will architect systems where multiple specialized AI agents work together to solve complex problems that would be difficult for a single agent. They'll understand different coordination patterns (orchestrator-worker, role-based collaboration, agent debate), implement communication protocols between agents, and handle task decomposition and delegation. They'll recognize emergent behaviors in agent collectives and learn to design systems that balance autonomy with reliability.
+    </LearningObjective>
+    <LearningObjective name="Evaluation and Iteration of AI Systems">
+      Learners will develop systematic approaches to evaluating AI system quality beyond simple demos. For RAG systems, they'll measure retrieval precision, answer groundedness, and citation accuracy. For agent systems, they'll assess task completion, decision quality, and coordination effectiveness. They'll create evaluation datasets, implement metrics, and use findings to iteratively improve their systems—developing the engineering discipline required for production AI.
+    </LearningObjective>
+    <LearningObjective name="Working with Modern AI Infrastructure">
+      Learners will gain practical experience with the infrastructure layer of AI applications: vector databases for semantic search, embedding APIs and local models, agent frameworks for orchestration, and observability tools for debugging. They'll understand trade-offs between managed services and self-hosted solutions, optimize for cost and latency, and make informed decisions about technology choices based on project requirements.
+    </LearningObjective>
+  </LearningObjectives>
+
+  <ResearchTopics>
+    <PrimaryTopics>
+      <Topic name="RAG Architecture and Modern Patterns">
+        <SubTopic name="Understanding RAG fundamentals and evolution">
+          - Research what RAG is and why it's become essential: combining LLMs with external knowledge for accurate, up-to-date, auditable answers
+          - Find case studies of RAG in production: how companies like Microsoft, financial services, and legal AI use retrieval to ground responses
+          - Understand the difference between RAG, fine-tuning, and prompt engineering—when to use each approach
+          - Look into 2025 innovations: adaptive retrieval (systems that adjust strategy based on query), self-correcting RAG (SELF-RAG that critiques its own retrievals), and agentic retrieval patterns
+          - Key insight to find: RAG isn't just about accuracy—it's about transparency, traceability, and keeping AI systems accountable
+        </SubTopic>
+        <SubTopic name="Hybrid search and advanced retrieval techniques">
+          - Research hybrid search: combining vector similarity (semantic meaning) with keyword search (BM25 or full-text)
+          - Why hybrid matters: vector search finds conceptually similar content, keyword search catches exact terms/names
+          - Explore query augmentation: rewriting or expanding user queries before retrieval to improve results
+          - Look into reranking (L2 ranking): using a second model to reorder retrieved results by relevance
+          - Find examples of when each technique helps: hybrid for broad domains, pure vector for semantic tasks, reranking for precision
+          - Pro tip from research: "start with hybrid search and layer in advanced methods as complexity grows"
+        </SubTopic>
+        <SubTopic name="Chunking strategies and context management">
+          - Research document chunking: breaking long documents into smaller pieces for embedding and retrieval
+          - Explore trade-offs: small chunks (precise but may lack context) vs. large chunks (more context but less precise)
+          - Look into overlapping chunks, semantic chunking (splitting at natural boundaries), and metadata enrichment
+          - Understand token limits: how much retrieved context can fit in an LLM prompt (4k-128k tokens depending on model)
+          - Find guidance on optimal chunk sizes: research suggests paragraph-level (~100-512 tokens) often works well
+          - Advanced: contextual compression techniques that summarize retrieved chunks before feeding to LLM
+        </SubTopic>
+      </Topic>
+
+      <Topic name="Vector Databases and Semantic Search">
+        <SubTopic name="Vector database landscape in 2025">
+          - Research at least 2-3 vector database options and understand their trade-offs
+          - Chroma: open-source, easy to run locally, ideal for prototyping but limited scalability (single-node)
+          - Pinecone: fully managed cloud service, serverless option available, good for production but requires API costs
+          - Qdrant: open-source with strong performance (research shows 4x RPS gains), supports filtering and hybrid search
+          - Weaviate: schema-based, supports GraphQL, good for knowledge graphs but performance has lagged competitors
+          - Consider: local vs. cloud (cost, latency, data privacy), scaling characteristics, and ease of setup for your project
+        </SubTopic>
+        <SubTopic name="Indexing, querying, and performance">
+          - How to index documents: convert text to embeddings, store vectors with metadata, build similarity search index
+          - Perform similarity search: query vector → find k nearest neighbors → return most similar documents
+          - Understand distance metrics: cosine similarity (most common for text), Euclidean distance, dot product
+          - Research indexing algorithms: HNSW (Hierarchical Navigable Small World) is standard for approximate nearest neighbor search
+          - Performance considerations: indexing time, query latency, memory usage, and accuracy trade-offs
+          - Try a tiny example: index 5-10 sentences, query one, see what comes back and why
+        </SubTopic>
+        <SubTopic name="Metadata filtering and hybrid capabilities">
+          - Beyond pure vector search: filtering by metadata (date, category, author, etc.) before or after similarity search
+          - Hybrid search implementation: combine vector results with keyword search results, merge with weighted scores
+          - Pre-filtering vs. post-filtering: applying metadata filters before vector search (faster) vs. after (more flexible)
+          - Research shows hybrid search is now recommended as starting point for most enterprise applications
+          - Practical example: "Find documents about climate change published after 2023" requires both semantic understanding and date filtering
+        </SubTopic>
+      </Topic>
+
+      <Topic name="Embedding Models and Semantic Representation">
+        <SubTopic name="Choosing embedding models in 2025">
+          - Research current embedding model landscape: OpenAI (text-embedding-3-small/large), open-source (Sentence-BERT, E5, BGE)
+          - Important: OpenAI's ada-002 and text-embedding-3 models deprecate October 2025—plan for alternatives
+          - Open-source options: models on MTEB leaderboard (Hugging Face) show comparable quality to proprietary models
+          - Trade-offs: API models (easy, high-quality, ongoing cost) vs. local models (free after download, need GPU/compute)
+          - Dimensionality: larger embeddings (1536-3072d) capture more nuance but cost more storage; smaller (384-768d) often sufficient
+          - Use MTEB leaderboard to compare models on retrieval, classification, and clustering tasks
+        </SubTopic>
+        <SubTopic name="How embeddings work and semantic similarity">
+          - Understand embedding space: high-dimensional vector space where semantically similar texts are close together
+          - Cosine similarity: measures angle between vectors (0=orthogonal, 1=identical direction), standard for text
+          - Why it works: models trained on massive text data learn to place "dog" near "puppy" and "canine" in vector space
+          - Experiment: embed several related and unrelated sentences, calculate similarities, see which cluster together
+          - Understand limitations: embeddings capture semantic meaning but may miss exact keyword matches (why hybrid search helps)
+        </SubTopic>
+        <SubTopic name="Domain-specific and multilingual considerations">
+          - General vs. domain-specific embeddings: general models (trained on web data) vs. specialized (BioBERT for medicine, CodeBERT for code)
+          - When domain-specific matters: highly technical fields where general models miss subtle distinctions
+          - Multilingual embeddings: models that map multiple languages into same vector space (e.g., "dog" in English near "hund" in German)
+          - Cost considerations: research shows embedding costs have dropped to commodity pricing (&lt;$0.02/M tokens in 2025)
+          - Practical advice: start with general model (OpenAI 3-small or open-source equivalent), only specialize if needed
+        </SubTopic>
+      </Topic>
+
+      <Topic name="Prompting Strategies for RAG">
+        <SubTopic name="Formatting prompts with retrieved context">
+          - Research effective prompt structures: "Answer using only the following context: [context]. Question: [question]"
+          - Instruct the model to say "I don't know" if information isn't in the retrieved documents
+          - Use structured formats: present each retrieved document with clear markers (Document 1:, Document 2:, etc.)
+          - System prompts for RAG: set expectations about using context, not hallucinating, and citing sources
+          - Find community examples: LangChain prompt hub has RAG-specific prompts to study and adapt
+        </SubTopic>
+        <SubTopic name="Citation and source attribution">
+          - How to get the LLM to cite sources: explicitly ask in prompt ("Include which document supports your answer")
+          - Structured output approaches: ask for JSON with "answer" and "source_documents" fields
+          - Passage-level citation: have model quote specific excerpts from retrieved text
+          - Why citations matter: transparency, trust, ability to verify, and debugging when answers are wrong
+          - Research shows: proper citation techniques are critical for high-stakes domains (legal, medical, financial)
+        </SubTopic>
+        <SubTopic name="Handling context window limitations">
+          - Token limits vary by model: GPT-3.5 (4k), GPT-4 (8k-128k), Claude (200k)—but more tokens = higher cost and latency
+          - Strategies when retrieved docs exceed limit: truncate, summarize, or retrieve fewer but more relevant chunks
+          - Context window management: prioritize most relevant chunks, consider recency, use reranking to select best subset
+          - Research "lost in the middle" problem: models sometimes ignore information in middle of very long contexts
+          - Practical guideline: even with large context windows, focused relevant context (1k-4k tokens) often works better than dumping everything
+        </SubTopic>
+      </Topic>
+
+      <Topic name="Evaluating RAG Systems">
+        <SubTopic name="Metrics for retrieval and generation quality">
+          - Retrieval metrics: Precision@k (how many retrieved docs are relevant), Recall@k (did we find all relevant docs), MRR (mean reciprocal rank)
+          - Generation metrics: answer correctness, groundedness (is answer supported by retrieved context), relevance to question
+          - End-to-end metrics: can the system correctly answer questions from a test set?
+          - Research frameworks: RAGAS (RAG Assessment), TruLens, and other evaluation libraries
+          - Industry practice: create evaluation datasets with known questions and expected answers for systematic testing
+        </SubTopic>
+        <SubTopic name="Creating evaluation datasets and test cases">
+          - Build a test set: 20-50 representative questions with known correct answers from your knowledge base
+          - Include edge cases: questions with no answer in docs, ambiguous questions, questions requiring multiple documents
+          - Human evaluation: have people rate answer quality, correctness, and citation accuracy
+          - Automated evaluation: use another LLM as judge to score answers (LLM-as-judge pattern)
+          - Iterate: use evaluation results to improve chunking, retrieval, or prompting strategies
+        </SubTopic>
+        <SubTopic name="Debugging and failure analysis">
+          - Common failure modes: wrong chunks retrieved, relevant chunks not retrieved, model ignores context, incorrect citations
+          - Debugging retrieval: manually inspect what chunks are retrieved for test queries—are they actually relevant?
+          - Debugging generation: is the model following instructions? Is the context clear enough?
+          - Observability tools: log queries, retrieved chunks, and generated answers for analysis
+          - Systematic improvement: identify patterns in failures, hypothesize fixes, test on evaluation set
+        </SubTopic>
+      </Topic>
+
+      <Topic name="AI Agents and Function Calling">
+        <SubTopic name="Function calling and tool use">
+          - Research OpenAI's function calling: define functions with names, parameters, descriptions; model outputs JSON to call them
+          - How it works: model decides when to call a function vs. respond directly, structures arguments as JSON
+          - Best practices: clear function descriptions, constrained parameter schemas, error handling for invalid calls
+          - Beyond OpenAI: Anthropic's tool use, open models with function calling (Mistral, Llama), framework abstractions (LangChain tools)
+          - Practical examples: calculator tool, web search tool, database query tool, API call tool
+        </SubTopic>
+        <SubTopic name="Agent reasoning loops and ReAct pattern">
+          - Understand agent loop: Observe → Reason → Act → Observe (repeat until task complete)
+          - ReAct (Reasoning + Acting): agent thinks step-by-step, decides what tool to use, observes result, repeats
+          - Research examples: LangChain agents, AutoGPT's task loop, BabyAGI's planning system
+          - Challenges: agents can get stuck in loops, make irrelevant tool calls, or fail to make progress
+          - Safeguards: max iterations limit, require agent to explain reasoning, human-in-the-loop for critical decisions
+        </SubTopic>
+        <SubTopic name="Agent frameworks and ecosystem">
+          - Research major frameworks: LangChain (modular, extensive integrations), LangGraph (graph-based control flow)
+          - Microsoft ecosystem: AutoGen (now merged into Agent Framework), Semantic Kernel (enterprise .NET focus)
+          - Explore simple examples from documentation: basic agent that can search web and answer questions
+          - Understand what frameworks provide: abstractions for tools, memory, planning, and orchestration
+          - Consider: frameworks accelerate development but add complexity—when to use vs. build from scratch?
+        </SubTopic>
+      </Topic>
+
+      <Topic name="Tool Design and Agent Safety">
+        <SubTopic name="Designing effective tools for agents">
+          - Principles: tools should be focused, have clear purposes, return structured data, handle errors gracefully
+          - Common tool types: information retrieval (search, database query), actions (send email, create file), computation (calculator, code execution)
+          - Tool descriptions matter: agent relies on description to decide when to use tool—be specific about what it does and when to use it
+          - Error handling: what if tool returns no results, times out, or errors? Agent needs clear feedback to recover
+          - Research Model Context Protocol (MCP): emerging standard for connecting LLMs to tools, supported by major frameworks in 2025
+        </SubTopic>
+        <SubTopic name="Constraining agent behavior">
+          - Why constraints matter: unconstrained agents can waste API calls, take unwanted actions, or get stuck
+          - Strategies: limit available tools, require justification before actions, set iteration/cost budgets, human approval for critical actions
+          - Prompt engineering for safety: instruct agent on boundaries, when to ask for help, what actions are prohibited
+          - Observability: log all agent actions, tool calls, and reasoning for audit trails
+          - Research shows: minor prompt changes can cause large behavioral changes in agents—careful testing is essential
+        </SubTopic>
+        <SubTopic name="Privacy, security, and ethical considerations">
+          - Data privacy: what data does agent access? Is it logging sensitive information? Where are API calls going?
+          - Access control: agents should only access tools/data appropriate for their purpose and user's permissions
+          - Audit trails: recording agent actions for accountability, debugging, and compliance
+          - Ethical boundaries: agents shouldn't be designed to deceive, manipulate, or cause harm
+          - Enterprise considerations: RAG systems in regulated industries (healthcare, finance, legal) have strict requirements for data handling and auditability
+        </SubTopic>
+      </Topic>
+
+      <Topic name="Multi-Agent Systems and Collaboration">
+        <SubTopic name="Multi-agent frameworks and architecture patterns">
+          - Research major frameworks: LangGraph (production-grade control), CrewAI (role-based teams), Microsoft Agent Framework (enterprise integration)
+          - CrewAI: $18M funding, 60% Fortune 500 adoption, role-based design where agents have specialized responsibilities
+          - LangGraph: graph-based state machines with cyclical execution, used by Klarna, Uber, LinkedIn for production
+          - Microsoft Agent Framework: merges AutoGen + Semantic Kernel, supports Agent2Agent (A2A) protocol for cross-framework communication
+          - Architecture patterns: orchestrator-worker (lead agent coordinates subagents), peer-to-peer (agents communicate directly), hierarchical (manager agents oversee teams)
+        </SubTopic>
+        <SubTopic name="Agent coordination and communication">
+          - Task decomposition: breaking complex problems into subtasks that different agents can handle
+          - Communication patterns: structured messages, shared state/memory, task hand-offs between agents
+          - Orchestrator-worker pattern (Anthropic's approach): lead agent analyzes query, spawns specialized subagents for parallel exploration, synthesizes results
+          - Role-based collaboration (CrewAI approach): agents have defined roles, goals, and backstories; work sequentially or in parallel on tasks
+          - Conversational agents (AutoGen approach): agents communicate through natural language messages, can include humans in the loop
+        </SubTopic>
+        <SubTopic name="Emergent behaviors and collective intelligence">
+          - Emergent behavior: complex system behaviors that arise from agent interactions, not explicitly programmed
+          - Agent debate and refinement: multiple agents propose solutions, critique each other, converge on better answers
+          - Mixture of experts: different agents specialize in different domains, system routes queries to appropriate expert
+          - Challenges: agents can duplicate work, leave gaps, or misinterpret coordination—requires careful task description and boundaries
+          - Research shows: small changes to orchestrator prompts can unpredictably change subagent behavior—understanding interaction patterns is key
+        </SubTopic>
+      </Topic>
+
+      <Topic name="Python for RAG and Agent Systems">
+        <SubTopic name="Async programming for agents">
+          - Why async matters: agent frameworks (AutoGen v0.4, LangGraph) use asynchronous, event-driven architectures
+          - Python asyncio basics: async/await syntax, running concurrent operations, handling async API calls
+          - Practical use: making multiple API calls in parallel (e.g., agent calling multiple tools simultaneously)
+          - Frameworks to explore: asyncio (standard library), aiohttp (async HTTP), async patterns in LangChain/LangGraph
+          - Research shows: async capabilities are "table stakes" for modern agent frameworks in 2025
+        </SubTopic>
+        <SubTopic name="Data processing for embeddings and chunking">
+          - Text processing: cleaning documents, splitting into chunks, handling different file formats (PDF, HTML, Markdown)
+          - Libraries: langchain document loaders, tiktoken (token counting), sentence-transformers (embeddings)
+          - Pandas for metadata: managing document metadata, filtering, and organizing evaluation datasets
+          - Batch processing: efficiently processing large document collections for indexing
+          - Practical skills: write scripts to ingest documents, chunk them, create embeddings, and load into vector database
+        </SubTopic>
+        <SubTopic name="Building APIs for AI systems">
+          - FastAPI for serving: create REST endpoints for RAG queries, agent interactions, or evaluation
+          - Request/response patterns: handling user queries, streaming responses, managing state
+          - Error handling and validation: using Pydantic models for input validation, graceful error responses
+          - Deployment considerations: containerization (Docker), environment management, secrets handling
+          - Why it matters: production AI systems need API layers for integration with applications
+        </SubTopic>
+      </Topic>
+    </PrimaryTopics>
+
+    <StretchTopics>
+      <Topic name="Agentic retrieval and query decomposition">
+        Azure AI Search's agentic retrieval uses LLMs to break complex queries into focused subqueries, execute in parallel, and return structured responses. Research how this differs from traditional RAG and when the added complexity is worthwhile.
+      </Topic>
+      <Topic name="Model Context Protocol (MCP) for tool integration">
+        MCP is an emerging standard for connecting LLMs to tools and data sources. Research how it enables dynamic tool discovery and cross-framework compatibility. Explore MCP servers and clients in popular frameworks.
+      </Topic>
+      <Topic name="Graph databases and knowledge graphs for RAG">
+        Beyond vector search: using graph databases (Neo4j) to represent relationships between entities. Research GraphRAG approaches that combine semantic search with structured knowledge graphs for multi-hop reasoning.
+      </Topic>
+      <Topic name="Fine-tuning embedding models for domain-specific applications">
+        When general embeddings aren't enough: research contrastive learning techniques for fine-tuning embeddings on domain-specific data. Explore tools like Sentence-Transformers training, cost-benefit analysis, and evaluation approaches.
+      </Topic>
+      <Topic name="Agent memory architectures and long-term context">
+        How agents maintain state across conversations: short-term memory (conversation history), long-term memory (vector stores of past interactions), and episodic memory (specific important events). Research memory management strategies and trade-offs.
+      </Topic>
+      <Topic name="Verification and validation in multi-agent systems">
+        Ensuring agent systems behave correctly: research techniques for testing agent behavior, detecting coordination failures, and validating that agents achieve intended goals. Explore formal verification approaches and practical testing strategies.
+      </Topic>
+      <Topic name="Cost optimization for production RAG systems">
+        Balancing quality and cost: research strategies like caching embeddings, using smaller models where appropriate, batch processing, and quantization. Analyze cost structure of embeddings, vector storage, and LLM calls in production.
+      </Topic>
+    </StretchTopics>
+  </ResearchTopics>
+
+  <Projects>
+    <Briefs>
+      <Brief name="RAG Knowledge Chatbot">
+        <Task>Build a chatbot that provides reliable, cited answers based on a provided knowledge base using Retrieval-Augmented Generation.</Task>
+        <Focus>Implementing embeddings, vector search, and hybrid retrieval to ground LLM outputs in facts. Learn to build a pipeline where user queries trigger document retrieval followed by an LLM response that cites retrieved information, mitigating hallucinations and ensuring transparency.</Focus>
+        <Criteria>
+          - Build a chatbot that answers user queries based on a specific knowledge base (company docs, FAQs, technical documentation, or any domain corpus)
+          - Implement end-to-end RAG pipeline: document ingestion → chunking → embedding → vector storage → retrieval → generation
+          - Deliver answers with references to source material, ensuring users can verify information
+          - The bot must fetch relevant information from the provided data and use it to formulate answers, rather than relying purely on the LLM's internal knowledge
+          - Handle cases where information isn't found gracefully (e.g., "I don't have information about that in the knowledge base")
+          - Demonstrate measurable improvement over a baseline (e.g., LLM without RAG) through evaluation on test questions
+        </Criteria>
+        <Skills>
+          <Skill name="Building end-to-end RAG pipelines">
+            - Create complete system: user query → retrieval → context formatting → LLM generation → response with citations
+            - Document ingestion: load documents from various formats (PDF, Markdown, HTML, plain text)
+            - Chunking strategy: split documents into appropriately-sized pieces (typically paragraph-level, 100-512 tokens)
+            - Embedding generation: convert chunks to vectors using embedding model (OpenAI, Sentence-BERT, or open-source alternatives)
+            - Vector database setup: index embeddings in Chroma, Pinecone, Qdrant, or similar
+            - Query processing: convert user question to embedding, retrieve top-k similar chunks
+            - Prompt engineering: format retrieved context and query for LLM, instruct on citation requirements
+          </Skill>
+          <Skill name="Implementing hybrid search and retrieval optimization">
+            - Hybrid search: combine vector similarity search with keyword/BM25 search for better recall
+            - Query augmentation: rewrite or expand queries to improve retrieval (e.g., adding synonyms, clarifying intent)
+            - Reranking: use second-stage model to reorder retrieved results by relevance before feeding to LLM
+            - Metadata filtering: allow filtering by date, category, author, or other attributes before or after vector search
+            - Understand trade-offs: pure vector (semantic), pure keyword (exact match), hybrid (best of both)
+            - Optimize retrieval: experiment with number of chunks retrieved (k), similarity thresholds, and ranking methods
+          </Skill>
+          <Skill name="Citation, transparency, and handling uncertainty">
+            - Design prompts that require the LLM to cite which documents support its answer
+            - Implement structured output: separate answer text from source references in response
+            - Handle edge cases: no relevant documents found, conflicting information, ambiguous queries
+            - Teach the model to say "I don't know" when information isn't in the knowledge base
+            - Provide passage-level citations: quote specific excerpts that support the answer
+            - Build transparency: users should be able to click through to source documents to verify claims
+            - Understand why this matters: trust, accountability, debugging, and meeting requirements in high-stakes domains
+          </Skill>
+          <Skill name="Evaluation and systematic improvement">
+            - Create evaluation dataset: 20-50 test questions with known correct answers from your knowledge base
+            - Measure retrieval quality: are the right documents being retrieved? (Precision@k, Recall@k)
+            - Measure answer quality: is the answer correct? Is it grounded in retrieved context? Are citations accurate?
+            - Use LLM-as-judge: have another LLM score answer correctness, relevance, and groundedness
+            - Analyze failure modes: categorize what went wrong (bad retrieval, model ignored context, incorrect citation)
+            - Iterate systematically: change one thing (chunk size, retrieval method, prompt), re-evaluate, measure improvement
+            - Document learnings: what chunking strategy worked best? How many chunks to retrieve? What prompt format?
+          </Skill>
+        </Skills>
+        <Examples>
+          <Example name="Internal Company Knowledge Assistant">
+            Use company HR policies, internal wiki pages, or onboarding documentation. The bot answers questions like "What's the vacation policy?" or "How do I submit an expense report?" by retrieving relevant policy documents and citing specific sections. Useful for demonstrating RAG in a business context.
+          </Example>
+          <Example name="Technical Documentation Chatbot">
+            Build a bot using programming library documentation (e.g., React docs, Python library docs, or API references). Users ask technical questions like "How do I handle errors in fetch requests?" and get answers with links to specific documentation pages. Shows RAG for developer tools.
+          </Example>
+          <Example name="Research Paper Q&amp;A System">
+            Use a collection of academic papers or articles on a specific topic (climate science, machine learning, history). The bot answers questions and cites which papers support the answer, including authors and publication dates. Demonstrates RAG for research and knowledge work.
+          </Example>
+          <Example name="Customer Support Knowledge Base">
+            Use product documentation, FAQs, and troubleshooting guides. The bot handles customer questions like "How do I reset my password?" or "Why isn't feature X working?" by retrieving relevant support articles. Shows practical customer service application.
+          </Example>
+          <Example name="Legal/Compliance Document Assistant">
+            Use a collection of regulations, legal documents, or compliance guidelines. The bot answers questions like "What are the GDPR requirements for data storage?" with citations to specific regulations and sections. Demonstrates high-stakes RAG where accuracy and attribution are critical.
+          </Example>
+        </Examples>
+      </Brief>
+
+      <Brief name="Multi-Agent Collaboration System">
+        <Task>Build a system where multiple AI agents with specialized roles collaborate to solve complex tasks that would be difficult for a single agent.</Task>
+        <Focus>Advanced multi-agent frameworks, agent communication protocols, task decomposition strategies, and emergent behaviors in agent collectives. Learn how distributed AI problem-solving can tackle tasks requiring multiple perspectives, specialized knowledge, or parallel exploration.</Focus>
+        <Criteria>
+          - Design and implement a system with at least 2-3 specialized AI agents, each with distinct capabilities or roles
+          - Agents must communicate and coordinate their efforts through structured interactions (not just sequential prompting)
+          - Demonstrate task decomposition: breaking a complex problem into subtasks that agents can handle
+          - Show coordination patterns: orchestrator-worker, role-based collaboration, agent debate, or peer-to-peer communication
+          - The system should accomplish something that would be significantly harder or impossible for a single agent
+          - Include observability: log agent interactions, decisions, and tool calls to understand system behavior
+          - Handle coordination challenges: preventing duplicate work, filling gaps, resolving conflicts between agents
+        </Criteria>
+        <Skills>
+          <Skill name="Multi-agent architecture and framework selection">
+            - Research and choose appropriate framework: LangGraph (graph-based control), CrewAI (role-based teams), Microsoft Agent Framework (enterprise patterns)
+            - Understand architecture patterns: orchestrator-worker (lead agent coordinates subagents), peer-to-peer (agents communicate directly), hierarchical (manager agents)
+            - Design agent roles: define what each agent is responsible for, what tools it has access to, and how it communicates
+            - Set up communication protocols: shared state, message passing, task hand-offs, or conversational interactions
+            - Implement coordination logic: how does the system decide which agent acts when? How do agents share information?
+            - Consider trade-offs: frameworks provide abstractions but add complexity—understand what you're getting
+          </Skill>
+          <Skill name="Task decomposition and delegation">
+            - Break complex problems into subtasks: identify natural divisions of labor based on agent specializations
+            - Orchestrator pattern: lead agent analyzes task, creates subtask descriptions, assigns to specialized subagents
+            - Role-based pattern: define agents by role (Researcher, Writer, Critic), assign tasks that match their expertise
+            - Parallel execution: identify subtasks that can be done simultaneously vs. those requiring sequential execution
+            - Boundary definition: clearly specify what each agent should do, what tools to use, and when to stop
+            - Research shows: vague task descriptions lead to duplication or gaps—be specific about responsibilities
+          </Skill>
+          <Skill name="Agent communication and coordination">
+            - Message passing: agents exchange structured messages (JSON, natural language, or custom formats)
+            - Shared state: agents read/write to common memory or state object
+            - Task hand-offs: one agent completes work and passes output to next agent in pipeline
+            - Conversational coordination: agents "discuss" approach through back-and-forth messages (AutoGen style)
+            - Consensus mechanisms: multiple agents vote, debate, or converge on decisions
+            - Handle failures: what happens if an agent gets stuck, returns poor results, or takes too long?
+            - Observability: log all agent interactions for debugging and understanding emergent behaviors
+          </Skill>
+          <Skill name="Emergent behaviors and system optimization">
+            - Observe emergent patterns: system behaviors that arise from agent interactions, not explicit programming
+            - Agent debate/refinement: multiple agents critique each other's work, leading to improved solutions
+            - Mixture of experts: system learns to route different query types to appropriate specialist agents
+            - Identify coordination failures: agents duplicating work, leaving gaps, or working at cross-purposes
+            - Iterative improvement: adjust agent prompts, tool access, or coordination logic based on observed behavior
+            - Understand unpredictability: small prompt changes can cascade into large behavioral changes
+            - Balance autonomy and control: too much freedom leads to chaos, too much constraint limits agent capability
+          </Skill>
+        </Skills>
+        <Examples>
+          <Example name="Collaborative Research System">
+            Multiple agents work together to research a topic: Researcher agent searches for information from various sources, Analyst agent synthesizes findings and identifies gaps, Critic agent challenges conclusions and suggests additional research directions. Demonstrates orchestrated information gathering and refinement.
+          </Example>
+          <Example name="Code Review and Improvement Team">
+            Specialist agents collaborate on code quality: Code Analyzer identifies potential issues, Security Auditor checks for vulnerabilities, Performance Optimizer suggests improvements, Documentation Writer creates explanations. Shows role-based collaboration for technical tasks.
+          </Example>
+          <Example name="Multi-Perspective Writing System">
+            Agents with different perspectives collaborate on content: Technical Writer focuses on accuracy and completeness, Accessibility Specialist ensures content is understandable to all audiences, SEO Optimizer considers discoverability, Editor synthesizes into final coherent piece. Demonstrates agent debate and consensus.
+          </Example>
+          <Example name="Customer Support Triage and Resolution">
+            Orchestrator agent routes customer queries to specialist agents: Technical Support for product issues, Billing Specialist for payment questions, Account Manager for relationship issues. Escalation agent handles complex cases requiring human intervention. Shows practical business application.
+          </Example>
+          <Example name="Data Analysis Pipeline">
+            Agents collaborate on data insights: Data Collector gathers information from multiple sources, Cleaner handles preprocessing and validation, Analyzer runs statistical analyses, Visualizer creates charts, Interpreter explains findings in natural language. Demonstrates sequential pipeline with specialized roles.
+          </Example>
+        </Examples>
+      </Brief>
+    </Briefs>
+
+    <Twists>
+      <Twist name="The Unreliable Narrator">
+        <Task>Your system must generate multiple competing interpretations of the same information, each internally consistent but representing different perspectives or assumptions. The challenge is designing a system that deliberately explores alternative readings rather than converging on a single "correct" answer.</Task>
+        <Examples>
+          <Example>RAG chatbot that provides multiple possible answers to ambiguous questions, each citing different subsets of the knowledge base and explaining what assumptions lead to that interpretation</Example>
+          <Example>Multi-agent system where agents hold different priors or worldviews, leading to genuine disagreement about what the data means—system must surface these differences rather than forcing consensus</Example>
+          <Example>Documentation assistant that generates docs for different audiences (beginners vs. experts, different technical backgrounds) from the same source material, showing how perspective shapes interpretation</Example>
+        </Examples>
+      </Twist>
+
+      <Twist name="The Helpful Saboteur">
+        <Task>Build a system that deliberately introduces productive challenges or constraints to improve thinking. The twist is that the system works *against* the user's immediate goals in service of better long-term outcomes—like a coach who makes training harder to build strength.</Task>
+        <Examples>
+          <Example>RAG chatbot that occasionally withholds the direct answer and instead provides hints or related information, forcing the user to think through the problem (teaching rather than just answering)</Example>
+          <Example>Agent system where one agent plays "devil's advocate"—deliberately challenging assumptions, proposing alternatives, or pointing out weaknesses in proposed solutions</Example>
+          <Example>Code assistant that suggests radical refactorings or alternative architectures even when current approach works, pushing developers to consider different paradigms</Example>
+        </Examples>
+      </Twist>
+
+      <Twist name="The Archaeologist">
+        <Task>Your system must work with incomplete, fragmented, or historical information, explicitly reasoning about what's missing and what can be inferred. The challenge is building a system that's transparent about uncertainty and makes educated guesses based on partial evidence.</Task>
+        <Examples>
+          <Example>RAG system working with historical documents or archives where information is incomplete—must explicitly note gaps, infer context from surrounding documents, and express confidence levels</Example>
+          <Example>Multi-agent system where agents must reconstruct a complete picture from fragmented sources—one agent identifies gaps, another makes inferences, another assesses confidence</Example>
+          <Example>Documentation chatbot for legacy codebases with missing docs—must infer intent from code structure, comments, and related files, while being explicit about what's certain vs. guessed</Example>
+        </Examples>
+      </Twist>
+
+      <Twist name="The Method Actor">
+        <Task>Your system commits fully to a specific persona, perspective, or role and never breaks character, even when it might be more efficient to do so. The challenge is maintaining consistency while still being helpful and accurate within the chosen frame.</Task>
+        <Examples>
+          <Example>RAG chatbot that answers everything from the perspective of a specific historical figure, fictional character, or professional role—must ground answers in knowledge base while filtering through that lens</Example>
+          <Example>Multi-agent system where each agent has a deeply defined personality, background, and communication style that affects how they interpret tasks and interact with each other</Example>
+          <Example>Technical support bot that maintains character as a specific type of expert (e.g., "grizzled veteran engineer" vs. "enthusiastic newcomer") affecting tone, explanations, and problem-solving approach</Example>
+        </Examples>
+      </Twist>
+    </Twists>
+  </Projects>
+
+  <AdditionalSkills>
+    <SkillsCategory name="Python for AI Systems">
+      <Overview>At this stage, Python becomes increasingly essential as the most mature RAG and agent frameworks are Python-based. These skills focus on the specific Python capabilities needed to work effectively with vector databases, embedding models, async agent frameworks, and production AI systems.</Overview>
+      <Skill name="Async Programming and Concurrency" importance="Essential">
+        Understanding async/await syntax, concurrent API calls, and event-driven patterns. Modern agent frameworks (AutoGen v0.4, LangGraph) use asynchronous architectures—this is now table stakes for agent development.
+      </Skill>
+      <Skill name="Data Processing for Embeddings" importance="Essential">
+        Text preprocessing, document chunking, batch processing for indexing, and working with embedding APIs. Includes libraries like tiktoken (token counting), langchain document loaders, and pandas for metadata management.
+      </Skill>
+      <Skill name="API Design with FastAPI" importance="Recommended">
+        Building REST endpoints for RAG queries and agent interactions, request/response validation with Pydantic, error handling, and streaming responses. Essential for productionizing AI systems.
+      </Skill>
+      <Skill name="Working with Vector Databases" importance="Essential">
+        Python clients for Chroma, Pinecone, Qdrant, or Weaviate. Understanding connection management, batch operations, metadata filtering, and query optimization.
+      </Skill>
+      <Skill name="Environment and Dependency Management" importance="Recommended">
+        Managing complex dependencies (LLM libraries, vector DBs, frameworks), virtual environments, requirements files, and handling API keys securely. Critical for reproducible AI projects.
+      </Skill>
+      <Skill name="Testing and Evaluation Frameworks" importance="Recommended">
+        Writing tests for RAG pipelines and agent behaviors, building evaluation datasets, implementing metrics, and using assertion libraries. Includes pytest basics and AI-specific evaluation patterns.
+      </Skill>
+    </SkillsCategory>
+  </AdditionalSkills>
+
+  <Notes>
+    <Note>
+      The 2025 AI engineering landscape has matured significantly. RAG is no longer experimental—it's production infrastructure with established patterns (hybrid search, reranking, citation). Multi-agent systems have moved from research demos to enterprise adoption, with clear framework choices and architectural patterns. This module reflects that maturity while acknowledging the field is still evolving rapidly.
+    </Note>
+    <Note>
+      Evaluation is emphasized throughout because it's often overlooked by beginners but critical for real systems. Learners should understand that demos are easy, but building systems that reliably work requires systematic evaluation and iteration. The module encourages creating test sets early and using them to drive improvements.
+    </Note>
+    <Note>
+      Cost considerations are practical concerns for learners with limited budgets. Guidance emphasizes free/cheap options (Chroma locally, open-source embeddings, free tiers) while explaining when paid services (Pinecone, OpenAI embeddings) might be worth it. The goal is to make the module accessible while teaching production-relevant trade-offs.
+    </Note>
+    <Note>
+      The project twists are designed to push conceptual thinking rather than just adding features. "The Unreliable Narrator" forces thinking about ambiguity and multiple interpretations. "The Helpful Saboteur" explores AI as a thinking partner rather than just an answer machine. These twists make projects more interesting and pedagogically valuable.
+    </Note>
+  </Notes>
+</Module>
