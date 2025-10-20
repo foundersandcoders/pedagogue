@@ -185,7 +185,7 @@ Addressing architectural issues identified in code review focusing on:
 ---
 
 #### ✅ Task 2e: Extract Retry Orchestration
-**Commit:** `TBD`
+**Commit:** `1ff8aae`
 **Status:** ✅ Complete
 
 **Files Created:**
@@ -446,6 +446,7 @@ src/lib/
 ## Git History
 
 ```
+1ff8aae - refactor: Phase 2 - extract retry orchestration logic
 b1ba39f - refactor: Phase 2 - extract SSE streaming handler from API route
 eed76c6 - refactor: Phase 2 - extract prompt builders from API routes
 0413fba - refactor: Phase 2 - integrate AI utilities into API routes
@@ -473,5 +474,5 @@ fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validatio
 **📋 Pending:** 3 tasks (Task 6: prompt composability, Task 5: store utilities, Task 8: error handling, and Task 4 arc migration - deprioritized)
 **Build Status:** ✅ All changes compile
 **Branch:** `feat/new-course-generation`
-**Last Commit:** `TBD (Task 2e complete, needs commit)`
+**Last Commit:** `1ff8aae`
 **Safe to /compact:** ✅ Yes
