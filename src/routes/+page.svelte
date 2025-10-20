@@ -1,9 +1,9 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import { savedCourses } from "$lib/courseStores";
 
   onMount(() => {
-    console.log("Pedagogue hub initialized");
+    console.log("Welcome to Pedagogue");
   });
 </script>
 
@@ -18,46 +18,52 @@
   </header>
 
   <main class="hub">
+    <!-- TODO: create separate WorkflowCard component -->
     <div class="workflow-cards">
       <a href="/module/new" class="workflow-card module-card">
         <div class="card-icon">📄</div>
-        <h2>Generate Module</h2>
-        <p>Create a standalone module specification with projects, skills, and research topics.</p>
+        <h2>MoGen</h2>
+        <p>
+          Create a standalone module specification with projects, skills, and
+          research topics.
+        </p>
         <div class="card-features">
           <span>✓ Project briefs</span>
           <span>✓ Learning objectives</span>
           <span>✓ Research topics</span>
         </div>
-        <div class="card-action">
-          Start Module Generator →
-        </div>
+        <div class="card-action">Start Module Generator →</div>
       </a>
 
       <a href="/course/new" class="workflow-card course-card">
         <div class="card-icon">📚</div>
-        <h2>Generate Course</h2>
-        <p>Create a complete multi-week course with interconnected modules and learning progressions.</p>
+        <h2>CoBu</h2>
+        <p>
+          Create a complete multi-week course with interconnected modules and
+          learning progressions.
+        </p>
         <div class="card-features">
           <span>✓ Multiple modules</span>
           <span>✓ Course structure</span>
           <span>✓ Learning progression</span>
         </div>
-        <div class="card-action">
-          Start Course Builder →
-        </div>
+        <div class="card-action">Start Course Builder →</div>
       </a>
     </div>
 
     {#if $savedCourses.length > 0}
       <section class="recent-courses">
-        <h3>Recent Courses</h3>
+        <h2>Recent Courses</h2>
+        <!-- TODO: create CourseList component -->
         <div class="course-list">
           {#each $savedCourses.slice(0, 3) as course}
+            <!-- TODO: create CourseItem component -->
             <a href="/course/{course.id}" class="course-item">
               <div class="course-info">
-                <h4>{course.title}</h4>
+                <h3>{course.title}</h3>
                 <p>
-                  {course.modules.length} modules • {course.logistics.totalWeeks} weeks
+                  {course.modules.length} modules • {course.logistics
+                    .totalWeeks} weeks
                 </p>
               </div>
               <div class="course-meta">

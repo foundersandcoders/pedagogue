@@ -4,10 +4,7 @@
   import ArcStructurePlanner from "$lib/course/ArcStructurePlanner.svelte";
   import ModuleWithinArcPlanner from "$lib/course/ModuleWithinArcPlanner.svelte";
   import CourseStructureReview from "$lib/course/CourseStructureReview.svelte";
-  import {
-    currentCourse,
-    courseWorkflowStep,
-  } from "$lib/courseStores";
+  import { currentCourse, courseWorkflowStep } from "$lib/courseStores";
   import { goto } from "$app/navigation";
 
   export let data: any;
@@ -23,11 +20,15 @@
 
   // Initialize course if not exists or ensure it has all required fields
   onMount(() => {
-    if (!$currentCourse || !$currentCourse.learners || !$currentCourse.logistics) {
+    if (
+      !$currentCourse ||
+      !$currentCourse.learners ||
+      !$currentCourse.logistics
+    ) {
       currentCourse.set(data.initialCourse);
     }
     courseWorkflowStep.set(1);
-    console.log("Course creation initialized", $currentCourse);
+    console.log("Workflow initialised: CoBu", $currentCourse);
   });
 
   function handleFormSubmit(event) {
@@ -106,12 +107,12 @@
 </script>
 
 <svelte:head>
-  <title>Create Course - Pedagogue</title>
+  <title>Pedagogue: CoBu (Course Builder)</title>
 </svelte:head>
 
 <div class="container">
   <header>
-    <h1>Create Course</h1>
+    <h1>Pedagogue: CoBu</h1>
     <p>Build a complete multi-week course with interconnected modules</p>
   </header>
 

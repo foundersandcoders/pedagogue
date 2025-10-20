@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
   import FileUpload from "$lib/components/FileUpload.svelte";
   import StructuredInputForm from "$lib/components/StructuredInputForm.svelte";
@@ -63,7 +63,6 @@
     }
   }
 
-
   async function handleFormSubmit(event) {
     structuredInput.set(event.detail);
 
@@ -93,7 +92,7 @@
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "text/event-stream"
+          Accept: "text/event-stream",
         },
         body: JSON.stringify({
           projectsData: $projectsFile,
@@ -150,11 +149,17 @@
   function handleSSEEvent(data) {
     switch (data.type) {
       case "connected":
-        progressMessages = [...progressMessages, { type: "info", text: data.message }];
+        progressMessages = [
+          ...progressMessages,
+          { type: "info", text: data.message },
+        ];
         break;
 
       case "progress":
-        progressMessages = [...progressMessages, { type: "info", text: data.message }];
+        progressMessages = [
+          ...progressMessages,
+          { type: "info", text: data.message },
+        ];
         break;
 
       case "content":
@@ -163,18 +168,27 @@
         break;
 
       case "validation_started":
-        progressMessages = [...progressMessages, { type: "info", text: data.message }];
+        progressMessages = [
+          ...progressMessages,
+          { type: "info", text: data.message },
+        ];
         break;
 
       case "validation_success":
-        progressMessages = [...progressMessages, { type: "success", text: data.message }];
+        progressMessages = [
+          ...progressMessages,
+          { type: "success", text: data.message },
+        ];
         break;
 
       case "validation_failed":
-        progressMessages = [...progressMessages, {
-          type: "warning",
-          text: `${data.message}: ${data.errors.join(", ")}`
-        }];
+        progressMessages = [
+          ...progressMessages,
+          {
+            type: "warning",
+            text: `${data.message}: ${data.errors.join(", ")}`,
+          },
+        ];
         currentAttempt = data.attempts || currentAttempt;
         break;
 
@@ -188,10 +202,13 @@
           generatedModule.set(generatedXML);
         }
 
-        progressMessages = [...progressMessages, {
-          type: "success",
-          text: `✓ Generation complete${currentAttempt > 1 ? ` (succeeded on attempt ${currentAttempt})` : ""}`
-        }];
+        progressMessages = [
+          ...progressMessages,
+          {
+            type: "success",
+            text: `✓ Generation complete${currentAttempt > 1 ? ` (succeeded on attempt ${currentAttempt})` : ""}`,
+          },
+        ];
 
         isGenerating = false;
         break;
@@ -201,7 +218,10 @@
         if (data.errors && data.errors.length > 0) {
           generationError += ": " + data.errors.join(", ");
         }
-        progressMessages = [...progressMessages, { type: "error", text: generationError }];
+        progressMessages = [
+          ...progressMessages,
+          { type: "error", text: generationError },
+        ];
         isGenerating = false;
         break;
 
@@ -221,7 +241,8 @@
       }
 
       if (!data.hasValidXML) {
-        generationError = "Generated content did not include valid XML module specification";
+        generationError =
+          "Generated content did not include valid XML module specification";
       }
     } else {
       throw new Error(data.message || "Generation failed");
@@ -242,17 +263,17 @@
   }
 
   onMount(() => {
-    console.log("Pedagogue app initialized");
+    console.log("Workflow initialised: MoGen");
   });
 </script>
 
 <svelte:head>
-  <title>Pedagogue - Module Generator</title>
+  <title>Pedagogue: MoGen (Module Generator)</title>
 </svelte:head>
 
 <div class="container">
   <header>
-    <h1>Pedagogue</h1>
+    <h1>Pedagogue: MoGen</h1>
     <p>AI-powered module specification generator for peer-led courses</p>
   </header>
 
@@ -316,11 +337,7 @@
         <section class="analysis-section">
           <div class="section-header">
             <h2>Add Context</h2>
-            <button
-              type="button"
-              class="back-button"
-              on:click={goBackToFiles}
-            >
+            <button type="button" class="back-button" on:click={goBackToFiles}>
               ← Back to Files
             </button>
           </div>
@@ -392,7 +409,10 @@
               {#if currentAttempt > 1}
                 <div class="generation-meta">
                   <p class="retry-info">
-                    ✓ Generation succeeded after {currentAttempt} attempt{currentAttempt > 1 ? 's' : ''}
+                    ✓ Generation succeeded after {currentAttempt} attempt{currentAttempt >
+                    1
+                      ? "s"
+                      : ""}
                   </p>
                 </div>
               {/if}
