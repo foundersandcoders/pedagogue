@@ -113,26 +113,44 @@ Addressing architectural issues identified in code review focusing on:
 - Both streaming and non-streaming paths use same utilities
 - Build verification: ✅ Passed (no new warnings or errors)
 
+#### ✅ Task 2c: Extract Prompt Builders
+**Commit:** `eed76c6`
+**Status:** ✅ Complete
+
+**Files Created:**
+- `src/lib/generation/prompts/module-prompt-builder.ts`
+  - `buildGenerationPrompt()` - Module generation prompt construction
+  - Handles input formatting, research instructions, retry logic, schema requirements
+
+- `src/lib/generation/prompts/course-prompt-builder.ts`
+  - `buildCourseStructurePrompt()` - Course structure prompt construction
+  - Handles course config, arc structure, module details
+
+**Files Modified:**
+- `src/routes/api/generate/+server.ts`
+  - **Before:** 578 lines (with inline prompt builder)
+  - **After:** 397 lines (using imported builder)
+  - **Reduction:** 181 lines (-31.3%)
+  - Removed inline `buildGenerationPrompt()` function (180 lines)
+
+- `src/routes/api/course/structure/+server.ts`
+  - **Before:** 202 lines (with inline prompt builder)
+  - **After:** 82 lines (using imported builder)
+  - **Reduction:** 120 lines (-59.4%)
+  - Removed inline `buildCourseStructurePrompt()` function (120 lines)
+
+**Impact:**
+- Total code reduction: 301 lines eliminated across both API routes
+- Prompt construction logic separated from API routing concerns
+- Easier to test and modify prompts independently
+- Clear separation of concerns (routing vs prompt building)
+- Build verification: ✅ Passed (no new warnings or errors)
+
 ---
 
 ## Pending Tasks 📋
 
 ### Phase 2 (Continue): Complete API Route Decomposition
-
-#### 🔄 Task 2c: Extract Prompt Builders
-
-**New Files to Create:**
-
-1. `src/lib/generation/prompts/module-prompt-builder.ts`
-   - Extract `buildGenerationPrompt()` from generate/+server.ts (lines 128-303)
-   - Move `GenerateRequest` interface to this file (or keep in api-schemas)
-
-2. `src/lib/generation/prompts/course-prompt-builder.ts`
-   - Extract `buildCourseStructurePrompt()` from course/structure/+server.ts (lines 125-243)
-
-**Expected Impact:** Remove ~175 lines from generate/+server.ts, ~120 lines from course/structure/+server.ts
-
----
 
 #### 🔄 Task 2d: Extract SSE Streaming Logic
 
@@ -357,37 +375,37 @@ src/lib/
 
 ## Next Session: Where to Start
 
-**Immediate next step:** Task 2c - Extract Prompt Builders
+**Immediate next step:** Task 2d - Extract SSE Streaming Logic
 
-1. Create `src/lib/generation/prompts/module-prompt-builder.ts`
-2. Move `buildGenerationPrompt()` function from `src/routes/api/generate/+server.ts`
-3. Create `src/lib/generation/prompts/course-prompt-builder.ts`
-4. Move `buildCourseStructurePrompt()` function from `src/routes/api/course/structure/+server.ts`
-5. Update both API routes to import and use the extracted builders
-6. Test build + manual generation
-7. Commit: "refactor: extract prompt builders from API routes"
+1. Create `src/lib/generation/streaming/sse-handler.ts`
+2. Extract `createSSEStream()` function from `src/routes/api/generate/+server.ts` (lines ~73-319)
+3. Move SSE encoding logic, progress event formatting
+4. Update generate API route to import and use the extracted handler
+5. Test build + manual generation with streaming
+6. Commit: "refactor: extract SSE streaming handler from API route"
 
-**After that:** Continue with Task 2d (extract SSE streaming logic)
+**After that:** Continue with Task 2e (extract retry orchestration)
 
 ---
 
 ## Estimated Time Remaining
 
 - ✅ ~~Task 2b (integrate utilities): 1 hour~~ **DONE**
-- ⏱️ Task 2c (extract prompts): 2 hours
+- ✅ ~~Task 2c (extract prompts): 2 hours~~ **DONE**
 - ⏱️ Task 2d (SSE streaming): 2 hours
 - ⏱️ Task 2e (retry logic): 1.5 hours
 - ⏱️ Task 6 (prompt composability): 2 hours
 - ⏱️ Task 5 (store utilities): 3 hours
 - ⏱️ Task 8 (error handling): 3 hours
 
-**Total remaining:** ~13.5 hours
+**Total remaining:** ~11.5 hours
 
 ---
 
 ## Git History
 
 ```
+eed76c6 - refactor: Phase 2 - extract prompt builders from API routes
 0413fba - refactor: Phase 2 - integrate AI utilities into API routes
 fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validation
 68bf1f6 - feat(MoGen output): calculate cardinality attributes
@@ -408,10 +426,10 @@ fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validatio
 
 ## Status Summary
 
-**✅ Completed:** 4/8 tasks (Tasks 1, 2a, 2b, 3, 7)
+**✅ Completed:** 5/8 tasks (Tasks 1, 2a, 2b, 2c, 3, 7)
 **🔄 In Progress:** None
-**📋 Pending:** 5/8 tasks (Tasks 2c, 2d, 2e, 5, 6, 8, and Task 4 arc migration - deprioritized)
+**📋 Pending:** 4/8 tasks (Tasks 2d, 2e, 5, 6, 8, and Task 4 arc migration - deprioritized)
 **Build Status:** ✅ All changes compile
 **Branch:** `feat/new-course-generation`
-**Last Commit:** `0413fba`
+**Last Commit:** `eed76c6`
 **Safe to /compact:** ✅ Yes
