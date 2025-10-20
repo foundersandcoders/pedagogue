@@ -148,30 +148,46 @@ Addressing architectural issues identified in code review focusing on:
 
 ---
 
+**Impact:**
+- Total code reduction: 301 lines eliminated across both API routes
+- Prompt construction logic separated from API routing concerns
+- Easier to test and modify prompts independently
+- Clear separation of concerns (routing vs prompt building)
+- Build verification: ✅ Passed (no new warnings or errors)
+
+#### ✅ Task 2d: Extract SSE Streaming Logic
+**Commit:** `b1ba39f`
+**Status:** ✅ Complete
+
+**Files Created:**
+- `src/lib/generation/streaming/sse-handler.ts` (236 lines)
+  - `createSSEStream()` - SSE stream creation with validation and retry logic
+  - `SSEEvent` types and `SSEEventType` enum for type safety
+  - `encodeSSEEvent()` - SSE message formatting helper
+  - `sendEvent()` - Cleaner event transmission abstraction
+
+**Files Modified:**
+- `src/routes/api/generate/+server.ts`
+  - **Before:** 397 lines (with inline SSE handler)
+  - **After:** 213 lines (using imported handler)
+  - **Reduction:** 184 lines (-46.3%)
+  - Removed inline `createSSEStream()` function (185 lines)
+  - Now creates model client and passes to handler
+  - Cleaner routing logic
+
+**Impact:**
+- Total code reduction: 184 lines eliminated
+- SSE streaming logic isolated and potentially reusable
+- Better typed interfaces for SSE events (type-safe event emission)
+- Easier to test streaming independently from routing
+- API route now focused purely on request/response handling
+- Build verification: ✅ Passed (no new warnings or errors)
+
+---
+
 ## Pending Tasks 📋
 
 ### Phase 2 (Continue): Complete API Route Decomposition
-
-#### 🔄 Task 2d: Extract SSE Streaming Logic
-
-**New File:** `src/lib/generation/streaming/sse-handler.ts`
-
-**Extract from:** `src/routes/api/generate/+server.ts`
-- `createSSEStream()` function (lines 310-544)
-- SSE encoding logic
-- Progress event formatting
-
-**New API:**
-```typescript
-export function createSSEStream(
-  generator: AsyncGenerator<StreamEvent>,
-  onError?: (error: Error) => void
-): Response
-```
-
-**Expected Impact:** Remove ~230 lines from generate/+server.ts
-
----
 
 #### 🔄 Task 2e: Extract Retry Orchestration
 
@@ -375,16 +391,16 @@ src/lib/
 
 ## Next Session: Where to Start
 
-**Immediate next step:** Task 2d - Extract SSE Streaming Logic
+**Immediate next step:** Task 2e - Extract Retry Orchestration
 
-1. Create `src/lib/generation/streaming/sse-handler.ts`
-2. Extract `createSSEStream()` function from `src/routes/api/generate/+server.ts` (lines ~73-319)
-3. Move SSE encoding logic, progress event formatting
-4. Update generate API route to import and use the extracted handler
-5. Test build + manual generation with streaming
-6. Commit: "refactor: extract SSE streaming handler from API route"
+1. Create `src/lib/generation/orchestration/retry-handler.ts`
+2. Extract retry loop logic from both SSE and non-streaming generation functions
+3. Create unified `withRetry()` function that works with validation
+4. Update both generation paths to use the extracted retry handler
+5. Test build + manual generation (both streaming and non-streaming)
+6. Commit: "refactor: extract retry orchestration logic"
 
-**After that:** Continue with Task 2e (extract retry orchestration)
+**After that:** Continue with Phase 3 tasks (Task 6: prompt composability) or Phase 4 (Tasks 5, 8)
 
 ---
 
@@ -392,19 +408,20 @@ src/lib/
 
 - ✅ ~~Task 2b (integrate utilities): 1 hour~~ **DONE**
 - ✅ ~~Task 2c (extract prompts): 2 hours~~ **DONE**
-- ⏱️ Task 2d (SSE streaming): 2 hours
+- ✅ ~~Task 2d (SSE streaming): 2 hours~~ **DONE**
 - ⏱️ Task 2e (retry logic): 1.5 hours
 - ⏱️ Task 6 (prompt composability): 2 hours
 - ⏱️ Task 5 (store utilities): 3 hours
 - ⏱️ Task 8 (error handling): 3 hours
 
-**Total remaining:** ~11.5 hours
+**Total remaining:** ~9.5 hours
 
 ---
 
 ## Git History
 
 ```
+b1ba39f - refactor: Phase 2 - extract SSE streaming handler from API route
 eed76c6 - refactor: Phase 2 - extract prompt builders from API routes
 0413fba - refactor: Phase 2 - integrate AI utilities into API routes
 fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validation
@@ -426,10 +443,10 @@ fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validatio
 
 ## Status Summary
 
-**✅ Completed:** 5/8 tasks (Tasks 1, 2a, 2b, 2c, 3, 7)
+**✅ Completed:** 6/8 tasks (Tasks 1, 2a, 2b, 2c, 2d, 3, 7)
 **🔄 In Progress:** None
-**📋 Pending:** 4/8 tasks (Tasks 2d, 2e, 5, 6, 8, and Task 4 arc migration - deprioritized)
+**📋 Pending:** 3/8 tasks (Tasks 2e, 5, 6, 8, and Task 4 arc migration - deprioritized)
 **Build Status:** ✅ All changes compile
 **Branch:** `feat/new-course-generation`
-**Last Commit:** `eed76c6`
+**Last Commit:** `b1ba39f`
 **Safe to /compact:** ✅ Yes
