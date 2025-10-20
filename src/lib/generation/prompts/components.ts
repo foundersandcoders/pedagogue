@@ -14,16 +14,18 @@
  * @returns Formatted research instructions or empty string
  */
 export function buildResearchInstructions(enabled: boolean): string {
-	if (!enabled) return '';
+	if (!enabled) {
+	  return ''
+	} else {
+  	return `You have access to web search to find current, relevant information about:
+      - Latest best practices and trends for the technologies mentioned
+      - Current industry standards and tooling
+      - Recent developments in AI and software development
+      - Real-world examples and case studies
 
-	return `You have access to web search to find current, relevant information about:
-- Latest best practices and trends for the technologies mentioned
-- Current industry standards and tooling
-- Recent developments in AI and software development
-- Real-world examples and case studies
-
-Use web search to ensure the curriculum is up-to-date and reflects current industry practice.
-Focus on reputable sources: vendor documentation, established tech publications, and academic sources.`;
+      Use web search to ensure the curriculum is up-to-date and reflects current industry practice.
+      Focus on reputable sources: vendor documentation, established tech publications, and academic sources.`;
+	}
 }
 
 /**
@@ -35,17 +37,19 @@ Focus on reputable sources: vendor documentation, established tech publications,
  * @returns Formatted retry section or empty string if no errors
  */
 export function buildRetrySection(validationErrors?: string[]): string {
-	if (!validationErrors || validationErrors.length === 0) return '';
-
+	if (!validationErrors || validationErrors.length === 0) {
+	  return ''
+	} else {
 	return `⚠️ PREVIOUS ATTEMPT FAILED VALIDATION ⚠️
-Your previous response had these validation errors:
-${validationErrors.map(err => `- ${err}`).join('\n')}
+    Your previous response had these validation errors:
+    ${validationErrors.map(err => `- ${err}`).join('\n')}
 
-Please correct ALL of these issues in your next response. Pay special attention to:
-- Meeting minimum cardinality requirements (e.g., "at least 3 objectives")
-- Including all required sections and subsections
-- Using exact tag names (case-sensitive)
-- Ensuring proper XML structure with matching opening/closing tags`;
+    Please correct ALL of these issues in your next response. Pay special attention to:
+    - Meeting minimum cardinality requirements (e.g., "at least 3 objectives")
+    - Including all required sections and subsections
+    - Using exact tag names (case-sensitive)
+    - Ensuring proper XML structure with matching opening/closing tags`;
+	}
 }
 
 /**
@@ -87,14 +91,13 @@ export function buildResearchStep(
 	followUpInstructions?: string[]
 ): string {
 	if (!enableResearch) {
-		// No research - just number the follow-up instructions starting from 1
 		if (!followUpInstructions || followUpInstructions.length === 0) {
 			return '';
+		} else {
+		  return followUpInstructions.map((instruction, idx) => `${idx + 1}. ${instruction}`).join('\n')
 		}
-		return followUpInstructions.map((instruction, idx) => `${idx + 1}. ${instruction}`).join('\n');
 	}
 
-	// Research enabled - research is step 1, follow-ups are numbered after
 	const steps = [`1. ${researchInstruction}`];
 	if (followUpInstructions && followUpInstructions.length > 0) {
 		followUpInstructions.forEach((instruction, idx) => {
@@ -116,8 +119,8 @@ export function buildSupportingDocuments(documents?: string[]): string {
 	if (!documents || documents.length === 0) return '';
 
 	return `<SupportingDocuments>
-${documents.join('\n\n')}
-</SupportingDocuments>`;
+    ${documents.join('\n\n')}
+    </SupportingDocuments>`;
 }
 
 /**
@@ -151,6 +154,6 @@ export function buildSection(tagName: string, content: string, indent: boolean =
 		: content;
 
 	return `<${tagName}>
-${indentedContent}
-</${tagName}>`;
+    ${indentedContent}
+    </${tagName}>`;
 }

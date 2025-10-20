@@ -25,10 +25,9 @@ export function buildCourseStructurePrompt(data: CourseStructureGenerationReques
 		: '';
 
 	const researchInstructions = data.enableResearch
-		? '\n' + buildSection('ResearchInstructions', buildResearchInstructions(true), false)
-		: '';
+ 	? '\n' + buildSection('ResearchInstructions', buildResearchInstructions(true), false)
+ 	: '';
 
- 	// Build arc structure description
  	let arcStructureSection = '';
  	if (data.arcs && data.arcs.length > 0) {
   		arcStructureSection = `\n<ArcStructure>\nThe course is organized into ${data.arcs.length} thematic arcs:\n\n`;
