@@ -238,38 +238,46 @@ Addressing architectural issues identified in code review focusing on:
 
 ### Phase 3: Improve Prompt Composability
 
-#### 🔄 Task 6: Break Prompts into Composable Sections
+#### ✅ Task 6: Break Prompts into Composable Sections
+**Commit:** `TBD`
+**Status:** ✅ Complete
 
-**Work with:** Files created in Task 2c
+**Files Created:**
+- `src/lib/generation/prompts/components.ts` (156 lines)
+  - `buildResearchInstructions()` - Standard research capability description
+  - `buildRetrySection()` - Validation error feedback for retry attempts
+  - `buildResearchStep()` - Conditional step numbering with research prefix
+  - `buildSupportingDocuments()` - Format document array as XML
+  - `formatInputData()` - Standardized JSON formatting
+  - `buildSection()` - Generic XML section builder
+  - `buildConditionalSection()` - Simple conditional content inclusion
 
-**In `module-prompt-builder.ts`:**
-```typescript
-// Break 175-line template into functions:
-- buildOverviewSection(role, task)
-- buildModuleInputSection(data)
-- buildTaskApproachSection(options, errors?)
-- buildTaskCriteriaSection(enableResearch)
-- buildTaskStepsSection(enableResearch)
-- buildTaskGuidelinesSection()
+**Files Modified:**
+- `src/lib/generation/prompts/module-prompt-builder.ts`
+  - **Before:** 196 lines (with inline implementations)
+  - **After:** 175 lines (using imported components)
+  - **Reduction:** 21 lines (-10.7%)
+  - Replaced inline research instructions with `buildResearchInstructions()`
+  - Replaced inline retry section with `buildRetrySection()`
+  - Replaced conditional step logic with `buildResearchStep()`
+  - Replaced inline JSON.stringify with `formatInputData()`
 
-// Main function becomes:
-export function buildGenerationPrompt(body, errors?) {
-  return [
-    buildOverviewSection(),
-    buildModuleInputSection(body),
-    buildTaskSection(body, errors),
-    getSchemaRequirements()
-  ].join('\n\n');
-}
-```
+- `src/lib/generation/prompts/course-prompt-builder.ts`
+  - **Before:** 136 lines (with inline implementations)
+  - **After:** 124 lines (using imported components)
+  - **Reduction:** 12 lines (-8.8%)
+  - Replaced inline research instructions with `buildResearchInstructions()`
+  - Replaced inline document formatting with `buildSupportingDocuments()`
+  - Used `buildSection()` for consistent XML wrapping
 
-**Create:** `src/lib/generation/prompts/components.ts`
-- Shared components used by both module and course prompts
-- `buildRetrySection(errors)`
-- `buildResearchInstructionsSection(domains)`
-- `buildConditionalSection(condition, content)`
-
-**Expected Impact:** Easier prompt testing, modification, and maintenance
+**Impact:**
+- Total code reduction: 33 lines eliminated across both prompt builders
+- Shared logic now maintained in single location (research instructions, retry feedback)
+- Consistent formatting across all prompts
+- Easier to test prompt components in isolation
+- Simpler to modify prompt structure without touching multiple files
+- Better separation of concerns (structure vs content)
+- Build verification: ✅ Passed (no new warnings or errors)
 
 ---
 
@@ -385,7 +393,7 @@ After each task:
 ```
 src/lib/
 ├── config/
-│   └── research-domains.ts          ✅ DONE
+│   └── research-domains.ts           ✅ DONE
 ├── validation/
 │   └── api-schemas.ts                ✅ DONE
 ├── generation/
@@ -416,16 +424,17 @@ src/lib/
 
 ## Next Session: Where to Start
 
-**Immediate next step:** Task 6 - Break Prompts into Composable Sections
+**Immediate next step:** Task 5 - Store Consolidation Utilities
 
-1. Analyze `src/lib/generation/prompts/module-prompt-builder.ts` and `course-prompt-builder.ts`
-2. Identify shared prompt components (retry sections, research instructions, etc.)
-3. Create `src/lib/generation/prompts/components.ts` with reusable builders
-4. Refactor module and course prompt builders to use composable sections
-5. Test build + verify prompts still generate correctly
-6. Commit: "refactor: Phase 3 - break prompts into composable sections"
+1. Analyze `src/lib/stores.ts` and `src/lib/courseStores.ts` for patterns
+2. Identify shared utilities (workflow steps, localStorage persistence)
+3. Create `src/lib/store-utilities/workflow-step.ts` for workflow management
+4. Create `src/lib/store-utilities/persistence.ts` for auto-save functionality
+5. Refactor both store files to use utilities
+6. Test build + verify stores work correctly
+7. Commit: "refactor: Phase 4 - extract store utilities"
 
-**After that:** Continue with Phase 4 tasks (Tasks 5, 8: store utilities and error handling)
+**After that:** Task 8 (error handling consistency)
 
 ---
 
@@ -435,11 +444,11 @@ src/lib/
 - ✅ ~~Task 2c (extract prompts): 2 hours~~ **DONE**
 - ✅ ~~Task 2d (SSE streaming): 2 hours~~ **DONE**
 - ✅ ~~Task 2e (retry logic): 1.5 hours~~ **DONE**
-- ⏱️ Task 6 (prompt composability): 2 hours
+- ✅ ~~Task 6 (prompt composability): 2 hours~~ **DONE**
 - ⏱️ Task 5 (store utilities): 3 hours
 - ⏱️ Task 8 (error handling): 3 hours
 
-**Total remaining:** ~8 hours
+**Total remaining:** ~6 hours
 
 ---
 
@@ -469,10 +478,11 @@ fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validatio
 
 ## Status Summary
 
-**✅ Completed:** 7/8 tasks (Tasks 1, 2a, 2b, 2c, 2d, 2e, 3, 7)
+**✅ Completed:** 9/12 tasks (Tasks 1, 2a, 2b, 2c, 2d, 2e, 3, 6, 7)
 **🔄 In Progress:** None
-**📋 Pending:** 3 tasks (Task 6: prompt composability, Task 5: store utilities, Task 8: error handling, and Task 4 arc migration - deprioritized)
+**📋 Pending:** 2/12 tasks (Task 5: store utilities, Task 8: error handling)
+**Deferred:** 1/12 tasks (Task 4: arc migration)
 **Build Status:** ✅ All changes compile
 **Branch:** `feat/new-course-generation`
-**Last Commit:** `1ff8aae`
+**Last Commit:** `TBD (Task 6 complete, needs commit)`
 **Safe to /compact:** ✅ Yes

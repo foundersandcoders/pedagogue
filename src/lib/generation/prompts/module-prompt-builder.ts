@@ -7,6 +7,12 @@
 
 import { getSchemaRequirements } from '$lib/schemas/schemaTemplate.js';
 import type { GenerateRequest } from '$lib/validation/api-schemas.js';
+import {
+	buildResearchInstructions,
+	buildRetrySection,
+	buildResearchStep,
+	formatInputData
+} from './components.js';
 
 /**
  * Build the generation prompt from input data
@@ -18,37 +24,15 @@ import type { GenerateRequest } from '$lib/validation/api-schemas.js';
  * @returns Formatted prompt string for Claude
  */
 export function buildGenerationPrompt(body: GenerateRequest, validationErrors?: string[]): string {
-	const projectsInfo = JSON.stringify(body.projectsData, null, 2);
-	const skillsInfo = JSON.stringify(body.skillsData, null, 2);
-	const researchInfo = JSON.stringify(body.researchData, null, 2);
-	const structuredInfo = body.structuredInput
-  	? JSON.stringify(body.structuredInput, null, 2)
-  	: 'None provided';
+	// Format input data
+	const projectsInfo = formatInputData(body.projectsData);
+	const skillsInfo = formatInputData(body.skillsData);
+	const researchInfo = formatInputData(body.researchData);
+	const structuredInfo = formatInputData(body.structuredInput);
 
-	const researchInstructions = body.enableResearch
-  	? `RESEARCH INSTRUCTIONS:
-      You have access to web search to find current, relevant information about:
-      - Latest best practices and trends for the technologies mentioned
-      - Current industry standards and tooling
-      - Recent developments in AI and software development
-      - Real-world examples and case studies
-
-      Use web search to ensure the curriculum is up-to-date and reflects current industry practice.
-      Focus on reputable sources: vendor documentation, established tech publications, and academic sources.`
-    : '';
-
-	const retrySection = validationErrors && validationErrors.length > 0
-  	? `⚠️ PREVIOUS ATTEMPT FAILED VALIDATION ⚠️
-      Your previous response had these validation errors:
-      ${validationErrors.map(err => `- ${err}`).join('\n')}
-
-      Please correct ALL of these issues in your next response. Pay special attention to:
-      - Meeting minimum cardinality requirements (e.g., "at least 3 objectives")
-      - Including all required sections and subsections
-      - Using exact tag names (case-sensitive)
-      - Ensuring proper XML structure with matching opening/closing tags`
-    : '';
-
+	// Build conditional sections
+	const researchInstructions = buildResearchInstructions(body.enableResearch);
+	const retrySection = buildRetrySection(validationErrors);
 	const schemaRequirements = getSchemaRequirements();
 
 	return `<Prompt>
@@ -122,30 +106,34 @@ export function buildGenerationPrompt(body: GenerateRequest, validationErrors?: 
         <Step1>Think hard about what learning outcomes emerge when the content of "<ModuleInput>" is considered as a whole.</Step1>
 
         <Step2>
-          ${body.enableResearch ? `
-            1. Use web searches to check that these learning outcomes are not outdated compared to industry trends. Update the learning outcomes if appropriate, making sure they're appropriate to the cohort specified in "<ModuleInput/CohortInput>".
-            2.`
-            : `1.`
-          } Keep the learning outcomes in mind when completing the next steps
+          ${buildResearchStep(
+						body.enableResearch,
+						'Use web searches to check that these learning outcomes are not outdated compared to industry trends. Update the learning outcomes if appropriate, making sure they\'re appropriate to the cohort specified in "<ModuleInput/CohortInput>".',
+						['Keep the learning outcomes in mind when completing the next steps']
+					)}
         </Step2>
 
         <Step3>
-          ${body.enableResearch ? `
-            1. Use web searches to check that "<ModuleInput/ProjectsInput>" is not outdated compared to industry trends. Update the project briefs if appropriate, making sure they're appropriate to the cohort specified in "<ModuleInput/CohortInput>".
-            2. Make sure that the projects are relevant to the learning outcomes
-            3.`
-            : `1.`
-          } Keep the project briefs in mind when completing the next steps
+          ${buildResearchStep(
+						body.enableResearch,
+						'Use web searches to check that "<ModuleInput/ProjectsInput>" is not outdated compared to industry trends. Update the project briefs if appropriate, making sure they\'re appropriate to the cohort specified in "<ModuleInput/CohortInput>".',
+						[
+							'Make sure that the projects are relevant to the learning outcomes',
+							'Keep the project briefs in mind when completing the next steps'
+						]
+					)}
         </Step3>
 
         <Step4>
-          ${body.enableResearch ? `
-            1. Use web searches to check that "<ModuleInput/ResearchInput>" is not outdated compared to industry trends. Update the research topics if appropriate, making sure they're appropriate to the cohort specified in "<ModuleInput/CohortInput>".
-            2. Make sure the research topics are relevant to the learning outcomes
-            3. Make sure the research topics are useful in completing the projects
-            4.`
-            : `1.`
-          } Keep the research topics in mind when completing the next steps
+          ${buildResearchStep(
+						body.enableResearch,
+						'Use web searches to check that "<ModuleInput/ResearchInput>" is not outdated compared to industry trends. Update the research topics if appropriate, making sure they\'re appropriate to the cohort specified in "<ModuleInput/CohortInput>".',
+						[
+							'Make sure the research topics are relevant to the learning outcomes',
+							'Make sure the research topics are useful in completing the projects',
+							'Keep the research topics in mind when completing the next steps'
+						]
+					)}
         </Step4>
 
         <Step5>Generate the module</Step5>

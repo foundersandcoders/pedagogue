@@ -6,6 +6,11 @@
  */
 
 import type { CourseStructureGenerationRequest } from '$lib/validation/api-schemas.js';
+import {
+	buildResearchInstructions,
+	buildSupportingDocuments,
+	buildSection
+} from './components.js';
 
 /**
  * Build the course structure generation prompt from input data
@@ -14,22 +19,14 @@ import type { CourseStructureGenerationRequest } from '$lib/validation/api-schem
  * @returns Formatted prompt string for Claude
  */
 export function buildCourseStructurePrompt(data: CourseStructureGenerationRequest): string {
-	const supportingDocs = data.supportingDocuments && data.supportingDocuments.length > 0
-		? `\n\n<SupportingDocuments>\n${data.supportingDocuments.join('\n\n')}\n</SupportingDocuments>`
+	// Build conditional sections
+	const supportingDocs = data.supportingDocuments
+		? '\n\n' + buildSupportingDocuments(data.supportingDocuments)
 		: '';
 
 	const researchInstructions = data.enableResearch
-		? `\n<ResearchInstructions>
-      You have access to web search to find current, relevant information about:
-      - Latest best practices and trends for the technologies and topics in this course
-      - Current industry standards and tooling
-      - Recent developments in AI and software development
-      - Real-world examples and case studies
-
-      Use web search to ensure the course structure is up-to-date and reflects current industry practice.
-      Focus on reputable sources: vendor documentation, established tech publications, and academic sources.
-      </ResearchInstructions>`
-    : '';
+		? '\n' + buildSection('ResearchInstructions', buildResearchInstructions(true), false)
+		: '';
 
  	// Build arc structure description
  	let arcStructureSection = '';
