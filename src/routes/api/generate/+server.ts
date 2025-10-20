@@ -6,6 +6,7 @@ import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 import { getSchemaRequirements } from '$lib/schemas/schemaTemplate.js';
 import { cleanXML, sanitizeXMLEntities } from '$lib/schemas/xmlUtils.js';
 import { validateModuleXML } from '$lib/schemas/moduleValidator.js';
+import { calculateCardinality } from '$lib/schemas/cardinalityCalculator.js';
 
 /**
  * Extract text content from Claude's response
@@ -32,7 +33,7 @@ function extractTextContent(content: any): string {
 /**
  * Extract XML module specification from Claude's response
  * Handles cases where Claude includes explanation text before/after the XML
- * Strips comments and ensures proper formatting
+ * Strips comments, sanitizes entities, and adds cardinality attributes
  */
 function extractModuleXML(content: string): string | null {
 	// Try to find XML content between <Module> tags (capital M)
@@ -43,6 +44,8 @@ function extractModuleXML(content: string): string | null {
 		let cleanedXML = cleanXML(rawXML);
 		// Sanitize XML entities (escape unescaped ampersands, etc.)
 		cleanedXML = sanitizeXMLEntities(cleanedXML);
+		// Calculate and add cardinality attributes
+		cleanedXML = calculateCardinality(cleanedXML);
 		return `<?xml version="1.0" encoding="UTF-8"?>\n${cleanedXML}`;
 	}
 
@@ -52,6 +55,8 @@ function extractModuleXML(content: string): string | null {
 		let cleanedXML = cleanXML(trimmed);
 		// Sanitize XML entities (escape unescaped ampersands, etc.)
 		cleanedXML = sanitizeXMLEntities(cleanedXML);
+		// Calculate and add cardinality attributes
+		cleanedXML = calculateCardinality(cleanedXML);
 		return `<?xml version="1.0" encoding="UTF-8"?>\n${cleanedXML}`;
 	}
 
