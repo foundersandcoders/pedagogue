@@ -1,18 +1,83 @@
 import { writable, derived } from 'svelte/store';
 import type { CourseData, ModuleSlot, Arc } from './types/course';
+import { createWorkflowStore } from './store-utilities/workflow-step.js';
+import { persistedStore, loadFromLocalStorage, saveToLocalStorage } from './store-utilities/persistence.js';
 
 /**
  * Svelte stores for course generation workflow
  */
 
-// Current course being worked on
-export const currentCourse = writable<CourseData | null>(null);
+/**
+ * Deserializer for CourseData - converts date strings back to Date objects
+ * and handles backward compatibility for old module-based structure
+ */
+function deserializeCourseData(data: CourseData | null): CourseData | null {
+	if (!data) return null;
+
+	// Convert date strings to Date objects
+	data.createdAt = new Date(data.createdAt);
+	data.updatedAt = new Date(data.updatedAt);
+
+	// Backward compatibility: migrate old module-based structure to arc-based
+	const anyData = data as any;
+	if (anyData.modules && !data.arcs) {
+		console.log('Migrating old course structure to arc-based format');
+		data.arcs = [{
+			id: crypto.randomUUID(),
+			order: 1,
+			title: 'Main Course Content',
+			description: 'Migrated from previous module-only structure',
+			theme: 'General',
+			durationWeeks: anyData.modules.reduce((sum: number, m: ModuleSlot) => sum + m.durationWeeks, 0),
+			modules: anyData.modules.map((module: ModuleSlot, index: number) => ({
+				...module,
+				arcId: data.arcs[0].id,
+				order: index + 1
+			}))
+		}];
+		delete anyData.modules;
+	}
+
+	// Convert module dates
+	if (data.arcs) {
+		data.arcs.forEach((arc: Arc) => {
+			arc.modules.forEach((module: ModuleSlot) => {
+				if (module.moduleData?.generatedAt) {
+					module.moduleData.generatedAt = new Date(module.moduleData.generatedAt);
+				}
+			});
+		});
+	}
+
+	return data;
+}
+
+/**
+ * Deserializer for saved courses list
+ */
+function deserializeSavedCourses(courses: CourseData[]): CourseData[] {
+	return courses.map(course => deserializeCourseData(course)!);
+}
+
+// Current course being worked on (with auto-save to localStorage)
+export const currentCourse = persistedStore<CourseData | null>({
+	key: 'currentCourse',
+	defaultValue: null,
+	deserialize: deserializeCourseData
+});
 
 // Current step in course workflow (1-6: Config → Arc Planning → Module Planning → Structure Review → Generation → Export)
-export const courseWorkflowStep = writable<number>(1);
+export const courseWorkflowStep = createWorkflowStore({
+	initialStep: 1,
+	totalSteps: 6
+});
 
-// List of saved courses (loaded from localStorage)
-export const savedCourses = writable<CourseData[]>([]);
+// List of saved courses (with auto-save to localStorage)
+export const savedCourses = persistedStore<CourseData[]>({
+	key: 'savedCourses',
+	defaultValue: [],
+	deserialize: deserializeSavedCourses
+});
 
 // Track which module is currently being generated
 export const activeModuleGeneration = writable<string | null>(null);
@@ -107,102 +172,8 @@ export function initializeCourse(partial: Partial<CourseData>): CourseData {
 // Reset course workflow
 export function resetCourseWorkflow() {
 	currentCourse.set(null);
-	courseWorkflowStep.set(1);
+	courseWorkflowStep.reset();
 	activeModuleGeneration.set(null);
-}
-
-// Auto-save to localStorage (subscribe to changes)
-if (typeof window !== 'undefined') {
-	currentCourse.subscribe(course => {
-		if (course) {
-			try {
-				localStorage.setItem('currentCourse', JSON.stringify(course));
-			} catch (e) {
-				console.error('Failed to save course to localStorage:', e);
-			}
-		}
-	});
-
-	// Load saved course on initialization
-	try {
-		const saved = localStorage.getItem('currentCourse');
-		if (saved) {
-			const parsed = JSON.parse(saved);
-
-			// Convert date strings back to Date objects
-			parsed.createdAt = new Date(parsed.createdAt);
-			parsed.updatedAt = new Date(parsed.updatedAt);
-
-			// Backward compatibility: migrate old module-based structure to arc-based
-			if (parsed.modules && !parsed.arcs) {
-				console.log('Migrating old course structure to arc-based format');
-				parsed.arcs = [{
-					id: crypto.randomUUID(),
-					order: 1,
-					title: 'Main Course Content',
-					description: 'Migrated from previous module-only structure',
-					theme: 'General',
-					durationWeeks: parsed.modules.reduce((sum: number, m: ModuleSlot) => sum + m.durationWeeks, 0),
-					modules: parsed.modules.map((module: ModuleSlot, index: number) => ({
-						...module,
-						arcId: parsed.arcs[0].id,
-						order: index + 1
-					}))
-				}];
-				delete parsed.modules;
-			}
-
-			// Convert module dates
-			if (parsed.arcs) {
-				parsed.arcs.forEach((arc: Arc) => {
-					arc.modules.forEach((module: ModuleSlot) => {
-						if (module.moduleData?.generatedAt) {
-							module.moduleData.generatedAt = new Date(module.moduleData.generatedAt);
-						}
-					});
-				});
-			}
-
-			currentCourse.set(parsed);
-		}
-	} catch (e) {
-		console.error('Failed to load course from localStorage:', e);
-	}
-
-	// Load saved courses list
-	try {
-		const savedList = localStorage.getItem('savedCourses');
-		if (savedList) {
-			const parsed = JSON.parse(savedList);
-			// Convert date strings and migrate if needed
-			parsed.forEach((course: CourseData) => {
-				course.createdAt = new Date(course.createdAt);
-				course.updatedAt = new Date(course.updatedAt);
-
-				// Backward compatibility migration
-				if ((course as any).modules && !course.arcs) {
-					const modules = (course as any).modules;
-					course.arcs = [{
-						id: crypto.randomUUID(),
-						order: 1,
-						title: 'Main Course Content',
-						description: 'Migrated from previous module-only structure',
-						theme: 'General',
-						durationWeeks: modules.reduce((sum: number, m: ModuleSlot) => sum + m.durationWeeks, 0),
-						modules: modules.map((module: ModuleSlot, index: number) => ({
-							...module,
-							arcId: course.arcs[0].id,
-							order: index + 1
-						}))
-					}];
-					delete (course as any).modules;
-				}
-			});
-			savedCourses.set(parsed);
-		}
-	} catch (e) {
-		console.error('Failed to load saved courses from localStorage:', e);
-	}
 }
 
 // Save current course to saved courses list
@@ -225,13 +196,6 @@ export function saveCurrentCourse() {
 		courses.push(course);
 	}
 
+	// Update savedCourses - auto-saves to localStorage via persistedStore
 	savedCourses.set(courses);
-
-	if (typeof window !== 'undefined') {
-		try {
-			localStorage.setItem('savedCourses', JSON.stringify(courses));
-		} catch (e) {
-			console.error('Failed to save courses list to localStorage:', e);
-		}
-	}
 }

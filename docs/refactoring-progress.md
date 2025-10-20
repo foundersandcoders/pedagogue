@@ -283,22 +283,56 @@ Addressing architectural issues identified in code review focusing on:
 
 ### Phase 4: Quality Improvements
 
-#### 🔄 Task 5: Store Consolidation Utilities
+#### ✅ Task 5: Store Consolidation Utilities
+**Commit:** `TBD`
+**Status:** ✅ Complete
 
-**New Files:**
-- `src/lib/store-utilities/workflow-step.ts`
-  - `createWorkflowStore(initialStep)` - Reusable workflow step management
+**Files Created:**
+- `src/lib/store-utilities/workflow-step.ts` (98 lines)
+  - `createWorkflowStore()` - Creates workflow store with step navigation
+  - `WorkflowStore` interface with next(), previous(), goTo(), reset() methods
+  - Synchronous access to current step via current()
+  - Boundary checking (can't go before first or after last step)
 
-- `src/lib/store-utilities/persistence.ts`
-  - `withLocalStorage(store, key)` - Auto-save wrapper for stores
-  - `loadFromLocalStorage(key, defaultValue)` - Typed loader with error handling
+- `src/lib/store-utilities/persistence.ts` (163 lines)
+  - `persistedStore()` - Creates auto-persisting writable store
+  - `loadFromLocalStorage()` - Safe loading with deserializer support
+  - `saveToLocalStorage()` - Safe saving with serializer support
+  - `withLocalStorage()` - Wrap existing stores with persistence
+  - `removeFromLocalStorage()` - Clean removal
+  - SSR-safe (no localStorage access during server rendering)
+  - Custom deserializers for complex types (Date conversion, migrations)
 
-**Files to Refactor:**
-- `src/lib/stores.ts` - Use workflow and persistence utilities
-- `src/lib/courseStores.ts` - Use workflow and persistence utilities
-- Remove duplicate localStorage logic (courseStores.ts lines 115-206)
+**Files Modified:**
+- `src/lib/courseStores.ts`
+  - **Before:** 238 lines (with inline localStorage logic)
+  - **After:** 202 lines (using persistence utilities)
+  - **Reduction:** 36 lines (-15.1%)
+  - Replaced manual localStorage subscribe/load/save with `persistedStore()`
+  - Replaced plain writable with `createWorkflowStore()` for step management
+  - Extracted deserializers for CourseData and saved courses list
+  - Removed ~90 lines of manual localStorage code
+  - Reset function now uses workflow.reset()
 
-**Pattern:** Extract shared utilities, NOT merge stores (domains are separate)
+- `src/lib/stores.ts`
+  - **Before:** 123 lines (with inline step management)
+  - **After:** 107 lines (using workflow utility)
+  - **Reduction:** 16 lines (-13.0%)
+  - Replaced plain writable with `createWorkflowStore()` for currentStep
+  - Extracted DEFAULT_STRUCTURED_INPUT constant (DRY)
+  - Reset function now uses workflow.reset()
+  - No persistence needed (module workflow is ephemeral)
+
+**Impact:**
+- Total code reduction: 52 lines eliminated across both stores
+- Eliminated ~90 lines of duplicate localStorage logic from courseStores
+- Workflow management now consistent across both stores
+- Auto-save/load handled declaratively (no manual subscriptions)
+- Better error handling for localStorage operations
+- SSR compatibility built-in (no `typeof window` checks in stores)
+- Custom deserializers support complex types and migrations
+- Reusable patterns for future store needs
+- Build verification: ✅ Passed (no new warnings or errors)
 
 ---
 
@@ -424,17 +458,18 @@ src/lib/
 
 ## Next Session: Where to Start
 
-**Immediate next step:** Task 5 - Store Consolidation Utilities
+**Immediate next step:** Task 8 - Error Handling Consistency
 
-1. Analyze `src/lib/stores.ts` and `src/lib/courseStores.ts` for patterns
-2. Identify shared utilities (workflow steps, localStorage persistence)
-3. Create `src/lib/store-utilities/workflow-step.ts` for workflow management
-4. Create `src/lib/store-utilities/persistence.ts` for auto-save functionality
-5. Refactor both store files to use utilities
-6. Test build + verify stores work correctly
-7. Commit: "refactor: Phase 4 - extract store utilities"
+1. Create `src/lib/errors/generation-errors.ts` with error classes
+2. Create `src/lib/stores/error-store.ts` for centralized error state
+3. Create `src/lib/components/ErrorBoundary.svelte` for error catching
+4. Create `src/lib/components/ErrorAlert.svelte` for error display
+5. Update API routes to use typed errors
+6. Update page components to wrap in ErrorBoundary
+7. Test build + verify error handling works
+8. Commit: "refactor: Phase 4 - implement consistent error handling"
 
-**After that:** Task 8 (error handling consistency)
+**Note:** This is the final refactoring task! After this, all planned improvements will be complete.
 
 ---
 
@@ -445,10 +480,10 @@ src/lib/
 - ✅ ~~Task 2d (SSE streaming): 2 hours~~ **DONE**
 - ✅ ~~Task 2e (retry logic): 1.5 hours~~ **DONE**
 - ✅ ~~Task 6 (prompt composability): 2 hours~~ **DONE**
-- ⏱️ Task 5 (store utilities): 3 hours
+- ✅ ~~Task 5 (store utilities): 3 hours~~ **DONE**
 - ⏱️ Task 8 (error handling): 3 hours
 
-**Total remaining:** ~6 hours
+**Total remaining:** ~3 hours
 
 ---
 
@@ -480,11 +515,11 @@ fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validatio
 
 ## Status Summary
 
-**✅ Completed:** 9/12 tasks (Tasks 1, 2a, 2b, 2c, 2d, 2e, 3, 6, 7)
+**✅ Completed:** 10/12 tasks (Tasks 1, 2a, 2b, 2c, 2d, 2e, 3, 5, 6, 7)
 **🔄 In Progress:** None
-**📋 Pending:** 2/12 tasks (Task 5: store utilities, Task 8: error handling)
+**📋 Pending:** 1/12 tasks (Task 8: error handling)
 **Deferred:** 1/12 tasks (Task 4: arc migration)
 **Build Status:** ✅ All changes compile
 **Branch:** `feat/new-course-generation`
-**Last Commit:** `9decb91`
+**Last Commit:** `TBD (Task 5 complete, needs commit)`
 **Safe to /compact:** ✅ Yes

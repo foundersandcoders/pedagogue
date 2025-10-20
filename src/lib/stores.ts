@@ -1,12 +1,39 @@
 import { writable, derived } from 'svelte/store';
 import type { ProjectsFile, SkillsFile, ResearchFile } from './xml-parser.ts';
 import type { StructuredInput } from './validation/api-schemas.js';
+import { createWorkflowStore } from './store-utilities/workflow-step.js';
 
 // Re-export for backward compatibility
 export type StructuredInputData = StructuredInput;
 
+// Default structured input values
+const DEFAULT_STRUCTURED_INPUT: StructuredInputData = {
+	logistics: {
+		duration: 3,
+		startDate: ''
+	},
+	learners: {
+		cohortSize: 12,
+		experience: {
+			prereq: '<= 1 year',
+			focus: 'limited experience'
+		}
+	},
+	content: {
+		techs: [],
+		info: ''
+	},
+	model: {
+		enableResearch: true,
+		useExtendedThinking: true
+	}
+};
+
 // Current step in the workflow (1-6)
-export const currentStep = writable<number>(1);
+export const currentStep = createWorkflowStore({
+	initialStep: 1,
+	totalSteps: 6
+});
 
 // Uploaded file contents
 export const projectsFile = writable<ProjectsFile | null>(null);
@@ -14,27 +41,7 @@ export const skillsFile = writable<SkillsFile | null>(null);
 export const researchFile = writable<ResearchFile | null>(null);
 
 // Structured input data from form
-export const structuredInput = writable<StructuredInputData>({
-	logistics: {
-	  duration: 3,
-		startDate: ''
-	},
-	learners: {
-  	cohortSize: 12,
-  	experience: {
-  	  prereq: '<= 1 year',
-  		focus: 'limited experience'
-  	}
-	},
-	content: {
-  	techs: [],
-  	info: ''
-	},
-	model: {
-  	enableResearch: true,
-  	useExtendedThinking: true
-	}
-});
+export const structuredInput = writable<StructuredInputData>(DEFAULT_STRUCTURED_INPUT);
 
 // Upload states
 export const uploadStates = writable<{
@@ -87,36 +94,13 @@ export const canProceedToStep2 = derived(
 
 // Reset all state (for starting over)
 export function resetWorkflow() {
-	currentStep.set(1);
+	currentStep.reset();
 	projectsFile.set(null);
 	skillsFile.set(null);
 	researchFile.set(null);
-
-	structuredInput.set({
-  	logistics: {
-  	  duration: 3,
-  		startDate: ''
-  	},
-  	learners: {
-     	cohortSize: 12,
-     	experience: {
-     	  prereq: '<= 1 year',
-    		focus: 'limited experience'
-     	}
-  	},
-  	content: {
-     	techs: [],
-     	info: ''
-  	},
-  	model: {
-     	enableResearch: true,
-     	useExtendedThinking: true
-  	}
-	});
-
+	structuredInput.set(DEFAULT_STRUCTURED_INPUT);
 	uploadStates.set({ projects: 'idle', skills: 'idle', research: 'idle' });
 	uploadErrors.set({ projects: null, skills: null, research: null });
 	conversation.set([]);
-
 	generatedModule.set(null);
 }
