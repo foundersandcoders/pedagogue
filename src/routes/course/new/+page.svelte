@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import CourseConfigForm from "$lib/course/CourseConfigForm.svelte";
-  import ArcStructurePlanner from "$lib/course/ArcStructurePlanner.svelte";
-  import ModuleWithinArcPlanner from "$lib/course/ModuleWithinArcPlanner.svelte";
-  import CourseStructureReview from "$lib/course/CourseStructureReview.svelte";
+  import CourseConfigForm from "$lib/components/course/CourseConfigForm.svelte";
+  import ArcStructurePlanner from "$lib/components/course/ArcStructurePlanner.svelte";
+  import ModuleWithinArcPlanner from "$lib/components/course/ModuleWithinArcPlanner.svelte";
+  import CourseStructureReview from "$lib/components/course/CourseStructureReview.svelte";
   import { currentCourse, courseWorkflowStep } from "$lib/courseStores";
   import { goto } from "$app/navigation";
 
