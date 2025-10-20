@@ -4,17 +4,9 @@
  * Centralizes ChatAnthropic client configuration and creation.
  * Provides consistent model settings across module and course generation.
  */
-
 import { ChatAnthropic } from '@langchain/anthropic';
+import type { ChatClientOptions } from '$lib/types/ai';
 import { AI_RESEARCH_DOMAINS } from '$lib/config/research-domains.js';
-
-export interface ChatClientOptions {
-	apiKey: string;
-	temperature?: number;
-	maxTokens?: number;
-	timeout?: number;
-	streaming?: boolean;
-}
 
 /**
  * Default model configuration for all generation tasks
@@ -81,9 +73,7 @@ export function withWebSearch(
 export function createStreamingClient(options: ChatClientOptions & { enableResearch?: boolean }): ChatAnthropic {
 	let client = createChatClient({ ...options, streaming: true });
 
-	if (options.enableResearch) {
-		client = withWebSearch(client);
-	}
+	if (options.enableResearch) client = withWebSearch(client);
 
 	return client;
 }

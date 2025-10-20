@@ -4,46 +4,8 @@
  * Manages real-time streaming of module generation progress to the client.
  * Includes validation, retry logic, and progress event formatting.
  */
-
-import type { ChatAnthropic } from '@langchain/anthropic';
-import type { GenerateRequest } from '$lib/validation/api-schemas.js';
-import { withRetry, type GenerationResult } from '$lib/generation/orchestration/retry-handler.js';
-
-/**
- * SSE event types for module generation
- */
-export type SSEEventType =
-	| 'connected'
-	| 'progress'
-	| 'content'
-	| 'validation_started'
-	| 'validation_success'
-	| 'validation_failed'
-	| 'complete'
-	| 'error';
-
-/**
- * SSE event data structure
- */
-export interface SSEEvent {
-	type: SSEEventType;
-	message?: string;
-	chunk?: string;
-	content?: string;
-	xmlContent?: string;
-	attempts?: number;
-	errors?: string[];
-	warnings?: string[];
-}
-
-/**
- * Configuration for SSE stream creation
- */
-export interface SSEStreamConfig {
-	body: GenerateRequest;
-	model: ChatAnthropic;
-	maxRetries?: number;
-}
+import type { GenerationResult, SSEEvent, SSEStreamConfig } from '$lib/types/ai';
+import { withRetry } from '$lib/generation/orchestration/retry-handler.js';
 
 /**
  * Encode SSE event as a data string

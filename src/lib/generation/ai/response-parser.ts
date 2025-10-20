@@ -4,7 +4,6 @@
  * Handles extraction and parsing of content from Claude responses.
  * Supports both text and structured data extraction.
  */
-
 import { cleanXML, sanitizeXMLEntities } from '$lib/schemas/xmlUtils.js';
 import { calculateCardinality } from '$lib/schemas/cardinalityCalculator.js';
 import type { CourseStructureGenerationResponse } from '$lib/validation/api-schemas.js';
@@ -19,9 +18,7 @@ import type { CourseStructureGenerationResponse } from '$lib/validation/api-sche
  * @returns Extracted text content
  */
 export function extractTextContent(content: any): string {
-	if (typeof content === 'string') {
-		return content;
-	}
+	if (typeof content === 'string') return content;
 
 	if (Array.isArray(content)) {
 		// Filter for text blocks only, ignoring citations and other metadata
@@ -85,9 +82,7 @@ export function parseCourseStructureResponse(responseText: string): CourseStruct
 		// Try to extract JSON from the response
 		const jsonMatch = responseText.match(/\{[\s\S]*\}/);
 
-		if (!jsonMatch) {
-			throw new Error('No JSON found in response');
-		}
+		if (!jsonMatch) throw new Error('No JSON found in response');
 
 		const parsed = JSON.parse(jsonMatch[0]);
 

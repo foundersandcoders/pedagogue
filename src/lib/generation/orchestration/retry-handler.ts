@@ -4,45 +4,12 @@
  * Unified retry logic supporting both streaming and non-streaming generation modes.
  * Handles validation, error accumulation, and automatic retry with refined prompts.
  */
-
 import type { ChatAnthropic } from '@langchain/anthropic';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
-import type { GenerateRequest } from '$lib/validation/api-schemas.js';
+import type { GenerationResult, RetryConfig } from '$lib/types/ai';
 import { validateModuleXML } from '$lib/schemas/moduleValidator.js';
 import { extractTextContent, extractModuleXML } from '$lib/generation/ai/response-parser.js';
 import { buildGenerationPrompt } from '$lib/generation/prompts/module-prompt-builder.js';
-
-/**
- * Result of a generation attempt
- */
-export interface GenerationResult {
-	success: boolean;
-	fullContent: string;
-	xmlContent: string | null;
-	validationErrors: string[];
-	validationWarnings?: string[];
-	attempt: number;
-}
-
-/**
- * Callbacks for retry progress (used by streaming to send SSE events)
- */
-export interface RetryCallbacks {
-	onAttemptStart?: (attempt: number, maxRetries: number, errors: string[]) => void | Promise<void>;
-	onContentChunk?: (chunk: string) => void | Promise<void>;
-	onValidationStart?: () => void | Promise<void>;
-	onValidationResult?: (result: GenerationResult) => void | Promise<void>;
-}
-
-/**
- * Configuration for retry handler
- */
-export interface RetryConfig {
-	body: GenerateRequest;
-	model: ChatAnthropic;
-	maxRetries?: number;
-	callbacks?: RetryCallbacks;
-}
 
 /**
  * System message used for all generation attempts

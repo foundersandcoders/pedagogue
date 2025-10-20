@@ -262,7 +262,9 @@
     currentStep.set(1);
   }
 
-  onMount(() => { console.log("Workflow initialised: MoGen") });
+  onMount(() => {
+    console.log("Workflow initialised: MoGen");
+  });
 </script>
 
 <svelte:head>
@@ -294,22 +296,28 @@
       {#if $currentStep === 1}
         <section class="upload-section">
           <h2>Upload Module Files</h2>
-          <p>Upload your three XML files to begin: project briefs, additional skills, and research topics.</p>
+          <p>
+            Upload your three XML files to begin: project briefs, additional
+            skills, and research topics.
+          </p>
 
           <div class="upload-areas">
-            <FileUpload fileType="projects"
+            <FileUpload
+              fileType="projects"
               uploadState={$uploadStates.projects}
               error={$uploadErrors.projects}
               on:fileUploaded={handleFileUploaded}
               on:uploadError={handleUploadError}
             />
-            <FileUpload fileType="skills"
+            <FileUpload
+              fileType="skills"
               uploadState={$uploadStates.skills}
               error={$uploadErrors.skills}
               on:fileUploaded={handleFileUploaded}
               on:uploadError={handleUploadError}
             />
-            <FileUpload fileType="research"
+            <FileUpload
+              fileType="research"
               uploadState={$uploadStates.research}
               error={$uploadErrors.research}
               on:fileUploaded={handleFileUploaded}
@@ -362,7 +370,9 @@
               <div class="spinner"></div>
               <h3>Generating module specification...</h3>
               {#if $structuredInput.model.enableResearch}
-                <p class="loading-hint">Deep research enabled - this may take 2-4 minutes</p>
+                <p class="loading-hint">
+                  Deep research enabled - this may take 2-4 minutes
+                </p>
               {/if}
 
               {#if progressMessages.length > 0}
@@ -402,7 +412,12 @@
             <div class="result-section">
               {#if currentAttempt > 1}
                 <div class="generation-meta">
-                  <p class="retry-info">✓ Generation succeeded after {currentAttempt} attempt{currentAttempt > 1 ? "s" : ""}</p>
+                  <p class="retry-info">
+                    ✓ Generation succeeded after {currentAttempt} attempt{currentAttempt >
+                    1
+                      ? "s"
+                      : ""}
+                  </p>
                 </div>
               {/if}
 
