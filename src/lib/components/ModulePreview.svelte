@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { validateModuleXML } from './schemas/moduleValidator';
+	import { validateModuleXML } from '../schemas/moduleValidator';
 	import { createEventDispatcher } from 'svelte';
 	import ChangelogViewer from './ChangelogViewer.svelte';
 

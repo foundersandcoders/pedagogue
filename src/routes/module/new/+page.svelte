@@ -1,8 +1,8 @@
 <script>
   import { onMount } from "svelte";
-  import FileUpload from "$lib/FileUpload.svelte";
-  import StructuredInputForm from "$lib/StructuredInputForm.svelte";
-  import ModulePreview from "$lib/ModulePreview.svelte";
+  import FileUpload from "$lib/components/FileUpload.svelte";
+  import StructuredInputForm from "$lib/components/StructuredInputForm.svelte";
+  import ModulePreview from "$lib/components/ModulePreview.svelte";
   import {
     currentStep,
     projectsFile,

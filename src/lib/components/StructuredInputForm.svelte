@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import type { StructuredInputData } from "./stores.ts";
+  import type { StructuredInputData } from "../stores.ts";
 
   export let formData: StructuredInputData = {
     logistics: {
