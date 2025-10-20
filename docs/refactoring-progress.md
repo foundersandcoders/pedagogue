@@ -284,7 +284,7 @@ Addressing architectural issues identified in code review focusing on:
 ### Phase 4: Quality Improvements
 
 #### ✅ Task 5: Store Consolidation Utilities
-**Commit:** `TBD`
+**Commit:** `6ee94b3`
 **Status:** ✅ Complete
 
 **Files Created:**
@@ -490,6 +490,8 @@ src/lib/
 ## Git History
 
 ```
+6ee94b3 - refactor: Phase 4 - extract store utilities
+2b5c2ac - docs: update refactoring progress for Task 6 completion
 9decb91 - refactor: Phase 3 - break prompts into composable sections
 609b0ee - docs: update refactoring progress for Task 2e completion
 1ff8aae - refactor: Phase 2 - extract retry orchestration logic
@@ -521,5 +523,5 @@ fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validatio
 **Deferred:** 1/12 tasks (Task 4: arc migration)
 **Build Status:** ✅ All changes compile
 **Branch:** `feat/new-course-generation`
-**Last Commit:** `TBD (Task 5 complete, needs commit)`
+**Last Commit:** `6ee94b3`
 **Safe to /compact:** ✅ Yes
