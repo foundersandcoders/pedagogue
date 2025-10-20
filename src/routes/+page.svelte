@@ -2,31 +2,28 @@
   import { onMount } from "svelte";
   import { savedCourses } from "$lib/courseStores";
 
-  onMount(() => {
-    console.log("Welcome to Pedagogue");
-  });
+  onMount(() => { console.log("Welcome to Pedagogue") });
 </script>
 
 <svelte:head>
   <title>Pedagogue - AI-Powered Curriculum Generator</title>
 </svelte:head>
 
-<div class="container">
-  <header>
+<div id="hub-container" class="container">
+  <header id="hub-header">
     <h1>Pedagogue</h1>
     <p>AI-powered curriculum generation for peer-led courses</p>
   </header>
 
+  <!-- TODO: possibly create hub component? In case I need sub-hubs when functionality expands -->
   <main class="hub">
     <!-- TODO: create separate WorkflowCard component -->
+    <!-- TODO: address a11y issues from workflow cards -->
     <div class="workflow-cards">
       <a href="/module/new" class="workflow-card module-card">
         <div class="card-icon">📄</div>
         <h2>MoGen</h2>
-        <p>
-          Create a standalone module specification with projects, skills, and
-          research topics.
-        </p>
+        <p>Create a standalone module specification with projects, skills, and research topics.</p>
         <div class="card-features">
           <span>✓ Project briefs</span>
           <span>✓ Learning objectives</span>
@@ -38,10 +35,7 @@
       <a href="/course/new" class="workflow-card course-card">
         <div class="card-icon">📚</div>
         <h2>CoBu</h2>
-        <p>
-          Create a complete multi-week course with interconnected modules and
-          learning progressions.
-        </p>
+        <p>Create a complete multi-week course with interconnected modules and learning progressions.</p>
         <div class="card-features">
           <span>✓ Multiple modules</span>
           <span>✓ Course structure</span>

@@ -262,30 +262,28 @@
     currentStep.set(1);
   }
 
-  onMount(() => {
-    console.log("Workflow initialised: MoGen");
-  });
+  onMount(() => { console.log("Workflow initialised: MoGen") });
 </script>
 
 <svelte:head>
   <title>Pedagogue: MoGen (Module Generator)</title>
 </svelte:head>
 
-<div class="container">
-  <header>
+<div id="mogen-container" class="container">
+  <header id="mogen-header">
     <h1>Pedagogue: MoGen</h1>
     <p>AI-powered module specification generator for peer-led courses</p>
   </header>
 
   <div class="workflow">
     <nav class="steps">
-      {#each steps as step, index}
+      {#each steps as step, i}
         <div
           class="step"
-          class:active={$currentStep === index + 1}
-          class:completed={$currentStep > index + 1}
+          class:active={$currentStep === i + 1}
+          class:completed={$currentStep > i + 1}
         >
-          <span class="step-number">{index + 1}</span>
+          <span class="step-number">{i + 1}</span>
           <span class="step-name">{step}</span>
         </div>
       {/each}
@@ -296,30 +294,22 @@
       {#if $currentStep === 1}
         <section class="upload-section">
           <h2>Upload Module Files</h2>
-          <p>
-            Upload your three XML files to begin: project briefs, additional
-            skills, and research topics.
-          </p>
+          <p>Upload your three XML files to begin: project briefs, additional skills, and research topics.</p>
 
           <div class="upload-areas">
-            <FileUpload
-              fileType="projects"
+            <FileUpload fileType="projects"
               uploadState={$uploadStates.projects}
               error={$uploadErrors.projects}
               on:fileUploaded={handleFileUploaded}
               on:uploadError={handleUploadError}
             />
-
-            <FileUpload
-              fileType="skills"
+            <FileUpload fileType="skills"
               uploadState={$uploadStates.skills}
               error={$uploadErrors.skills}
               on:fileUploaded={handleFileUploaded}
               on:uploadError={handleUploadError}
             />
-
-            <FileUpload
-              fileType="research"
+            <FileUpload fileType="research"
               uploadState={$uploadStates.research}
               error={$uploadErrors.research}
               on:fileUploaded={handleFileUploaded}
@@ -337,10 +327,14 @@
         <section class="analysis-section">
           <div class="section-header">
             <h2>Add Context</h2>
+            <!-- TODO: update on:click to onclick -->
             <button type="button" class="back-button" on:click={goBackToFiles}>
               ← Back to Files
             </button>
           </div>
+
+          <!-- TODO: update on:submit to onsubmit -->
+          <!-- TODO: update on:change to onchange -->
           <StructuredInputForm
             formData={$structuredInput}
             on:submit={handleFormSubmit}
@@ -352,6 +346,7 @@
           <div class="generation-header">
             <h2>Module Generation</h2>
 
+            <!-- TODO: update on:click to onclick -->
             <button
               type="button"
               class="back-button"
@@ -367,9 +362,7 @@
               <div class="spinner"></div>
               <h3>Generating module specification...</h3>
               {#if $structuredInput.model.enableResearch}
-                <p class="loading-hint">
-                  Deep research enabled - this may take 2-4 minutes
-                </p>
+                <p class="loading-hint">Deep research enabled - this may take 2-4 minutes</p>
               {/if}
 
               {#if progressMessages.length > 0}
@@ -396,6 +389,7 @@
               <div class="error-icon">⚠</div>
               <h3>Generation Error</h3>
               <p>{generationError}</p>
+              <!-- TODO: update on:click to onclick -->
               <button
                 type="button"
                 class="retry-button"
@@ -408,12 +402,7 @@
             <div class="result-section">
               {#if currentAttempt > 1}
                 <div class="generation-meta">
-                  <p class="retry-info">
-                    ✓ Generation succeeded after {currentAttempt} attempt{currentAttempt >
-                    1
-                      ? "s"
-                      : ""}
-                  </p>
+                  <p class="retry-info">✓ Generation succeeded after {currentAttempt} attempt{currentAttempt > 1 ? "s" : ""}</p>
                 </div>
               {/if}
 
@@ -431,6 +420,7 @@
               <ModulePreview xmlContent={generatedXML} />
 
               <div class="action-buttons">
+                <!-- TODO: update on:click to onclick -->
                 <button
                   type="button"
                   class="btn-secondary"
@@ -443,6 +433,7 @@
           {:else}
             <div class="empty-generation">
               <p>Ready to generate your module specification</p>
+              <!-- TODO: update on:click to onclick -->
               <button
                 type="button"
                 class="generate-button"

@@ -1,9 +1,10 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
-	
+
 	let { children } = $props();
 
+	// TODO: implement $state() instead of stores where possible
 	const isHomePage:boolean = $derived($page.url.pathname === '/');
 	const showBreadcrumb:boolean = $derived(!isHomePage);
 </script>

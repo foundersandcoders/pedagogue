@@ -7,7 +7,7 @@
   import { currentCourse, courseWorkflowStep } from "$lib/courseStores";
   import { goto } from "$app/navigation";
 
-  export let data: any;
+  let { data } = $props();
 
   const steps = [
     "Course Config",
@@ -20,13 +20,11 @@
 
   // Initialize course if not exists or ensure it has all required fields
   onMount(() => {
-    if (
-      !$currentCourse ||
-      !$currentCourse.learners ||
-      !$currentCourse.logistics
-    ) {
-      currentCourse.set(data.initialCourse);
-    }
+    const courseExists: boolean =
+      $currentCourse && $currentCourse.learners && $currentCourse.logistics
+        ? true
+        : false;
+    if (!courseExists) currentCourse.set(data.initialCourse);
     courseWorkflowStep.set(1);
     console.log("Workflow initialised: CoBu", $currentCourse);
   });
@@ -120,12 +118,13 @@
     <!-- TODO: sort out layout of this menu -->
     <nav id="cobu-steps" class="steps">
       {#each steps as step, i}
-        <div id="cobu-step-{i + 1}"
+        <div
+          id="cobu-step-{i + 1}"
           class="step"
           class:active={$courseWorkflowStep === i + 1}
           class:completed={$courseWorkflowStep > i + 1}
         >
-          <span id="cobu-step-{i + 1}-number" class="step-number">{i+1}</span>
+          <span id="cobu-step-{i + 1}-number" class="step-number">{i + 1}</span>
           <span id="cobu-step-{i + 1}-name" class="step-name">{step}</span>
         </div>
       {/each}
