@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import { toGenerationError, type GenerationError } from '$lib/errors/generation-errors.js';
+	import { toGenerationError, type GenerationError } from '$lib/errors/generation-errors';
 	import ErrorAlert from './ErrorAlert.svelte';
 
 	/**
