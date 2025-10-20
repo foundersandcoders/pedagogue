@@ -239,7 +239,7 @@ Addressing architectural issues identified in code review focusing on:
 ### Phase 3: Improve Prompt Composability
 
 #### ✅ Task 6: Break Prompts into Composable Sections
-**Commit:** `TBD`
+**Commit:** `9decb91`
 **Status:** ✅ Complete
 
 **Files Created:**
@@ -455,6 +455,8 @@ src/lib/
 ## Git History
 
 ```
+9decb91 - refactor: Phase 3 - break prompts into composable sections
+609b0ee - docs: update refactoring progress for Task 2e completion
 1ff8aae - refactor: Phase 2 - extract retry orchestration logic
 b1ba39f - refactor: Phase 2 - extract SSE streaming handler from API route
 eed76c6 - refactor: Phase 2 - extract prompt builders from API routes
@@ -484,5 +486,5 @@ fea0d91 - refactor: Phase 1 - extract config, clarify schemas, add Zod validatio
 **Deferred:** 1/12 tasks (Task 4: arc migration)
 **Build Status:** ✅ All changes compile
 **Branch:** `feat/new-course-generation`
-**Last Commit:** `TBD (Task 6 complete, needs commit)`
+**Last Commit:** `9decb91`
 **Safe to /compact:** ✅ Yes
