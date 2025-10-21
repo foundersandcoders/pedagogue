@@ -1,8 +1,17 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { savedCourses } from "$lib/courseStores";
+  import type { Arc } from "$lib/types/cobu"
+  import { savedCourses } from "$lib/stores/cobuStores";
+  
+  function countModules(arcs: Arc[]) :number {
+    let total = 0;
+    arcs.forEach((arc) => { total += arc.modules.length })
+    return total;
+  }
 
-  onMount(() => { console.log("Welcome to Pedagogue") });
+  onMount(() => {
+    console.log("Welcome to Pedagogue");
+  });
 </script>
 
 <svelte:head>
@@ -20,10 +29,13 @@
     <!-- TODO: create separate WorkflowCard component -->
     <!-- TODO: address a11y issues from workflow cards -->
     <div class="workflow-cards">
-      <a href="/module/new" class="workflow-card module-card">
+      <a href="/mogen/update" class="workflow-card module-card">
         <div class="card-icon">📄</div>
         <h2>MoGen</h2>
-        <p>Create a standalone module specification with projects, skills, and research topics.</p>
+        <p>
+          Create a standalone module specification with projects, skills, and
+          research topics.
+        </p>
         <div class="card-features">
           <span>✓ Project briefs</span>
           <span>✓ Learning objectives</span>
@@ -32,10 +44,13 @@
         <div class="card-action">Start Module Generator →</div>
       </a>
 
-      <a href="/course/new" class="workflow-card course-card">
+      <a href="/cobu/generate" class="workflow-card course-card">
         <div class="card-icon">📚</div>
         <h2>CoBu</h2>
-        <p>Create a complete multi-week course with interconnected modules and learning progressions.</p>
+        <p>
+          Create a complete multi-week course with interconnected modules and
+          learning progressions.
+        </p>
         <div class="card-features">
           <span>✓ Multiple modules</span>
           <span>✓ Course structure</span>
@@ -51,14 +66,14 @@
         <!-- TODO: create CourseList component -->
         <div class="course-list">
           {#each $savedCourses.slice(0, 3) as course}
-            <!-- TODO: create CourseItem component -->
             <a href="/course/{course.id}" class="course-item">
               <div class="course-info">
                 <h3>{course.title}</h3>
-                <p>
-                  {course.modules.length} modules • {course.logistics
-                    .totalWeeks} weeks
-                </p>
+                <ul>
+                  <li>{course.logistics.totalWeeks} weeks</li>
+                  <li>{course.arcs.length} arcs</li>
+                  <li>{countModules(course.arcs)} modules</li>
+                </ul>
               </div>
               <div class="course-meta">
                 {new Date(course.updatedAt).toLocaleDateString()}
@@ -225,12 +240,6 @@
   .course-item:hover {
     border-color: #007bff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .course-info h4 {
-    margin: 0 0 0.5rem 0;
-    color: #333;
-    font-size: 1.1rem;
   }
 
   .course-info p {

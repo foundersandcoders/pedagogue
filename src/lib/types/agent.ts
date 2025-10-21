@@ -1,5 +1,5 @@
 import type { ChatAnthropic } from '@langchain/anthropic';
-import type { GenerateRequest } from '$lib/validation/api-schemas.js';
+import type { GenerateRequest } from '$lib/schemas/apiValidator';
 
 export interface ChatClientOptions {
 	apiKey: string;

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte";
-  import type { CourseData, Arc, ModuleSlot } from "$lib/types/cobu";
   import { downloadCourseXml } from "$lib/utils/validation/outputSerialiser";
+  import type { CourseData, Arc } from "$lib/types/cobu";
 
   export let courseData: CourseData;
 

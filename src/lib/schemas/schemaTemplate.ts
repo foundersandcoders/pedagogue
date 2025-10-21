@@ -4,7 +4,7 @@
  */
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { stripXMLComments } from './xmlUtils.js';
+import { stripXMLComments } from '$lib/utils/validation/xmlCleaner';
 
 /**
  * Loads the output schema template and returns it as a clean string

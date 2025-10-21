@@ -1,6 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import type { StructuredInputData } from "../stores.ts";
+  import { techList } from "$lib/config/techStack";
+  import type { StructuredInputData } from "$lib/stores/mogenStores";
 
   export let formData: StructuredInputData = {
     logistics: {
@@ -28,8 +29,6 @@
     submit: StructuredInputData;
     change: StructuredInputData;
   }>();
-
-  let techInput = "";
   let errors: {
     logistics?: {
       duration?: string;
@@ -41,15 +40,6 @@
   } = {};
 
   // Predefined technology options
-  const techList = {
-    language: ["JavaScript", "Python", "TypeScript"],
-    frontEnd: ["React", "Svelte", "Vue"],
-    backEnd: ["Express"],
-    runtime: ["Deno", "Node.js"],
-    db: ["MongoDB", "PostgreSQL"],
-    devOps: ["AWS", "Docker", "GitHub Actions"],
-    other: ["FastAPI", "GraphQL", "REST APIs"],
-  };
   const commonTechnologies: string[] = [].concat(
     techList.language,
     techList.frontEnd,
@@ -59,6 +49,8 @@
     techList.devOps,
     techList.other,
   );
+
+  let techInput = "";
 
   function addTechnology(tech: string) {
     const trimmed = tech.trim();
@@ -133,10 +125,8 @@
   </p>
 
   <form on:submit={handleSubmit}>
-    <!-- Basic Details -->
-    <div class="form-grid">
-      <!-- Module Duration -->
-      <div class="form-field">
+    <div id="logistics-field-group" class="form-grid">
+      <div id="duration-field" class="form-field">
         <label for="duration">
           Module Duration (weeks)
           <span class="required">*</span>
@@ -155,9 +145,7 @@
           <span class="error-message">{errors.logistics?.duration}</span>
         {/if}
       </div>
-
-      <!-- Cohort Size -->
-      <div class="form-field">
+      <div id="cohort-field" class="form-field">
         <label for="cohort">
           Expected Cohort Size
           <span class="required">*</span>
@@ -176,9 +164,7 @@
           <span class="error-message">{errors.learners?.cohortSize}</span>
         {/if}
       </div>
-
-      <!-- Experience in Prerequisite Skills (e.g. Software Dev) -->
-      <div class="form-field">
+      <div id="experience-prior-field" class="form-field">
         <label for="skillPrereq">
           Learners' Experience in Related Fields
           <span class="required">*</span>
@@ -194,9 +180,7 @@
           <option value=">= 4 years">4 or More Years</option>
         </select>
       </div>
-
-      <!-- Experience in Course Focus Skills (e.g. AI Engineering) -->
-      <div class="form-field">
+      <div id="experience-focus-field" class="form-field">
         <label for="skillFocus">
           Learners' Experience in This Course's Focus
           <span class="required">*</span>
@@ -213,9 +197,7 @@
           <option value="current professional">Current Professional</option>
         </select>
       </div>
-
-      <!-- Start Date -->
-      <div class="form-field">
+      <div id="start-date-field" class="form-field">
         <label for="delivery">
           Expected Delivery Date
           <span class="optional">(optional)</span>
@@ -235,9 +217,7 @@
         </span>
       </div>
     </div>
-
-    <!-- Key Technologies -->
-    <div class="form-field full-width">
+    <div id="techs-field" class="form-field full-width">
       <label for="technologies">
         Required Technologies & Techniques
         <span class="optional">(optional)</span>
@@ -294,9 +274,7 @@
         </div>
       {/if}
     </div>
-
-    <!-- Additional Info -->
-    <div class="form-field full-width">
+    <div id="info-field" class="form-field full-width">
       <label for="info">
         Additional Information
         <span class="optional">(optional)</span>
@@ -312,9 +290,7 @@
         {formData.content.info.length} / 1000 characters
       </span>
     </div>
-
-    <!-- AI Options -->
-    <div class="form-section">
+    <div id="agent-field" class="form-section">
       <h3>Generation Options</h3>
 
       <div class="checkbox-group">
@@ -347,9 +323,7 @@
         </label>
       </div>
     </div>
-
-    <!-- Submit Button -->
-    <div class="form-actions">
+    <div id="submit-field" class="form-actions">
       <button type="submit" class="submit-btn"> Continue to Review → </button>
     </div>
   </form>
