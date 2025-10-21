@@ -1,0 +1,163 @@
+<ResearchTopics primary_topic_count="6" stretch_topic_count="11">
+  <Overview>These are topics that might be useful foci for the initial research session at the beginning of the module.</Overview>
+	<PrimaryTopics count="6">
+    <Topic order="1" name="Long Context/Embeddings Models" subtopic_count="2">
+      <SubTopic order="1" name="Long Context Models">
+        - Find out what models are available that can handle big inputs.
+        - For example:
+          - Claude’s 100k context model (Claude Instant or Claude 2)
+          - GPT-4 32k context
+        - How do these work, what are their limits, and are they accessible with our keys?
+        - One group could specifically research Anthropic Claude’s long context and maybe come with an example of its use.
+        - The Google Cloud RAG page even mentions using Gemini’s long context window for grounding docs
+      </SubTopic>
+      <SubTopic order="2" name="Embedding Models &amp; Costs">
+        - Research what embedding model to use for text
+        - How much does it cost?
+        - How fast is it to embed a typical document?
+        - How do you choose the embedding dimensionality or model, and does it matter for accuracy?
+        - Investigate open-source embedding models
+          - SBERT
+          - InstructorXL
+      </SubTopic>
+    </Topic>
+    <Topic order="2" name="Handling Inputs" subtopic_count="3">
+      <SubTopic order="1" name="Text Chunking and Summarization">
+        - Techniques to summarize or chunk documents
+        - For instance:
+          - recursive summarization (summarize each section then summarize the summaries)
+          - splitting by headings
+        - Also, how to avoid losing key info in summarization.
+        - They might find some best practices or libraries, like:
+          - Python’s NLTK to break text
+          - Node’s similar packages
+      </SubTopic>
+      <SubTopic order="2" name="Embeddings &amp; Similarity Search">
+        - An intro to the concept of embeddings as a way to find related text
+        - Perhaps one group experiments with OpenAI’s text-embedding API in a script
+          - convert chunks of a sample text to embeddings and see how to find which chunks best match a query
+        - This is a precursor to vector DB but can be done with basic array similarity if needed.
+      </SubTopic>
+      <SubTopic order="3" name="Tools for PDF/Text processing">
+        - Identify libraries to extract text from PDFs or websites
+        - for example:
+          - Python’s PyPDF
+          - JavaScript PDF parsers
+        - If the documents are HTML or MD, find ways to parse them
+        - Essentially, ensure teams know how to get raw text from the input documents for the AI to consume.
+      </SubTopic>
+    </Topic>
+    <Topic order="3" name="Handling Code" subtopic_count="3">
+      <SubTopic order="1" name="AI for Code Review &amp; Quality">
+        - How are AI models being used to review code?
+        - Investigate examples like:
+          - GitHub’s PR review assistant
+          - AWS CodeGuru reviewer
+        - What types of suggestions do they provide?
+          - bug detection
+          - style improvements
+          - performance suggestions
+        - Any success stats or case studies
+          - e.g. reduction in review time
+      </SubTopic>
+      <SubTopic order="2" name="Handling Code Input for LLMs">
+        - Best practices for feeding code into an LLM prompt
+        - How to format the prompt when giving multiple files or a diff?
+        - Research techniques like...
+          - summarizing or truncating long code
+          - focusing the AI on certain sections (e.g. “Here is the diff of this PR…”)
+        - Also consider token limits &amp; how to stay within them for large codebases
+          - analyzing only changed code
+          - using a brief high-level summary
+      </SubTopic>
+      <SubTopic order="3" name="AI-Generated Tests or Docs">
+        - If teams opt for test generation or documentation, research how LLMs can create these
+        - For test generation: how to prompt for a unit test given a function’s code or spec
+        - For documentation: using AI to generate a README or update a changelog.
+        - Find any tools or papers on these topics to gauge feasibility and best approaches.
+      </SubTopic>
+    </Topic>
+    <Topic order="4" name="CI/CD" subtopic_count="2">
+      <SubTopic order="1" name="Security and Privacy in CI AI">
+        - Discuss the implications of sending your code to an external API (like OpenAI) during CI
+        - What do OpenAI/Anthropic’s terms say about data usage?
+        - Are there safer alternatives
+          - we will explore self-hosted models later in the course
+      </SubTopic>
+      <SubTopic order="2" name="Integrating with GitHub Actions">
+        - Learn how GitHub Actions (or similar CI services) can run custom code
+        - Specifically...
+          1. how to write a workflow that triggers on events (like pull_request opened)
+          2. calls a script
+        - Are there existing Action templates for...
+          - calling APIs?
+          - posting comments?
+        - Outline the basic structure of an Action YAML and the environment it runs in, e.g.
+          - runners
+          - using Node or Python in actions
+      </SubTopic>
+    </Topic>
+    <Topic order="5" name="Knowledge" subtopic_count="2">
+      <SubTopic order="1" name="Retrieval-Augmented Generation (RAG) 101">
+        - Understand the concept of RAG
+        - Break down the typical steps
+          1. chunking documents
+          2. embedding them into vectors
+          3. storing in a vector database
+          4. retrieving top relevant chunks for a query
+          4. injecting into the prompt
+        - What are the benefits of this approach compared to fine-tuning a model on the data?
+          - e.g. RAG can easily update info and reduce hallucinations
+        - Look for any success metrics or examples of RAG in action
+          - like how much it improved accuracy in open-domain QA
+      </SubTopic>
+      <SubTopic order="2" name="Knowledge Frameworks">
+        - Explore frameworks like LangChain or LlamaIndex which abstract a lot of the RAG process
+        - What features do they provide?
+          - document loaders
+          - index builders
+          - ready-made chat chain logic
+        - Examine vector database options
+          - FAISS
+          - Pinecone
+          - Weaviate
+          - etc.
+        – How do they work?
+        - What are their free tiers or ease-of-use considerations?
+      </SubTopic>
+    </Topic>
+    <Topic order="6" name="Context &amp; Control" subtopic_count="2">
+      <SubTopic order="1" name="Preventing Hallucinations and Ensuring Accuracy">
+        - Strategies to make the bot cite sources or indicate uncertainty
+        - Instructing the model “If you don’t find an answer in the provided documents, say you don’t know.”
+        - Find out if certain prompt formats yield better factual accuracy (like asking the model to list sources).
+        - Consider evaluation: how will we know if our bot’s answer was correct or just plausible?
+        - Look up any methods for QA evaluation or human-in-the-loop verification.
+      </SubTopic>
+      <SubTopic order="2" name="Maintaining Chatbot Context">
+        - Techniques for a chatbot to handle long conversations
+        - One approach is conversation summarization
+          – periodically summarize earlier chat history
+          - use that summary for context
+        - Another is persistent memory via a database
+          - storing facts learned about the user
+        - Research how ChatGPT or Claude handle large contexts
+          - e.g. window of 100k tokens in Claude 2
+        - What are best practices to avoid the bot “forgetting” important details or repeating itself?
+      </SubTopic>
+    </Topic>
+  </PrimaryTopics>
+	<StretchTopics count="11">
+	  <Topic order="1" name="Advanced Tools" subtopic_count="0">Look into how agents can use tools like a Python REPL (executing code) or even image recognition.</Topic>
+		<Topic order="2" name="DevOps Automation Trends" subtopic_count="0">Any emerging concept of “NoOps” with AI or using AI for infrastructure as code?</Topic>
+		<Topic order="3" name="Domain-Specific Challenges" subtopic_count="0"></Topic>
+		<Topic order="4" name="Graph databases for knowledge representation" subtopic_count="0"></Topic>
+		<Topic order="5" name="Fine-tuning vs few-shot learning" subtopic_count="0"></Topic>
+		<Topic order="6" name="Long-term memory architectures for LLMs" subtopic_count="0"></Topic>
+		<Topic order="7" name="stateful conversations" subtopic_count="0"></Topic>
+		<Topic order="8" name="Open source model landscape" subtopic_count="0">examples include Llama, Mistral, Qwen</Topic>
+		<Topic order="9" name="Edge deployment strategies" subtopic_count="0"></Topic>
+		<Topic order="10" name="Local inference" subtopic_count="0"></Topic>
+		<Topic order="11" name="quantisation trade-offs" subtopic_count="0"></Topic>
+	</StretchTopics>
+</ResearchTopics>

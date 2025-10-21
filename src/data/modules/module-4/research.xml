@@ -1,0 +1,192 @@
+<ResearchTopics primary_topic_count="8" stretch_topic_count="8">
+  <Overview>These are topics that might be useful foci for the initial research session at the beginning of the module.</Overview>
+	<PrimaryTopics count="8">
+    <Topic order="1" name="New Model Domains and Modalities" subtopic_count="4">
+      <SubTopic order="1" name="Text-to-Image Models">
+        - How do text-to-image models work?
+        - What libraries can we use easily? (Diffusion Web UIs, Hugging Face)
+        - Popular models: Stable Diffusion, DALL·E, MidJourney
+        - Prompt engineering for image generation
+      </SubTopic>
+      <SubTopic order="2" name="AI Music Generation">
+        - What are good free resources for AI music generation?
+        - Models like MuseNet, Riffusion
+        - MIDI generation libraries
+      </SubTopic>
+      <SubTopic order="3" name="Other Modalities">
+        - Text-to-speech and voice synthesis
+        - Audio processing and generation
+        - Multi-modal combinations (text + image + audio)
+      </SubTopic>
+      <SubTopic order="4" name="Finding and Using Pre-trained Models">
+        - Navigating Hugging Face model hub
+        - Understanding model cards and capabilities
+        - API vs local deployment options
+      </SubTopic>
+    </Topic>
+    <Topic order="2" name="Ethical and Social Implications of Creative AI" subtopic_count="5">
+      <SubTopic order="1" name="AI Art and Artist Rights">
+        - Lawsuits around AI art datasets
+        - Copyright and training data concerns
+        - Attribution and credit in AI-generated content
+      </SubTopic>
+      <SubTopic order="2" name="AI in Creative Writing">
+        - Originality concerns with AI-generated text
+        - Plagiarism and authenticity
+        - The role of human creativity
+      </SubTopic>
+      <SubTopic order="3" name="Deepfakes and Trust">
+        - Technical aspects of deepfakes
+        - Consent and privacy issues
+        - Detection and mitigation strategies
+      </SubTopic>
+      <SubTopic order="4" name="AI Humor and Offense">
+        - Instances where AI chatbots said inappropriate things
+        - Why content filters matter
+        - Balancing creativity with responsibility
+      </SubTopic>
+      <SubTopic order="5" name="Identifying Project-Specific Issues">
+        - Each team identifies controversial aspects of their project
+        - Research debates around their specific topic
+        - Develop mitigation strategies
+      </SubTopic>
+    </Topic>
+    <Topic order="3" name="Open LLM Landscape" subtopic_count="4">
+      <SubTopic order="1" name="Notable Open-Source Models">
+        - Llama 2, Falcon, MPT, and their characteristics
+        - Model size, training data, and licenses
+        - Performance comparisons with closed models
+      </SubTopic>
+      <SubTopic order="2" name="Breakthrough Developments">
+        - How Llama 2 approached GPT-3.5 performance
+        - Success stories of open model adoption
+        - Smaller models excelling with fine-tuning on specific tasks
+      </SubTopic>
+      <SubTopic order="3" name="Licensing and Legal Considerations">
+        - Understanding different open-source licenses
+        - Usage restrictions (e.g., Llama 2's commercial limitations)
+        - Intellectual property considerations
+      </SubTopic>
+      <SubTopic order="4" name="Community and Ecosystem">
+        - Community-driven improvements and fine-tunes (Vicuna, Orca)
+        - Role of open source in AI transparency
+        - Accountability and trust through transparency
+      </SubTopic>
+    </Topic>
+    <Topic order="4" name="Running Models Locally" subtopic_count="4">
+      <SubTopic order="1" name="Tooling and Frameworks">
+        - Hugging Face Transformers pipeline
+        - llama.cpp for efficient local inference
+        - ONNX acceleration techniques
+      </SubTopic>
+      <SubTopic order="2" name="Resource Requirements">
+        - Memory usage and speed considerations
+        - GPU vs CPU trade-offs
+        - Quantization techniques (4-bit, 8-bit)
+      </SubTopic>
+      <SubTopic order="3" name="Optimization Strategies">
+        - Making models run on consumer hardware
+        - Quantized models (e.g., 13B running on 16GB RAM)
+        - Balancing quality and performance
+      </SubTopic>
+      <SubTopic order="4" name="Practical Experimentation">
+        - Test with small models first
+        - Report memory usage and speed
+        - Compare quantized vs full-precision performance
+      </SubTopic>
+    </Topic>
+    <Topic order="5" name="Fine-tuning Techniques" subtopic_count="4">
+      <SubTopic order="1" name="Understanding Fine-tuning Approaches">
+        - Fine-tuning vs instruct-tuning vs RLHF
+        - When to fine-tune vs when to use RAG or prompting
+        - Dataset requirements and preparation
+      </SubTopic>
+      <SubTopic order="2" name="Parameter-Efficient Methods">
+        - LoRA (Low-Rank Adaptation) adapters
+        - How LoRA allows fine-tuning on consumer hardware
+        - Other PEFT (Parameter-Efficient Fine-Tuning) methods
+      </SubTopic>
+      <SubTopic order="3" name="Community Examples">
+        - Projects where fine-tuning improved open models
+        - Vicuna and Orca as examples
+        - Domain-specific fine-tuning success stories
+      </SubTopic>
+      <SubTopic order="4" name="Practical Considerations">
+        - Computing resources needed
+        - Using platforms like Google Colab
+        - Small-scale experiments (e.g., 100 Q&A pairs)
+      </SubTopic>
+    </Topic>
+    <Topic order="6" name="Toolkits and Frameworks for Creative AI" subtopic_count="4">
+      <SubTopic order="1" name="Image Generation Tools">
+        - Stable Diffusion API or local install
+        - Diffusion Web UIs and their features
+        - Image-to-image and style transfer techniques
+      </SubTopic>
+      <SubTopic order="2" name="Audio and Music Libraries">
+        - Python libraries for MIDI generation
+        - Audio processing frameworks
+        - Integration with AI models
+      </SubTopic>
+      <SubTopic order="3" name="Multi-modal Frameworks">
+        - Tools that combine different modalities
+        - Pipeline design for complex workflows
+        - API orchestration
+      </SubTopic>
+      <SubTopic order="4" name="Knowledge Sharing">
+        - Exchange findings during research share
+        - Cross-pollination of ideas between domains
+        - Reusable patterns and techniques
+      </SubTopic>
+    </Topic>
+    <Topic order="7" name="Use Cases and Adoption of Open Models" subtopic_count="3">
+      <SubTopic order="1" name="Industry Adoption">
+        - Companies using open models for data privacy
+        - Cost savings through optimization
+        - Self-hosting vs API trade-offs
+      </SubTopic>
+      <SubTopic order="2" name="Real-world Applications">
+        - Examples of successful open model deployments
+        - Performance in production environments
+        - Hybrid approaches (mixing open and closed models)
+      </SubTopic>
+      <SubTopic order="3" name="Future Trends">
+        - Predictions for open model growth
+        - Emerging capabilities and improvements
+        - Market dynamics between open and closed models
+      </SubTopic>
+    </Topic>
+    <Topic order="8" name="Adaptive AI Systems" subtopic_count="4">
+      <SubTopic order="1" name="Reinforcement Learning Basics">
+        - How AI systems can learn from feedback
+        - Simple RL concepts applicable to projects
+        - Online learning and adaptation
+      </SubTopic>
+      <SubTopic order="2" name="User Modeling and Personalization">
+        - Tracking user patterns and preferences
+        - Building user profiles
+        - Privacy considerations in personalization
+      </SubTopic>
+      <SubTopic order="3" name="Evaluation and Continuous Improvement">
+        - Metrics for generative AI
+        - A/B testing for AI features
+        - Building feedback loops
+      </SubTopic>
+      <SubTopic order="4" name="Prompt Optimization">
+        - Techniques for improving prompts over time
+        - Learning from user interactions
+        - Automated prompt refinement
+      </SubTopic>
+    </Topic>
+  </PrimaryTopics>
+	<StretchTopics count="8">
+	  <Topic order="1" name="Stretching AI capabilities" subtopic_count="0">fine-tuning models on custom data (e.g., your own images)</Topic>
+		<Topic order="2" name="Advanced deployment patterns" subtopic_count="0">containerization and orchestration</Topic>
+		<Topic order="3" name="Model compression techniques beyond quantization" subtopic_count="0"></Topic>
+		<Topic order="4" name="Distributed inference and model parallelism" subtopic_count="0"></Topic>
+		<Topic order="5" name="Real-time model monitoring and performance tracking" subtopic_count="0"></Topic>
+		<Topic order="6" name="Advanced A/B testing frameworks for AI" subtopic_count="0"></Topic>
+		<Topic order="7" name="Multi-objective optimization in adaptive systems" subtopic_count="0"></Topic>
+		<Topic order="8" name="Federated learning basics for privacy-preserving adaptation" subtopic_count="0"></Topic>
+	</StretchTopics>
+</ResearchTopics>

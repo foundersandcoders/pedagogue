@@ -1,0 +1,119 @@
+<Projects process_count="3" briefs_count="2" twists_count="2">
+  <ProcessNotes count="3">
+    <Note order="1" essential="true">Groups choose one of the available briefs and then work on it for this arc</Note>
+    <Note order="2" essential="false">Groups are randomly assigned one of the available twists.</Note>
+    <Note order="3" essential="false">They should attempt to meet the brief by using the twist as inspiration</Note>
+  </ProcessNotes>
+  <Briefs count="2">
+    <Brief order="1" name="AI Dev Companion" skills_count="3" examples_count="4" notes_count="0">
+      <Task>Build a personal AI-assisted development tool that helps with coding tasks.</Task>
+      <Focus>Using large-language-model (LLM) APIs for developer productivity (e.g. code generation, explanation)</Focus>
+      <Criteria>
+        - Create a personal AI-powered coding assistant that helps developers with one or two common programming tasks.
+        - This could be a command-line tool, a chat interface, or an editor plugin.
+        - Participants are encouraged to implement minimal but functional versions of these ideas – the goal is not to build a production-ready tool, but to demonstrate the concept.
+        - For instance, the "unit test writer" might only handle one simple function at a time, and that's okay.
+      </Criteria>
+      <Skills count="3">
+        <Skill order="1" name="LLM API Integration">
+          - Learn how to call OpenAI, Anthropic, or Google APIs for code generation and explanation.
+          - Understand API authentication, request/response formats, and rate limiting.
+          - Handle errors and edge cases gracefully.
+        </Skill>
+        <Skill order="2" name="Prompt Engineering for Code Tasks">
+          - Design effective prompts to get quality code outputs.
+          - Learn the difference between user prompts and system prompts.
+          - Understand how to get code vs explanations based on prompt structure.
+        </Skill>
+        <Skill order="3" name="Developer Tool Design">
+          - Consider user experience for command-line tools, chat interfaces, or editor plugins.
+          - Think about how developers will interact with the tool in their workflow.
+          - Design for minimal friction and maximum utility.
+        </Skill>
+      </Skills>
+      <Examples count="4">
+        <Example order="1" name="AI Chatbot for Coding Questions">
+          - A terminal-based chatbot where you can paste a snippet of code or an error message.
+          - The AI explains it or suggests a fix.
+        </Example>
+        <Example order="2" name="Smart Snippet Generator">
+          - Takes a plain English request (e.g. "I need a function to parse CSV files in Node") and returns a code snippet fulfilling that request.
+          - This could run as a CLI command or even a simple web form.
+        </Example>
+        <Example order="3" name="Code Commenter">
+          - Injects comments/documentation into your code.
+          - You feed it a source file and it uses an AI to generate docstring comments for each function.
+        </Example>
+        <Example order="4" name="Unit Test Writer">
+          - A script that, given a function's code, uses AI to draft basic unit tests for it.
+        </Example>
+      </Examples>
+      <Notes count="0">
+      </Notes>
+    </Brief>
+    <Brief order="2" name="GitHub AI Helper" skills_count="3" examples_count="4" notes_count="0">
+      <Task>Create an AI-driven GitHub Action to automate a development workflow</Task>
+      <Focus>Integration of AI into existing developer tools and workflows</Focus>
+      <Criteria>
+        - Build an AI-powered GitHub Action (or similar CI pipeline tool) that improves some aspect of the development workflow automatically.
+        - It should run in response to repository events (pull requests, issues, pushes) and perform a useful task.
+        - The project is open-ended as long as it runs as an automated workflow (on GitHub or a comparable platform) and involves AI generating output or decisions.
+      </Criteria>
+      <Skills count="3">
+        <Skill order="1" name="CI/CD Integration">
+          - Learn how GitHub Actions (or similar CI services) can run custom code.
+          - Understand how to write a workflow that triggers on events (like pull_request opened) and calls a script.
+          - Explore existing Action templates for calling APIs and posting comments.
+        </Skill>
+        <Skill order="2" name="Automated Code Analysis">
+          - Use AI to analyze code diffs, commit messages, or issue text.
+          - Extract meaningful insights and generate useful feedback.
+          - Handle the context limitations of sending code to external APIs.
+        </Skill>
+        <Skill order="3" name="Security and Privacy Considerations">
+          - Discuss the implications of sending code to external APIs (like OpenAI) during CI.
+          - Understand what OpenAI/Anthropic's terms say about data usage.
+          - Consider safer alternatives and best practices.
+        </Skill>
+      </Skills>
+      <Examples count="4">
+        <Example order="1" name="AI Code Reviewer">
+          - A GitHub Action that triggers on pull request creation.
+          - It fetches the diff or changed files and uses an AI to comment on potential bugs, style issues, or missing tests.
+          - This is akin to an AI assistant for code review.
+        </Example>
+        <Example order="2" name="Issue Triage Bot">
+          - An action that runs when new issues are submitted.
+          - It reads the issue text and uses an AI to determine labels (bug/feature/question) and perhaps suggests an assignee or relevant team based on the content.
+          - It could comment with a summary or a friendly response as well.
+        </Example>
+        <Example order="3" name="Release Notes Generator">
+          - When a new release/tag is pushed, this action compiles commit messages or PR titles since the last release and prompts an AI to draft human-readable release notes.
+          - The team would then only need to tweak the notes rather than writing from scratch.
+        </Example>
+        <Example order="4" name="Documentation Updater">
+          - An action that scans commit diffs for changes to code that lack corresponding docs, and opens a PR with suggested documentation changes generated by AI.
+          - A simplified version could focus just on detecting function docstrings that are missing and generating some.
+        </Example>
+      </Examples>
+      <Notes count="0">
+      </Notes>
+    </Brief>
+  </Briefs>
+  <Twists count="2">
+    <Twist order="1" name="The Helpful Saboteur" examples_count="2">
+      <Task>Build a developer tool that deliberately introduces productive chaos</Task>
+      <Examples count="2">
+        <Example order="1">CLI that suggests radical refactorings</Example>
+        <Example order="2">git hook that plays devil's advocate on commits</Example>
+      </Examples>
+    </Twist>
+    <Twist order="2" name="The Unreliable Narrator" examples_count="2">
+      <Task>Create an AI system that generates multiple perspectives on the same data</Task>
+      <Examples count="2">
+        <Example order="1">documentation generator that writes for different audiences</Example>
+        <Example order="2">data visualisation tool that presents competing interpretations</Example>
+      </Examples>
+    </Twist>
+  </Twists>
+</Projects>

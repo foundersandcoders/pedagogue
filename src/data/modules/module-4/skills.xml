@@ -1,0 +1,18 @@
+<AdditionalSkills skills_category_count="2">
+  <Overview>These are skills that are not part of the core purpose of the course, but developing them would be useful.</Overview>
+  <SkillsCategory order="1" name="Python" skills_count="6">
+    <Overview>The specific Python skills needed for this module are largely dictated by the project chosen. Creative projects might require image processing libraries, audio libraries, or specialized frameworks. Open-source LLM projects will require deep familiarity with ML libraries and model deployment.</Overview>
+    <Skill order="1" name="Machine Learning Libraries (PyTorch/TensorFlow)" importance="Essential" />
+    <Skill order="2" name="Model Deployment and MLOps" importance="Essential" />
+    <Skill order="3" name="Computer Vision Libraries (PIL, OpenCV)" importance="Recommended" />
+    <Skill order="4" name="Audio Processing Libraries" importance="Recommended" />
+    <Skill order="5" name="Performance Optimization" importance="Recommended" />
+    <Skill order="6" name="Environments and Package Management" importance="Recommended" />
+  </SkillsCategory>
+  <SkillsCategory order="2" name="System Administration and DevOps" skills_count="3">
+    <Overview>Working with open-source models often requires significant system administration skills, particularly for managing computational resources and deployment environments.</Overview>
+    <Skill order="1" name="GPU Configuration and Management" importance="Recommended" />
+    <Skill order="2" name="Container Technologies (Docker)" importance="Recommended" />
+    <Skill order="3" name="Cloud Platform Management" importance="Stretch" />
+  </SkillsCategory>
+</AdditionalSkills>

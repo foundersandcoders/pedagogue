@@ -1,0 +1,8 @@
+<AdditionalSkills skills_category_count="1">
+  <Overview>These are skills that are not part of the core purpose of the course, but developing them would be useful.</Overview>
+  <SkillsCategory order="1" name="Python" skills_count="2">
+    <Overview>During development, if using Python becomes advantageous for certain tasks (e.g. leveraging specific libraries or tools), teams might explore Python alongside their primary language. This flexible approach builds cross-language competency gradually.</Overview>
+    <Skill order="1" name="Environments and Package Management" importance="Stretch" />
+    <Skill order="2" name="Async Programming and API Design" importance="Stretch" />
+  </SkillsCategory>
+</AdditionalSkills>

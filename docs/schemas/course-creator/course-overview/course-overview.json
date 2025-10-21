@@ -1,0 +1,85 @@
+{
+  "name": "",
+  "information": {
+    "narrative": "",
+    "props": {
+      "metadata": {},
+      "logistics": {
+        "totalArcs": 0,
+        "totalModules": 0
+      },
+      "temporal": {
+        "startDate": "",
+        "endDate": "",
+        "totalWeeks": 0,
+        "daysPerWeek": 0,
+        "totalDays": 0
+      }
+    },
+    "cohort": {
+      "assumptions": {
+        "cohortSize": 0,
+        "teamSize": 0
+      }
+    }
+  },
+  "content": {
+    "progression": {
+      "narrative": ""
+    },
+    "arcs": [
+      {
+        "name": "",
+        "props": {
+          "metadata": {},
+          "logistics": {
+            "totalModules": 0
+          },
+          "temporal": {
+            "startDate": "",
+            "endDate": "",
+            "totalWeeks": 0,
+            "daysPerWeek": 0,
+            "totalDays": 0
+          }
+        },
+        "content": {
+          "description": "",
+          "themes": [
+            {
+              "name": "",
+              "narrative": ""
+            }
+          ],
+          "progression": {
+            "narrative": ""
+          },
+          "modules": [
+            {
+              "name": "",
+              "props": {
+                "metadata": {},
+                "temporal": {
+                  "startDate": "",
+                  "endDate": "",
+                  "totalWeeks": 0,
+                  "daysPerWeek": 0,
+                  "totalDays": 0
+                }
+              },
+              "content": {
+                "description": "",
+                "learningObjectives": [
+                  ""
+                ],
+                "keyTopics": [
+                  ""
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

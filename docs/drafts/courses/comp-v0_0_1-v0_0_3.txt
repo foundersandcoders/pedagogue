@@ -1,0 +1,209 @@
+Comparison: v0.0.1 (2025-10-15) vs v0.0.3 (2025-10-17)
+
+This comparison analyzes Arcs 1 & 2 between the original course draft and the latest revision.
+
+===
+Arc 1: Foundations of AI Engineering
+===
+
+High-Level Differences
+
+v0.0.1 (2025-10-15):
+- Theme: "Introduction to AI Engineering"
+- Philosophy: Theory-first approach - establish conceptual foundations before application
+- Structure: Model understanding → Prompt mastery → Integration patterns → Development workflows
+
+v0.0.3 (2025-10-17):
+- Theme: Same - "Introduction to AI Engineering"
+- Philosophy: Hands-on immediacy - learn fundamental concepts through practical application
+- Structure: LLM understanding & workflows → Prompt engineering → LLM frameworks → Testing & responsible AI
+
+Module-by-Module Comparison
+
+Arc 1, Module 1
+
+| Aspect              | v0.0.1 (2025-10-15)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | AI Models and Interaction Fundamentals                         | Understanding LLMs and AI-Enhanced Workflows
+| Focus               | LLM architecture, capabilities, limitations                    | LLM landscape + immediate workflow transformation
+| Approach            | Academic: Study models before using them                       | Hybrid: Understand models while using AI tools
+| Learning Objectives | Explain architecture, interact via APIs, identify use cases    | Evaluate models, integrate coding assistants, distinguish use cases
+| Key Topics          | LLM architecture, tokenization, limitations, API basics        | LLM overview, coding assistants (Copilot/Cursor), cost-performance tradeoffs
+| Practical Focus     | Basic API calls                                                | AI-enhanced development from day 1
+
+Key Shift: From pure model theory → to understanding models through practical tool use
+
+Arc 1, Module 2
+
+| Aspect              | v0.0.1 (2025-10-15)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | Prompt Engineering Mastery                                     | Prompt Engineering Fundamentals
+| Focus               | Comprehensive advanced prompting                               | Core systematic approaches
+| Scope               | Extensive: ReAct, self-consistency, constitutional AI          | Foundational: Essential patterns and techniques
+| Learning Objectives | Advanced patterns, template creation, cross-model evaluation   | Design effective prompts, systematic iteration, limitation understanding
+| Key Topics          | Advanced patterns (ReAct, self-consistency, constitutional AI) | Core patterns (few-shot, chain-of-thought), templates, evaluation metrics
+| Tone                | "Mastery" - exhaustive coverage                                | "Fundamentals" - solid foundation
+
+Key Shift: From advanced mastery → to essential competency with practical focus
+
+Arc 1, Module 3
+
+| Aspect              | v0.0.1 (2025-10-15)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | AI Integration Architectures                                   | Building LLM Applications with Modern Frameworks
+| Focus               | Low-level integration patterns                                 | Production-ready application development
+| Approach            | Technical patterns: streaming, caching, queues                 | Framework-based development (LangChain)
+| Learning Objectives | Design integrations, implement streaming, build retry logic    | Build complete apps, design APIs, manage state, deploy
+| Key Topics          | Sync/async patterns, caching, circuit breakers                 | LangChain, conversational interfaces, API design, deployment
+| Abstraction Level   | Infrastructure patterns                                        | Application frameworks
+
+Key Shift: From low-level patterns → to framework-powered application development
+
+Arc 1, Module 4
+
+| Aspect              | v0.0.1 (2025-10-15)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | AI-Enhanced Development Workflows                              | Evaluation, Testing, and Responsible AI Practices
+| Focus               | Transforming development with AI assistants                    | Quality assurance and ethical AI
+| Position            | Capstone of foundations                                        | Critical production concerns
+| Learning Objectives | Pair programming, test generation, code review with AI         | Design evaluation frameworks, implement testing, apply responsible AI
+| Key Topics          | AI IDEs, automated testing, code review                        | Evaluation metrics, testing non-deterministic systems, bias detection
+| Philosophy          | Productivity enhancement                                       | Quality and responsibility
+
+Key Shift: Development workflows moved to Module 1; Module 4 now addresses evaluation/ethics
+
+===
+Arc 2: Retrieval-Augmented Generation vs Agentic Systems
+===
+
+Fundamental Restructuring
+
+v0.0.1 (2025-10-15):
+- Arc Name: Agentic Systems
+- Theme: Autonomous agents with tool use, planning, memory
+- Philosophy: Building sophisticated autonomous problem-solvers
+- Scope: Deep dive into agent architectures over entire arc
+
+v0.0.3 (2025-10-17):
+- Arc Name: Retrieval-Augmented Generation and Knowledge Systems
+- Theme: Building knowledge-enhanced AI through RAG
+- Philosophy: Grounding AI in external knowledge bases
+- Scope: Complete RAG pipeline from fundamentals through production
+
+This is a complete conceptual replacement - not an evolution but a different arc entirely.
+
+Module-by-Module Comparison
+
+Arc 2, Module 1
+
+| Aspect              | v0.0.1 (2025-10-15)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | Tool Use and Function Calling                                  | Vector Embeddings and Semantic Search
+| Focus               | Agent tool integration                                         | Mathematical foundations of semantic similarity
+| Paradigm            | Agentic systems                                                | Knowledge retrieval systems
+| Learning Objectives | Function calling, tool schemas, execution loops                | Explain embeddings, implement semantic search, optimize retrieval
+| Key Topics          | Function calling APIs, tool selection, tool execution          | Embedding models, vector databases, similarity metrics, chunking
+| Technology Stack    | LLM tool use APIs                                              | Vector databases (Pinecone, Weaviate, ChromaDB)
+
+Complete Paradigm Shift: Agents → Knowledge systems
+
+Arc 2, Module 2
+
+| Aspect              | v0.0.1 (2025-10-15)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | Agent Planning and Reasoning                                   | Building Production RAG Pipelines
+| Focus               | Agent autonomy and task decomposition                          | End-to-end RAG implementation
+| Approach            | Planning frameworks (ReAct, plan-and-execute)                  | Complete pipeline (ingest → retrieve → generate)
+| Learning Objectives | Implement ReAct, plan-and-execute, task decomposition          | Design RAG architectures, process documents, implement context-aware generation
+| Key Topics          | ReAct, task decomposition, agent frameworks                    | RAG architecture, document loaders, retrieval strategies, source attribution
+| Philosophy          | Autonomous problem-solving                                     | Grounded, sourced responses
+
+Complete Paradigm Shift: Agent reasoning → RAG implementation
+
+Arc 2, Module 3
+
+| Aspect              | v0.0.1 (2025-10-15)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | Memory and State Management                                    | Advanced RAG Techniques and Optimization
+| Focus               | Agent memory systems                                           | RAG performance optimization
+| Scope               | Conversation, semantic, episodic memory                        | Query transformation, hybrid search, reranking, caching
+| Learning Objectives | Implement memory systems, semantic retrieval                   | Implement advanced retrieval, apply reranking, design caching
+| Key Topics          | Memory types, vector embeddings for memory, summarization      | Query expansion, hybrid search, cross-encoder reranking, caching strategies
+| Optimization Level  | Memory management                                              | System performance and cost
+
+Complete Paradigm Shift: Agent memory → RAG optimization
+
+Arc 2, Module 4
+
+| Aspect              | v0.0.1 (2025-10-15)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | Multi-Agent Systems                                            | Production RAG Systems and Maintenance
+| Focus               | Agent coordination                                             | Operational RAG systems
+| Paradigm            | Multiple specialized agents collaborating                      | Maintaining RAG systems at scale
+| Learning Objectives | Design multi-agent systems, communication protocols            | Design data refresh strategies, implement monitoring, debug issues, scale
+| Key Topics          | Multi-agent architectures, supervisory agents, message passing | Incremental indexing, monitoring, debugging, scaling, A/B testing
+| Production Concerns | Coordination complexity                                        | Operational maintenance
+
+Complete Paradigm Shift: Multi-agent coordination → RAG operations
+
+===
+Summary of Strategic Changes v0.0.1 → v0.0.3
+===
+
+Arc 1: Foundations - Evolution with Reordering
+
+Philosophy Evolution:
+- FROM: Theory-first (understand before doing)
+- TO: Theory-through-practice (understand while doing)
+
+Module Progression Changes:
+1. Theoretical model study → Practical LLM understanding + tools
+2. Advanced prompt mastery → Fundamental prompt competency
+3. Low-level integration → Framework-based development
+4. AI-enhanced workflows → Evaluation & responsible AI
+
+Key Strategic Shifts:
+1. Immediate Applicability: Learners use AI tools from day 1
+2. Framework Focus: Emphasis on LangChain vs raw patterns
+3. Quality First: Evaluation/testing moved into foundational arc
+4. Practical Depth: "Fundamentals" replaces "Mastery"
+
+Arc 2: Complete Replacement
+
+Philosophy Replacement:
+- FROM: Agentic Systems (autonomous problem-solvers)
+- TO: RAG & Knowledge Systems (grounded knowledge retrieval)
+
+This isn't an evolution - it's a different subject matter:
+- Agent autonomy → Knowledge grounding
+- Tool use → Semantic search
+- Planning frameworks → Retrieval pipelines
+- Memory systems → Caching strategies
+- Multi-agent coordination → Production operations
+
+Pedagogical Implications:
+
+v0.0.1 Vision: Train engineers to build advanced autonomous agent systems
+- Deep agent architectures
+- Sophisticated planning
+- Complex coordination
+- Cutting-edge AI systems
+
+v0.0.3 Vision: Train engineers to build reliable knowledge-enhanced applications
+- RAG fundamentals
+- Production pipelines
+- Operational excellence
+- Enterprise-ready systems
+
+The shift reflects a market reality check: most organizations need RAG systems (grounding AI in proprietary knowledge) more urgently than they need autonomous agents. The course now teaches the techniques that have immediate enterprise applicability.
+
+Where Did Agents Go?
+
+Agents didn't disappear - they moved to Arc 3 (modules condensed from 4→4 dedicated modules to integrated coverage alongside other advanced topics). This repositioning treats agents as one advanced technique among several, rather than a foundational pillar deserving an entire arc.
+
+Key Philosophical Change:
+
+v0.0.1: "AI Engineering = Building Autonomous Systems"
+v0.0.3: "AI Engineering = Grounding AI in Knowledge + Multiple Techniques"
+
+The revised course is more balanced, practical, and aligned with 2025 industry needs where RAG is ubiquitous and agents are still emerging.

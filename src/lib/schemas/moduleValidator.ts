@@ -1,7 +1,17 @@
 /**
- * Module XML Schema Validator
- * Validates generated XML against the required output schema structure
- * Works in both browser and Node.js environments
+ * Module XML Schema Validator (AUTHORITATIVE)
+ *
+ * Validates generated module XML against the official output schema defined in:
+ * src/data/templates/outputSchema.xml
+ *
+ * This validator is used in production by:
+ * - API route: src/routes/api/generate/+server.ts
+ * - UI component: src/lib/ModulePreview.svelte
+ *
+ * Works in both browser and Node.js environments.
+ *
+ * NOTE: This is the ONLY validator that should be used for module XML.
+ * Do not confuse with src/lib/moduleSchema.ts (legacy, deprecated).
  */
 
 import { DOMParser as NodeDOMParser } from '@xmldom/xmldom';
@@ -43,8 +53,11 @@ export function validateModuleXML(xmlString: string): ValidationResult {
 		// Validate Metadata section (optional, but recommended for change tracking)
 		validateMetadata(root, errors, warnings);
 
-		// Validate ModuleOverview section
-		validateModuleOverview(root, errors, warnings);
+		// Validate Description (direct child of Module)
+		validateDescription(root, errors, warnings);
+
+		// Validate LearningObjectives section
+		validateLearningObjectives(root, errors, warnings);
 
 		// Validate ResearchTopics section
 		validateResearchTopics(root, errors, warnings);
@@ -69,45 +82,41 @@ export function validateModuleXML(xmlString: string): ValidationResult {
 	}
 }
 
-function validateModuleOverview(root: Element, errors: string[], warnings: string[]): void {
-	const overviews = root.getElementsByTagName('ModuleOverview');
-	if (overviews.length === 0) {
-		errors.push('Missing required <ModuleOverview> section');
+function validateDescription(root: Element, errors: string[], warnings: string[]): void {
+	const descriptions = root.getElementsByTagName('Description');
+	if (descriptions.length === 0) {
+		errors.push('Missing required <Description> element');
 		return;
 	}
 
-	const overview = overviews[0];
-
-	// Check for ModuleDescription
-	const descriptions = overview.getElementsByTagName('ModuleDescription');
-	if (descriptions.length === 0 || !descriptions[0].textContent?.trim()) {
-		errors.push('<ModuleOverview> must contain <ModuleDescription> with content');
+	if (!descriptions[0].textContent?.trim()) {
+		errors.push('<Description> element must contain content');
 	}
+}
 
-	// Check for ModuleObjectives (minimum 3)
-	const objectivesSections = overview.getElementsByTagName('ModuleObjectives');
+function validateLearningObjectives(root: Element, errors: string[], warnings: string[]): void {
+	const objectivesSections = root.getElementsByTagName('LearningObjectives');
 	if (objectivesSections.length === 0) {
-		errors.push('<ModuleOverview> must contain <ModuleObjectives>');
+		errors.push('Missing required <LearningObjectives> section');
 		return;
 	}
 
 	const objectives = objectivesSections[0];
-	const objectiveList = objectives.getElementsByTagName('ModuleObjective');
+	const objectiveList = objectives.getElementsByTagName('LearningObjective');
 	if (objectiveList.length < 3) {
-		errors.push(`<ModuleObjectives> must contain at least 3 <ModuleObjective> elements (found ${objectiveList.length})`);
+		errors.push(`<LearningObjectives> must contain at least 3 <LearningObjective> elements (found ${objectiveList.length})`);
 	}
 
-	// Validate each objective has Name and Details
+	// Validate each objective has name attribute and content
 	for (let i = 0; i < objectiveList.length; i++) {
 		const obj = objectiveList[i];
-		const names = obj.getElementsByTagName('Name');
-		const details = obj.getElementsByTagName('Details');
+		const name = obj.getAttribute('name');
 
-		if (names.length === 0 || !names[0].textContent?.trim()) {
-			errors.push(`<ModuleObjective> #${i + 1} missing <Name>`);
+		if (!name || !name.trim()) {
+			errors.push(`<LearningObjective> #${i + 1} missing 'name' attribute`);
 		}
-		if (details.length === 0 || !details[0].textContent?.trim()) {
-			errors.push(`<ModuleObjective> #${i + 1} missing <Details>`);
+		if (!obj.textContent?.trim()) {
+			errors.push(`<LearningObjective> #${i + 1} missing content`);
 		}
 	}
 }
@@ -129,15 +138,39 @@ function validateResearchTopics(root: Element, errors: string[], warnings: strin
 	}
 
 	const primaryTopics = primaryTopicsSections[0];
-	const primaryTopicList = primaryTopics.getElementsByTagName('PrimaryTopic');
+	const primaryTopicList = primaryTopics.getElementsByTagName('Topic');
 	if (primaryTopicList.length < 5) {
-		errors.push(`<PrimaryTopics> must contain at least 5 <PrimaryTopic> elements (found ${primaryTopicList.length})`);
+		errors.push(`<PrimaryTopics> must contain at least 5 <Topic> elements (found ${primaryTopicList.length})`);
 	}
 
-	// Validate each primary topic has content
+	// Validate each primary topic has name attribute and content/subtopics
 	for (let i = 0; i < primaryTopicList.length; i++) {
-		if (!primaryTopicList[i].textContent?.trim()) {
-			errors.push(`<PrimaryTopic> #${i + 1} is empty`);
+		const topic = primaryTopicList[i];
+		const name = topic.getAttribute('name');
+
+		if (!name || !name.trim()) {
+			errors.push(`<Topic> #${i + 1} in PrimaryTopics missing 'name' attribute`);
+		}
+
+		// Topics should have either direct text content or SubTopic children
+		const subTopics = topic.getElementsByTagName('SubTopic');
+		const hasContent = topic.textContent?.trim() && topic.textContent.trim().length > 0;
+
+		if (subTopics.length === 0 && !hasContent) {
+			errors.push(`<Topic> #${i + 1} "${name || 'unnamed'}" has no content and no SubTopics`);
+		}
+
+		// Validate SubTopics if present
+		for (let j = 0; j < subTopics.length; j++) {
+			const subTopic = subTopics[j];
+			const subName = subTopic.getAttribute('name');
+
+			if (!subName || !subName.trim()) {
+				errors.push(`<SubTopic> #${j + 1} in Topic "${name || 'unnamed'}" missing 'name' attribute`);
+			}
+			if (!subTopic.textContent?.trim()) {
+				errors.push(`<SubTopic> #${j + 1} "${subName || 'unnamed'}" in Topic "${name || 'unnamed'}" is empty`);
+			}
 		}
 	}
 
@@ -145,10 +178,13 @@ function validateResearchTopics(root: Element, errors: string[], warnings: strin
 	const stretchTopicsSections = researchTopics.getElementsByTagName('StretchTopics');
 	if (stretchTopicsSections.length > 0) {
 		const stretchTopics = stretchTopicsSections[0];
-		const stretchTopicList = stretchTopics.getElementsByTagName('StretchTopic');
+		const stretchTopicList = stretchTopics.getElementsByTagName('Topic');
 		for (let i = 0; i < stretchTopicList.length; i++) {
-			if (!stretchTopicList[i].textContent?.trim()) {
-				warnings.push(`<StretchTopic> #${i + 1} is empty`);
+			const topic = stretchTopicList[i];
+			const name = topic.getAttribute('name');
+
+			if (!name || !name.trim()) {
+				warnings.push(`<Topic> #${i + 1} in StretchTopics missing 'name' attribute`);
 			}
 		}
 	}
@@ -163,73 +199,69 @@ function validateProjects(root: Element, errors: string[], warnings: string[]): 
 
 	const projects = projectsSections[0];
 
-	// Check for ProjectBriefs (minimum 2)
-	const projectBriefsSections = projects.getElementsByTagName('ProjectBriefs');
-	if (projectBriefsSections.length === 0) {
-		errors.push('<Projects> must contain <ProjectBriefs>');
+	// Check for Briefs (minimum 2)
+	const briefsSections = projects.getElementsByTagName('Briefs');
+	if (briefsSections.length === 0) {
+		errors.push('<Projects> must contain <Briefs>');
 		return;
 	}
 
-	const projectBriefs = projectBriefsSections[0];
-	const briefList = projectBriefs.getElementsByTagName('ProjectBrief');
+	const briefs = briefsSections[0];
+	const briefList = briefs.getElementsByTagName('Brief');
 	if (briefList.length < 2) {
-		errors.push(`<ProjectBriefs> must contain at least 2 <ProjectBrief> elements (found ${briefList.length})`);
+		errors.push(`<Briefs> must contain at least 2 <Brief> elements (found ${briefList.length})`);
 	}
 
-	// Validate each ProjectBrief
+	// Validate each Brief
 	for (let i = 0; i < briefList.length; i++) {
 		const brief = briefList[i];
 		const briefNum = i + 1;
+		const briefName = brief.getAttribute('name') || 'unnamed';
 
-		// Check Overview
-		const overviews = brief.getElementsByTagName('Overview');
-		if (overviews.length === 0) {
-			errors.push(`<ProjectBrief> #${briefNum} missing <Overview>`);
-		} else {
-			const overview = overviews[0];
-			const names = overview.getElementsByTagName('Name');
-			const tasks = overview.getElementsByTagName('Task');
-			const focuses = overview.getElementsByTagName('Focus');
-
-			if (names.length === 0 || !names[0].textContent?.trim()) {
-				errors.push(`<ProjectBrief> #${briefNum} <Overview> missing <Name>`);
-			}
-			if (tasks.length === 0 || !tasks[0].textContent?.trim()) {
-				errors.push(`<ProjectBrief> #${briefNum} <Overview> missing <Task>`);
-			}
-			if (focuses.length === 0 || !focuses[0].textContent?.trim()) {
-				errors.push(`<ProjectBrief> #${briefNum} <Overview> missing <Focus>`);
-			}
+		// Check name attribute
+		if (!brief.getAttribute('name')?.trim()) {
+			errors.push(`<Brief> #${briefNum} missing 'name' attribute`);
 		}
 
-		// Check Criteria
+		// Check Task (direct child)
+		const tasks = brief.getElementsByTagName('Task');
+		if (tasks.length === 0 || !tasks[0].textContent?.trim()) {
+			errors.push(`<Brief> #${briefNum} "${briefName}" missing <Task>`);
+		}
+
+		// Check Focus (direct child)
+		const focuses = brief.getElementsByTagName('Focus');
+		if (focuses.length === 0 || !focuses[0].textContent?.trim()) {
+			errors.push(`<Brief> #${briefNum} "${briefName}" missing <Focus>`);
+		}
+
+		// Check Criteria (direct child)
 		const criterias = brief.getElementsByTagName('Criteria');
 		if (criterias.length === 0 || !criterias[0].textContent?.trim()) {
-			errors.push(`<ProjectBrief> #${briefNum} missing <Criteria>`);
+			errors.push(`<Brief> #${briefNum} "${briefName}" missing <Criteria>`);
 		}
 
 		// Check Skills (minimum 3)
 		const skillsSections = brief.getElementsByTagName('Skills');
 		if (skillsSections.length === 0) {
-			errors.push(`<ProjectBrief> #${briefNum} missing <Skills>`);
+			errors.push(`<Brief> #${briefNum} "${briefName}" missing <Skills>`);
 		} else {
 			const skills = skillsSections[0];
 			const skillList = skills.getElementsByTagName('Skill');
 			if (skillList.length < 3) {
-				errors.push(`<ProjectBrief> #${briefNum} <Skills> must contain at least 3 <Skill> elements (found ${skillList.length})`);
+				errors.push(`<Brief> #${briefNum} "${briefName}" <Skills> must contain at least 3 <Skill> elements (found ${skillList.length})`);
 			}
 
-			// Validate each skill
+			// Validate each skill has name attribute and content
 			for (let j = 0; j < skillList.length; j++) {
 				const skill = skillList[j];
-				const names = skill.getElementsByTagName('Name');
-				const details = skill.getElementsByTagName('Details');
+				const skillName = skill.getAttribute('name');
 
-				if (names.length === 0 || !names[0].textContent?.trim()) {
-					errors.push(`<ProjectBrief> #${briefNum} <Skill> #${j + 1} missing <Name>`);
+				if (!skillName || !skillName.trim()) {
+					errors.push(`<Skill> #${j + 1} in Brief "${briefName}" missing 'name' attribute`);
 				}
-				if (details.length === 0 || !details[0].textContent?.trim()) {
-					errors.push(`<ProjectBrief> #${briefNum} <Skill> #${j + 1} missing <Details>`);
+				if (!skill.textContent?.trim()) {
+					errors.push(`<Skill> #${j + 1} "${skillName || 'unnamed'}" in Brief "${briefName}" missing content`);
 				}
 			}
 		}
@@ -237,67 +269,76 @@ function validateProjects(root: Element, errors: string[], warnings: string[]): 
 		// Check Examples (minimum 3)
 		const examplesSections = brief.getElementsByTagName('Examples');
 		if (examplesSections.length === 0) {
-			errors.push(`<ProjectBrief> #${briefNum} missing <Examples>`);
+			errors.push(`<Brief> #${briefNum} "${briefName}" missing <Examples>`);
 		} else {
 			const examples = examplesSections[0];
 			const exampleList = examples.getElementsByTagName('Example');
 			if (exampleList.length < 3) {
-				errors.push(`<ProjectBrief> #${briefNum} <Examples> must contain at least 3 <Example> elements (found ${exampleList.length})`);
+				errors.push(`<Brief> #${briefNum} "${briefName}" <Examples> must contain at least 3 <Example> elements (found ${exampleList.length})`);
 			}
 
-			// Validate each example
+			// Validate each example has name attribute and content
 			for (let j = 0; j < exampleList.length; j++) {
 				const example = exampleList[j];
-				const names = example.getElementsByTagName('Name');
-				const descriptions = example.getElementsByTagName('Description');
+				const exampleName = example.getAttribute('name');
 
-				if (names.length === 0 || !names[0].textContent?.trim()) {
-					errors.push(`<ProjectBrief> #${briefNum} <Example> #${j + 1} missing <Name>`);
+				if (!exampleName || !exampleName.trim()) {
+					errors.push(`<Example> #${j + 1} in Brief "${briefName}" missing 'name' attribute`);
 				}
-				if (descriptions.length === 0 || !descriptions[0].textContent?.trim()) {
-					errors.push(`<ProjectBrief> #${briefNum} <Example> #${j + 1} missing <Description>`);
+				if (!example.textContent?.trim()) {
+					errors.push(`<Example> #${j + 1} "${exampleName || 'unnamed'}" in Brief "${briefName}" missing content`);
 				}
 			}
 		}
 	}
 
-	// Check for ProjectTwists (minimum 2)
-	const projectTwistsSections = projects.getElementsByTagName('ProjectTwists');
-	if (projectTwistsSections.length === 0) {
-		errors.push('<Projects> must contain <ProjectTwists>');
+	// Check for Twists (minimum 2)
+	const twistsSections = projects.getElementsByTagName('Twists');
+	if (twistsSections.length === 0) {
+		errors.push('<Projects> must contain <Twists>');
 		return;
 	}
 
-	const projectTwists = projectTwistsSections[0];
-	const twistList = projectTwists.getElementsByTagName('ProjectTwist');
+	const twists = twistsSections[0];
+	const twistList = twists.getElementsByTagName('Twist');
 	if (twistList.length < 2) {
-		errors.push(`<ProjectTwists> must contain at least 2 <ProjectTwist> elements (found ${twistList.length})`);
+		errors.push(`<Twists> must contain at least 2 <Twist> elements (found ${twistList.length})`);
 	}
 
 	// Validate each twist
 	for (let i = 0; i < twistList.length; i++) {
 		const twist = twistList[i];
 		const twistNum = i + 1;
+		const twistName = twist.getAttribute('name') || 'unnamed';
 
-		const names = twist.getElementsByTagName('Name');
+		// Check name attribute
+		if (!twist.getAttribute('name')?.trim()) {
+			errors.push(`<Twist> #${twistNum} missing 'name' attribute`);
+		}
+
+		// Check Task
 		const tasks = twist.getElementsByTagName('Task');
-
-		if (names.length === 0 || !names[0].textContent?.trim()) {
-			errors.push(`<ProjectTwist> #${twistNum} missing <Name>`);
-		}
 		if (tasks.length === 0 || !tasks[0].textContent?.trim()) {
-			errors.push(`<ProjectTwist> #${twistNum} missing <Task>`);
+			errors.push(`<Twist> #${twistNum} "${twistName}" missing <Task>`);
 		}
 
-		// Check ExampleUses (minimum 2)
-		const exampleUsesSections = twist.getElementsByTagName('ExampleUses');
-		if (exampleUsesSections.length === 0) {
-			errors.push(`<ProjectTwist> #${twistNum} missing <ExampleUses>`);
+		// Check Examples (minimum 2)
+		const examplesSections = twist.getElementsByTagName('Examples');
+		if (examplesSections.length === 0) {
+			errors.push(`<Twist> #${twistNum} "${twistName}" missing <Examples>`);
 		} else {
-			const exampleUses = exampleUsesSections[0];
-			const exampleList = exampleUses.getElementsByTagName('Example');
+			const examples = examplesSections[0];
+			const exampleList = examples.getElementsByTagName('Example');
 			if (exampleList.length < 2) {
-				errors.push(`<ProjectTwist> #${twistNum} <ExampleUses> must contain at least 2 <Example> elements (found ${exampleList.length})`);
+				errors.push(`<Twist> #${twistNum} "${twistName}" <Examples> must contain at least 2 <Example> elements (found ${exampleList.length})`);
+			}
+
+			// Validate examples have content
+			for (let j = 0; j < exampleList.length; j++) {
+				const example = exampleList[j];
+				if (!example.textContent?.trim()) {
+					errors.push(`<Example> #${j + 1} in Twist "${twistName}" is empty`);
+				}
 			}
 		}
 	}
@@ -305,7 +346,7 @@ function validateProjects(root: Element, errors: string[], warnings: string[]): 
 
 function validateAdditionalSkills(root: Element, errors: string[], warnings: string[]): void {
 	const additionalSkillsSections = root.getElementsByTagName('AdditionalSkills');
-	
+
 	if (additionalSkillsSections.length === 0) {
 		errors.push('Missing required <AdditionalSkills> section');
 		return;
@@ -322,28 +363,43 @@ function validateAdditionalSkills(root: Element, errors: string[], warnings: str
 	for (let i = 0; i < categories.length; i++) {
 		const category = categories[i];
 		const catNum = i + 1;
+		const catName = category.getAttribute('name') || 'unnamed';
 
-		const names = category.getElementsByTagName('Name');
-		if (names.length === 0 || !names[0].textContent?.trim()) {
-			errors.push(`<SkillsCategory> #${catNum} missing <Name>`);
+		// Check name attribute
+		if (!category.getAttribute('name')?.trim()) {
+			errors.push(`<SkillsCategory> #${catNum} missing 'name' attribute`);
 		}
 
+		// Check for Overview element
+		const overviews = category.getElementsByTagName('Overview');
+		if (overviews.length === 0 || !overviews[0].textContent?.trim()) {
+			errors.push(`<SkillsCategory> #${catNum} "${catName}" missing <Overview>`);
+		}
+
+		// Check for Skills (at least 1)
 		const skills = category.getElementsByTagName('Skill');
 		if (skills.length === 0) {
-			errors.push(`<SkillsCategory> #${catNum} must contain at least one <Skill>`);
+			errors.push(`<SkillsCategory> #${catNum} "${catName}" must contain at least one <Skill>`);
 		}
 
+		// Validate each skill
 		for (let j = 0; j < skills.length; j++) {
 			const skill = skills[j];
-			const skillNames = skill.getElementsByTagName('SkillName');
-			const skillDescriptions = skill.getElementsByTagName('SkillDescription');
+			const skillName = skill.getAttribute('name');
+			const importance = skill.getAttribute('importance');
 
-			if (skillNames.length === 0 || !skillNames[0].textContent?.trim()) {
-				errors.push(`<SkillsCategory> #${catNum} <Skill> #${j + 1} missing <SkillName>`);
+			// Check name attribute
+			if (!skillName || !skillName.trim()) {
+				errors.push(`<Skill> #${j + 1} in SkillsCategory "${catName}" missing 'name' attribute`);
 			}
-			if (skillDescriptions.length === 0 || !skillDescriptions[0].textContent?.trim()) {
-				errors.push(`<SkillsCategory> #${catNum} <Skill> #${j + 1} missing <SkillDescription>`);
+
+			// Check importance attribute (optional but validate if present)
+			if (importance && !['Essential', 'Recommended', 'Stretch'].includes(importance)) {
+				warnings.push(`<Skill> "${skillName || 'unnamed'}" in SkillsCategory "${catName}" has invalid 'importance' value "${importance}" (should be Essential, Recommended, or Stretch)`);
 			}
+
+			// Skills can be self-closing or have content - both are valid
+			// No content validation needed as self-closing is acceptable
 		}
 	}
 }
@@ -366,8 +422,10 @@ function validateMetadata(root: Element, errors: string[], warnings: string[]): 
 	} else {
 		const genInfo = generationInfoSections[0];
 
+		// Check for timestamp - can be attribute OR child element
+		const timestampAttr = genInfo.getAttribute('timestamp');
 		const timestamps = genInfo.getElementsByTagName('Timestamp');
-		if (timestamps.length === 0 || !timestamps[0].textContent?.trim()) {
+		if (!timestampAttr && (timestamps.length === 0 || !timestamps[0].textContent?.trim())) {
 			warnings.push('<GenerationInfo> missing <Timestamp>');
 		}
 
@@ -392,23 +450,26 @@ function validateMetadata(root: Element, errors: string[], warnings: string[]): 
 			const change = changes[i];
 			const changeNum = i + 1;
 
-			// Validate required fields in Change
+			// Validate required fields in Change - can be attributes OR child elements
+			const sectionAttr = change.getAttribute('section');
 			const sections = change.getElementsByTagName('Section');
-			if (sections.length === 0 || !sections[0].textContent?.trim()) {
+			if (!sectionAttr && (sections.length === 0 || !sections[0].textContent?.trim())) {
 				warnings.push(`<Change> #${changeNum} missing <Section> identifier`);
 			}
 
+			const typeAttr = change.getAttribute('type');
 			const types = change.getElementsByTagName('Type');
-			if (types.length === 0 || !types[0].textContent?.trim()) {
+			if (!typeAttr && (types.length === 0 || !types[0].textContent?.trim())) {
 				warnings.push(`<Change> #${changeNum} missing <Type>`);
 			}
 
+			const confidenceAttr = change.getAttribute('confidence');
 			const confidences = change.getElementsByTagName('Confidence');
-			if (confidences.length === 0 || !confidences[0].textContent?.trim()) {
+			if (!confidenceAttr && (confidences.length === 0 || !confidences[0].textContent?.trim())) {
 				warnings.push(`<Change> #${changeNum} missing <Confidence> level`);
 			} else {
-				// Validate confidence is one of the allowed values
-				const confValue = confidences[0].textContent?.trim().toLowerCase();
+				// Validate confidence is one of the allowed values (from attribute or element)
+				const confValue = (confidenceAttr || confidences[0]?.textContent)?.trim().toLowerCase();
 				if (confValue && !['high', 'medium', 'low'].includes(confValue)) {
 					warnings.push(`<Change> #${changeNum} <Confidence> must be 'high', 'medium', or 'low' (found '${confValue}')`);
 				}

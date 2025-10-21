@@ -1,0 +1,154 @@
+<ResearchTopics primary_topic_count="8" stretch_topic_count="7">
+  <Overview>These are topics that might be useful foci for the initial research session at the beginning of the module.</Overview>
+	<PrimaryTopics count="8">
+    <Topic order="1" name="RAG Concepts and Case Studies" subtopic_count="2">
+      <SubTopic order="1" name="Understanding RAG fundamentals">
+        - Find explanations of why RAG is useful and how companies use it
+        - Examples: how Bing Search or enterprise chatbots use retrieval to give up-to-date info
+        - RAG "combines LLMs with external knowledge to get more accurate, up-to-date answers"
+      </SubTopic>
+      <SubTopic order="2" name="Real-world applications">
+        - Research case studies of successful RAG implementations
+        - Understand the problems RAG solves vs. other approaches
+        - Compare RAG to fine-tuning and when to use each
+      </SubTopic>
+    </Topic>
+    <Topic order="2" name="Vector Databases" subtopic_count="3">
+      <SubTopic order="1" name="Vector database options">
+        - Research at least one or two vector DB options
+        - Consider Chroma (open source and easy to run)
+        - Experiment with Pinecone's free tier or other cloud options
+        - Weaviate, Qdrant, Milvus as alternatives
+      </SubTopic>
+      <SubTopic order="2" name="Indexing and querying">
+        - How to index data in a vector database
+        - How to perform similarity searches
+        - Possibly demonstrate a tiny example (e.g. indexing 5 sentences and querying one)
+      </SubTopic>
+      <SubTopic order="3" name="Trade-offs and considerations">
+        - Local vs. cloud-hosted solutions
+        - Performance characteristics
+        - Cost implications
+      </SubTopic>
+    </Topic>
+    <Topic order="3" name="Embedding Models" subtopic_count="3">
+      <SubTopic order="1" name="Embedding model selection">
+        - Research what embedding model to use for text
+        - OpenAI's text-embedding-ada-002 is a straightforward choice via API
+        - Local embedding models as alternatives (SBERT, InstructorXL)
+      </SubTopic>
+      <SubTopic order="2" name="Trade-offs">
+        - OpenAI's embeddings are high-quality but cost per call
+        - Local models might be free but less performant
+        - Dimensionality considerations
+      </SubTopic>
+      <SubTopic order="3" name="How semantic similarity works">
+        - Understand the concept of embedding space
+        - How cosine similarity and other distance metrics work
+        - How to choose appropriate similarity thresholds
+      </SubTopic>
+    </Topic>
+    <Topic order="4" name="Prompting for QA with Context" subtopic_count="3">
+      <SubTopic order="1" name="Prompt formatting strategies">
+        - How to format the prompt when you have retrieved documents
+        - Strategies like "Answer the question using only the following context…"
+        - Instructing the model to say if it doesn't know or if info wasn't found
+      </SubTopic>
+      <SubTopic order="2" name="Citation and source referencing">
+        - How to ask the LLM to provide the source
+        - Prompt templates that explicitly say: "Include a reference to the document in your answer"
+        - Find community prompts or literature on this
+      </SubTopic>
+      <SubTopic order="3" name="Handling context limitations">
+        - How much context to include in the prompt
+        - Strategies for when retrieved documents exceed token limits
+        - Balancing relevance vs. comprehensiveness
+      </SubTopic>
+    </Topic>
+    <Topic order="5" name="Evaluation of RAG Systems" subtopic_count="3">
+      <SubTopic order="1" name="Evaluation approaches">
+        - How to evaluate the chatbot's answers for factual accuracy
+        - Creating an evaluation set with known answers
+        - Unit tests for the chatbot
+      </SubTopic>
+      <SubTopic order="2" name="Metrics for RAG">
+        - Precision and recall of retrieval
+        - Groundedness of responses
+        - Answer relevance and correctness
+        - Using AI evaluators to measure quality
+      </SubTopic>
+      <SubTopic order="3" name="Systematic testing">
+        - Awareness of how to systematically test an AI QA system
+        - Industry practices for RAG evaluation
+        - Identifying and handling failure modes
+      </SubTopic>
+    </Topic>
+    <Topic order="6" name="AI Agents and Function Calling" subtopic_count="3">
+      <SubTopic order="1" name="OpenAI Function Calling">
+        - Understand OpenAI's function calling feature in the Chat API
+        - How developers specify functions (with name and parameters)
+        - How the model decides to output a JSON to call them
+        - Best practices to get reliable function calls
+      </SubTopic>
+      <SubTopic order="2" name="Agent Frameworks">
+        - Explore libraries like LangChain agents or Microsoft's Semantic Kernel
+        - What do these frameworks provide?
+        - How agents implement reasoning loops (often using the ReAct framework)
+        - Simple agent examples from documentation
+      </SubTopic>
+      <SubTopic order="3" name="Case Studies of Autonomous Agents">
+        - Research experiments like AutoGPT or BabyAGI
+        - What kinds of tasks were they able to automate?
+        - Challenges encountered (getting stuck in loops, irrelevant actions)
+        - Metrics or anecdotes on effectiveness and efficiency
+      </SubTopic>
+    </Topic>
+    <Topic order="7" name="Tool Design and Safety for AI Agents" subtopic_count="3">
+      <SubTopic order="1" name="Designing Tool APIs">
+        - How to choose and design tools for AI agents
+        - Common tools: calculator, web search, knowledge lookup
+        - Model-Compute-Pipeline (MCP) standard for connecting LLMs to tools
+        - Error handling: what if the tool returns nothing useful?
+      </SubTopic>
+      <SubTopic order="2" name="Ensuring Safe and Relevant Actions">
+        - How to keep the agent from doing unwanted things
+        - Constraining the tools available
+        - Strategies to keep the agent on track
+        - Requiring the agent to explain why it's calling a function
+        - Time-outs if too many steps
+      </SubTopic>
+      <SubTopic order="3" name="Ethical boundaries">
+        - Privacy considerations when hooking to external APIs
+        - Data security and access controls
+        - Audit trails for agent actions
+      </SubTopic>
+    </Topic>
+    <Topic order="8" name="Multi-Agent Systems" subtopic_count="3">
+      <SubTopic order="1" name="Advanced multi-agent frameworks">
+        - Research AutoGen, CrewAI, and similar frameworks
+        - How these frameworks enable agent collaboration
+        - Communication protocols between agents
+      </SubTopic>
+      <SubTopic order="2" name="Agent coordination patterns">
+        - Task decomposition strategies
+        - Consensus mechanisms in AI systems
+        - Agent orchestration approaches
+      </SubTopic>
+      <SubTopic order="3" name="Emergent behaviors">
+        - How distributed problem-solving works
+        - Emergent intelligence in agent collectives
+        - Mixture of experts approaches
+        - Agent negotiation and debate patterns
+      </SubTopic>
+    </Topic>
+  </PrimaryTopics>
+	<StretchTopics count="7">
+	  <Topic order="1" name="Multi-turn and Memory in Agents" subtopic_count="0">How agents carry state and manage results from previous function calls</Topic>
+		<Topic order="2" name="Graph databases for knowledge representation in RAG systems" subtopic_count="0"></Topic>
+		<Topic order="3" name="Hybrid search strategies combining vector and keyword search" subtopic_count="0"></Topic>
+		<Topic order="4" name="Fine-tuning embedding models for domain-specific applications" subtopic_count="0"></Topic>
+		<Topic order="5" name="Advanced chunking strategies and their impact on retrieval quality" subtopic_count="0"></Topic>
+		<Topic order="6" name="Agent memory architectures and long-term context management" subtopic_count="0"></Topic>
+		<Topic order="7" name="Verification and validation in multi-agent systems" subtopic_count="0"></Topic>
+	</StretchTopics>
+</ResearchTopics>

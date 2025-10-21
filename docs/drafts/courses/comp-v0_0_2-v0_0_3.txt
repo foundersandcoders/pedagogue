@@ -1,0 +1,249 @@
+Comparison: v0.0.2 (2025-10-17) vs v0.0.3 (2025-10-17)
+
+This comparison analyzes Arcs 1 & 2 between two iterations created on the same day, representing rapid refinement.
+
+===
+Arc 1: Foundations of AI Engineering
+===
+
+High-Level Similarities
+
+Both versions share:
+- Same arc name: "Foundations of AI Engineering"
+- Same theme: "Introduction to AI Engineering"
+- Practice-first philosophy: Immediate tool use before deep theory
+- 4 modules, 8 weeks total
+
+The strategic approach is consistent - these are refinements, not reimagining.
+
+Module-by-Module Comparison
+
+Arc 1, Module 1
+
+| Aspect              | v0.0.2 (2025-10-17)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | AI-Enhanced Development Workflows                              | Understanding LLMs and AI-Enhanced Workflows
+| Focus               | Pure workflow transformation                                   | LLM fundamentals + workflows
+| Scope               | Coding assistants, testing, documentation                      | LLM landscape + coding assistant integration
+| Learning Objectives | Integrate assistants, validate code, testing, team practices   | Evaluate models, integrate assistants, distinguish use cases, analyze tradeoffs
+| Key Topics          | IDE integrations, prompt for code, debugging, team collab      | LLM overview, provider comparison, coding assistants, context/tokens, cost optimization
+| Foundation Level    | Assumes LLM understanding                                      | Establishes LLM understanding
+
+Key Shift: From pure workflow focus → to foundational LLM understanding + workflows
+
+Pedagogical Insight:
+v0.0.2 jumped straight to tools, perhaps too aggressively
+v0.0.3 provides essential context before tool adoption
+
+Arc 1, Module 2
+
+| Aspect              | v0.0.2 (2025-10-17)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | Prompt Engineering and LLM Interaction                         | Prompt Engineering Fundamentals
+| Focus               | Systematic prompt design                                       | Systematic prompt engineering techniques
+| Scope               | Core patterns, few-shot, chain-of-thought                      | Same - established techniques
+| Learning Objectives | Design prompts, systematic iteration, limitations              | Nearly identical wording
+| Key Topics          | Core prompting, few-shot, chain-of-thought, templates          | Same core techniques
+| Tone                | Balanced, practical                                            | Explicitly "Fundamentals"
+
+Key Shift: Minimal - mostly titling clarity ("Fundamentals" more explicit)
+
+This module is essentially unchanged - the prompt engineering approach was already solid.
+
+Arc 1, Module 3
+
+| Aspect              | v0.0.2 (2025-10-17)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | Machine Learning Fundamentals for AI Engineers                 | Building LLM Applications with Modern Frameworks
+| Focus               | ML concepts and theory                                         | Production application development
+| Approach            | Conceptual understanding (non-mathematical)                    | Framework-based implementation (LangChain)
+| Learning Objectives | Explain ML concepts, understand architectures, interpret metrics| Build complete apps, implement error handling, design APIs, deploy
+| Key Topics          | Supervised/unsupervised learning, neural networks, overfitting | LangChain fundamentals, conversational interfaces, backend integration
+| Placement Logic     | Understand ML before APIs                                      | Build apps before diving into APIs
+
+Major Shift: ML foundations removed from Arc 1 → Application development takes priority
+
+Pedagogical Insight:
+v0.0.2: Conceptual grounding before building
+v0.0.3: Build applications before learning underlying theory
+
+This is significant - v0.0.3 doubles down on "build first, understand later"
+
+Arc 1, Module 4
+
+| Aspect              | v0.0.2 (2025-10-17)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | Working with AI APIs and SDKs                                  | Evaluation, Testing, and Responsible AI Practices
+| Focus               | API integration mechanics                                      | Quality assurance and ethics
+| Learning Objectives | Integrate providers, error handling, cost optimization         | Design evaluation, implement testing, apply responsible AI
+| Key Topics          | Provider APIs, authentication, rate limiting, abstraction      | Evaluation metrics, testing strategies, bias detection, guardrails
+| Practical vs Theory | Hands-on API work                                              | Quality and governance frameworks
+
+Major Shift: API mechanics → Quality/evaluation/responsible AI
+
+Pedagogical Insight:
+v0.0.2: Ends with practical API skills
+v0.0.3: Ends with production concerns (evaluation, safety)
+
+This suggests v0.0.3 wants Arc 1 to cover the complete lifecycle: tools → prompts → apps → quality
+
+===
+Arc 2: Building AI-Powered Applications vs RAG & Knowledge Systems
+===
+
+Fundamental Restructuring
+
+v0.0.2 (2025-10-17):
+- Arc Name: Building AI-Powered Applications
+- Theme: Application architecture and development practices
+- Philosophy: Engineering complete applications with AI features
+- Focus: Architecture, state, agents, UX
+
+v0.0.3 (2025-10-17):
+- Arc Name: Retrieval-Augmented Generation and Knowledge Systems
+- Theme: Building knowledge-enhanced AI systems
+- Philosophy: Grounding AI in external knowledge through RAG
+- Focus: Embeddings, vector databases, RAG pipelines, production
+
+This represents a strategic pivot from general application development to specialized RAG systems.
+
+Module-by-Module Comparison
+
+Arc 2, Module 1
+
+| Aspect              | v0.0.2 (2025-10-17)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | AI Application Architecture Patterns                           | Vector Embeddings and Semantic Search
+| Focus               | System architecture for AI apps                                | Semantic similarity fundamentals
+| Approach            | Architectural patterns (microservices, queues)                 | Mathematical/technical (embeddings, vectors)
+| Learning Objectives | Separate AI/business logic, queues, caching, observability     | Explain embeddings, implement semantic search, compare models
+| Key Topics          | Microservices, queues, caching, database design                | Embedding models, vector databases, similarity metrics, chunking
+| Abstraction Level   | System design patterns                                         | Data representation techniques
+
+Complete Pivot: System architecture → Knowledge representation
+
+Arc 2, Module 2
+
+| Aspect              | v0.0.2 (2025-10-17)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | Context Management and Conversation Design                     | Building Production RAG Pipelines
+| Focus               | Conversational state management                                | End-to-end RAG implementation
+| Approach            | Conversation-centric                                           | Retrieval-generation pipeline
+| Learning Objectives | Manage history, optimize windows, build memory, persist state  | Design RAG architectures, process documents, context-aware generation
+| Key Topics          | Context windows, summarization, memory, session persistence    | RAG architecture, document processing, retrieval strategies, citations
+| Application Type    | Conversational AI                                              | Question-answering with retrieval
+
+Complete Pivot: Conversation management → RAG pipelines
+
+Arc 2, Module 3
+
+| Aspect              | v0.0.2 (2025-10-17)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | AI Agents and Tool Use                                         | Advanced RAG Techniques and Optimization
+| Focus               | Agents with function calling                                   | RAG performance enhancement
+| Paradigm            | Agentic reasoning and action                                   | Retrieval optimization
+| Learning Objectives | Function calling, tool schemas, agent frameworks, safety       | Advanced retrieval, reranking, caching, evaluation, optimization
+| Key Topics          | Function calling, tool schemas, ReAct, agent frameworks        | Query transformation, hybrid search, reranking, caching strategies
+| Complexity Level    | Building autonomous agents                                     | Optimizing retrieval systems
+
+Complete Pivot: Agent systems → RAG optimization
+
+Arc 2, Module 4
+
+| Aspect              | v0.0.2 (2025-10-17)                                            | v0.0.3 (2025-10-17)
+|---------------------|----------------------------------------------------------------|---------------
+| Title               | UX Design and Testing for AI Features                          | Production RAG Systems and Maintenance
+| Focus               | User experience for AI                                         | Operational RAG systems
+| Approach            | Product and UX perspective                                     | Operations and maintenance
+| Learning Objectives | Design UI, progressive disclosure, loading states, testing     | Data refresh, monitoring, debugging, scaling, A/B testing
+| Key Topics          | UX patterns, loading states, error handling, testing strategies| Incremental indexing, monitoring, debugging, scaling, feedback
+| Perspective         | User-facing product                                            | System operations
+
+Complete Pivot: UX/product → Operations/maintenance
+
+===
+Summary of Strategic Changes v0.0.2 → v0.0.3
+===
+
+Arc 1: Refinement of Practice-First Approach
+
+Key Changes:
+1. Module 1: Added LLM fundamentals (was pure workflow)
+2. Module 2: Minimal change (already solid)
+3. Module 3: Replaced ML theory with LLM frameworks (theory deferred)
+4. Module 4: Replaced API mechanics with evaluation/responsible AI
+
+Philosophy Refinement:
+- v0.0.2: Immediate tools → Build skills progressively
+- v0.0.3: Essential context → Build immediately → Ensure quality
+
+The progression now covers: Understand + Use → Master Prompts → Build Apps → Ensure Quality
+
+This is more complete - it addresses the full development lifecycle within foundations.
+
+Arc 2: Strategic Replacement
+
+v0.0.2 Vision: General AI Application Development
+- Architecture patterns
+- Conversation management
+- Agent systems (simplified)
+- UX and testing
+
+v0.0.3 Vision: Specialized RAG Expertise
+- Vector embeddings
+- RAG pipelines
+- RAG optimization
+- RAG operations
+
+Why This Change?
+
+The v0.0.2 approach was broad but shallow - covering many application patterns without depth.
+The v0.0.3 approach is narrow but deep - mastering one critical technique (RAG) completely.
+
+Market Alignment:
+- RAG is the most widely deployed advanced AI technique in 2025
+- Every enterprise needs to ground AI in proprietary knowledge
+- RAG systems are production-critical and require specialized expertise
+
+Pedagogical Trade-offs:
+
+v0.0.2 Advantages:
+- Broader skill coverage
+- Touches agents, UX, architecture
+- More versatile graduates
+
+v0.0.3 Advantages:
+- Deep expertise in critical technology
+- Production-ready RAG skills
+- Complete pipeline understanding
+- Immediate enterprise value
+
+The v0.0.3 choice suggests: "Better to be expert in one critical thing than competent in many."
+
+What Happened to v0.0.2 Content?
+
+Likely distributed:
+- Architecture patterns → Spread across other modules
+- Conversation management → Relevant to multiple contexts
+- Agents → Moved to Arc 3 (confirmed in v0.0.3 structure)
+- UX/Testing → Partially in Arc 1 Module 4, rest in Arc 4
+
+The content wasn't discarded - it was redistributed to make room for deep RAG coverage.
+
+===
+Key Insight: Same Day, Different Strategy
+===
+
+These two versions were created on the same day (2025-10-17), suggesting:
+
+1. Rapid iteration based on stakeholder feedback
+2. Recognition that v0.0.2's breadth lacked depth
+3. Market research indicating RAG's criticality
+4. Decision to build depth in high-value areas
+
+The progression from v0.0.2 → v0.0.3 shows increasing confidence in:
+- Practice-first learning (even more immediate in v0.0.3)
+- Depth over breadth (RAG specialization)
+- Production focus (operations and maintenance emphasized)
+
+v0.0.3 represents a more opinionated, focused curriculum that bets on RAG as the killer app for Arc 2, rather than trying to cover all application patterns.
