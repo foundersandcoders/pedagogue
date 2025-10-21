@@ -31,7 +31,7 @@
     error = null;
 
     try {
-      const response = await fetch("/api/course/structure", {
+      const response = await fetch("/api/cobu/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

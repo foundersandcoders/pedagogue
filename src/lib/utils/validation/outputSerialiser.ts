@@ -244,7 +244,7 @@ export function generateXmlFilename(course: CourseData): string {
  * Trigger browser download of XML file
  */
 export function downloadCourseXml(course: CourseData): void {
-	const xmlContent = serializeCourseToXml(course);
+	const xmlContent = serialiseCourseToXml(course);
 	const blob = new Blob([xmlContent], { type: 'application/xml;charset=utf-8' });
 	const url = URL.createObjectURL(blob);
 
