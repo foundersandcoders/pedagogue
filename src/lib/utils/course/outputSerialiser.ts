@@ -2,8 +2,7 @@
  * Course XML Serializer
  * Converts CourseData structure to XML format matching the course overview schema
  */
-
-import type { CourseData } from '$lib/types/course';
+import type { CourseData } from '$lib/types/courseTypes';
 
 /**
  * Escape XML special characters
@@ -35,7 +34,7 @@ function getDocTime(): string {
 /**
  * Convert CourseData to XML string
  */
-export function serializeCourseToXml(course: CourseData): string {
+export function serialiseCourseToXml(course: CourseData): string {
 	const lines: string[] = [];
 
 	const totalArcs = course.arcs.length;

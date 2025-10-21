@@ -1,6 +1,4 @@
-export interface ProjectsFile { rawContent: string }
-export interface SkillsFile { rawContent: string }
-export interface ResearchFile { rawContent: string }
+import type { ProjectsFile, ResearchFile, SkillsFile } from "../../types/moduleTypes";
 
 export class XMLParseError extends Error {
 	constructor(message: string, public readonly details?: string) {
