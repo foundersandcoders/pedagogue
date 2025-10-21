@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import type { CourseData, Arc, ModuleSlot } from "$lib/types/course";
+  import type { CourseData, Arc, ModuleSlot } from "$lib/types/cobu";
 
   export let courseData: CourseData;
 
@@ -49,7 +49,7 @@
   }
 
   function autoSuggestModules() {
-    arcs = arcs.map(arc => {
+    arcs = arcs.map((arc) => {
       const weeks = arc.durationWeeks;
       let suggestedCount: number;
       let suggestedDuration: number;
@@ -78,8 +78,8 @@
           title: `Module ${i + 1}`,
           description: "",
           durationWeeks: suggestedDuration,
-          status: "planned" as const
-        }))
+          status: "planned" as const,
+        })),
       };
     });
   }
@@ -109,16 +109,24 @@
           isValid = false;
         }
 
-        if (module.durationWeeks < 1 || module.durationWeeks > arc.durationWeeks) {
-          errors[key] = `Duration must be between 1 and ${arc.durationWeeks} weeks`;
+        if (
+          module.durationWeeks < 1 ||
+          module.durationWeeks > arc.durationWeeks
+        ) {
+          errors[key] =
+            `Duration must be between 1 and ${arc.durationWeeks} weeks`;
           isValid = false;
         }
       });
 
       // Check that modules don't exceed arc duration
-      const totalModuleWeeks = arc.modules.reduce((sum, m) => sum + m.durationWeeks, 0);
+      const totalModuleWeeks = arc.modules.reduce(
+        (sum, m) => sum + m.durationWeeks,
+        0,
+      );
       if (totalModuleWeeks > arc.durationWeeks) {
-        errors[`arc-${arcIndex}-overflow`] = `Modules total ${totalModuleWeeks} weeks, exceeding arc duration of ${arc.durationWeeks} weeks`;
+        errors[`arc-${arcIndex}-overflow`] =
+          `Modules total ${totalModuleWeeks} weeks, exceeding arc duration of ${arc.durationWeeks} weeks`;
         isValid = false;
       }
     });
@@ -138,9 +146,13 @@
 
   // Computed value for current arc
   $: currentArc = arcs[selectedArcIndex];
-  $: moduleWeeksInCurrentArc = currentArc?.modules.reduce((sum, m) => sum + (m.durationWeeks || 0), 0) || 0;
-  $: weeksRemainingInCurrentArc = (currentArc?.durationWeeks || 0) - moduleWeeksInCurrentArc;
-  $: isCurrentArcOverBudget = moduleWeeksInCurrentArc > (currentArc?.durationWeeks || 0);
+  $: moduleWeeksInCurrentArc =
+    currentArc?.modules.reduce((sum, m) => sum + (m.durationWeeks || 0), 0) ||
+    0;
+  $: weeksRemainingInCurrentArc =
+    (currentArc?.durationWeeks || 0) - moduleWeeksInCurrentArc;
+  $: isCurrentArcOverBudget =
+    moduleWeeksInCurrentArc > (currentArc?.durationWeeks || 0);
 </script>
 
 <div class="module-arc-planner">
@@ -154,7 +166,10 @@
   <div class="skip-option">
     <label class="skip-checkbox">
       <input type="checkbox" bind:checked={skipModulePlanning} />
-      <span>Skip manual planning - let AI automatically break down each arc into modules</span>
+      <span
+        >Skip manual planning - let AI automatically break down each arc into
+        modules</span
+      >
     </label>
   </div>
 
@@ -165,16 +180,22 @@
           type="button"
           class="arc-tab"
           class:active={selectedArcIndex === index}
-          on:click={() => selectedArcIndex = index}
+          on:click={() => (selectedArcIndex = index)}
         >
           <span class="tab-title">{arc.title || `Arc ${arc.order}`}</span>
-          <span class="tab-meta">{arc.durationWeeks}w | {arc.modules.length}m</span>
+          <span class="tab-meta"
+            >{arc.durationWeeks}w | {arc.modules.length}m</span
+          >
         </button>
       {/each}
     </div>
 
     <div class="auto-suggest-row">
-      <button type="button" class="suggest-all-btn" on:click={autoSuggestModules}>
+      <button
+        type="button"
+        class="suggest-all-btn"
+        on:click={autoSuggestModules}
+      >
         ✨ Auto-Suggest Modules for All Arcs
       </button>
     </div>
@@ -196,11 +217,15 @@
           </div>
           <div class="summary-item">
             <span class="label">Modules Allocated:</span>
-            <span class="value" class:over={isCurrentArcOverBudget}>{moduleWeeksInCurrentArc} weeks</span>
+            <span class="value" class:over={isCurrentArcOverBudget}
+              >{moduleWeeksInCurrentArc} weeks</span
+            >
           </div>
           <div class="summary-item">
             <span class="label">Weeks Remaining:</span>
-            <span class="value" class:negative={weeksRemainingInCurrentArc < 0}>{weeksRemainingInCurrentArc} weeks</span>
+            <span class="value" class:negative={weeksRemainingInCurrentArc < 0}
+              >{weeksRemainingInCurrentArc} weeks</span
+            >
           </div>
         </div>
 
@@ -221,8 +246,14 @@
             {#each currentArc.modules as module}
               <div
                 class="timeline-module"
-                style="width: {(module.durationWeeks / currentArc.durationWeeks) * 100}%"
-                title="Module {module.order}: {module.title || 'Untitled'} ({module.durationWeeks} week{module.durationWeeks !== 1 ? 's' : ''})"
+                style="width: {(module.durationWeeks /
+                  currentArc.durationWeeks) *
+                  100}%"
+                title="Module {module.order}: {module.title ||
+                  'Untitled'} ({module.durationWeeks} week{module.durationWeeks !==
+                1
+                  ? 's'
+                  : ''})"
               >
                 <span class="module-label">M{module.order}</span>
               </div>
@@ -239,7 +270,12 @@
           <h4>Modules in {currentArc.title}</h4>
 
           {#each currentArc.modules as module, moduleIndex (module.id)}
-            <div class="module-card" class:error={errors[`arc-${selectedArcIndex}-module-${moduleIndex}`]}>
+            <div
+              class="module-card"
+              class:error={errors[
+                `arc-${selectedArcIndex}-module-${moduleIndex}`
+              ]}
+            >
               <div class="module-header">
                 <span class="module-number">Module {module.order}</span>
                 {#if currentArc.modules.length > 1}
@@ -299,12 +335,18 @@
               </div>
 
               {#if errors[`arc-${selectedArcIndex}-module-${moduleIndex}`]}
-                <div class="field-error">{errors[`arc-${selectedArcIndex}-module-${moduleIndex}`]}</div>
+                <div class="field-error">
+                  {errors[`arc-${selectedArcIndex}-module-${moduleIndex}`]}
+                </div>
               {/if}
             </div>
           {/each}
 
-          <button type="button" class="add-module-btn" on:click={() => addModuleToArc(selectedArcIndex)}>
+          <button
+            type="button"
+            class="add-module-btn"
+            on:click={() => addModuleToArc(selectedArcIndex)}
+          >
             + Add Module to {currentArc.title}
           </button>
         </div>

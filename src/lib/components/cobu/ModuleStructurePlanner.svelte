@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import type { CourseData, ModuleSlot } from "$lib/types/course";
+  import type { CourseData, ModuleSlot } from "$lib/types/cobu";
 
   export let courseData: CourseData;
 
@@ -9,9 +9,8 @@
     back: void;
   }>();
 
-  let modules: ModuleSlot[] = courseData.modules.length > 0
-    ? courseData.modules
-    : [createEmptyModule(1)];
+  let modules: ModuleSlot[] =
+    courseData.modules.length > 0 ? courseData.modules : [createEmptyModule(1)];
 
   let errors: { [key: number]: string } = {};
 
@@ -53,14 +52,19 @@
         isValid = false;
       }
 
-      if (module.durationWeeks < 1 || module.durationWeeks > courseData.logistics.totalWeeks) {
-        errors[index] = `Duration must be between 1 and ${courseData.logistics.totalWeeks} weeks`;
+      if (
+        module.durationWeeks < 1 ||
+        module.durationWeeks > courseData.logistics.totalWeeks
+      ) {
+        errors[index] =
+          `Duration must be between 1 and ${courseData.logistics.totalWeeks} weeks`;
         isValid = false;
       }
     });
 
     if (totalWeeksUsed > courseData.logistics.totalWeeks) {
-      errors[-1] = `Total weeks (${totalWeeksUsed}) exceeds course duration (${courseData.logistics.totalWeeks})`;
+      errors[-1] =
+        `Total weeks (${totalWeeksUsed}) exceeds course duration (${courseData.logistics.totalWeeks})`;
       isValid = false;
     }
 
@@ -98,16 +102,20 @@
       suggestedDuration = 4;
     }
 
-    modules = Array.from({ length: suggestedCount }, (_, i) => createEmptyModule(i + 1))
-      .map(module => ({
-        ...module,
-        durationWeeks: suggestedDuration,
-        title: `Module ${module.order}`,
-      }));
+    modules = Array.from({ length: suggestedCount }, (_, i) =>
+      createEmptyModule(i + 1),
+    ).map((module) => ({
+      ...module,
+      durationWeeks: suggestedDuration,
+      title: `Module ${module.order}`,
+    }));
   }
 
   // Computed values
-  $: totalWeeksUsed = modules.reduce((sum, m) => sum + (m.durationWeeks || 0), 0);
+  $: totalWeeksUsed = modules.reduce(
+    (sum, m) => sum + (m.durationWeeks || 0),
+    0,
+  );
   $: weeksRemaining = courseData.logistics.totalWeeks - totalWeeksUsed;
   $: isOverBudget = totalWeeksUsed > courseData.logistics.totalWeeks;
 </script>
@@ -116,7 +124,8 @@
   <div class="planner-header">
     <h2>Module Structure Planning</h2>
     <p class="description">
-      Define how your {courseData.logistics.totalWeeks}-week course will be divided into modules.
+      Define how your {courseData.logistics.totalWeeks}-week course will be
+      divided into modules.
     </p>
   </div>
 
@@ -127,11 +136,14 @@
     </div>
     <div class="summary-item">
       <span class="label">Weeks Allocated:</span>
-      <span class="value" class:over={isOverBudget}>{totalWeeksUsed} weeks</span>
+      <span class="value" class:over={isOverBudget}>{totalWeeksUsed} weeks</span
+      >
     </div>
     <div class="summary-item">
       <span class="label">Weeks Remaining:</span>
-      <span class="value" class:negative={weeksRemaining < 0}>{weeksRemaining} weeks</span>
+      <span class="value" class:negative={weeksRemaining < 0}
+        >{weeksRemaining} weeks</span
+      >
     </div>
   </div>
 
@@ -146,8 +158,13 @@
       {#each modules as module, index}
         <div
           class="timeline-module"
-          style="width: {(module.durationWeeks / courseData.logistics.totalWeeks) * 100}%"
-          title="Module {module.order}: {module.title || 'Untitled'} ({module.durationWeeks} week{module.durationWeeks !== 1 ? 's' : ''})"
+          style="width: {(module.durationWeeks /
+            courseData.logistics.totalWeeks) *
+            100}%"
+          title="Module {module.order}: {module.title ||
+            'Untitled'} ({module.durationWeeks} week{module.durationWeeks !== 1
+            ? 's'
+            : ''})"
         >
           <span class="module-label">M{module.order}</span>
         </div>

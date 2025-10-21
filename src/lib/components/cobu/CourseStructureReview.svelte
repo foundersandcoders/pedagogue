@@ -1,12 +1,16 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte";
-  import type { CourseData, Arc, ModuleSlot } from "$lib/types/course";
-  import { downloadCourseXml } from "$lib/utils/course/courseXmlSerializer";
+  import type { CourseData, Arc, ModuleSlot } from "$lib/types/cobu";
+  import { downloadCourseXml } from "$lib/utils/validation/outputSerialiser";
 
   export let courseData: CourseData;
 
   const dispatch = createEventDispatcher<{
-    submit: { arcs: Arc[]; courseNarrative: string; progressionNarrative: string };
+    submit: {
+      arcs: Arc[];
+      courseNarrative: string;
+      progressionNarrative: string;
+    };
     back: void;
   }>();
 
@@ -38,18 +42,21 @@
           cohortSize: courseData.learners.cohortSize,
           structure: courseData.structure,
           learnerExperience: courseData.learners.experience,
-          arcs: arcs.map(arc => ({
+          arcs: arcs.map((arc) => ({
             order: arc.order,
             title: arc.title,
             description: arc.description,
             theme: arc.theme,
             durationWeeks: arc.durationWeeks,
-            modules: arc.modules.length > 0 ? arc.modules.map(m => ({
-              order: m.order,
-              title: m.title,
-              description: m.description,
-              durationWeeks: m.durationWeeks
-            })) : undefined
+            modules:
+              arc.modules.length > 0
+                ? arc.modules.map((m) => ({
+                    order: m.order,
+                    title: m.title,
+                    description: m.description,
+                    durationWeeks: m.durationWeeks,
+                  }))
+                : undefined,
           })),
           supportingDocuments: [],
           enableResearch: true,
@@ -79,11 +86,13 @@
             description: aiArc.description || arc.description,
             theme: aiArc.theme || arc.theme,
             durationWeeks: aiArc.suggestedDurationWeeks || arc.durationWeeks,
-            arcThemeNarrative: aiArc.arcThemeNarrative || '',
-            arcProgressionNarrative: aiArc.arcProgressionNarrative || '',
+            arcThemeNarrative: aiArc.arcThemeNarrative || "",
+            arcProgressionNarrative: aiArc.arcProgressionNarrative || "",
             modules: aiArc.modules.map((aiModule: any) => {
               // Try to find corresponding existing module
-              const existingModule = arc.modules.find(m => m.order === aiModule.order);
+              const existingModule = arc.modules.find(
+                (m) => m.order === aiModule.order,
+              );
               return {
                 id: existingModule?.id || crypto.randomUUID(),
                 arcId: arc.id,
@@ -91,11 +100,11 @@
                 title: aiModule.title,
                 description: aiModule.description,
                 durationWeeks: aiModule.suggestedDurationWeeks,
-                status: existingModule?.status || 'planned' as const,
+                status: existingModule?.status || ("planned" as const),
                 learningObjectives: aiModule.learningObjectives || [],
-                keyTopics: aiModule.keyTopics || []
+                keyTopics: aiModule.keyTopics || [],
               };
-            })
+            }),
           };
         }
         return arc;
@@ -105,7 +114,6 @@
       if (arcs.length > 0) {
         expandedArcId = arcs[0].id;
       }
-
     } catch (err) {
       console.error("Course structure generation failed:", err);
       error = err instanceof Error ? err.message : "Unknown error occurred";
@@ -142,10 +150,17 @@
     arcs = [...arcs]; // Trigger reactivity
   }
 
-  function removeObjective(arcIndex: number, moduleIndex: number, objIndex: number) {
+  function removeObjective(
+    arcIndex: number,
+    moduleIndex: number,
+    objIndex: number,
+  ) {
     if (arcs[arcIndex].modules[moduleIndex].learningObjectives) {
-      arcs[arcIndex].modules[moduleIndex].learningObjectives =
-        arcs[arcIndex].modules[moduleIndex].learningObjectives!.filter((_, i) => i !== objIndex);
+      arcs[arcIndex].modules[moduleIndex].learningObjectives = arcs[
+        arcIndex
+      ].modules[moduleIndex].learningObjectives!.filter(
+        (_, i) => i !== objIndex,
+      );
       arcs = [...arcs];
     }
   }
@@ -158,10 +173,15 @@
     arcs = [...arcs];
   }
 
-  function removeTopic(arcIndex: number, moduleIndex: number, topicIndex: number) {
+  function removeTopic(
+    arcIndex: number,
+    moduleIndex: number,
+    topicIndex: number,
+  ) {
     if (arcs[arcIndex].modules[moduleIndex].keyTopics) {
-      arcs[arcIndex].modules[moduleIndex].keyTopics =
-        arcs[arcIndex].modules[moduleIndex].keyTopics!.filter((_, i) => i !== topicIndex);
+      arcs[arcIndex].modules[moduleIndex].keyTopics = arcs[arcIndex].modules[
+        moduleIndex
+      ].keyTopics!.filter((_, i) => i !== topicIndex);
       arcs = [...arcs];
     }
   }
@@ -172,7 +192,7 @@
       ...courseData,
       courseNarrative,
       progressionNarrative,
-      arcs
+      arcs,
     };
     downloadCourseXml(updatedCourse);
   }
@@ -183,7 +203,10 @@
     <div class="loading-state">
       <div class="spinner"></div>
       <h2>Generating Course Structure...</h2>
-      <p>Claude is analyzing your arc-based course structure and creating detailed module outlines.</p>
+      <p>
+        Claude is analyzing your arc-based course structure and creating
+        detailed module outlines.
+      </p>
       <p class="loading-hint">This may take 30-90 seconds.</p>
     </div>
   {:else if error}
@@ -204,7 +227,8 @@
     <div class="review-header">
       <h2>Course Structure Review</h2>
       <p class="description">
-        Review and refine the AI-generated course structure with arcs and modules. You can edit any field before proceeding.
+        Review and refine the AI-generated course structure with arcs and
+        modules. You can edit any field before proceeding.
       </p>
       <button type="button" class="regenerate-btn" on:click={handleRegenerate}>
         🔄 Regenerate Structure
@@ -223,7 +247,12 @@
     </section>
 
     <section class="arcs-section">
-      <h3>Arc & Module Structure ({arcs.length} arcs, {arcs.reduce((sum, arc) => sum + arc.modules.length, 0)} modules)</h3>
+      <h3>
+        Arc & Module Structure ({arcs.length} arcs, {arcs.reduce(
+          (sum, arc) => sum + arc.modules.length,
+          0,
+        )} modules)
+      </h3>
 
       {#each arcs as arc, arcIndex (arc.id)}
         <div class="arc-container">
@@ -231,14 +260,19 @@
             <div class="arc-title-row">
               <span class="arc-number">Arc {arc.order}</span>
               <h4>{arc.title}</h4>
-              <span class="arc-meta">{arc.theme} • {arc.durationWeeks}w • {arc.modules.length}m</span>
+              <span class="arc-meta"
+                >{arc.theme} • {arc.durationWeeks}w • {arc.modules
+                  .length}m</span
+              >
             </div>
             <button
               type="button"
               class="expand-toggle"
-              aria-label={expandedArcId === arc.id ? 'Collapse arc' : 'Expand arc'}
+              aria-label={expandedArcId === arc.id
+                ? "Collapse arc"
+                : "Expand arc"}
             >
-              {expandedArcId === arc.id ? '▼' : '▶'}
+              {expandedArcId === arc.id ? "▼" : "▶"}
             </button>
           </div>
 
@@ -273,7 +307,9 @@
                 </div>
 
                 <div class="field full-width">
-                  <label for="arc-theme-narrative-{arc.id}">Arc Theme Narrative</label>
+                  <label for="arc-theme-narrative-{arc.id}"
+                    >Arc Theme Narrative</label
+                  >
                   <textarea
                     id="arc-theme-narrative-{arc.id}"
                     rows="3"
@@ -283,7 +319,9 @@
                 </div>
 
                 <div class="field full-width">
-                  <label for="arc-progression-{arc.id}">Arc Progression Narrative</label>
+                  <label for="arc-progression-{arc.id}"
+                    >Arc Progression Narrative</label
+                  >
                   <textarea
                     id="arc-progression-{arc.id}"
                     rows="3"
@@ -302,14 +340,19 @@
                       <div class="module-title-row">
                         <span class="module-number">Module {module.order}</span>
                         <h6>{module.title}</h6>
-                        <span class="module-duration">{module.durationWeeks} week{module.durationWeeks !== 1 ? 's' : ''}</span>
+                        <span class="module-duration"
+                          >{module.durationWeeks} week{module.durationWeeks !==
+                          1
+                            ? "s"
+                            : ""}</span
+                        >
                       </div>
                       <button
                         type="button"
                         class="edit-toggle"
                         on:click={() => toggleEditModule(module.id)}
                       >
-                        {editingModuleId === module.id ? '✓ Done' : '✏️ Edit'}
+                        {editingModuleId === module.id ? "✓ Done" : "✏️ Edit"}
                       </button>
                     </div>
 
@@ -325,7 +368,9 @@
                         </div>
 
                         <div class="field">
-                          <label for="description-{module.id}">Description</label>
+                          <label for="description-{module.id}"
+                            >Description</label
+                          >
                           <textarea
                             id="description-{module.id}"
                             rows="3"
@@ -334,7 +379,9 @@
                         </div>
 
                         <div class="field">
-                          <label for="duration-{module.id}">Duration (weeks)</label>
+                          <label for="duration-{module.id}"
+                            >Duration (weeks)</label
+                          >
                           <input
                             id="duration-{module.id}"
                             type="number"
@@ -350,7 +397,8 @@
                             <button
                               type="button"
                               class="add-item-btn"
-                              on:click={() => addObjective(arcIndex, moduleIndex)}
+                              on:click={() =>
+                                addObjective(arcIndex, moduleIndex)}
                             >
                               + Add
                             </button>
@@ -360,20 +408,29 @@
                               <div class="list-item">
                                 <input
                                   type="text"
-                                  bind:value={module.learningObjectives[objIndex]}
+                                  bind:value={
+                                    module.learningObjectives[objIndex]
+                                  }
                                   placeholder="Learning objective..."
                                 />
                                 <button
                                   type="button"
                                   class="remove-item-btn"
-                                  on:click={() => removeObjective(arcIndex, moduleIndex, objIndex)}
+                                  on:click={() =>
+                                    removeObjective(
+                                      arcIndex,
+                                      moduleIndex,
+                                      objIndex,
+                                    )}
                                 >
                                   ×
                                 </button>
                               </div>
                             {/each}
                           {:else}
-                            <p class="empty-list">No objectives yet. Click "+ Add" to create one.</p>
+                            <p class="empty-list">
+                              No objectives yet. Click "+ Add" to create one.
+                            </p>
                           {/if}
                         </div>
 
@@ -399,14 +456,21 @@
                                 <button
                                   type="button"
                                   class="remove-item-btn"
-                                  on:click={() => removeTopic(arcIndex, moduleIndex, topicIndex)}
+                                  on:click={() =>
+                                    removeTopic(
+                                      arcIndex,
+                                      moduleIndex,
+                                      topicIndex,
+                                    )}
                                 >
                                   ×
                                 </button>
                               </div>
                             {/each}
                           {:else}
-                            <p class="empty-list">No topics yet. Click "+ Add" to create one.</p>
+                            <p class="empty-list">
+                              No topics yet. Click "+ Add" to create one.
+                            </p>
                           {/if}
                         </div>
                       </div>
@@ -461,7 +525,11 @@
       <button type="button" class="back-btn" on:click={handleBack}>
         ← Back to Module Planning
       </button>
-      <button type="button" class="download-xml-btn" on:click={handleDownloadXml}>
+      <button
+        type="button"
+        class="download-xml-btn"
+        on:click={handleDownloadXml}
+      >
         📥 Download XML
       </button>
       <button type="button" class="submit-btn" on:click={handleSubmit}>

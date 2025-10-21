@@ -6,8 +6,12 @@
     parseResearchXML,
     validateUploadedFile,
     XMLParseError,
-  } from "../xml-parser";
-  import type { ProjectsFile, SkillsFile, ResearchFile } from "../xml-parser.ts";
+  } from "$lib/utils/validation/fileParser";
+  import type {
+    ProjectsFile,
+    SkillsFile,
+    ResearchFile,
+  } from "$lib/types/mogen";
 
   export let fileType: "projects" | "skills" | "research";
   export let uploadState: "idle" | "uploading" | "success" | "error" = "idle";

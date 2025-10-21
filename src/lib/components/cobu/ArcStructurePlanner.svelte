@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import type { CourseData, Arc } from "$lib/types/course";
+  import type { CourseData, Arc } from "$lib/types/cobu";
 
   export let courseData: CourseData;
 
@@ -9,9 +9,8 @@
     back: void;
   }>();
 
-  let arcs: Arc[] = courseData.arcs.length > 0
-    ? courseData.arcs
-    : [createEmptyArc(1)];
+  let arcs: Arc[] =
+    courseData.arcs.length > 0 ? courseData.arcs : [createEmptyArc(1)];
 
   let errors: { [key: number]: string } = {};
 
@@ -23,7 +22,7 @@
       description: "",
       theme: "",
       durationWeeks: 4,
-      modules: []
+      modules: [],
     };
   }
 
@@ -59,14 +58,19 @@
         isValid = false;
       }
 
-      if (arc.durationWeeks < 1 || arc.durationWeeks > courseData.logistics.totalWeeks) {
-        errors[index] = `Duration must be between 1 and ${courseData.logistics.totalWeeks} weeks`;
+      if (
+        arc.durationWeeks < 1 ||
+        arc.durationWeeks > courseData.logistics.totalWeeks
+      ) {
+        errors[index] =
+          `Duration must be between 1 and ${courseData.logistics.totalWeeks} weeks`;
         isValid = false;
       }
     });
 
     if (totalWeeksUsed > courseData.logistics.totalWeeks) {
-      errors[-1] = `Total weeks (${totalWeeksUsed}) exceeds course duration (${courseData.logistics.totalWeeks})`;
+      errors[-1] =
+        `Total weeks (${totalWeeksUsed}) exceeds course duration (${courseData.logistics.totalWeeks})`;
       isValid = false;
     }
 
@@ -102,14 +106,15 @@
       suggestedDuration = Math.ceil(totalWeeks / 4);
     }
 
-    arcs = Array.from({ length: suggestedCount }, (_, i) => createEmptyArc(i + 1))
-      .map((arc, index) => ({
-        ...arc,
-        durationWeeks: suggestedDuration,
-        title: `Arc ${arc.order}`,
-        description: "Describe the broad thematic focus of this arc",
-        theme: "Enter a theme (e.g., 'Foundation Concepts', 'Agentic Workflows')"
-      }));
+    arcs = Array.from({ length: suggestedCount }, (_, i) =>
+      createEmptyArc(i + 1),
+    ).map((arc, index) => ({
+      ...arc,
+      durationWeeks: suggestedDuration,
+      title: `Arc ${arc.order}`,
+      description: "Describe the broad thematic focus of this arc",
+      theme: "Enter a theme (e.g., 'Foundation Concepts', 'Agentic Workflows')",
+    }));
   }
 
   // Computed values
@@ -122,11 +127,13 @@
   <div class="planner-header">
     <h2>Arc Structure Planning</h2>
     <p class="description">
-      Define thematic arcs for your {courseData.logistics.totalWeeks}-week course.
-      Think in terms of broad themes and learning phases, not granular outcomes.
+      Define thematic arcs for your {courseData.logistics.totalWeeks}-week
+      course. Think in terms of broad themes and learning phases, not granular
+      outcomes.
     </p>
     <p class="guidance">
-      <strong>Example themes:</strong> "Foundation Concepts", "Agentic Workflows", "Production Systems", "Advanced Patterns"
+      <strong>Example themes:</strong> "Foundation Concepts", "Agentic Workflows",
+      "Production Systems", "Advanced Patterns"
     </p>
   </div>
 
@@ -137,11 +144,14 @@
     </div>
     <div class="summary-item">
       <span class="label">Weeks Allocated:</span>
-      <span class="value" class:over={isOverBudget}>{totalWeeksUsed} weeks</span>
+      <span class="value" class:over={isOverBudget}>{totalWeeksUsed} weeks</span
+      >
     </div>
     <div class="summary-item">
       <span class="label">Weeks Remaining:</span>
-      <span class="value" class:negative={weeksRemaining < 0}>{weeksRemaining} weeks</span>
+      <span class="value" class:negative={weeksRemaining < 0}
+        >{weeksRemaining} weeks</span
+      >
     </div>
   </div>
 
@@ -156,8 +166,12 @@
       {#each arcs as arc, index}
         <div
           class="timeline-arc"
-          style="width: {(arc.durationWeeks / courseData.logistics.totalWeeks) * 100}%"
-          title="Arc {arc.order}: {arc.title || 'Untitled'} ({arc.durationWeeks} week{arc.durationWeeks !== 1 ? 's' : ''})"
+          style="width: {(arc.durationWeeks / courseData.logistics.totalWeeks) *
+            100}%"
+          title="Arc {arc.order}: {arc.title ||
+            'Untitled'} ({arc.durationWeeks} week{arc.durationWeeks !== 1
+            ? 's'
+            : ''})"
         >
           <span class="arc-label">A{arc.order}</span>
         </div>
