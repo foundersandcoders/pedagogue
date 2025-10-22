@@ -9,26 +9,26 @@
 
 ### Two Main Workflows
 
-**MoGen (Module Generator)** - `/mogen/update`
+**Metis (Module Generator)** - `/metis/update`
 - Standalone module generation
 - Upload XML inputs (projects, skills, research)
 - Structured form for context
 - AI generates complete module specification
-- Entry point: `src/routes/mogen/update/+page.svelte`
-- API: `src/routes/api/mogen/update/+server.ts`
+- Entry point: `src/routes/metis/update/+page.svelte`
+- API: `src/routes/api/metis/update/+server.ts`
 
-**CoBu (Course Builder)** - `/cobu/generate`
+**Themis (Course Builder)** - `/themis/generate`
 - Multi-module course generation with thematic arcs
 - Six-step workflow: Config → Arc Planning → Module Planning → Structure Review → Generation → Export
 - AI generates course structure, then individual modules
-- Entry point: `src/routes/cobu/generate/+page.svelte`
-- API: `src/routes/api/cobu/generate/+server.ts`
+- Entry point: `src/routes/themis/generate/+page.svelte`
+- API: `src/routes/api/themis/generate/+server.ts`
 
 ### Architecture Patterns (Post-Refactoring)
 
 **Factories & Utilities** (completed Oct 2025-10-20)
 - **Agent factories**: `src/lib/factories/agents/agentClientFactory.ts` - Create Claude clients with consistent config
-- **Prompt factories**: `src/lib/factories/prompts/{mogenPromptFactory,cobuPromptFactory}.ts` - Build generation prompts
+- **Prompt factories**: `src/lib/factories/prompts/{metisPromptFactory,themisPromptFactory}.ts` - Build generation prompts
 - **Shared prompt components**: `src/lib/utils/prompt/shared-components.ts` - Reusable prompt sections
 - **Validation**: `src/lib/schemas/{apiValidator,moduleValidator}.ts` - Zod schemas for API boundaries, XML validation
 - **Response parsing**: `src/lib/utils/validation/responseParser.ts` - Extract and clean AI responses
@@ -36,8 +36,8 @@
 - **Retry logic**: `src/lib/utils/model/retryHandler.ts` - Unified retry orchestration
 
 **State Management**
-- **Stores**: `src/lib/stores/{mogenStores,cobuStores}.ts` - Workflow state with localStorage persistence
-- **Utilities**: `src/lib/utils/state/{workflow-step,persistenceUtils}.ts` - Reusable store patterns
+- **Stores**: `src/lib/stores/{metisStores,themisStores}.ts` - Workflow state with localStorage persistence
+- **Utilities**: `src/lib/utils/state/{metisWorkflowStep,persistenceUtils}.ts` - Reusable store patterns
 
 **Error Handling**
 - **Types**: `src/lib/types/error.ts` - Typed error classes
@@ -62,7 +62,7 @@
 
 **Modifying Prompts**
 - Use composable sections from `shared-components.ts` where possible
-- Update both MoGen and CoBu prompt factories if changes apply to both
+- Update both Metis and Themis prompt factories if changes apply to both
 - Test with research enabled/disabled
 
 **Debugging**
@@ -75,15 +75,15 @@
 ```
 src/
 ├── routes/
-│   ├── mogen/update/         # MoGen UI
-│   ├── cobu/generate/        # CoBu UI
+│   ├── metis/update/         # Metis UI
+│   ├── themis/generate/      # Themis UI
 │   └── api/
-│       ├── mogen/update/     # MoGen generation endpoint
-│       └── cobu/generate/    # CoBu structure endpoint
+│       ├── metis/update/     # Metis generation endpoint
+│       └── themis/generate/  # Themis structure endpoint
 ├── lib/
 │   ├── components/
-│   │   ├── mogen/           # MoGen-specific components
-│   │   ├── cobu/            # CoBu-specific components
+│   │   ├── metis/           # Metis-specific components
+│   │   ├── themis/          # Themis-specific components
 │   │   └── errors/          # Error handling UI
 │   ├── factories/           # Agent & prompt factories
 │   ├── schemas/             # Validation (Zod, XML)

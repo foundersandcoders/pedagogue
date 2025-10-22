@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte";
   import { downloadCourseXml } from "$lib/utils/validation/outputSerialiser";
-  import type { CourseData, Arc } from "$lib/types/cobu";
+  import type { CourseData, Arc } from "$lib/types/themisTypes";
 
   export let courseData: CourseData;
 
@@ -31,7 +31,7 @@
     error = null;
 
     try {
-      const response = await fetch("/api/cobu/generate", {
+      const response = await fetch("/api/themis/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

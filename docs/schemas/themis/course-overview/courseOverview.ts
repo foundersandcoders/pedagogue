@@ -49,7 +49,7 @@ interface ArcProps {
 }
 
 /** MODULES
- * {-todo} unify with MoGen module types
+ * {-todo} unify with Metis module types
  */
 interface Module {
   name: string,
@@ -65,7 +65,7 @@ interface ModuleProps {
 interface ModuleContent {
   description: string,
   // TODO: unify w/ KSBs
-  learningObjectives: LearningObjective[], // TODO: unify w/ MoGen research topics
+  learningObjectives: LearningObjective[], // TODO: unify w/ Metis research topics
   keyTopics: Topic[]
 }
 

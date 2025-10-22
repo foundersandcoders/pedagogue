@@ -1,7 +1,7 @@
 import { writable, derived } from 'svelte/store';
-import type { ProjectsFile, SkillsFile, ResearchFile } from '$lib/types/mogen';
+import type { ProjectsFile, SkillsFile, ResearchFile } from '$lib/types/metisTypes';
 import type { StructuredInput } from '$lib/schemas/apiValidator';
-import { createWorkflowStore } from '$lib/utils/state/workflow-step';
+import { createWorkflowStore } from '$lib/utils/state/metisWorkflowStep';
 
 // Re-export for backward compatibility
 export type StructuredInputData = StructuredInput;

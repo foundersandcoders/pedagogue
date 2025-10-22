@@ -2,7 +2,7 @@
  * Course XML Serializer
  * Converts CourseData structure to XML format matching the course overview schema
  */
-import type { CourseData } from '$lib/types/cobu';
+import type { CourseData } from '$lib/types/themisTypes';
 
 /**
  * Escape XML special characters

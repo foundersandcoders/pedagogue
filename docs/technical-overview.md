@@ -16,8 +16,8 @@ Pedagogue is built with:
 pedagogue/
 ├── src/
 │   ├── routes/              # SvelteKit pages and API endpoints
-│   │   ├── mogen/          # Module Generator workflow
-│   │   ├── cobu/           # Course Builder workflow
+│   │   ├── metis/          # Module Generator workflow
+│   │   ├── themis/           # Course Builder workflow
 │   │   └── api/            # Generation endpoints
 │   ├── lib/
 │   │   ├── components/     # Svelte components
@@ -36,7 +36,7 @@ pedagogue/
 
 ## Key Components
 
-### Module Generator (MoGen)
+### Module Generator (Metis)
 
 **Purpose:** Generate standalone module specifications
 
@@ -48,12 +48,12 @@ pedagogue/
 5. Download XML specification
 
 **Implementation:**
-- UI: `src/routes/mogen/update/+page.svelte`
-- API: `src/routes/api/mogen/update/+server.ts`
-- Prompt: `src/lib/factories/prompts/mogenPromptFactory.ts`
+- UI: `src/routes/metis/update/+page.svelte`
+- API: `src/routes/api/metis/update/+server.ts`
+- Prompt: `src/lib/factories/prompts/metisPromptFactory.ts`
 - Validation: `src/lib/schemas/moduleValidator.ts`
 
-### Course Builder (CoBu)
+### Course Builder (Themis)
 
 **Purpose:** Generate multi-module courses with thematic arcs
 
@@ -67,10 +67,10 @@ pedagogue/
 7. Export complete course (not yet implemented)
 
 **Implementation:**
-- UI: `src/routes/cobu/generate/+page.svelte`
-- API: `src/routes/api/cobu/generate/+server.ts`
-- Prompt: `src/lib/factories/prompts/cobuPromptFactory.ts`
-- Components: `src/lib/components/cobu/`
+- UI: `src/routes/themis/generate/+page.svelte`
+- API: `src/routes/api/themis/generate/+server.ts`
+- Prompt: `src/lib/factories/prompts/themisPromptFactory.ts`
+- Components: `src/lib/components/themis/`
 
 ## AI Integration
 
@@ -139,13 +139,13 @@ export const courseData = persistedStore('course-data', defaultValue);
 ```
 
 **Utilities:**
-- Workflow steps: `src/lib/utils/state/workflow-step.ts`
+- Workflow steps: `src/lib/utils/state/metisWorkflowStep.ts`
 - localStorage persistence: `src/lib/utils/state/persistenceUtils.ts`
 
 ### Store Locations
 
-- **Module Generator**: `src/lib/stores/mogenStores.ts`
-- **Course Builder**: `src/lib/stores/cobuStores.ts`
+- **Module Generator**: `src/lib/stores/metisStores.ts`
+- **Course Builder**: `src/lib/stores/themisStores.ts`
 - **Errors**: `src/lib/stores/errorStores.ts`
 
 ## Validation

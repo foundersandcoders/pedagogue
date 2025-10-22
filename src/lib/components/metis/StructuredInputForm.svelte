@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import { techList } from "$lib/config/techStack";
-  import type { StructuredInputData } from "$lib/stores/mogenStores";
+  import type { StructuredInputData } from "$lib/stores/metisStores";
 
   export let formData: StructuredInputData = {
     logistics: {

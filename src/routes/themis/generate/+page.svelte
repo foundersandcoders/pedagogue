@@ -1,10 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import CourseConfigForm from "$lib/components/cobu/CourseConfigForm.svelte";
-  import ArcStructurePlanner from "$lib/components/cobu/ArcStructurePlanner.svelte";
-  import ModuleWithinArcPlanner from "$lib/components/cobu/ModuleWithinArcPlanner.svelte";
-  import CourseStructureReview from "$lib/components/cobu/CourseStructureReview.svelte";
-  import { currentCourse, courseWorkflowStep } from "$lib/stores/cobuStores";
+  import CourseConfigForm from "$lib/components/themis/CourseConfigForm.svelte";
+  import ArcStructurePlanner from "$lib/components/themis/ArcStructurePlanner.svelte";
+  import ModuleWithinArcPlanner from "$lib/components/themis/ModuleWithinArcPlanner.svelte";
+  import CourseStructureReview from "$lib/components/themis/CourseStructureReview.svelte";
+  import { currentCourse, courseWorkflowStep } from "$lib/stores/themisStores";
 
   let { data } = $props();
 
@@ -25,7 +25,7 @@
         : false;
     if (!courseExists) currentCourse.set(data.initialCourse);
     courseWorkflowStep.set(1);
-    console.log("Workflow initialised: CoBu", $currentCourse);
+    console.log("Workflow initialised: Themis", $currentCourse);
   });
 
   function handleFormSubmit(event) {
@@ -104,32 +104,32 @@
 </script>
 
 <svelte:head>
-  <title>Pedagogue: CoBu (Course Builder)</title>
+  <title>Themis (Rhea's Course Builder)</title>
 </svelte:head>
 
-<div id="cobu-container" class="container">
-  <header id="cobu-header">
-    <h1>Pedagogue: CoBu</h1>
+<div id="themis-container" class="container">
+  <header id="themis-header">
+    <h1>Pedagogue: Themis</h1>
     <p>Build a complete multi-week course with interconnected modules</p>
   </header>
 
-  <div id="cobu-workflow" class="workflow">
+  <div id="themis-workflow" class="workflow">
     <!-- TODO: sort out layout of this menu -->
-    <nav id="cobu-steps" class="steps">
+    <nav id="themis-steps" class="steps">
       {#each steps as step, i}
         <div
-          id="cobu-step-{i + 1}"
+          id="themis-step-{i + 1}"
           class="step"
           class:active={$courseWorkflowStep === i + 1}
           class:completed={$courseWorkflowStep > i + 1}
         >
-          <span id="cobu-step-{i + 1}-number" class="step-number">{i + 1}</span>
-          <span id="cobu-step-{i + 1}-name" class="step-name">{step}</span>
+          <span id="themis-step-{i + 1}-number" class="step-number">{i + 1}</span>
+          <span id="themis-step-{i + 1}-name" class="step-name">{step}</span>
         </div>
       {/each}
     </nav>
 
-    <main id="cobu-content" class="content">
+    <main id="themis-content" class="content">
       {#if $courseWorkflowStep === 1 && $currentCourse}
         <CourseConfigForm
           formData={$currentCourse}

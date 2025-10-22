@@ -1,60 +1,66 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import type { CourseData, ModuleSlot } from "$lib/types/cobu";
+  import type { CourseData, Arc } from "$lib/types/themisTypes";
 
   export let courseData: CourseData;
 
   const dispatch = createEventDispatcher<{
-    submit: { modules: ModuleSlot[] };
+    submit: { arcs: Arc[] };
     back: void;
   }>();
 
-  let modules: ModuleSlot[] =
-    courseData.modules.length > 0 ? courseData.modules : [createEmptyModule(1)];
+  let arcs: Arc[] =
+    courseData.arcs.length > 0 ? courseData.arcs : [createEmptyArc(1)];
 
   let errors: { [key: number]: string } = {};
 
-  function createEmptyModule(order: number): ModuleSlot {
+  function createEmptyArc(order: number): Arc {
     return {
       id: crypto.randomUUID(),
       order,
       title: "",
       description: "",
-      durationWeeks: 1,
-      status: "planned",
+      theme: "",
+      durationWeeks: 4,
+      modules: [],
     };
   }
 
-  function addModule() {
-    const nextOrder = modules.length + 1;
-    modules = [...modules, createEmptyModule(nextOrder)];
+  function addArc() {
+    const nextOrder = arcs.length + 1;
+    arcs = [...arcs, createEmptyArc(nextOrder)];
   }
 
-  function removeModule(index: number) {
-    if (modules.length === 1) return; // Keep at least one module
+  function removeArc(index: number) {
+    if (arcs.length === 1) return; // Keep at least one arc
 
-    modules = modules.filter((_, i) => i !== index);
+    arcs = arcs.filter((_, i) => i !== index);
 
-    // Reorder remaining modules
-    modules = modules.map((module, i) => ({
-      ...module,
+    // Reorder remaining arcs
+    arcs = arcs.map((arc, i) => ({
+      ...arc,
       order: i + 1,
     }));
   }
 
-  function validateModules(): boolean {
+  function validateArcs(): boolean {
     errors = {};
     let isValid = true;
 
-    modules.forEach((module, index) => {
-      if (!module.title?.trim()) {
-        errors[index] = "Module title is required";
+    arcs.forEach((arc, index) => {
+      if (!arc.title?.trim()) {
+        errors[index] = "Arc title is required";
+        isValid = false;
+      }
+
+      if (!arc.theme?.trim()) {
+        errors[index] = "Arc theme is required";
         isValid = false;
       }
 
       if (
-        module.durationWeeks < 1 ||
-        module.durationWeeks > courseData.logistics.totalWeeks
+        arc.durationWeeks < 1 ||
+        arc.durationWeeks > courseData.logistics.totalWeeks
       ) {
         errors[index] =
           `Duration must be between 1 and ${courseData.logistics.totalWeeks} weeks`;
@@ -72,8 +78,8 @@
   }
 
   function handleSubmit() {
-    if (validateModules()) {
-      dispatch("submit", { modules });
+    if (validateArcs()) {
+      dispatch("submit", { arcs });
     }
   }
 
@@ -81,51 +87,53 @@
     dispatch("back");
   }
 
-  function suggestModules() {
+  function suggestArcs() {
     const totalWeeks = courseData.logistics.totalWeeks;
 
-    // Suggest module breakdown based on course length
+    // Suggest arc breakdown based on course length
+    // Arcs are thematic, so they should be longer than individual modules
     let suggestedCount: number;
     let suggestedDuration: number;
 
-    if (totalWeeks <= 4) {
-      suggestedCount = totalWeeks; // 1 module per week
-      suggestedDuration = 1;
-    } else if (totalWeeks <= 8) {
-      suggestedCount = Math.ceil(totalWeeks / 2);
-      suggestedDuration = 2;
-    } else if (totalWeeks <= 12) {
-      suggestedCount = Math.ceil(totalWeeks / 3);
-      suggestedDuration = 3;
+    if (totalWeeks <= 8) {
+      suggestedCount = 2; // Two thematic arcs
+      suggestedDuration = Math.ceil(totalWeeks / 2);
+    } else if (totalWeeks <= 16) {
+      suggestedCount = 3; // Three thematic arcs
+      suggestedDuration = Math.ceil(totalWeeks / 3);
     } else {
-      suggestedCount = Math.ceil(totalWeeks / 4);
-      suggestedDuration = 4;
+      suggestedCount = 4; // Four thematic arcs
+      suggestedDuration = Math.ceil(totalWeeks / 4);
     }
 
-    modules = Array.from({ length: suggestedCount }, (_, i) =>
-      createEmptyModule(i + 1),
-    ).map((module) => ({
-      ...module,
+    arcs = Array.from({ length: suggestedCount }, (_, i) =>
+      createEmptyArc(i + 1),
+    ).map((arc, index) => ({
+      ...arc,
       durationWeeks: suggestedDuration,
-      title: `Module ${module.order}`,
+      title: `Arc ${arc.order}`,
+      description: "Describe the broad thematic focus of this arc",
+      theme: "Enter a theme (e.g., 'Foundation Concepts', 'Agentic Workflows')",
     }));
   }
 
   // Computed values
-  $: totalWeeksUsed = modules.reduce(
-    (sum, m) => sum + (m.durationWeeks || 0),
-    0,
-  );
+  $: totalWeeksUsed = arcs.reduce((sum, a) => sum + (a.durationWeeks || 0), 0);
   $: weeksRemaining = courseData.logistics.totalWeeks - totalWeeksUsed;
   $: isOverBudget = totalWeeksUsed > courseData.logistics.totalWeeks;
 </script>
 
-<div class="module-planner">
+<div class="arc-planner">
   <div class="planner-header">
-    <h2>Module Structure Planning</h2>
+    <h2>Arc Structure Planning</h2>
     <p class="description">
-      Define how your {courseData.logistics.totalWeeks}-week course will be
-      divided into modules.
+      Define thematic arcs for your {courseData.logistics.totalWeeks}-week
+      course. Think in terms of broad themes and learning phases, not granular
+      outcomes.
+    </p>
+    <p class="guidance">
+      <strong>Example themes:</strong> "Foundation Concepts", "Agentic Workflows",
+      "Production Systems", "Advanced Patterns"
     </p>
   </div>
 
@@ -155,18 +163,17 @@
 
   <div class="timeline-visual">
     <div class="timeline-bar">
-      {#each modules as module, index}
+      {#each arcs as arc, index}
         <div
-          class="timeline-module"
-          style="width: {(module.durationWeeks /
-            courseData.logistics.totalWeeks) *
+          class="timeline-arc"
+          style="width: {(arc.durationWeeks / courseData.logistics.totalWeeks) *
             100}%"
-          title="Module {module.order}: {module.title ||
-            'Untitled'} ({module.durationWeeks} week{module.durationWeeks !== 1
+          title="Arc {arc.order}: {arc.title ||
+            'Untitled'} ({arc.durationWeeks} week{arc.durationWeeks !== 1
             ? 's'
             : ''})"
         >
-          <span class="module-label">M{module.order}</span>
+          <span class="arc-label">A{arc.order}</span>
         </div>
       {/each}
     </div>
@@ -177,70 +184,84 @@
     </div>
   </div>
 
-  <div class="modules-list">
+  <div class="arcs-list">
     <div class="list-header">
-      <h3>Modules</h3>
-      <button type="button" class="suggest-btn" on:click={suggestModules}>
+      <h3>Arcs</h3>
+      <button type="button" class="suggest-btn" on:click={suggestArcs}>
         ✨ Auto-Suggest Structure
       </button>
     </div>
 
-    {#each modules as module, index (module.id)}
-      <div class="module-card" class:error={errors[index]}>
-        <div class="module-header">
-          <span class="module-number">Module {module.order}</span>
-          {#if modules.length > 1}
+    {#each arcs as arc, index (arc.id)}
+      <div class="arc-card" class:error={errors[index]}>
+        <div class="arc-header">
+          <span class="arc-number">Arc {arc.order}</span>
+          {#if arcs.length > 1}
             <button
               type="button"
               class="remove-btn"
-              on:click={() => removeModule(index)}
-              aria-label="Remove module {module.order}"
+              on:click={() => removeArc(index)}
+              aria-label="Remove arc {arc.order}"
             >
               ×
             </button>
           {/if}
         </div>
 
-        <div class="module-fields">
+        <div class="arc-fields">
           <div class="field">
-            <label for="title-{module.id}">
-              Module Title
+            <label for="title-{arc.id}">
+              Arc Title
               <span class="required">*</span>
             </label>
             <input
-              id="title-{module.id}"
+              id="title-{arc.id}"
               type="text"
-              bind:value={module.title}
-              placeholder="e.g., Foundations of AI Development"
+              bind:value={arc.title}
+              placeholder="e.g., Foundation Concepts"
               required
             />
           </div>
 
           <div class="field">
-            <label for="duration-{module.id}">
+            <label for="theme-{arc.id}">
+              Theme
+              <span class="required">*</span>
+            </label>
+            <input
+              id="theme-{arc.id}"
+              type="text"
+              bind:value={arc.theme}
+              placeholder="e.g., Agentic Workflows"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="duration-{arc.id}">
               Duration (weeks)
               <span class="required">*</span>
             </label>
             <input
-              id="duration-{module.id}"
+              id="duration-{arc.id}"
               type="number"
               min="1"
               max={courseData.logistics.totalWeeks}
-              bind:value={module.durationWeeks}
+              bind:value={arc.durationWeeks}
               required
             />
           </div>
 
           <div class="field full-width">
-            <label for="description-{module.id}">
-              Brief Description
+            <label for="description-{arc.id}">
+              Thematic Description
               <span class="optional">(optional)</span>
             </label>
             <textarea
-              id="description-{module.id}"
+              id="description-{arc.id}"
               rows="2"
-              bind:value={module.description}
-              placeholder="What will learners focus on in this module?"
+              bind:value={arc.description}
+              placeholder="Describe the broad focus and learning phase this arc represents..."
             ></textarea>
           </div>
         </div>
@@ -251,8 +272,8 @@
       </div>
     {/each}
 
-    <button type="button" class="add-module-btn" on:click={addModule}>
-      + Add Module
+    <button type="button" class="add-arc-btn" on:click={addArc}>
+      + Add Arc
     </button>
   </div>
 
@@ -261,13 +282,13 @@
       ← Back to Configuration
     </button>
     <button type="button" class="submit-btn" on:click={handleSubmit}>
-      Continue to Structure Review →
+      Continue to Module Planning →
     </button>
   </div>
 </div>
 
 <style>
-  .module-planner {
+  .arc-planner {
     max-width: 900px;
     margin: 0 auto;
   }
@@ -283,7 +304,21 @@
 
   .description {
     color: #666;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .guidance {
+    color: #495057;
+    background: #e7f3ff;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #0066cc;
+    font-size: 0.9rem;
     margin: 0;
+  }
+
+  .guidance strong {
+    color: #0066cc;
   }
 
   .week-summary {
@@ -353,26 +388,26 @@
     margin-bottom: 0.5rem;
   }
 
-  .timeline-module {
+  .timeline-arc {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #28a745, #20c997);
+    background: linear-gradient(135deg, #0066cc, #0052a3);
     border-right: 2px solid white;
     transition: all 0.3s;
     cursor: pointer;
   }
 
-  .timeline-module:hover {
+  .timeline-arc:hover {
     filter: brightness(1.1);
     transform: scaleY(1.05);
   }
 
-  .timeline-module:last-child {
+  .timeline-arc:last-child {
     border-right: none;
   }
 
-  .module-label {
+  .arc-label {
     color: white;
     font-weight: 700;
     font-size: 0.9rem;
@@ -390,7 +425,7 @@
     color: #999;
   }
 
-  .modules-list {
+  .arcs-list {
     margin-bottom: 2rem;
   }
 
@@ -423,7 +458,7 @@
     transform: translateY(-1px);
   }
 
-  .module-card {
+  .arc-card {
     background: white;
     border-radius: 8px;
     padding: 1.5rem;
@@ -433,15 +468,15 @@
     transition: all 0.2s;
   }
 
-  .module-card:hover {
-    border-color: #28a745;
+  .arc-card:hover {
+    border-color: #0066cc;
   }
 
-  .module-card.error {
+  .arc-card.error {
     border-color: #dc3545;
   }
 
-  .module-header {
+  .arc-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -450,9 +485,9 @@
     border-bottom: 2px solid #e9ecef;
   }
 
-  .module-number {
+  .arc-number {
     font-weight: 700;
-    color: #28a745;
+    color: #0066cc;
     font-size: 1.1rem;
   }
 
@@ -476,9 +511,9 @@
     background: #f8d7da;
   }
 
-  .module-fields {
+  .arc-fields {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr 120px;
     gap: 1rem;
   }
 
@@ -521,8 +556,8 @@
   input:focus,
   textarea:focus {
     outline: none;
-    border-color: #28a745;
-    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+    border-color: #0066cc;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
   }
 
   textarea {
@@ -535,22 +570,22 @@
     margin-top: 0.5rem;
   }
 
-  .add-module-btn {
+  .add-arc-btn {
     width: 100%;
     padding: 1rem;
     background: white;
     border: 2px dashed #dee2e6;
     border-radius: 8px;
-    color: #28a745;
+    color: #0066cc;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.2s;
   }
 
-  .add-module-btn:hover {
-    border-color: #28a745;
-    background: #f0fff4;
+  .add-arc-btn:hover {
+    border-color: #0066cc;
+    background: #e7f3ff;
   }
 
   .actions {
@@ -583,14 +618,14 @@
   }
 
   .submit-btn {
-    background: #28a745;
+    background: #0066cc;
     color: white;
   }
 
   .submit-btn:hover {
-    background: #218838;
+    background: #0052a3;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
   }
 
   @media (max-width: 768px) {
@@ -599,7 +634,7 @@
       gap: 1rem;
     }
 
-    .module-fields {
+    .arc-fields {
       grid-template-columns: 1fr;
     }
 

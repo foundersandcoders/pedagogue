@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import FileUpload from "$lib/components/mogen/FileUpload.svelte";
-  import StructuredInputForm from "$lib/components/mogen/StructuredInputForm.svelte";
-  import ModulePreview from "$lib/components/mogen/ModulePreview.svelte";
+  import FileUpload from "$lib/components/metis/FileUpload.svelte";
+  import StructuredInputForm from "$lib/components/metis/StructuredInputForm.svelte";
+  import ModulePreview from "$lib/components/metis/ModulePreview.svelte";
   import {
     currentStep,
     projectsFile,
@@ -13,7 +13,7 @@
     canProceedToStep2,
     structuredInput,
     generatedModule,
-  } from "$lib/stores/mogenStores";
+  } from "$lib/stores/metisStores";
 
   const steps = ["Upload Files", "Add Context", "Generate Module"];
 
@@ -88,7 +88,7 @@
 
     // First, POST the data to initiate generation
     try {
-      const response = await fetch("/api/mogen/update", {
+      const response = await fetch("/api/metis/update", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -263,17 +263,17 @@
   }
 
   onMount(() => {
-    console.log("Workflow initialised: MoGen");
+    console.log("Workflow initialised: Metis");
   });
 </script>
 
 <svelte:head>
-  <title>Pedagogue: MoGen (Module Generator)</title>
+  <title>Metis: Rhea's Module Generator</title>
 </svelte:head>
 
-<div id="mogen-container" class="container">
-  <header id="mogen-header">
-    <h1>Pedagogue: MoGen</h1>
+<div id="metis-container" class="container">
+  <header id="metis-header">
+    <h1>Metis</h1>
     <p>AI-powered module specification generator for peer-led courses</p>
   </header>
 

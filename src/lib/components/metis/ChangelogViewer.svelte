@@ -4,7 +4,7 @@
     Change,
     GenerationInfo,
     ProvenanceInfo,
-  } from "$lib/types/mogen";
+  } from "$lib/types/metisTypes";
 
   export let xmlContent: string = "";
 

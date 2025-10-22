@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import type { CourseData } from "$lib/types/cobu";
+  import type { CourseData } from "$lib/types/themisTypes";
 
   export let formData: Partial<CourseData> = {
     title: "",

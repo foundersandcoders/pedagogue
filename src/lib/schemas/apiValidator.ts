@@ -8,7 +8,7 @@
 import { z } from 'zod';
 
 // ==================================================================
-// MoGen API
+// Metis API
 // ==================================================================
 
 /**
@@ -76,7 +76,7 @@ export const GenerateResponseSchema = z.object({
 export type GenerateResponse = z.infer<typeof GenerateResponseSchema>;
 
 // ==================================================================
-// CoBu Structure API
+// Themis Structure API
 // ==================================================================
 
 /**

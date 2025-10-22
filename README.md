@@ -118,7 +118,7 @@ All generated modules automatically validated against requirements:
 
 ### For Users
 - **[Getting Started](/docs/getting-started.md)** - Installation, setup, first module
-- **[About Pedagogue](/docs/about-pedagogue.md)** - What it does and why it exists
+- **[About Pedagogue](/docs/about-rhea.md)** - What it does and why it exists
 - **[Executive Summary](/docs/executive-summary.md)** - Quick overview
 
 ### For Developers
@@ -129,8 +129,8 @@ All generated modules automatically validated against requirements:
 
 ### For Contributors
 - **[Roadmaps](/.claude/docs/roadmaps/)** - Feature status and priorities
-  - [Module Generator (MoGen)](/.claude/docs/roadmaps/MoGen-MVP.md)
-  - [Course Builder (CoBu)](/.claude/docs/roadmaps/CoBu-MVP.md)
+  - [Module Generator (Metis)](/.claude/docs/roadmaps/Metis-MVP.md)
+  - [Course Builder (Themis)](/.claude/docs/roadmaps/Themis-MVP.md)
 - **[CLAUDE.md](/CLAUDE.md)** - AI assistant guidance
 
 ## Input File Format

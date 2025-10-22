@@ -285,7 +285,7 @@ Less important for:
 
 - **Generate a course:** Try the Course Builder for multi-module courses
 - **Explore the codebase:** See `/docs/technical-overview.md`
-- **Read about the project:** See `/docs/about-pedagogue.md`
+- **Read about the project:** See `/docs/about-rhea.md`
 - **Report issues:** [GitHub Issues](https://github.com/your-org/pedagogue/issues)
 
 ## Production Deployment

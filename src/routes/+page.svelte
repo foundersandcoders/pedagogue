@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { Arc } from "$lib/types/cobu"
-  import { savedCourses } from "$lib/stores/cobuStores";
+  import type { Arc } from "$lib/types/themisTypes"
+  import { savedCourses } from "$lib/stores/themisStores";
   
   function countModules(arcs: Arc[]) :number {
     let total = 0;
@@ -15,21 +15,21 @@
 </script>
 
 <svelte:head>
-  <title>Gaia: AI-Powered Curriculum Generator</title>
+  <title>Rhea: AI-Powered Curriculum Generator</title>
 </svelte:head>
 
 <div id="hub-container" class="container">
   <header id="hub-header">
-    <h1>Gaia</h1>
+    <h1>Rhea</h1>
     <p>AI-powered curriculum generation for peer-led courses</p>
   </header>
 
   <!-- TODO: possibly create hub component? In case I need sub-hubs when functionality expands -->
-  <main class="hub">
+  <main class="rhea-hub">
     <!-- TODO: create separate WorkflowCard component -->
     <!-- TODO: address a11y issues from workflow cards -->
     <div class="workflow-cards">
-      <a href="/cobu/generate" class="workflow-card course-card">
+      <a href="/themis/generate" class="workflow-card themis-card">
         <div class="card-icon">📚</div>
         <h2>Themis</h2>
         <p>
@@ -44,7 +44,7 @@
         <div class="card-action">Start Course Builder →</div>
       </a>
       
-      <a href="/tethys" class="workflow-card arc-card">
+      <a href="/tethys" class="workflow-card tethys-card">
         <div class="card-icon">📄</div>
         <h2>Tethys</h2>
         <p>
@@ -52,13 +52,11 @@
         </p>
         <div class="card-features">
           <span>• </span>
-          <span>• </span>
-          <span>• </span>
         </div>
         <div class="card-action">Start Arc Designer →</div>
       </a>
       
-      <a href="/mogen/update" class="workflow-card module-card">
+      <a href="/metis/update" class="workflow-card metis-card">
         <div class="card-icon">📄</div>
         <h2>Metis</h2>
         <p>
@@ -123,7 +121,7 @@
     font-size: 1.2rem;
   }
 
-  .hub {
+  .rhea-hub {
     max-width: 900px;
     margin: 0 auto;
   }
@@ -153,15 +151,15 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
 
-  .module-card:hover {
+  .metis-card:hover {
     border-color: #007bff;
   }
   
-  .arc-card:hover {
+  .tethys-card:hover {
     border-color: #888888;
   }
 
-  .course-card:hover {
+  .themis-card:hover {
     border-color: #28a745;
   }
 
@@ -209,28 +207,28 @@
     transition: background 0.2s;
   }
 
-  .course-card .card-action {
+  .themis-card .card-action {
     color: #28a745;
     background: #d4edda;
   }
   
-  .arc-card .card-action {
+  .tethys-card .card-action {
     color: #888888;
     background: #cccccc;
   }
-
-  .module-card:hover .card-action {
-    background: #007bff;
+  
+  .themis-card:hover .card-action {
+    background: #28a745;
     color: white;
   }
   
-  .arc-card:hover .card-action {
+  .tethys-card:hover .card-action {
     background: #888888;
     color: white;
   }
-
-  .course-card:hover .card-action {
-    background: #28a745;
+  
+  .metis-card:hover .card-action {
+    background: #007bff;
     color: white;
   }
 
