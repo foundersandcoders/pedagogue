@@ -31,7 +31,7 @@ The 5 most recent achievements.
 Tasks that do not belong to a specific submodule, or that belong to all of them
 
 ### 2a. Tasks with a Deadline
-- [ ] `2025-10-22` create a reusable "content preview exporter"
+- [ ] `2025-10-22` Create "Theia": a reusable "content preview exporter"
   - **Criteria**
     1. Exports a human-readable version of generated content by mapping xml schema to typographic layout
     2. Can read and export content from both *Themis* and *Metis*, as well as future modules.
