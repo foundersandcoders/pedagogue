@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from "svelte";
   import { downloadCourseXml } from "$lib/utils/validation/outputSerialiser";
-  import type { CourseData, Arc } from "$lib/types/themisTypes";
+  import type { CourseData, Arc } from "$lib/types/themis";
 
   export let courseData: CourseData;
 

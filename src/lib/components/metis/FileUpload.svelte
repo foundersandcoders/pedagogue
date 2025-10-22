@@ -11,7 +11,7 @@
     ProjectsFile,
     SkillsFile,
     ResearchFile,
-  } from "$lib/types/metisTypes";
+  } from "$lib/types/metis";
 
   export let fileType: "projects" | "skills" | "research";
   export let uploadState: "idle" | "uploading" | "success" | "error" = "idle";

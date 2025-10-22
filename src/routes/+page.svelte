@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { Arc } from "$lib/types/themisTypes"
+  import type { Arc } from "$lib/types/themis"
   import { savedCourses } from "$lib/stores/themisStores";
   
   function countModules(arcs: Arc[]) :number {

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import type { CourseData, ModuleSlot } from "$lib/types/themisTypes";
+  import type { CourseData, ModuleSlot } from "$lib/types/themis";
 
   export let courseData: CourseData;
 

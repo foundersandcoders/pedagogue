@@ -2,7 +2,7 @@ import { error, json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import type { RequestHandler } from './$types';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
-import type { CourseStructureGenerationResponse } from '$lib/types/cobu';
+import type { CourseStructureGenerationResponse } from '$lib/types/themis';
 import {
 	CourseStructureGenerationRequestSchema,
 	formatZodError,
@@ -10,7 +10,7 @@ import {
 } from '$lib/schemas/apiValidator';
 import { createChatClient, withWebSearch } from '$lib/factories/agents/agentClientFactory';
 import { extractTextContent, parseCourseStructureResponse } from '$lib/utils/validation/responseParser';
-import { buildCourseStructurePrompt } from '$lib/factories/prompts/cobuPromptFactory';
+import { buildCourseStructurePrompt } from '$lib/factories/prompts/themisPromptFactory';
 
 /**
  * API endpoint for generating course structure with AI-enhanced module details

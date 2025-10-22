@@ -1,4 +1,4 @@
-import type { ProjectsFile, ResearchFile, SkillsFile } from "../../types/metisTypes";
+import type { ProjectsFile, ResearchFile, SkillsFile } from "../../types/metis";
 
 export class XMLParseError extends Error {
 	constructor(message: string, public readonly details?: string) {

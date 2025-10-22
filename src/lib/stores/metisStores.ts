@@ -1,5 +1,5 @@
 import { writable, derived } from 'svelte/store';
-import type { ProjectsFile, SkillsFile, ResearchFile } from '$lib/types/metisTypes';
+import type { ProjectsFile, SkillsFile, ResearchFile } from '$lib/types/metis';
 import type { StructuredInput } from '$lib/schemas/apiValidator';
 import { createWorkflowStore } from '$lib/utils/state/metisWorkflowStep';
 
