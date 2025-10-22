@@ -49,3 +49,4 @@ Tasks that do not belong to a specific submodule, or that belong to all of them
     4. User used *Metis* to generate a module, then exported only the Twists from that module
 
 ### 2b. Tasks with no Deadline
+- [ ] Create colour palettes for Rhea, Themis, Tethys and Metis based on their icons
