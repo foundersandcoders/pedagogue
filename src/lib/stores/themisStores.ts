@@ -1,5 +1,5 @@
 import { writable, derived } from 'svelte/store';
-import type { CourseData, ModuleSlot, Arc } from '$lib/types/themisTypes';
+import type { CourseData, ModuleSlot, Arc } from '$lib/types/themis';
 import { createWorkflowStore } from '$lib/utils/state/metisWorkflowStep';
 import { persistedStore, loadFromLocalStorage, saveToLocalStorage } from '$lib/utils/state/persistenceUtils';
 
