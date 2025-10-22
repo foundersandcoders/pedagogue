@@ -4,12 +4,11 @@
  * Unified retry logic supporting both streaming and non-streaming generation modes.
  * Handles validation, error accumulation, and automatic retry with refined prompts.
  */
-import type { ChatAnthropic } from '@langchain/anthropic';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
-import type { GenerationResult, RetryConfig } from '$lib/types/agent';
+import type { GenerationResult, RetryConfig, ChatModel } from '$lib/types/agent';
 import { validateModuleXML } from '$lib/schemas/moduleValidator.js';
 import { extractTextContent, extractModuleXML } from '$lib/utils/validation/responseParser';
-import { buildGenerationPrompt } from '$lib/factories/prompts/mogenPromptFactory';
+import { buildGenerationPrompt } from '$lib/factories/prompts/metisPromptFactory';
 
 /**
  * System message used for all generation attempts
@@ -22,13 +21,13 @@ const SYSTEM_MESSAGE = 'You are an expert in (a) current AI engineering trends a
  * Streams content chunks as they arrive from the AI model.
  *
  * @param messages - Messages to send to the model
- * @param model - ChatAnthropic model instance
+ * @param model - ChatModel instance (ChatAnthropic or Runnable)
  * @param onChunk - Callback for each content chunk
  * @returns Full generated content
  */
 async function generateWithStreaming(
 	messages: (SystemMessage | HumanMessage)[],
-	model: ChatAnthropic,
+	model: ChatModel,
 	onChunk?: (chunk: string) => void | Promise<void>
 ): Promise<string> {
 	let fullContent = '';
@@ -53,12 +52,12 @@ async function generateWithStreaming(
  * Returns complete content after full generation.
  *
  * @param messages - Messages to send to the model
- * @param model - ChatAnthropic model instance
+ * @param model - ChatModel instance (ChatAnthropic or Runnable)
  * @returns Full generated content
  */
 async function generateWithoutStreaming(
 	messages: (SystemMessage | HumanMessage)[],
-	model: ChatAnthropic
+	model: ChatModel
 ): Promise<string> {
 	const response = await model.invoke(messages);
 	return extractTextContent(response.content);

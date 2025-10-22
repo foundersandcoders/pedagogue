@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { Arc } from "$lib/types/cobu"
-  import { savedCourses } from "$lib/stores/cobuStores";
+  import type { Arc } from "$lib/types/themis"
+  import { savedCourses } from "$lib/stores/themisStores";
   
   function countModules(arcs: Arc[]) :number {
     let total = 0;
@@ -15,38 +15,26 @@
 </script>
 
 <svelte:head>
-  <title>Pedagogue - AI-Powered Curriculum Generator</title>
+  <title>Rhea: AI-Powered Curriculum Generator</title>
 </svelte:head>
 
 <div id="hub-container" class="container">
   <header id="hub-header">
-    <h1>Pedagogue</h1>
+    <div class="header-title">
+      <img src="/rhea/icon.png" alt="Rhea icon" class="header-icon" />
+      <h1>Rhea</h1>
+    </div>
     <p>AI-powered curriculum generation for peer-led courses</p>
   </header>
 
   <!-- TODO: possibly create hub component? In case I need sub-hubs when functionality expands -->
-  <main class="hub">
+  <main class="rhea-hub">
     <!-- TODO: create separate WorkflowCard component -->
     <!-- TODO: address a11y issues from workflow cards -->
     <div class="workflow-cards">
-      <a href="/mogen/update" class="workflow-card module-card">
-        <div class="card-icon">📄</div>
-        <h2>MoGen</h2>
-        <p>
-          Create a standalone module specification with projects, skills, and
-          research topics.
-        </p>
-        <div class="card-features">
-          <span>✓ Project briefs</span>
-          <span>✓ Learning objectives</span>
-          <span>✓ Research topics</span>
-        </div>
-        <div class="card-action">Start Module Generator →</div>
-      </a>
-
-      <a href="/cobu/generate" class="workflow-card course-card">
-        <div class="card-icon">📚</div>
-        <h2>CoBu</h2>
+      <a href="/themis/generate" class="workflow-card themis-card">
+        <img src="/themis/icon.png" alt="Themis" class="card-icon" />
+        <h2>Themis</h2>
         <p>
           Create a complete multi-week course with interconnected modules and
           learning progressions.
@@ -57,6 +45,33 @@
           <span>✓ Learning progression</span>
         </div>
         <div class="card-action">Start Course Builder →</div>
+      </a>
+      
+      <a href="/tethys" class="workflow-card tethys-card">
+        <img src="/tethys/icon.png" alt="Tethys" class="card-icon" />
+        <h2>Tethys</h2>
+        <p>
+          Create a linked set of modules.
+        </p>
+        <div class="card-features">
+          <span>• </span>
+        </div>
+        <div class="card-action">Start Arc Designer →</div>
+      </a>
+      
+      <a href="/metis/update" class="workflow-card metis-card">
+        <img src="/metis/icon.png" alt="Metis" class="card-icon" />
+        <h2>Metis</h2>
+        <p>
+          Create a standalone module specification with projects, skills, and
+          research topics.
+        </p>
+        <div class="card-features">
+          <span>✓ Project briefs</span>
+          <span>✓ Learning objectives</span>
+          <span>✓ Research topics</span>
+        </div>
+        <div class="card-action">Start Module Generator →</div>
       </a>
     </div>
 
@@ -98,10 +113,24 @@
     margin-bottom: 4rem;
   }
 
+  .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .header-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+  }
+
   header h1 {
     font-size: 3.5rem;
     color: #333;
-    margin-bottom: 0.5rem;
+    margin: 0;
   }
 
   header p {
@@ -109,14 +138,14 @@
     font-size: 1.2rem;
   }
 
-  .hub {
+  .rhea-hub {
     max-width: 900px;
     margin: 0 auto;
   }
 
   .workflow-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
     margin-bottom: 4rem;
   }
@@ -139,16 +168,22 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
 
-  .module-card:hover {
+  .metis-card:hover {
     border-color: #007bff;
   }
+  
+  .tethys-card:hover {
+    border-color: #888888;
+  }
 
-  .course-card:hover {
+  .themis-card:hover {
     border-color: #28a745;
   }
 
   .card-icon {
-    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
     margin-bottom: 1rem;
   }
 
@@ -191,18 +226,28 @@
     transition: background 0.2s;
   }
 
-  .course-card .card-action {
+  .themis-card .card-action {
     color: #28a745;
     background: #d4edda;
   }
-
-  .module-card:hover .card-action {
-    background: #007bff;
+  
+  .tethys-card .card-action {
+    color: #888888;
+    background: #cccccc;
+  }
+  
+  .themis-card:hover .card-action {
+    background: #28a745;
     color: white;
   }
-
-  .course-card:hover .card-action {
-    background: #28a745;
+  
+  .tethys-card:hover .card-action {
+    background: #888888;
+    color: white;
+  }
+  
+  .metis-card:hover .card-action {
+    background: #007bff;
     color: white;
   }
 
@@ -242,11 +287,11 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
-  .course-info p {
+  /*.course-info p {
     margin: 0;
     color: #666;
     font-size: 0.9rem;
-  }
+  }*/
 
   .course-meta {
     color: #999;

@@ -1,183 +1,145 @@
 ![Pedagogue](./static/github-header-banner.png)
 
-An AI-powered curriculum generation tool for peer-led learning cohorts. Pedagogue uses Claude AI with optional web research to generate comprehensive, up-to-date module specifications based on your project briefs, skills requirements, and research topics.
+An AI-powered curriculum generation tool for peer-led learning cohorts. Pedagogue uses Claude AI with optional web research to generate comprehensive, up-to-date module specifications and complete multi-week courses.
 
 ## What Pedagogue Does
 
-Pedagogue takes your existing curriculum materials (projects, skills, research topics) and generates a complete module specification that includes:
+Pedagogue generates curriculum materials in two ways:
 
+### Module Generator
+
+Create standalone module specifications with:
 - Learning objectives and module overview
 - Detailed project briefs with examples and success criteria
 - Research topics with guidance for learners
 - Additional skills categorized by importance
 - Project "twists" to add interesting challenges
 
-The key value: **Pedagogue can use web search to ensure your curriculum reflects current industry practices and technologies**, not just what Claude knew at training time.
+### Course Builder
 
-### 📝 Change Tracking & Provenance
+Create complete multi-week courses with:
+- Thematic arcs organizing related modules
+- Learning progression across modules
+- Course-level narratives and structure
+- Individual module generation (coming soon)
 
-Pedagogue now includes comprehensive change tracking to support the **cascade pattern** - where AI-generated modules are updated iteratively whilst maintaining human oversight:
+**Key value:** Pedagogue can use web search to ensure your curriculum reflects current industry practices and technologies, not just what Claude knew at training time.
 
-- **Automatic Changelog**: Every generated module includes a detailed changelog documenting what changed, why, and with what confidence level
-- **Confidence Scoring**: Changes are marked as high/medium/low confidence to help reviewers prioritize what needs scrutiny
-- **Research Citations**: When web research informs a decision, sources are automatically cited
-- **Provenance Tracking**: Metadata shows when the module was generated, by which AI model, and flags sections needing human review
-
-This enables councils to:
-- Quickly identify what's been updated since the last version
-- Focus review time on low-confidence changes
-- Understand the rationale behind AI-proposed updates
-- Track which sections have accumulated multiple AI updates without human review
-
-See `/docs/changelog-schema-design.md` for technical details.
-
----
-
-## Installation & Setup
+## Quick Start
 
 ### Prerequisites
 
-- **Node.js** 16+ and npm
-- **Anthropic API key** (required)
+- Node.js 20+
+- Anthropic API key ([get one here](https://console.anthropic.com/))
 
-### 1. Get an Anthropic API Key
-
-1. Visit [console.anthropic.com](https://console.anthropic.com/)
-2. Sign up or log in to your Anthropic account
-3. Navigate to **API Keys** in the dashboard
-4. Click **Create Key** and copy your API key
-
-**Cost Information:**
-- Pay-as-you-go pricing based on tokens used
-- Claude Sonnet 4.5 costs approximately $3 per million input tokens, $15 per million output tokens
-- Typical module generation: 20,000-40,000 input tokens + 8,000-15,000 output tokens
-- **Estimated cost per module:** $0.20-$0.40 (with research enabled)
-- New accounts often include free credits to get started
-
-See [Anthropic's pricing page](https://www.anthropic.com/pricing) for current rates.
-
-### 2. Clone and Install
+### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-org/pedagogue.git
+# Clone repository
+git clone https://github.com/foundersandcoders/pedagogue.git
 cd pedagogue
 
 # Install dependencies
 npm install
-```
 
-### 3. Configure Environment
-
-```bash
-# Copy the example environment file
+# Configure environment
 cp .env.example .env
-```
+# Edit .env and add: ANTHROPIC_API_KEY=sk-ant-api03-xxxxx
 
-Open `.env` in your text editor and add your API key:
-
-```bash
-# Anthropic API Configuration
-ANTHROPIC_API_KEY=sk-ant-api03-xxxxx  # Replace with your actual key
-```
-
-**Important:**
-- Never commit your `.env` file to version control (it's already in `.gitignore`)
-- Keep your API key secure - treat it like a password
-- Don't share your key in screenshots, issues, or public forums
-
-### 4. Run the Application
-
-```bash
-# Start the development server
+# Run development server
 npm run dev
 ```
 
-The app will be available at **http://localhost:5173**
+Open **http://localhost:5173** to start using Pedagogue.
 
-Open this URL in your browser to start using Pedagogue.
+**See [Getting Started Guide](/docs/getting-started.md) for detailed installation and usage instructions.**
 
-### 5. Verify Setup
+## Cost Information
 
-To confirm everything is working:
+- Claude Sonnet 4.5 pricing: ~£2.20/million input tokens, ~£11/million output tokens
+- Typical module generation: **£0.15-£0.30** (with research enabled)
+- Course structure generation: **£0.10-£0.20**
+- New Anthropic accounts often include free credits
 
-1. Open http://localhost:5173
-2. Upload three minimal XML files (see [Input File Format](#input-file-format))
-3. Fill in the structured form
-4. Click "Generate Module"
-5. You should see progress updates and successful generation
+## Key Features
 
-If you see "ANTHROPIC_API_KEY not configured" - check that:
-- Your `.env` file exists in the project root
-- The API key is correctly set in `.env`
-- You've restarted the dev server after adding the key
+### 📝 Change Tracking & Provenance
 
-### Deployment
+Every generated module includes comprehensive change tracking to support the **cascade pattern** - where AI-generated modules are updated iteratively whilst maintaining human oversight:
 
-For production deployment:
+- **Automatic Changelog**: Documents what changed, why, and with what confidence level
+- **Confidence Scoring**: High/medium/low confidence flags help reviewers prioritize
+- **Research Citations**: Web research sources automatically cited
+- **Provenance Tracking**: Shows when generated, by which model, flags sections needing review
 
-```bash
-# Build the application
-npm run build
+This enables curriculum councils to:
+- Quickly identify what's been updated since last version
+- Focus review time on low-confidence changes
+- Understand rationale behind AI-proposed updates
+- Track sections needing human review
 
-# Preview the production build
-npm run preview
-```
+See [Changelog Schema Design](/docs/changelog-schema-design.md) for technical details.
 
-See SvelteKit's [deployment documentation](https://kit.svelte.dev/docs/adapters) for platform-specific instructions (Vercel, Netlify, etc.).
+### 🔬 Deep Research Capability
 
-**Production environment variables:**
-- Set `ANTHROPIC_API_KEY` in your hosting platform's environment variables
-- Never hardcode API keys in your source code
+Enable web search during generation to:
+- Verify technologies/practices are current
+- Update recommendations based on industry trends
+- Search trusted domains: vendor docs, GitHub, Stack Overflow, academic sources
+- Cite sources for transparency
 
----
+**This is the core value** - without research, you're just reformatting existing content.
 
-## Quick Start
+### ✅ Schema Validation
 
-### 1. Prepare Your Input Files
+All generated modules automatically validated against requirements:
+- Minimum 3 module objectives
+- Minimum 5 primary research topics
+- Minimum 2 project briefs with detailed criteria
+- Automatic retry (up to 3 attempts) if validation fails
 
-You'll need three XML files:
+### 🎨 Two Workflow Modes
 
-- **projects.xml** - Project briefs your learners will work on
-- **skills.xml** - Additional skills to incorporate (optional but recommended)
-- **research.xml** - Research topics for learners to explore
+**Module Generator** - Quick standalone modules
+1. Upload XML inputs (projects, skills, research)
+2. Provide structured context
+3. Generate with optional research
+4. Download XML specification
 
-See [Input File Format](#input-file-format) below for detailed requirements.
+**Course Builder** - Complete multi-week courses
+1. Configure course identity and logistics
+2. Plan thematic arcs
+3. Organize modules within arcs
+4. AI generates detailed structure
+5. Review and refine
+6. Generate individual modules (coming soon)
 
-### 2. Upload Files
+## Documentation
 
-Upload all three XML files in Step 1 of the interface.
+### For Users
+- **[Getting Started](/docs/getting-started.md)** - Installation, setup, first module
+- **[About Pedagogue](/docs/about-rhea.md)** - What it does and why it exists
+- **[Executive Summary](/docs/executive-summary.md)** - Quick overview
 
-### 3. Provide Context
+### For Developers
+- **[Technical Overview](/docs/technical-overview.md)** - Architecture, components, patterns
+- **[Refactoring Progress](/docs/refactoring-progress.md)** - Recent architectural improvements
+- **[Architecture Decisions](/docs/architecture-decisions.md)** - Historical context and rationale
+- **[Changelog Schema Design](/docs/changelog-schema-design.md)** - Change tracking implementation
 
-Fill in the structured input form with:
-- Module duration (weeks)
-- Expected cohort size
-- Learners' experience levels
-- Required technologies
-- Any additional requirements
-
-### 4. Generate Module
-
-Review your inputs and click "Generate Module". With web research enabled (recommended), generation typically takes 2-4 minutes.
-
-### 5. Download Result
-
-Once generation completes, download your module specification as XML.
-
----
+### For Contributors
+- **[Roadmaps](/.claude/docs/roadmaps/)** - Feature status and priorities
+  - [Module Generator (Metis)](/.claude/docs/roadmaps/Metis-MVP.md)
+  - [Course Builder (Themis)](/.claude/docs/roadmaps/Themis-MVP.md)
+- **[CLAUDE.md](/CLAUDE.md)** - AI assistant guidance
 
 ## Input File Format
 
-### Required Structure
+Pedagogue accepts XML files for module inputs. Each file must have a specific root element:
 
-Each input file **must** have a specific root element. XML is case-sensitive and tag names matter.
-
-#### projects.xml
-
+### projects.xml
 ```xml
 <Projects>
-  <!-- Your project briefs here -->
   <ProjectBriefs>
     <ProjectBrief>
       <Overview>
@@ -185,9 +147,7 @@ Each input file **must** have a specific root element. XML is case-sensitive and
         <Task>What learners will build</Task>
         <Focus>Key technologies and techniques</Focus>
       </Overview>
-      <Criteria>
-        Success criteria as bullet points
-      </Criteria>
+      <Criteria>Success criteria as bullet points</Criteria>
       <Skills>
         <Skill>
           <Name>Skill Name</Name>
@@ -205,19 +165,13 @@ Each input file **must** have a specific root element. XML is case-sensitive and
 </Projects>
 ```
 
-**Minimal valid file:**
-```xml
-<Projects>
-</Projects>
-```
+**Minimal valid:** `<Projects></Projects>`
 
-#### skills.xml
-
+### skills.xml
 ```xml
 <AdditionalSkills>
-  <!-- Your skills categories here -->
   <SkillsCategory>
-    <Name>Category Name (e.g., "Python")</Name>
+    <Name>Category Name</Name>
     <Skill>
       <SkillName>Specific Skill</SkillName>
       <Importance>Recommended / Stretch / Essential</Importance>
@@ -227,531 +181,79 @@ Each input file **must** have a specific root element. XML is case-sensitive and
 </AdditionalSkills>
 ```
 
-**Minimal valid file:**
-```xml
-<Skills>
-</Skills>
-```
+**Minimal valid:** `<Skills></Skills>` or `<AdditionalSkills></AdditionalSkills>`
 
-*Note: You can use either `<AdditionalSkills>` (for structured skills) or `<Skills>` (for flexible content).*
-
-#### research.xml
-
+### research.xml
 ```xml
 <ResearchTopics>
-  <!-- Your research topics here -->
   <PrimaryTopics>
     <PrimaryTopic>
       <TopicName>Topic Name</TopicName>
-      <TopicDescription>
-        What to research and how to approach it
-      </TopicDescription>
+      <TopicDescription>What to research and how to approach it</TopicDescription>
     </PrimaryTopic>
   </PrimaryTopics>
 </ResearchTopics>
 ```
 
-**Minimal valid file:**
-```xml
-<Research>
-</Research>
+**Minimal valid:** `<Research></Research>` or `<ResearchTopics></ResearchTopics>`
+
+**See [Getting Started Guide](/docs/getting-started.md) for common XML gotchas and detailed format specifications.**
+
+## Technical Stack
+
+- **SvelteKit** - Application framework with SSR and API routes
+- **Node.js 20+** - Runtime environment
+- **LangChain + Claude** - AI orchestration (Claude Sonnet 4.5)
+- **Zod** - Runtime validation and type safety
+- **XML** - Curriculum data format
+
+**See [Technical Overview](/docs/technical-overview.md) for architecture details.**
+
+## Recent Updates
+
+**October 2025-10-20** - Major architectural refactoring completed:
+- 670+ lines eliminated through better separation of concerns
+- Extracted reusable factories and utilities
+- Added comprehensive Zod validation
+- Implemented store persistence utilities
+- Created error handling infrastructure
+
+**See [Refactoring Progress](/docs/refactoring-progress.md) for full details.**
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-*Note: You can use either `<ResearchTopics>` (structured) or `<Research>` (flexible).*
+## Deployment
+
+Pedagogue can deploy to:
+- Vercel
+- Netlify
+- Node.js servers
+- Other platforms (see [SvelteKit adapters](https://kit.svelte.dev/docs/adapters))
+
+**Important:** Set `ANTHROPIC_API_KEY` in your hosting platform's environment variables.
+
+## Contributing
+
+Issues and pull requests welcome! Check the [roadmaps](/.claude/docs/roadmaps/) for current priorities.
+
+## License
+
+Built for peer-led learning communities.
 
 ---
 
-## Common XML Gotchas
-
-### 1. Unescaped Special Characters
-
-**Problem:** XML has special characters that must be escaped.
-
-**Common errors:**
-```xml
-<!-- WRONG - will cause parse error -->
-<Task>Compare values with < and > operators</Task>
-
-<!-- CORRECT -->
-<Task>Compare values with &lt; and &gt; operators</Task>
-```
-
-**Characters to escape:**
-- `&` → `&amp;`
-- `<` → `&lt;`
-- `>` → `&gt;`
-- `"` → `&quot;` (in attributes)
-- `'` → `&apos;` (in attributes)
-
-### 2. Mismatched or Unclosed Tags
-
-```xml
-<!-- WRONG -->
-<Name>Project Name</name>
-
-<!-- CORRECT - tags are case-sensitive -->
-<Name>Project Name</Name>
-```
-
-```xml
-<!-- WRONG -->
-<Overview>
-  <Name>Project Name
-</Overview>
-
-<!-- CORRECT - all tags must close -->
-<Overview>
-  <Name>Project Name</Name>
-</Overview>
-```
-
-### 3. Invalid XML Declaration
-
-If you include an XML declaration, it must be the **first line** with no whitespace before it:
-
-```xml
-<!-- WRONG -->
-
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!-- CORRECT -->
-<?xml version="1.0" encoding="UTF-8"?>
-<Projects>
-```
-
-*Note: The XML declaration is optional. If omitted, UTF-8 encoding is assumed.*
-
-### 4. Comments Inside Tags
-
-```xml
-<!-- WRONG -->
-<Name <!-- This is the project name --> >Project</Name>
-
-<!-- CORRECT -->
-<!-- This is the project name -->
-<Name>Project</Name>
-```
-
-### 5. Empty Elements
-
-Both formats are valid:
-
-```xml
-<ProjectBriefs></ProjectBriefs>
-<!-- or -->
-<ProjectBriefs />
-```
-
----
-
-## Using the Structured Input Form
-
-The form provides context that helps Claude generate a more targeted module specification.
-
-### Required Fields
-
-**Module Duration (weeks)**
-- How long learners will spend on this module
-- Influences the depth and breadth of content
-- Range: 1-52 weeks
-
-**Expected Cohort Size**
-- Number of learners
-- Helps Claude recommend appropriate group activities and scale
-- Range: 1-1000 learners
-
-**Experience in Related Fields**
-- Prior experience in broader field (e.g., software development)
-- Options: <1 year, 1-3 years, 4+ years
-
-**Experience in Course Focus**
-- Prior experience in this specific domain (e.g., AI engineering)
-- Options: None, Limited, Skilled Amateur, Current Professional
-
-### Optional Fields
-
-**Expected Delivery Date**
-- When the module will run
-- If provided, helps research focus on technologies/practices relevant at that time
-
-**Required Technologies & Techniques**
-- Select from common options or add custom technologies
-- Claude will incorporate these into project briefs and skills
-- Be specific: "FastAPI" not just "Python"
-
-**Additional Information**
-- Any special requirements, constraints, or goals
-- Example: "Learners must deploy to cloud platforms" or "No paid services"
-- Max 1000 characters
-
-### Generation Options
-
-**Enable Deep Research** (Recommended)
-- Allows Claude to use web search during generation
-- Searches trusted domains: vendor docs, established tech publications, academic sources
-- Ensures curriculum reflects current best practices
-- Adds 1-2 minutes to generation time
-- **This is the core value of Pedagogue** - without research, you're just reformatting existing content
-
-**Use Extended Thinking**
-- Gives Claude more time to reason about complex requirements
-- Useful for modules with many dependencies or advanced topics
-- Adds minimal time but improves quality for complex modules
-
----
-
-## How Generation Works
-
-### What Gets Sent to Claude
-
-1. **Your three input files** (projects, skills, research)
-2. **Structured form data** (cohort size, duration, experience levels, etc.)
-3. **Schema requirements** (the exact XML structure Claude must produce)
-4. **Generation instructions** (how to synthesize inputs into a cohesive module)
-
-### What Claude Does
-
-1. **Analyzes your inputs** to understand learning outcomes
-2. **If research enabled:** Uses web search to verify content is current
-   - Checks if technologies/practices are outdated
-   - Updates recommendations based on current industry trends
-   - Limits: 5 searches per generation
-   - Allowed domains: anthropic.com, openai.com, langchain.com, github.com, stackoverflow.com, arxiv.org, and other trusted tech sources
-3. **Synthesizes everything** into a comprehensive module specification
-4. **Validates output** against the schema (see [Output Schema](#output-schema))
-
-### Validation & Retry
-
-Pedagogue automatically validates Claude's output against the required schema. If validation fails (e.g., too few objectives, missing required sections), it will:
-
-1. Show you the validation error
-2. Automatically retry with feedback (up to 3 attempts)
-3. Include validation errors in the retry prompt so Claude can fix them
-
-You'll see progress updates during this process.
-
-### Generation Time
-
-- **Without research:** 30-60 seconds
-- **With research:** 2-4 minutes (searches take time but are worth it)
-
----
-
-## Output Schema
-
-The generated module follows this structure:
-
-```xml
-<Module>
-  <Metadata>
-    <!-- NEW: Automatic change tracking and provenance -->
-    <GenerationInfo>
-      <Timestamp>2025-10-11T14:30:00Z</Timestamp>
-      <Source>AI-Generated</Source>
-      <Model>claude-sonnet-4-5-20250929</Model>
-    </GenerationInfo>
-    <Changelog>
-      <!-- Documents what changed, why, and with what confidence -->
-      <Change>
-        <Section>ModuleObjectives/Objective[1]</Section>
-        <Type>content_update</Type>
-        <Confidence>high</Confidence>
-        <Summary>Updated to reflect latest best practices</Summary>
-        <Rationale>Industry has moved to newer patterns...</Rationale>
-        <ResearchSources>
-          <Source url="...">Documentation reference</Source>
-        </ResearchSources>
-      </Change>
-    </Changelog>
-  </Metadata>
-
-  <ModuleOverview>
-    <ModuleDescription>...</ModuleDescription>
-    <ModuleObjectives>
-      <!-- Minimum 3 distinct objectives -->
-      <ModuleObjective>
-        <Name>...</Name>
-        <Details>...</Details>
-      </ModuleObjective>
-    </ModuleObjectives>
-  </ModuleOverview>
-
-  <ResearchTopics>
-    <PrimaryTopics>
-      <!-- Minimum 5 distinct topics -->
-      <PrimaryTopic>
-        <TopicName>...</TopicName>
-        <TopicDescription>...</TopicDescription>
-      </PrimaryTopic>
-    </PrimaryTopics>
-    <StretchTopics>
-      <!-- Optional extension topics -->
-    </StretchTopics>
-  </ResearchTopics>
-
-  <Projects>
-    <ProjectBriefs>
-      <!-- Minimum 2 distinct briefs -->
-      <ProjectBrief>
-        <Overview>...</Overview>
-        <Criteria>...</Criteria>
-        <Skills>
-          <!-- Minimum 3 distinct skills per brief -->
-        </Skills>
-        <Examples>
-          <!-- Minimum 3 significantly different examples -->
-        </Examples>
-      </ProjectBrief>
-    </ProjectBriefs>
-
-    <ProjectTwists>
-      <!-- Minimum 2 interesting twists -->
-      <ProjectTwist>
-        <Name>...</Name>
-        <Task>...</Task>
-        <ExampleUses>
-          <!-- Minimum 2 examples -->
-        </ExampleUses>
-      </ProjectTwist>
-    </ProjectTwists>
-  </Projects>
-
-  <AdditionalSkills>
-    <!-- Supplementary skills organized by category -->
-  </AdditionalSkills>
-
-  <Notes>
-    <!-- Any additional context that doesn't fit elsewhere -->
-  </Notes>
-</Module>
-```
-
-### Validation Requirements
-
-The schema enforces:
-- ✅ At least 3 module objectives
-- ✅ At least 5 primary research topics
-- ✅ At least 2 project briefs
-- ✅ At least 3 skills per project brief
-- ✅ At least 3 examples per project brief
-- ✅ At least 2 project twists
-- ✅ At least 2 example uses per twist
-- ✅ Proper XML structure with matching tags
-- ✅ All required sections present
-
-If any requirement isn't met, Pedagogue will automatically retry with specific feedback.
-
----
-
-## Information Sources
-
-### When Research is Disabled
-
-Claude uses only:
-- Your input files (projects, skills, research)
-- Your structured form data
-- Claude's training data (knowledge cutoff: January 2025)
-
-### When Research is Enabled
-
-Claude additionally searches these trusted domains:
-
-**AI Platforms & Vendors**
-- anthropic.com, openai.com, huggingface.co
-
-**Documentation Sites**
-- js.langchain.com, python.langchain.com, modelcontextprotocol.io, docs.python.org
-
-**Developer Resources**
-- github.com, stackoverflow.com, dev.to, medium.com
-
-**Tech News & Analysis**
-- techcrunch.com, venturebeat.com
-
-**Technical Blogs**
-- simonwillison.net, newsletter.pragmaticengineer.com
-
-**Academic Sources**
-- arxiv.org, acm.org, ieee.org
-
-This ensures recommendations come from authoritative sources while staying current.
-
----
-
-## Troubleshooting
-
-### "ANTHROPIC_API_KEY not configured"
-
-**Cause:** The application can't find your Anthropic API key.
-
-**Solutions:**
-1. Check that `.env` file exists in the project root directory
-2. Verify your API key is correctly set: `ANTHROPIC_API_KEY=sk-ant-api03-xxxxx`
-3. Restart the development server after adding/modifying `.env`
-4. Ensure there are no extra spaces around the `=` sign in `.env`
-5. For production deployments, confirm environment variables are set in your hosting platform
-
-See [Installation & Setup](#installation--setup) for detailed configuration instructions.
-
-### "Failed to parse XML file"
-
-**Cause:** Invalid XML syntax in your input files.
-
-**Solutions:**
-1. Check for unescaped special characters (`&`, `<`, `>`)
-2. Verify all tags are properly closed and match case
-3. Ensure root element is correct (`<Projects>`, `<Skills>`/`<AdditionalSkills>`, `<Research>`/`<ResearchTopics>`)
-4. Validate your XML with an online validator
-
-### "Validation failed after 3 attempts"
-
-**Cause:** Claude couldn't produce valid output meeting schema requirements.
-
-**Solutions:**
-1. Check if your input files are very sparse (add more detail to help Claude)
-2. Verify "Additional Information" field doesn't have contradictory requirements
-3. Try disabling "Extended Thinking" (sometimes simpler is better)
-4. Review the validation errors shown - they indicate what's missing
-
-### "Generation timed out"
-
-**Cause:** Request took longer than 2 minutes (usually with research enabled).
-
-**Solutions:**
-1. Try again (web searches can occasionally be slow)
-2. Simplify your inputs (fewer technologies, shorter additional info)
-3. Disable research temporarily to get a baseline module
-
-### Output doesn't match your requirements
-
-**Improvements:**
-1. Add more detail to your input XML files (Claude follows your examples)
-2. Use the "Additional Information" field to specify constraints
-3. Be specific about technologies (not "databases" but "PostgreSQL")
-4. Enable research if disabled (gets current best practices)
-
-### API Rate Limits or Billing Issues
-
-**Symptoms:**
-- 429 errors ("rate limit exceeded")
-- 402 errors ("insufficient credits")
-- Slow response times
-
-**Solutions:**
-1. **Rate limits:** Wait a minute and try again. Anthropic has per-minute rate limits on API usage
-2. **Insufficient credits:** Check your [Anthropic console](https://console.anthropic.com/) billing section
-   - Add credits to your account
-   - Verify your payment method is valid
-3. **High costs:** Each module generation costs $0.20-$0.40 with research enabled
-   - Disable research for testing/development to reduce costs
-   - Use simpler input files during iteration
-
----
-
-## Tips for Best Results
-
-### 1. Provide Rich Input Files
-
-The more detail in your projects, skills, and research files, the better Claude understands what you want:
-
-- ✅ Include multiple project briefs with detailed criteria
-- ✅ Specify 3-5 skills per project with explanations
-- ✅ Provide 3-4 examples per project to show diversity
-- ❌ Don't use empty/minimal input files
-
-### 2. Be Specific About Technologies
-
-Claude responds better to specific technologies than generic categories:
-
-- ✅ "React with TypeScript", "FastAPI", "PostgreSQL"
-- ❌ "Frontend framework", "Backend", "Database"
-
-### 3. Use Additional Information Wisely
-
-Great uses:
-- "Learners must deploy projects to cloud platforms"
-- "No paid services - use only free tiers"
-- "Projects should emphasize testing and CI/CD"
-
-Not helpful:
-- Repeating what's already in structured fields
-- Vague requests like "make it good"
-
-### 4. Enable Research for Current Topics
-
-Essential for:
-- ✅ Fast-moving fields (AI/ML, web frameworks)
-- ✅ Modules being delivered 3+ months from now
-- ✅ Emerging technologies or practices
-
-Less important for:
-- Stable, foundational topics (SQL basics, algorithms)
-- Historical or theoretical modules
-
-### 5. Iterate
-
-Pedagogue excels at refinement:
-1. Generate a baseline module
-2. Review what Claude produced
-3. Adjust your inputs based on what you learned
-4. Generate again
-
----
-
-## Model Information
-
-Pedagogue uses **Claude Sonnet 4.5** (claude-sonnet-4-5-20250929):
-- 200K token context window (can handle large input files)
-- Up to 64K output tokens (comprehensive modules)
-- Web search capability (when enabled)
-- Extended thinking capability (when enabled)
-
----
-
-## License & Support
-
-Pedagogue is built for peer-led learning communities.
-
-For issues or questions: Create an issue in the repository or check the `/docs` folder for technical documentation.
-
-**Note:** You'll need an Anthropic API key to use Pedagogue. See the [Installation & Setup](#installation--setup) section above for detailed instructions.
-
----
-
-## Example Workflow
-
-Let's walk through generating a module about "AI Agents and Tool Use":
-
-1. **Create projects.xml** with two project briefs:
-   - "Web Research Agent" - uses search APIs
-   - "Personal Assistant Agent" - integrates calendar/email
-
-2. **Create skills.xml** listing Python, API integration, prompt engineering
-
-3. **Create research.xml** with topics like:
-   - "ReAct framework and reasoning patterns"
-   - "LangChain agent abstractions"
-   - "Function calling with OpenAI/Anthropic"
-
-4. **Fill the form:**
-   - Duration: 3 weeks
-   - Cohort: 12 learners
-   - Experience: Limited experience in AI, 1-3 years in software dev
-   - Technologies: Python, LangChain, FastAPI
-   - Enable research: ✅
-
-5. **Generate** - takes ~3 minutes with research
-
-6. **Review & Download** - Claude produces:
-   - 3-5 learning objectives
-   - 5-8 research topics with guidance
-   - 2 detailed project briefs with examples
-   - Additional skills (testing agents, managing state, error handling)
-   - Project twists (multi-agent systems, human-in-the-loop)
-
-7. **Refine** (if needed):
-   - Add more specific examples to projects.xml
-   - Request different deployment targets in "Additional Information"
-   - Re-generate
-
-That's it! You now have a comprehensive, current module specification ready for your learners.
+**Need help?** See the [Getting Started Guide](/docs/getting-started.md) or create an issue.
