@@ -15,12 +15,12 @@
 </script>
 
 <svelte:head>
-  <title>Pedagogue - AI-Powered Curriculum Generator</title>
+  <title>Gaia: AI-Powered Curriculum Generator</title>
 </svelte:head>
 
 <div id="hub-container" class="container">
   <header id="hub-header">
-    <h1>Pedagogue</h1>
+    <h1>Gaia</h1>
     <p>AI-powered curriculum generation for peer-led courses</p>
   </header>
 
@@ -29,24 +29,9 @@
     <!-- TODO: create separate WorkflowCard component -->
     <!-- TODO: address a11y issues from workflow cards -->
     <div class="workflow-cards">
-      <a href="/mogen/update" class="workflow-card module-card">
-        <div class="card-icon">📄</div>
-        <h2>MoGen</h2>
-        <p>
-          Create a standalone module specification with projects, skills, and
-          research topics.
-        </p>
-        <div class="card-features">
-          <span>✓ Project briefs</span>
-          <span>✓ Learning objectives</span>
-          <span>✓ Research topics</span>
-        </div>
-        <div class="card-action">Start Module Generator →</div>
-      </a>
-
       <a href="/cobu/generate" class="workflow-card course-card">
         <div class="card-icon">📚</div>
-        <h2>CoBu</h2>
+        <h2>Themis</h2>
         <p>
           Create a complete multi-week course with interconnected modules and
           learning progressions.
@@ -57,6 +42,35 @@
           <span>✓ Learning progression</span>
         </div>
         <div class="card-action">Start Course Builder →</div>
+      </a>
+      
+      <a href="/tethys" class="workflow-card arc-card">
+        <div class="card-icon">📄</div>
+        <h2>Tethys</h2>
+        <p>
+          Create a linked set of modules.
+        </p>
+        <div class="card-features">
+          <span>• </span>
+          <span>• </span>
+          <span>• </span>
+        </div>
+        <div class="card-action">Start Arc Designer →</div>
+      </a>
+      
+      <a href="/mogen/update" class="workflow-card module-card">
+        <div class="card-icon">📄</div>
+        <h2>Metis</h2>
+        <p>
+          Create a standalone module specification with projects, skills, and
+          research topics.
+        </p>
+        <div class="card-features">
+          <span>✓ Project briefs</span>
+          <span>✓ Learning objectives</span>
+          <span>✓ Research topics</span>
+        </div>
+        <div class="card-action">Start Module Generator →</div>
       </a>
     </div>
 
@@ -116,7 +130,7 @@
 
   .workflow-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
     margin-bottom: 4rem;
   }
@@ -141,6 +155,10 @@
 
   .module-card:hover {
     border-color: #007bff;
+  }
+  
+  .arc-card:hover {
+    border-color: #888888;
   }
 
   .course-card:hover {
@@ -195,9 +213,19 @@
     color: #28a745;
     background: #d4edda;
   }
+  
+  .arc-card .card-action {
+    color: #888888;
+    background: #cccccc;
+  }
 
   .module-card:hover .card-action {
     background: #007bff;
+    color: white;
+  }
+  
+  .arc-card:hover .card-action {
+    background: #888888;
     color: white;
   }
 
@@ -242,11 +270,11 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
-  .course-info p {
+  /*.course-info p {
     margin: 0;
     color: #666;
     font-size: 0.9rem;
-  }
+  }*/
 
   .course-meta {
     color: #999;
