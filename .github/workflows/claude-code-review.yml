@@ -49,6 +49,41 @@ jobs:
 
             Use the repository's CLAUDE.md for guidance on style and conventions. Be constructive and helpful in your feedback.
 
+            **IMPORTANT**: Structure your review for readability by using `<details>` tags to make sections collapsible. Organise your feedback like this:
+
+            ## Summary
+            Brief overview of key findings (3-4 sentences maximum)
+
+            <details>
+            <summary>🎯 Code Quality & Best Practices</summary>
+
+            [Your detailed feedback here]
+            </details>
+
+            <details>
+            <summary>🐛 Potential Issues</summary>
+
+            [Your detailed feedback here]
+            </details>
+
+            <details>
+            <summary>⚡ Performance Considerations</summary>
+
+            [Your detailed feedback here]
+            </details>
+
+            <details>
+            <summary>🔒 Security Concerns</summary>
+
+            [Your detailed feedback here]
+            </details>
+
+            <details>
+            <summary>✅ Test Coverage</summary>
+
+            [Your detailed feedback here]
+            </details>
+
             Use `gh pr comment` with your Bash tool to leave your review as a comment on the PR.
 
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md

@@ -42,8 +42,10 @@
   - Ensures schema consistency between template and outputSchema.xml
 - [x] 1.2.5.2. Update output schema to use self-closing tags (similar to input schema)
 - [ ] 1.2.5.3. Add boilerplate module text after generation
-- [ ] 1.2.5.4. Calculate cardinality attributes after generation
+- [x] 1.2.5.4. Calculate cardinality attributes after generation
+  - Completed in commit `68bf1f6` (cardinalityCalculator.ts)
 - [x] 1.2.5.5. Create an xml output sanitisier
+  - Completed via xmlCleaner.ts and responseParser.ts
 
 ---
 
@@ -62,8 +64,42 @@
 ---
 
 ## 3. General Tasks
+
+### 3.1. Small Tasks
 - [ ] 3.1. Steer Claude towards British English
 - [x] 3.2. Create an xml output sanitisier
+
+## 3.2. Architectural Refactoring (2025-10-20) ✅ COMPLETED
+
+**Branch:** `feat/new-course-generation`
+**Commits:** `fea0d91` through `496d44f`
+**Documentation:** See `/docs/refactoring-progress.md` for comprehensive details
+
+### 3.2.1. Foundation
+- [x] Extract research domains duplication (`src/lib/config/researchDomains.ts`)
+- [x] Clarify schema architecture (deprecated `moduleSchema.ts`, documented `moduleValidator.ts`)
+- [x] Add Zod schemas for type safety (`src/lib/schemas/apiValidator.ts`)
+
+### 3.2.2. Extract AI Utilities
+- [x] AI client factory (`src/lib/factories/agents/agentClientFactory.ts`)
+- [x] Response parser (`src/lib/utils/validation/responseParser.ts`)
+- [x] Prompt builders (`src/lib/factories/prompts/mogenPromptFactory.ts`)
+- [x] SSE streaming handler (`src/lib/utils/model/sseHandler.ts`)
+- [x] Retry orchestration (`src/lib/utils/model/retryHandler.ts`)
+
+### 3.3.3. Improve Prompt Composability
+- [x] Break prompts into composable sections (`src/lib/utils/prompt/shared-components.ts`)
+
+### 3.3.4. Quality Improvements
+- [x] Store consolidation utilities (`src/lib/utils/state/workflow-step.ts`, `src/lib/utils/state/persistenceUtils.ts`)
+- [x] Error handling infrastructure (`src/lib/types/error.ts`, `src/lib/stores/errorStores.ts`, `ErrorBoundary.svelte`, `ErrorAlert.svelte`)
+
+**Impact:**
+- 670+ lines eliminated across API routes
+- Centralized configurations and utilities
+- Type-safe schemas with runtime validation
+- Reusable patterns for stores, workflows, and error handling
+- Better separation of concerns throughout codebase
 
 ---
 

@@ -2,56 +2,62 @@
 
 ## 1. Critical Path (Do These First)
 
-### 1.7. Build ModuleGenerationList Component (Step 4)
-- Create `src/lib/course/ModuleGenerationList.svelte`
+### 1.7. Build ModuleGenerationList Component (Step 4) 📋 PENDING
+- Create `src/lib/components/cobu/ModuleGenerationList.svelte`
 - Display all modules from refined course structure
 - Module-by-module generation using existing module workflow
 - Track generation status per module (planned, generating, complete, error)
 - Allow regeneration of individual modules
 - Progress tracking across all modules
 - **Why seventh:** Orchestrates the actual content generation using existing proven module generator
+- **Status:** Not yet started - depends on completion of structure review workflow
 
-### 1.8. Create /api/course/module/generate Endpoint
-- Create `src/routes/api/course/module/+server.ts`
+### 1.8. Create /api/cobu/module/generate Endpoint 📋 PENDING
+- Create `src/routes/api/cobu/module/+server.ts`
 - Accept module data with course context
 - Call existing module generation logic with course-aware prompts
 - Return XML module spec
 - **Why eighth:** API layer for course-aware module generation
+- **Status:** API structure exists at `/api/cobu/generate/`, needs module-specific endpoint
 
-### 1.9. Extend /api/generate with Course Context
-- Modify existing `src/routes/api/generate/+server.ts`
-- Accept optional course context parameter
+### 1.9. Extend Module Generation with Course Context 📋 PENDING
+- Modify prompt factories to accept optional course context parameter
 - Include course narrative and progression in prompts when provided
 - Ensure backward compatibility with standalone module generation
 - **Why ninth:** Reuses existing module generation with course awareness
+- **Status:** Prompt factories refactored and ready, needs course context integration
 
-### 1.10. Build CourseOverview Component (Step 5)
-- Create `src/lib/course/CourseOverview.svelte`
+### 1.10. Build CourseOverview Component (Step 5) 📋 PENDING
+- Create `src/lib/components/cobu/CourseOverview.svelte`
 - Display complete course with all generated modules
 - Show course narratives and module summaries
 - Export functionality trigger
 - Final review interface
 - **Why tenth:** Final review and export interface
+- **Status:** Not yet started
 
-### 1.11. Add Course XML Schema and Validator
+### 1.11. Add Course XML Schema and Validator 📋 PENDING
 - Define course-level XML schema wrapping multiple modules
 - Validation for complete course structure
 - Include course narratives and metadata
 - **Why eleventh:** Ensures exported courses meet quality standards
+- **Status:** Not yet started - will reuse existing validation patterns
 
-### 1.12. Implement Export Functionality
+### 1.12. Implement Export Functionality 📋 PENDING
 - XML export for complete course
-- PDF export option
+- PDF export option (stretch goal)
 - Individual module file exports
 - Course metadata inclusion
 - **Why twelfth:** Delivers the final product to users
+- **Status:** Not yet started
 
-### 1.13. Add localStorage Persistence
-- Auto-save course progress to localStorage
-- Restore course on page reload
-- "Clear course" functionality
-- Save/load multiple courses
-- **Why thirteenth:** Production-ready reliability for course creation workflow
+### 1.13. Add localStorage Persistence ✅ COMPLETED
+- Auto-save course progress to localStorage ✅
+- Restore course on page reload ✅
+- "Clear course" functionality ✅
+- Save/load multiple courses ✅
+- **Completed:** Implemented via `persistedStore()` utility in refactoring Phase 4
+- **Location:** `src/lib/stores/cobuStores.ts` using `src/lib/utils/state/persistenceUtils.ts`
 
 ### 1.2. CoBu MVP: Miscellaneous Tasks
 - [ ] Create a milestoning system in the structure outline (e.g. "by this module, users should be able to do `xyz`")
@@ -59,11 +65,29 @@
 ---
 
 ## 2. Beyond MVP
-None yet
+- [ ] 2.1. PDF export for complete courses
+- [ ] 2.2. Course templates library
+- [ ] 2.3. Import existing courses for modification
+- [ ] 2.4. Collaborative course editing (multi-user)
+- [ ] 2.5. Version comparison for courses
 
 ---
 
-## 3. Completed: Critical Path Progress
+## 3. Current Status Summary
+
+**Overall Progress:** Approximately 50% complete
+- ✅ Foundation (hub, types, stores, config form)
+- ✅ Arc-based structure planning
+- ✅ AI structure generation
+- ✅ Structure review interface
+- 📋 Module generation orchestration (remaining critical path)
+- 📋 Export functionality (remaining critical path)
+
+**Next Priority:** Complete steps 1.7-1.12 to deliver end-to-end course generation
+
+---
+
+## 4. Completed: Critical Path Progress
 
 ### 3.1. Create Hub Dashboard and Navigation Structure ✅ COMPLETED
 - Created hub dashboard at `/` with cards for "Generate Module" and "Generate Course"
