@@ -288,7 +288,7 @@ Addressing architectural issues identified in code review focusing on:
 **Status:** ✅ Complete
 
 **Files Created:**
-- `src/lib/store-utilities/workflow-step.ts` (98 lines)
+- `src/lib/store-utilities/metisWorkflowStep.ts` (98 lines)
   - `createWorkflowStore()` - Creates workflow store with step navigation
   - `WorkflowStore` interface with next(), previous(), goTo(), reset() methods
   - Synchronous access to current step via current()

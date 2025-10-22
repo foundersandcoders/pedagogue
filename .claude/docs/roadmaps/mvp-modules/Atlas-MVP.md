@@ -1,4 +1,4 @@
-# Pedagogue MVP: Implementation Priorities
+# Atlas MVP
 
 ## 1. AtLAs (Atomic Learning Assembler) MVP
 

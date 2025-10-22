@@ -1,11 +1,11 @@
-# Pedagogue MVP: MoGen (Module Generator)
+# Metis MVP: Module Generator
 
-## 1. MoGen MVP
+## 1. Metis MVP
 
-## 1.1. MoGen MVP: Critical Path (Do These First)
+## 1.1. Metis MVP: Critical Path (Do These First)
 
 ### 1.1.10. Implement Cascade Updates for Subsequent Modules
-- Not yet planned; refer to `./about-pedagogue.md` & `./executive-summary.md` then work with the user to implement this feature
+- Not yet planned; refer to `./about-rhea.md` & `./executive-summary.md` then work with the user to implement this feature
 
 ### 1.1.11. Session Persistence
 - localStorage for progress backup
@@ -13,20 +13,20 @@
 - "Clear session" button
 - **Why:** Production-ready reliability, but not blocking for initial functionality.
 
-### 1.2. MoGen MVP: Miscellaneous Tasks
+### 1.2. Metis MVP: Miscellaneous Tasks
 
-#### 1.2.1. MoGen Documentation
+#### 1.2.1. Metis Documentation
 - [x] 1.2.1.1. Add instructions for including an Anthropic API key in `README.md`
 
-#### 1.2.2. MoGen UI
+#### 1.2.2. Metis UI
 - [ ] 1.2.2.1. Create a more interesting aesthetic
 - [ ] 1.2.2.2. Add dark mode to UI
   - Should allow user to select light, dark or system
 
-#### 1.2.3. MoGen: Input Schema
+#### 1.2.3. Metis: Input Schema
 - [x] 1.2.3.1. Update input xml validator to allow attributes in root elements
 
-#### 1.2.4. MoGen: Prompt Template
+#### 1.2.4. Metis: Prompt Template
 - [x] 1.2.4.1. Steer Claude towards better Twists
   - Added ProjectTwistGuidelines explaining twists as conceptual curveballs, not technical features
   - Included good examples: "The Helpful Saboteur", "The Unreliable Narrator", "The Contrarian", etc.
@@ -36,7 +36,7 @@
   - Added guidance to write for LEARNERS, not facilitators (peer-led, self-directed approach)
 - [x] 1.2.4.3. Change xml output format to use self-closing tags & attributes
 
-#### 1.2.5. MoGen: Response, Output Schema & Export
+#### 1.2.5. Metis: Response, Output Schema & Export
 - [x] 1.2.5.1. Update schema files in to match `~/src/data/templates/outputSchema.xml`
   - Updated schemaTemplate.ts to include missing <Importance> field in AdditionalSkills section
   - Ensures schema consistency between template and outputSchema.xml
@@ -83,7 +83,7 @@
 ### 3.2.2. Extract AI Utilities
 - [x] AI client factory (`src/lib/factories/agents/agentClientFactory.ts`)
 - [x] Response parser (`src/lib/utils/validation/responseParser.ts`)
-- [x] Prompt builders (`src/lib/factories/prompts/mogenPromptFactory.ts`)
+- [x] Prompt builders (`src/lib/factories/prompts/metisPromptFactory.ts`)
 - [x] SSE streaming handler (`src/lib/utils/model/sseHandler.ts`)
 - [x] Retry orchestration (`src/lib/utils/model/retryHandler.ts`)
 
@@ -91,7 +91,7 @@
 - [x] Break prompts into composable sections (`src/lib/utils/prompt/shared-components.ts`)
 
 ### 3.3.4. Quality Improvements
-- [x] Store consolidation utilities (`src/lib/utils/state/workflow-step.ts`, `src/lib/utils/state/persistenceUtils.ts`)
+- [x] Store consolidation utilities (`src/lib/utils/state/metisWorkflowStep.ts`, `src/lib/utils/state/persistenceUtils.ts`)
 - [x] Error handling infrastructure (`src/lib/types/error.ts`, `src/lib/stores/errorStores.ts`, `ErrorBoundary.svelte`, `ErrorAlert.svelte`)
 
 **Impact:**

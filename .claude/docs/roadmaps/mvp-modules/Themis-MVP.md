@@ -1,9 +1,11 @@
-# Pedagogue MVP: CoBu (Course Builder)
+# Themis MVP: Course Builder
 
 ## 1. Critical Path (Do These First)
 
+### 1.7. Create a
+
 ### 1.7. Build ModuleGenerationList Component (Step 4) 📋 PENDING
-- Create `src/lib/components/cobu/ModuleGenerationList.svelte`
+- Create `src/lib/components/themis/ModuleGenerationList.svelte`
 - Display all modules from refined course structure
 - Module-by-module generation using existing module workflow
 - Track generation status per module (planned, generating, complete, error)
@@ -12,13 +14,13 @@
 - **Why seventh:** Orchestrates the actual content generation using existing proven module generator
 - **Status:** Not yet started - depends on completion of structure review workflow
 
-### 1.8. Create /api/cobu/module/generate Endpoint 📋 PENDING
-- Create `src/routes/api/cobu/module/+server.ts`
+### 1.8. Create /api/themis/module/generate Endpoint 📋 PENDING
+- Create `src/routes/api/themis/module/+server.ts`
 - Accept module data with course context
 - Call existing module generation logic with course-aware prompts
 - Return XML module spec
 - **Why eighth:** API layer for course-aware module generation
-- **Status:** API structure exists at `/api/cobu/generate/`, needs module-specific endpoint
+- **Status:** API structure exists at `/api/themis/generate/`, needs module-specific endpoint
 
 ### 1.9. Extend Module Generation with Course Context 📋 PENDING
 - Modify prompt factories to accept optional course context parameter
@@ -28,7 +30,7 @@
 - **Status:** Prompt factories refactored and ready, needs course context integration
 
 ### 1.10. Build CourseOverview Component (Step 5) 📋 PENDING
-- Create `src/lib/components/cobu/CourseOverview.svelte`
+- Create `src/lib/components/themis/CourseOverview.svelte`
 - Display complete course with all generated modules
 - Show course narratives and module summaries
 - Export functionality trigger
@@ -57,9 +59,9 @@
 - "Clear course" functionality ✅
 - Save/load multiple courses ✅
 - **Completed:** Implemented via `persistedStore()` utility in refactoring Phase 4
-- **Location:** `src/lib/stores/cobuStores.ts` using `src/lib/utils/state/persistenceUtils.ts`
+- **Location:** `src/lib/stores/themisStores.ts` using `src/lib/utils/state/persistenceUtils.ts`
 
-### 1.2. CoBu MVP: Miscellaneous Tasks
+### 1.2. Themis MVP: Miscellaneous Tasks
 - [ ] Create a milestoning system in the structure outline (e.g. "by this module, users should be able to do `xyz`")
 
 ---
