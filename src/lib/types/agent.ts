@@ -1,5 +1,15 @@
 import type { ChatAnthropic } from '@langchain/anthropic';
+import type { BaseLanguageModelInput } from '@langchain/core/language_models/base';
+import type { AIMessageChunk } from '@langchain/core/messages';
+import type { Runnable } from '@langchain/core/runnables';
+import type { ChatAnthropicCallOptions } from '@langchain/anthropic/dist/chat_models';
 import type { GenerateRequest } from '$lib/schemas/apiValidator';
+
+/**
+ * Type representing either a ChatAnthropic client or a Runnable chain
+ * (e.g., after binding tools with bindTools())
+ */
+export type ChatModel = ChatAnthropic | Runnable<BaseLanguageModelInput, AIMessageChunk, ChatAnthropicCallOptions>;
 
 export interface ChatClientOptions {
 	apiKey: string;
@@ -36,7 +46,7 @@ export interface RetryCallbacks {
  */
 export interface RetryConfig {
 	body: GenerateRequest;
-	model: ChatAnthropic;
+	model: ChatModel;
 	maxRetries?: number;
 	callbacks?: RetryCallbacks;
 }
@@ -73,6 +83,6 @@ export interface SSEEvent {
  */
 export interface SSEStreamConfig {
 	body: GenerateRequest;
-	model: ChatAnthropic;
+	model: ChatModel;
 	maxRetries?: number;
 }
