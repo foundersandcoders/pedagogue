@@ -10,8 +10,20 @@ Since Rhea is the aggregate of all submodules, this section should summarise bot
 ### 1a. Next Up
 The 5 most significant or important tasks to tackle next.
 
+1. **[Content preview exporter](#2a-tasks-with-a-deadline)** `2025-10-22` - Reusable exporter for human-readable content from Themis and Metis
+2. **[Build ModuleGenerationList Component](mvp-modules/Themis-MVP.md#17-build-modulegenerationlist-component-step-4--pending)** (Themis 1.7) - Module-by-module generation orchestration UI
+3. **[Create /api/themis/module/generate Endpoint](mvp-modules/Themis-MVP.md#18-create-apithemismodulegenerate-endpoint--pending)** (Themis 1.8) - API layer for course-aware module generation
+4. **[Extend Module Generation with Course Context](mvp-modules/Themis-MVP.md#19-extend-module-generation-with-course-context--pending)** (Themis 1.9) - Modify prompt factories for course-aware generation (may require Metis updates)
+5. **[Build CourseOverview Component](mvp-modules/Themis-MVP.md#110-build-courseoverview-component-step-5--pending)** (Themis 1.10) - Final review interface and export functionality trigger
+
 ### 1b. Recent Wins
 The 5 most recent achievements.
+
+1. **[Themis arc-based structure complete](mvp-modules/Themis-MVP.md#37-reimplement-the-module-overview-generation-based-on-thematic-arcs--completed)** - Six-step workflow with thematic organizational layer between courses and modules
+2. **[Architectural refactoring complete](mvp-modules/Metis-MVP.md#32-architectural-refactoring-2025-10-20--completed)** - 670+ lines eliminated via factories, utilities, and centralized configurations
+3. **[Themis localStorage persistence](mvp-modules/Themis-MVP.md#113-add-localstorage-persistence--completed)** - Auto-save course progress via `persistedStore()` utility
+4. **[Centralized error handling infrastructure](mvp-modules/Metis-MVP.md#334-quality-improvements)** - ErrorBoundary component, typed error classes, and error stores
+5. **[Metis changelog and provenance tracking](mvp-modules/Metis-MVP.md#48-implement-changelog-in-returned-modules--completed)** - Change tracking with confidence scoring for AI updates
 
 ---
 
