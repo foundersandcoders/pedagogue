@@ -20,7 +20,10 @@
 
 <div id="hub-container" class="container">
   <header id="hub-header">
-    <h1>Rhea</h1>
+    <div class="header-title">
+      <img src="/rhea/icon.png" alt="Rhea icon" class="header-icon" />
+      <h1>Rhea</h1>
+    </div>
     <p>AI-powered curriculum generation for peer-led courses</p>
   </header>
 
@@ -30,7 +33,7 @@
     <!-- TODO: address a11y issues from workflow cards -->
     <div class="workflow-cards">
       <a href="/themis/generate" class="workflow-card themis-card">
-        <div class="card-icon">📚</div>
+        <img src="/themis/icon.png" alt="Themis" class="card-icon" />
         <h2>Themis</h2>
         <p>
           Create a complete multi-week course with interconnected modules and
@@ -45,7 +48,7 @@
       </a>
       
       <a href="/tethys" class="workflow-card tethys-card">
-        <div class="card-icon">📄</div>
+        <img src="/tethys/icon.png" alt="Tethys" class="card-icon" />
         <h2>Tethys</h2>
         <p>
           Create a linked set of modules.
@@ -57,7 +60,7 @@
       </a>
       
       <a href="/metis/update" class="workflow-card metis-card">
-        <div class="card-icon">📄</div>
+        <img src="/metis/icon.png" alt="Metis" class="card-icon" />
         <h2>Metis</h2>
         <p>
           Create a standalone module specification with projects, skills, and
@@ -110,10 +113,24 @@
     margin-bottom: 4rem;
   }
 
+  .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .header-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+  }
+
   header h1 {
     font-size: 3.5rem;
     color: #333;
-    margin-bottom: 0.5rem;
+    margin: 0;
   }
 
   header p {
@@ -164,7 +181,9 @@
   }
 
   .card-icon {
-    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
     margin-bottom: 1rem;
   }
 

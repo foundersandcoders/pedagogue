@@ -273,7 +273,10 @@
 
 <div id="metis-container" class="container">
   <header id="metis-header">
-    <h1>Metis</h1>
+    <div class="header-title">
+      <img src="/metis/icon.png" alt="Metis icon" class="header-icon" />
+      <h1>Metis</h1>
+    </div>
     <p>AI-powered module specification generator for peer-led courses</p>
   </header>
 
@@ -480,10 +483,24 @@
     margin-bottom: 3rem;
   }
 
+  .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .header-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+
   header h1 {
     font-size: 3rem;
     color: #333;
-    margin-bottom: 0.5rem;
+    margin: 0;
   }
 
   header p {
