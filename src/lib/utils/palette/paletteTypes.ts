@@ -15,6 +15,8 @@ export type ColorValue = string; // Hex colour code (e.g., "#00221Aff")
 export interface RheaPalette {
   "bg-dark": ColorValue;
   "bg-light": ColorValue;
+  "bg-subtle-teal": ColorValue;
+  "bg-subtle-gold": ColorValue;
   "fg-dark": ColorValue;
   "fg-mid": ColorValue;
   "fg-light": ColorValue;
@@ -27,6 +29,7 @@ export interface RheaPalette {
  */
 export interface ThemisPalette {
   bg: ColorValue;
+  "bg-subtle": ColorValue;
   fg: ColorValue;
   line: ColorValue;
 }
@@ -37,6 +40,7 @@ export interface ThemisPalette {
  */
 export interface TethysPalette {
   bg: ColorValue;
+  "bg-subtle": ColorValue;
   "fg-dark": ColorValue;
   "fg-light": ColorValue;
 }
@@ -47,6 +51,7 @@ export interface TethysPalette {
  */
 export interface MetisPalette {
   bg: ColorValue;
+  "bg-subtle": ColorValue;
   "fg-dark": ColorValue;
   "fg-light": ColorValue;
 }
@@ -95,6 +100,8 @@ export interface NormalisedPalette {
   colours: {
     primary: ColorValue; // Main background or primary brand colour
     secondary?: ColorValue; // Secondary background or alternate colour
+    backgroundSubtle?: ColorValue; // Very light background for cards and containers
+    backgroundSubtleAlt?: ColorValue; // Alternate subtle background (Rhea only)
     foreground: ColorValue; // Main foreground/text colour
     foregroundAlt?: ColorValue; // Alternate foreground colour
     accent?: ColorValue; // Accent/highlight colour

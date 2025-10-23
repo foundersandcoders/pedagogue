@@ -9,35 +9,40 @@
  * - [data-palette="rhea"] - Main application palette (default)
  */
 
-/* Default palette (Rhea) */
+/* Rhea: Default Palette */
 :root {
   --palette-primary: #00221A;
   --palette-secondary: #0E6B68;
+  --palette-bg-subtle: #F0F8F7;
+  --palette-bg-subtle-alt: #FEF9EB;
   --palette-foreground: #D7B130;
   --palette-foreground-alt: #D1AA2E;
   --palette-accent: #D4A927;
   --palette-line: #00100E;
 }
 
-/* Metis palette - Module Generator */
-[data-palette="metis"] {
-  --palette-primary: #00121F;
-  --palette-foreground: #096A78;
-  --palette-foreground-alt: #0E9191;
-}
-
-/* Themis palette - Course Builder */
+/* Themis: Course Builder Palette */
 [data-palette="themis"] {
   --palette-primary: #1A0E3B;
+  --palette-bg-subtle: #F0ECF8;
   --palette-foreground: #7551BA;
   --palette-line: #0A021D;
 }
 
-/* Tethys palette - Arc Designer */
+/* Tethys: Arc Designer Palette */
 [data-palette="tethys"] {
   --palette-primary: #03121F;
+  --palette-bg-subtle: #FFF4ED;
   --palette-foreground: #A45818;
   --palette-foreground-alt: #F1991F;
+}
+
+/* Metis: Module Generator Palette */
+[data-palette="metis"] {
+  --palette-primary: #00121F;
+  --palette-bg-subtle: #EBF8F9;
+  --palette-foreground: #096A78;
+  --palette-foreground-alt: #0E9191;
 }
 
 /* Utility classes for applying palette colours */
@@ -49,6 +54,14 @@
 
 .bg-palette-secondary {
   background-color: var(--palette-secondary, var(--palette-primary));
+}
+
+.bg-palette-subtle {
+  background-color: var(--palette-bg-subtle);
+}
+
+.bg-palette-subtle-alt {
+  background-color: var(--palette-bg-subtle-alt, var(--palette-bg-subtle));
 }
 
 .bg-palette-foreground {

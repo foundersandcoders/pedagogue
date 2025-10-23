@@ -10,7 +10,7 @@
   }
 
   onMount(() => {
-    console.log("Welcome to Pedagogue");
+    console.log("Welcome to Rhea");
   });
 </script>
 
@@ -151,7 +151,6 @@
   }
 
   .workflow-card {
-    background: white;
     border-radius: 12px;
     padding: 2.5rem;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -161,6 +160,19 @@
     flex-direction: column;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+  }
+
+  /* Each card uses its own workflow palette background */
+  .metis-card {
+    background: #EBF8F9;
+  }
+
+  .themis-card {
+    background: #F0ECF8;
+  }
+
+  .tethys-card {
+    background: #FFF4ED;
   }
 
   .workflow-card:hover {

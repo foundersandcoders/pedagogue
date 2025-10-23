@@ -111,7 +111,7 @@
   <header id="themis-header">
     <div class="header-title">
       <img src="/themis/icon.png" alt="Themis icon" class="header-icon" />
-      <h1>Pedagogue: Themis</h1>
+      <h1>Themis</h1>
     </div>
     <p>Build a complete multi-week course with interconnected modules</p>
   </header>
@@ -212,7 +212,7 @@
 
   .steps {
     display: flex;
-    background: #f8f9fa;
+    background: var(--palette-bg-subtle);
     padding: 1rem;
     border-bottom: 1px solid #e9ecef;
     overflow-x: auto;

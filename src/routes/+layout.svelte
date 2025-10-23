@@ -34,29 +34,30 @@
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
       sans-serif;
-    background: #fafafa;
+    background: var(--palette-bg-subtle, #fafafa);
   }
 
   .breadcrumb {
-    background: white;
+    background: var(--palette-bg-subtle);
     border-bottom: 1px solid #e9ecef;
     padding: 1rem 2rem;
   }
 
   .breadcrumb-home {
-    color: #007bff;
+    color: var(--palette-foreground);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s;
+    transition: all 0.2s;
   }
 
   .breadcrumb-home:hover {
-    color: #0056b3;
+    filter: brightness(1.15);
   }
 
   main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+    min-height: calc(100vh - 4rem);
   }
 </style>

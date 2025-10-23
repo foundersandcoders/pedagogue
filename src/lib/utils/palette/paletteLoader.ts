@@ -21,6 +21,8 @@ const PALETTES: PaletteCollection = {
   rhea: {
     "bg-dark": "#00221Aff",
     "bg-light": "#0E6B68ff",
+    "bg-subtle-teal": "#F0F8F7ff",
+    "bg-subtle-gold": "#FEF9EBff",
     "fg-dark": "#D7B130ff",
     "fg-mid": "#D4A927ff",
     "fg-light": "#D1AA2Eff",
@@ -28,16 +30,19 @@ const PALETTES: PaletteCollection = {
   },
   themis: {
     bg: "#1A0E3Bff",
+    "bg-subtle": "#F0ECF8ff",
     fg: "#7551BAff",
     line: "#0A021Dff",
   },
   tethys: {
     bg: "#03121Fff",
+    "bg-subtle": "#FFF4EDff",
     "fg-dark": "#A45818ff",
     "fg-light": "#F1991Fff",
   },
   metis: {
     bg: "#00121Fff",
+    "bg-subtle": "#EBF8F9ff",
     "fg-dark": "#096A78ff",
     "fg-light": "#0E9191ff",
   },
@@ -107,6 +112,8 @@ export function normalisePalette(name: PaletteName): NormalisedPalette {
       colours: {
         primary: rheaPalette["bg-dark"],
         secondary: rheaPalette["bg-light"],
+        backgroundSubtle: rheaPalette["bg-subtle-teal"],
+        backgroundSubtleAlt: rheaPalette["bg-subtle-gold"],
         foreground: rheaPalette["fg-dark"],
         foregroundAlt: rheaPalette["fg-light"],
         accent: rheaPalette["fg-mid"],
@@ -122,6 +129,7 @@ export function normalisePalette(name: PaletteName): NormalisedPalette {
       name,
       colours: {
         primary: themisPalette.bg,
+        backgroundSubtle: themisPalette["bg-subtle"],
         foreground: themisPalette.fg,
         line: themisPalette.line,
       },
@@ -135,6 +143,7 @@ export function normalisePalette(name: PaletteName): NormalisedPalette {
       name,
       colours: {
         primary: tieredPalette.bg,
+        backgroundSubtle: tieredPalette["bg-subtle"],
         foreground: tieredPalette["fg-dark"],
         foregroundAlt: tieredPalette["fg-light"],
       },
@@ -168,6 +177,14 @@ export function generateCSSVariables(
 
   if (normalised.colours.secondary) {
     variables["--palette-secondary"] = normalised.colours.secondary;
+  }
+
+  if (normalised.colours.backgroundSubtle) {
+    variables["--palette-bg-subtle"] = normalised.colours.backgroundSubtle;
+  }
+
+  if (normalised.colours.backgroundSubtleAlt) {
+    variables["--palette-bg-subtle-alt"] = normalised.colours.backgroundSubtleAlt;
   }
 
   if (normalised.colours.foregroundAlt) {

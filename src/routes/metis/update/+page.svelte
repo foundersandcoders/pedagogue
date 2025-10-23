@@ -517,7 +517,7 @@
 
   .steps {
     display: flex;
-    background: #f8f9fa;
+    background: var(--palette-bg-subtle);
     padding: 1rem;
     border-bottom: 1px solid #e9ecef;
   }
