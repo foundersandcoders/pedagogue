@@ -1,0 +1,155 @@
+/**
+ * Palette CSS Variables
+ * Defines CSS custom properties for module-specific colour palettes
+ *
+ * Variables are set dynamically via data attributes on the root element:
+ * - [data-palette="metis"] - Metis workflow palette
+ * - [data-palette="themis"] - Themis workflow palette
+ * - [data-palette="tethys"] - Tethys workflow palette
+ * - [data-palette="rhea"] - Main application palette (default)
+ */
+
+/* Default palette (Rhea) */
+:root {
+  --palette-primary: #00221A;
+  --palette-secondary: #0E6B68;
+  --palette-foreground: #D7B130;
+  --palette-foreground-alt: #D1AA2E;
+  --palette-accent: #D4A927;
+  --palette-line: #00100E;
+}
+
+/* Metis palette - Module Generator */
+[data-palette="metis"] {
+  --palette-primary: #00121F;
+  --palette-foreground: #096A78;
+  --palette-foreground-alt: #0E9191;
+}
+
+/* Themis palette - Course Builder */
+[data-palette="themis"] {
+  --palette-primary: #1A0E3B;
+  --palette-foreground: #7551BA;
+  --palette-line: #0A021D;
+}
+
+/* Tethys palette - Arc Designer */
+[data-palette="tethys"] {
+  --palette-primary: #03121F;
+  --palette-foreground: #A45818;
+  --palette-foreground-alt: #F1991F;
+}
+
+/* Utility classes for applying palette colours */
+
+/* Backgrounds */
+.bg-palette-primary {
+  background-color: var(--palette-primary);
+}
+
+.bg-palette-secondary {
+  background-color: var(--palette-secondary, var(--palette-primary));
+}
+
+.bg-palette-foreground {
+  background-color: var(--palette-foreground);
+}
+
+.bg-palette-accent {
+  background-color: var(--palette-accent, var(--palette-foreground));
+}
+
+/* Text colours */
+.text-palette-primary {
+  color: var(--palette-primary);
+}
+
+.text-palette-foreground {
+  color: var(--palette-foreground);
+}
+
+.text-palette-foreground-alt {
+  color: var(--palette-foreground-alt, var(--palette-foreground));
+}
+
+.text-palette-accent {
+  color: var(--palette-accent, var(--palette-foreground));
+}
+
+/* Borders */
+.border-palette-primary {
+  border-color: var(--palette-primary);
+}
+
+.border-palette-foreground {
+  border-color: var(--palette-foreground);
+}
+
+.border-palette-line {
+  border-color: var(--palette-line, var(--palette-primary));
+}
+
+/* Hover effects with palette colours */
+.hover-bg-palette-primary:hover {
+  background-color: var(--palette-primary);
+}
+
+.hover-bg-palette-foreground:hover {
+  background-color: var(--palette-foreground);
+}
+
+.hover-border-palette-primary:hover {
+  border-color: var(--palette-primary);
+}
+
+.hover-border-palette-foreground:hover {
+  border-color: var(--palette-foreground);
+}
+
+.hover-text-palette-foreground:hover {
+  color: var(--palette-foreground);
+}
+
+/* Focus states with palette colours */
+*:focus {
+  outline-color: var(--palette-foreground);
+}
+
+/* Button variants with palette colours */
+.btn-palette-primary {
+  background-color: var(--palette-primary);
+  color: white;
+  border: none;
+}
+
+.btn-palette-primary:hover {
+  filter: brightness(1.1);
+}
+
+.btn-palette-foreground {
+  background-color: var(--palette-foreground);
+  color: var(--palette-primary);
+  border: none;
+}
+
+.btn-palette-foreground:hover {
+  filter: brightness(1.1);
+}
+
+/* Accent highlights */
+.palette-accent-glow {
+  box-shadow: 0 0 0 3px var(--palette-foreground, rgba(0, 0, 0, 0.1));
+}
+
+/* Spinner with palette colours */
+@keyframes palette-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner-palette {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top-color: var(--palette-foreground);
+  border-radius: 50%;
+  animation: palette-spin 1s linear infinite;
+}
