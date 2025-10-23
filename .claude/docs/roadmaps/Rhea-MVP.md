@@ -10,7 +10,7 @@ Since Rhea is the aggregate of all submodules, this section should summarise bot
 ### 1a. Next Up
 The 5 most significant or important tasks to tackle next.
 
-1. **[Content preview exporter](#2a-tasks-with-a-deadline)** `2025-10-22` - Reusable exporter for human-readable content from Themis and Metis
+1. **[Theia: Content Preview Exporter](#2a-tasks-with-a-deadline)** `2025-10-22` - Reusable exporter for human-readable content from Themis and Metis
 2. **[Build ModuleGenerationList Component](mvp-modules/Themis-MVP.md#17-build-modulegenerationlist-component-step-4--pending)** (Themis 1.7) - Module-by-module generation orchestration UI
 3. **[Create /api/themis/module/generate Endpoint](mvp-modules/Themis-MVP.md#18-create-apithemismodulegenerate-endpoint--pending)** (Themis 1.8) - API layer for course-aware module generation
 4. **[Extend Module Generation with Course Context](mvp-modules/Themis-MVP.md#19-extend-module-generation-with-course-context--pending)** (Themis 1.9) - Modify prompt factories for course-aware generation (may require Metis updates)
