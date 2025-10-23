@@ -1,0 +1,50 @@
+{
+  "rhea": {
+    "bg-dark": "#00221Aff",
+    "bg-light": "#0E6B68ff",
+    "fg-dark": "#D7B130ff",
+    "fg-mid": "#D4A927ff",
+    "fg-light": "#D1AA2Eff",
+    "line": "#00100Eff"
+  },
+  "themis": {
+    "bg": "#1A0E3Bff",
+    "fg": "#7551BAff",
+    "line": "#0A021Dff"
+  },
+  "tethys": {
+    "bg": "#03121Fff",
+    "fg-dark": "#A45818ff",
+    "fg-light": "#F1991Fff"
+  },
+  "metis": {
+    "bg": "#00121Fff",
+    "fg-dark": "#096A78ff",
+    "fg-light": "#0E9191ff"
+  },
+  "unused-1": {
+    "background": "#2C2220",
+    "accent-1": "#E15F2E",
+    "accent-2": "#F2E6CF"
+  },
+  "unused-2": {
+    "background": "#174B3A",
+    "accent-1": "#E3C565",
+    "accent-2": #0B0B0B
+  },
+  "unused-3": {
+    "background": "#2B124C",
+    "accent-1": "#B98ED7",
+    "accent-2": "#0D0D0D"
+  },
+  "unused-4": {
+    "background": "#2E3440",
+    "accent-1": "#7DF9FF",
+    "accent-2": "#101010"
+  },
+  "unused-5": {
+    "background": "#0F3D56",
+    "accent-1": "#C07E45",
+    "accent-2": "#0A0A0A"
+  }
+}
