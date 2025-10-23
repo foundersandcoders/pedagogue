@@ -250,13 +250,14 @@
   }
 
   .step.active .step-number {
-    background: #28a745;
+    background: var(--palette-foreground);
     color: white;
   }
 
   .step.completed .step-number {
-    background: #218838;
+    background: var(--palette-foreground);
     color: white;
+    opacity: 0.7;
   }
 
   .step-name {
@@ -266,7 +267,7 @@
   }
 
   .step.active .step-name {
-    color: #28a745;
+    color: var(--palette-foreground);
     font-weight: 600;
   }
 
