@@ -17,6 +17,8 @@ export interface RheaPalette {
   "bg-light": ColorValue;
   "bg-subtle-teal": ColorValue;
   "bg-subtle-gold": ColorValue;
+  "bg-nav-teal": ColorValue;
+  "bg-nav-gold": ColorValue;
   "fg-dark": ColorValue;
   "fg-mid": ColorValue;
   "fg-light": ColorValue;
@@ -30,6 +32,7 @@ export interface RheaPalette {
 export interface ThemisPalette {
   bg: ColorValue;
   "bg-subtle": ColorValue;
+  "bg-nav": ColorValue;
   fg: ColorValue;
   line: ColorValue;
 }
@@ -41,6 +44,7 @@ export interface ThemisPalette {
 export interface TethysPalette {
   bg: ColorValue;
   "bg-subtle": ColorValue;
+  "bg-nav": ColorValue;
   "fg-dark": ColorValue;
   "fg-light": ColorValue;
 }
@@ -52,6 +56,7 @@ export interface TethysPalette {
 export interface MetisPalette {
   bg: ColorValue;
   "bg-subtle": ColorValue;
+  "bg-nav": ColorValue;
   "fg-dark": ColorValue;
   "fg-light": ColorValue;
 }
@@ -102,6 +107,8 @@ export interface NormalisedPalette {
     secondary?: ColorValue; // Secondary background or alternate colour
     backgroundSubtle?: ColorValue; // Very light background for cards and containers
     backgroundSubtleAlt?: ColorValue; // Alternate subtle background (Rhea only)
+    backgroundNav?: ColorValue; // Navigation bar background
+    backgroundNavAlt?: ColorValue; // Alternate navigation background (Rhea only)
     foreground: ColorValue; // Main foreground/text colour
     foregroundAlt?: ColorValue; // Alternate foreground colour
     accent?: ColorValue; // Accent/highlight colour

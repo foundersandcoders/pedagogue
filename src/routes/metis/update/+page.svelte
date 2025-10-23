@@ -280,8 +280,8 @@
     <p>AI-powered module specification generator for peer-led courses</p>
   </header>
 
-  <div class="workflow">
-    <nav class="steps">
+  <div class="metis-workflow">
+    <nav class="metis-steps">
       {#each steps as step, i}
         <div
           class="step"
@@ -294,7 +294,7 @@
       {/each}
     </nav>
 
-    <main class="content">
+    <main class="metis-content">
       <!-- TODO: Turn these divs into Components -->
       {#if $currentStep === 1}
         <section class="upload-section">
@@ -508,16 +508,16 @@
     font-size: 1.1rem;
   }
 
-  .workflow {
+  .metis-workflow {
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     overflow: hidden;
   }
 
-  .steps {
+  .metis-steps {
     display: flex;
-    background: var(--palette-bg-subtle);
+    background: var(--palette-bg-nav);
     padding: 1rem;
     border-bottom: 1px solid #e9ecef;
   }
@@ -572,7 +572,7 @@
     font-weight: 600;
   }
 
-  .content {
+  .metis-content {
     padding: 2rem;
   }
 

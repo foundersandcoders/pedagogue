@@ -4,6 +4,8 @@
     "bg-light": "#0E6B68ff",
     "bg-subtle-teal": "#F0F8F7ff",
     "bg-subtle-gold": "#FEF9EBff",
+    "bg-nav-teal": "#D5E8E6ff",
+    "bg-nav-gold": "#FAF0D4ff",
     "fg-dark": "#D7B130ff",
     "fg-mid": "#D4A927ff",
     "fg-light": "#D1AA2Eff",
@@ -12,44 +14,47 @@
   "themis": {
     "bg": "#1A0E3Bff",
     "bg-subtle": "#F0ECF8ff",
+    "bg-nav": "#E0D8F0ff",
     "fg": "#7551BAff",
     "line": "#0A021Dff"
   },
   "tethys": {
     "bg": "#03121Fff",
     "bg-subtle": "#FFF4EDff",
+    "bg-nav": "#FFE8D8ff",
     "fg-dark": "#A45818ff",
     "fg-light": "#F1991Fff"
   },
   "metis": {
     "bg": "#00121Fff",
-    "bg-subtle": "#EBF8F9ff",
+    "bg-subtle": "#E8F1F8ff",
+    "bg-nav": "#D0E4F0ff",
     "fg-dark": "#096A78ff",
     "fg-light": "#0E9191ff"
   },
   "unused-1": {
-    "background": "#2C2220",
-    "accent-1": "#E15F2E",
-    "accent-2": "#F2E6CF"
+    "color1": "#2C2220",
+    "color2": "#E15F2E",
+    "color3": "#F2E6CF"
   },
   "unused-2": {
-    "background": "#174B3A",
-    "accent-1": "#E3C565",
-    "accent-2": #0B0B0B
+    "color1": "#174B3A",
+    "color2": "#E3C565",
+    "color3": "#0B0B0B"
   },
   "unused-3": {
-    "background": "#2B124C",
-    "accent-1": "#B98ED7",
-    "accent-2": "#0D0D0D"
+    "color1": "#2B124C",
+    "color2": "#B98ED7",
+    "color3": "#0D0D0D"
   },
   "unused-4": {
-    "background": "#2E3440",
-    "accent-1": "#7DF9FF",
-    "accent-2": "#101010"
+    "color1": "#2E3440",
+    "color2": "#7DF9FF",
+    "color3": "#101010"
   },
   "unused-5": {
-    "background": "#0F3D56",
-    "accent-1": "#C07E45",
-    "accent-2": "#0A0A0A"
+    "color1": "#0F3D56",
+    "color2": "#C07E45",
+    "color3": "#0A0A0A"
   }
 }

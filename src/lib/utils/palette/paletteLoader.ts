@@ -23,6 +23,8 @@ const PALETTES: PaletteCollection = {
     "bg-light": "#0E6B68ff",
     "bg-subtle-teal": "#F0F8F7ff",
     "bg-subtle-gold": "#FEF9EBff",
+    "bg-nav-teal": "#D5E8E6ff",
+    "bg-nav-gold": "#FAF0D4ff",
     "fg-dark": "#D7B130ff",
     "fg-mid": "#D4A927ff",
     "fg-light": "#D1AA2Eff",
@@ -31,18 +33,21 @@ const PALETTES: PaletteCollection = {
   themis: {
     bg: "#1A0E3Bff",
     "bg-subtle": "#F0ECF8ff",
+    "bg-nav": "#E0D8F0ff",
     fg: "#7551BAff",
     line: "#0A021Dff",
   },
   tethys: {
     bg: "#03121Fff",
     "bg-subtle": "#FFF4EDff",
+    "bg-nav": "#FFE8D8ff",
     "fg-dark": "#A45818ff",
     "fg-light": "#F1991Fff",
   },
   metis: {
     bg: "#00121Fff",
-    "bg-subtle": "#EBF8F9ff",
+    "bg-subtle": "#E8F1F8ff",
+    "bg-nav": "#D0E4F0ff",
     "fg-dark": "#096A78ff",
     "fg-light": "#0E9191ff",
   },
@@ -114,6 +119,8 @@ export function normalisePalette(name: PaletteName): NormalisedPalette {
         secondary: rheaPalette["bg-light"],
         backgroundSubtle: rheaPalette["bg-subtle-teal"],
         backgroundSubtleAlt: rheaPalette["bg-subtle-gold"],
+        backgroundNav: rheaPalette["bg-nav-teal"],
+        backgroundNavAlt: rheaPalette["bg-nav-gold"],
         foreground: rheaPalette["fg-dark"],
         foregroundAlt: rheaPalette["fg-light"],
         accent: rheaPalette["fg-mid"],
@@ -130,6 +137,7 @@ export function normalisePalette(name: PaletteName): NormalisedPalette {
       colours: {
         primary: themisPalette.bg,
         backgroundSubtle: themisPalette["bg-subtle"],
+        backgroundNav: themisPalette["bg-nav"],
         foreground: themisPalette.fg,
         line: themisPalette.line,
       },
@@ -144,6 +152,7 @@ export function normalisePalette(name: PaletteName): NormalisedPalette {
       colours: {
         primary: tieredPalette.bg,
         backgroundSubtle: tieredPalette["bg-subtle"],
+        backgroundNav: tieredPalette["bg-nav"],
         foreground: tieredPalette["fg-dark"],
         foregroundAlt: tieredPalette["fg-light"],
       },
@@ -185,6 +194,14 @@ export function generateCSSVariables(
 
   if (normalised.colours.backgroundSubtleAlt) {
     variables["--palette-bg-subtle-alt"] = normalised.colours.backgroundSubtleAlt;
+  }
+
+  if (normalised.colours.backgroundNav) {
+    variables["--palette-bg-nav"] = normalised.colours.backgroundNav;
+  }
+
+  if (normalised.colours.backgroundNavAlt) {
+    variables["--palette-bg-nav-alt"] = normalised.colours.backgroundNavAlt;
   }
 
   if (normalised.colours.foregroundAlt) {

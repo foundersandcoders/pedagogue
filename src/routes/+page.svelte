@@ -10,7 +10,7 @@
   }
 
   onMount(() => {
-    console.log("Welcome to Rhea");
+    console.log("Welcome to Pedagogue");
   });
 </script>
 
@@ -44,7 +44,7 @@
           <span>✓ Course structure</span>
           <span>✓ Learning progression</span>
         </div>
-        <div class="card-action">Start Course Builder →</div>
+        <div class="card-action">Build Course →</div>
       </a>
       
       <a href="/tethys" class="workflow-card tethys-card">
@@ -54,9 +54,9 @@
           Create a linked set of modules.
         </p>
         <div class="card-features">
-          <span>• </span>
+          <pre>Coming Soon</pre>
         </div>
-        <div class="card-action">Start Arc Designer →</div>
+        <div class="card-action">Design Arc →</div>
       </a>
       
       <a href="/metis/update" class="workflow-card metis-card">
@@ -71,7 +71,7 @@
           <span>✓ Learning objectives</span>
           <span>✓ Research topics</span>
         </div>
-        <div class="card-action">Start Module Generator →</div>
+        <div class="card-action">Generate Module →</div>
       </a>
     </div>
 
@@ -164,7 +164,7 @@
 
   /* Each card uses its own workflow palette background */
   .metis-card {
-    background: #EBF8F9;
+    background: #E8F1F8;
   }
 
   .themis-card {

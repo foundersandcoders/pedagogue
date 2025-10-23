@@ -15,6 +15,8 @@
   --palette-secondary: #0E6B68;
   --palette-bg-subtle: #F0F8F7;
   --palette-bg-subtle-alt: #FEF9EB;
+  --palette-bg-nav: #D5E8E6;
+  --palette-bg-nav-alt: #FAF0D4;
   --palette-foreground: #D7B130;
   --palette-foreground-alt: #D1AA2E;
   --palette-accent: #D4A927;
@@ -25,6 +27,7 @@
 [data-palette="themis"] {
   --palette-primary: #1A0E3B;
   --palette-bg-subtle: #F0ECF8;
+  --palette-bg-nav: #E0D8F0;
   --palette-foreground: #7551BA;
   --palette-line: #0A021D;
 }
@@ -33,6 +36,7 @@
 [data-palette="tethys"] {
   --palette-primary: #03121F;
   --palette-bg-subtle: #FFF4ED;
+  --palette-bg-nav: #FFE8D8;
   --palette-foreground: #A45818;
   --palette-foreground-alt: #F1991F;
 }
@@ -40,7 +44,8 @@
 /* Metis: Module Generator Palette */
 [data-palette="metis"] {
   --palette-primary: #00121F;
-  --palette-bg-subtle: #EBF8F9;
+  --palette-bg-subtle: #E8F1F8;
+  --palette-bg-nav: #D0E4F0;
   --palette-foreground: #096A78;
   --palette-foreground-alt: #0E9191;
 }
@@ -62,6 +67,14 @@
 
 .bg-palette-subtle-alt {
   background-color: var(--palette-bg-subtle-alt, var(--palette-bg-subtle));
+}
+
+.bg-palette-nav {
+  background-color: var(--palette-bg-nav);
+}
+
+.bg-palette-nav-alt {
+  background-color: var(--palette-bg-nav-alt, var(--palette-bg-nav));
 }
 
 .bg-palette-foreground {

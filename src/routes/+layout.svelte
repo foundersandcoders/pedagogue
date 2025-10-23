@@ -13,20 +13,23 @@
   // Update active palette when route changes
   $effect(() => {
     setPaletteFromRoute($page.url.pathname);
+
+    // Apply palette attribute directly to body element
+    if (typeof document !== 'undefined') {
+      document.body.setAttribute('data-palette', $activePalette);
+    }
   });
 </script>
 
-<div data-palette={$activePalette}>
-  {#if showBreadcrumb}
-    <nav class="breadcrumb">
-      <a href="/" class="breadcrumb-home">← Home</a>
-    </nav>
-  {/if}
+{#if showBreadcrumb}
+  <nav class="breadcrumb">
+    <a href="/" class="breadcrumb-home">← Home</a>
+  </nav>
+{/if}
 
-  <main>
-    {@render children()}
-  </main>
-</div>
+<main>
+  {@render children()}
+</main>
 
 <style>
   :global(body) {
@@ -38,7 +41,7 @@
   }
 
   .breadcrumb {
-    background: var(--palette-bg-subtle);
+    background: var(--palette-bg-nav);
     border-bottom: 1px solid #e9ecef;
     padding: 1rem 2rem;
   }

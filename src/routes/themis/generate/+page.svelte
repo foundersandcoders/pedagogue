@@ -104,7 +104,7 @@
 </script>
 
 <svelte:head>
-  <title>Themis (Rhea's Course Builder)</title>
+  <title>Themis: Rhea's Course Builder</title>
 </svelte:head>
 
 <div id="themis-container" class="container">
@@ -126,7 +126,9 @@
           class:active={$courseWorkflowStep === i + 1}
           class:completed={$courseWorkflowStep > i + 1}
         >
-          <span id="themis-step-{i + 1}-number" class="step-number">{i + 1}</span>
+          <span id="themis-step-{i + 1}-number" class="step-number"
+            >{i + 1}</span
+          >
           <span id="themis-step-{i + 1}-name" class="step-name">{step}</span>
         </div>
       {/each}
@@ -212,7 +214,7 @@
 
   .steps {
     display: flex;
-    background: var(--palette-bg-subtle);
+    background: var(--palette-bg-nav);
     padding: 1rem;
     border-bottom: 1px solid #e9ecef;
     overflow-x: auto;
