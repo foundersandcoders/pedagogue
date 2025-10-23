@@ -1,8 +1,8 @@
-# Pedagogue: A Thorough Interrogation
+# Rhea: A Thorough Interrogation
 
 ## What This Thing Actually Is
 
-Pedagogue is a rather elegant attempt at solving a genuinely tedious problem: keeping educational content current in a field that moves at the speed of hype cycles. The concept is sound—automate the curriculum review process by having an LLM analyse existing module specs, conduct research, and regenerate updated versions. It's essentially building a structured wrapper around what would otherwise be chaotic ChatGPT sessions punctuated by lost context and copy-paste accidents.
+Rhea is a rather elegant attempt at solving a genuinely tedious problem: keeping educational content current in a field that moves at the speed of hype cycles. The concept is sound—automate the curriculum review process by having an LLM analyse existing module specs, conduct research, and regenerate updated versions. It's essentially building a structured wrapper around what would otherwise be chaotic ChatGPT sessions punctuated by lost context and copy-paste accidents.
 
 The intended workflow unfolds across six phases:
 1. **File Ingestion** – Upload XML-structured module specs

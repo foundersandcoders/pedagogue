@@ -1,8 +1,8 @@
-# Pedagogue: What It Actually Does
+# Rhea: What It Actually Does
 
 ## Executive Summary
 
-Pedagogue is a curriculum maintenance tool that keeps AI engineering course materials current whilst councils rotate every three weeks. It takes existing expert-designed module specifications, researches what's changed in the technology landscape, and generates updated versions for council review. The tool automates research and synthesis—the time-consuming bits—whilst keeping human judgment in the decision loop. Councils review their assigned module intensively in one week, approve or modify AI-proposed updates, then propagate contextual changes forward through subsequent modules. This cascade pattern distributes deep review attention across iterations rather than attempting comprehensive revision under brutal time constraints.
+Rhea is a curriculum maintenance tool that keeps AI engineering course materials current whilst councils rotate every three weeks. It takes existing expert-designed module specifications, researches what's changed in the technology landscape, and generates updated versions for council review. The tool automates research and synthesis—the time-consuming bits—whilst keeping human judgment in the decision loop. Councils review their assigned module intensively in one week, approve or modify AI-proposed updates, then propagate contextual changes forward through subsequent modules. This cascade pattern distributes deep review attention across iterations rather than attempting comprehensive revision under brutal time constraints.
 
 ## The Problem (Or: Why This Exists At All)
 
@@ -12,9 +12,9 @@ The constraint: councils have one week to prepare their module whilst also learn
 
 That's the actual problem. Not curriculum maintenance in general – curriculum maintenance under aggressive time constraints with rotating responsibility and rapidly obsolescing subject matter.
 
-## What Pedagogue Does (Specifically)
+## What Rhea Does (Specifically)
 
-Pedagogue automates the tedious research and synthesis work whilst keeping human judgment in the decision loop. It doesn't generate curriculum from scratch – there's an expert-designed baseline. Instead, it proposes contextual updates and lets councils accept, reject, or modify them under time pressure.
+Rhea automates the tedious research and synthesis work whilst keeping human judgment in the decision loop. It doesn't generate curriculum from scratch – there's an expert-designed baseline. Instead, it proposes contextual updates and lets councils accept, reject, or modify them under time pressure.
 
 The operational model: **cascade pattern maintenance**. Councils review their immediate module (n) intensively whilst the tool propagates contextual updates to future modules (n+1, n+2, n+3...). Those propagated updates become baseline specifications for the next council, who then review *their* module intensively and cascade forward again.
 

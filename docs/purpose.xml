@@ -5,7 +5,7 @@
 
   <prompt>
     <between-arcs>
-  		- Arc council runs an extended thinking task in an LLM (e.g. ChatGPT deep research) or, ideally, in the Pedagogue app.
+  		- Arc council runs an extended thinking task in an LLM (e.g. ChatGPT deep research) or, ideally, in the Rhea app.
   		- They upload the `<arc></arc>` and `<next-step></next-step>` .xml chunks as files along with the following prompt
     </between-arcs>
 
