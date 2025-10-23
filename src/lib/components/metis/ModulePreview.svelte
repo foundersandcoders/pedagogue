@@ -2,6 +2,8 @@
   import { validateModuleXML } from "$lib/schemas/moduleValidator";
   import { createEventDispatcher } from "svelte";
   import ChangelogViewer from "./ChangelogViewer.svelte";
+  import ExportButton from "$lib/components/theia/ExportButton.svelte";
+  import type { ExportableContent } from "$lib/types/theia";
 
   export let xmlContent: string = "";
   export let showValidation: boolean = true;
@@ -10,6 +12,12 @@
     download: { content: string; filename: string };
     validated: { valid: boolean };
   }>();
+
+  // Create exportable content for Theia
+  $: exportableContent: ExportableContent = {
+    type: "module",
+    data: xmlContent,
+  };
 
   $: validation =
     showValidation && xmlContent ? validateModuleXML(xmlContent) : null;
@@ -66,6 +74,13 @@
   <div class="preview-header">
     <h3>Generated Module Specification</h3>
     <div class="preview-actions">
+      <ExportButton
+        content={exportableContent}
+        label="Export Preview"
+        variant="secondary"
+        size="medium"
+        disabled={!xmlContent}
+      />
       <button
         type="button"
         class="btn-secondary"

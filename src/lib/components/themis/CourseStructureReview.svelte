@@ -2,6 +2,8 @@
   import { createEventDispatcher, onMount } from "svelte";
   import { downloadCourseXml } from "$lib/utils/validation/outputSerialiser";
   import type { CourseData, Arc } from "$lib/types/themis";
+  import ExportButton from "$lib/components/theia/ExportButton.svelte";
+  import type { ExportableContent } from "$lib/types/theia";
 
   export let courseData: CourseData;
 
@@ -13,6 +15,17 @@
     };
     back: void;
   }>();
+
+  // Create exportable content for Theia
+  $: exportableContent: ExportableContent = {
+    type: "course",
+    data: {
+      ...courseData,
+      courseNarrative,
+      progressionNarrative,
+      arcs,
+    } as CourseData,
+  };
 
   let isLoading = true;
   let error: string | null = null;
@@ -525,13 +538,21 @@
       <button type="button" class="back-btn" on:click={handleBack}>
         ← Back to Module Planning
       </button>
-      <button
-        type="button"
-        class="download-xml-btn"
-        on:click={handleDownloadXml}
-      >
-        📥 Download XML
-      </button>
+      <div class="export-group">
+        <ExportButton
+          content={exportableContent}
+          label="Export Preview"
+          variant="secondary"
+          size="medium"
+        />
+        <button
+          type="button"
+          class="download-xml-btn"
+          on:click={handleDownloadXml}
+        >
+          📥 Download XML
+        </button>
+      </div>
       <button type="button" class="submit-btn" on:click={handleSubmit}>
         Continue to Module Generation →
       </button>
@@ -1036,6 +1057,12 @@
     gap: 1rem;
     padding-top: 2rem;
     border-top: 1px solid #e9ecef;
+  }
+
+  .export-group {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
   }
 
   .back-btn,
