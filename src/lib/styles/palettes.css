@@ -50,7 +50,17 @@
   --palette-foreground-alt: #0E9191;
 }
 
-/* Utility classes for applying palette colours */
+/**
+ * Utility classes for applying palette colours
+ *
+ * NOTE: These utility classes are currently unused in the codebase.
+ * Palette colours are applied via CSS custom properties (--palette-*) directly.
+ * These classes are retained for potential future use when rapid prototyping
+ * or applying palette-based styling without writing custom CSS.
+ *
+ * If these classes remain unused in production, consider removing them to
+ * reduce CSS bundle size.
+ */
 
 /* Backgrounds */
 .bg-palette-primary {

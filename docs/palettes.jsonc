@@ -1,4 +1,16 @@
 {
+  // CRITICAL: Palette data duplication
+  //
+  // This file is duplicated in src/lib/utils/palette/paletteLoader.ts
+  // Both files MUST be kept in sync manually.
+  //
+  // When updating palettes:
+  // 1. Update this JSONC file
+  // 2. Update paletteLoader.ts PALETTES constant with identical values
+  // 3. Verify both files match exactly
+  //
+  // TODO: Consider importing this JSONC at build time to eliminate duplication
+  //
   "rhea": {
     "bg-dark": "#00221Aff",
     "bg-light": "#0E6B68ff",

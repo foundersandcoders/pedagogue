@@ -6,23 +6,23 @@
 /**
  * Individual colour definition with hex value
  */
-export type ColorValue = string; // Hex colour code (e.g., "#00221Aff")
+export type ColourValue = string; // Hex colour code (e.g., "#00221Aff")
 
 /**
  * Rhea palette - main application branding
  * Most comprehensive palette with multiple foreground variants
  */
 export interface RheaPalette {
-  "bg-dark": ColorValue;
-  "bg-light": ColorValue;
-  "bg-subtle-teal": ColorValue;
-  "bg-subtle-gold": ColorValue;
-  "bg-nav-teal": ColorValue;
-  "bg-nav-gold": ColorValue;
-  "fg-dark": ColorValue;
-  "fg-mid": ColorValue;
-  "fg-light": ColorValue;
-  line: ColorValue;
+  "bg-dark": ColourValue;
+  "bg-light": ColourValue;
+  "bg-subtle-teal": ColourValue;
+  "bg-subtle-gold": ColourValue;
+  "bg-nav-teal": ColourValue;
+  "bg-nav-gold": ColourValue;
+  "fg-dark": ColourValue;
+  "fg-mid": ColourValue;
+  "fg-light": ColourValue;
+  line: ColourValue;
 }
 
 /**
@@ -30,11 +30,11 @@ export interface RheaPalette {
  * Simpler palette with single foreground colour
  */
 export interface ThemisPalette {
-  bg: ColorValue;
-  "bg-subtle": ColorValue;
-  "bg-nav": ColorValue;
-  fg: ColorValue;
-  line: ColorValue;
+  bg: ColourValue;
+  "bg-subtle": ColourValue;
+  "bg-nav": ColourValue;
+  fg: ColourValue;
+  line: ColourValue;
 }
 
 /**
@@ -42,11 +42,11 @@ export interface ThemisPalette {
  * Two-tone foreground palette
  */
 export interface TethysPalette {
-  bg: ColorValue;
-  "bg-subtle": ColorValue;
-  "bg-nav": ColorValue;
-  "fg-dark": ColorValue;
-  "fg-light": ColorValue;
+  bg: ColourValue;
+  "bg-subtle": ColourValue;
+  "bg-nav": ColourValue;
+  "fg-dark": ColourValue;
+  "fg-light": ColourValue;
 }
 
 /**
@@ -54,11 +54,11 @@ export interface TethysPalette {
  * Two-tone foreground palette
  */
 export interface MetisPalette {
-  bg: ColorValue;
-  "bg-subtle": ColorValue;
-  "bg-nav": ColorValue;
-  "fg-dark": ColorValue;
-  "fg-light": ColorValue;
+  bg: ColourValue;
+  "bg-subtle": ColourValue;
+  "bg-nav": ColourValue;
+  "fg-dark": ColourValue;
+  "fg-light": ColourValue;
 }
 
 /**
@@ -66,9 +66,9 @@ export interface MetisPalette {
  * For future expansion or experimentation
  */
 export interface UnusedPalette {
-  background: ColorValue;
-  "accent-1": ColorValue;
-  "accent-2": ColorValue;
+  background: ColourValue;
+  "accent-1": ColourValue;
+  "accent-2": ColourValue;
 }
 
 /**
@@ -103,15 +103,15 @@ export type WorkflowName = "rhea" | "metis" | "themis" | "tethys";
 export interface NormalisedPalette {
   name: PaletteName;
   colours: {
-    primary: ColorValue; // Main background or primary brand colour
-    secondary?: ColorValue; // Secondary background or alternate colour
-    backgroundSubtle?: ColorValue; // Very light background for cards and containers
-    backgroundSubtleAlt?: ColorValue; // Alternate subtle background (Rhea only)
-    backgroundNav?: ColorValue; // Navigation bar background
-    backgroundNavAlt?: ColorValue; // Alternate navigation background (Rhea only)
-    foreground: ColorValue; // Main foreground/text colour
-    foregroundAlt?: ColorValue; // Alternate foreground colour
-    accent?: ColorValue; // Accent/highlight colour
-    line?: ColorValue; // Border/divider colour
+    primary: ColourValue; // Main background or primary brand colour
+    secondary?: ColourValue; // Secondary background or alternate colour
+    backgroundSubtle?: ColourValue; // Very light background for cards and containers
+    backgroundSubtleAlt?: ColourValue; // Alternate subtle background (Rhea only)
+    backgroundNav?: ColourValue; // Navigation bar background
+    backgroundNavAlt?: ColourValue; // Alternate navigation background (Rhea only)
+    foreground: ColourValue; // Main foreground/text colour
+    foregroundAlt?: ColourValue; // Alternate foreground colour
+    accent?: ColourValue; // Accent/highlight colour
+    line?: ColourValue; // Border/divider colour
   };
 }

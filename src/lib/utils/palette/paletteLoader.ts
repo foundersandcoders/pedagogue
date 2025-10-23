@@ -14,9 +14,30 @@ import type {
   TethysPalette,
 } from "./paletteTypes";
 
-// Import palette data
-// Note: In production, this would be loaded from the file system or API
-// For now, we'll define it inline for type safety
+/**
+ * Route prefixes for workflow palette mapping
+ */
+const ROUTE_PREFIXES = {
+  METIS: "/metis",
+  THEMIS: "/themis",
+  TETHYS: "/tethys",
+  RHEA: "/rhea",
+  HOME: "/",
+} as const;
+
+/**
+ * CRITICAL: Palette data duplication
+ *
+ * This constant is duplicated in docs/palettes.jsonc.
+ * Both files MUST be kept in sync manually.
+ *
+ * When updating palettes:
+ * 1. Update this TypeScript constant
+ * 2. Update docs/palettes.jsonc with identical values
+ * 3. Verify both files match exactly
+ *
+ * TODO: Consider importing JSONC at build time to eliminate duplication
+ */
 const PALETTES: PaletteCollection = {
   rhea: {
     "bg-dark": "#00221Aff",
@@ -233,9 +254,9 @@ export function generateCSSVariableString(name: PaletteName): string {
  * Map workflow route to palette name
  */
 export function getWorkflowPaletteName(pathname: string): WorkflowName | null {
-  if (pathname.startsWith("/metis")) return "metis";
-  if (pathname.startsWith("/themis")) return "themis";
-  if (pathname.startsWith("/tethys")) return "tethys";
-  if (pathname === "/" || pathname.startsWith("/rhea")) return "rhea";
+  if (pathname.startsWith(ROUTE_PREFIXES.METIS)) return "metis";
+  if (pathname.startsWith(ROUTE_PREFIXES.THEMIS)) return "themis";
+  if (pathname.startsWith(ROUTE_PREFIXES.TETHYS)) return "tethys";
+  if (pathname === ROUTE_PREFIXES.HOME || pathname.startsWith(ROUTE_PREFIXES.RHEA)) return "rhea";
   return null;
 }
