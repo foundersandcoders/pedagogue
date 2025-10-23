@@ -2,7 +2,7 @@
 
 ## Architecture
 
-Pedagogue is built with:
+Rhea is built with:
 
 - **SvelteKit** - Application framework with server-side rendering and API routes
 - **Node.js** - Runtime environment

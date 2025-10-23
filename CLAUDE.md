@@ -98,6 +98,6 @@ src/
 
 ### Documentation
 
-- **User guide**: `README.md` - How to use Pedagogue
+- **User guide**: `README.md` - How to use Rhea
 - **Technical docs**: `/docs/` - Architecture, design decisions, implementation details
 - **Roadmaps**: `.claude/docs/roadmaps/` - Feature status and priorities

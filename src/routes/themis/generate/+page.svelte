@@ -104,14 +104,14 @@
 </script>
 
 <svelte:head>
-  <title>Themis (Rhea's Course Builder)</title>
+  <title>Themis: Rhea's Course Builder</title>
 </svelte:head>
 
 <div id="themis-container" class="container">
   <header id="themis-header">
     <div class="header-title">
       <img src="/themis/icon.png" alt="Themis icon" class="header-icon" />
-      <h1>Pedagogue: Themis</h1>
+      <h1>Themis</h1>
     </div>
     <p>Build a complete multi-week course with interconnected modules</p>
   </header>
@@ -126,7 +126,9 @@
           class:active={$courseWorkflowStep === i + 1}
           class:completed={$courseWorkflowStep > i + 1}
         >
-          <span id="themis-step-{i + 1}-number" class="step-number">{i + 1}</span>
+          <span id="themis-step-{i + 1}-number" class="step-number"
+            >{i + 1}</span
+          >
           <span id="themis-step-{i + 1}-name" class="step-name">{step}</span>
         </div>
       {/each}
@@ -212,7 +214,7 @@
 
   .steps {
     display: flex;
-    background: #f8f9fa;
+    background: var(--palette-bg-nav);
     padding: 1rem;
     border-bottom: 1px solid #e9ecef;
     overflow-x: auto;
@@ -250,13 +252,14 @@
   }
 
   .step.active .step-number {
-    background: #28a745;
+    background: var(--palette-foreground);
     color: white;
   }
 
   .step.completed .step-number {
-    background: #218838;
+    background: var(--palette-foreground);
     color: white;
+    opacity: 0.7;
   }
 
   .step-name {
@@ -266,7 +269,7 @@
   }
 
   .step.active .step-name {
-    color: #28a745;
+    color: var(--palette-foreground);
     font-weight: 600;
   }
 

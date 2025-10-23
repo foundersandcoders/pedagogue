@@ -44,7 +44,7 @@
           <span>✓ Course structure</span>
           <span>✓ Learning progression</span>
         </div>
-        <div class="card-action">Start Course Builder →</div>
+        <div class="card-action">Build Course →</div>
       </a>
       
       <a href="/tethys" class="workflow-card tethys-card">
@@ -54,9 +54,9 @@
           Create a linked set of modules.
         </p>
         <div class="card-features">
-          <span>• </span>
+          <pre>Coming Soon</pre>
         </div>
-        <div class="card-action">Start Arc Designer →</div>
+        <div class="card-action">Design Arc →</div>
       </a>
       
       <a href="/metis/update" class="workflow-card metis-card">
@@ -71,7 +71,7 @@
           <span>✓ Learning objectives</span>
           <span>✓ Research topics</span>
         </div>
-        <div class="card-action">Start Module Generator →</div>
+        <div class="card-action">Generate Module →</div>
       </a>
     </div>
 
@@ -151,7 +151,6 @@
   }
 
   .workflow-card {
-    background: white;
     border-radius: 12px;
     padding: 2.5rem;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -163,21 +162,34 @@
     border: 2px solid transparent;
   }
 
+  /* Each card uses its own workflow palette background */
+  .metis-card {
+    background: #E8F1F8;
+  }
+
+  .themis-card {
+    background: #F0ECF8;
+  }
+
+  .tethys-card {
+    background: #FFF4ED;
+  }
+
   .workflow-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
 
   .metis-card:hover {
-    border-color: #007bff;
+    border-color: #096A78;
   }
-  
+
   .tethys-card:hover {
-    border-color: #888888;
+    border-color: #A45818;
   }
 
   .themis-card:hover {
-    border-color: #28a745;
+    border-color: #7551BA;
   }
 
   .card-icon {
@@ -216,38 +228,38 @@
   }
 
   .card-action {
-    color: #007bff;
+    color: #096A78;
     font-weight: 600;
     font-size: 1.1rem;
     text-align: center;
     padding: 1rem;
-    background: #e7f3ff;
+    background: rgba(9, 106, 120, 0.1);
     border-radius: 8px;
-    transition: background 0.2s;
+    transition: all 0.3s;
   }
 
   .themis-card .card-action {
-    color: #28a745;
-    background: #d4edda;
+    color: #7551BA;
+    background: rgba(117, 81, 186, 0.1);
   }
-  
+
   .tethys-card .card-action {
-    color: #888888;
-    background: #cccccc;
+    color: #A45818;
+    background: rgba(164, 88, 24, 0.1);
   }
-  
+
   .themis-card:hover .card-action {
-    background: #28a745;
+    background: #7551BA;
     color: white;
   }
-  
+
   .tethys-card:hover .card-action {
-    background: #888888;
+    background: #A45818;
     color: white;
   }
-  
+
   .metis-card:hover .card-action {
-    background: #007bff;
+    background: #096A78;
     color: white;
   }
 
@@ -283,7 +295,7 @@
   }
 
   .course-item:hover {
-    border-color: #007bff;
+    border-color: #D7B130;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 

@@ -160,6 +160,7 @@
     padding: 1rem 1.5rem;
     background: #f8f9fa;
     border-bottom: 1px solid #dee2e6;
+    border-top: 3px solid var(--palette-foreground);
   }
 
   .preview-header h3 {
@@ -198,12 +199,12 @@
   }
 
   .btn-primary {
-    background: #28a745;
+    background: var(--palette-foreground);
     color: white;
   }
 
   .btn-primary:hover:not(:disabled) {
-    background: #218838;
+    filter: brightness(1.1);
   }
 
   .btn-secondary:disabled,

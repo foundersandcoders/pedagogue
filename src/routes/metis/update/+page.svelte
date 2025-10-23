@@ -280,8 +280,8 @@
     <p>AI-powered module specification generator for peer-led courses</p>
   </header>
 
-  <div class="workflow">
-    <nav class="steps">
+  <div class="metis-workflow">
+    <nav class="metis-steps">
       {#each steps as step, i}
         <div
           class="step"
@@ -294,7 +294,7 @@
       {/each}
     </nav>
 
-    <main class="content">
+    <main class="metis-content">
       <!-- TODO: Turn these divs into Components -->
       {#if $currentStep === 1}
         <section class="upload-section">
@@ -508,16 +508,16 @@
     font-size: 1.1rem;
   }
 
-  .workflow {
+  .metis-workflow {
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     overflow: hidden;
   }
 
-  .steps {
+  .metis-steps {
     display: flex;
-    background: #f8f9fa;
+    background: var(--palette-bg-nav);
     padding: 1rem;
     border-bottom: 1px solid #e9ecef;
   }
@@ -552,13 +552,14 @@
   }
 
   .step.active .step-number {
-    background: #007bff;
+    background: var(--palette-foreground);
     color: white;
   }
 
   .step.completed .step-number {
-    background: #28a745;
+    background: var(--palette-foreground);
     color: white;
+    opacity: 0.7;
   }
 
   .step-name {
@@ -567,11 +568,11 @@
   }
 
   .step.active .step-name {
-    color: #007bff;
+    color: var(--palette-foreground);
     font-weight: 600;
   }
 
-  .content {
+  .metis-content {
     padding: 2rem;
   }
 
@@ -679,7 +680,7 @@
     width: 50px;
     height: 50px;
     border: 4px solid #f3f3f3;
-    border-top: 4px solid #007bff;
+    border-top: 4px solid var(--palette-foreground);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 0 auto 1.5rem auto;
@@ -734,12 +735,13 @@
   }
 
   .progress-message.info {
-    background: #e7f3ff;
-    color: #004085;
+    background: #f0f8ff;
+    color: var(--palette-foreground);
+    border-left: 3px solid var(--palette-foreground);
   }
 
   .progress-message.info .icon {
-    color: #0056b3;
+    color: var(--palette-foreground);
   }
 
   .progress-message.success {
@@ -826,7 +828,7 @@
   }
 
   .generate-button {
-    background: #007bff;
+    background: var(--palette-foreground);
     color: white;
     border: none;
     border-radius: 8px;
@@ -838,9 +840,9 @@
   }
 
   .generate-button:hover {
-    background: #0056b3;
+    filter: brightness(1.1);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
   .result-section {

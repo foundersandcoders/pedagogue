@@ -1,4 +1,4 @@
-# Getting Started with Pedagogue
+# Getting Started with Rhea
 
 ## Prerequisites
 
