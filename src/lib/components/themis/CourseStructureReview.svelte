@@ -17,8 +17,8 @@
   }>();
 
   // Create exportable content for Theia
-  $: exportableContent: ExportableContent = {
-    type: "course",
+  $: exportableContent = {
+    type: "course" as const,
     data: {
       ...courseData,
       courseNarrative,
