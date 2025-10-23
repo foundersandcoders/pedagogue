@@ -15,16 +15,17 @@
 </script>
 
 <svelte:head>
-  <title>Rhea: AI-Powered Curriculum Generator</title>
+  <title>Rhea • Curriculum Designer</title>
+  <link rel="icon" href="favicons/favicon.ico" />
 </svelte:head>
 
 <div id="hub-container" class="container">
   <header id="hub-header">
     <div class="header-title">
-      <img src="/rhea/icon.png" alt="Rhea icon" class="header-icon" />
+      <img src="icon.png" alt="Rhea icon" class="header-icon" />
       <h1>Rhea</h1>
     </div>
-    <p>AI-powered curriculum generation for peer-led courses</p>
+    <p>AI-powered curriculum design for peer-led courses</p>
   </header>
 
   <!-- TODO: possibly create hub component? In case I need sub-hubs when functionality expands -->
@@ -35,10 +36,8 @@
       <a href="/themis/generate" class="workflow-card themis-card">
         <img src="/themis/icon.png" alt="Themis" class="card-icon" />
         <h2>Themis</h2>
-        <p>
-          Create a complete multi-week course with interconnected modules and
-          learning progressions.
-        </p>
+        <p>Create a complete multi-week course with interconnected modules and
+          learning progressions.</p>
         <div class="card-features">
           <span>✓ Multiple modules</span>
           <span>✓ Course structure</span>
@@ -47,12 +46,10 @@
         <div class="card-action">Build Course →</div>
       </a>
       
-      <a href="/tethys" class="workflow-card tethys-card">
+      <a href="/tethys/wip" class="workflow-card tethys-card">
         <img src="/tethys/icon.png" alt="Tethys" class="card-icon" />
         <h2>Tethys</h2>
-        <p>
-          Create a linked set of modules.
-        </p>
+        <p>Create a linked set of modules.</p>
         <div class="card-features">
           <pre>Coming Soon</pre>
         </div>
@@ -62,10 +59,8 @@
       <a href="/metis/update" class="workflow-card metis-card">
         <img src="/metis/icon.png" alt="Metis" class="card-icon" />
         <h2>Metis</h2>
-        <p>
-          Create a standalone module specification with projects, skills, and
-          research topics.
-        </p>
+        <p>Create a standalone module specification with projects, skills, and
+          research topics.</p>
         <div class="card-features">
           <span>✓ Project briefs</span>
           <span>✓ Learning objectives</span>

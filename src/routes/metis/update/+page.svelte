@@ -268,13 +268,14 @@
 </script>
 
 <svelte:head>
-  <title>Metis: Rhea's Module Generator</title>
+  <title>Metis • Module Designer</title>
+  <link rel="icon" href="favicon.ico" />
 </svelte:head>
 
 <div id="metis-container" class="container">
   <header id="metis-header">
     <div class="header-title">
-      <img src="/metis/icon.png" alt="Metis icon" class="header-icon" />
+      <img src="icon.png" alt="Metis icon" class="header-icon" />
       <h1>Metis</h1>
     </div>
     <p>AI-powered module specification generator for peer-led courses</p>

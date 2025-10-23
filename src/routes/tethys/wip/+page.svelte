@@ -2,13 +2,14 @@
 </script>
 
 <svelte:head>
-  <title>Tethys: Rhea's Arc Designer</title>
+  <title>Tethys • Arc Designer</title>
+  <link rel="icon" href="favicon.ico" />
 </svelte:head>
 
 <div id="tethys-container" class="container">
   <header id="tethys-header">
     <div class="header-title">
-      <img src="/tethys/icon.png" alt="Tethys icon" class="header-icon" />
+      <img src="icon.png" alt="Tethys icon" class="header-icon" />
       <h1>Tethys</h1>
     </div>
     <p>AI-powered Arc design for peer-led courses</p>

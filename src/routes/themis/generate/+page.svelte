@@ -104,13 +104,14 @@
 </script>
 
 <svelte:head>
-  <title>Themis: Rhea's Course Builder</title>
+  <title>Themis • Course Designer</title>
+  <link rel="icon" href="favicon.ico" />
 </svelte:head>
 
 <div id="themis-container" class="container">
   <header id="themis-header">
     <div class="header-title">
-      <img src="/themis/icon.png" alt="Themis icon" class="header-icon" />
+      <img src="icon.png" alt="Themis icon" class="header-icon" />
       <h1>Themis</h1>
     </div>
     <p>Build a complete multi-week course with interconnected modules</p>
