@@ -1,4 +1,8 @@
-![Pedagogue](./static/github-header-banner.png)
+<!--![Pedagogue](./static/github-header-banner.png)-->
+
+**Rhea** | **Themis** | **Tethys** | **Metis**
+:-------:|:----------:|:----------:|:--------:
+![Rhea](static/rhea/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png)
 
 An AI-powered curriculum generation tool for peer-led learning cohorts. Pedagogue uses Claude AI with optional web research to generate comprehensive, up-to-date module specifications and complete multi-week courses.
 
