@@ -169,15 +169,15 @@
   }
 
   .metis-card:hover {
-    border-color: #007bff;
+    border-color: #096A78;
   }
-  
+
   .tethys-card:hover {
-    border-color: #888888;
+    border-color: #A45818;
   }
 
   .themis-card:hover {
-    border-color: #28a745;
+    border-color: #7551BA;
   }
 
   .card-icon {
@@ -216,38 +216,38 @@
   }
 
   .card-action {
-    color: #007bff;
+    color: #096A78;
     font-weight: 600;
     font-size: 1.1rem;
     text-align: center;
     padding: 1rem;
-    background: #e7f3ff;
+    background: rgba(9, 106, 120, 0.1);
     border-radius: 8px;
-    transition: background 0.2s;
+    transition: all 0.3s;
   }
 
   .themis-card .card-action {
-    color: #28a745;
-    background: #d4edda;
+    color: #7551BA;
+    background: rgba(117, 81, 186, 0.1);
   }
-  
+
   .tethys-card .card-action {
-    color: #888888;
-    background: #cccccc;
+    color: #A45818;
+    background: rgba(164, 88, 24, 0.1);
   }
-  
+
   .themis-card:hover .card-action {
-    background: #28a745;
+    background: #7551BA;
     color: white;
   }
-  
+
   .tethys-card:hover .card-action {
-    background: #888888;
+    background: #A45818;
     color: white;
   }
-  
+
   .metis-card:hover .card-action {
-    background: #007bff;
+    background: #096A78;
     color: white;
   }
 
@@ -283,7 +283,7 @@
   }
 
   .course-item:hover {
-    border-color: #007bff;
+    border-color: #D7B130;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
