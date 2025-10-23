@@ -1,23 +1,30 @@
 <script lang="ts">
   import "../app.css";
+  import "$lib/styles/palettes.css";
   import { page } from "$app/stores";
+  import { activePalette, setPaletteFromRoute } from "$lib/stores/paletteStore";
 
   let { children } = $props();
 
   // TODO: implement $state() instead of stores where possible
   const isHomePage: boolean = $derived($page.url.pathname === "/");
   const showBreadcrumb: boolean = $derived(!isHomePage);
+
+  // Update active palette when route changes
+  $: setPaletteFromRoute($page.url.pathname);
 </script>
 
-{#if showBreadcrumb}
-  <nav class="breadcrumb">
-    <a href="/" class="breadcrumb-home">← Home</a>
-  </nav>
-{/if}
+<div data-palette={$activePalette}>
+  {#if showBreadcrumb}
+    <nav class="breadcrumb">
+      <a href="/" class="breadcrumb-home">← Home</a>
+    </nav>
+  {/if}
 
-<main>
-  {@render children()}
-</main>
+  <main>
+    {@render children()}
+  </main>
+</div>
 
 <style>
   :global(body) {
