@@ -11,7 +11,9 @@
   const showBreadcrumb: boolean = $derived(!isHomePage);
 
   // Update active palette when route changes
-  $: setPaletteFromRoute($page.url.pathname);
+  $effect(() => {
+    setPaletteFromRoute($page.url.pathname);
+  });
 </script>
 
 <div data-palette={$activePalette}>
