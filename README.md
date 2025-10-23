@@ -1,16 +1,16 @@
-<!--![Pedagogue](./static/github-header-banner.png)-->
+<!--![Rhea](./static/github-header-banner.png)-->
 
 **Rhea** | **Themis** | **Tethys** | **Metis**
 :-------:|:----------:|:----------:|:--------:
 ![Rhea](static/rhea/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png)
 
-An AI-powered curriculum generation tool for peer-led learning cohorts. Pedagogue uses Claude AI with optional web research to generate comprehensive, up-to-date module specifications and complete multi-week courses.
+An AI-powered curriculum generation tool for peer-led learning cohorts. Rhea uses Claude AI with optional web research to generate comprehensive, up-to-date module specifications and complete multi-week courses.
 
-## What Pedagogue Does
+## What Rhea Does
 
-Pedagogue generates curriculum materials in two ways:
+Rhea generates curriculum materials in two ways:
 
-### Module Generator
+### Metis
 
 Create standalone module specifications with:
 - Learning objectives and module overview
@@ -19,7 +19,11 @@ Create standalone module specifications with:
 - Additional skills categorized by importance
 - Project "twists" to add interesting challenges
 
-### Course Builder
+### Tethys
+
+Coming soon
+
+### Themis
 
 Create complete multi-week courses with:
 - Thematic arcs organizing related modules
@@ -27,7 +31,7 @@ Create complete multi-week courses with:
 - Course-level narratives and structure
 - Individual module generation (coming soon)
 
-**Key value:** Pedagogue can use web search to ensure your curriculum reflects current industry practices and technologies, not just what Claude knew at training time.
+**Key value:** Rhea can use web search to ensure your curriculum reflects current industry practices and technologies, not just what Claude knew at training time.
 
 ## Quick Start
 
@@ -40,8 +44,8 @@ Create complete multi-week courses with:
 
 ```bash
 # Clone repository
-git clone https://github.com/foundersandcoders/pedagogue.git
-cd pedagogue
+git clone https://github.com/foundersandcoders/Rhea.git
+cd Rhea
 
 # Install dependencies
 npm install
@@ -54,7 +58,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Open **http://localhost:5173** to start using Pedagogue.
+Open **http://localhost:5173** to start using Rhea.
 
 **See [Getting Started Guide](/docs/getting-started.md) for detailed installation and usage instructions.**
 
@@ -122,7 +126,7 @@ All generated modules automatically validated against requirements:
 
 ### For Users
 - **[Getting Started](/docs/getting-started.md)** - Installation, setup, first module
-- **[About Pedagogue](/docs/about-rhea.md)** - What it does and why it exists
+- **[About Rhea](/docs/about-rhea.md)** - What it does and why it exists
 - **[Executive Summary](/docs/executive-summary.md)** - Quick overview
 
 ### For Developers
@@ -133,13 +137,14 @@ All generated modules automatically validated against requirements:
 
 ### For Contributors
 - **[Roadmaps](/.claude/docs/roadmaps/)** - Feature status and priorities
-  - [Module Generator (Metis)](/.claude/docs/roadmaps/Metis-MVP.md)
-  - [Course Builder (Themis)](/.claude/docs/roadmaps/Themis-MVP.md)
+  - [Rhea Roadmap](/.claude/docs/roadmaps/Rhea-MVP.md)
+  - [Metis Roadmap](/.claude/docs/roadmaps/mvp-modules/Metis-MVP.md)
+  - [Themis Roadmap](/.claude/docs/roadmaps/mvp-modules/Themis-MVP.md)
 - **[CLAUDE.md](/CLAUDE.md)** - AI assistant guidance
 
-## Input File Format
+## Metis: Input File Format
 
-Pedagogue accepts XML files for module inputs. Each file must have a specific root element:
+Metis accepts XML files for module inputs. Each file must have a specific root element:
 
 ### projects.xml
 ```xml
@@ -213,17 +218,6 @@ Pedagogue accepts XML files for module inputs. Each file must have a specific ro
 
 **See [Technical Overview](/docs/technical-overview.md) for architecture details.**
 
-## Recent Updates
-
-**October 2025-10-20** - Major architectural refactoring completed:
-- 670+ lines eliminated through better separation of concerns
-- Extracted reusable factories and utilities
-- Added comprehensive Zod validation
-- Implemented store persistence utilities
-- Created error handling infrastructure
-
-**See [Refactoring Progress](/docs/refactoring-progress.md) for full details.**
-
 ## Development
 
 ```bash
@@ -242,7 +236,7 @@ npm run preview
 
 ## Deployment
 
-Pedagogue can deploy to:
+Rhea can deploy to:
 - Vercel
 - Netlify
 - Node.js servers
