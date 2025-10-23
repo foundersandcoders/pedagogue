@@ -1,7 +1,7 @@
 # Project Status
 
 ## 1. Contents
-> [!INFO]
+> [!NOTE]
 > Since Rhea is the aggregate of all submodules, this section summarises roadmaps for all submodules actively in development.
 
 ### 1.1. Active Development
@@ -77,7 +77,7 @@ Will provide atomic learning unit assembly capabilities for granular curriculum 
 ---
 
 ## 3. Next Milestones
-> [!INFO]
+> [!NOTE]
 > The 5 most significant or important tasks to tackle next.
 
 1. **[Theia: Content Preview Exporter](#2a-tasks-with-a-deadline)** `2025-10-22` - Reusable exporter for human-readable content from Themis and Metis
@@ -87,7 +87,7 @@ Will provide atomic learning unit assembly capabilities for granular curriculum 
 5. **[Build CourseOverview Component](Themis-MVP.md#110-build-courseoverview-component-step-5--pending)** (Themis 1.10) - Final review interface and export functionality trigger
 
 ## 4. Recent Wins
-> [!INFO]
+> [!NOTE]
 > 6 most recent achievements in this codebase
 
 1. **[Module colour palettes](Rhea-MVP.md#422-record-of-other-completed-tasks)** (2025-10-23) - Dynamic palette system with CSS custom properties for Rhea, Themis, Tethys, and Metis
