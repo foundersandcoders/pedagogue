@@ -1,14 +1,16 @@
-<!--![Rhea](./static/github-header-banner.png)-->
+# Rhea
+
+An AI-powered curriculum generation tool for peer-led learning cohorts. Rhea uses Claude AI with optional web research to generate comprehensive, up-to-date module specifications and complete multi-week courses.
+
+---
+
+## What Rhea Does
+
+Rhea contains three flows for generating curriculum materials
 
 **Rhea** | **Themis** | **Tethys** | **Metis**
 :-------:|:----------:|:----------:|:--------:
 ![Rhea](static/rhea/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png)
-
-An AI-powered curriculum generation tool for peer-led learning cohorts. Rhea uses Claude AI with optional web research to generate comprehensive, up-to-date module specifications and complete multi-week courses.
-
-## What Rhea Does
-
-Rhea generates curriculum materials in two ways:
 
 ### Metis
 
@@ -32,6 +34,8 @@ Create complete multi-week courses with:
 - Individual module generation (coming soon)
 
 **Key value:** Rhea can use web search to ensure your curriculum reflects current industry practices and technologies, not just what Claude knew at training time.
+
+---
 
 ## Quick Start
 
@@ -62,12 +66,16 @@ Open **http://localhost:5173** to start using Rhea.
 
 **See [Getting Started Guide](/docs/getting-started.md) for detailed installation and usage instructions.**
 
+---
+
 ## Cost Information
 
 - Claude Sonnet 4.5 pricing: ~£2.20/million input tokens, ~£11/million output tokens
 - Typical module generation: **£0.15-£0.30** (with research enabled)
 - Course structure generation: **£0.10-£0.20**
 - New Anthropic accounts often include free credits
+
+---
 
 ## Key Features
 
@@ -106,21 +114,23 @@ All generated modules automatically validated against requirements:
 - Minimum 2 project briefs with detailed criteria
 - Automatic retry (up to 3 attempts) if validation fails
 
-### 🎨 Two Workflow Modes
+### 🎨 Workflows
 
-**Module Generator** - Quick standalone modules
+**Metis** - Quick standalone modules
 1. Upload XML inputs (projects, skills, research)
 2. Provide structured context
 3. Generate with optional research
 4. Download XML specification
 
-**Course Builder** - Complete multi-week courses
+**Themis** - Complete multi-week courses
 1. Configure course identity and logistics
 2. Plan thematic arcs
 3. Organize modules within arcs
 4. AI generates detailed structure
 5. Review and refine
 6. Generate individual modules (coming soon)
+
+---
 
 ## Documentation
 
@@ -138,9 +148,11 @@ All generated modules automatically validated against requirements:
 ### For Contributors
 - **[Roadmaps](/.claude/docs/roadmaps/)** - Feature status and priorities
   - [Rhea Roadmap](/.claude/docs/roadmaps/Rhea-MVP.md)
-  - [Metis Roadmap](/.claude/docs/roadmaps/mvp-modules/Metis-MVP.md)
-  - [Themis Roadmap](/.claude/docs/roadmaps/mvp-modules/Themis-MVP.md)
+    - [Metis Roadmap](/.claude/docs/roadmaps/mvp-modules/Metis-MVP.md)
+    - [Themis Roadmap](/.claude/docs/roadmaps/mvp-modules/Themis-MVP.md)
 - **[CLAUDE.md](/CLAUDE.md)** - AI assistant guidance
+
+---
 
 ## Metis: Input File Format
 
@@ -208,6 +220,8 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
 
 **See [Getting Started Guide](/docs/getting-started.md) for common XML gotchas and detailed format specifications.**
 
+---
+
 ## Technical Stack
 
 - **SvelteKit** - Application framework with SSR and API routes
@@ -217,6 +231,8 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
 - **XML** - Curriculum data format
 
 **See [Technical Overview](/docs/technical-overview.md) for architecture details.**
+
+---
 
 ## Development
 
@@ -234,6 +250,8 @@ npm run build
 npm run preview
 ```
 
+---
+
 ## Deployment
 
 Rhea can deploy to:
@@ -242,11 +260,15 @@ Rhea can deploy to:
 - Node.js servers
 - Other platforms (see [SvelteKit adapters](https://kit.svelte.dev/docs/adapters))
 
+---
+
 **Important:** Set `ANTHROPIC_API_KEY` in your hosting platform's environment variables.
 
 ## Contributing
 
 Issues and pull requests welcome! Check the [roadmaps](/.claude/docs/roadmaps/) for current priorities.
+
+---
 
 ## License
 
