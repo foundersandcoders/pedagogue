@@ -23,7 +23,10 @@ Create standalone module specifications with:
 
 ### Tethys
 
-Coming soon
+Arc generation and management tools (planned). Tethys will enable:
+- Standalone arc creation between course and module levels
+- Arc-level learning progression design
+- Thematic coherence across related modules
 
 ### Themis
 
@@ -114,13 +117,24 @@ All generated modules automatically validated against requirements:
 - Minimum 2 project briefs with detailed criteria
 - Automatic retry (up to 3 attempts) if validation fails
 
+### 📤 Export & Preview (Theia)
+
+Export generated content in human-readable formats:
+- **Multiple formats**: Markdown, HTML (PDF planned)
+- **Flexible detail levels**: Minimal, summary, detailed, or complete
+- **Selective exports**: Choose specific sections to export
+- **Course or module exports**: Works with both Metis and Themis outputs
+- **Table of contents**: Optional navigation for longer exports
+
+Export at any stage - preview course structures before module generation, or export individual modules after completion.
+
 ### 🎨 Workflows
 
 **Metis** - Quick standalone modules
 1. Upload XML inputs (projects, skills, research)
 2. Provide structured context
 3. Generate with optional research
-4. Download XML specification
+4. Export preview or download XML specification
 
 **Themis** - Complete multi-week courses
 1. Configure course identity and logistics
@@ -128,7 +142,8 @@ All generated modules automatically validated against requirements:
 3. Organize modules within arcs
 4. AI generates detailed structure
 5. Review and refine
-6. Generate individual modules (coming soon)
+6. Export course overview or structure
+7. Generate individual modules (coming soon)
 
 ---
 
@@ -141,7 +156,6 @@ All generated modules automatically validated against requirements:
 
 ### For Developers
 - **[Technical Overview](/docs/technical-overview.md)** - Architecture, components, patterns
-- **[Refactoring Progress](/docs/refactoring-progress.md)** - Recent architectural improvements
 - **[Architecture Decisions](/docs/architecture-decisions.md)** - Historical context and rationale
 - **[Changelog Schema Design](/docs/changelog-schema-design.md)** - Change tracking implementation
 

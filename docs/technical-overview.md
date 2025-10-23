@@ -21,8 +21,13 @@ pedagogue/
 │   │   └── api/            # Generation endpoints
 │   ├── lib/
 │   │   ├── components/     # Svelte components
+│   │   │   ├── metis/      # Metis-specific components
+│   │   │   ├── themis/     # Themis-specific components
+│   │   │   ├── theia/      # Theia export components
+│   │   │   └── errors/     # Error handling UI
 │   │   ├── factories/      # Agent & prompt factories
 │   │   ├── schemas/        # Validation (Zod, XML)
+│   │   ├── services/       # Business logic services
 │   │   ├── stores/         # State management
 │   │   ├── types/          # TypeScript interfaces
 │   │   ├── utils/          # Utilities
@@ -71,6 +76,24 @@ pedagogue/
 - API: `src/routes/api/themis/generate/+server.ts`
 - Prompt: `src/lib/factories/prompts/themisPromptFactory.ts`
 - Components: `src/lib/components/themis/`
+
+### Content Exporter (Theia)
+
+**Purpose:** Export generated content in human-readable formats
+
+**Features:**
+- Export modules or courses at any generation stage
+- Multiple format support: Markdown, HTML (PDF planned)
+- Detail level control: minimal, summary, detailed, complete
+- Selective section exports
+- Automatic table of contents generation
+
+**Implementation:**
+- Components: `src/lib/components/theia/`
+- Service: `src/lib/services/theiaService.ts`
+- Types: `src/lib/types/theia.ts`
+- Formatters: `src/lib/utils/theia/formatters/`
+- Content mapping: `src/lib/utils/theia/contentMapper.ts`
 
 ## AI Integration
 
@@ -218,7 +241,7 @@ Major architectural improvements completed across 4 phases:
 
 **Impact:** 670+ lines eliminated, better separation of concerns, consistent patterns throughout.
 
-See `/docs/refactoring-progress.md` for full details.
+See [Architecture Decisions](/docs/architecture-decisions.md) and project roadmaps for full context.
 
 ## Error Handling
 
@@ -285,7 +308,6 @@ See [SvelteKit adapters documentation](https://kit.svelte.dev/docs/adapters) for
 
 ## Further Reading
 
-- [Refactoring Progress](/docs/refactoring-progress.md) - Recent architectural changes
 - [Architecture Decisions](/docs/architecture-decisions.md) - Historical context and rationale
 - [Schema Design](/docs/changelog-schema-design.md) - Change tracking and provenance
 - [Roadmaps](/.claude/docs/roadmaps/) - Feature status and priorities
