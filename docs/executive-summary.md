@@ -20,28 +20,38 @@ The operational model: **cascade pattern maintenance**. Councils review their im
 
 This is temporal load-balancing. Each module eventually gets thorough human review when its turn comes, whilst automation maintains broad coherence in the meantime. Deep attention gets distributed across iterations rather than attempting simultaneous comprehensive review under brutal time constraints.
 
-## How It Actually Works (The Six Stages)
+## How It Actually Works
 
-Not ceremonial workflow steps – actual epistemic scaffolding:
+Rhea has two main workflows:
 
-1. **File Ingestion**: Upload XML-structured `arc.xml` (module specifications) and `next-step.xml` (curriculum context/constraints)
-2. **Initial Analysis**: LLM reads and structures its understanding of learning outcomes, project examples, and pedagogical constraints
-3. **Structured Questioning**: Council provides context via predefined form fields – when does this module start? What technologies are priorities? What constraints matter? No free-form chat; structured inputs enforce clarity by design
-4. **Understanding Confirmation**: Verify the LLM actually comprehends what you've told it before proceeding to research
-5. **Deep Research**: The substantial bit. LLM investigates current state of referenced technologies, frameworks, pedagogical approaches. Uses web search, extended thinking, whatever's necessary to understand what's changed since baseline was written
-6. **Module Generation**: Output updated specifications in predefined (but distinct from input) XML format
+**Metis** generates standalone modules through:
+1. File upload (projects.xml, skills.xml, research.xml)
+2. Structured context form (duration, cohort size, technologies, constraints)
+3. Optional web research for current best practices
+4. AI generation with validation and automatic retry (up to 3 attempts)
+5. XML export of complete module specification
 
-The workflow forces rigour through structure. You're not hoping councils will provide useful context in rambling chat messages – you're designing interfaces that make vague inputs impossible.
+**Themis** builds multi-module courses through:
+1. Course configuration (identity, duration, pedagogical constraints)
+2. Arc planning (thematic groupings of modules)
+3. Module organisation within arcs
+4. Structure review before generation
+5. AI generation of detailed course structure
+6. Export options for further refinement
+
+Both workflows enforce rigour through structured inputs – clear questions with specific answers, not rambling chat.
 
 ## Technical Stack (And Why These Choices)
 
 **SvelteKit** for the application layer. Provides server-side rendering, proper API routes for LLM calls, file handling infrastructure. Server-side orchestration prevents exposing API keys in browser whilst maintaining clean client-side interactions.
 
-**LangChain + Claude** for LLM orchestration. LangChain abstracts retry logic, tool integration (for web search during research phase), structured output parsing (for XML generation), and chain-of-thought patterns. Claude Sonnet 4 for the actual intelligence – extended context windows handle multiple module specifications plus research results without truncation.
+**LangChain + Claude** for LLM orchestration. LangChain abstracts retry logic, tool integration (for web search), structured output parsing, and chain-of-thought patterns. Claude Sonnet 4.5 for intelligence – extended context windows handle multiple module specifications plus research results.
 
-**Deno runtime** for modern TypeScript execution. Native TypeScript support, built-in security model, contemporary stdlib without legacy baggage.
+**Node.js 20+** with TypeScript via SvelteKit. Native TypeScript support, established ecosystem, modern development experience.
 
-**XML for curriculum specifications** maintains compatibility with existing baseline tooling and expert-designed foundations.
+**Zod** for runtime validation. API requests and generated modules validated against schemas. Type safety throughout.
+
+**XML** for curriculum specifications, maintaining compatibility with existing baseline tooling.
 
 ## Why This Approach Works
 

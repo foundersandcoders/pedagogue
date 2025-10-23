@@ -14,6 +14,7 @@ argument-hint: [reason for update]
       $ARGUMENTS
     </UserRequested>
     <User>
+      - README.md
       - docs/About-Rhea
       - docs/Executive-Summary.md
       - docs/Getting-Started.md

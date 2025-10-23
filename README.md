@@ -67,7 +67,7 @@ npm run dev
 
 Open **http://localhost:5173** to start using Rhea.
 
-**See [Getting Started Guide](/docs/getting-started.md) for detailed installation and usage instructions.**
+**See [Getting Started Guide](/docs/Getting-Started.md) for detailed installation and usage instructions.**
 
 ---
 
@@ -97,7 +97,7 @@ This enables curriculum councils to:
 - Understand rationale behind AI-proposed updates
 - Track sections needing human review
 
-See [Changelog Schema Design](/docs/changelog-schema-design.md) for technical details.
+See [Changelog Schema Design](/docs/dev/work-records/changelog-schema-design.md) for technical details.
 
 ### 🔬 Deep Research Capability
 
@@ -150,20 +150,20 @@ Export at any stage - preview course structures before module generation, or exp
 ## Documentation
 
 ### For Users
-- **[Getting Started](/docs/getting-started.md)** - Installation, setup, first module
-- **[About Rhea](/docs/about-rhea.md)** - What it does and why it exists
-- **[Executive Summary](/docs/executive-summary.md)** - Quick overview
+- **[Getting Started](/docs/Getting-Started.md)** - Installation, setup, first module
+- **[About Rhea](/docs/About-Rhea.md)** - What it does and why it exists
+- **[Executive Summary](/docs/Executive-Summary.md)** - Quick overview
 
 ### For Developers
-- **[Technical Overview](/docs/technical-overview.md)** - Architecture, components, patterns
-- **[Architecture Decisions](/docs/architecture-decisions.md)** - Historical context and rationale
-- **[Changelog Schema Design](/docs/changelog-schema-design.md)** - Change tracking implementation
+- **[Technical Overview](/docs/dev/Technical-Overview.md)** - Architecture, components, patterns
+- **[Architecture Decisions](/docs/dev/Architecture-Decisions.md)** - Historical context and rationale
+- **[Changelog Schema Design](/docs/dev/work-records/changelog-schema-design.md)** - Change tracking implementation
 
 ### For Contributors
-- **[Roadmaps](/.claude/docs/roadmaps/)** - Feature status and priorities
-  - [Rhea Roadmap](/.claude/docs/roadmaps/Rhea-MVP.md)
-    - [Metis Roadmap](/.claude/docs/roadmaps/mvp-modules/Metis-MVP.md)
-    - [Themis Roadmap](/.claude/docs/roadmaps/mvp-modules/Themis-MVP.md)
+- **[Roadmaps](/docs/dev/roadmaps/)** - Feature status and priorities
+  - [Rhea Roadmap](/docs/dev/roadmaps/Rhea-MVP.md)
+    - [Metis Roadmap](/docs/dev/roadmaps/mvp-modules/Metis-MVP.md)
+    - [Themis Roadmap](/docs/dev/roadmaps/mvp-modules/Themis-MVP.md)
 - **[CLAUDE.md](/CLAUDE.md)** - AI assistant guidance
 
 ---
@@ -232,7 +232,7 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
 
 **Minimal valid:** `<Research></Research>` or `<ResearchTopics></ResearchTopics>`
 
-**See [Getting Started Guide](/docs/getting-started.md) for common XML gotchas and detailed format specifications.**
+**See [Getting Started Guide](/docs/Getting-Started.md) for common XML gotchas and detailed format specifications.**
 
 ---
 
@@ -244,7 +244,7 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
 - **Zod** - Runtime validation and type safety
 - **XML** - Curriculum data format
 
-**See [Technical Overview](/docs/technical-overview.md) for architecture details.**
+**See [Technical Overview](/docs/dev/Technical-Overview.md) for architecture details.**
 
 ---
 
@@ -290,4 +290,4 @@ Built for peer-led learning communities.
 
 ---
 
-**Need help?** See the [Getting Started Guide](/docs/getting-started.md) or create an issue.
+**Need help?** See the [Getting Started Guide](/docs/Getting-Started.md) or create an issue.

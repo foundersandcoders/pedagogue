@@ -16,36 +16,70 @@ The operational model is cleverer than it first appears: **cascade pattern maint
 
 It's temporal load-balancing. Each module eventually gets thorough human review when its turn comes, whilst automation maintains broad coherence in the meantime. You're distributing deep attention across iterations rather than trying to review everything simultaneously under brutal time constraints.
 
-## How It Actually Works (The Six Stages)
+## How It Actually Works
 
-Not ceremonial workflow steps – actual epistemic scaffolding:
+Rhea has two main workflows:
 
-1. **File Ingestion**: Upload XML-structured `arc.xml` (module specifications) and `next-step.xml` (curriculum context/constraints)
-2. **Initial Analysis**: LLM reads and structures its understanding of learning outcomes, project examples, and pedagogical constraints
-3. **Structured Questioning**: Council provides context via predefined form fields – when does this module start? What technologies are priorities? What constraints matter? No free-form chat; structured inputs enforce clarity by design
-4. **Understanding Confirmation**: Verify the LLM actually comprehends what you've told it before proceeding to research
-5. **Deep Research**: The substantial bit. LLM investigates current state of referenced technologies, frameworks, pedagogical approaches. Uses web search, extended thinking, whatever's necessary to understand what's changed since baseline was written
-6. **Module Generation**: Output updated specifications in predefined (but distinct from input) XML format
+### Metis: Standalone Module Generation
 
-The workflow forces rigour through structure. You're not hoping councils will provide useful context in rambling chat messages – you're designing interfaces that make vague inputs impossible.
+Simple, focused workflow for single modules:
+
+1. **File Upload**: Drag and drop three XML files (projects.xml, skills.xml, research.xml)
+2. **Structured Context**: Form fields for module duration, cohort size, experience levels, technologies, delivery date
+3. **Optional Research**: Enable web search to verify current best practices and technology states
+4. **Generation**: Claude with LangChain generates comprehensive module specification
+5. **Validation & Retry**: Automatic schema validation with up to 3 retry attempts if validation fails
+6. **Download**: Export complete module specification as XML
+
+The structured form design eliminates vague inputs – you provide specific, actionable context that the AI can actually use.
+
+### Themis: Multi-Module Course Building
+
+More elaborate workflow for complete courses:
+
+1. **Course Configuration**: Define course identity, duration, cohort size, and pedagogical constraints
+2. **Arc Planning**: Design thematic arcs that group related modules
+3. **Module Planning**: Organise individual modules within arcs with learning progression
+4. **Structure Review**: See full course structure before generation
+5. **AI Generation**: Claude generates detailed course structure with module summaries and progression
+6. **Export Options**: Download course overview or structure for further refinement
+
+Both workflows enforce rigour through structured inputs. No rambling chat – clear questions with specific answers.
 
 ## Technical Stack (And Why These Choices)
 
 **SvelteKit** for the application layer. Provides server-side rendering, proper API routes for LLM calls, file handling infrastructure. Chose this over pure client-side because you need controlled LLM orchestration server-side, not exposing API keys in browser.
 
-**LangChain + Claude** for LLM orchestration. LangChain abstracts retry logic, tool integration (for web search during research phase), structured output parsing (for XML generation), and chain-of-thought patterns. Claude (Sonnet 4) for the actual intelligence – extended context windows matter when you're ingesting multiple module specifications plus research results.
+**LangChain + Claude** for LLM orchestration. LangChain abstracts retry logic, tool integration (for web search during research phase), structured output parsing (for XML generation), and chain-of-thought patterns. Claude Sonnet 4.5 for the actual intelligence – extended context windows handle multiple module specifications plus research results without truncation.
 
-**Deno runtime** (apparently, based on recent architecture discussions). Native TypeScript, built-in security model, modern stdlib. Marginally controversial but defensible for a project this size.
+**Node.js 20+** runtime with native TypeScript support via SvelteKit. Modern development experience with established ecosystem.
 
-**XML for curriculum specifications** because that's what the existing baseline uses. Not starting a format war – maintaining compatibility with established tooling and expert-designed foundations.
+**Zod** for runtime validation. All API requests validated against schemas; generated modules validated against content requirements (minimum objectives, research topics, project briefs). Type safety from request to response.
+
+**XML for curriculum specifications** maintaining compatibility with existing baseline tooling and expert-designed foundations.
 
 ## Current State (Brutally Honest Version)
 
-The UI infrastructure is surprisingly solid. File upload with drag-and-drop, XML parsing with proper error handling, state management through Svelte stores, accessibility considerations. Someone actually thought about user experience here.
+**What Works:**
 
-What's missing: **all the intelligence**. The LangChain integration exists in `package.json` as decorative JSON. No API routes. No streaming responses. No research capabilities. No module generation. The application can accept files, parse them, display pretty workflow visualisations, and then... stop.
+- **Full Metis workflow**: Upload XML inputs, provide context, enable research, generate complete module specifications with validation
+- **Themis course structure generation**: Multi-step workflow creating detailed course structures with arcs and module planning
+- **Web research integration**: LangChain tool calling with curated domain list (vendor docs, GitHub, Stack Overflow, academic sources)
+- **SSE streaming**: Real-time progress updates during generation via server-sent events
+- **Validation & retry**: Automatic schema validation with up to 3 retry attempts on validation failure
+- **API endpoints**: Both Metis and Themis have working `/api/{workflow}/generate` endpoints
+- **State management**: Persistent stores with localStorage backup for workflow state
+- **Error handling**: Typed error classes and centralized error state
 
-Phase 5 (Deep Research) is the entire reason this tool justifies its existence. Without current research, you're just reformatting existing modules with extra steps. That's the critical path: LangChain integration → web search tooling → structured synthesis → XML generation. Everything else is infrastructure to support that.
+**What's Planned:**
+
+- **Individual module generation in Themis**: Currently generates course structure; needs module-level generation
+- **Tethys arc management**: Standalone arc creation and editing between course and module levels
+- **Diff views**: Side-by-side comparison for reviewing AI-proposed updates
+- **Provenance tracking UI**: Visual representation of change history and confidence levels
+- **Export/preview (Theia)**: Human-readable formats (Markdown, HTML, PDF) at various detail levels
+
+The core intelligence is working. Research, generation, validation – all functional. The gap is workflow completeness and review tooling.
 
 ## Why This Approach Is Actually Clever
 
