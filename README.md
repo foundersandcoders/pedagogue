@@ -12,29 +12,32 @@ Rhea contains three flows for generating curriculum materials
 :-------:|:----------:|:----------:|:--------:
 ![Rhea](static/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png)
 
-### Metis
+<details><summary><strong>Metis:</strong> standalone module specifications</summary>
+  <ul>
+    - Learning objectives and module overview
+    - Detailed project briefs with examples and success criteria
+    - Research topics with guidance for learners
+    - Additional skills categorized by importance
+  - Project "twists" to add interesting challenges
+  </ul>
+</details>
 
-Create standalone module specifications with:
-- Learning objectives and module overview
-- Detailed project briefs with examples and success criteria
-- Research topics with guidance for learners
-- Additional skills categorized by importance
-- Project "twists" to add interesting challenges
+<details><summary><strong>Tethys:</strong> Arc generation and management tools (planned)</summary>
+  <ul>
+    - Standalone arc creation between course and module levels
+    - Arc-level learning progression design
+    - Thematic coherence across related modules
+  </ul>
+</details>
 
-### Tethys
-
-Arc generation and management tools (planned). Tethys will enable:
-- Standalone arc creation between course and module levels
-- Arc-level learning progression design
-- Thematic coherence across related modules
-
-### Themis
-
-Create complete multi-week courses with:
-- Thematic arcs organizing related modules
-- Learning progression across modules
-- Course-level narratives and structure
-- Individual module generation (coming soon)
+<details><summary><strong>Themis:</strong> complete multi-week courses</summary>
+  <ul>
+    - Thematic arcs organizing related modules
+    - Learning progression across modules
+    - Course-level narratives and structure
+    - Individual module generation (coming soon)
+  </ul>
+</details>
 
 **Key value:** Rhea can use web search to ensure your curriculum reflects current industry practices and technologies, not just what Claude knew at training time.
 
@@ -82,68 +85,70 @@ Open **http://localhost:5173** to start using Rhea.
 
 ## Key Features
 
-### 📝 Change Tracking & Provenance
+<details><summary>📝 Change Tracking & Provenance</summary>
+  Every generated module includes comprehensive change tracking to support the **cascade pattern** - where AI-generated modules are updated iteratively whilst maintaining human oversight:
+  
+  - **Automatic Changelog**: Documents what changed, why, and with what confidence level
+  - **Confidence Scoring**: High/medium/low confidence flags help reviewers prioritize
+  - **Research Citations**: Web research sources automatically cited
+  - **Provenance Tracking**: Shows when generated, by which model, flags sections needing review
+  
+  This enables curriculum councils to:
+  - Quickly identify what's been updated since last version
+  - Focus review time on low-confidence changes
+  - Understand rationale behind AI-proposed updates
+  - Track sections needing human review
+  
+  See [Changelog Schema Design](/docs/dev/work-records/changelog-schema-design.md) for technical details.
+</details>
 
-Every generated module includes comprehensive change tracking to support the **cascade pattern** - where AI-generated modules are updated iteratively whilst maintaining human oversight:
+<details><summary>🔬 Deep Research Capability</summary>
+  Enable web search during generation to:
+  - Verify technologies/practices are current
+  - Update recommendations based on industry trends
+  - Search trusted domains: vendor docs, GitHub, Stack Overflow, academic sources
+  - Cite sources for transparency
+  
+  **This is the core value** - without research, you're just reformatting existing content.
+</details>
 
-- **Automatic Changelog**: Documents what changed, why, and with what confidence level
-- **Confidence Scoring**: High/medium/low confidence flags help reviewers prioritize
-- **Research Citations**: Web research sources automatically cited
-- **Provenance Tracking**: Shows when generated, by which model, flags sections needing review
+<details><summary>✅ Schema Validation</summary>
+  All generated modules automatically validated against requirements:
+  - Minimum 3 module objectives
+  - Minimum 5 primary research topics
+  - Minimum 2 project briefs with detailed criteria
+  - Automatic retry (up to 3 attempts) if validation fails
+</details>
 
-This enables curriculum councils to:
-- Quickly identify what's been updated since last version
-- Focus review time on low-confidence changes
-- Understand rationale behind AI-proposed updates
-- Track sections needing human review
-
-See [Changelog Schema Design](/docs/dev/work-records/changelog-schema-design.md) for technical details.
-
-### 🔬 Deep Research Capability
-
-Enable web search during generation to:
-- Verify technologies/practices are current
-- Update recommendations based on industry trends
-- Search trusted domains: vendor docs, GitHub, Stack Overflow, academic sources
-- Cite sources for transparency
-
-**This is the core value** - without research, you're just reformatting existing content.
-
-### ✅ Schema Validation
-
-All generated modules automatically validated against requirements:
-- Minimum 3 module objectives
-- Minimum 5 primary research topics
-- Minimum 2 project briefs with detailed criteria
-- Automatic retry (up to 3 attempts) if validation fails
-
-### 📤 Export & Preview (Theia)
-
-Export generated content in human-readable formats:
-- **Multiple formats**: Markdown, HTML (PDF planned)
-- **Flexible detail levels**: Minimal, summary, detailed, or complete
-- **Selective exports**: Choose specific sections to export
-- **Course or module exports**: Works with both Metis and Themis outputs
-- **Table of contents**: Optional navigation for longer exports
-
-Export at any stage - preview course structures before module generation, or export individual modules after completion.
+<details><summary><strong>📤 Theia:</strong> Export & Preview</summary>
+  Export generated content in human-readable formats:
+  - **Multiple formats**: Markdown, HTML (PDF planned)
+  - **Flexible detail levels**: Minimal, summary, detailed, or complete
+  - **Selective exports**: Choose specific sections to export
+  - **Course or module exports**: Works with both Metis and Themis outputs
+  - **Table of contents**: Optional navigation for longer exports
+  
+  Export at any stage - preview course structures before module generation, or export individual modules after completion.
+</details>
 
 ### 🎨 Workflows
 
-**Metis** - Quick standalone modules
-1. Upload XML inputs (projects, skills, research)
-2. Provide structured context
-3. Generate with optional research
-4. Export preview or download XML specification
+<details><summary><strong>Metis:</strong> Quick standalone modules</summary>
+  1. Upload XML inputs (projects, skills, research)
+  2. Provide structured context
+  3. Generate with optional research
+  4. Export preview or download XML specification
+</details>
 
-**Themis** - Complete multi-week courses
-1. Configure course identity and logistics
-2. Plan thematic arcs
-3. Organize modules within arcs
-4. AI generates detailed structure
-5. Review and refine
-6. Export course overview or structure
-7. Generate individual modules (coming soon)
+<details><summary><strong>Themis:</strong> Complete multi-week courses</summary>
+  1. Configure course identity and logistics
+  2. Plan thematic arcs
+  3. Organize modules within arcs
+  4. AI generates detailed structure
+  5. Review and refine
+  6. Export course overview or structure
+  7. Generate individual modules (coming soon)
+</details>
 
 ---
 
@@ -172,65 +177,76 @@ Export at any stage - preview course structures before module generation, or exp
 
 Metis accepts XML files for module inputs. Each file must have a specific root element:
 
-### projects.xml
-```xml
-<Projects>
-  <ProjectBriefs>
-    <ProjectBrief>
-      <Overview>
-        <Name>Project Name</Name>
-        <Task>What learners will build</Task>
-        <Focus>Key technologies and techniques</Focus>
-      </Overview>
-      <Criteria>Success criteria as bullet points</Criteria>
-      <Skills>
+<details><summary><code>projects.xml</code></summary>
+  <pre>
+    <Projects>
+      <ProjectBriefs>
+        <ProjectBrief>
+          <Overview>
+            <Name>Project Name</Name>
+            <Task>What learners will build</Task>
+            <Focus>Key technologies and techniques</Focus>
+          </Overview>
+          <Criteria>Success criteria as bullet points</Criteria>
+          <Skills>
+            <Skill>
+              <Name>Skill Name</Name>
+              <Details>What learners will learn</Details>
+            </Skill>
+          </Skills>
+          <Examples>
+            <Example>
+              <Name>Example Name</Name>
+              <Description>Brief description</Description>
+            </Example>
+          </Examples>
+        </ProjectBrief>
+      </ProjectBriefs>
+    </Projects>
+  </pre>
+  <p>
+    <strong>Minimal valid:</strong> 
+    <pre><Projects></Projects></pre>
+  </p>
+</details>
+
+<details><summary><code>skills.xml</code></summary>
+  <pre language="xml">
+    <AdditionalSkills>
+      <SkillsCategory>
+        <Name>Category Name</Name>
         <Skill>
-          <Name>Skill Name</Name>
-          <Details>What learners will learn</Details>
+          <SkillName>Specific Skill</SkillName>
+          <Importance>Recommended / Stretch / Essential</Importance>
+          <SkillDescription>Brief description</SkillDescription>
         </Skill>
-      </Skills>
-      <Examples>
-        <Example>
-          <Name>Example Name</Name>
-          <Description>Brief description</Description>
-        </Example>
-      </Examples>
-    </ProjectBrief>
-  </ProjectBriefs>
-</Projects>
-```
+      </SkillsCategory>
+    </AdditionalSkills>
+  </pre>
+  <p>
+    <strong>Minimal valid:</strong> 
+    <pre><Skills></Skills></pre> 
+    or 
+    <pre><AdditionalSkills></AdditionalSkills></pre>
+  </p>
+</details>
 
-**Minimal valid:** `<Projects></Projects>`
-
-### skills.xml
-```xml
-<AdditionalSkills>
-  <SkillsCategory>
-    <Name>Category Name</Name>
-    <Skill>
-      <SkillName>Specific Skill</SkillName>
-      <Importance>Recommended / Stretch / Essential</Importance>
-      <SkillDescription>Brief description</SkillDescription>
-    </Skill>
-  </SkillsCategory>
-</AdditionalSkills>
-```
-
-**Minimal valid:** `<Skills></Skills>` or `<AdditionalSkills></AdditionalSkills>`
-
-### research.xml
-```xml
-<ResearchTopics>
-  <PrimaryTopics>
-    <PrimaryTopic>
-      <TopicName>Topic Name</TopicName>
-      <TopicDescription>What to research and how to approach it</TopicDescription>
-    </PrimaryTopic>
-  </PrimaryTopics>
-</ResearchTopics>
-```
-
-**Minimal valid:** `<Research></Research>` or `<ResearchTopics></ResearchTopics>`
+<details><summary><code>research.xml</code></summary>
+  <pre language="xml">
+    <ResearchTopics>
+      <PrimaryTopics>
+        <PrimaryTopic>
+          <TopicName>Topic Name</TopicName>
+          <TopicDescription>What to research and how to approach it</TopicDescription>
+        </PrimaryTopic>
+      </PrimaryTopics>
+    </ResearchTopics>
+  </pre>
+  <p>
+    <strong>Minimal valid:</strong> 
+    <pre><ResearchTopics></ResearchTopics></pre>
+  </p>
+</details>details>
 
 **See [Getting Started Guide](/docs/Getting-Started.md) for common XML gotchas and detailed format specifications.**
 
