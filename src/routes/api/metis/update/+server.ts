@@ -46,9 +46,12 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		if (supportsSSE) {
 			// Create streaming client with optional web search
+			// Extended timeout for research-heavy tasks (5min with research, 2min without)
+			const timeout = body.enableResearch ? 300000 : 120000;
 			const model = createStreamingClient({
 				apiKey,
-				enableResearch: body.enableResearch
+				enableResearch: body.enableResearch,
+				timeout
 			});
 
 			// Return SSE stream for progress updates
@@ -75,8 +78,10 @@ export const POST: RequestHandler = async ({ request }) => {
  */
 async function generateModule(body: GenerateRequest, apiKey: string) {
 	try {
-		// Initialize client (non-streaming)
-		let model = createChatClient({ apiKey });
+		// Initialize client (non-streaming) with extended timeout
+		// Research-enabled requests can take 3-5 minutes with multiple tool calls
+		const timeout = body.enableResearch ? 300000 : 120000; // 5min with research, 2min without
+		let model = createChatClient({ apiKey, timeout });
 
 		// Conditionally add web search capability
 		if (body.enableResearch) {
