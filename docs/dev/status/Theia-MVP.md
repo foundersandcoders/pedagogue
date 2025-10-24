@@ -12,14 +12,69 @@
 #### 1.1.2. Other Tasks
 - [ ] Add PDF export format (currently marked "coming soon" in UI)
 - [ ] Add export analytics/usage tracking
-- [ ] Create dedicated Theia route for standalone export tool
+- [ ] Implement XML upload & workflow resume functionality (see section 2)
 
 ### 1.2. Blocked Tasks
 
 ---
 
 ## 2. MVP Milestones
-_All initial MVP milestones completed. See section 4.1 for details._
+
+### 2.1. XML Upload & Workflow Resume — PENDING
+**Target:** Q1 2026
+**Priority:** Medium
+**Dependencies:** Themis course XML schema (for Phase 2)
+
+#### Objective
+Enable users to upload previously generated XML files and either continue work in the original workflow or preview/export them standalone.
+
+#### Phase 1: Module Upload (Immediate)
+**Components:**
+- `/theia` route with upload interface
+  - File upload component (drag-drop + file picker)
+  - XML validation and type detection
+  - File metadata display
+- XML-to-store transformation utilities
+  - Parse module XML into Metis store structure
+  - Validate against `moduleValidator.ts`
+  - Populate `localStorage` state correctly
+
+**User Actions:**
+- Upload module XML file
+- Choose action:
+  - **"Continue in Metis"** → populate `metisStores`, redirect to `/metis/update` at preview step
+  - **"Preview/Export"** → use existing Theia export functionality
+- Handle validation errors gracefully
+
+**Technical Implementation:**
+- Reuse `contentMapper.ts` for XML parsing
+- Create `xmlToStoreTransformer.ts` utility
+- Add route guards to ensure valid state before workflow continuation
+- Error handling for corrupt/invalid XML
+
+#### Phase 2: Course Upload (After Themis Course XML)
+**Prerequisites:**
+- Themis course XML schema implementation
+- Course XML export functionality
+
+**Additional Features:**
+- Parse course XML into Themis store structure
+- **"Continue in Themis"** → redirect to `/themis/generate` at structure review step
+- Course-specific validation
+
+#### Out of Scope for MVP
+- Batch upload (multiple files)
+- Version comparison between uploads
+- Upload history/management UI
+- In-app XML editing before continuation
+- Cloud storage integration
+
+**Success Criteria:**
+- ✅ Users can upload valid module XML
+- ✅ Successful workflow continuation with pre-populated data
+- ✅ Validation errors are clear and actionable
+- ✅ Export functionality works on uploaded content
+- ✅ `localStorage` state persists correctly after upload
 
 ---
 
@@ -35,10 +90,12 @@ _All initial MVP milestones completed. See section 4.1 for details._
 [ ] Export presets (save/load configurations)
 [ ] Batch export (multiple modules/courses)
 
-### 3.3. Standalone Tool
-[ ] Dedicated Theia route (`/theia`)
-[ ] Upload and export arbitrary module XML
-[ ] Export history and management
+### 3.3. Upload & Management Enhancements
+[ ] Batch upload (multiple XML files)
+[ ] Upload history and management UI
+[ ] Version comparison between uploads
+[ ] In-app XML editing before workflow continuation
+[ ] Cloud storage integration
 
 ### 3.4. Collaboration Features
 [ ] Share export links
