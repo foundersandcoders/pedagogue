@@ -124,18 +124,29 @@
 
 #### 2.3.1. Theia: Content Preview & Export
 
-<details><summary>Status: ~50% MVP</summary>
-    <p>Partly Implemented</p>
+<details><summary>Status: ~100% MVP ✅</summary>
+    <p>Initial implementation complete and production-ready</p>
 </details>
 
 <details><summary>Information</summary>
-    <p>Reusable content exporter for human-readable previews of generated content.</p>
-    <p>Will support both Themis and Metis output with configurable detail levels and selective export (e.g., export only specific arcs or modules).</p>
+    <ul>
+        <li>✅ Reusable content exporter for human-readable previews</li>
+        <li>✅ Supports both Themis and Metis output</li>
+        <li>✅ Configurable detail levels (minimal, summary, detailed, complete)</li>
+        <li>✅ Selective export (specific arcs, modules, or sections)</li>
+        <li>✅ Multiple formats (Markdown, HTML; PDF planned)</li>
+        <li>✅ Live preview before export</li>
+        <li>✅ Client-side processing (no server storage)</li>
+        <li>✅ Integrated into Metis and Themis workflows</li>
+    </ul>
+    <p>Implemented October 2025-10-23 via PR #14 (2,813 lines across 10 files)</p>
 </details>
 
 <details><summary>Next Up</summary>
     <ul>
-        <li>Paused until <strong>Themis</strong> implemented</li>
+        <li>PDF export format</li>
+        <li>Export analytics/usage tracking</li>
+        <li>Standalone Theia route for independent use</li>
     </ul>
 </details>
 
@@ -161,19 +172,19 @@
 > [!NOTE]
 > The 5 most significant or important tasks to tackle next.
 
-1. **[Theia: Content Preview Exporter](#2a-tasks-with-a-deadline)** `2025-10-22` - Reusable exporter for human-readable content from Themis and Metis
-2. **[Build `ModuleGenerationList` Component](Themis-MVP.md#17-build-modulegenerationlist-component-step-4--pending)** (Themis 1.7) - Module-by-module generation orchestration UI
-3. **[Create `/api/themis/module/generate` Endpoint](Themis-MVP.md#18-create-apithemismodulegenerate-endpoint--pending)** (Themis 1.8) - API layer for course-aware module generation
-4. **[Extend Module Generation with Course Context](Themis-MVP.md#19-extend-module-generation-with-course-context--pending)** (Themis 1.9) - Modify prompt factories for course-aware generation (may require Metis updates)
-5. **[Build `CourseOverview` Component](Themis-MVP.md#110-build-courseoverview-component-step-5--pending)** (Themis 1.10) - Final review interface and export functionality trigger
+1. **[Build `ModuleGenerationList` Component](Themis-MVP.md#17-build-modulegenerationlist-component-step-4--pending)** (Themis 1.7) - Module-by-module generation orchestration UI
+2. **[Create `/api/themis/module/generate` Endpoint](Themis-MVP.md#18-create-apithemismodulegenerate-endpoint--pending)** (Themis 1.8) - API layer for course-aware module generation
+3. **[Extend Module Generation with Course Context](Themis-MVP.md#19-extend-module-generation-with-course-context--pending)** (Themis 1.9) - Modify prompt factories for course-aware generation (may require Metis updates)
+4. **[Build `CourseOverview` Component](Themis-MVP.md#110-build-courseoverview-component-step-5--pending)** (Themis 1.10) - Final review interface and export functionality trigger
+5. **[Steer Claude towards British English](Rhea-MVP.md#112-other-tasks)** (Rhea) - Ensure all AI-generated content uses British spellings and phrasing
 
 ## 4. Recent Wins
 > [!NOTE]
 > 6 most recent achievements in this codebase
 
-1. **[Workflow colour palettes](Rhea-MVP.md#422-record-of-other-completed-tasks)** (2025-10-23) - Dynamic palette system with CSS custom properties for Rhea, Themis, Tethys, and Metis
-2. **[Themis arc-based structure complete](Themis-MVP.md#47-reimplement-the-module-overview-generation-based-on-thematic-arcs--completed)** - Six-step workflow with thematic organizational layer between courses and modules
-3. **[Architectural refactoring complete](Rhea-MVP.md#411-architectural-refactoring-2025-10-20--completed)** (2025-10-20) - 670+ lines eliminated via factories, utilities, and centralized configurations
-4. **[Themis `localStorage` persistence](Themis-MVP.md#48-add-localstorage-persistence--completed)** - Auto-save course progress via `persistedStore()` utility
-5. **[Centralized error handling infrastructure](Rhea-MVP.md#4114-quality-improvements)** - `ErrorBoundary` component, typed error classes, and error stores
-6. **[Metis changelog and provenance tracking](Metis-MVP.md#418-implement-changelog-in-returned-modules--completed)** - Change tracking with confidence scoring for AI updates
+1. **[Theia: Content Preview & Export complete](Theia-MVP.md#21-core-export-functionality--completed-2025-10-23)** (2025-10-23) - Production-ready export system with Markdown/HTML formats, configurable detail levels, and selective section export (2,813 lines)
+2. **[Workflow colour palettes](Rhea-MVP.md#422-record-of-other-completed-tasks)** (2025-10-23) - Dynamic palette system with CSS custom properties for Rhea, Themis, Tethys, and Metis
+3. **[Themis arc-based structure complete](Themis-MVP.md#47-reimplement-the-module-overview-generation-based-on-thematic-arcs--completed)** - Six-step workflow with thematic organizational layer between courses and modules
+4. **[Architectural refactoring complete](Rhea-MVP.md#411-architectural-refactoring-2025-10-20--completed)** (2025-10-20) - 670+ lines eliminated via factories, utilities, and centralized configurations
+5. **[Themis `localStorage` persistence](Themis-MVP.md#48-add-localstorage-persistence--completed)** - Auto-save course progress via `persistedStore()` utility
+6. **[Centralized error handling infrastructure](Rhea-MVP.md#4114-quality-improvements)** - `ErrorBoundary` component, typed error classes, and error stores

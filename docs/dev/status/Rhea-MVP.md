@@ -1,36 +1,14 @@
 # Rhea: Overall Platform
 > [!IMPORTANT]
-> This document refers to tasks and features that are either:
-> 1. Not tied to a specific module, or
-> 2. Applicable to multiple modules
-> For a status report on Rhea and its submodules, see [README](./README.md)
-> [!NOTE]
-> Not yet in development
+> This document refers to tasks and features that are either (a) not tied to a specific module or (b) applicable to multiple modules
+> For a status report on the entire Rhea project, see [README](./README.md)
 
 ## 1. Tasks
-> [!NOTE]
-> This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmaps/Rhea-MVP.md#2-mvp-milestones)
-
 ### 1.1. Open Tasks
 #### 1.1.1. Due Tasks
-- [ ] `2025-10-22` Create "Theia": a reusable "content preview exporter"
-  - **Criteria**
-    1. Exports a human-readable version of generated content by mapping xml schema to typographic layout
-    2. Can read and export content from both *Themis* and *Metis*, as well as future modules.
-    3. Allows user to modify the level of detail exported
-    4. Allows user to export content at any stage of the generation process
-  - **Examples**
-    1. User used *Themis* to generate a course overview and 4 arcs, then exported a preview of only the first and last arc; this contained no content from...
-        - course overview
-        - the child modules of arc 1
-        - arc 2
-        - arc 3
-        - the child modules of arc 4
-    2. User used *Themis* to generate a course overview and 4 arcs. Exported a preview of only the third module of the final arc
-    3. User used *Themis* to generate a course overview and exported that content before arc or module generation occurred
-    4. User used *Metis* to generate a module, then exported only the Twists from that module
+
 #### 1.1.2. Other Tasks
-- [ ] Steer Claude towards British English
+[ ] Steer model towards British English in content generation
 
 ### 1.2. Blocked Tasks
 
@@ -71,8 +49,10 @@
     - Type-safe schemas with runtime validation
     - Reusable patterns for stores, workflows, and error handling
     - Better separation of concerns throughout codebase
+
 ### 4.2. Completed Tasks
 #### 4.2.1. Record of Past Deadlines
+
 #### 4.2.2. Record of Other Completed Tasks
 - [x] Create an xml output sanitiser
   - Completed via xmlCleaner.ts and responseParser.ts

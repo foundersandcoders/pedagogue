@@ -5,46 +5,54 @@
 > This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmaps/Metis-MVP.md#2-mvp-milestones)
 
 ### 1.1. Open Tasks
+
 #### 1.1.1. Due Tasks
+
 #### 1.1.2. Other Tasks
-##### Metis UI
-- [ ] Create a more interesting aesthetic
-- [ ] Add dark mode to UI
-      - Should allow user to select light, dark or system
-##### Metis: Response, Output Schema & Export
-- [ ] Add boilerplate module text after generation
+
+##### 1.1.2.1. Metis UI
+[ ] Create a more interesting aesthetic
+[ ] Add dark mode to UI
+    - Should allow user to select light, dark or system
+
+##### 1.1.2.2. Metis: Response, Output Schema & Export
+[ ] Add boilerplate module text after generation
+
 ### 1.2. Blocked Tasks
 
 ---
 
 ## 2. MVP Milestones
-- 2.10. Implement Cascade Updates for Subsequent Modules
-  - Not yet planned
-  - refer to `./about-rhea.md` & `./executive-summary.md`
-  - then work with the user to implement this feature
-- 2.11. Session Persistence
-  - localStorage for progress backup
-  - Restore on page load with confirmation
-  - "Clear session" button
-  - **Why:** Production-ready reliability, but not blocking for initial functionality.
+[ ] 2.10. Implement Cascade Updates for Subsequent Modules
+    Not yet planned
+    1. Check for information in [About Rhea]()
+    2. Check for information in [Executive Summary]()
+    3. Work with the user to define this feature
+    4. Record decisions in documentation
+[ ] 2.11. Session Persistence
+    - localStorage for progress backup
+    - Restore on page load with confirmation
+    - "Clear session" button
+    - **Why:** Production-ready reliability, but not blocking for initial functionality.
 
 ---
 
 ## 3. Beyond MVP: Future Features
-- [ ] Comparison view (original vs. generated with diff)
-- [-] Update confidence scoring
-- [ ] Multiple generation variants
-- [ ] Template management
-- [ ] Version history tracking
-- [ ] Staleness (time since human review) tracking
-- [-] Collaborative editing
-- [ ] Update documentation to address developers (rather than just users)
-- [ ] Add ability to upload previous modules for context on learners' existing knowledge
-      - Strip boilerplate from uploads from previous modules before sending prompt
+[ ] Comparison view (original vs. generated with diff)
+[-] Update confidence scoring
+[ ] Multiple generation variants
+[ ] Template management
+[ ] Version history tracking
+[ ] Staleness (time since human review) tracking
+[-] Collaborative editing
+[ ] Update documentation to address developers (rather than just users)
+[ ] Add ability to upload previous modules for context on learners' existing knowledge
+    - Strip boilerplate from uploads from previous modules before sending prompt
 
 ---
 
 ## 4. Work Record
+
 ### 4.1. Completed Milestones
 - 4.1.1. LangChain + Claude Integration
   - Create API route: `src/routes/api/generate/+server.ts`
@@ -110,13 +118,18 @@
   - **Why:** UX polish that makes the tool feel coherent.
 
 ### 4.2. Completed Tasks
+
 #### 4.2.1. Record of Past Deadlines
+
 #### 4.2.2. Record of Other Completed Tasks
-##### Metis Documentation
+
+##### 4.2.2.1. Metis Documentation
 - [x] Add instructions for including an Anthropic API key in `README.md`
-##### Metis: Input Schema
+
+##### 4.2.2.2. Metis: Input Schema
 - [x] Update input xml validator to allow attributes in root elements
-##### Metis: Prompt Template
+
+##### 4.2.2.3. Metis: Prompt Template
 - [x] Steer Claude towards better Twists
       - Added ProjectTwistGuidelines explaining twists as conceptual curveballs, not technical features
       - Included good examples: "The Helpful Saboteur", "The Unreliable Narrator", "The Contrarian", etc.
@@ -125,7 +138,8 @@
 - [x] Steer Claude away from "Facilitators should" phrases
       - Added guidance to write for LEARNERS, not facilitators (peer-led, self-directed approach)
 - [x] Change xml output format to use self-closing tags & attributes
-##### Metis: Response, Output Schema & Export
+
+##### 4.2.2.4. Metis: Response, Output Schema & Export
 - [x] Update schema files in to match `~/src/data/templates/outputSchema.xml`
       - Updated schemaTemplate.ts to include missing <Importance> field in AdditionalSkills section
       - Ensures schema consistency between template and outputSchema.xml
