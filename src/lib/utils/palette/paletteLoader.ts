@@ -22,6 +22,7 @@ const ROUTE_PREFIXES = {
   METIS: "/metis",
   THEMIS: "/themis",
   TETHYS: "/tethys",
+  THEIA: "/theia",
   RHEA: "/rhea",
   HOME: "/",
 } as const;
@@ -274,6 +275,7 @@ export function getWorkflowPaletteName(pathname: string): WorkflowName | null {
   if (pathname.startsWith(ROUTE_PREFIXES.METIS)) return "metis";
   if (pathname.startsWith(ROUTE_PREFIXES.THEMIS)) return "themis";
   if (pathname.startsWith(ROUTE_PREFIXES.TETHYS)) return "tethys";
+  if (pathname.startsWith(ROUTE_PREFIXES.THEIA)) return "theia";
   if (pathname === ROUTE_PREFIXES.HOME || pathname.startsWith(ROUTE_PREFIXES.RHEA)) return "rhea";
   return null;
 }
