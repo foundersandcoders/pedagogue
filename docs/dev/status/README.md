@@ -1,5 +1,4 @@
 # Project Status
-
 > [!NOTE]
 > Since Rhea is the aggregate of all submodules, this section summarises roadmaps for all submodules actively in development.
 
@@ -7,55 +6,49 @@
 
 ## 1. Submodule Roadmaps
 
-- [**Rhea:**](docs/dev/roadmaps/Rhea-MVP.md) _Platform_
+### 1.1. Core Modules
+- 1.1.1. [**Rhea:**](docs/dev/roadmaps/Rhea-MVP.md) _Platform_
 
-### 1.1. Workflow Modules
+### 1.2. Workflow Modules
+- 1.2.1. [**Themis:**](docs/dev/roadmaps/Themis-MVP.md) _Course Builder_
+- 1.2.2. [**Tethys:**](docs/dev/roadmaps/Tethys-MVP.md) _Arc Designer_
+- 1.2.3. [**Metis:**](docs/dev/roadmaps/Metis-MVP.md) _Module Generator_
 
-- [**Themis:**](docs/dev/roadmaps/Themis-MVP.md) _Course Builder_
-- [**Tethys:**](docs/dev/roadmaps/Tethys-MVP.md) _Arc Designer_
-- [**Metis:**](docs/dev/roadmaps/Metis-MVP.md) _Module Generator_
-
-### 1.2. Utility Modules
-
-- [**Theia:**](docs/dev/roadmaps/Theia-MVP.md) _Content Preview & Export_
-- [**Atlas:**](docs/dev/roadmaps/Atlas-MVP.md) _Atomic Learning Assembler_
+### 1.3. Utility Modules
+- 1.3.1. [**Theia:**](docs/dev/roadmaps/Theia-MVP.md) _Content Preview & Export_
+- 1.3.2. [**Atlas:**](docs/dev/roadmaps/Atlas-MVP.md) _Atomic Learning Assembler_
+- 1.3.3. [**Mnemosyne:**](docs/dev/roadmaps/Mnemosyne-MVP.md) _Storage & Retrieval_
 
 ---
 
 ## 2. Current State
-
 > [!NOTE]
 > Following major architectural refactoring in October 2025-10, the codebase now features factories, utilities, and centralized configurations that enable rapid feature development.
 
 ### 2.1. Rhea: Core Platform
-
 <details><summary>Status: ~90% MVP</summary>
     <ul>
         <li>Foundation complete</li>
         <li>UI polish ongoing</li>
     </ul>
 </details>
-
-<details><summary>Information</summary>
+<details><summary>Implemented</summary>
     <p>The platform provides a hub-based navigation structure with module-specific colour palettes and centralized error handling.</p>
     <p>Recent work focused on establishing reusable patterns for state management (<code>persistedStore()</code>), AI client configuration (agent factories), and prompt construction (composable prompt components).</p>
 </details>
-    
 <details><summary>Next Up</summary>
     <ul>
         <li>British English output</li>
     </ul>
 </details>
-  
+
 ### 2.2. Workflow Modules
 
 #### 2.2.1. Themis: Course Builder
-
 <details><summary>Status: ~60% MVP</summary>
     <p>Structure complete, module generation pending</p>
 </details>
-
-<details><summary>Information</summary>
+<details><summary>Implemented</summary>
     <ul>
         <li>✅ Foundation (hub, types, stores, config form)</li>
         <li>✅ Arc-based structure planning with thematic organization</li>
@@ -66,7 +59,6 @@
         <li>📋 Course XML schema and export functionality</li>
     </ul>
 </details>
-
 <details><summary>Next Up</summary>
     <p>Module generation workflow</p>
     <ul>
@@ -77,16 +69,13 @@
 </details>
 
 #### 2.2.2. Tethys: Arc Designer
-
 <details><summary>Status: 0% MVP</summary>
     <p>Not yet started</p>
 </details>
-
-<details><summary>Information</summary>
+<details><summary>Implemented</summary>
     <p><strong>Tethys</strong> will provide standalone arc design capabilities outside of full course generation.</p>
     <p>Currently, arc features are embedded within <strong>Themis</strong> workflow.</p>
 </details>
-
 <details><summary>Next Up</summary>
     <ul>
         <li>On hold until after <strong>Themis</strong> & <strong>Metis</strong> fully implemented</li>
@@ -94,12 +83,10 @@
 </details>
 
 #### 2.2.3. Metis: Module Generator
-
 <details><summary>Status: ~95% MVP</summary>
     <p>Feature complete, polish pending</p>
 </details>
-
-<details><summary>Information</summary>
+<details><summary>Implemented</summary>
     <ul>
         <li>✅ Complete module generation workflow with file upload and structured input</li>
         <li>✅ AI-powered generation with Claude Sonnet 4.5</li>
@@ -112,7 +99,6 @@
         <li>📋 Boilerplate module text insertion</li>
     </ul>
 </details>
-
 <details><summary>Next Up</summary>
     <ul>
         <li>UI polish</li>
@@ -123,12 +109,10 @@
 ### 2.3. Utility Modules
 
 #### 2.3.1. Theia: Content Preview & Export
-
 <details><summary>Status: ~100% MVP ✅</summary>
     <p>Initial implementation complete and production-ready</p>
 </details>
-
-<details><summary>Information</summary>
+<details><summary>Implemented</summary>
     <ul>
         <li>✅ Reusable content exporter for human-readable previews</li>
         <li>✅ Supports both Themis and Metis output</li>
@@ -141,7 +125,6 @@
     </ul>
     <p>Implemented October 2025-10-23 via PR #14 (2,813 lines across 10 files)</p>
 </details>
-
 <details><summary>Next Up</summary>
     <ul>
         <li>PDF export format</li>
@@ -151,18 +134,30 @@
 </details>
 
 #### 2.3.2. Atlas: Atomic Learning Assembler
-
 <details><summary>Status: ~0% MVP</summary>
     <p>Not yet started</p>
 </details>
-
-<details><summary>Information</summary>
+<details><summary>Implemented</summary>
     <p>Will provide atomic learning unit assembly capabilities for granular curriculum construction.</p>
 </details>
-
 <details><summary>Next Up</summary>
     <ul>
         <li>On hold until MVP reached</li>
+    </ul>
+</details>
+
+#### 2.3.3. Mnemosyne: Storage & Retrieval
+<details><summary>Status: ~0% MVP ✅</summary>
+    <p>To Do</p>
+</details>
+<details><summary>Implemented</summary>
+    <ul>
+        <li>Nothing implemented</li>
+    </ul>
+</details>
+<details><summary>Next Up</summary>
+    <ul>
+        <li>Plan feature</li>
     </ul>
 </details>
 
@@ -177,6 +172,8 @@
 3. **[Extend Module Generation with Course Context](Themis-MVP.md#19-extend-module-generation-with-course-context--pending)** (Themis 1.9) - Modify prompt factories for course-aware generation (may require Metis updates)
 4. **[Build `CourseOverview` Component](Themis-MVP.md#110-build-courseoverview-component-step-5--pending)** (Themis 1.10) - Final review interface and export functionality trigger
 5. **[Steer Claude towards British English](Rhea-MVP.md#112-other-tasks)** (Rhea) - Ensure all AI-generated content uses British spellings and phrasing
+
+---
 
 ## 4. Recent Wins
 > [!NOTE]

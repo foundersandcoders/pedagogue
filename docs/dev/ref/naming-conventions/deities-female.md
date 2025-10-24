@@ -12,69 +12,69 @@ Female and ambiguously gendered deities from **well‑documented polytheistic pa
 ---
 
 ## 2. Assigned Names
-| Route | Main | Why | Titans | Olympians | Italic |
+| Route | Main | Why | Titan | Olympian | Italic |
 | ----- | ---- | --- | ------ | --------- | ------ |
 | x     |      |     | | | |
 
 ### 2a. Modules & Implementations
-| Route | Main | Why | Titan      | Olympian | Italic |
-| ----- | ---- | --- | ---------- | -------- | ------ |
-| App   | Rhea |     | Gaia, Rhea |          |        |
+| Route | Main     | Why | Titan      | Olympian | Italic |
+| ----- | -------- | --- | ---------- | -------- | ------ |
+| Hub   | **Rhea** |     | Gaia       | | |
 
 #### 2a1. Generators
-| Route  | Main   | Why | Titan  | Olympian | Italic |
-| ------ | ------ | --- | ------ | -------- | ------ |
-| Course | Themis |     | Themis |          |        |
-| Arc    | Tethys |     | Tethys |          |        |
-| Module | Metis  |     | Metis  |          |        |
+| Route  | Main       | Why | Titan  | Olympian | Italic |
+| ------ | ---------- | --- | ------ | -------- | ------ |
+| Course | **Themis** |     |        | | |
+| Arc    | **Tethys** |     |        | | |
+| Module | **Metis**  |     |        | | |
 
 #### 2a2. Tools
-| Route            | Main      | Why | Titans | Olympians | Italic |
-| ---------------- | --------- | --- | ------ | --------- | ------ |
-| Atom Definer     |           |     | | | |
-| Content Exporter | **Theia** |     | Phoebe, Theia | | |
-| x                |           |     | | | |
+| Route            | Main          | Why | Titan  | Olympian | Italic |
+| ---------------- | ------------- | --- | ------ | --------- | ------ |
+| Atom Definer     |               |     | Atlas  | | |
+| Content Exporter | **Theia**     |     | Phoebe | | |
+| Save/Load        | **Mnemosyne** |     |        | | |
 
 ### 2b. Functionality
-| Route        | Main | Why | Titans    | Olympians | Italic |
+| Route        | Main | Why | Titan     | Olympian | Italic |
 | ------------ | ---- | --- | --------- | --------- | ------ |
-| Data Storage |      |     | Mnemosyne | | |
+| •            |      |     | | | |
 
 ### 2c. Abstractions
-|   | **Concept**           | **Titans** | **Olympians** | **Italic** |
-| - | --------------------- | ---------- | ------------- | ---------- |
-| • |                       | | | |
-| x | Balance               | ~_Themis_~ | x | x |
-|   | Beginnings            | **Eos** | x | x |
-|   | Cadence               | **Eos** | x | x |
-|   | Clarity               | **Phoebe** | x | x |
-|   | Constraint            | **Ananke** | x | x |
-|   | Cultural Transmission | **Mnemosyne** | x | x |
-|   | Cycles                | **Selene** | x | x |
-|   | Emergence             | **Hemera** | x | x |
-| x | Flow                  | ~_Tethys_~ | x | x |
-|   | Foundations           | **Gaia** | x | x |
-| • |                       | | | |
-| x | Illumination          | ~_Theia_~ | x | x |
-|   | Inevitability         | **Nyx** | x | x |
-|   | Insight               | **Phoebe** | x | x |
-|   | Liminality            | **Nyx** | x | x |
-|   | Mystery               | **Nyx** | x | x |
-| • |                       | | | |
-|   | Nurturing             | **Gaia** | x | x |
-|   | Ordering              | **Eurynome**  | x | x |
-| x | Problem Solving       | ~_Metis_~ | x | x |
-| x | Progenesis            | ~_Rhea_~ | x | x |
-| x | Provisioning          | ~_Tethys_~ | x | x |
-|   | Recall                | **Mnemosyne** | x | x |
-|   | Records               | **Mnemosyne** | x | x |
-|   | Reflection            | **Selene** | x | x |
-|   | Renewal               | **Hemera** | x | x |
-|   | Rhythm                | **Hemera** | x | x |
-|   | Stability             | **Gaia** | x | x |
-| x | Strategy              | ~_Metis_~ | x | x |
-| x | Succession            | ~_Rhea_~ | x | x |
-| • |                       | | | |
+|   | **Concept**           | **Titan**     | **Olympian** | **Italic** |
+| - | --------------------- | ------------- | ------------- | ---------- |
+| • |                       |               | | |
+| x | Balance               | ~_Themis_~    | | |
+|   | Beginnings            | **Eos**       | | |
+|   | Cadence               | **Eos**       | | |
+|   | Clarity               | **Phoebe**    | | |
+|   | Constraint            | **Ananke**    | | |
+|   | Cultural Transmission | ~_Mnemosyne_~ | | |
+|   | Cycles                | **Selene**    | | |
+|   | Emergence             | **Hemera**    | | |
+| x | Flow                  | ~_Tethys_~    | | |
+|   | Foundations           | **Gaia**      | | |
+| • |                       |               | | |
+| x | Illumination          | ~_Theia_~     | | |
+|   | Inevitability         | **Nyx**       | | |
+|   | Insight               | **Phoebe**    | | |
+|   | Liminality            | **Nyx**       | | |
+|   | Mystery               | **Nyx**       | | |
+| • |                       |               | | |
+|   | Nurturing             | **Gaia**      | | |
+|   | Ordering              | **Eurynome**  | | |
+| x | Problem Solving       | ~_Metis_~     | | |
+| x | Progenesis            | ~_Rhea_~      | | |
+| x | Provisioning          | ~_Tethys_~    | | |
+|   | Recall                | ~_Mnemosyne_~ | | |
+|   | Records               | ~_Mnemosyne_~ | | |
+|   | Reflection            | **Selene**    | | |
+|   | Renewal               | **Hemera**    | | |
+|   | Rhythm                | **Hemera**    | | |
+|   | Stability             | **Gaia**      | | |
+| x | Strategy              | ~_Metis_~     | | |
+| x | Succession            | ~_Rhea_~      | | |
+| • |                       |               | | |
 
 ---
 
