@@ -7,17 +7,17 @@
 ## 1. Submodule Roadmaps
 
 ### 1.1. Core Modules
-- 1.1.1. [**Rhea:**](docs/dev/roadmaps/Rhea-MVP.md) _Platform_
+- 1.1.1. [**Rhea:**](Rhea-MVP.md) _Platform_
 
 ### 1.2. Workflow Modules
-- 1.2.1. [**Themis:**](docs/dev/roadmaps/Themis-MVP.md) _Course Builder_
-- 1.2.2. [**Tethys:**](docs/dev/roadmaps/Tethys-MVP.md) _Arc Designer_
-- 1.2.3. [**Metis:**](docs/dev/roadmaps/Metis-MVP.md) _Module Generator_
+- 1.2.1. [**Themis:**](Themis-MVP.md) _Course Builder_
+- 1.2.2. [**Tethys:**](Tethys-MVP.md) _Arc Designer_
+- 1.2.3. [**Metis:**](Metis-MVP.md) _Module Generator_
 
 ### 1.3. Utility Modules
-- 1.3.1. [**Theia:**](docs/dev/roadmaps/Theia-MVP.md) _Content Preview & Export_
-- 1.3.2. [**Atlas:**](docs/dev/roadmaps/Atlas-MVP.md) _Atomic Learning Assembler_
-- 1.3.3. [**Mnemosyne:**](docs/dev/roadmaps/Mnemosyne-MVP.md) _Storage & Retrieval_
+- 1.3.1. [**Theia:**](Theia-MVP.md) _Content Preview & Export_
+- 1.3.2. [**Atlas:**](Atlas-MVP.md) _Atomic Learning Assembler_
+- 1.3.3. [**Mnemosyne:**](Mnemosyne-MVP.md) _Storage & Retrieval_
 
 ---
 
@@ -118,7 +118,7 @@
 
 #### 2.3.1. Theia: Content Preview & Export
 <details><summary>Status: ~100% MVP ✅</summary>
-  <p>Initial implementation complete and production-ready</p>
+  <p>Core functionality complete and production-ready</p>
 </details>
 
 <details><summary>Implemented</summary>
@@ -127,21 +127,26 @@
     <li>✅ Supports both Themis and Metis output</li>
     <li>✅ Configurable detail levels (minimal, summary, detailed, complete)</li>
     <li>✅ Selective export (specific arcs, modules, or sections)</li>
-    <li>✅ Multiple formats (Markdown, HTML; PDF planned)</li>
+    <li>✅ Multiple formats (Markdown, HTML, JSON; PDF planned)</li>
     <li>✅ Live preview before export</li>
     <li>✅ Client-side processing (no server storage)</li>
     <li>✅ Integrated into Metis and Themis workflows</li>
+    <li>✅ <strong>NEW:</strong> Standalone <code>/theia</code> route with course upload interface</li>
+    <li>✅ <strong>NEW:</strong> JSON course upload with drag-and-drop</li>
+    <li>✅ <strong>NEW:</strong> Comprehensive validation for course structure</li>
+    <li>✅ <strong>NEW:</strong> Round-trip workflow (Themis → export JSON → upload → continue)</li>
+    <li>✅ <strong>NEW:</strong> Theia branding with magenta/cyan palette</li>
   </ul>
-  <p>Implemented October 2025-10-23 via PR #14 (2,813 lines across 10 files)</p>
+  <p>Initial export implementation: October 2025-10-23 via PR #14 (2,813 lines)</p>
+  <p><strong>Course upload implementation: October 2025-10-24 via PR #21 (2,417 lines)</strong></p>
 </details>
 
 <details><summary>Next Up</summary>
-  <h5>XML Upload & Workflow Resume (Q1 2026)</h5>
+  <h5>Module XML Upload & Workflow Resume (Q1 2026)</h5>
   <ul>
-    <li>Standalone <code>/theia</code> route with upload interface</li>
     <li>Upload module XML → continue in Metis or preview/export</li>
     <li>Upload course XML → continue in Themis (after course XML schema exists)</li>
-    <li>XML validation and error handling</li>
+    <li>XML validation and type detection</li>
   </ul>
   <h5>Polish</h5>
   <ul>
@@ -202,9 +207,9 @@
 > [!NOTE]
 > 6 most recent achievements in this codebase
 
-1. **[Theia: Content Preview & Export complete](Theia-MVP.md#21-core-export-functionality--completed-2025-10-23)** (2025-10-23) - Production-ready export system with Markdown/HTML formats, configurable detail levels, and selective section export (2,813 lines)
-2. **[Workflow colour palettes](Rhea-MVP.md#422-record-of-other-completed-tasks)** (2025-10-23) - Dynamic palette system with CSS custom properties for Rhea, Themis, Tethys, and Metis
-3. **[Themis arc-based structure complete](Themis-MVP.md#47-reimplement-the-module-overview-generation-based-on-thematic-arcs--completed)** - Six-step workflow with thematic organizational layer between courses and modules
-4. **[Architectural refactoring complete](Rhea-MVP.md#411-architectural-refactoring-2025-10-20--completed)** (2025-10-20) - 670+ lines eliminated via factories, utilities, and centralized configurations
-5. **[Themis `localStorage` persistence](Themis-MVP.md#48-add-localstorage-persistence--completed)** - Auto-save course progress via `persistedStore()` utility
-6. **[Centralized error handling infrastructure](Rhea-MVP.md#4114-quality-improvements)** - `ErrorBoundary` component, typed error classes, and error stores
+1. **[Theia: Course Structure Upload (JSON)](Theia-MVP.md#412-course-structure-upload-json--completed-2025-10-24)** (2025-10-24) - Complete JSON upload workflow with validation, drag-and-drop interface, and round-trip capability (Themis → export → upload → continue). Theia branding with magenta/cyan palette integrated across platform (2,417 lines)
+2. **[Theia: Content Preview & Export complete](Theia-MVP.md#411-core-export-functionality--completed-2025-10-23)** (2025-10-23) - Production-ready export system with Markdown/HTML/JSON formats, configurable detail levels, and selective section export (2,813 lines)
+3. **[Workflow colour palettes complete](Rhea-MVP.md#422-record-of-other-completed-tasks)** (2025-10-23/24) - Dynamic palette system with CSS custom properties for all five workflows: Rhea, Themis, Tethys, Metis, and Theia
+4. **[Themis arc-based structure complete](Themis-MVP.md#47-reimplement-the-module-overview-generation-based-on-thematic-arcs--completed)** - Six-step workflow with thematic organizational layer between courses and modules
+5. **[Architectural refactoring complete](Rhea-MVP.md#411-architectural-refactoring-2025-10-20--completed)** (2025-10-20) - 670+ lines eliminated via factories, utilities, and centralized configurations
+6. **[Themis `localStorage` persistence](Themis-MVP.md#48-add-localstorage-persistence--completed)** - Auto-save course progress via `persistedStore()` utility

@@ -12,7 +12,7 @@
 #### 1.1.2. Other Tasks
 - [ ] Add PDF export format (currently marked "coming soon" in UI)
 - [ ] Add export analytics/usage tracking
-- [ ] Implement XML upload & workflow resume functionality (see section 2)
+- [ ] Implement Module XML upload & workflow resume functionality (see section 2.1.1)
 
 ### 1.2. Blocked Tasks
 
@@ -20,13 +20,13 @@
 
 ## 2. MVP Milestones
 
-### 2.1. XML Upload & Workflow Resume — PENDING
+### 2.1. JSON/XML Upload & Workflow Resume — IN PROGRESS
 **Target:** Q1 2026
 **Priority:** Medium
-**Dependencies:** Themis course XML schema (for Phase 2)
-**Objective:** Enable users to upload previously generated XML files and either continue work in the original workflow or preview/export them standalone.
+**Dependencies:** None for JSON upload (✅ complete), Themis course XML schema for XML upload
+**Objective:** Enable users to upload previously generated files and either continue work in the original workflow or preview/export them standalone.
 
-#### 2.1.1. Module Upload (Immediate)
+#### 2.1.1. Module Upload (Deferred to XML Phase)
 **Components:**
 - `/theia` route with upload interface
   - File upload component (drag-drop + file picker)
@@ -104,6 +104,54 @@
 
 ## 4. Work Record
 ### 4.1. Completed Milestones
+
+#### 4.1.2. Course Structure Upload (JSON) ✅ COMPLETED (2025-10-24)
+**Branch:** `theia/feat/continue-session-from-xml`
+**PR:** #21
+**Commits:** `8e75209` through `0363410`
+
+Implemented complete JSON course upload and validation system:
+
+##### Components
+- `/theia` route - Main Theia page with course upload interface
+- `CourseStructureUpload.svelte` - Comprehensive upload component with:
+  - Drag-and-drop file upload
+  - Manual file selection
+  - Real-time JSON validation
+  - Clear error messaging
+  - Auto-redirect to Themis on successful upload
+
+##### Services & Utilities
+- `courseValidator.ts` (225 lines) - Zod-based validation for:
+  - Complete course structure validation
+  - Arc and module hierarchy validation
+  - Logistics and learner data validation
+  - Partial course support (for incomplete workflows)
+
+##### Test Data
+- `partial-course.json` - Incomplete course for testing partial uploads
+- `valid-complete-course.json` - Full course structure for testing complete uploads
+
+##### Integration
+- **JSON Export** - Added JSON format to `ExportConfigModal.svelte`
+- **Round-trip workflow** - Export from Themis → upload to Theia → continue in Themis
+- **Home page** - Theia workflow card added and promoted to primary position
+- **Theming** - Theia palette (magenta/cyan) integrated across platform
+
+##### Key Features
+- ✅ JSON course file upload with validation
+- ✅ Drag-and-drop interface
+- ✅ Comprehensive error handling
+- ✅ Support for partial/incomplete courses
+- ✅ Auto-population of Themis store on success
+- ✅ Seamless workflow continuation
+- ✅ JSON export format for round-trip capability
+- ✅ Theia branding and palette integration
+
+**Files Added:** 3 files (CourseStructureUpload.svelte, courseValidator.ts, test data)
+**Files Modified:** 18 files
+**Total Changes:** 2,417 insertions
+
 #### 4.1.1. Core Export Functionality ✅ COMPLETED (2025-10-23)
 **Branch:** `feat/theia`
 **PR:** #14

@@ -77,20 +77,32 @@ pedagogue/
 - Prompt: `src/lib/factories/prompts/themisPromptFactory.ts`
 - Components: `src/lib/components/themis/`
 
-### Content Exporter (Theia)
+### Content Manager & Exporter (Theia)
 
-**Purpose:** Export generated content in human-readable formats
+**Purpose:** Upload, manage, and export generated content
 
 **Features:**
-- Export modules or courses at any generation stage
-- Multiple format support: Markdown, HTML (PDF planned)
-- Detail level control: minimal, summary, detailed, complete
-- Selective section exports
-- Automatic table of contents generation
+- **Upload & Resume:**
+  - Upload JSON course files to continue Themis workflows
+  - Comprehensive validation with clear error messages
+  - Drag-and-drop interface with manual file selection
+  - Auto-redirect to Themis on successful upload
+- **Export:**
+  - Export modules or courses at any generation stage
+  - Multiple formats: Markdown, HTML, JSON (PDF planned)
+  - Detail level control: minimal, summary, detailed, complete
+  - Selective section exports
+  - Automatic table of contents generation
+- **Round-trip capability:** Export JSON → upload → continue working
 
 **Implementation:**
+- Route: `src/routes/theia/+page.svelte`
 - Components: `src/lib/components/theia/`
+  - `CourseStructureUpload.svelte` - Upload interface with validation
+  - `ExportConfigModal.svelte` - Export configuration and preview
+  - `ExportButton.svelte` - Export trigger with variants
 - Service: `src/lib/services/theiaService.ts`
+- Validation: `src/lib/utils/theia/courseValidator.ts`
 - Types: `src/lib/types/theia.ts`
 - Formatters: `src/lib/utils/theia/formatters/`
 - Content mapping: `src/lib/utils/theia/contentMapper.ts`
