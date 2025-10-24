@@ -44,6 +44,14 @@
     "fg-dark": "#096A78ff",
     "fg-light": "#0E9191ff"
   },
+  "theia": {
+    "bg": "#1A0018ff",
+    "bgSubtle": "#F7ECF3ff",
+    "bgNav": "#EFD3ECff",
+    "fgDark": "#B0127Aff",
+    "fgLight": "#11B5C6ff",
+    "line": "#0A020Dff"
+  },
   "unused-1": {
     "color1": "#2C2220",
     "color2": "#E15F2E",

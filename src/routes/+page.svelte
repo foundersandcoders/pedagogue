@@ -33,6 +33,18 @@
     <!-- TODO: create separate WorkflowCard component -->
     <!-- TODO: address a11y issues from workflow cards -->
     <div class="workflow-cards">
+      <a href="/theia" class="workflow-card theia-card">
+        <img src="/theia/icon.png" alt="Theia" class="card-icon" />
+        <h2>Theia</h2>
+        <p>Upload and manage previously generated course structures and modules.</p>
+        <div class="card-features">
+          <span>✓ Upload course JSON</span>
+          <span>✓ Resume workflows</span>
+          <span>✓ Export formats</span>
+        </div>
+        <div class="card-action">Manage Content →</div>
+      </a>
+
       <a href="/themis/generate" class="workflow-card themis-card">
         <img src="/themis/icon.png" alt="Themis" class="card-icon" />
         <h2>Themis</h2>
@@ -45,7 +57,7 @@
         </div>
         <div class="card-action">Build Course →</div>
       </a>
-      
+
       <a href="/tethys/wip" class="workflow-card tethys-card">
         <img src="/tethys/icon.png" alt="Tethys" class="card-icon" />
         <h2>Tethys</h2>
@@ -55,7 +67,7 @@
         </div>
         <div class="card-action">Design Arc →</div>
       </a>
-      
+
       <a href="/metis/update" class="workflow-card metis-card">
         <img src="/metis/icon.png" alt="Metis" class="card-icon" />
         <h2>Metis</h2>
@@ -134,13 +146,13 @@
   }
 
   .rhea-hub {
-    max-width: 900px;
+    max-width: 1400px;
     margin: 0 auto;
   }
 
   .workflow-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     margin-bottom: 4rem;
   }
@@ -170,6 +182,10 @@
     background: #FFF4ED;
   }
 
+  .theia-card {
+    background: #F7ECF3;
+  }
+
   .workflow-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -185,6 +201,10 @@
 
   .themis-card:hover {
     border-color: #7551BA;
+  }
+
+  .theia-card:hover {
+    border-color: #B0127A;
   }
 
   .card-icon {
@@ -243,6 +263,11 @@
     background: rgba(164, 88, 24, 0.1);
   }
 
+  .theia-card .card-action {
+    color: #B0127A;
+    background: rgba(176, 18, 122, 0.1);
+  }
+
   .themis-card:hover .card-action {
     background: #7551BA;
     color: white;
@@ -255,6 +280,11 @@
 
   .metis-card:hover .card-action {
     background: #096A78;
+    color: white;
+  }
+
+  .theia-card:hover .card-action {
+    background: #B0127A;
     color: white;
   }
 
@@ -303,6 +333,12 @@
   .course-meta {
     color: #999;
     font-size: 0.85rem;
+  }
+
+  @media (max-width: 1200px) {
+    .workflow-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media (max-width: 768px) {

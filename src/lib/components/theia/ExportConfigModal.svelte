@@ -240,6 +240,15 @@
           </button>
           <button
             type="button"
+            class="format-tab"
+            class:active={format === "json"}
+            on:click={() => (format = "json")}
+            disabled={isExporting}
+          >
+            📦 JSON
+          </button>
+          <button
+            type="button"
             class="format-tab disabled"
             disabled
             title="PDF export coming soon"
@@ -247,6 +256,9 @@
             📄 PDF <span class="badge">Soon</span>
           </button>
         </div>
+        <p class="help-text format-note">
+          <strong>Note:</strong> Only JSON exports can be re-imported to continue your workflow. Use Markdown or HTML for sharing and documentation.
+        </p>
       </div>
 
       <!-- Options -->
@@ -513,6 +525,18 @@
     font-size: 0.85rem;
     color: #6c757d;
     margin-top: 0.25rem;
+  }
+
+  .format-note {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-left: 3px solid #0d6efd;
+    border-radius: 4px;
+  }
+
+  .format-note strong {
+    color: #495057;
   }
 
   .format-tabs {

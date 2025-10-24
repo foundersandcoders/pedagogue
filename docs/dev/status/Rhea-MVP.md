@@ -56,9 +56,14 @@
 #### 4.2.2. Record of Other Completed Tasks
 - [x] Create an xml output sanitiser
   - Completed via xmlCleaner.ts and responseParser.ts
-- [x] Create colour palettes for Rhea, Themis, Tethys and Metis based on their icons
-  - Completed via `src/lib/styles/palettes.css` (2025-10-23)
+- [x] Create colour palettes for Rhea, Themis, Tethys, Metis, and Theia based on their icons
+  - Initial implementation: `src/lib/styles/palettes.css` (2025-10-23)
   - Branch: `ui/module-palettes` (merged via PR #15)
   - Implemented dynamic palette system with CSS custom properties
-  - Palettes defined for all four modules: Rhea (default), Themis, Tethys, Metis
+  - Palettes initially defined for four modules: Rhea (default), Themis, Tethys, Metis
   - Applied via `data-palette` attribute on root element
+  - **Theia palette added:** (2025-10-24)
+    - Branch: `theia/feat/continue-session-from-xml` (PR #21)
+    - Magenta/cyan colour scheme (--palette-foreground: #B0127A, --palette-foreground-alt: #11B5C6)
+    - Integrated in `paletteLoader.ts` and `paletteTypes.ts`
+    - All five workflow palettes now complete

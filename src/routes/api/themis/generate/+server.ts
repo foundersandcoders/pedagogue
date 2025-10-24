@@ -40,8 +40,10 @@ export const POST: RequestHandler = async ({ request }) => {
 		// Build prompt for course structure generation
 		const prompt = buildCourseStructurePrompt(body);
 
-		// Initialize client
-		let model = createChatClient({ apiKey });
+		// Initialize client with extended timeout for research-heavy tasks
+		// Research-enabled requests can take 3-5 minutes with multiple tool calls
+		const timeout = body.enableResearch ? 300000 : 120000; // 5min with research, 2min without
+		let model = createChatClient({ apiKey, timeout });
 
 		// Add web search if enabled
 		if (body.enableResearch) {

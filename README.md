@@ -6,19 +6,28 @@ An AI-powered curriculum generation tool for peer-led learning cohorts. Rhea use
 
 ## What Rhea Does
 
-Rhea contains three flows for generating curriculum materials
+Rhea contains five workflows for curriculum generation and management:
 
-**Rhea** | **Themis** | **Tethys** | **Metis**
-:-------:|:----------:|:----------:|:--------:
-![Rhea](static/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png)
+**Rhea** | **Theia** | **Themis** | **Tethys** | **Metis**
+:-------:|:---------:|:----------:|:----------:|:---------:
+![Rhea](static/icon.png) | ![Theia](static/theia/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png)
 
-<details><summary><strong>Metis:</strong> standalone module specifications</summary>
+<details><summary><strong>Theia:</strong> content management and export</summary>
   <ul>
-    - Learning objectives and module overview
-    - Detailed project briefs with examples and success criteria
-    - Research topics with guidance for learners
-    - Additional skills categorized by importance
-  - Project "twists" to add interesting challenges
+    - Upload previously generated course JSON files
+    - Resume workflows from where you left off
+    - Export to Markdown, HTML, or JSON formats
+    - Configurable detail levels and section selection
+    - Round-trip capability: export → upload → continue
+  </ul>
+</details>
+
+<details><summary><strong>Themis:</strong> complete multi-week courses</summary>
+  <ul>
+    - Thematic arcs organizing related modules
+    - Learning progression across modules
+    - Course-level narratives and structure
+    - Individual module generation (coming soon)
   </ul>
 </details>
 
@@ -30,12 +39,13 @@ Rhea contains three flows for generating curriculum materials
   </ul>
 </details>
 
-<details><summary><strong>Themis:</strong> complete multi-week courses</summary>
+<details><summary><strong>Metis:</strong> standalone module specifications</summary>
   <ul>
-    - Thematic arcs organizing related modules
-    - Learning progression across modules
-    - Course-level narratives and structure
-    - Individual module generation (coming soon)
+    - Learning objectives and module overview
+    - Detailed project briefs with examples and success criteria
+    - Research topics with guidance for learners
+    - Additional skills categorized by importance
+    - Project "twists" to add interesting challenges
   </ul>
 </details>
 
@@ -87,18 +97,18 @@ Open **http://localhost:5173** to start using Rhea.
 
 <details><summary>📝 Change Tracking & Provenance</summary>
   Every generated module includes comprehensive change tracking to support the **cascade pattern** - where AI-generated modules are updated iteratively whilst maintaining human oversight:
-  
+
   - **Automatic Changelog**: Documents what changed, why, and with what confidence level
   - **Confidence Scoring**: High/medium/low confidence flags help reviewers prioritize
   - **Research Citations**: Web research sources automatically cited
   - **Provenance Tracking**: Shows when generated, by which model, flags sections needing review
-  
+
   This enables curriculum councils to:
   - Quickly identify what's been updated since last version
   - Focus review time on low-confidence changes
   - Understand rationale behind AI-proposed updates
   - Track sections needing human review
-  
+
   See [Changelog Schema Design](/docs/dev/work-records/changelog-schema-design.md) for technical details.
 </details>
 
@@ -108,7 +118,7 @@ Open **http://localhost:5173** to start using Rhea.
   - Update recommendations based on industry trends
   - Search trusted domains: vendor docs, GitHub, Stack Overflow, academic sources
   - Cite sources for transparency
-  
+
   **This is the core value** - without research, you're just reformatting existing content.
 </details>
 
@@ -120,24 +130,30 @@ Open **http://localhost:5173** to start using Rhea.
   - Automatic retry (up to 3 attempts) if validation fails
 </details>
 
-<details><summary><strong>📤 Theia:</strong> Export & Preview</summary>
-  Export generated content in human-readable formats:
-  - **Multiple formats**: Markdown, HTML (PDF planned)
+<details><summary><strong>📤 Theia:</strong> Content Management & Export</summary>
+  Manage previously generated content and export in human-readable formats:
+  - **Upload & Resume**: Upload JSON course files to continue workflows in Themis
+  - **Round-trip capability**: Export → upload → continue working seamlessly
+  - **Multiple formats**: Markdown, HTML, JSON (PDF planned)
   - **Flexible detail levels**: Minimal, summary, detailed, or complete
   - **Selective exports**: Choose specific sections to export
   - **Course or module exports**: Works with both Metis and Themis outputs
   - **Table of contents**: Optional navigation for longer exports
-  
-  Export at any stage - preview course structures before module generation, or export individual modules after completion.
+  - **Drag-and-drop interface**: Easy file upload with validation
+
+  Export at any stage, then re-upload to continue work later. Upload existing course structures to review, refine, or generate additional modules.
 </details>
 
 ### 🎨 Workflows
 
-<details><summary><strong>Metis:</strong> Quick standalone modules</summary>
-  1. Upload XML inputs (projects, skills, research)
-  2. Provide structured context
-  3. Generate with optional research
-  4. Export preview or download XML specification
+<details><summary><strong>Theia:</strong> Manage and export content</summary>
+  1. Upload previously generated course JSON files
+  2. View uploaded course structure
+  3. Choose action:
+     - Continue in Themis to refine or generate modules
+     - Export to human-readable formats (Markdown, HTML)
+  4. Configure export settings (detail level, sections, format)
+  5. Download formatted content
 </details>
 
 <details><summary><strong>Themis:</strong> Complete multi-week courses</summary>
@@ -146,8 +162,15 @@ Open **http://localhost:5173** to start using Rhea.
   3. Organize modules within arcs
   4. AI generates detailed structure
   5. Review and refine
-  6. Export course overview or structure
+  6. Export course overview or structure (JSON for re-upload)
   7. Generate individual modules (coming soon)
+</details>
+
+<details><summary><strong>Metis:</strong> Quick standalone modules</summary>
+  1. Upload XML inputs (projects, skills, research)
+  2. Provide structured context
+  3. Generate with optional research
+  4. Export preview or download XML specification
 </details>
 
 ---
@@ -205,7 +228,7 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
     </Projects>
   </pre>
   <p>
-    <strong>Minimal valid:</strong> 
+    <strong>Minimal valid:</strong>
     <pre><Projects></Projects></pre>
   </p>
 </details>
@@ -224,9 +247,9 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
     </AdditionalSkills>
   </pre>
   <p>
-    <strong>Minimal valid:</strong> 
-    <pre><Skills></Skills></pre> 
-    or 
+    <strong>Minimal valid:</strong>
+    <pre><Skills></Skills></pre>
+    or
     <pre><AdditionalSkills></AdditionalSkills></pre>
   </p>
 </details>
@@ -243,7 +266,7 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
     </ResearchTopics>
   </pre>
   <p>
-    <strong>Minimal valid:</strong> 
+    <strong>Minimal valid:</strong>
     <pre><ResearchTopics></ResearchTopics></pre>
   </p>
 </details>details>

@@ -16,8 +16,9 @@ export type DetailLevel = 'minimal' | 'summary' | 'detailed' | 'complete';
  * - markdown: CommonMark-compatible Markdown
  * - html: Semantic HTML with inline CSS
  * - pdf: PDF document (stretch goal)
+ * - json: Raw JSON structure (courses only, for upload/resume workflow)
  */
-export type ExportFormat = 'markdown' | 'html' | 'pdf';
+export type ExportFormat = 'markdown' | 'html' | 'pdf' | 'json';
 
 /** Sections available for selective export from modules (Metis) */
 export type ModuleSection =

@@ -6,6 +6,7 @@
  * - [data-palette="metis"] - Metis workflow palette
  * - [data-palette="themis"] - Themis workflow palette
  * - [data-palette="tethys"] - Tethys workflow palette
+ * - [data-palette="theia"] - Theia workflow palette
  * - [data-palette="rhea"] - Main application palette (default)
  */
 
@@ -48,6 +49,16 @@
   --palette-bg-nav: #D0E4F0;
   --palette-foreground: #096A78;
   --palette-foreground-alt: #0E9191;
+}
+
+/* Theia: Content Manager Palette */
+[data-palette="theia"] {
+  --palette-primary: #1A0018;
+  --palette-bg-subtle: #F7ECF3;
+  --palette-bg-nav: #EFD3EC;
+  --palette-foreground: #B0127A;
+  --palette-foreground-alt: #11B5C6;
+  --palette-line: #0A020D;
 }
 
 /**

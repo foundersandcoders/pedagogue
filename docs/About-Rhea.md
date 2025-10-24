@@ -77,9 +77,15 @@ Both workflows enforce rigour through structured inputs. No rambling chat – cl
 - **Tethys arc management**: Standalone arc creation and editing between course and module levels
 - **Diff views**: Side-by-side comparison for reviewing AI-proposed updates
 - **Provenance tracking UI**: Visual representation of change history and confidence levels
-- **Export/preview (Theia)**: Human-readable formats (Markdown, HTML, PDF) at various detail levels
+- **Module XML upload in Theia**: Currently supports JSON course upload; module XML upload planned for Q1 2026
 
-The core intelligence is working. Research, generation, validation – all functional. The gap is workflow completeness and review tooling.
+**Recently Completed:**
+
+- **Theia content management** (Oct 2025): Upload/resume workflows, JSON export, round-trip capability
+- **Themis arc-based structure** (Oct 2025): Six-step workflow with thematic organizational layer
+- **Architectural refactoring** (Oct 2025): Factories, utilities, centralized configurations
+
+The core intelligence is working. Research, generation, validation – all functional. Theia provides content management and export. The gap is completing Themis module generation and review tooling.
 
 ## Why This Approach Is Actually Clever
 

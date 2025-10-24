@@ -12,6 +12,7 @@ import type {
   ThemisPalette,
   RheaPalette,
   TethysPalette,
+  TheiaPalette,
 } from "./paletteTypes";
 
 /**
@@ -21,6 +22,7 @@ const ROUTE_PREFIXES = {
   METIS: "/metis",
   THEMIS: "/themis",
   TETHYS: "/tethys",
+  THEIA: "/theia",
   RHEA: "/rhea",
   HOME: "/",
 } as const;
@@ -39,6 +41,23 @@ const ROUTE_PREFIXES = {
  * TODO: Consider importing JSONC at build time to eliminate duplication
  */
 const PALETTES: PaletteCollection = {
+  atlas: {
+    background: "",
+    "accent-1": "",
+    "accent-2": "",
+  },
+  metis: {
+    bg: "#00121Fff",
+    "bg-subtle": "#E8F1F8ff",
+    "bg-nav": "#D0E4F0ff",
+    "fg-dark": "#096A78ff",
+    "fg-light": "#0E9191ff",
+  },
+  mnemosyne: {
+    background: "",
+    "accent-1": "",
+    "accent-2": "",
+  },
   rhea: {
     "bg-dark": "#00221Aff",
     "bg-light": "#0E6B68ff",
@@ -51,13 +70,6 @@ const PALETTES: PaletteCollection = {
     "fg-light": "#D1AA2Eff",
     line: "#00100Eff",
   },
-  themis: {
-    bg: "#1A0E3Bff",
-    "bg-subtle": "#F0ECF8ff",
-    "bg-nav": "#E0D8F0ff",
-    fg: "#7551BAff",
-    line: "#0A021Dff",
-  },
   tethys: {
     bg: "#03121Fff",
     "bg-subtle": "#FFF4EDff",
@@ -65,12 +77,20 @@ const PALETTES: PaletteCollection = {
     "fg-dark": "#A45818ff",
     "fg-light": "#F1991Fff",
   },
-  metis: {
-    bg: "#00121Fff",
-    "bg-subtle": "#E8F1F8ff",
-    "bg-nav": "#D0E4F0ff",
-    "fg-dark": "#096A78ff",
-    "fg-light": "#0E9191ff",
+  theia: {
+    bg: "#1A0018ff",
+    "bg-subtle": "#F7ECF3ff",  // pale rose
+    "bg-nav": "#EFD3ECff",     // mauve
+    "fg-dark": "#B0127Aff",    // vivid magenta
+    "fg-light": "#11B5C6ff",   // bright cyan
+    line: "#0A020Dff"       // near-black plum
+  },
+  themis: {
+    bg: "#1A0E3Bff",
+    "bg-subtle": "#F0ECF8ff",
+    "bg-nav": "#E0D8F0ff",
+    fg: "#7551BAff",
+    line: "#0A021Dff",
   },
   "unused-1": {
     background: "#2C2220",
@@ -109,9 +129,7 @@ export function getPalette(name: PaletteName): PaletteCollection[typeof name] {
 /**
  * Get palette for a specific workflow
  */
-export function getWorkflowPalette(
-  workflow: WorkflowName
-): MetisPalette | ThemisPalette | RheaPalette | TethysPalette {
+export function getWorkflowPalette(workflow: WorkflowName): MetisPalette | RheaPalette | TethysPalette | TheiaPalette | ThemisPalette {
   return PALETTES[workflow];
 }
 
@@ -257,6 +275,7 @@ export function getWorkflowPaletteName(pathname: string): WorkflowName | null {
   if (pathname.startsWith(ROUTE_PREFIXES.METIS)) return "metis";
   if (pathname.startsWith(ROUTE_PREFIXES.THEMIS)) return "themis";
   if (pathname.startsWith(ROUTE_PREFIXES.TETHYS)) return "tethys";
+  if (pathname.startsWith(ROUTE_PREFIXES.THEIA)) return "theia";
   if (pathname === ROUTE_PREFIXES.HOME || pathname.startsWith(ROUTE_PREFIXES.RHEA)) return "rhea";
   return null;
 }
