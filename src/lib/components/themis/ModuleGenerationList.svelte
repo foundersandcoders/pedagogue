@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createEventDispatcher, onMount } from "svelte";
+  import { createEventDispatcher, onMount, onDestroy } from "svelte";
   import type { CourseData, ModuleSlot, Arc } from "$lib/types/themis";
   import { currentCourse, moduleStatusCounts, allModulesComplete } from "$lib/stores/themisStores";
   import ExportButton from "$lib/components/theia/ExportButton.svelte";
@@ -15,6 +15,9 @@
   let expandedArcId: string | null = null;
   let generatingModuleId: string | null = null;
   let previewModuleId: string | null = null;
+
+  // Track active SSE readers for cleanup
+  const activeReaders = new Set<ReadableStreamDefaultReader<Uint8Array>>();
 
   // Reactive computed values
   $: totalModules = courseData.arcs.reduce((sum, arc) => sum + arc.modules.length, 0);
@@ -32,6 +35,16 @@
     if (courseData.arcs.length > 0) {
       expandedArcId = courseData.arcs[0].id;
     }
+  });
+
+  onDestroy(() => {
+    // Cancel all active SSE streams on component unmount
+    activeReaders.forEach(reader => {
+      reader.cancel().catch(err => {
+        console.warn('Error cancelling reader:', err);
+      });
+    });
+    activeReaders.clear();
   });
 
   function toggleArc(arcId: string) {
@@ -120,25 +133,33 @@
             throw new Error('No response body');
           }
 
-          const decoder = new TextDecoder();
-          let buffer = '';
+          // Track reader for cleanup
+          activeReaders.add(reader);
 
-          while (true) {
-            const { done, value } = await reader.read();
+          try {
+            const decoder = new TextDecoder();
+            let buffer = '';
 
-            if (done) break;
+            while (true) {
+              const { done, value } = await reader.read();
 
-            buffer += decoder.decode(value, { stream: true });
-            const lines = buffer.split('\n\n');
-            buffer = lines.pop() || '';
+              if (done) break;
 
-            for (const line of lines) {
-              if (line.startsWith('data: ')) {
-                const data = JSON.parse(line.slice(6));
-                handleSSEEvent(module.id, data);
-                handleComplete(data);
+              buffer += decoder.decode(value, { stream: true });
+              const lines = buffer.split('\n\n');
+              buffer = lines.pop() || '';
+
+              for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                  const data = JSON.parse(line.slice(6));
+                  handleSSEEvent(module.id, data);
+                  handleComplete(data);
+                }
               }
             }
+          } finally {
+            // Remove from active readers when done
+            activeReaders.delete(reader);
           }
 
         } catch (error) {
