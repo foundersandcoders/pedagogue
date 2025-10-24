@@ -211,7 +211,7 @@ export function validateAndMergeConfig(config: Partial<ExportConfig>): ExportCon
 	}
 
 	// Validate format
-	const validFormats: ExportFormat[] = ['markdown', 'html', 'pdf'];
+	const validFormats: ExportFormat[] = ['markdown', 'html', 'json', 'pdf'];
 	if (!validFormats.includes(merged.format)) {
 		throw new Error(`Invalid format: ${merged.format}`);
 	}

@@ -240,6 +240,15 @@
           </button>
           <button
             type="button"
+            class="format-tab"
+            class:active={format === "json"}
+            on:click={() => (format = "json")}
+            disabled={isExporting}
+          >
+            📦 JSON
+          </button>
+          <button
+            type="button"
             class="format-tab disabled"
             disabled
             title="PDF export coming soon"
