@@ -26,12 +26,18 @@
 	}
 </script>
 
-<div class="container">
-	<header>
-		<h1>Theia: Content Manager</h1>
-		<p class="subtitle">
-			Upload previously generated content to continue working or export in different formats
-		</p>
+<svelte:head>
+	<title>Theia • Content Manager</title>
+	<link rel="icon" href="favicon.ico" />
+</svelte:head>
+
+<div id="theia-container" class="container">
+	<header id="theia-header">
+		<div class="header-title">
+			<img src="/theia/icon.png" alt="Theia icon" class="header-icon" />
+			<h1>Theia</h1>
+		</div>
+		<p>AI-powered content management for peer-led courses</p>
 	</header>
 
 	{#if errorMessage}
@@ -67,24 +73,37 @@
 <style>
 	.container {
 		max-width: 900px;
-		margin: 2rem auto;
-		padding: 0 1.5rem;
+		margin: 0 auto;
 	}
 
 	header {
-		margin-bottom: 2rem;
 		text-align: center;
+		margin-bottom: 3rem;
 	}
 
-	h1 {
+	.header-title {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
 		margin-bottom: 0.5rem;
-		color: #212529;
 	}
 
-	.subtitle {
-		color: #6c757d;
-		font-size: 1.1rem;
+	.header-icon {
+		width: 60px;
+		height: 60px;
+		object-fit: contain;
+	}
+
+	header h1 {
+		font-size: 3rem;
+		color: #333;
 		margin: 0;
+	}
+
+	header p {
+		color: #666;
+		font-size: 1.1rem;
 	}
 
 	.alert {
@@ -111,14 +130,14 @@
 	}
 
 	.help-section {
-		background: #f8f9fa;
+		background: var(--palette-bg-subtle);
 		border-radius: 8px;
 		padding: 2rem;
 		margin-top: 2rem;
 	}
 
 	.help-section h3 {
-		color: #495057;
+		color: #333;
 		margin-top: 0;
 		margin-bottom: 1rem;
 	}
