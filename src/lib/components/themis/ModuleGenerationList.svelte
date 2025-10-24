@@ -21,6 +21,12 @@
   $: completedModules = $moduleStatusCounts.complete;
   $: progressPercentage = totalModules > 0 ? (completedModules / totalModules) * 100 : 0;
 
+  // Create exportable content for Theia
+  $: exportableContent = {
+    type: "course" as const,
+    data: courseData
+  };
+
   onMount(() => {
     // Expand first arc by default
     if (courseData.arcs.length > 0) {
@@ -252,8 +258,20 @@
 
 <div class="module-generation-list">
   <header class="section-header">
-    <h2>Module Generation</h2>
-    <p>Generate content for each module in your course structure</p>
+    <div class="header-content">
+      <div class="header-text">
+        <h2>Module Generation</h2>
+        <p>Generate content for each module in your course structure</p>
+      </div>
+      <div class="header-actions">
+        <ExportButton
+          content={exportableContent}
+          label="Export Course"
+          variant="secondary"
+          size="medium"
+        />
+      </div>
+    </div>
   </header>
 
   <!-- Overall Progress -->
@@ -429,6 +447,22 @@
 
   .section-header {
     margin-bottom: 2rem;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .header-text {
+    flex: 1;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 0.5rem;
   }
 
   .section-header h2 {
@@ -792,6 +826,15 @@
 
   /* Responsive */
   @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .header-actions {
+      width: 100%;
+    }
+
     .progress-stats {
       flex-direction: column;
       gap: 1rem;
