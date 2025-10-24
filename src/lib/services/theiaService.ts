@@ -71,6 +71,15 @@ export async function exportContent(
 				formatted = formatAsHTML(mapped);
 				break;
 
+			case 'json':
+				// For courses, export the raw CourseData structure
+				if (content.type === 'course') {
+					formatted = JSON.stringify(content.data, null, 2);
+				} else {
+					throw new Error('JSON export only supported for courses');
+				}
+				break;
+
 			case 'pdf':
 				throw new Error('PDF export not yet implemented');
 
@@ -120,6 +129,7 @@ export function triggerDownload(content: string, filename: string, format: Expor
 	const mimeTypes: Record<ExportFormat, string> = {
 		markdown: 'text/markdown;charset=utf-8',
 		html: 'text/html;charset=utf-8',
+		json: 'application/json;charset=utf-8',
 		pdf: 'application/pdf'
 	};
 

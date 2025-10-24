@@ -186,3 +186,46 @@ export class TimeoutError extends GenerationError {
 		};
 	}
 }
+
+/**
+ * Course upload errors
+ */
+export class CourseUploadError extends GenerationError {
+	/** Specific upload error code */
+	uploadCode: 'INVALID_JSON' | 'VALIDATION_FAILED' | 'MISSING_REQUIRED_FIELDS' | 'FILE_TOO_LARGE';
+	/** Additional error details */
+	details?: Record<string, unknown>;
+
+	constructor(
+		message: string,
+		uploadCode: 'INVALID_JSON' | 'VALIDATION_FAILED' | 'MISSING_REQUIRED_FIELDS' | 'FILE_TOO_LARGE',
+		userMessage?: string,
+		details?: Record<string, unknown>
+	) {
+		const defaultMessages = {
+			INVALID_JSON: 'Invalid JSON file. Please upload a valid course structure exported from Themis.',
+			VALIDATION_FAILED: 'Course structure validation failed. Please check the error details.',
+			MISSING_REQUIRED_FIELDS: 'The course structure is missing required fields.',
+			FILE_TOO_LARGE: 'File is too large. Maximum size is 10MB.'
+		};
+
+		super(
+			message,
+			`UPLOAD_${uploadCode}`,
+			userMessage || defaultMessages[uploadCode],
+			false,
+			'error'
+		);
+		this.name = 'CourseUploadError';
+		this.uploadCode = uploadCode;
+		this.details = details;
+	}
+
+	toJSON() {
+		return {
+			...super.toJSON(),
+			uploadCode: this.uploadCode,
+			details: this.details
+		};
+	}
+}

@@ -36,6 +36,17 @@
   let editingModuleId: string | null = null;
 
   onMount(async () => {
+    // Check if courseData already has narratives (uploaded course)
+    if (courseData.courseNarrative && courseData.progressionNarrative) {
+      console.log('Course uploaded with existing narratives - skipping generation');
+      courseNarrative = courseData.courseNarrative;
+      progressionNarrative = courseData.progressionNarrative;
+      arcs = [...courseData.arcs];
+      isLoading = false;
+      return; // Skip AI generation
+    }
+
+    // Otherwise generate structure as normal
     await generateCourseStructure();
   });
 

@@ -1,0 +1,89 @@
+{
+  "id": "test-course-partial-001",
+  "title": "Web Development Fundamentals",
+  "description": "Learn modern web development from scratch",
+  "logistics": {
+    "totalWeeks": 8,
+    "daysPerWeek": 1
+  },
+  "learners": {
+    "cohortSize": 15,
+    "teamBased": false,
+    "prerequisites": "None",
+    "experience": {
+      "prereq": "<= 1 year",
+      "focus": "no experience"
+    }
+  },
+  "structure": "facilitated",
+  "arcs": [
+    {
+      "id": "arc-basics",
+      "order": 1,
+      "title": "HTML & CSS Basics",
+      "description": "Foundation of web pages",
+      "theme": "Frontend Fundamentals",
+      "durationWeeks": 4,
+      "modules": [
+        {
+          "id": "mod-html",
+          "arcId": "arc-basics",
+          "order": 1,
+          "title": "HTML Structure",
+          "description": "Learn HTML fundamentals",
+          "durationWeeks": 2,
+          "status": "planned",
+          "learningObjectives": ["Understand HTML syntax", "Build semantic HTML"],
+          "keyTopics": ["Elements", "Attributes", "Accessibility"]
+        },
+        {
+          "id": "mod-css",
+          "arcId": "arc-basics",
+          "order": 2,
+          "title": "CSS Styling",
+          "description": "Style web pages with CSS",
+          "durationWeeks": 2,
+          "status": "planned",
+          "learningObjectives": ["Apply CSS styles", "Use flexbox and grid"],
+          "keyTopics": ["Selectors", "Box model", "Layout"]
+        }
+      ]
+    },
+    {
+      "id": "arc-javascript",
+      "order": 2,
+      "title": "JavaScript Essentials",
+      "description": "Add interactivity with JavaScript",
+      "theme": "Programming Fundamentals",
+      "durationWeeks": 4,
+      "modules": [
+        {
+          "id": "mod-js-basics",
+          "arcId": "arc-javascript",
+          "order": 1,
+          "title": "JavaScript Basics",
+          "description": "Core JavaScript concepts",
+          "durationWeeks": 2,
+          "status": "planned",
+          "learningObjectives": ["Write JavaScript functions", "Handle events"],
+          "keyTopics": ["Variables", "Functions", "DOM manipulation"]
+        },
+        {
+          "id": "mod-async",
+          "arcId": "arc-javascript",
+          "order": 2,
+          "title": "Asynchronous JavaScript",
+          "description": "Work with async operations",
+          "durationWeeks": 2,
+          "status": "planned",
+          "learningObjectives": ["Use promises", "Fetch data from APIs"],
+          "keyTopics": ["Promises", "Async/await", "Fetch API"]
+        }
+      ]
+    }
+  ],
+  "courseNarrative": "A beginner-friendly introduction to web development covering HTML, CSS, and JavaScript.",
+  "progressionNarrative": "Start with page structure (HTML), add styling (CSS), then make it interactive (JavaScript).",
+  "createdAt": "2025-01-12T14:00:00Z",
+  "updatedAt": "2025-01-12T14:00:00Z"
+}
