@@ -76,10 +76,10 @@ async function performAttempt(
 	attempt: number,
 	lastError: string[]
 ): Promise<GenerationResult> {
-	const { body, model, callbacks } = config;
+	const { body, model, callbacks, promptBuilder = buildGenerationPrompt } = config;
 
-	// Build prompt with error feedback if retrying
-	const prompt = buildGenerationPrompt(body, attempt > 1 ? lastError : undefined);
+	// Build prompt with error feedback if retrying (using custom or default builder)
+	const prompt = promptBuilder(body, attempt > 1 ? lastError : undefined);
 
 	const messages = [
 		new SystemMessage(SYSTEM_MESSAGE),

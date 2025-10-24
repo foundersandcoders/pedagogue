@@ -42,6 +42,11 @@ export interface RetryCallbacks {
 }
 
 /**
+ * Custom prompt builder function type
+ */
+export type PromptBuilder = (body: GenerateRequest, validationErrors?: string[]) => string;
+
+/**
  * Configuration for retry handler
  */
 export interface RetryConfig {
@@ -49,6 +54,7 @@ export interface RetryConfig {
 	model: ChatModel;
 	maxRetries?: number;
 	callbacks?: RetryCallbacks;
+	promptBuilder?: PromptBuilder;
 }
 
 /**
@@ -85,4 +91,5 @@ export interface SSEStreamConfig {
 	body: GenerateRequest;
 	model: ChatModel;
 	maxRetries?: number;
+	promptBuilder?: PromptBuilder;
 }

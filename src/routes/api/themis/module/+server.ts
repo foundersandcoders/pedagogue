@@ -57,11 +57,21 @@ export const POST: RequestHandler = async ({ request }) => {
 				model = withWebSearch(model);
 			}
 
+			// Convert to Metis format
+			const metisBody = convertToMetisFormat(body);
+
 			// Return SSE stream with course-aware generation
 			return createSSEStream({
-				body: convertToMetisFormat(body),
+				body: metisBody,
 				model,
-				maxRetries: 3
+				maxRetries: 3,
+				promptBuilder: (requestBody, validationErrors) => {
+					return buildCourseAwareModulePrompt(
+						requestBody,
+						body.courseContext,
+						validationErrors
+					);
+				}
 			});
 
 		} else {
