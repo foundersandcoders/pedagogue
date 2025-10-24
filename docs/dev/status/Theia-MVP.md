@@ -24,11 +24,9 @@
 **Target:** Q1 2026
 **Priority:** Medium
 **Dependencies:** Themis course XML schema (for Phase 2)
+**Objective:** Enable users to upload previously generated XML files and either continue work in the original workflow or preview/export them standalone.
 
-#### Objective
-Enable users to upload previously generated XML files and either continue work in the original workflow or preview/export them standalone.
-
-#### Phase 1: Module Upload (Immediate)
+#### 2.1.1. Module Upload (Immediate)
 **Components:**
 - `/theia` route with upload interface
   - File upload component (drag-drop + file picker)
@@ -52,7 +50,7 @@ Enable users to upload previously generated XML files and either continue work i
 - Add route guards to ensure valid state before workflow continuation
 - Error handling for corrupt/invalid XML
 
-#### Phase 2: Course Upload (After Themis Course XML)
+#### 2.1.2. Course Upload (After Themis Course XML)
 **Prerequisites:**
 - Themis course XML schema implementation
 - Course XML export functionality
