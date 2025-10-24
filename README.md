@@ -10,7 +10,7 @@ Rhea contains three flows for generating curriculum materials
 
 **Rhea** | **Themis** | **Tethys** | **Metis**
 :-------:|:----------:|:----------:|:--------:
-![Rhea](static/rhea/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png)
+![Rhea](static/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png)
 
 ### Metis
 
