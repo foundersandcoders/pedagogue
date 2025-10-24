@@ -167,6 +167,66 @@ export const CourseStructureGenerationResponseSchema = z.object({
 export type CourseStructureGenerationResponse = z.infer<typeof CourseStructureGenerationResponseSchema>;
 
 // ==================================================================
+// Themis Module Generation API
+// ==================================================================
+
+/**
+ * Course context for course-aware module generation
+ */
+export const CourseContextSchema = z.object({
+	title: z.string(),
+	courseNarrative: z.string(),
+	progressionNarrative: z.string(),
+	arcNarrative: z.string(),
+	arcProgression: z.string(),
+	precedingModules: z.array(z.string()).optional()
+});
+
+export type CourseContext = z.infer<typeof CourseContextSchema>;
+
+/**
+ * Module slot data for generation
+ */
+export const ModuleSlotSchema = z.object({
+	id: z.string(),
+	arcId: z.string(),
+	order: z.number().int().positive(),
+	title: z.string(),
+	description: z.string(),
+	durationWeeks: z.number().int().positive(),
+	status: z.enum(['planned', 'generating', 'complete', 'error']),
+	learningObjectives: z.array(z.string()).optional(),
+	keyTopics: z.array(z.string()).optional()
+});
+
+export type ModuleSlotData = z.infer<typeof ModuleSlotSchema>;
+
+/**
+ * Module generation request with course context
+ */
+export const ModuleGenerationRequestSchema = z.object({
+	moduleSlot: ModuleSlotSchema,
+	courseContext: CourseContextSchema,
+	enableResearch: z.boolean().optional().default(true)
+});
+
+export type ModuleGenerationRequest = z.infer<typeof ModuleGenerationRequestSchema>;
+
+/**
+ * Module generation response
+ */
+export const ModuleGenerationResponseSchema = z.object({
+	success: z.boolean(),
+	xmlContent: z.string().optional(),
+	validationErrors: z.array(z.string()).optional(),
+	validationWarnings: z.array(z.string()).optional(),
+	attempts: z.number().int().positive().optional(),
+	message: z.string().optional()
+});
+
+export type ModuleGenerationResponse = z.infer<typeof ModuleGenerationResponseSchema>;
+
+// ==================================================================
 // Validation Helpers
 // ==================================================================
 

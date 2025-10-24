@@ -9,7 +9,8 @@
 
 #### 1.1.2. Other Tasks
 [ ] 1.1.2.1. Create a milestoning system in the structure outline
-    - e.g. "by this module, users should be able to do `xyz`"
+  - e.g. "by this module, users should be able to do `xyz`"
+[ ] 1.1.2.2. Replace mandatory arc name and theme fields with prompt inputs
 
 ### 1.2. Blocked Tasks
 
