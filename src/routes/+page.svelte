@@ -33,6 +33,18 @@
     <!-- TODO: create separate WorkflowCard component -->
     <!-- TODO: address a11y issues from workflow cards -->
     <div class="workflow-cards">
+      <a href="/theia" class="workflow-card theia-card">
+        <img src="/theia/icon.png" alt="Theia" class="card-icon" />
+        <h2>Theia</h2>
+        <p>Upload and manage previously generated course structures and modules.</p>
+        <div class="card-features">
+          <span>✓ Upload course JSON</span>
+          <span>✓ Resume workflows</span>
+          <span>✓ Export formats</span>
+        </div>
+        <div class="card-action">Manage Content →</div>
+      </a>
+
       <a href="/themis/generate" class="workflow-card themis-card">
         <img src="/themis/icon.png" alt="Themis" class="card-icon" />
         <h2>Themis</h2>
@@ -67,18 +79,6 @@
           <span>✓ Research topics</span>
         </div>
         <div class="card-action">Generate Module →</div>
-      </a>
-
-      <a href="/theia" class="workflow-card theia-card">
-        <img src="/theia/icon.png" alt="Theia" class="card-icon" />
-        <h2>Theia</h2>
-        <p>Upload and manage previously generated course structures and modules.</p>
-        <div class="card-features">
-          <span>✓ Upload course JSON</span>
-          <span>✓ Resume workflows</span>
-          <span>✓ Export formats</span>
-        </div>
-        <div class="card-action">Manage Content →</div>
       </a>
     </div>
 
