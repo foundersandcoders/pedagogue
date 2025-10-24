@@ -8,9 +8,9 @@ An AI-powered curriculum generation tool for peer-led learning cohorts. Rhea use
 
 Rhea contains three flows for generating curriculum materials
 
-**Rhea** | **Themis** | **Tethys** | **Metis**
-:-------:|:----------:|:----------:|:--------:
-![Rhea](static/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png)
+**Rhea** | **Themis** | **Tethys** | **Metis** | **Theia**
+:-------:|:----------:|:----------:|:---------:|:---------:
+![Rhea](static/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png) | ![Theia](static/theia/icon.png)
 
 <details><summary><strong>Metis:</strong> standalone module specifications</summary>
   <ul>
@@ -87,18 +87,18 @@ Open **http://localhost:5173** to start using Rhea.
 
 <details><summary>📝 Change Tracking & Provenance</summary>
   Every generated module includes comprehensive change tracking to support the **cascade pattern** - where AI-generated modules are updated iteratively whilst maintaining human oversight:
-  
+
   - **Automatic Changelog**: Documents what changed, why, and with what confidence level
   - **Confidence Scoring**: High/medium/low confidence flags help reviewers prioritize
   - **Research Citations**: Web research sources automatically cited
   - **Provenance Tracking**: Shows when generated, by which model, flags sections needing review
-  
+
   This enables curriculum councils to:
   - Quickly identify what's been updated since last version
   - Focus review time on low-confidence changes
   - Understand rationale behind AI-proposed updates
   - Track sections needing human review
-  
+
   See [Changelog Schema Design](/docs/dev/work-records/changelog-schema-design.md) for technical details.
 </details>
 
@@ -108,7 +108,7 @@ Open **http://localhost:5173** to start using Rhea.
   - Update recommendations based on industry trends
   - Search trusted domains: vendor docs, GitHub, Stack Overflow, academic sources
   - Cite sources for transparency
-  
+
   **This is the core value** - without research, you're just reformatting existing content.
 </details>
 
@@ -127,7 +127,7 @@ Open **http://localhost:5173** to start using Rhea.
   - **Selective exports**: Choose specific sections to export
   - **Course or module exports**: Works with both Metis and Themis outputs
   - **Table of contents**: Optional navigation for longer exports
-  
+
   Export at any stage - preview course structures before module generation, or export individual modules after completion.
 </details>
 
@@ -205,7 +205,7 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
     </Projects>
   </pre>
   <p>
-    <strong>Minimal valid:</strong> 
+    <strong>Minimal valid:</strong>
     <pre><Projects></Projects></pre>
   </p>
 </details>
@@ -224,9 +224,9 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
     </AdditionalSkills>
   </pre>
   <p>
-    <strong>Minimal valid:</strong> 
-    <pre><Skills></Skills></pre> 
-    or 
+    <strong>Minimal valid:</strong>
+    <pre><Skills></Skills></pre>
+    or
     <pre><AdditionalSkills></AdditionalSkills></pre>
   </p>
 </details>
@@ -243,7 +243,7 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
     </ResearchTopics>
   </pre>
   <p>
-    <strong>Minimal valid:</strong> 
+    <strong>Minimal valid:</strong>
     <pre><ResearchTopics></ResearchTopics></pre>
   </p>
 </details>details>

@@ -1,15 +1,12 @@
-/**
- * Type definitions for colour palette system
+/** Type definitions for colour palette system
  * Based on palettes defined in docs/palettes.jsonc
  */
 
-/**
- * Individual colour definition with hex value
- */
+/** Individual colour definition with hex value */
 export type ColourValue = string; // Hex colour code (e.g., "#00221Aff")
 
-/**
- * Rhea palette - main application branding
+// ====== CORE MODULES ======
+/** Rhea palette - main application branding
  * Most comprehensive palette with multiple foreground variants
  */
 export interface RheaPalette {
@@ -25,8 +22,8 @@ export interface RheaPalette {
   line: ColourValue;
 }
 
-/**
- * Themis palette - course builder workflow
+// ====== WORKFLOW MODULES ======
+/** Themis palette - course builder workflow
  * Simpler palette with single foreground colour
  */
 export interface ThemisPalette {
@@ -37,8 +34,7 @@ export interface ThemisPalette {
   line: ColourValue;
 }
 
-/**
- * Tethys palette - arc designer workflow
+/** Tethys palette - arc designer workflow
  * Two-tone foreground palette
  */
 export interface TethysPalette {
@@ -49,8 +45,7 @@ export interface TethysPalette {
   "fg-light": ColourValue;
 }
 
-/**
- * Metis palette - module generator workflow
+/** Metis palette - module generator workflow
  * Two-tone foreground palette
  */
 export interface MetisPalette {
@@ -61,24 +56,33 @@ export interface MetisPalette {
   "fg-light": ColourValue;
 }
 
-/**
- * Generic unused palette structure
- * For future expansion or experimentation
- */
+// ====== UTILITY MODULES ======
+export type AtlasPalette = UnusedPalette;
+export interface TheiaPalette {
+  bg: ColourValue;
+  "bg-subtle": ColourValue;
+  "bg-nav": ColourValue;
+  fg: ColourValue;
+  line: ColourValue;
+}
+export type MnemosynePalette = UnusedPalette;
+
+// ====== TYPE COMPONENTS & UTILS ======
 export interface UnusedPalette {
   background: ColourValue;
   "accent-1": ColourValue;
   "accent-2": ColourValue;
 }
 
-/**
- * Complete palette collection from palettes.jsonc
- */
+/** Complete palette collection from palettes.jsonc */
 export interface PaletteCollection {
-  rhea: RheaPalette;
-  themis: ThemisPalette;
-  tethys: TethysPalette;
+  atlas: AtlasPalette;
   metis: MetisPalette;
+  mnemosyne: MnemosynePalette;
+  rhea: RheaPalette;
+  tethys: TethysPalette;
+  theia: TheiaPalette;
+  themis: ThemisPalette;
   "unused-1": UnusedPalette;
   "unused-2": UnusedPalette;
   "unused-3": UnusedPalette;
@@ -86,18 +90,13 @@ export interface PaletteCollection {
   "unused-5": UnusedPalette;
 }
 
-/**
- * Valid palette names that can be applied to workflows
- */
+/** Valid palette names that can be applied to workflows */
 export type PaletteName = keyof PaletteCollection;
 
-/**
- * Workflow identifiers that map to specific palettes
- */
-export type WorkflowName = "rhea" | "metis" | "themis" | "tethys";
+/** Workflow identifiers that map to specific palettes */
+export type WorkflowName = "atlas" | "metis" | "mnemosyne" | "rhea" | "tethys" | "theia" | "themis";
 
-/**
- * Normalised palette structure for easier CSS variable generation
+/** Normalised palette structure for easier CSS variable generation
  * All palettes are converted to this structure with bg/fg/accent naming
  */
 export interface NormalisedPalette {
