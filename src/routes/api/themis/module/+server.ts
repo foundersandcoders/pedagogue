@@ -9,6 +9,7 @@ import {
 import { createStreamingClient, withWebSearch } from '$lib/factories/agents/agentClientFactory';
 import { createSSEStream } from '$lib/utils/model/sseHandler';
 import { buildCourseAwareModulePrompt } from '$lib/factories/prompts/metisPromptFactory';
+import { escapeXml, escapeXmlArray } from '$lib/utils/xml/xmlEscape';
 
 /**
  * API endpoint for course-aware module generation
@@ -103,48 +104,61 @@ export const POST: RequestHandler = async ({ request }) => {
 function convertToMetisFormat(request: ModuleGenerationRequest): any {
 	const { moduleSlot, courseContext } = request;
 
+	// Escape all user-provided data to prevent XML injection
+	const escapedModuleTitle = escapeXml(moduleSlot.title);
+	const escapedModuleDescription = escapeXml(moduleSlot.description);
+	const escapedObjectives = escapeXmlArray(moduleSlot.learningObjectives);
+	const escapedTopics = escapeXmlArray(moduleSlot.keyTopics);
+
+	const escapedCourseTitle = escapeXml(courseContext.title);
+	const escapedCourseNarrative = escapeXml(courseContext.courseNarrative);
+	const escapedProgressionNarrative = escapeXml(courseContext.progressionNarrative);
+	const escapedArcNarrative = escapeXml(courseContext.arcNarrative);
+	const escapedArcProgression = escapeXml(courseContext.arcProgression);
+	const escapedPrecedingModules = escapeXmlArray(courseContext.precedingModules);
+
 	// Create synthetic projects XML from module objectives
 	const projectsXML = `<?xml version="1.0" encoding="UTF-8"?>
 <Projects>
-	<Project name="${moduleSlot.title}">
-		<Description>${moduleSlot.description}</Description>
-		${moduleSlot.learningObjectives?.map((obj, i) =>
+	<Project name="${escapedModuleTitle}">
+		<Description>${escapedModuleDescription}</Description>
+		${escapedObjectives.map((obj, i) =>
 			`<Objective order="${i + 1}">${obj}</Objective>`
-		).join('\n\t\t') || ''}
+		).join('\n\t\t')}
 	</Project>
 </Projects>`;
 
 	// Create synthetic skills XML from module topics
 	const skillsXML = `<?xml version="1.0" encoding="UTF-8"?>
 <Skills>
-	${moduleSlot.keyTopics?.map((topic, i) =>
+	${escapedTopics.map((topic, i) =>
 		`<Skill order="${i + 1}">
 		<Name>${topic}</Name>
-		<Description>Key topic for ${moduleSlot.title}</Description>
+		<Description>Key topic for ${escapedModuleTitle}</Description>
 	</Skill>`
-	).join('\n\t') || ''}
+	).join('\n\t')}
 </Skills>`;
 
 	// Create synthetic research XML with course context
 	const researchXML = `<?xml version="1.0" encoding="UTF-8"?>
 <Research>
 	<CourseContext>
-		<CourseTitle>${courseContext.title}</CourseTitle>
-		<CourseNarrative>${courseContext.courseNarrative}</CourseNarrative>
-		<ProgressionNarrative>${courseContext.progressionNarrative}</ProgressionNarrative>
+		<CourseTitle>${escapedCourseTitle}</CourseTitle>
+		<CourseNarrative>${escapedCourseNarrative}</CourseNarrative>
+		<ProgressionNarrative>${escapedProgressionNarrative}</ProgressionNarrative>
 	</CourseContext>
 	<ArcContext>
-		<ArcNarrative>${courseContext.arcNarrative}</ArcNarrative>
-		<ArcProgression>${courseContext.arcProgression}</ArcProgression>
+		<ArcNarrative>${escapedArcNarrative}</ArcNarrative>
+		<ArcProgression>${escapedArcProgression}</ArcProgression>
 	</ArcContext>
-	${courseContext.precedingModules && courseContext.precedingModules.length > 0 ? `
+	${escapedPrecedingModules.length > 0 ? `
 	<PrecedingModules>
-		${courseContext.precedingModules.map((title, i) =>
+		${escapedPrecedingModules.map((title, i) =>
 			`<Module order="${i + 1}">${title}</Module>`
 		).join('\n\t\t')}
 	</PrecedingModules>` : ''}
-	<Topic>${moduleSlot.title}</Topic>
-	<Focus>${moduleSlot.description}</Focus>
+	<Topic>${escapedModuleTitle}</Topic>
+	<Focus>${escapedModuleDescription}</Focus>
 </Research>`;
 
 	return {
