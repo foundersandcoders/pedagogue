@@ -56,7 +56,7 @@
     }
   }
 
-  async function generateModule(module: ModuleSlot, arc: Arc) {
+  async function generateModule(module: ModuleSlot, arc: Arc): Promise<void> {
     // Update status to generating
     currentCourse.update(course => {
       if (!course) return course;
@@ -70,62 +70,84 @@
 
     generatingModuleId = module.id;
 
-    try {
-      // Send POST request with SSE streaming
-      const response = await fetch('/api/themis/module', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'text/event-stream'
-        },
-        body: JSON.stringify({
-          moduleSlot: module,
-          courseContext: {
-            title: courseData.title,
-            courseNarrative: courseData.courseNarrative || '',
-            progressionNarrative: courseData.progressionNarrative || '',
-            arcNarrative: arc.arcThemeNarrative || '',
-            arcProgression: arc.arcProgressionNarrative || '',
-            precedingModules: getPrecedingModuleTitles(module, arc)
-          },
-          enableResearch: true
-        })
-      });
+    // Create a promise that resolves when generation completes or errors
+    return new Promise<void>((resolve, reject) => {
+      // Store resolve/reject for this module
+      const completionHandlers = {
+        resolve,
+        reject
+      };
 
-      if (!response.ok) {
-        throw new Error(`Generation failed: ${response.status}`);
-      }
-
-      // Handle SSE stream
-      const reader = response.body?.getReader();
-      if (!reader) {
-        throw new Error('No response body');
-      }
-
-      const decoder = new TextDecoder();
-      let buffer = '';
-
-      while (true) {
-        const { done, value } = await reader.read();
-
-        if (done) break;
-
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split('\n\n');
-        buffer = lines.pop() || '';
-
-        for (const line of lines) {
-          if (line.startsWith('data: ')) {
-            const data = JSON.parse(line.slice(6));
-            handleSSEEvent(module.id, data);
-          }
+      // Track this generation's handlers
+      const handleComplete = (event: any) => {
+        if (event.type === 'complete') {
+          completionHandlers.resolve();
+        } else if (event.type === 'error') {
+          completionHandlers.reject(new Error(event.message || 'Generation failed'));
         }
-      }
+      };
 
-    } catch (error) {
-      console.error('Generation error:', error);
-      handleGenerationError(module.id, error instanceof Error ? error.message : 'Generation failed');
-    }
+      (async () => {
+        try {
+          // Send POST request with SSE streaming
+          const response = await fetch('/api/themis/module', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'text/event-stream'
+            },
+            body: JSON.stringify({
+              moduleSlot: module,
+              courseContext: {
+                title: courseData.title,
+                courseNarrative: courseData.courseNarrative || '',
+                progressionNarrative: courseData.progressionNarrative || '',
+                arcNarrative: arc.arcThemeNarrative || '',
+                arcProgression: arc.arcProgressionNarrative || '',
+                precedingModules: getPrecedingModuleTitles(module, arc)
+              },
+              enableResearch: true
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error(`Generation failed: ${response.status}`);
+          }
+
+          // Handle SSE stream
+          const reader = response.body?.getReader();
+          if (!reader) {
+            throw new Error('No response body');
+          }
+
+          const decoder = new TextDecoder();
+          let buffer = '';
+
+          while (true) {
+            const { done, value } = await reader.read();
+
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n\n');
+            buffer = lines.pop() || '';
+
+            for (const line of lines) {
+              if (line.startsWith('data: ')) {
+                const data = JSON.parse(line.slice(6));
+                handleSSEEvent(module.id, data);
+                handleComplete(data);
+              }
+            }
+          }
+
+        } catch (error) {
+          console.error('Generation error:', error);
+          handleGenerationError(module.id, error instanceof Error ? error.message : 'Generation failed');
+          completionHandlers.reject(error);
+        }
+      })();
+    });
   }
 
   function handleSSEEvent(moduleId: string, event: any) {
@@ -219,16 +241,13 @@
     for (const arc of courseData.arcs) {
       for (const module of arc.modules) {
         if (module.status !== 'complete') {
-          await generateModule(module, arc);
-          // Wait for generation to complete before moving to next
-          await new Promise(resolve => {
-            const checkComplete = setInterval(() => {
-              if (generatingModuleId === null) {
-                clearInterval(checkComplete);
-                resolve(null);
-              }
-            }, 1000);
-          });
+          try {
+            // generateModule now returns a Promise that resolves when complete
+            await generateModule(module, arc);
+          } catch (error) {
+            // Error already handled in generateModule, continue to next
+            console.error(`Failed to generate module ${module.title}:`, error);
+          }
         }
       }
     }
