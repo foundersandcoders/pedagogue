@@ -29,7 +29,33 @@
 [ ] 1.1.2.5. Allow "invisible" arcs
   - 1.1.2.5.1. Arcs can be defined as consisting of exactly 1 module each
   - 1.1.2.5.2. In this scenario, the UI should obscure any reference to Arcs whilst still preserving them in the data structure
-    
+[ ] 1.1.2.6. `ModuleGenerationList.svelte` is 895 lines; split it into smaller components:
+  - 1.1.2.6.1. `ArcSection.svelte`: arc header + module list
+  - 1.1.2.6.2. `ModuleCard.svelte`: individual module with status/actions
+  - 1.1.2.6.3. `ModulePreviewModal.svelte`: preview functionality
+  - 1.1.2.6.4. `ProgressSummary.svelte`: statistics and progress bar
+[ ] 1.1.2.7. Fix Duplicate Store Updates
+  - 1.1.2.7.1. The pattern of finding and updating modules is repeated multiple times
+    - 1.1.2.7.1.1. lines 74-82
+    - 1.1.2.7.1.2. lines 195-211
+    - 1.1.2.7.1.3. lines 221-236
+  - 1.1.2.7.2.Extract to a utility
+[ ] 1.1.2.8. Timeout values (`src/routes/api/themis/module/+server.ts:52`) should be extracted to constants
+[ ] 1.1.2.9. Fix Race Condition in SSE Stream Cleanup
+  - 1.1.2.9.1. In `ModuleGenerationList.svelte:160-162`, the reader is removed from `activeReaders` in a `finally` block but, if `onDestroy` runs concurrently with a completing stream, the `reader.cancel()` call might fail or leave streams in an inconsistent state.
+[ ] 1.1.2.10. Fix SSE Parsing Vulnerability
+  - 1.1.2.10.1. `JSON.parse(line.slice(6))` will throw if the server sends malformed JSON. This could crash the entire generation flow.
+[ ] 1.1.2.11. Fix Missing Error Handling in `generateAll`
+  - 1.1.2.11.1. Line 265-267: The function continues generating after errors without checking if a critical failure occurred.
+  - 1.1.2.11.2. If the API endpoint is down, it will attempt to generate all remaining modules.
+[ ] 1.1.2.12. Create a more elegant module generation flow
+  - 1.1.2.12.1. The `generateAll` function (line 261) generates modules sequentially with await
+  - 1.1.2.12.2. For courses with many modules, this could take hours.
+  - 1.1.2.12.3. We need to concoct a way of preserving sequential coherence whilst reducing this burden
+  - 1.1.2.12.4. One approach could be to begin generating `module[x]` after the initial overview details of `module[x-1]` are completed but before the detailed Project Briefs etc have completed
+[ ] 1.1.2.13. Optimise `ModuleGenerationList` Re-render
+  - 1.1.2.13.1. Each store update triggers re-render of the entire ModuleGenerationList. With 20+ modules, this could feel sluggish.
+  - 1.1.2.13.2. We could use `{#key moduleId}` blocks or extract `ModuleCard` to a separate component with `export let module` to leverage Svelte's granular reactivity.
 
 ### 1.2. Blocked Tasks
 
