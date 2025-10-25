@@ -2,16 +2,18 @@
 
 An AI-powered curriculum generation tool for peer-led learning cohorts. Rhea uses Claude AI with optional web research to generate comprehensive, up-to-date module specifications and complete multi-week course structures and module specifications.
 
+![Rhea](static/icon.png)
+
 ---
 
 ## 1. What Rhea Does
 
 Rhea contains multiple workflows & utilities for curriculum generation and management:
 
-**Rhea**                 | **Themis**                        | **Tethys**                        | **Metis**                       | **Theia**
-:-----------------------:|:---------------------------------:|:---------------------------------:|:-------------------------------:|:------------------------------:
-![Rhea](static/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png) | ![Theia](static/theia/icon.png)  
-*Application Hub*        | *Curriculum Creation*             | *Arc Creation*                    | *Module Creation*               | *Import, Export & Preview*
+**Themis**                        | **Tethys**                        | **Metis**                       | **Theia**
+:--------------------------------:|:---------------------------------:|:-------------------------------:|:------------------------------:
+![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png) | ![Theia](static/theia/icon.png)  
+*Curriculum Creation*             | *Arc Creation*                    | *Module Creation*               | *Import, Export & Preview*
 
 ### 1.1. Key value
 
@@ -115,9 +117,9 @@ Open **http://localhost:5173** to start using Rhea.
 
 ## 4. Key Features
 
-### 4.1. Workflows
+### 4.1. Themis
 
-<details><summary><strong>Themis:</strong> Complete multi-week courses</summary>
+<details><summary>Complete multi-week courses</summary>
   <div>
     <ol>
       <li>Configure course identity and logistics</li>
@@ -131,7 +133,22 @@ Open **http://localhost:5173** to start using Rhea.
   </div>
 </details>
 
-<details><summary><strong>Metis:</strong> Quick standalone modules</summary>
+![Themis](static/themis/icon.png)
+
+---
+
+### 4.2. Tethys
+
+> [!NOTE]
+> Coming soon
+
+![Tethys](static/tethys/icon.png)
+
+---
+
+### 4.3. Metis
+
+<details><summary>Quick standalone modules</summary>
   <div>
     <ol>
       <li>Upload XML inputs (projects, skills, research)</li>
@@ -142,7 +159,11 @@ Open **http://localhost:5173** to start using Rhea.
   </div>
 </details>
 
-### 4.2. Utilities
+![Metis](static/metis/icon.png)
+
+---
+
+### 4.4. Theia
 
 <details><summary><strong>Theia:</strong> Content Management & Export</summary>
   <div>
@@ -161,7 +182,11 @@ Open **http://localhost:5173** to start using Rhea.
   </div>
 </details>
 
-### 4.3. Additional Features
+![Theia](static/theia/icon.png)
+
+---
+
+### 4.5. Additional Features
 
 <details><summary>📝 Change Tracking & Provenance</summary>
   <div>
