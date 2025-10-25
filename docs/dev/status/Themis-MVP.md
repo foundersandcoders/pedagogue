@@ -56,6 +56,7 @@
 [ ] 1.1.2.13. Optimise `ModuleGenerationList` Re-render
   - 1.1.2.13.1. Each store update triggers re-render of the entire ModuleGenerationList. With 20+ modules, this could feel sluggish.
   - 1.1.2.13.2. We could use `{#key moduleId}` blocks or extract `ModuleCard` to a separate component with `export let module` to leverage Svelte's granular reactivity.
+[ ] 1.1.2.14. Improve handling of bullet lists within modules in `CourseOverview`
 
 ### 1.2. Blocked Tasks
 
