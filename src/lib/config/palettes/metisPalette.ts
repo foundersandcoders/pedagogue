@@ -1,4 +1,6 @@
-const metisPalette = {
+import type { MetisPalette } from "$lib/utils/palette/paletteTypes";
+
+export const metisPalette: MetisPalette = {
   metadata: {
     requiredImprovements: []
   },
@@ -46,4 +48,4 @@ const metisPalette = {
       }
     }
   }
-}
+};

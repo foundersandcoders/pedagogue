@@ -24,15 +24,29 @@
 
 ## 2. MVP Milestones
 
-[ ] 2.1. Overhaul palette system
-  - 2.1.1. Rationalise palette application and reference
-  - 2.1.2. Use the [palette reference files](docs/dev/ref/palettes) as source of truth for palette definitions whilst addressing this task
-  [ ] 2.1.3. Create a clear palette reference file (or directory of files) at an appropriate location within [src](src). This file should be...
-      - 2.1.3.1. the export source for any palette usage by the app
-      - 2.1.3.2. separate from logic that applies those palettes
-      - 2.1.3.3. human-readable
-      - 2.1.3.4. human-editable
-  [ ] 2.1.4. If this is a good time to include Tailwind in the dependencies, do so (but only if it supports addressing this task)
+[x] 2.1. Overhaul palette system ✅ COMPLETED (2025-10-25)
+  - **Branch:** `ui/palette-refactor`
+  - **Summary:** Complete refactor of palette system to eliminate duplication and establish single source of truth
+  - [x] 2.1.1. Rationalise palette application and reference
+  - [x] 2.1.2. Use the [palette reference files](docs/dev/ref/palettes) as source of truth for palette definitions
+  - [x] 2.1.3. Create a clear palette reference at `src/lib/config/palettes/`
+      - [x] 2.1.3.1. Export source for all palette usage (`src/lib/config/palettes/*.ts`)
+      - [x] 2.1.3.2. Separate from application logic (`src/lib/utils/palette/paletteTransformer.ts`)
+      - [x] 2.1.3.3. Human-readable (semantic TypeScript structure with colour names)
+      - [x] 2.1.3.4. Human-editable (direct TypeScript objects, no build-time generation)
+  - [x] 2.1.4. Tailwind evaluation: **Decided against** - custom system sufficient for 5 palettes
+  - **Key Changes:**
+    - Moved palette definitions from `docs/dev/ref/palettes/` to `src/lib/config/palettes/`
+    - Eliminated hardcoded `PALETTES` constant duplication in `paletteLoader.ts`
+    - Created `paletteTransformer.ts` for transformation logic
+    - Updated type definitions to match rich semantic structure
+    - Removed duplicate JSON files
+    - Added comprehensive documentation at `docs/dev/ref/palettes/README.md`
+  - **Architecture:**
+    - Single source: `src/lib/config/palettes/{workflow}Palette.ts`
+    - Transformation: `src/lib/utils/palette/paletteTransformer.ts`
+    - Application: `src/routes/+layout.svelte` (via data-palette attribute)
+    - Reference: `src/lib/styles/palettes.css` (static documentation)
 
 ---
 
