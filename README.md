@@ -115,6 +115,54 @@ Open **http://localhost:5173** to start using Rhea.
 
 ## 4. Key Features
 
+### 4.1. Workflows
+
+<details><summary><strong>Themis:</strong> Complete multi-week courses</summary>
+  <div>
+    <ol>
+      <li>Configure course identity and logistics</li>
+      <li>Plan thematic arcs</li>
+      <li>Organize modules within arcs</li>
+      <li>AI generates detailed structure</li>
+      <li>Review and refine</li>
+      <li>Export course overview or structure (JSON for re-upload)</li>
+      <li>Generate individual modules (coming soon)</li>
+    </ol>
+  </div>
+</details>
+
+<details><summary><strong>Metis:</strong> Quick standalone modules</summary>
+  <div>
+    <ol>
+      <li>Upload XML inputs (projects, skills, research)</li>
+      <li>Provide structured context</li>
+      <li>Generate with optional research</li>
+      <li>Export preview or download XML specification</li>
+    </ol>
+  </div>
+</details>
+
+### 4.2. Utilities
+
+<details><summary><strong>Theia:</strong> Content Management & Export</summary>
+  <div>
+    <ul>
+      <li>Upload &amp; Resume: Upload JSON course files to continue workflows in Themis</li>
+      <li>Round-trip capability: Export → upload → continue working seamlessly</li>
+      <li>Multiple formats: Markdown, HTML, JSON (PDF planned)</li>
+      <li>Flexible detail levels: Minimal, summary, detailed, or complete</li>
+      <li>Selective exports: Choose specific sections to export</li>
+      <li>Course or module exports: Works with both Metis and Themis outputs</li>
+      <li>Table of contents: Optional navigation for longer exports</li>
+      <li>Drag-and-drop interface: Easy file upload with validation</li>
+    </ul>
+
+    <p>Export at any stage, then re-upload to continue work later. Upload existing course structures to review, refine, or generate additional modules.</p>
+  </div>
+</details>
+
+### 4.3. Additional Features
+
 <details><summary>📝 Change Tracking & Provenance</summary>
   <div>
     <p>Every generated module includes comprehensive change tracking to support the <strong>cascade pattern</strong> — where AI-generated modules are updated iteratively whilst maintaining human oversight:</p>
@@ -162,67 +210,6 @@ Open **http://localhost:5173** to start using Rhea.
       <li>Minimum 2 project briefs with detailed criteria</li>
       <li>Automatic retry (up to 3 attempts) if validation fails</li>
     </ul>
-  </div>
-</details>
-
-<details><summary><strong>📤 Theia:</strong> Content Management & Export</summary>
-  <div>
-    <ul>
-      <li>Upload &amp; Resume: Upload JSON course files to continue workflows in Themis</li>
-      <li>Round-trip capability: Export → upload → continue working seamlessly</li>
-      <li>Multiple formats: Markdown, HTML, JSON (PDF planned)</li>
-      <li>Flexible detail levels: Minimal, summary, detailed, or complete</li>
-      <li>Selective exports: Choose specific sections to export</li>
-      <li>Course or module exports: Works with both Metis and Themis outputs</li>
-      <li>Table of contents: Optional navigation for longer exports</li>
-      <li>Drag-and-drop interface: Easy file upload with validation</li>
-    </ul>
-
-    <p>Export at any stage, then re-upload to continue work later. Upload existing course structures to review, refine, or generate additional modules.</p>
-  </div>
-</details>
-
-### 4.1. Workflows
-
-<details><summary><strong>Theia:</strong> Manage and export content</summary>
-  <div>
-    <ol>
-      <li>Upload previously generated course JSON files</li>
-      <li>View uploaded course structure</li>
-      <li>Choose action:
-        <ul>
-          <li>Continue in Themis to refine or generate modules</li>
-          <li>Export to human-readable formats (Markdown, HTML)</li>
-        </ul>
-      </li>
-      <li>Configure export settings (detail level, sections, format)</li>
-      <li>Download formatted content</li>
-    </ol>
-  </div>
-</details>
-
-<details><summary><strong>Themis:</strong> Complete multi-week courses</summary>
-  <div>
-    <ol>
-      <li>Configure course identity and logistics</li>
-      <li>Plan thematic arcs</li>
-      <li>Organize modules within arcs</li>
-      <li>AI generates detailed structure</li>
-      <li>Review and refine</li>
-      <li>Export course overview or structure (JSON for re-upload)</li>
-      <li>Generate individual modules (coming soon)</li>
-    </ol>
-  </div>
-</details>
-
-<details><summary><strong>Metis:</strong> Quick standalone modules</summary>
-  <div>
-    <ol>
-      <li>Upload XML inputs (projects, skills, research)</li>
-      <li>Provide structured context</li>
-      <li>Generate with optional research</li>
-      <li>Export preview or download XML specification</li>
-    </ol>
   </div>
 </details>
 
