@@ -4,23 +4,20 @@ An AI-powered curriculum generation tool for peer-led learning cohorts. Rhea use
 
 ---
 
-## What Rhea Does
+## 1. What Rhea Does
 
-Rhea contains five workflows for curriculum generation and management:
+Rhea contains multiple workflows & utilities for curriculum generation and management:
 
-**Rhea** | **Theia** | **Themis** | **Tethys** | **Metis**
-:-------:|:---------:|:----------:|:----------:|:---------:
-![Rhea](static/icon.png) | ![Theia](static/theia/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png)
+**Rhea**                 | **Themis**                        | **Tethys**                        | **Metis**                       | **Theia**
+:-----------------------:|:---------------------------------:|:---------------------------------:|:-------------------------------:|:------------------------------:
+![Rhea](static/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png) | ![Theia](static/theia/icon.png)
+*Application Hub*        | *Curriculum Creation*             | *Arc Creation*                    | *Module Creation*               | *Import, Export & Preview*
 
-<details><summary><strong>Theia:</strong> content management and export</summary>
-  <ul>
-    - Upload previously generated course JSON files
-    - Resume workflows from where you left off
-    - Export to Markdown, HTML, or JSON formats
-    - Configurable detail levels and section selection
-    - Round-trip capability: export → upload → continue
-  </ul>
-</details>
+### 1.1. Key value
+
+Rhea can use web search to ensure your curriculum reflects current industry practices and technologies, not just what Claude knew at training time.
+
+### 1.2. Workflows
 
 <details><summary><strong>Themis:</strong> complete multi-week courses</summary>
   <ul>
@@ -49,18 +46,33 @@ Rhea contains five workflows for curriculum generation and management:
   </ul>
 </details>
 
-**Key value:** Rhea can use web search to ensure your curriculum reflects current industry practices and technologies, not just what Claude knew at training time.
+### 1.3. Utilities
+
+<details><summary><strong>Theia:</strong> content management and export</summary>
+  <ul>
+    - Upload previously generated course JSON files
+    - Resume workflows from where you left off
+    - Export to Markdown, HTML, or JSON formats
+    - Configurable detail levels and section selection
+    - Round-trip capability: export → upload → continue
+  </ul>
+</details>
+
+### 1.4. Coming Soon
+
+- **Mnemosyne:** long-term storage and versioning
+- **Atlas:** **At**omic **L**earning **As**sembler
 
 ---
 
-## Quick Start
+## 2. Quick Start
 
-### Prerequisites
+### 2.1. Prerequisites
 
 - Node.js 20+
 - Anthropic API key ([get one here](https://console.anthropic.com/))
 
-### Installation
+### 2.2. Installation
 
 ```bash
 # Clone repository
@@ -84,7 +96,7 @@ Open **http://localhost:5173** to start using Rhea.
 
 ---
 
-## Cost Information
+## 3. Cost Information
 
 - Claude Sonnet 4.5 pricing: ~£2.20/million input tokens, ~£11/million output tokens
 - Typical module generation: **£0.15-£0.30** (with research enabled)
@@ -93,7 +105,7 @@ Open **http://localhost:5173** to start using Rhea.
 
 ---
 
-## Key Features
+## 4. Key Features
 
 <details><summary>📝 Change Tracking & Provenance</summary>
   Every generated module includes comprehensive change tracking to support the **cascade pattern** - where AI-generated modules are updated iteratively whilst maintaining human oversight:
@@ -144,7 +156,7 @@ Open **http://localhost:5173** to start using Rhea.
   Export at any stage, then re-upload to continue work later. Upload existing course structures to review, refine, or generate additional modules.
 </details>
 
-### 🎨 Workflows
+### 4.1. Workflows
 
 <details><summary><strong>Theia:</strong> Manage and export content</summary>
   1. Upload previously generated course JSON files
@@ -175,19 +187,22 @@ Open **http://localhost:5173** to start using Rhea.
 
 ---
 
-## Documentation
+## 5. Documentation
 
-### For Users
+### 5.1. For Users
+
 - **[Getting Started](/docs/Getting-Started.md)** - Installation, setup, first module
 - **[About Rhea](/docs/About-Rhea.md)** - What it does and why it exists
 - **[Executive Summary](/docs/Executive-Summary.md)** - Quick overview
 
-### For Developers
+### 5.2. For Developers
+
 - **[Technical Overview](/docs/dev/Technical-Overview.md)** - Architecture, components, patterns
 - **[Architecture Decisions](/docs/dev/Architecture-Decisions.md)** - Historical context and rationale
 - **[Changelog Schema Design](/docs/dev/work-records/changelog-schema-design.md)** - Change tracking implementation
 
-### For Contributors
+### 5.3. For Contributors
+
 - **[Roadmaps](/docs/dev/roadmaps/)** - Feature status and priorities
   - [Rhea Roadmap](/docs/dev/roadmaps/Rhea-MVP.md)
     - [Metis Roadmap](/docs/dev/roadmaps/mvp-modules/Metis-MVP.md)
@@ -196,7 +211,7 @@ Open **http://localhost:5173** to start using Rhea.
 
 ---
 
-## Metis: Input File Format
+## 6. Metis: Input File Format
 
 Metis accepts XML files for module inputs. Each file must have a specific root element:
 
@@ -275,7 +290,7 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
 
 ---
 
-## Technical Stack
+## 7. Technical Stack
 
 - **SvelteKit** - Application framework with SSR and API routes
 - **Node.js 20+** - Runtime environment
@@ -287,7 +302,7 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
 
 ---
 
-## Development
+## 8. Development
 
 ```bash
 # Install dependencies
@@ -305,7 +320,7 @@ npm run preview
 
 ---
 
-## Deployment
+## 9. Deployment
 
 Rhea can deploy to:
 - Vercel
@@ -313,17 +328,17 @@ Rhea can deploy to:
 - Node.js servers
 - Other platforms (see [SvelteKit adapters](https://kit.svelte.dev/docs/adapters))
 
----
-
 **Important:** Set `ANTHROPIC_API_KEY` in your hosting platform's environment variables.
 
-## Contributing
+---
+
+## 10. Contributing
 
 Issues and pull requests welcome! Check the [roadmaps](/.claude/docs/roadmaps/) for current priorities.
 
 ---
 
-## License
+## 11. License
 
 Built for peer-led learning communities.
 
