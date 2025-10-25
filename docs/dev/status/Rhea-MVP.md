@@ -8,7 +8,10 @@
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
-[ ] Steer model towards British English in content generation
+[ ] 1.1.2.1. Steer model towards British English in content generation
+[ ] 1.1.2.2. Add dark mode to UI
+  - Should allow user to select light, dark or system
+  - requires generating dark palettes for each workflow
 
 ### 1.2. Blocked Tasks
 

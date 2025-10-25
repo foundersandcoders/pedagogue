@@ -31,7 +31,7 @@ function sendEvent(controller: ReadableStreamDefaultController, event: SSEEvent)
  * @returns Response with SSE stream
  */
 export function createSSEStream(config: SSEStreamConfig): Response {
-	const { body, model, maxRetries = 3 } = config;
+	const { body, model, maxRetries = 3, promptBuilder } = config;
 
 	const stream = new ReadableStream({
 		async start(controller) {
@@ -55,6 +55,7 @@ export function createSSEStream(config: SSEStreamConfig): Response {
 					body,
 					model,
 					maxRetries,
+					promptBuilder,
 					callbacks: {
 						onAttemptStart: (attempt, max, errors) => {
 							sendEvent(controller, {

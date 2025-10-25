@@ -181,3 +181,78 @@ export function buildGenerationPrompt(body: GenerateRequest, validationErrors?: 
     </SchemaRequirements>
   </Prompt>`;
 }
+
+/**
+ * Build course-aware module generation prompt
+ *
+ * Enhanced version of buildGenerationPrompt that includes course context
+ * for modules being generated as part of a complete course.
+ *
+ * @param body - Generation request with module input data
+ * @param courseContext - Course narrative and progression context
+ * @param validationErrors - Optional array of validation errors from previous attempt
+ * @returns Formatted prompt string for Claude with course context
+ */
+export function buildCourseAwareModulePrompt(
+	body: GenerateRequest,
+	courseContext: {
+		title: string;
+		courseNarrative: string;
+		progressionNarrative: string;
+		arcNarrative: string;
+		arcProgression: string;
+		precedingModules?: string[];
+	},
+	validationErrors?: string[]
+): string {
+	// Get the base prompt
+	const basePrompt = buildGenerationPrompt(body, validationErrors);
+
+	// Build course context section
+	const courseContextSection = `
+    <CourseContext>
+      <OverallContext>
+        This module is part of a complete course: "${courseContext.title}"
+
+        Course Narrative:
+        ${courseContext.courseNarrative}
+
+        Course Progression:
+        ${courseContext.progressionNarrative}
+      </OverallContext>
+
+      <ArcContext>
+        This module belongs to a thematic arc with the following characteristics:
+
+        Arc Theme:
+        ${courseContext.arcNarrative}
+
+        Arc Progression:
+        ${courseContext.arcProgression}
+      </ArcContext>
+
+      ${courseContext.precedingModules && courseContext.precedingModules.length > 0 ? `
+      <PrecedingModules>
+        This module comes after the following modules in the course:
+        ${courseContext.precedingModules.map((title, i) => `${i + 1}. ${title}`).join('\n        ')}
+
+        IMPORTANT: Avoid repeating content from these previous modules. Build upon their foundations
+        and assume learners have completed them successfully.
+      </PrecedingModules>` : ''}
+
+      <IntegrationGuidelines>
+        - Align module objectives with the overall course narrative
+        - Ensure module content fits within the arc's thematic progression
+        - Build upon knowledge from preceding modules (don't repeat basics)
+        - Consider how this module prepares learners for subsequent modules
+        - Maintain consistency with the course's overall tone and approach
+        - Reference course-level concepts where relevant
+      </IntegrationGuidelines>
+    </CourseContext>`;
+
+	// Insert course context after the Overview section
+	return basePrompt.replace(
+		'</Overview>',
+		`</Overview>\n${courseContextSection}`
+	);
+}
