@@ -9,8 +9,27 @@
 
 #### 1.1.2. Other Tasks
 [ ] 1.1.2.1. Create a milestoning system in the structure outline
-  - e.g. "by this module, users should be able to do `xyz`"
-[ ] 1.1.2.2. Replace mandatory arc name and theme fields with prompt inputs
+  - 1.1.2.1.1. e.g. "by this module, users should be able to do `xyz`"
+[ ] 1.1.2.2. Replace mandatory arc & modules literal input fiels with literal/prompt/undefined input fields
+  - 1.1.2.2.1. currently, required fields are inserted into the final output as literals
+  - 1.1.2.2.2. this requires the user to already know what they want; more importantly, the AI model uses this input to generate content
+  - 1.1.2.2.3. this undermines a core purpose of the app: curriculum generation by non-experts
+  - 1.1.2.2.4. required inputs should be given three options:
+    - 1.1.2.2.4.1. the existing literal value (e.g. "use exactly this input as the module name")
+    - 1.1.2.2.4.2. a prompt value (e.g. "generate a module name based on my input")
+    - 1.1.2.2.4.3. an undefined value ("use the content of the previous module, subsequent module and parent arc to generate a coherent module name")
+[ ] 1.1.2.3. Ensure "suggest structure" respects time constraints
+[ ] 1.1.2.4. Create "progression type" option
+  - 1.1.2.4.1. This can apply at the `course -> arc` level and/or the `arc -> module` level
+  - 1.1.2.4.2. It defines the relationship between sibling-level content within a parent unit
+  - 1.1.2.4.3. Types include:
+    - 1.1.2.4.3.1. **Sequential:** `parent[x].unit[x]` directly builds on knowledge acquired in `parent[x].unit[x-1]`
+    - 1.1.2.4.3.2. **Progressive:** `parent[x].unit[x]` does not necessarily directly build on knowledge acquired in `parent[x].unit[x-1]`, but is more advanced on average
+    - 1.1.2.4.3.3. **Parallel:** `parent[x].unit[x]` does not directly build on knowledge acquired in `parent[x].unit[x-1]`; it tackles an alternate approach or parallel aspect to the focus of `parent[x]`
+[ ] 1.1.2.5. Allow "invisible" arcs
+  - 1.1.2.5.1. Arcs can be defined as consisting of exactly 1 module each
+  - 1.1.2.5.2. In this scenario, the UI should obscure any reference to Arcs whilst still preserving them in the data structure
+    
 
 ### 1.2. Blocked Tasks
 
