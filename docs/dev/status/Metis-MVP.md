@@ -9,14 +9,9 @@
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
-
-##### 1.1.2.1. Metis UI
-[ ] Create a more interesting aesthetic
-[ ] Add dark mode to UI
-    - Should allow user to select light, dark or system
-
-##### 1.1.2.2. Metis: Response, Output Schema & Export
-[ ] Add boilerplate module text after generation
+[ ] 1.1.2.1. Add boilerplate module text after generation
+[ ] 1.1.2.2. Display streaming response in UI via a scrolling/ephemeral window
+[ ] 1.1.2.3. Update generation UI for `/metis/update` to echo layout used in `/themis/generate` module generator
 
 ### 1.2. Blocked Tasks
 
@@ -24,16 +19,14 @@
 
 ## 2. MVP Milestones
 [ ] 2.10. Implement Cascade Updates for Subsequent Modules
-    Not yet planned
-    1. Check for information in [About Rhea]()
-    2. Check for information in [Executive Summary]()
-    3. Work with the user to define this feature
-    4. Record decisions in documentation
+  - 2.10.1. Check for information in [About Rhea]()
+  - 2.10.2. Check for information in [Executive Summary]()
+  - 2.10.3. Work with the user to define this feature
+  - 2.10.4. Record decisions in documentation
 [ ] 2.11. Session Persistence
-    - localStorage for progress backup
-    - Restore on page load with confirmation
-    - "Clear session" button
-    - **Why:** Production-ready reliability, but not blocking for initial functionality.
+  - 2.11.1. localStorage for progress backup
+  - 2.11.2. Restore on page load with confirmation
+  - 2.11.3. "Clear session" button
 
 ---
 
