@@ -1,6 +1,6 @@
 <script lang="ts">
   import "../app.css";
-  import "$lib/styles/palettes.css";
+  import "$lib/styles/palettes.generated.css";
   import { page } from "$app/stores";
   import { activePalette, setPaletteFromRoute } from "$lib/stores/paletteStore";
 
