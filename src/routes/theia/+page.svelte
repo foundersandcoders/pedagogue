@@ -97,12 +97,12 @@
 
 	header h1 {
 		font-size: 3rem;
-		color: #333;
+		color: var(--palette-primary);
 		margin: 0;
 	}
 
 	header p {
-		color: #666;
+		color: var(--palette-foreground);
 		font-size: 1.1rem;
 	}
 
@@ -116,9 +116,9 @@
 	}
 
 	.alert-warning {
-		background-color: #fff3cd;
-		border: 1px solid #ffc107;
-		color: #856404;
+		background-color: var(--palette-bg-subtle-alt);
+		border: 1px solid var(--palette-line);
+		color: var(--palette-foreground);
 	}
 
 	.alert-icon {
@@ -137,7 +137,7 @@
 	}
 
 	.help-section h3 {
-		color: #333;
+		color: var(--palette-primary);
 		margin-top: 0;
 		margin-bottom: 1rem;
 	}
@@ -150,7 +150,7 @@
 	.help-section ul {
 		margin: 0;
 		padding-left: 1.5rem;
-		color: #6c757d;
+		color: var(--palette-foreground);
 	}
 
 	.help-section li {

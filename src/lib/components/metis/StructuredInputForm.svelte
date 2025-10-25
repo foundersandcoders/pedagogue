@@ -337,11 +337,11 @@
 
   .structured-form h2 {
     margin-bottom: 0.5rem;
-    color: #333;
+    color: var(--palette-foreground);
   }
 
   .form-description {
-    color: #666;
+    color: var(--palette-foreground-alt);
     margin-bottom: 2rem;
   }
 
@@ -365,7 +365,7 @@
   label {
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: #495057;
+    color: var(--palette-foreground-alt);
     font-size: 0.95rem;
   }
 
@@ -375,7 +375,7 @@
 
   .optional {
     font-weight: 400;
-    color: #999;
+    color: var(--palette-foreground-alt);
     font-size: 0.85rem;
   }
 
@@ -385,7 +385,7 @@
   select,
   textarea {
     padding: 0.75rem;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--palette-line);
     border-radius: 6px;
     font-size: 1rem;
     font-family: inherit;
@@ -396,7 +396,7 @@
   select:focus,
   textarea:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: var(--palette-primary);
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
   }
 
@@ -411,7 +411,7 @@
   }
 
   .field-hint {
-    color: #999;
+    color: var(--palette-foreground-alt);
     font-size: 0.85rem;
     margin-top: 0.25rem;
   }
@@ -425,7 +425,7 @@
 
   .tech-suggestion {
     padding: 0.5rem 0.75rem;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--palette-line);
     background: white;
     border-radius: 6px;
     cursor: pointer;
@@ -434,14 +434,14 @@
   }
 
   .tech-suggestion:hover {
-    border-color: #007bff;
-    background: #f8f9ff;
+    border-color: var(--palette-primary);
+    background: var(--palette-bg-subtle);
   }
 
   .tech-suggestion.selected {
-    background: #007bff;
+    background: var(--palette-primary);
     color: white;
-    border-color: #007bff;
+    border-color: var(--palette-primary);
   }
 
   .tech-input-group {
@@ -469,7 +469,7 @@
   }
 
   .add-tech-btn:disabled {
-    background: #6c757d;
+    background: var(--palette-foreground-alt);
     cursor: not-allowed;
     opacity: 0.5;
   }
@@ -486,8 +486,8 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 0.75rem;
-    background: #e7f3ff;
-    color: #0056b3;
+    background: var(--palette-bg-subtle);
+    color: var(--palette-primary);
     border-radius: 6px;
     font-size: 0.9rem;
   }
@@ -495,7 +495,7 @@
   .remove-tech {
     background: none;
     border: none;
-    color: #0056b3;
+    color: var(--palette-primary);
     font-size: 1.2rem;
     cursor: pointer;
     padding: 0;
@@ -515,13 +515,13 @@
   .form-section {
     margin: 2rem 0;
     padding: 1.5rem;
-    background: #f8f9fa;
+    background: var(--palette-bg-subtle);
     border-radius: 8px;
   }
 
   .form-section h3 {
     margin: 0 0 1rem 0;
-    color: #333;
+    color: var(--palette-foreground);
     font-size: 1.1rem;
   }
 
@@ -560,7 +560,7 @@
 
   .checkbox-hint {
     font-weight: 400;
-    color: #666;
+    color: var(--palette-foreground-alt);
     font-size: 0.9rem;
   }
 
@@ -569,12 +569,12 @@
     justify-content: flex-end;
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid #e9ecef;
+    border-top: 1px solid var(--palette-line);
   }
 
   .submit-btn {
     padding: 1rem 2rem;
-    background: #007bff;
+    background: var(--palette-primary);
     color: white;
     border: none;
     border-radius: 8px;
@@ -588,7 +588,7 @@
   }
 
   .submit-btn:hover {
-    background: #0056b3;
+    background: var(--palette-secondary);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
   }

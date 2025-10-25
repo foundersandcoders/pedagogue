@@ -147,7 +147,7 @@
 
 <style>
   .module-preview {
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--palette-line);
     border-radius: 8px;
     overflow: hidden;
     background: white;
@@ -158,15 +158,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    background: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
+    background: var(--palette-bg-subtle);
+    border-bottom: 1px solid var(--palette-line);
     border-top: 3px solid var(--palette-foreground);
   }
 
   .preview-header h3 {
     margin: 0;
     font-size: 1.1rem;
-    color: #333;
+    color: var(--palette-foreground);
   }
 
   .preview-actions {
@@ -190,12 +190,12 @@
 
   .btn-secondary {
     background: white;
-    color: #495057;
-    border: 1px solid #dee2e6;
+    color: var(--palette-foreground-alt);
+    border: 1px solid var(--palette-line);
   }
 
   .btn-secondary:hover:not(:disabled) {
-    background: #e9ecef;
+    background: var(--palette-bg-subtle);
   }
 
   .btn-primary {
@@ -264,7 +264,7 @@
   .status-message p {
     margin: 0;
     font-size: 0.9rem;
-    color: #495057;
+    color: var(--palette-foreground-alt);
   }
 
   .status-message ul {
@@ -287,8 +287,8 @@
   .xml-preview {
     margin: 0;
     padding: 1rem;
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
+    background: var(--palette-bg-subtle);
+    border: 1px solid var(--palette-line);
     border-radius: 6px;
     font-family: "SF Mono", Consolas, "Monaco", monospace;
     font-size: 0.85rem;
@@ -299,23 +299,23 @@
   }
 
   .xml-preview code :global(.tag) {
-    color: #0066cc;
+    color: var(--palette-primary);
     font-weight: 600;
   }
 
   .xml-preview code :global(.attr) {
-    color: #008800;
+    color: var(--palette-accent);
   }
 
   .xml-preview code :global(.comment) {
-    color: #999;
+    color: var(--palette-foreground-alt);
     font-style: italic;
   }
 
   .empty-state {
     text-align: center;
     padding: 3rem 2rem;
-    color: #6c757d;
+    color: var(--palette-foreground-alt);
   }
 
   .empty-state p {
@@ -324,6 +324,6 @@
 
   .empty-state .hint {
     font-size: 0.9rem;
-    color: #999;
+    color: var(--palette-foreground-alt);
   }
 </style>

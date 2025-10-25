@@ -228,12 +228,12 @@
 
   header h1 {
     font-size: 3rem;
-    color: #333;
+    color: var(--palette-primary);
     margin: 0;
   }
 
   header p {
-    color: #666;
+    color: var(--palette-foreground);
     font-size: 1.1rem;
   }
 
@@ -248,7 +248,7 @@
     display: flex;
     background: var(--palette-bg-nav);
     padding: 1rem;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--palette-line);
     overflow-x: auto;
   }
 
@@ -265,7 +265,7 @@
     content: "→";
     position: absolute;
     right: -0.5rem;
-    color: #ccc;
+    color: var(--palette-line);
     font-weight: bold;
   }
 
@@ -273,7 +273,7 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background: #e9ecef;
+    background: var(--palette-bg-nav);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -296,7 +296,7 @@
 
   .step-name {
     font-size: 0.9rem;
-    color: #495057;
+    color: var(--palette-primary);
     white-space: nowrap;
   }
 
@@ -312,7 +312,7 @@
   .placeholder {
     text-align: center;
     padding: 4rem 2rem;
-    color: #666;
+    color: var(--palette-foreground);
   }
 
   @media (max-width: 768px) {

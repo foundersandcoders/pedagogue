@@ -409,23 +409,23 @@
 
   h2 {
     margin-bottom: 0.5rem;
-    color: #333;
+    color: var(--palette-foreground);
   }
 
   .form-description {
-    color: #666;
+    color: var(--palette-foreground-alt);
     margin-bottom: 2rem;
   }
 
   .loading-placeholder {
     text-align: center;
     padding: 4rem 2rem;
-    color: #666;
+    color: var(--palette-foreground-alt);
     font-style: italic;
   }
 
   .form-section {
-    background: white;
+    background: var(--palette-bg-subtle);
     border-radius: 8px;
     padding: 2rem;
     margin-bottom: 2rem;
@@ -434,10 +434,10 @@
 
   .form-section h3 {
     margin: 0 0 1.5rem 0;
-    color: #333;
+    color: var(--palette-foreground);
     font-size: 1.25rem;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid #e9ecef;
+    border-bottom: 2px solid var(--palette-line);
   }
 
   .form-grid {
@@ -460,23 +460,23 @@
   .form-field.indent {
     margin-left: 2rem;
     padding-left: 1rem;
-    border-left: 3px solid #e9ecef;
+    border-left: 3px solid var(--palette-line);
   }
 
   label {
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: #495057;
+    color: var(--palette-foreground-alt);
     font-size: 0.95rem;
   }
 
   .required {
-    color: #dc3545;
+    color: var(--palette-accent);
   }
 
   .optional {
     font-weight: 400;
-    color: #999;
+    color: var(--palette-foreground-alt);
     font-size: 0.85rem;
   }
 
@@ -486,7 +486,7 @@
   select,
   textarea {
     padding: 0.75rem;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--palette-line);
     border-radius: 6px;
     font-size: 1rem;
     font-family: inherit;
@@ -497,23 +497,23 @@
   select:focus,
   textarea:focus {
     outline: none;
-    border-color: #28a745;
+    border-color: var(--palette-primary);
     box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
   }
 
   input.error,
   textarea.error {
-    border-color: #dc3545;
+    border-color: var(--palette-accent);
   }
 
   .error-message {
-    color: #dc3545;
+    color: var(--palette-accent);
     font-size: 0.85rem;
     margin-top: 0.25rem;
   }
 
   .field-hint {
-    color: #999;
+    color: var(--palette-foreground-alt);
     font-size: 0.85rem;
     margin-top: 0.25rem;
   }
@@ -542,13 +542,13 @@
     justify-content: flex-end;
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid #e9ecef;
+    border-top: 1px solid var(--palette-line);
   }
 
   .submit-btn {
     padding: 1rem 2rem;
-    background: #28a745;
-    color: white;
+    background: var(--palette-primary);
+    color: var(--palette-bg-subtle);
     border: none;
     border-radius: 8px;
     font-size: 1.1rem;
@@ -561,7 +561,7 @@
   }
 
   .submit-btn:hover {
-    background: #218838;
+    background: var(--palette-secondary);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
   }
