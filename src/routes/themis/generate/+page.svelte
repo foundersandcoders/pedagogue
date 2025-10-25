@@ -5,6 +5,7 @@
   import ModuleWithinArcPlanner from "$lib/components/themis/ModuleWithinArcPlanner.svelte";
   import CourseStructureReview from "$lib/components/themis/CourseStructureReview.svelte";
   import ModuleGenerationList from "$lib/components/themis/ModuleGenerationList.svelte";
+  import CourseOverview from "$lib/components/themis/CourseOverview.svelte";
   import { currentCourse, courseWorkflowStep } from "$lib/stores/themisStores";
 
   let { data } = $props();
@@ -110,6 +111,15 @@
   function handleModuleGenerationBack() {
     courseWorkflowStep.set(4);
   }
+
+  function handleCourseOverviewBack() {
+    courseWorkflowStep.set(5);
+  }
+
+  function handleCourseOverviewReset() {
+    // Reset handled by component, just go back to step 1
+    courseWorkflowStep.set(1);
+  }
 </script>
 
 <svelte:head>
@@ -174,6 +184,12 @@
           courseData={$currentCourse}
           on:submit={handleModuleGenerationSubmit}
           on:back={handleModuleGenerationBack}
+        />
+      {:else if $courseWorkflowStep === 6 && $currentCourse}
+        <CourseOverview
+          courseData={$currentCourse}
+          on:back={handleCourseOverviewBack}
+          on:reset={handleCourseOverviewReset}
         />
       {:else}
         <section class="placeholder">

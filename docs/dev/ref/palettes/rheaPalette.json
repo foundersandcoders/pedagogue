@@ -1,0 +1,44 @@
+{
+  "dark": {
+    "name": "depths",
+    "colour": "#00221Aff"
+  },
+  "background": {
+    "primary": {
+      "name": "teal",
+      "main": "#0E6B68ff",
+      "subtle": "#F0F8F7ff",
+      "nav": "#D5E8E6ff"
+    },
+    "alternate": {
+      "name": "gold",
+      "main": "#D4AF37ff",
+      "subtle": "#FEF9EBff",
+      "nav": "#FAF0D4ff"
+    }
+  },
+  "foreground": {
+    "primary": {
+      "name": "bronze",
+      "dark": "#D1A927ff",
+      "midi": "#D4AA2Eff",
+      "lite": "#D7B130ff"
+    },
+    "alternate": {
+      "name": "jade",
+      "dark": "#138078ff",
+      "midi": "#1A9B93ff",
+      "lite": "#22ABA4ff"
+    }
+  },
+  "line": {
+    "primary": {
+      "name": "charcoal",
+      "colour": "#00100Eff"
+    },
+    "alternate": {
+      "name": "umber",
+      "colour": "#0D0B03ff"
+    }
+  }
+}

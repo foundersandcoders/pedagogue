@@ -1,0 +1,49 @@
+const theiaPalette = {
+  metadata: {
+    requiredImprovements: []
+  },
+  colours: {
+    dark: {
+      name: "void",
+      colour: "#1A0018ff"
+    },
+    background: {
+      primary: {
+        name: "rose",
+        main: "#CC5BA6ff",
+        subtle: "#F7ECF3ff",
+        nav: "#EFD3ECff",
+      },
+      alternate: {
+        name: "turquoise",
+        main: "#47C9D6ff",
+        subtle: "#EDFBFCff",
+        nav: "#D1F4F7ff"
+      }
+    },
+    foreground: {
+      primary: {
+        name: "cyan",
+        dark: "#1297A8ff",
+        midi: "#11B5C6ff",
+        lite: "#47D8E6ff",
+      },
+      alternate: {
+        name: "magenta",
+        dark: "#B0127Aff",
+        midi: "#CC1A99ff",
+        lite: "#E563BAff"
+      }
+    },
+    line: {
+      primary: {
+        name: "obsidian",
+        colour: "#0A020Dff"
+      },
+      alternate: {
+        name: "depths",
+        colour: "#020D0Eff"
+      }
+    }
+  }
+}

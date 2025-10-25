@@ -56,58 +56,58 @@
 [ ] 1.1.2.13. Optimise `ModuleGenerationList` Re-render
   - 1.1.2.13.1. Each store update triggers re-render of the entire ModuleGenerationList. With 20+ modules, this could feel sluggish.
   - 1.1.2.13.2. We could use `{#key moduleId}` blocks or extract `ModuleCard` to a separate component with `export let module` to leverage Svelte's granular reactivity.
+[ ] 1.1.2.14. Improve handling of bullet lists within modules in `CourseOverview`
 
 ### 1.2. Blocked Tasks
 
 ---
 
 ## 2. MVP Milestones
-[ ] 2.7. Build ModuleGenerationList Component (Step 4) 📋 PENDING
-  - Create `src/lib/components/themis/ModuleGenerationList.svelte`
-  - Display all modules from refined course structure
+[x] 2.7. Build ModuleGenerationList Component (Step 5) ✅ COMPLETED
+  - Created `src/lib/components/themis/ModuleGenerationList.svelte`
+  - Displays all modules from refined course structure
   - Module-by-module generation using existing module workflow
-  - Track generation status per module (planned, generating, complete, error)
-  - Allow regeneration of individual modules
-  - Progress tracking across all modules
-  - **Why seventh:** Orchestrates the actual content generation using existing proven module generator
-  - **Status:** Not yet started - depends on completion of structure review workflow
-[ ] 2.8. Create /api/themis/module/generate Endpoint 📋 PENDING
-  > [!IMPORTANT]
-  > Modules generated via Themis must be created by Metis (or an extension of Metis)
-
-  - Create `src/routes/api/themis/module/+server.ts`
-  - Accept module data with course context
-  - Call existing module generation logic with course-aware prompts
-  - Return XML module spec
-  - **Why eighth:** API layer for course-aware module generation
-  - **Status:** API structure exists at `/api/themis/generate/`, needs module-specific endpoint
-[ ] 2.9. Extend Module Generation with Course Context 📋 PENDING
-  - Modify prompt factories to accept optional course context parameter
-  - Include course narrative and progression in prompts when provided
-  - Ensure backward compatibility with standalone module generation
-  - **Why ninth:** Reuses existing module generation with course awareness
-  - **Status:** Prompt factories refactored and ready, needs course context integration
-[ ] 2.10. Build CourseOverview Component (Step 5) 📋 PENDING
-  - Create `src/lib/components/themis/CourseOverview.svelte`
-  - Display complete course with all generated modules
-  - Show course narratives and module summaries
-  - Export functionality trigger
-  - Final review interface
-  - **Why tenth:** Final review and export interface
-  - **Status:** Not yet started
+  - Tracks generation status per module (planned, generating, complete, error)
+  - Allows regeneration of individual modules
+  - Progress tracking across all modules with SSE streaming
+  - Integrated ExportButton for early course exports
+  - **Status:** Complete - orchestrates actual content generation using proven module generator
+[x] 2.8. Create /api/themis/module Endpoint ✅ COMPLETED
+  - Created `src/routes/api/themis/module/+server.ts`
+  - Accepts module slot data with course context
+  - Calls existing module generation logic with course-aware prompts
+  - Returns XML module spec via SSE streaming
+  - Supports retry logic and validation
+  - **Status:** Complete - API layer for course-aware module generation
+[x] 2.9. Extend Module Generation with Course Context ✅ COMPLETED
+  - Added `buildCourseAwareModulePrompt()` to metisPromptFactory
+  - Includes course narrative, arc progression, and preceding modules in prompts
+  - Maintains backward compatibility with standalone module generation
+  - XML injection prevention via escapeXml utilities
+  - **Status:** Complete - reuses existing module generation with course awareness
+[x] 2.10. Build CourseOverview Component (Step 6) ✅ COMPLETED (2025-10-25)
+  - Created `src/lib/components/themis/CourseOverview.svelte`
+  - Displays complete course with metadata, narratives, and all generated modules
+  - Arc-grouped collapsible sections with module previews
+  - Module XML preview modal
+  - Export functionality via Theia integration
+  - Course completion status banner
+  - Navigation: back to generation or reset workflow
+  - **Status:** Complete - final review and export interface operational
 [ ] 2.11. Add Course XML Schema and Validator 📋 PENDING
   - Define course-level XML schema wrapping multiple modules
   - Validation for complete course structure
   - Include course narratives and metadata
   - **Why eleventh:** Ensures exported courses meet quality standards
   - **Status:** Not yet started - will reuse existing validation patterns
+  - **Note:** Current export uses Theia service which handles course-to-markdown/HTML conversion
 [ ] 2.12. Implement Export Functionality 📋 PENDING
   - XML export for complete course
   - PDF export option (stretch goal)
   - Individual module file exports
   - Course metadata inclusion
   - **Why twelfth:** Delivers the final product to users
-  - **Status:** Not yet started
+  - **Status:** Partially complete - Theia export service operational, needs XML course schema
 
 ---
 
@@ -186,6 +186,20 @@
   - Save/load multiple courses ✅
   - **Completed:** Implemented via `persistedStore()` utility in refactoring Phase 4
   - **Location:** `src/lib/stores/themisStores.ts` using `src/lib/utils/state/persistenceUtils.ts`
+[x] 4.9. Complete Module Generation Workflow (Steps 5-6) ✅ COMPLETED (2025-10-25)
+  - **Step 5 - Module Generation:**
+    - ModuleGenerationList component with arc-grouped display
+    - SSE streaming for real-time generation feedback
+    - Individual and batch generation capabilities
+    - Module regeneration and error handling
+    - Module XML preview functionality
+  - **Step 6 - Review & Export:**
+    - CourseOverview component for final review
+    - Complete course display with narratives and statistics
+    - Collapsible arc sections with module details
+    - Theia export integration (Markdown/HTML)
+    - Workflow navigation and reset functionality
+  - **Why completed:** Completes the end-to-end Themis MVP workflow from configuration to export
 
 ### 4.2. Completed Tasks
 #### 4.2.1. Record of Past Deadlines

@@ -10,9 +10,10 @@
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
-- [ ] Add PDF export format (currently marked "coming soon" in UI)
-- [ ] Add export analytics/usage tracking
-- [ ] Implement Module XML upload & workflow resume functionality (see section 2.1.1)
+[ ] 1.1.2.1. When file is uploaded, UI should navigate to correct step automatically
+[ ] 1.1.2.2. Add PDF export format (currently marked "coming soon" in UI)
+[ ] 1.1.2.3. Add export analytics/usage tracking
+[ ] 1.1.2.4. Implement Module XML upload & workflow resume functionality (see section 2.1.1)
 
 ### 1.2. Blocked Tasks
 
