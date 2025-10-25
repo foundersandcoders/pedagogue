@@ -1,6 +1,6 @@
 # Rhea
 
-An AI-powered curriculum generation tool for peer-led learning cohorts. Rhea uses Claude AI with optional web research to generate comprehensive, up-to-date module specifications and complete multi-week courses.
+An AI-powered curriculum generation tool for peer-led learning cohorts. Rhea uses Claude AI with optional web research to generate comprehensive, up-to-date module specifications and complete multi-week course structures and module specifications.
 
 ---
 
@@ -10,7 +10,7 @@ Rhea contains multiple workflows & utilities for curriculum generation and manag
 
 **Rhea**                 | **Themis**                        | **Tethys**                        | **Metis**                       | **Theia**
 :-----------------------:|:---------------------------------:|:---------------------------------:|:-------------------------------:|:------------------------------:
-![Rhea](static/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png) | ![Theia](static/theia/icon.png)
+![Rhea](static/icon.png) | ![Themis](static/themis/icon.png) | ![Tethys](static/tethys/icon.png) | ![Metis](static/metis/icon.png) | ![Theia](static/theia/icon.png)  
 *Application Hub*        | *Curriculum Creation*             | *Arc Creation*                    | *Module Creation*               | *Import, Export & Preview*
 
 ### 1.1. Key value
@@ -20,48 +20,56 @@ Rhea can use web search to ensure your curriculum reflects current industry prac
 ### 1.2. Workflows
 
 <details><summary><strong>Themis:</strong> complete multi-week courses</summary>
-  <ul>
-    - Thematic arcs organizing related modules
-    - Learning progression across modules
-    - Course-level narratives and structure
-    - Individual module generation (coming soon)
-  </ul>
+  <div>
+    <ul>
+      <li>Thematic arcs organizing related modules</li>
+      <li>Learning progression across modules</li>
+      <li>Course-level narratives and structure</li>
+      <li>Individual module generation (coming soon)</li>
+    </ul>
+  </div>
 </details>
 
 <details><summary><strong>Tethys:</strong> Arc generation and management tools (planned)</summary>
-  <ul>
-    - Standalone arc creation between course and module levels
-    - Arc-level learning progression design
-    - Thematic coherence across related modules
-  </ul>
+  <div>
+    <ul>
+      <li>Standalone arc creation between course and module levels</li>
+      <li>Arc-level learning progression design</li>
+      <li>Thematic coherence across related modules</li>
+    </ul>
+  </div>
 </details>
 
 <details><summary><strong>Metis:</strong> standalone module specifications</summary>
-  <ul>
-    - Learning objectives and module overview
-    - Detailed project briefs with examples and success criteria
-    - Research topics with guidance for learners
-    - Additional skills categorized by importance
-    - Project "twists" to add interesting challenges
-  </ul>
+  <div>
+    <ul>
+      <li>Learning objectives and module overview</li>
+      <li>Detailed project briefs with examples and success criteria</li>
+      <li>Research topics with guidance for learners</li>
+      <li>Additional skills categorized by importance</li>
+      <li>Project "twists" to add interesting challenges</li>
+    </ul>
+  </div>
 </details>
 
 ### 1.3. Utilities
 
 <details><summary><strong>Theia:</strong> content management and export</summary>
-  <ul>
-    - Upload previously generated course JSON files
-    - Resume workflows from where you left off
-    - Export to Markdown, HTML, or JSON formats
-    - Configurable detail levels and section selection
-    - Round-trip capability: export → upload → continue
-  </ul>
+  <div>
+    <ul>
+      <li>Upload previously generated course JSON files</li>
+      <li>Resume workflows from where you left off</li>
+      <li>Export to Markdown, HTML, or JSON formats</li>
+      <li>Configurable detail levels and section selection</li>
+      <li>Round-trip capability: export → upload → continue</li>
+    </ul>
+  </div>
 </details>
 
 ### 1.4. Coming Soon
 
-- **Mnemosyne:** long-term storage and versioning
-- **Atlas:** **At**omic **L**earning **As**sembler
+- <strong>Mnemosyne:</strong> long-term storage and versioning
+- <strong>Atlas:</strong> <strong>At</strong>omic <strong>L</strong>earning <strong>As</strong>sembler
 
 ---
 
@@ -76,8 +84,8 @@ Rhea can use web search to ensure your curriculum reflects current industry prac
 
 ```bash
 # Clone repository
-git clone https://github.com/foundersandcoders/Rhea.git
-cd Rhea
+git clone https://github.com/foundersandcoders/rhea.git
+cd rhea
 
 # Install dependencies
 npm install
@@ -108,81 +116,114 @@ Open **http://localhost:5173** to start using Rhea.
 ## 4. Key Features
 
 <details><summary>📝 Change Tracking & Provenance</summary>
-  Every generated module includes comprehensive change tracking to support the **cascade pattern** - where AI-generated modules are updated iteratively whilst maintaining human oversight:
+  <div>
+    <p>Every generated module includes comprehensive change tracking to support the <strong>cascade pattern</strong> — where AI-generated modules are updated iteratively whilst maintaining human oversight:</p>
 
-  - **Automatic Changelog**: Documents what changed, why, and with what confidence level
-  - **Confidence Scoring**: High/medium/low confidence flags help reviewers prioritize
-  - **Research Citations**: Web research sources automatically cited
-  - **Provenance Tracking**: Shows when generated, by which model, flags sections needing review
+    <ul>
+      <li><strong>Automatic Changelog</strong>: Documents what changed, why, and with what confidence level</li>
+      <li><strong>Confidence Scoring</strong>: High/medium/low confidence flags help reviewers prioritize</li>
+      <li><strong>Research Citations</strong>: Web research sources automatically cited</li>
+      <li><strong>Provenance Tracking</strong>: Shows when generated, by which model, and flags sections needing review</li>
+    </ul>
 
-  This enables curriculum councils to:
-  - Quickly identify what's been updated since last version
-  - Focus review time on low-confidence changes
-  - Understand rationale behind AI-proposed updates
-  - Track sections needing human review
+    <p>This enables curriculum councils to:</p>
 
-  See [Changelog Schema Design](/docs/dev/work-records/changelog-schema-design.md) for technical details.
+    <ul>
+      <li>Quickly identify what's been updated since last version</li>
+      <li>Focus review time on low-confidence changes</li>
+      <li>Understand rationale behind AI-proposed updates</li>
+      <li>Track sections needing human review</li>
+    </ul>
+
+    <p>See <a href="/docs/dev/work-records/changelog-schema-design.md">Changelog Schema Design</a> for technical details.</p>
+  </div>
 </details>
 
 <details><summary>🔬 Deep Research Capability</summary>
-  Enable web search during generation to:
-  - Verify technologies/practices are current
-  - Update recommendations based on industry trends
-  - Search trusted domains: vendor docs, GitHub, Stack Overflow, academic sources
-  - Cite sources for transparency
+  <div>
+    <p>Enable web search during generation to:</p>
+    <ul>
+      <li>Verify technologies/practices are current</li>
+      <li>Update recommendations based on industry trends</li>
+      <li>Search trusted domains: vendor docs, GitHub, Stack Overflow, academic sources</li>
+      <li>Cite sources for transparency</li>
+    </ul>
 
-  **This is the core value** - without research, you're just reformatting existing content.
+    <p><strong>This is the core value</strong> — without research, you're just reformatting existing content.</p>
+  </div>
 </details>
 
 <details><summary>✅ Schema Validation</summary>
-  All generated modules automatically validated against requirements:
-  - Minimum 3 module objectives
-  - Minimum 5 primary research topics
-  - Minimum 2 project briefs with detailed criteria
-  - Automatic retry (up to 3 attempts) if validation fails
+  <div>
+    <p>All generated modules are automatically validated against requirements:</p>
+    <ul>
+      <li>Minimum 3 module objectives</li>
+      <li>Minimum 5 primary research topics</li>
+      <li>Minimum 2 project briefs with detailed criteria</li>
+      <li>Automatic retry (up to 3 attempts) if validation fails</li>
+    </ul>
+  </div>
 </details>
 
 <details><summary><strong>📤 Theia:</strong> Content Management & Export</summary>
-  Manage previously generated content and export in human-readable formats:
-  - **Upload & Resume**: Upload JSON course files to continue workflows in Themis
-  - **Round-trip capability**: Export → upload → continue working seamlessly
-  - **Multiple formats**: Markdown, HTML, JSON (PDF planned)
-  - **Flexible detail levels**: Minimal, summary, detailed, or complete
-  - **Selective exports**: Choose specific sections to export
-  - **Course or module exports**: Works with both Metis and Themis outputs
-  - **Table of contents**: Optional navigation for longer exports
-  - **Drag-and-drop interface**: Easy file upload with validation
+  <div>
+    <ul>
+      <li>Upload &amp; Resume: Upload JSON course files to continue workflows in Themis</li>
+      <li>Round-trip capability: Export → upload → continue working seamlessly</li>
+      <li>Multiple formats: Markdown, HTML, JSON (PDF planned)</li>
+      <li>Flexible detail levels: Minimal, summary, detailed, or complete</li>
+      <li>Selective exports: Choose specific sections to export</li>
+      <li>Course or module exports: Works with both Metis and Themis outputs</li>
+      <li>Table of contents: Optional navigation for longer exports</li>
+      <li>Drag-and-drop interface: Easy file upload with validation</li>
+    </ul>
 
-  Export at any stage, then re-upload to continue work later. Upload existing course structures to review, refine, or generate additional modules.
+    <p>Export at any stage, then re-upload to continue work later. Upload existing course structures to review, refine, or generate additional modules.</p>
+  </div>
 </details>
 
 ### 4.1. Workflows
 
 <details><summary><strong>Theia:</strong> Manage and export content</summary>
-  1. Upload previously generated course JSON files
-  2. View uploaded course structure
-  3. Choose action:
-     - Continue in Themis to refine or generate modules
-     - Export to human-readable formats (Markdown, HTML)
-  4. Configure export settings (detail level, sections, format)
-  5. Download formatted content
+  <div>
+    <ol>
+      <li>Upload previously generated course JSON files</li>
+      <li>View uploaded course structure</li>
+      <li>Choose action:
+        <ul>
+          <li>Continue in Themis to refine or generate modules</li>
+          <li>Export to human-readable formats (Markdown, HTML)</li>
+        </ul>
+      </li>
+      <li>Configure export settings (detail level, sections, format)</li>
+      <li>Download formatted content</li>
+    </ol>
+  </div>
 </details>
 
 <details><summary><strong>Themis:</strong> Complete multi-week courses</summary>
-  1. Configure course identity and logistics
-  2. Plan thematic arcs
-  3. Organize modules within arcs
-  4. AI generates detailed structure
-  5. Review and refine
-  6. Export course overview or structure (JSON for re-upload)
-  7. Generate individual modules (coming soon)
+  <div>
+    <ol>
+      <li>Configure course identity and logistics</li>
+      <li>Plan thematic arcs</li>
+      <li>Organize modules within arcs</li>
+      <li>AI generates detailed structure</li>
+      <li>Review and refine</li>
+      <li>Export course overview or structure (JSON for re-upload)</li>
+      <li>Generate individual modules (coming soon)</li>
+    </ol>
+  </div>
 </details>
 
 <details><summary><strong>Metis:</strong> Quick standalone modules</summary>
-  1. Upload XML inputs (projects, skills, research)
-  2. Provide structured context
-  3. Generate with optional research
-  4. Export preview or download XML specification
+  <div>
+    <ol>
+      <li>Upload XML inputs (projects, skills, research)</li>
+      <li>Provide structured context</li>
+      <li>Generate with optional research</li>
+      <li>Export preview or download XML specification</li>
+    </ol>
+  </div>
 </details>
 
 ---
@@ -191,23 +232,23 @@ Open **http://localhost:5173** to start using Rhea.
 
 ### 5.1. For Users
 
-- **[Getting Started](/docs/Getting-Started.md)** - Installation, setup, first module
-- **[About Rhea](/docs/About-Rhea.md)** - What it does and why it exists
-- **[Executive Summary](/docs/Executive-Summary.md)** - Quick overview
+- <a href="/docs/Getting-Started.md">Getting Started</a> - Installation, setup, first module
+- <a href="/docs/About-Rhea.md">About Rhea</a> - What it does and why it exists
+- <a href="/docs/Executive-Summary.md">Executive Summary</a> - Quick overview
 
 ### 5.2. For Developers
 
-- **[Technical Overview](/docs/dev/Technical-Overview.md)** - Architecture, components, patterns
-- **[Architecture Decisions](/docs/dev/Architecture-Decisions.md)** - Historical context and rationale
-- **[Changelog Schema Design](/docs/dev/work-records/changelog-schema-design.md)** - Change tracking implementation
+- <a href="/docs/dev/Technical-Overview.md">Technical Overview</a> - Architecture, components, patterns
+- <a href="/docs/dev/Architecture-Decisions.md">Architecture Decisions</a> - Historical context and rationale
+- <a href="/docs/dev/work-records/changelog-schema-design.md">Changelog Schema Design</a> - Change tracking implementation
 
 ### 5.3. For Contributors
 
-- **[Roadmaps](/docs/dev/roadmaps/)** - Feature status and priorities
-  - [Rhea Roadmap](/docs/dev/roadmaps/Rhea-MVP.md)
-    - [Metis Roadmap](/docs/dev/roadmaps/mvp-modules/Metis-MVP.md)
-    - [Themis Roadmap](/docs/dev/roadmaps/mvp-modules/Themis-MVP.md)
-- **[CLAUDE.md](/CLAUDE.md)** - AI assistant guidance
+- <a href="/docs/dev/roadmaps/">Roadmaps</a> - Feature status and priorities
+  - <a href="/docs/dev/roadmaps/Rhea-MVP.md">Rhea Roadmap</a>
+    - <a href="/docs/dev/roadmaps/mvp-modules/Metis-MVP.md">Metis Roadmap</a>
+    - <a href="/docs/dev/roadmaps/mvp-modules/Themis-MVP.md">Themis Roadmap</a>
+- <a href="/CLAUDE.md">CLAUDE.md</a> - AI assistant guidance
 
 ---
 
@@ -216,75 +257,78 @@ Open **http://localhost:5173** to start using Rhea.
 Metis accepts XML files for module inputs. Each file must have a specific root element:
 
 <details><summary><code>projects.xml</code></summary>
-  <pre>
-    <Projects>
-      <ProjectBriefs>
-        <ProjectBrief>
-          <Overview>
-            <Name>Project Name</Name>
-            <Task>What learners will build</Task>
-            <Focus>Key technologies and techniques</Focus>
-          </Overview>
-          <Criteria>Success criteria as bullet points</Criteria>
-          <Skills>
-            <Skill>
-              <Name>Skill Name</Name>
-              <Details>What learners will learn</Details>
-            </Skill>
-          </Skills>
-          <Examples>
-            <Example>
-              <Name>Example Name</Name>
-              <Description>Brief description</Description>
-            </Example>
-          </Examples>
-        </ProjectBrief>
-      </ProjectBriefs>
-    </Projects>
-  </pre>
-  <p>
-    <strong>Minimal valid:</strong>
-    <pre><Projects></Projects></pre>
-  </p>
+  <div>
+    <pre>
+  &lt;Projects&gt;
+    &lt;ProjectBriefs&gt;
+      &lt;ProjectBrief&gt;
+        &lt;Overview&gt;
+          &lt;Name&gt;Project Name&lt;/Name&gt;
+          &lt;Task&gt;What learners will build&lt;/Task&gt;
+          &lt;Focus&gt;Key technologies and techniques&lt;/Focus&gt;
+        &lt;/Overview&gt;
+        &lt;Criteria&gt;Success criteria as bullet points&lt;/Criteria&gt;
+        &lt;Skills&gt;
+          &lt;Skill&gt;
+            &lt;Name&gt;Skill Name&lt;/Name&gt;
+            &lt;Details&gt;What learners will learn&lt;/Details&gt;
+          &lt;/Skill&gt;
+        &lt;/Skills&gt;
+        &lt;Examples&gt;
+          &lt;Example&gt;
+            &lt;Name&gt;Example Name&lt;/Name&gt;
+            &lt;Description&gt;Brief description&lt;/Description&gt;
+          &lt;/Example&gt;
+        &lt;/Examples&gt;
+      &lt;/ProjectBrief&gt;
+    &lt;/ProjectBriefs&gt;
+  &lt;/Projects&gt;
+    </pre>
+
+    <p><strong>Minimal valid:</strong></p>
+    <pre>&lt;Projects&gt;&lt;/Projects&gt;</pre>
+  </div>
 </details>
 
 <details><summary><code>skills.xml</code></summary>
-  <pre language="xml">
-    <AdditionalSkills>
-      <SkillsCategory>
-        <Name>Category Name</Name>
-        <Skill>
-          <SkillName>Specific Skill</SkillName>
-          <Importance>Recommended / Stretch / Essential</Importance>
-          <SkillDescription>Brief description</SkillDescription>
-        </Skill>
-      </SkillsCategory>
-    </AdditionalSkills>
-  </pre>
-  <p>
-    <strong>Minimal valid:</strong>
-    <pre><Skills></Skills></pre>
-    or
-    <pre><AdditionalSkills></AdditionalSkills></pre>
-  </p>
+  <div>
+    <pre>
+  &lt;AdditionalSkills&gt;
+    &lt;SkillsCategory&gt;
+      &lt;Name&gt;Category Name&lt;/Name&gt;
+      &lt;Skill&gt;
+        &lt;SkillName&gt;Specific Skill&lt;/SkillName&gt;
+        &lt;Importance&gt;Recommended / Stretch / Essential&lt;/Importance&gt;
+        &lt;SkillDescription&gt;Brief description&lt;/SkillDescription&gt;
+      &lt;/Skill&gt;
+    &lt;/SkillsCategory&gt;
+  &lt;/AdditionalSkills&gt;
+    </pre>
+
+    <p><strong>Minimal valid:</strong></p>
+    <pre>&lt;Skills&gt;&lt;/Skills&gt;</pre>
+    <p>or</p>
+    <pre>&lt;AdditionalSkills&gt;&lt;/AdditionalSkills&gt;</pre>
+  </div>
 </details>
 
 <details><summary><code>research.xml</code></summary>
-  <pre language="xml">
-    <ResearchTopics>
-      <PrimaryTopics>
-        <PrimaryTopic>
-          <TopicName>Topic Name</TopicName>
-          <TopicDescription>What to research and how to approach it</TopicDescription>
-        </PrimaryTopic>
-      </PrimaryTopics>
-    </ResearchTopics>
-  </pre>
-  <p>
-    <strong>Minimal valid:</strong>
-    <pre><ResearchTopics></ResearchTopics></pre>
-  </p>
-</details>details>
+  <div>
+    <pre>
+  &lt;ResearchTopics&gt;
+    &lt;PrimaryTopics&gt;
+      &lt;PrimaryTopic&gt;
+        &lt;TopicName&gt;Topic Name&lt;/TopicName&gt;
+        &lt;TopicDescription&gt;What to research and how to approach it&lt;/TopicDescription&gt;
+      &lt;/PrimaryTopic&gt;
+    &lt;/PrimaryTopics&gt;
+  &lt;/ResearchTopics&gt;
+    </pre>
+
+    <p><strong>Minimal valid:</strong></p>
+    <pre>&lt;ResearchTopics&gt;&lt;/ResearchTopics&gt;</pre>
+  </div>
+</details>
 
 **See [Getting Started Guide](/docs/Getting-Started.md) for common XML gotchas and detailed format specifications.**
 
@@ -292,11 +336,11 @@ Metis accepts XML files for module inputs. Each file must have a specific root e
 
 ## 7. Technical Stack
 
-- **SvelteKit** - Application framework with SSR and API routes
-- **Node.js 20+** - Runtime environment
-- **LangChain + Claude** - AI orchestration (Claude Sonnet 4.5)
-- **Zod** - Runtime validation and type safety
-- **XML** - Curriculum data format
+- <strong>SvelteKit</strong> - Application framework with SSR and API routes
+- <strong>Node.js 20+</strong> - Runtime environment
+- <strong>LangChain + Claude</strong> - AI orchestration (Claude Sonnet 4.5)
+- <strong>Zod</strong> - Runtime validation and type safety
+- <strong>XML</strong> - Curriculum data format
 
 **See [Technical Overview](/docs/dev/Technical-Overview.md) for architecture details.**
 
@@ -326,7 +370,7 @@ Rhea can deploy to:
 - Vercel
 - Netlify
 - Node.js servers
-- Other platforms (see [SvelteKit adapters](https://kit.svelte.dev/docs/adapters))
+- Other platforms (see <a href="https://kit.svelte.dev/docs/adapters">SvelteKit adapters</a>)
 
 **Important:** Set `ANTHROPIC_API_KEY` in your hosting platform's environment variables.
 
@@ -334,7 +378,7 @@ Rhea can deploy to:
 
 ## 10. Contributing
 
-Issues and pull requests welcome! Check the [roadmaps](/.claude/docs/roadmaps/) for current priorities.
+Issues and pull requests welcome! Check the <a href="/docs/dev/roadmaps/">roadmaps</a> for current priorities.
 
 ---
 
@@ -344,4 +388,4 @@ Built for peer-led learning communities.
 
 ---
 
-**Need help?** See the [Getting Started Guide](/docs/Getting-Started.md) or create an issue.
+**Need help?** See the <a href="/docs/Getting-Started.md">Getting Started Guide</a> or create an issue.
