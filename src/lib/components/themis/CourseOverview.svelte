@@ -13,6 +13,8 @@
 
   // Local state
   let expandedArcId: string | null = null;
+  let expandedModuleId: string | null = null;
+  let expandedSections: Record<string, Set<string>> = {}; // moduleId -> Set<sectionName>
   let previewModuleId: string | null = null;
 
   // Create exportable content for Theia
@@ -33,12 +35,109 @@
     expandedArcId = expandedArcId === arcId ? null : arcId;
   }
 
+  function toggleModule(moduleId: string) {
+    expandedModuleId = expandedModuleId === moduleId ? null : moduleId;
+  }
+
+  function toggleModuleSection(moduleId: string, sectionName: string) {
+    // Create a new Set to trigger reactivity
+    const currentSections = expandedSections[moduleId] ? new Set(expandedSections[moduleId]) : new Set();
+
+    if (currentSections.has(sectionName)) {
+      currentSections.delete(sectionName);
+    } else {
+      currentSections.add(sectionName);
+    }
+
+    // Create a completely new object to trigger reactivity
+    expandedSections = {
+      ...expandedSections,
+      [moduleId]: currentSections
+    };
+  }
+
+  function isSectionExpanded(moduleId: string, sectionName: string): boolean {
+    return expandedSections[moduleId]?.has(sectionName) ?? false;
+  }
+
   function viewModulePreview(moduleId: string) {
     previewModuleId = moduleId;
   }
 
   function closePreview() {
     previewModuleId = null;
+  }
+
+  // Parse module XML content
+  function parseModuleXML(xmlContent: string) {
+    try {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(xmlContent, 'text/xml');
+
+      // Check for parser errors
+      const parserError = doc.querySelector('parsererror');
+      if (parserError) {
+        console.error('XML parsing error:', parserError.textContent);
+        return null;
+      }
+
+
+      const result = {
+        description: doc.querySelector('Description')?.textContent?.trim() || '',
+        objectives: Array.from(doc.querySelectorAll('LearningObjectives LearningObjective')).map(obj => ({
+          name: obj.getAttribute('name') || '',
+          details: obj.textContent?.trim() || ''
+        })),
+        research: {
+          primary: Array.from(doc.querySelectorAll('ResearchTopics PrimaryTopics Topic')).map(topic => ({
+            name: topic.getAttribute('name') || '',
+            description: topic.textContent?.trim() || '',
+            subtopics: Array.from(topic.querySelectorAll('SubTopic')).map(sub => ({
+              name: sub.getAttribute('name') || '',
+              description: sub.textContent?.trim() || ''
+            }))
+          })),
+          stretch: Array.from(doc.querySelectorAll('ResearchTopics StretchTopics Topic')).map(topic => ({
+            name: topic.getAttribute('name') || '',
+            description: topic.textContent?.trim() || ''
+          }))
+        },
+        projects: Array.from(doc.querySelectorAll('Projects Briefs Brief')).map(brief => ({
+          name: brief.getAttribute('name') || '',
+          task: brief.querySelector('Task')?.textContent?.trim() || '',
+          focus: brief.querySelector('Focus')?.textContent?.trim() || '',
+          criteria: brief.querySelector('Criteria')?.textContent?.trim() || '',
+          skills: Array.from(brief.querySelectorAll('Skills Skill')).map(skill => ({
+            name: skill.getAttribute('name') || '',
+            content: skill.textContent?.trim() || ''
+          })),
+          examples: Array.from(brief.querySelectorAll('Examples Example')).map(ex => ({
+            name: ex.getAttribute('name') || '',
+            content: ex.textContent?.trim() || ''
+          }))
+        })),
+        twists: Array.from(doc.querySelectorAll('Projects Twists Twist')).map(twist => ({
+          name: twist.getAttribute('name') || '',
+          task: twist.querySelector('Task')?.textContent?.trim() || '',
+          examples: Array.from(twist.querySelectorAll('Examples Example')).map(ex => ({
+            name: ex.getAttribute('name') || '',
+            content: ex.textContent?.trim() || ''
+          }))
+        })),
+        additionalSkills: Array.from(doc.querySelectorAll('AdditionalSkills Category')).map(cat => ({
+          category: cat.getAttribute('name') || '',
+          skills: Array.from(cat.querySelectorAll('Skills Skill')).map(skill => ({
+            name: skill.getAttribute('name') || '',
+            content: skill.textContent?.trim() || ''
+          }))
+        }))
+      };
+
+      return result;
+    } catch (error) {
+      console.error('Failed to parse module XML:', error);
+      return null;
+    }
   }
 
   function handleBack() {
@@ -226,8 +325,13 @@
             <!-- Module List -->
             <div class="module-list">
               {#each arc.modules as module (module.id)}
-                <div class="module-card" class:complete={module.status === 'complete'} class:error={module.status === 'error'}>
-                  <div class="module-header">
+                {@const moduleContent = module.moduleData?.xmlContent ? parseModuleXML(module.moduleData.xmlContent) : null}
+                <div class="module-card" class:complete={module.status === 'complete'} class:error={module.status === 'error'} class:expanded={expandedModuleId === module.id}>
+                  <button
+                    class="module-header"
+                    on:click={() => module.status === 'complete' && toggleModule(module.id)}
+                    disabled={module.status !== 'complete'}
+                  >
                     <div class="module-status" class:status-complete={module.status === 'complete'} class:status-error={module.status === 'error'}>
                       {#if module.status === 'complete'}
                         ✓
@@ -238,7 +342,12 @@
                       {/if}
                     </div>
                     <div class="module-info">
-                      <h5>Module {module.order}: {module.title}</h5>
+                      <div class="module-title-row">
+                        {#if module.status === 'complete'}
+                          <span class="expand-icon">{expandedModuleId === module.id ? '▼' : '▶'}</span>
+                        {/if}
+                        <h5>Module {module.order}: {module.title}</h5>
+                      </div>
                       <p class="module-description">{module.description}</p>
                       <div class="module-meta">
                         <span>{module.durationWeeks} week{module.durationWeeks !== 1 ? 's' : ''}</span>
@@ -250,20 +359,215 @@
                         {/if}
                       </div>
                     </div>
-                  </div>
+                  </button>
 
-                  {#if module.status === 'complete'}
-                    <div class="module-actions">
-                      <button
-                        class="btn btn-sm btn-secondary"
-                        on:click={() => viewModulePreview(module.id)}
-                      >
-                        View Module XML
-                      </button>
-                    </div>
-                  {:else if module.status === 'error'}
+                  {#if module.status === 'error'}
                     <div class="error-message">
                       <strong>Error:</strong> {module.errorMessage || 'Module generation failed'}
+                    </div>
+                  {/if}
+
+                  {#if module.status === 'complete' && expandedModuleId === module.id && moduleContent}
+                    <div class="module-content">
+                      <!-- Module Description -->
+                      {#if moduleContent.description}
+                        <div class="content-block">
+                          <p class="module-full-description">{moduleContent.description}</p>
+                        </div>
+                      {/if}
+
+                      <!-- Objectives Section -->
+                      {#if moduleContent.objectives.length > 0}
+                        <div class="content-section">
+                          <button
+                            class="section-toggle"
+                            on:click|stopPropagation={() => toggleModuleSection(module.id, 'objectives')}
+                          >
+                            <span class="toggle-icon">{expandedSections[module.id]?.has('objectives') ? '▼' : '▶'}</span>
+                            <h6>Learning Objectives ({moduleContent.objectives.length})</h6>
+                          </button>
+                          {#if expandedSections[module.id]?.has('objectives')}
+                            <div class="section-content">
+                              {#each moduleContent.objectives as objective}
+                                <div class="objective-item">
+                                  <strong>{objective.name}</strong>
+                                  <p>{objective.details}</p>
+                                </div>
+                              {/each}
+                            </div>
+                          {/if}
+                        </div>
+                      {/if}
+
+                      <!-- Research Topics Section -->
+                      {#if moduleContent.research.primary.length > 0}
+                        <div class="content-section">
+                          <button
+                            class="section-toggle"
+                            on:click|stopPropagation={() => toggleModuleSection(module.id, 'research')}
+                          >
+                            <span class="toggle-icon">{expandedSections[module.id]?.has('research') ? '▼' : '▶'}</span>
+                            <h6>Research Topics ({moduleContent.research.primary.length})</h6>
+                          </button>
+                          {#if expandedSections[module.id]?.has('research')}
+                            <div class="section-content">
+                              {#each moduleContent.research.primary as topic}
+                                <div class="research-item">
+                                  <strong>{topic.name}</strong>
+                                  <p>{topic.description}</p>
+                                  {#if topic.subtopics && topic.subtopics.length > 0}
+                                    <div class="subtopics">
+                                      <strong>Subtopics:</strong>
+                                      <ul>
+                                        {#each topic.subtopics as subtopic}
+                                          <li>
+                                            <strong>{subtopic.name}:</strong> {subtopic.description}
+                                          </li>
+                                        {/each}
+                                      </ul>
+                                    </div>
+                                  {/if}
+                                </div>
+                              {/each}
+                              {#if moduleContent.research.stretch.length > 0}
+                                <div class="stretch-topics">
+                                  <strong>Stretch Topics:</strong>
+                                  <ul>
+                                    {#each moduleContent.research.stretch as topic}
+                                      <li>
+                                        <strong>{topic.name}:</strong> {topic.description}
+                                      </li>
+                                    {/each}
+                                  </ul>
+                                </div>
+                              {/if}
+                            </div>
+                          {/if}
+                        </div>
+                      {/if}
+
+                      <!-- Project Briefs Section -->
+                      {#if moduleContent.projects.length > 0}
+                        <div class="content-section">
+                          <button
+                            class="section-toggle"
+                            on:click|stopPropagation={() => toggleModuleSection(module.id, 'projects')}
+                          >
+                            <span class="toggle-icon">{expandedSections[module.id]?.has('projects') ? '▼' : '▶'}</span>
+                            <h6>Project Briefs ({moduleContent.projects.length})</h6>
+                          </button>
+                          {#if expandedSections[module.id]?.has('projects')}
+                            <div class="section-content">
+                              {#each moduleContent.projects as project}
+                                <div class="project-item">
+                                  <h7>{project.name}</h7>
+                                  <p><strong>Task:</strong> {project.task}</p>
+                                  <p><strong>Focus:</strong> {project.focus}</p>
+                                  <p><strong>Criteria:</strong> {project.criteria}</p>
+                                  {#if project.skills.length > 0}
+                                    <div class="project-skills">
+                                      <strong>Skills:</strong>
+                                      <ul>
+                                        {#each project.skills as skill}
+                                          <li>
+                                            <strong>{skill.name}:</strong> {skill.content}
+                                          </li>
+                                        {/each}
+                                      </ul>
+                                    </div>
+                                  {/if}
+                                  {#if project.examples.length > 0}
+                                    <div class="project-examples">
+                                      <strong>Examples:</strong>
+                                      <ul>
+                                        {#each project.examples as example}
+                                          <li>
+                                            <strong>{example.name}:</strong> {example.content}
+                                          </li>
+                                        {/each}
+                                      </ul>
+                                    </div>
+                                  {/if}
+                                </div>
+                              {/each}
+                            </div>
+                          {/if}
+                        </div>
+                      {/if}
+
+                      <!-- Project Twists Section -->
+                      {#if moduleContent.twists.length > 0}
+                        <div class="content-section">
+                          <button
+                            class="section-toggle"
+                            on:click|stopPropagation={() => toggleModuleSection(module.id, 'twists')}
+                          >
+                            <span class="toggle-icon">{expandedSections[module.id]?.has('twists') ? '▼' : '▶'}</span>
+                            <h6>Project Twists ({moduleContent.twists.length})</h6>
+                          </button>
+                          {#if expandedSections[module.id]?.has('twists')}
+                            <div class="section-content">
+                              {#each moduleContent.twists as twist}
+                                <div class="twist-item">
+                                  <strong>{twist.name}</strong>
+                                  <p>{twist.task}</p>
+                                  {#if twist.examples.length > 0}
+                                    <div class="twist-examples">
+                                      <strong>Examples:</strong>
+                                      <ul>
+                                        {#each twist.examples as example}
+                                          <li>
+                                            <strong>{example.name}:</strong> {example.content}
+                                          </li>
+                                        {/each}
+                                      </ul>
+                                    </div>
+                                  {/if}
+                                </div>
+                              {/each}
+                            </div>
+                          {/if}
+                        </div>
+                      {/if}
+
+                      <!-- Additional Skills Section -->
+                      {#if moduleContent.additionalSkills.length > 0}
+                        <div class="content-section">
+                          <button
+                            class="section-toggle"
+                            on:click|stopPropagation={() => toggleModuleSection(module.id, 'skills')}
+                          >
+                            <span class="toggle-icon">{expandedSections[module.id]?.has('skills') ? '▼' : '▶'}</span>
+                            <h6>Additional Skills ({moduleContent.additionalSkills.length} categories)</h6>
+                          </button>
+                          {#if expandedSections[module.id]?.has('skills')}
+                            <div class="section-content">
+                              {#each moduleContent.additionalSkills as category}
+                                <div class="skills-category">
+                                  <strong>{category.category}</strong>
+                                  <ul>
+                                    {#each category.skills as skill}
+                                      <li>
+                                        <strong>{skill.name}:</strong> {skill.content}
+                                      </li>
+                                    {/each}
+                                  </ul>
+                                </div>
+                              {/each}
+                            </div>
+                          {/if}
+                        </div>
+                      {/if}
+
+                      <!-- View Raw XML Button -->
+                      <div class="module-actions">
+                        <button
+                          class="btn btn-sm btn-secondary"
+                          on:click|stopPropagation={() => viewModulePreview(module.id)}
+                        >
+                          View Raw XML
+                        </button>
+                      </div>
                     </div>
                   {/if}
                 </div>
@@ -622,8 +926,8 @@
   .module-card {
     border: 1px solid #e5e7eb;
     border-radius: 6px;
-    padding: 1rem;
-    transition: box-shadow 0.2s;
+    overflow: hidden;
+    transition: all 0.2s;
   }
 
   .module-card.complete {
@@ -636,10 +940,28 @@
     background: #fef2f2;
   }
 
+  .module-card.expanded {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
   .module-header {
+    width: 100%;
     display: flex;
     gap: 1rem;
-    margin-bottom: 0.75rem;
+    padding: 1rem;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .module-header:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .module-header:disabled {
+    cursor: default;
   }
 
   .module-status {
@@ -667,10 +989,22 @@
     flex: 1;
   }
 
+  .module-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .expand-icon {
+    font-size: 0.75rem;
+    color: #666;
+  }
+
   .module-info h5 {
     font-size: 1.1rem;
     color: #1f2937;
-    margin: 0 0 0.25rem 0;
+    margin: 0;
   }
 
   .module-description {
@@ -698,8 +1032,283 @@
     border: 1px solid #fecaca;
     border-radius: 4px;
     padding: 0.75rem;
+    margin: 0 1rem 1rem;
     color: #991b1b;
     font-size: 0.875rem;
+  }
+
+  /* Module Content */
+  .module-content {
+    padding: 0 1rem 1rem;
+    background: white;
+  }
+
+  .content-block {
+    margin-bottom: 1.5rem;
+  }
+
+  .module-full-description {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .content-section {
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .section-toggle {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: #f9fafb;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s;
+  }
+
+  .section-toggle:hover {
+    background: #f3f4f6;
+  }
+
+  .toggle-icon {
+    font-size: 0.75rem;
+    color: #666;
+  }
+
+  .section-toggle h6 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--palette-foreground);
+    font-weight: 600;
+  }
+
+  .section-content {
+    padding: 1rem;
+    background: white;
+  }
+
+  /* Objectives */
+  .objective-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .objective-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .objective-item strong {
+    display: block;
+    color: var(--palette-foreground);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .objective-item p {
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  /* Research Topics */
+  .research-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .research-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .research-item strong {
+    display: block;
+    color: var(--palette-foreground);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .research-item p {
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .subtopics {
+    margin-top: 0.75rem;
+    padding-left: 1rem;
+  }
+
+  .subtopics strong {
+    display: block;
+    color: var(--palette-foreground);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .subtopics ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.9rem;
+  }
+
+  .stretch-topics {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .stretch-topics strong {
+    display: block;
+    color: var(--palette-foreground);
+    margin-bottom: 0.5rem;
+  }
+
+  .stretch-topics ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* Projects */
+  .project-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .project-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .project-item h7 {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--palette-foreground);
+    margin-bottom: 0.75rem;
+  }
+
+  .project-item p {
+    color: #666;
+    line-height: 1.5;
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .project-skills,
+  .project-examples {
+    margin-top: 0.75rem;
+  }
+
+  .project-skills strong,
+  .project-examples strong {
+    display: block;
+    color: var(--palette-foreground);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-skills ul,
+  .project-examples ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .project-skills li,
+  .project-examples li {
+    margin-bottom: 0.25rem;
+  }
+
+  /* Twists */
+  .twist-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .twist-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .twist-item strong {
+    display: block;
+    color: var(--palette-foreground);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .twist-item p {
+    color: #666;
+    line-height: 1.5;
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .twist-item ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* Additional Skills */
+  .skills-category {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .skills-category:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .skills-category strong {
+    display: block;
+    color: var(--palette-foreground);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .skills-category ul {
+    margin: 0;
+    padding-left: 1.5rem;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .skills-category li {
+    margin-bottom: 0.25rem;
+  }
+
+  .module-actions {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
   }
 
   /* Buttons */
