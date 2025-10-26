@@ -246,13 +246,13 @@
   }
 
   .drop-zone.success {
-    border-color: #28a745;
-    background-color: #f8fff8;
+    border-color: var(--palette-foreground-alt);
+    background-color: var(--palette-bg-subtle-alt);
   }
 
   .drop-zone.error {
-    border-color: #dc3545;
-    background-color: #fff8f8;
+    border-color: var(--palette-primary);
+    background-color: var(--palette-bg-subtle-alt);
   }
 
   .drop-zone.uploading {
@@ -294,7 +294,7 @@
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    background-color: #28a745;
+    background-color: var(--palette-foreground-alt);
     color: white;
     display: flex;
     align-items: center;

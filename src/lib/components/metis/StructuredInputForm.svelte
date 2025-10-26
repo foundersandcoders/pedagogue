@@ -370,7 +370,7 @@
   }
 
   .required {
-    color: #dc3545;
+    color: var(--palette-primary);
   }
 
   .optional {
@@ -401,11 +401,11 @@
   }
 
   input.error {
-    border-color: #dc3545;
+    border-color: var(--palette-primary);
   }
 
   .error-message {
-    color: #dc3545;
+    color: var(--palette-primary);
     font-size: 0.85rem;
     margin-top: 0.25rem;
   }
@@ -455,7 +455,7 @@
 
   .add-tech-btn {
     padding: 0.75rem 1.5rem;
-    background: #28a745;
+    background: var(--palette-foreground);
     color: white;
     border: none;
     border-radius: 6px;
@@ -465,7 +465,7 @@
   }
 
   .add-tech-btn:hover:not(:disabled) {
-    background: #218838;
+    background: var(--palette-foreground-alt);
   }
 
   .add-tech-btn:disabled {
@@ -504,7 +504,7 @@
   }
 
   .remove-tech:hover {
-    color: #dc3545;
+    color: var(--palette-primary);
   }
 
   textarea {

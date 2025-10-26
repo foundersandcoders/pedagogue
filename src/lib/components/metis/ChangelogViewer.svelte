@@ -318,18 +318,18 @@
   }
 
   .confidence-high {
-    background: #d4edda;
-    color: #155724;
+    background: var(--palette-bg-subtle-alt);
+    color: var(--palette-foreground);
   }
 
   .confidence-medium {
-    background: #fff3cd;
-    color: #856404;
+    background: var(--palette-bg-subtle-alt);
+    color: var(--palette-accent);
   }
 
   .confidence-low {
-    background: #f8d7da;
-    color: #721c24;
+    background: var(--palette-bg-subtle-alt);
+    color: var(--palette-primary);
   }
 
   .change-section {
@@ -399,14 +399,14 @@
   .needs-review {
     margin-top: 1rem;
     padding: 1rem;
-    background: #fff3cd;
-    border: 1px solid #ffc107;
+    background: var(--palette-bg-subtle-alt);
+    border: 1px solid var(--palette-accent);
     border-radius: 6px;
   }
 
   .needs-review h5 {
     margin: 0 0 0.5rem 0;
-    color: #856404;
+    color: var(--palette-accent);
     font-size: 0.95rem;
   }
 
@@ -416,7 +416,7 @@
   }
 
   .needs-review li {
-    color: #856404;
+    color: var(--palette-accent);
     font-size: 0.9rem;
     margin-bottom: 0.25rem;
     font-family: "SF Mono", Consolas, monospace;

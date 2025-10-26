@@ -221,13 +221,13 @@
   }
 
   .validation-status.valid {
-    background: #d4edda;
-    border-bottom: 1px solid #c3e6cb;
+    background: var(--palette-bg-subtle-alt);
+    border-bottom: 1px solid var(--palette-line);
   }
 
   .validation-status.invalid {
-    background: #f8d7da;
-    border-bottom: 1px solid #f5c6cb;
+    background: var(--palette-bg-subtle-alt);
+    border-bottom: 1px solid var(--palette-line);
   }
 
   .status-icon {
@@ -236,11 +236,11 @@
   }
 
   .validation-status.valid .status-icon {
-    color: #155724;
+    color: var(--palette-foreground);
   }
 
   .validation-status.invalid .status-icon {
-    color: #721c24;
+    color: var(--palette-primary);
   }
 
   .status-message {
@@ -254,11 +254,11 @@
   }
 
   .validation-status.valid .status-message strong {
-    color: #155724;
+    color: var(--palette-foreground);
   }
 
   .validation-status.invalid .status-message strong {
-    color: #721c24;
+    color: var(--palette-primary);
   }
 
   .status-message p {
@@ -274,7 +274,7 @@
 
   .status-message li {
     font-size: 0.9rem;
-    color: #721c24;
+    color: var(--palette-primary);
     margin-bottom: 0.25rem;
   }
 
