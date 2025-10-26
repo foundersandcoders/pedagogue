@@ -334,7 +334,7 @@
 
   .week-summary.error {
     border-color: var(--palette-accent);
-    background: #fff5f5;
+    background: var(--palette-bg-subtle-alt);
   }
 
   .summary-item {
@@ -363,12 +363,12 @@
   }
 
   .global-error {
-    background: #f8d7da;
-    color: #721c24;
+    background: var(--palette-bg-subtle-alt);
+    color: var(--palette-primary);
     padding: 1rem;
     border-radius: 8px;
     margin-bottom: 2rem;
-    border: 1px solid #f5c6cb;
+    border: 1px solid var(--palette-line);
   }
 
   .timeline-visual {
@@ -508,7 +508,7 @@
   }
 
   .remove-btn:hover {
-    background: #f8d7da;
+    background: var(--palette-bg-subtle-alt);
   }
 
   .arc-fields {
@@ -557,7 +557,7 @@
   textarea:focus {
     outline: none;
     border-color: var(--palette-secondary);
-    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-secondary) 10%, transparent);
   }
 
   textarea {
@@ -625,7 +625,7 @@
   .submit-btn:hover {
     background: var(--palette-primary);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--palette-secondary) 30%, transparent);
   }
 
   @media (max-width: 768px) {

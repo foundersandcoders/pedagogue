@@ -51,11 +51,11 @@ All colours now flow from TypeScript palette files → Build-time generation →
 
 ## Remaining Work
 
-### Themis Components (6 files)
-- [ ] `src/lib/components/themis/CourseConfigForm.svelte`
-- [ ] `src/lib/components/themis/ArcStructurePlanner.svelte`
-- [ ] `src/lib/components/themis/ModuleStructurePlanner.svelte`
-- [ ] `src/lib/components/themis/ModuleWithinArcPlanner.svelte`
+### Themis Components (7 files)
+- [x] `src/lib/components/themis/CourseConfigForm.svelte` (2 colour values)
+- [x] `src/lib/components/themis/ArcStructurePlanner.svelte` (5 colour values)
+- [x] `src/lib/components/themis/ModuleStructurePlanner.svelte` (25 colour values)
+- [x] `src/lib/components/themis/ModuleWithinArcPlanner.svelte` (30 colour values)
 - [ ] `src/lib/components/themis/CourseStructureReview.svelte`
 - [ ] `src/lib/components/themis/ModuleGenerationList.svelte`
 - [ ] `src/lib/components/themis/CourseOverview.svelte`
@@ -74,12 +74,12 @@ All colours now flow from TypeScript palette files → Build-time generation →
 
 ## Statistics
 
-**Converted:** ~105 hardcoded colour values
-**Remaining:** ~545 hardcoded colour values (estimated)
-**Progress:** ~16% complete
+**Converted:** ~167 hardcoded colour values
+**Remaining:** ~483 hardcoded colour values (estimated)
+**Progress:** ~26% complete
 
-**Files converted:** 13/35
-**Components converted:** 4/22
+**Files converted:** 17/35
+**Components converted:** 8/22
 
 ## Common Colour Mappings Used
 

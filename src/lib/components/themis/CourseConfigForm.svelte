@@ -498,7 +498,7 @@
   textarea:focus {
     outline: none;
     border-color: var(--palette-primary);
-    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-primary) 10%, transparent);
   }
 
   input.error,
@@ -563,7 +563,7 @@
   .submit-btn:hover {
     background: var(--palette-secondary);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--palette-primary) 30%, transparent);
   }
 
   @media (max-width: 768px) {
