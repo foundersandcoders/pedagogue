@@ -61,9 +61,9 @@ All colours now flow from TypeScript palette files → Build-time generation →
 - [x] `src/lib/components/themis/CourseOverview.svelte` (9 colour values)
 
 ### Theia Components (3 files)
-- [ ] `src/lib/components/theia/CourseStructureUpload.svelte`
-- [ ] `src/lib/components/theia/ExportButton.svelte`
-- [ ] `src/lib/components/theia/ExportConfigModal.svelte`
+- [x] `src/lib/components/theia/CourseStructureUpload.svelte` (30 colour values)
+- [x] `src/lib/components/theia/ExportButton.svelte` (6 colour values)
+- [x] `src/lib/components/theia/ExportConfigModal.svelte` (40 colour values)
 
 ### Error Components (2 files)
 - [ ] `src/lib/components/errors/ErrorBoundary.svelte`

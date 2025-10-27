@@ -89,22 +89,22 @@
 
   /* Variants */
   .export-btn.primary {
-    background: #28a745;
+    background: var(--palette-foreground);
     color: white;
   }
 
   .export-btn.primary:hover:not(:disabled) {
-    background: #218838;
+    background: var(--palette-secondary);
   }
 
   .export-btn.secondary {
     background: white;
-    color: #495057;
-    border: 1px solid #dee2e6;
+    color: var(--palette-foreground);
+    border: 1px solid var(--palette-line);
   }
 
   .export-btn.secondary:hover:not(:disabled) {
-    background: #e9ecef;
+    background: var(--palette-line);
   }
 
   .icon {
