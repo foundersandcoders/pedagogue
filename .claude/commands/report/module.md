@@ -7,6 +7,6 @@ disable-model-invocation: false
 ---
 
 <ReportModule>
-  1. Analyse `docs/dev/status/$ARGUMENTS-MVP` and check it's up to date
+  1. Analyse `docs/dev/roadmap/$ARGUMENTS-MVP.md` and check it's up to date
   2. Provide the user with a summary of its content
 </ReportModule>

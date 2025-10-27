@@ -25,8 +25,8 @@ See [Anthropic's pricing](https://www.anthropic.com/pricing) for current rates.
 ### 2. Clone and Install
 
 ```bash
-git clone https://github.com/your-org/pedagogue.git
-cd pedagogue
+git clone https://github.com/foundersandcoders/rhea.git
+cd rhea
 npm install
 ```
 
@@ -285,8 +285,8 @@ Less important for:
 
 - **Generate a course:** Try the Course Builder for multi-module courses
 - **Explore the codebase:** See `/docs/technical-overview.md`
-- **Read about the project:** See `/docs/about-rhea.md`
-- **Report issues:** [GitHub Issues](https://github.com/your-org/pedagogue/issues)
+- **Read about the project:** See `/docs/About-Rhea.md`
+- **Report issues:** [GitHub Issues](https://github.com/foundersandcoders/rhea/issues)
 
 ## Production Deployment
 

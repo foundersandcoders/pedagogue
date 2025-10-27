@@ -6,7 +6,7 @@
 
 ## 1. Tasks
 > [!NOTE]
-> This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmaps/Mnemosyne-MVP.md#2-mvp-milestones)
+> This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmap/Mnemosyne-MVP.md#2-mvp-milestones)
 
 ### 1.1. Open Tasks
 

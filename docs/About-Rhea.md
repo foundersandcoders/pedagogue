@@ -73,19 +73,22 @@ Both workflows enforce rigour through structured inputs. No rambling chat – cl
 
 **What's Planned:**
 
-- **Individual module generation in Themis**: Currently generates course structure; needs module-level generation
+- **Course XML schema and validation**: Define course-level XML schema wrapping multiple modules
 - **Tethys arc management**: Standalone arc creation and editing between course and module levels
 - **Diff views**: Side-by-side comparison for reviewing AI-proposed updates
 - **Provenance tracking UI**: Visual representation of change history and confidence levels
 - **Module XML upload in Theia**: Currently supports JSON course upload; module XML upload planned for Q1 2026
+- **Dark mode**: User-selectable light/dark/system theme with dark palettes
 
 **Recently Completed:**
 
-- **Theia content management** (Oct 2025): Upload/resume workflows, JSON export, round-trip capability
+- **Themis complete module generation workflow** (Oct 2025-10-25): End-to-end course generation with ModuleGenerationList (897 lines), course-aware API endpoint (193 lines), CourseOverview (1462 lines), SSE streaming
+- **Rhea palette system overhaul** (Oct 2025-10-25): Single source of truth at `src/lib/config/palettes/`, build-time CSS generation, 56 files converted
+- **Theia content management** (Oct 2025-10-24): Upload/resume workflows, JSON export, round-trip capability
 - **Themis arc-based structure** (Oct 2025): Six-step workflow with thematic organizational layer
-- **Architectural refactoring** (Oct 2025): Factories, utilities, centralized configurations
+- **Architectural refactoring** (Oct 2025-10-20): Factories, utilities, centralized configurations (670+ lines eliminated)
 
-The core intelligence is working. Research, generation, validation – all functional. Theia provides content management and export. The gap is completing Themis module generation and review tooling.
+The core intelligence is working. Research, generation, validation – all functional. Themis now provides complete end-to-end course generation from configuration through module generation to export. Theia provides content management and export with round-trip capability.
 
 ## Why This Approach Is Actually Clever
 

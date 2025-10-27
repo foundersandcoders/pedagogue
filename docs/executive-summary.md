@@ -37,7 +37,8 @@ Rhea has two main workflows:
 3. Module organisation within arcs
 4. Structure review before generation
 5. AI generation of detailed course structure
-6. Export options for further refinement
+6. Course-aware module generation with real-time progress tracking
+7. Export complete courses (Markdown, HTML, or JSON)
 
 Both workflows enforce rigour through structured inputs – clear questions with specific answers, not rambling chat.
 

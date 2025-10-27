@@ -7,6 +7,6 @@ disable-model-invocation: false
 ---
 
 <ReportProject>
-  1. Analyse all files `docs/dev/status`
+  1. Analyse all files in `docs/dev/roadmap/`
   2. Provide the user with a detailed report on the current state of the project, organised in sections
 </ReportProject>

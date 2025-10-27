@@ -4,16 +4,16 @@
 
 ## 1. Tasks
 > [!NOTE]
-> This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmaps/Theia-MVP.md#2-mvp-milestones)
+> This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmap/Theia-MVP.md#2-mvp-milestones)
 
 ### 1.1. Open Tasks
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
-[ ] 1.1.2.1. When file is uploaded, UI should navigate to correct step automatically
-[ ] 1.1.2.2. Add PDF export format (currently marked "coming soon" in UI)
-[ ] 1.1.2.3. Add export analytics/usage tracking
-[ ] 1.1.2.4. Implement Module XML upload & workflow resume functionality (see section 2.1.1)
+- [ ] 1.1.2.2. Add PDF export format (currently marked "coming soon" in UI)
+- [ ] 1.1.2.3. Add export analytics/usage tracking
+- [ ] 1.1.2.4. Implement Module XML upload & workflow resume functionality (see section 2.1.1)
+  - Note: JSON course upload is complete; Module XML upload deferred to XML phase
 
 ### 1.2. Blocked Tasks
 
@@ -80,26 +80,26 @@
 ## 3. Beyond MVP: Future Features
 
 ### 3.1. Export Formats
-[ ] PDF generation with custom styling
-[ ] JSON export for programmatic consumption
-[ ] LaTeX export for academic publications
+- [ ] PDF generation with custom styling
+- [ ] JSON export for programmatic consumption
+- [ ] LaTeX export for academic publications
 
 ### 3.2. Advanced Configuration
-[ ] Custom CSS themes for HTML export
-[ ] Export presets (save/load configurations)
-[ ] Batch export (multiple modules/courses)
+- [ ] Custom CSS themes for HTML export
+- [ ] Export presets (save/load configurations)
+- [ ] Batch export (multiple modules/courses)
 
 ### 3.3. Upload & Management Enhancements
-[ ] Batch upload (multiple XML files)
-[ ] Upload history and management UI
-[ ] Version comparison between uploads
-[ ] In-app XML editing before workflow continuation
-[ ] Cloud storage integration
+- [ ] Batch upload (multiple XML files)
+- [ ] Upload history and management UI
+- [ ] Version comparison between uploads
+- [ ] In-app XML editing before workflow continuation
+- [ ] Cloud storage integration
 
 ### 3.4. Collaboration Features
-[ ] Share export links
-[ ] Collaborative annotations
-[ ] Version comparison exports
+- [ ] Share export links
+- [ ] Collaborative annotations
+- [ ] Version comparison exports
 
 ---
 
@@ -205,7 +205,12 @@ Implemented comprehensive content preview and export system:
 #### 4.2.1. Record of Past Deadlines
 
 #### 4.2.2. Record of Other Completed Tasks
-[x] Create reusable content preview exporter (2025-10-23)
+- [x] 1.1.2.1. When file is uploaded, UI should navigate to correct step automatically ✅ COMPLETED
+  - CourseStructureUpload.svelte (lines 123-127) dispatches `courseUploaded` event with course data
+  - Parent component auto-redirects after successful JSON validation
+  - Button text dynamically changes: "Preview & Export" vs "Continue in Themis" based on completion status
+  - Round-trip workflow: Export from Themis → Upload to Theia → Continue in Themis
+- [x] Create reusable content preview exporter (2025-10-23)
     - Maps XML schema to typography layout
     - Supports Themis and Metis content
     - Configurable detail levels

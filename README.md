@@ -27,7 +27,8 @@ Rhea can use web search to ensure your curriculum reflects current industry prac
       <li>Thematic arcs organizing related modules</li>
       <li>Learning progression across modules</li>
       <li>Course-level narratives and structure</li>
-      <li>Individual module generation (coming soon)</li>
+      <li>Course-aware individual module generation</li>
+      <li>Real-time generation progress tracking</li>
     </ul>
   </div>
 </details>
@@ -126,9 +127,9 @@ Open **http://localhost:5173** to start using Rhea.
       <li>Plan thematic arcs</li>
       <li>Organize modules within arcs</li>
       <li>AI generates detailed structure</li>
-      <li>Review and refine</li>
-      <li>Export course overview or structure (JSON for re-upload)</li>
-      <li>Generate individual modules (coming soon)</li>
+      <li>Review and refine structure</li>
+      <li>Generate individual modules with course context</li>
+      <li>Export complete course (Markdown, HTML, or JSON)</li>
     </ol>
   </div>
 </details>
@@ -256,10 +257,11 @@ Open **http://localhost:5173** to start using Rhea.
 
 ### 5.3. For Contributors
 
-- <a href="/docs/dev/roadmaps/">Roadmaps</a> - Feature status and priorities
-  - <a href="/docs/dev/roadmaps/Rhea-MVP.md">Rhea Roadmap</a>
-    - <a href="/docs/dev/roadmaps/mvp-modules/Metis-MVP.md">Metis Roadmap</a>
-    - <a href="/docs/dev/roadmaps/mvp-modules/Themis-MVP.md">Themis Roadmap</a>
+- <a href="/docs/dev/roadmap/">Roadmaps</a> - Feature status and priorities
+  - <a href="/docs/dev/roadmap/Rhea-MVP.md">Rhea Roadmap</a>
+  - <a href="/docs/dev/roadmap/Metis-MVP.md">Metis Roadmap</a>
+  - <a href="/docs/dev/roadmap/Themis-MVP.md">Themis Roadmap</a>
+  - <a href="/docs/dev/roadmap/Theia-MVP.md">Theia Roadmap</a>
 - <a href="/CLAUDE.md">CLAUDE.md</a> - AI assistant guidance
 
 ---

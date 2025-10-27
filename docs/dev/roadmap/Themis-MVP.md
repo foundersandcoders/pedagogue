@@ -2,15 +2,15 @@
 
 ## 1. Tasks
 > [!NOTE]
-> This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmaps/Themis-MVP.md#2-mvp-milestones)
+> This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmap/Themis-MVP.md#2-mvp-milestones)
 
 ### 1.1. Open Tasks
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
-[ ] 1.1.2.1. Create a milestoning system in the structure outline
+- [ ] 1.1.2.1. Create a milestoning system in the structure outline
   - 1.1.2.1.1. e.g. "by this module, users should be able to do `xyz`"
-[ ] 1.1.2.2. Replace mandatory arc & modules literal input fiels with literal/prompt/undefined input fields
+- [ ] 1.1.2.2. Replace mandatory arc & modules literal input fiels with literal/prompt/undefined input fields
   - 1.1.2.2.1. currently, required fields are inserted into the final output as literals
   - 1.1.2.2.2. this requires the user to already know what they want; more importantly, the AI model uses this input to generate content
   - 1.1.2.2.3. this undermines a core purpose of the app: curriculum generation by non-experts
@@ -18,53 +18,53 @@
     - 1.1.2.2.4.1. the existing literal value (e.g. "use exactly this input as the module name")
     - 1.1.2.2.4.2. a prompt value (e.g. "generate a module name based on my input")
     - 1.1.2.2.4.3. an undefined value ("use the content of the previous module, subsequent module and parent arc to generate a coherent module name")
-[ ] 1.1.2.3. Ensure "suggest structure" respects time constraints
-[ ] 1.1.2.4. Create "progression type" option
+- [ ] 1.1.2.3. Ensure "suggest structure" respects time constraints
+- [ ] 1.1.2.4. Create "progression type" option
   - 1.1.2.4.1. This can apply at the `course -> arc` level and/or the `arc -> module` level
   - 1.1.2.4.2. It defines the relationship between sibling-level content within a parent unit
   - 1.1.2.4.3. Types include:
     - 1.1.2.4.3.1. **Sequential:** `parent[x].unit[x]` directly builds on knowledge acquired in `parent[x].unit[x-1]`
     - 1.1.2.4.3.2. **Progressive:** `parent[x].unit[x]` does not necessarily directly build on knowledge acquired in `parent[x].unit[x-1]`, but is more advanced on average
     - 1.1.2.4.3.3. **Parallel:** `parent[x].unit[x]` does not directly build on knowledge acquired in `parent[x].unit[x-1]`; it tackles an alternate approach or parallel aspect to the focus of `parent[x]`
-[ ] 1.1.2.5. Allow "invisible" arcs
+- [ ] 1.1.2.5. Allow "invisible" arcs
   - 1.1.2.5.1. Arcs can be defined as consisting of exactly 1 module each
   - 1.1.2.5.2. In this scenario, the UI should obscure any reference to Arcs whilst still preserving them in the data structure
-[ ] 1.1.2.6. `ModuleGenerationList.svelte` is 895 lines; split it into smaller components:
+- [ ] 1.1.2.6. `ModuleGenerationList.svelte` is 895 lines; split it into smaller components:
   - 1.1.2.6.1. `ArcSection.svelte`: arc header + module list
   - 1.1.2.6.2. `ModuleCard.svelte`: individual module with status/actions
   - 1.1.2.6.3. `ModulePreviewModal.svelte`: preview functionality
   - 1.1.2.6.4. `ProgressSummary.svelte`: statistics and progress bar
-[ ] 1.1.2.7. Fix Duplicate Store Updates
+- [ ] 1.1.2.7. Fix Duplicate Store Updates
   - 1.1.2.7.1. The pattern of finding and updating modules is repeated multiple times
     - 1.1.2.7.1.1. lines 74-82
     - 1.1.2.7.1.2. lines 195-211
     - 1.1.2.7.1.3. lines 221-236
   - 1.1.2.7.2.Extract to a utility
-[ ] 1.1.2.8. Timeout values (`src/routes/api/themis/module/+server.ts:52`) should be extracted to constants
-[ ] 1.1.2.9. Fix Race Condition in SSE Stream Cleanup
+- [ ] 1.1.2.8. Timeout values (`src/routes/api/themis/module/+server.ts:52`) should be extracted to constants
+- [ ] 1.1.2.9. Fix Race Condition in SSE Stream Cleanup
   - 1.1.2.9.1. In `ModuleGenerationList.svelte:160-162`, the reader is removed from `activeReaders` in a `finally` block but, if `onDestroy` runs concurrently with a completing stream, the `reader.cancel()` call might fail or leave streams in an inconsistent state.
-[ ] 1.1.2.10. Fix SSE Parsing Vulnerability
+- [ ] 1.1.2.10. Fix SSE Parsing Vulnerability
   - 1.1.2.10.1. `JSON.parse(line.slice(6))` will throw if the server sends malformed JSON. This could crash the entire generation flow.
-[ ] 1.1.2.11. Fix Missing Error Handling in `generateAll`
+- [ ] 1.1.2.11. Fix Missing Error Handling in `generateAll`
   - 1.1.2.11.1. Line 265-267: The function continues generating after errors without checking if a critical failure occurred.
   - 1.1.2.11.2. If the API endpoint is down, it will attempt to generate all remaining modules.
-[ ] 1.1.2.12. Create a more elegant module generation flow
+- [ ] 1.1.2.12. Create a more elegant module generation flow
   - 1.1.2.12.1. The `generateAll` function (line 261) generates modules sequentially with await
   - 1.1.2.12.2. For courses with many modules, this could take hours.
   - 1.1.2.12.3. We need to concoct a way of preserving sequential coherence whilst reducing this burden
   - 1.1.2.12.4. One approach could be to begin generating `module[x]` after the initial overview details of `module[x-1]` are completed but before the detailed Project Briefs etc have completed
-[ ] 1.1.2.13. Optimise `ModuleGenerationList` Re-render
+- [ ] 1.1.2.13. Optimise `ModuleGenerationList` Re-render
   - 1.1.2.13.1. Each store update triggers re-render of the entire ModuleGenerationList. With 20+ modules, this could feel sluggish.
   - 1.1.2.13.2. We could use `{#key moduleId}` blocks or extract `ModuleCard` to a separate component with `export let module` to leverage Svelte's granular reactivity.
-[ ] 1.1.2.14. Improve handling of bullet lists within modules in `CourseOverview`
+- [ ] 1.1.2.14. Improve handling of bullet lists within modules in `CourseOverview`
 
 ### 1.2. Blocked Tasks
 
 ---
 
 ## 2. MVP Milestones
-- [x] 2.1. Build ModuleGenerationList Component (Step 5) ✅ COMPLETED
-  - Created `src/lib/components/themis/ModuleGenerationList.svelte`
+- [x] 2.1. Build ModuleGenerationList Component (Step 5) ✅ COMPLETED (2025-10-25)
+  - Created `src/lib/components/themis/ModuleGenerationList.svelte` (897 lines)
   - Displays all modules from refined course structure
   - Module-by-module generation using existing module workflow
   - Tracks generation status per module (planned, generating, complete, error)
@@ -72,21 +72,21 @@
   - Progress tracking across all modules with SSE streaming
   - Integrated ExportButton for early course exports
   - **Status:** Complete - orchestrates actual content generation using proven module generator
-- [x] 2.2. Create /api/themis/module Endpoint ✅ COMPLETED
-  - Created `src/routes/api/themis/module/+server.ts`
+- [x] 2.2. Create /api/themis/module Endpoint ✅ COMPLETED (2025-10-25)
+  - Created `src/routes/api/themis/module/+server.ts` (193 lines)
   - Accepts module slot data with course context
   - Calls existing module generation logic with course-aware prompts
   - Returns XML module spec via SSE streaming
   - Supports retry logic and validation
   - **Status:** Complete - API layer for course-aware module generation
-- [x] 2.3. Extend Module Generation with Course Context ✅ COMPLETED
+- [x] 2.3. Extend Module Generation with Course Context ✅ COMPLETED (2025-10-25)
   - Added `buildCourseAwareModulePrompt()` to metisPromptFactory
   - Includes course narrative, arc progression, and preceding modules in prompts
   - Maintains backward compatibility with standalone module generation
   - XML injection prevention via escapeXml utilities
   - **Status:** Complete - reuses existing module generation with course awareness
 - [x] 2.4. Build CourseOverview Component (Step 6) ✅ COMPLETED (2025-10-25)
-  - Created `src/lib/components/themis/CourseOverview.svelte`
+  - Created `src/lib/components/themis/CourseOverview.svelte` (1462 lines)
   - Displays complete course with metadata, narratives, and all generated modules
   - Arc-grouped collapsible sections with module previews
   - Module XML preview modal
@@ -114,23 +114,23 @@
 ---
 
 ## 3. Beyond MVP: Future Features
-[ ] 3.1. PDF export for complete courses
-[ ] 3.2. Course templates library
-[ ] 3.3. Import existing courses for modification
-[ ] 3.4. Collaborative course editing (multi-user)
-[ ] 3.5. Version comparison for courses
+- [ ] 3.1. PDF export for complete courses
+- [ ] 3.2. Course templates library
+- [ ] 3.3. Import existing courses for modification
+- [ ] 3.4. Collaborative course editing (multi-user)
+- [ ] 3.5. Version comparison for courses
 
 ---
 
 ## 4. Work Record
 ### 4.1. Completed Milestones
-[x] 4.1. Create Hub Dashboard and Navigation Structure ✅ COMPLETED
+- [x] 4.1. Create Hub Dashboard and Navigation Structure ✅ COMPLETED
   - Created hub dashboard at `/` with cards for "Generate Module" and "Generate Course"
   - Moved existing module generator to `/module/new`
   - Added breadcrumb navigation in layout for all routes
   - Hub-based architecture allows parallel workflows
   - **Why first:** Foundation for organizing module vs. course workflows
-[x] 4.2. Create Course Types and Stores ✅ COMPLETED
+- [x] 4.2. Create Course Types and Stores ✅ COMPLETED
   - Defined TypeScript interfaces in `src/lib/types/course.ts`
   - CourseData interface with logistics, learners, structure, and modules
   - ModuleSlot interface with status tracking, objectives, topics
@@ -138,14 +138,14 @@
   - Auto-save to localStorage on course changes
   - Derived stores for computed values (totalModuleWeeks)
   - **Why second:** Type-safe state management for course workflow
-[x] 4.3. Build CourseConfigForm Component (Step 1) ✅ COMPLETED
+- [x] 4.3. Build CourseConfigForm Component (Step 1) ✅ COMPLETED
   - Created `src/lib/course/CourseConfigForm.svelte`
   - Comprehensive form with course identity, logistics, learner configuration
   - Validation for all inputs (weeks, cohort size, dates, etc.)
   - Disabled SSR for localStorage compatibility
   - Reactive statements ensure nested objects exist before access
   - **Why third:** User input collection for course parameters
-[x] 4.4. Build ModuleStructurePlanner Component (Step 2) ✅ COMPLETED
+- [x] 4.4. Build ModuleStructurePlanner Component (Step 2) ✅ COMPLETED
   - Created `src/lib/course/ModuleStructurePlanner.svelte`
   - Visual timeline bar showing proportional week allocation
   - Add/remove modules with validation
@@ -153,14 +153,14 @@
   - Week budget tracking with overflow detection
   - Module ordering and duration management
   - **Why third:** High-level course structure before AI generation
-[x] 4.5. Create /api/course/structure Endpoint ✅ COMPLETED
+- [x] 4.5. Create /api/course/structure Endpoint ✅ COMPLETED
   - Created `src/routes/api/course/structure/+server.ts`
   - Uses Claude Sonnet 4.5 to generate detailed module structure
   - Accepts course parameters and module skeleton
   - Returns course narrative, module objectives/topics, progression narrative
   - Web search tool integration for research
   - **Why third:** AI-powered course structure generation
-[x] 4.6. Build CourseStructureReview Component (Step 3) ✅ COMPLETED
+- [x] 4.6. Build CourseStructureReview Component (Step 3) ✅ COMPLETED
   - Created `src/lib/course/CourseStructureReview.svelte`
   - Auto-generation on component mount
   - Loading state with spinner during 30-60 second generation
@@ -170,7 +170,7 @@
   - Regenerate button for fresh AI suggestions
   - Saves refined data back to course store
   - **Why third:** Review and refine AI-generated course structure before module generation
-[x] 4.7. Reimplement the Module Overview Generation Based on Thematic Arcs ✅ COMPLETED
+- [x] 4.7. Reimplement the Module Overview Generation Based on Thematic Arcs ✅ COMPLETED
   - Introduced "arcs" as thematic organizational layer between courses and modules
   - Created Arc interface with theme, arcThemeNarrative, and arcProgressionNarrative fields
   - Built ArcStructurePlanner component for defining broad thematic arcs
@@ -181,14 +181,14 @@
   - Implemented backward compatibility migration for existing module-only courses
   - Arcs support thematic independence with temporal sequencing
   - **Why completed:** Arcs provide the thematic organizational structure needed for coherent course narratives while maintaining module-level detail
-[x] 4.8. Add localStorage Persistence ✅ COMPLETED
+- [x] 4.8. Add localStorage Persistence ✅ COMPLETED
   - Auto-save course progress to localStorage ✅
   - Restore course on page reload ✅
   - "Clear course" functionality ✅
   - Save/load multiple courses ✅
   - **Completed:** Implemented via `persistedStore()` utility in refactoring Phase 4
   - **Location:** `src/lib/stores/themisStores.ts` using `src/lib/utils/state/persistenceUtils.ts`
-[x] 4.9. Complete Module Generation Workflow (Steps 5-6) ✅ COMPLETED (2025-10-25)
+- [x] 4.9. Complete Module Generation Workflow (Steps 5-6) ✅ COMPLETED (2025-10-25)
   - **Step 5 - Module Generation:**
     - ModuleGenerationList component with arc-grouped display
     - SSE streaming for real-time generation feedback

@@ -12,9 +12,8 @@
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
-
-[ ] 1.1.2.1. Steer model towards British English in content generation
-[ ] 1.1.2.2. Add dark mode to UI
+- [ ] 1.1.2.1. Steer model towards British English in content generation
+- [ ] 1.1.2.2. Add dark mode to UI
   - Should allow user to select light, dark or system
   - requires generating dark palettes for each workflow
 
@@ -23,8 +22,7 @@
 ---
 
 ## 2. MVP Milestones
-
-[x] 2.1. Overhaul palette system ✅ COMPLETED (2025-10-25)
+- [x] 2.1. Overhaul palette system ✅ COMPLETED (2025-10-25)
   - **Branch:** `ui/palette-refactor`
   - **Summary:** Complete refactor of palette system to eliminate duplication and establish single source of truth
   - [x] 2.1.1. Rationalise palette application and reference
@@ -58,7 +56,7 @@
 
 ### 4.1. Completed Milestones
 
-[x] 4.1.1. Architectural Refactoring (2025-10-20) ✅ COMPLETED
+- [x] 4.1.1. Architectural Refactoring (2025-10-20) ✅ COMPLETED
   - **Branch:** `feat/new-course-generation`
   - **Commits:** `fea0d91` through `496d44f`
   - **Documentation:** See `/docs/refactoring-progress.md` for comprehensive details
@@ -90,9 +88,9 @@
 
 #### 4.2.2. Record of Other Completed Tasks
 
-[x] Create an xml output sanitiser
+- [x] Create an xml output sanitiser
   - Completed via xmlCleaner.ts and responseParser.ts
-[x] Create colour palettes for Rhea, Themis, Tethys, Metis, and Theia based on their icons
+- [x] Create colour palettes for Rhea, Themis, Tethys, Metis, and Theia based on their icons
   - Initial implementation: `src/lib/styles/palettes.css` (2025-10-23)
   - Branch: `ui/module-palettes` (merged via PR #15)
   - Implemented dynamic palette system with CSS custom properties

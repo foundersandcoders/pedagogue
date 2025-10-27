@@ -2,28 +2,26 @@
 
 ## 1. Tasks
 > [!NOTE]
-> This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmaps/Metis-MVP.md#2-mvp-milestones)
+> This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmap/Metis-MVP.md#2-mvp-milestones)
 
 ### 1.1. Open Tasks
 
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
-[ ] 1.1.2.1. Add boilerplate module text after generation
-[ ] 1.1.2.2. Display streaming response in UI via a scrolling/ephemeral window
-[ ] 1.1.2.3. Update generation UI for `/metis/update` to echo layout used in `/themis/generate` module generator
+- [ ] 1.1.2.1. Add boilerplate module text after generation
 
 ### 1.2. Blocked Tasks
 
 ---
 
 ## 2. MVP Milestones
-[ ] 2.10. Implement Cascade Updates for Subsequent Modules
-  - 2.10.1. Check for information in [About Rhea]()
-  - 2.10.2. Check for information in [Executive Summary]()
+- [ ] 2.10. Implement Cascade Updates for Subsequent Modules
+  - 2.10.1. Check for information in [About Rhea](docs/About-Rhea.md)
+  - 2.10.2. Check for information in [Executive Summary](docs/Executive-Summary.md)
   - 2.10.3. Work with the user to define this feature
   - 2.10.4. Record decisions in documentation
-[ ] 2.11. Session Persistence
+- [ ] 2.11. Session Persistence
   - 2.11.1. localStorage for progress backup
   - 2.11.2. Restore on page load with confirmation
   - 2.11.3. "Clear session" button
@@ -31,15 +29,15 @@
 ---
 
 ## 3. Beyond MVP: Future Features
-[ ] Comparison view (original vs. generated with diff)
-[-] Update confidence scoring
-[ ] Multiple generation variants
-[ ] Template management
-[ ] Version history tracking
-[ ] Staleness (time since human review) tracking
-[-] Collaborative editing
-[ ] Update documentation to address developers (rather than just users)
-[ ] Add ability to upload previous modules for context on learners' existing knowledge
+- [ ] Comparison view (original vs. generated with diff)
+- [-] Update confidence scoring
+- [ ] Multiple generation variants
+- [ ] Template management
+- [ ] Version history tracking
+- [ ] Staleness (time since human review) tracking
+- [-] Collaborative editing
+- [ ] Update documentation to address developers (rather than just users)
+- [ ] Add ability to upload previous modules for context on learners' existing knowledge
     - Strip boilerplate from uploads from previous modules before sending prompt
 
 ---
@@ -115,6 +113,20 @@
 #### 4.2.1. Record of Past Deadlines
 
 #### 4.2.2. Record of Other Completed Tasks
+
+- [x] 1.1.2.2. Display streaming response in UI via a scrolling/ephemeral window ✅ COMPLETED
+  - SSE (Server-Sent Events) implementation with `progressMessages` array
+  - Real-time streaming feedback in `.progress-log` component (src/routes/metis/update/+page.svelte:710-719)
+  - Color-coded messages by type (info, success, warning, error) with appropriate icons
+  - Handles event types: connected, progress, content, validation_started, validation_success, validation_failed, complete, error
+  - Shows validation attempts and retry information
+- [x] 1.1.2.3. Update generation UI for `/metis/update` to echo layout used in `/themis/generate` ✅ COMPLETED
+  - Multi-step workflow pattern with horizontal progress bar (src/routes/metis/update/+page.svelte:285-296)
+  - Three steps: "Upload Files" → "Add Context" → "Generate Module"
+  - Step indicators with completion status (completed steps show reduced opacity)
+  - Active step highlighted with full opacity
+  - Automatic step advancement when conditions met
+  - Consistent visual pattern with Themis six-step workflow
 
 ##### 4.2.2.1. Metis Documentation
 - [x] Add instructions for including an Anthropic API key in `README.md`

@@ -47,8 +47,8 @@
 ### 2.2. Workflow Modules
 
 #### 2.2.1. Themis: Course Builder
-<details><summary>Status: ~60% MVP</summary>
-  <p>Structure complete, module generation pending</p>
+<details><summary>Status: ~95% MVP ✅</summary>
+  <p>End-to-end workflow complete, polish pending</p>
 </details>
 
 <details><summary>Implemented</summary>
@@ -58,17 +58,19 @@
     <li>✅ AI structure generation with web research integration</li>
     <li>✅ Structure review interface with editable narratives</li>
     <li>✅ <code>localStorage</code> persistence for auto-save/restore</li>
-    <li>📋 Module generation orchestration (6 remaining milestones - critical path)</li>
-    <li>📋 Course XML schema and export functionality</li>
+    <li>✅ Module generation orchestration (ModuleGenerationList, 897 lines)</li>
+    <li>✅ Course-aware module generation API endpoint (193 lines)</li>
+    <li>✅ Course context integration in prompt factory</li>
+    <li>✅ CourseOverview component for final review and export (1462 lines)</li>
+    <li>📋 Course XML schema and export functionality (pending)</li>
   </ul>
 </details>
 
 <details><summary>Next Up</summary>
-  <h5>Module Generation Workflow</h5>
   <ul>
-    <li><code>ModuleGenerationList</code> component</li>
-    <li>course-aware API endpoint</li>
-    <li><code>CourseOverview</code> export interface</li>
+    <li>Course XML schema validation</li>
+    <li>Module-to-module coherence improvements</li>
+    <li>UI polish and dark mode</li>
   </ul>
 </details>
 
@@ -195,11 +197,11 @@
 > [!NOTE]
 > The 5 most significant or important tasks to tackle next.
 
-1. **[Build `ModuleGenerationList` Component](Themis-MVP.md#17-build-modulegenerationlist-component-step-4--pending)** (Themis 1.7) - Module-by-module generation orchestration UI
-2. **[Create `/api/themis/module/generate` Endpoint](Themis-MVP.md#18-create-apithemismodulegenerate-endpoint--pending)** (Themis 1.8) - API layer for course-aware module generation
-3. **[Extend Module Generation with Course Context](Themis-MVP.md#19-extend-module-generation-with-course-context--pending)** (Themis 1.9) - Modify prompt factories for course-aware generation (may require Metis updates)
-4. **[Build `CourseOverview` Component](Themis-MVP.md#110-build-courseoverview-component-step-5--pending)** (Themis 1.10) - Final review interface and export functionality trigger
-5. **[Steer Claude towards British English](Rhea-MVP.md#112-other-tasks)** (Rhea) - Ensure all AI-generated content uses British spellings and phrasing
+1. **[Steer Claude towards British English](Rhea-MVP.md#112-other-tasks)** (Rhea 1.1.2.1) - Ensure all AI-generated content uses British spellings and phrasing
+2. **[Add Course XML Schema and Validator](Themis-MVP.md#2-mvp-milestones)** (Themis 2.6) - Define course-level XML schema wrapping multiple modules
+3. **[Implement Export Functionality](Themis-MVP.md#2-mvp-milestones)** (Themis 2.7) - XML export for complete course (Theia integration)
+4. **[Radically improve module-to-module coherence](Themis-MVP.md#2-mvp-milestones)** (Themis 2.5) - Insert interstitial step for generating module overviews first
+5. **[Add Dark Mode to UI](Rhea-MVP.md#112-other-tasks)** (Rhea 1.1.2.2) - User-selectable light/dark/system theme with dark palettes
 
 ---
 
@@ -207,9 +209,9 @@
 > [!NOTE]
 > 6 most recent achievements in this codebase
 
-1. **[Theia: Course Structure Upload (JSON)](Theia-MVP.md#412-course-structure-upload-json--completed-2025-10-24)** (2025-10-24) - Complete JSON upload workflow with validation, drag-and-drop interface, and round-trip capability (Themis → export → upload → continue). Theia branding with magenta/cyan palette integrated across platform (2,417 lines)
-2. **[Theia: Content Preview & Export complete](Theia-MVP.md#411-core-export-functionality--completed-2025-10-23)** (2025-10-23) - Production-ready export system with Markdown/HTML/JSON formats, configurable detail levels, and selective section export (2,813 lines)
-3. **[Workflow colour palettes complete](Rhea-MVP.md#422-record-of-other-completed-tasks)** (2025-10-23/24) - Dynamic palette system with CSS custom properties for all five workflows: Rhea, Themis, Tethys, Metis, and Theia
-4. **[Themis arc-based structure complete](Themis-MVP.md#47-reimplement-the-module-overview-generation-based-on-thematic-arcs--completed)** - Six-step workflow with thematic organizational layer between courses and modules
+1. **[Themis: Complete Module Generation Workflow](Themis-MVP.md#49-complete-module-generation-workflow-steps-5-6--completed-2025-10-25)** (2025-10-25) - End-to-end course generation complete: ModuleGenerationList (897 lines), course-aware API endpoint (193 lines), CourseOverview (1462 lines), SSE streaming, and Theia export integration
+2. **[Rhea: Palette System Overhaul](Rhea-MVP.md#21-overhaul-palette-system--completed-2025-10-25)** (2025-10-25) - Complete refactor establishing single source of truth at `src/lib/config/palettes/`, build-time CSS generation, 56 files converted, 2,817 insertions
+3. **[Theia: Course Structure Upload (JSON)](Theia-MVP.md#412-course-structure-upload-json--completed-2025-10-24)** (2025-10-24) - Complete JSON upload workflow with validation, drag-and-drop interface, and round-trip capability (Themis → export → upload → continue). Theia branding with magenta/cyan palette (2,417 lines)
+4. **[Theia: Content Preview & Export complete](Theia-MVP.md#411-core-export-functionality--completed-2025-10-23)** (2025-10-23) - Production-ready export system with Markdown/HTML/JSON formats, configurable detail levels, and selective section export (2,813 lines)
 5. **[Architectural refactoring complete](Rhea-MVP.md#411-architectural-refactoring-2025-10-20--completed)** (2025-10-20) - 670+ lines eliminated via factories, utilities, and centralized configurations
-6. **[Themis `localStorage` persistence](Themis-MVP.md#48-add-localstorage-persistence--completed)** - Auto-save course progress via `persistedStore()` utility
+6. **[Themis arc-based structure complete](Themis-MVP.md#47-reimplement-the-module-overview-generation-based-on-thematic-arcs--completed)** - Six-step workflow with thematic organizational layer between courses and modules

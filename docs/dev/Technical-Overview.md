@@ -68,14 +68,18 @@ pedagogue/
 3. Plan modules within each arc
 4. AI generates detailed structure
 5. Review and refine structure
-6. Generate individual modules (not yet implemented)
-7. Export complete course (not yet implemented)
+6. Generate individual modules with course context
+7. Export complete course (Markdown, HTML, or JSON)
 
 **Implementation:**
 - UI: `src/routes/themis/generate/+page.svelte`
-- API: `src/routes/api/themis/generate/+server.ts`
+- API Structure: `src/routes/api/themis/generate/+server.ts`
+- API Module: `src/routes/api/themis/module/+server.ts` (193 lines)
 - Prompt: `src/lib/factories/prompts/themisPromptFactory.ts`
+- Course-aware prompt: `buildCourseAwareModulePrompt()` in `metisPromptFactory.ts`
 - Components: `src/lib/components/themis/`
+  - `ModuleGenerationList.svelte` (897 lines) - Module generation orchestration
+  - `CourseOverview.svelte` (1462 lines) - Final review and export
 
 ### Content Manager & Exporter (Theia)
 
