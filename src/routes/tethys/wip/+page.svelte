@@ -51,12 +51,12 @@
 
   header h1 {
     font-size: 3rem;
-    color: #333;
+    color: var(--palette-primary);
     margin: 0;
   }
 
   header p {
-    color: #666;
+    color: var(--palette-foreground);
     font-size: 1.1rem;
   }
 
@@ -71,7 +71,7 @@
     display: flex;
     background: var(--palette-bg-subtle);
     padding: 1rem;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--palette-line);
   }
 
   .tethys-content {

@@ -217,12 +217,12 @@
 
   .upload-area h3 {
     margin-bottom: 1rem;
-    color: #495057;
+    color: var(--palette-foreground-alt);
     font-weight: 600;
   }
 
   .drop-zone {
-    border: 2px dashed #dee2e6;
+    border: 2px dashed var(--palette-line);
     border-radius: 8px;
     padding: 3rem 2rem;
     text-align: center;
@@ -235,30 +235,30 @@
   }
 
   .drop-zone:hover:not(.uploading) {
-    border-color: #007bff;
-    background-color: #f8f9ff;
+    border-color: var(--palette-primary);
+    background-color: var(--palette-bg-subtle);
   }
 
   .drop-zone.drag-over {
-    border-color: #007bff;
-    background-color: #f0f8ff;
+    border-color: var(--palette-primary);
+    background-color: var(--palette-bg-subtle);
     border-style: solid;
   }
 
   .drop-zone.success {
-    border-color: #28a745;
-    background-color: #f8fff8;
+    border-color: var(--palette-foreground-alt);
+    background-color: var(--palette-bg-subtle-alt);
   }
 
   .drop-zone.error {
-    border-color: #dc3545;
-    background-color: #fff8f8;
+    border-color: var(--palette-primary);
+    background-color: var(--palette-bg-subtle-alt);
   }
 
   .drop-zone.uploading {
     cursor: wait;
-    border-color: #007bff;
-    background-color: #f8f9ff;
+    border-color: var(--palette-primary);
+    background-color: var(--palette-bg-subtle);
   }
 
   .upload-status {
@@ -282,19 +282,19 @@
 
   .upload-prompt p {
     margin: 0;
-    color: #6c757d;
+    color: var(--palette-foreground-alt);
   }
 
   .upload-hint {
     font-size: 0.85rem;
-    color: #999 !important;
+    color: var(--palette-foreground-alt, #999) !important;
   }
 
   .checkmark {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    background-color: #28a745;
+    background-color: var(--palette-foreground-alt);
     color: white;
     display: flex;
     align-items: center;
@@ -353,7 +353,7 @@
   }
 
   code {
-    background: #f8f9fa;
+    background: var(--palette-bg-subtle);
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
     font-family: "SF Mono", Consolas, monospace;

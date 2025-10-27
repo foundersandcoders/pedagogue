@@ -136,12 +136,12 @@
 
   header h1 {
     font-size: 3.5rem;
-    color: #333;
+    color: var(--palette-primary);
     margin: 0;
   }
 
   header p {
-    color: #666;
+    color: var(--palette-foreground);
     font-size: 1.2rem;
   }
 
@@ -171,19 +171,19 @@
 
   /* Each card uses its own workflow palette background */
   .metis-card {
-    background: #E8F1F8;
+    background: var(--metis-bg-subtle);
   }
 
   .themis-card {
-    background: #F0ECF8;
+    background: var(--themis-bg-subtle);
   }
 
   .tethys-card {
-    background: #FFF4ED;
+    background: var(--tethys-bg-subtle);
   }
 
   .theia-card {
-    background: #F7ECF3;
+    background: var(--theia-bg-subtle);
   }
 
   .workflow-card:hover {
@@ -192,19 +192,19 @@
   }
 
   .metis-card:hover {
-    border-color: #096A78;
+    border-color: var(--metis-fg-alt-dark);
   }
 
   .tethys-card:hover {
-    border-color: #A45818;
+    border-color: var(--tethys-fg-alt-dark);
   }
 
   .themis-card:hover {
-    border-color: #7551BA;
+    border-color: var(--themis-fg-alt-dark);
   }
 
   .theia-card:hover {
-    border-color: #B0127A;
+    border-color: var(--theia-fg-alt-dark);
   }
 
   .card-icon {
@@ -243,48 +243,48 @@
   }
 
   .card-action {
-    color: #096A78;
+    color: var(--metis-fg-alt-dark);
     font-weight: 600;
     font-size: 1.1rem;
     text-align: center;
     padding: 1rem;
-    background: rgba(9, 106, 120, 0.1);
+    background: color-mix(in srgb, var(--metis-fg-alt-dark) 10%, transparent);
     border-radius: 8px;
     transition: all 0.3s;
   }
 
   .themis-card .card-action {
-    color: #7551BA;
-    background: rgba(117, 81, 186, 0.1);
+    color: var(--themis-fg-alt-dark);
+    background: color-mix(in srgb, var(--themis-fg-alt-dark) 10%, transparent);
   }
 
   .tethys-card .card-action {
-    color: #A45818;
-    background: rgba(164, 88, 24, 0.1);
+    color: var(--tethys-fg-alt-dark);
+    background: color-mix(in srgb, var(--tethys-fg-alt-dark) 10%, transparent);
   }
 
   .theia-card .card-action {
-    color: #B0127A;
-    background: rgba(176, 18, 122, 0.1);
+    color: var(--theia-fg-alt-dark);
+    background: color-mix(in srgb, var(--theia-fg-alt-dark) 10%, transparent);
   }
 
   .themis-card:hover .card-action {
-    background: #7551BA;
+    background: var(--themis-fg-alt-dark);
     color: white;
   }
 
   .tethys-card:hover .card-action {
-    background: #A45818;
+    background: var(--tethys-fg-alt-dark);
     color: white;
   }
 
   .metis-card:hover .card-action {
-    background: #096A78;
+    background: var(--metis-fg-alt-dark);
     color: white;
   }
 
   .theia-card:hover .card-action {
-    background: #B0127A;
+    background: var(--theia-fg-alt-dark);
     color: white;
   }
 

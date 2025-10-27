@@ -232,8 +232,8 @@
 
 <style>
   .changelog-viewer {
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
+    background: var(--palette-bg-subtle);
+    border: 1px solid var(--palette-line);
     border-radius: 8px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -245,13 +245,13 @@
     align-items: center;
     margin-bottom: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid #dee2e6;
+    border-bottom: 2px solid var(--palette-line);
   }
 
   .changelog-header h4 {
     margin: 0;
     font-size: 1.1rem;
-    color: #333;
+    color: var(--palette-foreground);
   }
 
   .generation-info {
@@ -262,7 +262,7 @@
   }
 
   .info-badge {
-    background: #007bff;
+    background: var(--palette-primary);
     color: white;
     padding: 0.25rem 0.75rem;
     border-radius: 12px;
@@ -271,7 +271,7 @@
   }
 
   .info-text {
-    color: #6c757d;
+    color: var(--palette-foreground-alt);
   }
 
   .changes-list {
@@ -282,7 +282,7 @@
 
   .change-item {
     background: white;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--palette-line);
     border-radius: 6px;
     padding: 1rem;
   }
@@ -302,7 +302,7 @@
   }
 
   .type-badge {
-    background: #6c757d;
+    background: var(--palette-foreground-alt);
     color: white;
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
@@ -318,24 +318,24 @@
   }
 
   .confidence-high {
-    background: #d4edda;
-    color: #155724;
+    background: var(--palette-bg-subtle-alt);
+    color: var(--palette-foreground);
   }
 
   .confidence-medium {
-    background: #fff3cd;
-    color: #856404;
+    background: var(--palette-bg-subtle-alt);
+    color: var(--palette-accent);
   }
 
   .confidence-low {
-    background: #f8d7da;
-    color: #721c24;
+    background: var(--palette-bg-subtle-alt);
+    color: var(--palette-primary);
   }
 
   .change-section {
     font-family: "SF Mono", Consolas, monospace;
     font-size: 0.8rem;
-    color: #6c757d;
+    color: var(--palette-foreground-alt);
   }
 
   .change-content {
@@ -346,13 +346,13 @@
 
   .change-summary {
     margin: 0;
-    color: #333;
+    color: var(--palette-foreground);
     font-size: 0.95rem;
   }
 
   .change-rationale {
     margin: 0;
-    color: #495057;
+    color: var(--palette-foreground-alt);
     font-size: 0.9rem;
     line-height: 1.5;
   }
@@ -360,13 +360,13 @@
   .change-sources {
     margin-top: 0.5rem;
     padding-top: 0.5rem;
-    border-top: 1px solid #e9ecef;
+    border-top: 1px solid var(--palette-line);
   }
 
   .sources-label {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #6c757d;
+    color: var(--palette-foreground-alt);
   }
 
   .change-sources ul {
@@ -376,12 +376,12 @@
 
   .change-sources li {
     font-size: 0.85rem;
-    color: #495057;
+    color: var(--palette-foreground-alt);
     margin-bottom: 0.25rem;
   }
 
   .change-sources a {
-    color: #007bff;
+    color: var(--palette-primary);
     text-decoration: none;
   }
 
@@ -391,7 +391,7 @@
 
   .no-changes {
     text-align: center;
-    color: #6c757d;
+    color: var(--palette-foreground-alt);
     padding: 2rem;
     margin: 0;
   }
@@ -399,14 +399,14 @@
   .needs-review {
     margin-top: 1rem;
     padding: 1rem;
-    background: #fff3cd;
-    border: 1px solid #ffc107;
+    background: var(--palette-bg-subtle-alt);
+    border: 1px solid var(--palette-accent);
     border-radius: 6px;
   }
 
   .needs-review h5 {
     margin: 0 0 0.5rem 0;
-    color: #856404;
+    color: var(--palette-accent);
     font-size: 0.95rem;
   }
 
@@ -416,7 +416,7 @@
   }
 
   .needs-review li {
-    color: #856404;
+    color: var(--palette-accent);
     font-size: 0.9rem;
     margin-bottom: 0.25rem;
     font-family: "SF Mono", Consolas, monospace;

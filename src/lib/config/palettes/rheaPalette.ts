@@ -1,4 +1,6 @@
-const rheaPalette = {
+import type { RheaPalette } from "$lib/utils/palette/paletteTypes";
+
+export const rheaPalette: RheaPalette = {
   metadata: {
     requiredImprovements: []
   },
@@ -46,4 +48,4 @@ const rheaPalette = {
       }
     }
   }
-}
+};

@@ -1,4 +1,6 @@
-const theiaPalette = {
+import type { TheiaPalette } from "$lib/utils/palette/paletteTypes";
+
+export const theiaPalette: TheiaPalette = {
   metadata: {
     requiredImprovements: []
   },
@@ -46,4 +48,4 @@ const theiaPalette = {
       }
     }
   }
-}
+};

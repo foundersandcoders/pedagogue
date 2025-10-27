@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vite dev --port 5173",
+    "generate:palettes": "node scripts/generatePaletteCss.js",
+    "prebuild": "npm run generate:palettes",
+    "dev": "npm run generate:palettes && vite dev --port 5173",
     "build": "vite build",
     "preview": "vite preview"
   },

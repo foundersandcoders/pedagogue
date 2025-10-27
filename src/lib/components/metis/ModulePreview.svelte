@@ -147,7 +147,7 @@
 
 <style>
   .module-preview {
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--palette-line);
     border-radius: 8px;
     overflow: hidden;
     background: white;
@@ -158,15 +158,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    background: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
+    background: var(--palette-bg-subtle);
+    border-bottom: 1px solid var(--palette-line);
     border-top: 3px solid var(--palette-foreground);
   }
 
   .preview-header h3 {
     margin: 0;
     font-size: 1.1rem;
-    color: #333;
+    color: var(--palette-foreground);
   }
 
   .preview-actions {
@@ -190,12 +190,12 @@
 
   .btn-secondary {
     background: white;
-    color: #495057;
-    border: 1px solid #dee2e6;
+    color: var(--palette-foreground-alt);
+    border: 1px solid var(--palette-line);
   }
 
   .btn-secondary:hover:not(:disabled) {
-    background: #e9ecef;
+    background: var(--palette-bg-subtle);
   }
 
   .btn-primary {
@@ -221,13 +221,13 @@
   }
 
   .validation-status.valid {
-    background: #d4edda;
-    border-bottom: 1px solid #c3e6cb;
+    background: var(--palette-bg-subtle-alt);
+    border-bottom: 1px solid var(--palette-line);
   }
 
   .validation-status.invalid {
-    background: #f8d7da;
-    border-bottom: 1px solid #f5c6cb;
+    background: var(--palette-bg-subtle-alt);
+    border-bottom: 1px solid var(--palette-line);
   }
 
   .status-icon {
@@ -236,11 +236,11 @@
   }
 
   .validation-status.valid .status-icon {
-    color: #155724;
+    color: var(--palette-foreground);
   }
 
   .validation-status.invalid .status-icon {
-    color: #721c24;
+    color: var(--palette-primary);
   }
 
   .status-message {
@@ -254,17 +254,17 @@
   }
 
   .validation-status.valid .status-message strong {
-    color: #155724;
+    color: var(--palette-foreground);
   }
 
   .validation-status.invalid .status-message strong {
-    color: #721c24;
+    color: var(--palette-primary);
   }
 
   .status-message p {
     margin: 0;
     font-size: 0.9rem;
-    color: #495057;
+    color: var(--palette-foreground-alt);
   }
 
   .status-message ul {
@@ -274,7 +274,7 @@
 
   .status-message li {
     font-size: 0.9rem;
-    color: #721c24;
+    color: var(--palette-primary);
     margin-bottom: 0.25rem;
   }
 
@@ -287,8 +287,8 @@
   .xml-preview {
     margin: 0;
     padding: 1rem;
-    background: #f8f9fa;
-    border: 1px solid #e9ecef;
+    background: var(--palette-bg-subtle);
+    border: 1px solid var(--palette-line);
     border-radius: 6px;
     font-family: "SF Mono", Consolas, "Monaco", monospace;
     font-size: 0.85rem;
@@ -299,23 +299,23 @@
   }
 
   .xml-preview code :global(.tag) {
-    color: #0066cc;
+    color: var(--palette-primary);
     font-weight: 600;
   }
 
   .xml-preview code :global(.attr) {
-    color: #008800;
+    color: var(--palette-accent);
   }
 
   .xml-preview code :global(.comment) {
-    color: #999;
+    color: var(--palette-foreground-alt);
     font-style: italic;
   }
 
   .empty-state {
     text-align: center;
     padding: 3rem 2rem;
-    color: #6c757d;
+    color: var(--palette-foreground-alt);
   }
 
   .empty-state p {
@@ -324,6 +324,6 @@
 
   .empty-state .hint {
     font-size: 0.9rem;
-    color: #999;
+    color: var(--palette-foreground-alt);
   }
 </style>

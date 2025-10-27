@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Engineering Draft (2025-10-26)</title>
+  <style>
+  /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #fff;
+      padding: 2rem;
+    }
+
+    /* Content Container */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid #e9ecef;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #6c757d;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 4px;
+    }
+
+    .metadata-item {
+      font-size: 0.9rem;
+      color: #495057;
+    }
+
+    .metadata-item strong {
+      color: #212529;
+    }
+
+    /* Main Content */
+    main {
+      margin-bottom: 3rem;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section.level-2 {
+      margin-top: 2.5rem;
+    }
+
+    section.level-3 {
+      margin-top: 2rem;
+      margin-left: 1rem;
+    }
+
+    section.level-4 {
+      margin-top: 1.5rem;
+      margin-left: 2rem;
+    }
+
+    /* Headings */
+    h2, h3, h4, h5, h6 {
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: #2c3e50;
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      color: #34495e;
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      color: #495057;
+    }
+
+    h5 {
+      font-size: 1.1rem;
+      color: #6c757d;
+    }
+
+    h6 {
+      font-size: 1rem;
+      color: #868e96;
+    }
+
+    /* Paragraphs */
+    p {
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+
+    /* Lists */
+    ul, ol {
+      margin: 1rem 0 1rem 2rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Definition Lists */
+    dl.definition-list {
+      margin: 1rem 0;
+    }
+
+    dt {
+      font-weight: 600;
+      color: #495057;
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    dd {
+      margin-left: 2rem;
+      margin-bottom: 0.5rem;
+      color: #6c757d;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e9ecef;
+      text-align: center;
+    }
+
+    .generated-notice {
+      font-size: 0.9rem;
+      color: #adb5bd;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        padding: 0;
+        font-size: 12pt;
+      }
+
+      .content {
+        max-width: 100%;
+      }
+
+      header {
+        page-break-after: avoid;
+      }
+
+      section {
+        page-break-inside: avoid;
+      }
+
+      h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+      }
+
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+
+      .metadata {
+        background: #f5f5f5;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      section.level-3, section.level-4 {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <article class="content">
+    <header>
+      <h1>AI Engineering Draft (2025-10-26)</h1>
+      <p class="subtitle">A 40-week facilitated course</p>
+      <aside class="metadata">
+        <span class="metadata-item"><strong>totalWeeks:</strong> 40</span>
+        <span class="metadata-item"><strong>daysPerWeek:</strong> 1</span>
+        <span class="metadata-item"><strong>cohortSize:</strong> 20</span>
+        <span class="metadata-item"><strong>structure:</strong> facilitated</span>
+        <span class="metadata-item"><strong>arcs:</strong> 8</span>
+        <span class="metadata-item"><strong>modules:</strong> 40</span>
+      </aside>
+    </header>
+    <main>
+    <section id="overview" class="section level-2">
+      <h2>Course Overview</h2>
+      <p>A one year course for currently employed developers that want to up-skill to use AI-enhanced workflows and build products that use AI with frontier techniques. The course focusses on three strands, with alternating focus per arc:</p>
+      <ol>
+        <li>incorporating AI as software feature</li>
+        <li>incorporating AI to the development workflow</li>
+        <li>machine learning principles that can be applied to development</li>
+      </ol>
+    </section>
+    <section id="logistics" class="section level-2">
+      <h2>Course Logistics</h2>
+      <dl class="definition-list">
+        <dt>Total Duration</dt>
+        <dd>40 weeks</dd>
+        <dt>Days per Week</dt>
+        <dd>1</dd>
+        <dt>Structure</dt>
+        <dd>facilitated</dd>
+        <dt>Start Date</dt>
+        <dd>2026-01-14</dd>
+      </dl>
+    </section>
+    <section id="cohort-info" class="section level-2">
+      <h2>Cohort Information</h2>
+      <dl class="definition-list">
+        <dt>Cohort Size</dt>
+        <dd>20</dd>
+        <dt>Team-Based</dt>
+        <dd>Yes</dd>
+        <dt>Team Size</dt>
+        <dd>4</dd>
+        <dt>Prerequisites</dt>
+        <dd>All participants are :
+1. currently employed as software developers
+2. having their training funded by their employers, and thus need to attain immediately applicable skills
+3. skilled in software development but unfamiliar with AI Engineering
+4. bound to various employer-specific tech stacks and need to be able to apply techniques to it</dd>
+        <dt>Experience Level</dt>
+        <dd>&gt;= 4 years experience, limited experience</dd>
+      </dl>
+    </section>
+    <section id="arcs" class="section level-2">
+      <h2>Course Arcs</h2>
+      <section id="arc-0" class="section level-3">
+        <h3>Arc 1: Pragmatic AI-Assisted Engineering</h3>
+        <section id="arc-0-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Set up a modern AI dev environment and working style. Pick and justify tools (coding assistants, chat, planning), agree team norms, and decide how you’ll measure impact (DORA/SPACE) so “faster” actually means “better”.</p>
+        </section>
+        <section id="arc-0-module-1" class="section level-4">
+          <h4>Module 1: AI-Enhanced Development Environment</h4>
+          <p>Developers set up their workspace with AI-powered tools to supercharge productivity. This module explores selecting coding assistants, chatbots, and project planning aids that integrate into the team’s tech stack. Participants will justify their tool choices and configure IDE plugins or APIs (e.g. integrating an AI code assistant into VSCode). The focus is on establishing a workflow where AI helpers handle boilerplate or research, freeing developers for higher-level tasks. We’ll also discuss expected gains: <a href="https://blogs.oracle.com/ai-and-datascience/ai-code-assistants-are-on-the-rise-big-time#:~:text=Earlier%20this%20year%2C%20Stack%20Overflow,compound%20annual%20growth%20rate">by 2028, up to 75% of engineers may use AI code assistants</a>, <a href="https://blogs.oracle.com/ai-and-datascience/ai-code-assistants-are-on-the-rise-big-time#:~:text=digital%20solutions">potentially boosting output fourfold over five years</a>. The outcome is an environment primed for efficiency without sacrificing control.</p>
+        </section>
+        <section id="arc-0-module-2" class="section level-4">
+          <h4>Module 2: AI-Augmented Coding Practices</h4>
+          <p>This module trains developers in effective day-to-day use of AI during coding. They will learn how to prompt AI for generating code snippets, explaining unfamiliar code, and suggesting improvements, all while maintaining code quality. Best practices are covered to avoid over-reliance on AI: for example, using AI for rapid prototyping but carefully reviewing outputs to prevent <a href="https://devops.com/ai-in-software-development-productivity-at-the-cost-of-code-quality/#:~:text=into%20their%20development%20pipelines">“AI-induced” technical debt</a>. Participants practice writing prompts to implement features or refactor code using an assistant, then validate the results with tests and code review. By the end, they will be skilled at co-coding with AI—leveraging its speed while keeping a critical eye to ensure correctness and readability.</p>
+        </section>
+        <section id="arc-0-module-3" class="section level-4">
+          <h4>Module 3: Team Norms for AI Collaboration</h4>
+          <p>Because AI tools change how teams work together, this module focuses on establishing healthy team norms around AI usage. Participants will set guidelines on when to use AI suggestions and when to rely on human expertise (e.g. AI can draft a solution, but a human must review and commit it). They will also address knowledge sharing: if one team member finds a useful prompt or tool configuration, how to disseminate that to others. The module covers code review practices in an AI-assisted world—such as reviewing not just the code changes, but also scrutinizing AI-generated content for subtle bugs or style issues. By setting expectations (for example, always run AI-generated code through CI tests and security scans), the team ensures AI integration leads to collective productivity gains rather than siloed shortcuts. The outcome is a team agreement or “AI use policy” that balances innovation with responsibility.</p>
+        </section>
+        <section id="arc-0-module-4" class="section level-4">
+          <h4>Module 4: AI in Project Planning and Design</h4>
+          <p>Beyond coding, AI can assist in planning software projects. In this module, participants learn to use generative AI for drafting design documents, user stories, and even estimating effort. They will practice with chat-based tools to brainstorm architectural approaches or summarize customer requirements into feature lists. Importantly, we cover how to validate AI-generated plans—reviewing them for feasibility and alignment with business goals. Theoretical foundations from software engineering are touched upon (e.g. design patterns or UML diagrams) where AI can help generate initial drafts that engineers then refine. By the end, each participant will use an AI tool to produce a project outline (such as an epic with user stories or a system diagram) for a sample feature, and then critique and adjust it. This builds skill in accelerating the planning phase while maintaining sound engineering judgment.</p>
+        </section>
+        <section id="arc-0-module-5" class="section level-4">
+          <h4>Module 5: Measuring Productivity with AI</h4>
+          <p>To ensure that “faster” is truly “better” with AI assistance, developers will learn to measure the impact of their new tools. This module introduces key software engineering productivity metrics. Participants will set baselines for the team’s performance using <a href="https://www.atlassian.com/devops/frameworks/dora-metrics#:~:text=DORA%20metrics%20for%20DevOps%20teams,focus%20on%20four%20critical%20measures">DORA metrics (deployment frequency, change lead time, change failure rate, and mean time to recovery</a> and also consider the human-centric <a href="https://queue.acm.org/detail.cfm?id=3454124#:~:text=productivity%20cannot%20be%20reduced%20to,people%20and%20teams%20work%2C%20and">SPACE framework (Satisfaction, Performance, Activity, Communication, and Efficiency)</a>. With these, they design a lightweight experiment to track improvements: for example, does using an AI code assistant reduce the time to implement a feature without increasing bug rates? They will also learn to instrument their workflow for data, such as tagging AI-authored commits or measuring code review turnaround time. The deliverable is a simple “AI impact report” outline showing what metrics will be watched (and how) to prove that adopting AI tools is improving velocity and quality, not just output volume.</p>
+        </section>
+      </section>
+      <section id="arc-1" class="section level-3">
+        <h3>Arc 2: Shipping AI Features</h3>
+        <section id="arc-1-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Build a “chat-with-your-docs” feature the right way: clean ingestion, sensible chunking defaults, hybrid retrieval, a simple reranker, and structured outputs the API can trust. Aim: a thin slice that’s observable, testable, and shippable</p>
+        </section>
+        <section id="arc-1-module-1" class="section level-4">
+          <h4>Module 1: Scoping an AI-Powered Feature</h4>
+          <p>In this module, participants take on the role of product engineers defining a user-facing AI feature – specifically a “chat with your documents” assistant. They will outline the feature’s requirements and constraints: what user problem it solves, what documents it will use, how real-time it needs to be, and how to evaluate success. The class discusses the overall <a href="https://medium.com/@zilliz_learn/graphrag-explained-enhancing-rag-with-knowledge-graphs-3312065f99e1#:~:text=Introduction%20to%20RAG%20and%20Its,Challenges">Retrieval-Augmented Generation (RAG) pattern that underpins such features</a>, explaining how connecting an LLM to external data can reduce hallucinations. Students will sketch a high-level architecture of the system (document database, vector index, LLM service, API interface, etc.) and identify a vertical slice to implement first. By the end, each team produces a feature spec that is “thin” but end-to-end: it includes ingestion of a small doc set, the ability to ask a question, and returning an answer with evidence. This spec will guide the following modules.</p>
+        </section>
+        <section id="arc-1-module-2" class="section level-4">
+          <h4>Module 2: Document Ingestion and Chunking</h4>
+          <p>Participants now tackle the data pipeline for the feature. They learn methods for cleanly ingesting documents (e.g. parsing PDFs or Markdown, removing irrelevant text, normalizing formats) and then splitting them into retrievable chunks. We cover sensible default strategies for chunking – for example, splitting by semantic paragraph boundaries or headings to balance completeness with brevity. The module highlights why chunk sizing matters (too large and the LLM context is cluttered; too small and meaning is lost). Students practice with a dataset of sample docs: they will write a simple ingestion script that outputs chunks with metadata (like source info). They also choose a storage solution for these chunks, such as a lightweight vector store or even a plain index, suitable for the prototype. By the end, they’ll have a small corpus indexed in a way that’s ready for intelligent querying.</p>
+        </section>
+        <section id="arc-1-module-3" class="section level-4">
+          <h4>Module 3: Implementing Hybrid Retrieval</h4>
+          <p>This module dives into retrieval techniques to fetch relevant information for a user query. Participants will implement a hybrid search that combines keyword-based lookup with semantic vector similarity. Using their chunked documents, they first employ a lexical search (e.g. BM25 or simple full-text search) to ensure exact keyword matches are considered. In parallel, they use vector embeddings of the chunks to find those with similar meaning to the query. We discuss how hybrid retrieval can yield more robust results than vectors alone, as <a href="https://cameronrwolfe.substack.com/p/the-basics-of-ai-powered-vector-search#:~:text=The%20Basics%20of%20AI,best%20performance%2C%20though%20their">BM25 is a strong baseline that’s hard to beat on certain queries</a>. Students experiment with an open-source vector library and a basic BM25 algorithm, merging results from both. They also learn about designing this step for observability – logging which chunks were retrieved by which method for later debugging. The outcome is a retrieval component that casts a wide net (via keywords) but also surfaces semantically relevant info (via vectors), forming the heart of the Q&A system.</p>
+        </section>
+        <section id="arc-1-module-4" class="section level-4">
+          <h4>Module 4: Reranking and Response Generation</h4>
+          <p>With a set of candidate chunks retrieved, participants now improve answer quality using a reranker and structured output generation. They learn how a cross-encoder reranker can take a question and each retrieved passage, and assign a relevance score based on deeper language understanding (at the cost of extra computation). Implementing a simple rerank step (even using a smaller transformer model or heuristic) teaches them how to boost precision for the final context given to the LLM. Next, they integrate the LLM to generate an answer from the top-ranked context. Emphasis is on structured and reliable outputs: for example, returning the answer in a JSON with fields for the answer text and source document IDs, so that the consuming application can trust the format. They discuss strategies to make outputs “safe” – such as limiting answer length, including source citations, or formatting as bullet points if required. By the end, the module yields a minimal end-to-end chain: query → retrieve → rerank → answer, with the answer packaged in a predictable structure ready for integration.</p>
+        </section>
+        <section id="arc-1-module-5" class="section level-4">
+          <h4>Module 5: Testing &amp; Observability for AI Features</h4>
+          <p>The final module in this arc ensures that the “thin slice” AI feature is truly shippable. Participants will design basic tests for the chat-with-docs pipeline: for instance, an automated test that when asked a known question, the system returns an answer containing a specific document snippet (verifying retrieval and correctness). They’ll also consider edge cases – like asking a question outside the document scope – and how the system responds (e.g. a graceful “I don’t know” reply). On observability, the module covers adding logging and simple monitoring: tracking how long each query takes, how many documents are retrieved, and flagging if the LLM returns an empty or obviously off-base answer. Students might use existing APM tools or just log to a file for analysis. We tie this into the DORA/SPACE metrics by noting that being “done” means not just coding the feature, but being confident in its behavior. The deliverable is a deployment-ready prototype of the Q&A feature, accompanied by a small test suite and logging hooks, demonstrating the importance of testability and transparency in AI features.</p>
+        </section>
+      </section>
+      <section id="arc-2" class="section level-3">
+        <h3>Arc 3: Embeddings, Hybrid search &amp; GraphRAG</h3>
+        <section id="arc-2-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Go beyond “vector DB + hope”. Compare hybrid BM25+vector recipes, trial cross-encoder rerankers, and learn when graph-style retrieval (GraphRAG) beats local chunk recall. You’ll design a retrieval plan that matches your corpus and latency budget.</p>
+        </section>
+        <section id="arc-2-module-1" class="section level-4">
+          <h4>Module 1: Understanding Vector Embeddings</h4>
+          <p>This module provides the theoretical and practical foundation for vector embeddings, which are the backbone of semantic search. Participants will learn what embeddings are: numerical representations of text (or other data) in a high-dimensional space where similarity correlates with meaning. We’ll explore how modern embedding models (like Sentence Transformers or open-source instruct embeddings) are trained and what makes a “good” embedding for retrieval. Hands-on exercises include generating embeddings for sample texts using an open-source model and visualizing them (perhaps via dimensionality reduction) to see clusters of related content. The group will also discuss considerations like embedding vector size, distance metrics (cosine vs Euclidean), and the difference between using a general model (e.g. OpenAI’s embeddings) versus fine-tuning your own for domain-specific jargon. By the end, developers should grasp why vector representations enable “fuzzy” matching based on meaning and how to obtain embeddings for their own documents.</p>
+        </section>
+        <section id="arc-2-module-2" class="section level-4">
+          <h4>Module 2: Lexical, Semantic, and Hybrid Search</h4>
+          <p>In this module, participants pit traditional lexical search against semantic vector search and then see the power of combining them. Using a test dataset, they first implement pure keyword search (e.g., using BM25 as in the previous arc’s basics) and examine cases it handles well (exact keyword matches) versus cases it fails (synonyms, paraphrasing). Then they try pure vector search on the same queries, noting how it finds conceptually related results but might miss precise keywords or rare terms. Through these experiments, they observe that BM25 is a strong baseline often hard to beat alone, while <a href="https://cameronrwolfe.substack.com/p/the-basics-of-ai-powered-vector-search#:~:text=The%20Basics%20of%20AI,best%20performance%2C%20though%20their">dense vectors capture different info</a>. The core of the module is designing a hybrid search strategy: for example, use BM25 to pre-filter a broad set of documents, then apply semantic scoring to rerank those, or vice versa. They will implement one such recipe and measure retrieval quality on a few example queries (did the relevant doc appear in the top results?). The outcome is understanding when and why a combined approach “actually wins” in search relevance and how to fine-tune the balance for a given corpus.</p>
+        </section>
+        <section id="arc-2-module-3" class="section level-4">
+          <h4>Module 3: Advanced Retrieval Re-ranking</h4>
+          <p>Building on the reranking concept introduced earlier, this module delves deeper into using machine learning models to improve retrieval results. Participants learn about cross-encoder re-rankers: models that take a query and a candidate passage together and output a relevance score, effectively performing a deeper semantic match by looking at token-level interactions. We discuss how cross-encoders (like MiniLM or other smaller BERT-derived models) often yield the best retrieval precision when used on top of a first-stage retriever, <a href="https://medium.com/@qdrant/what-is-hybrid-search-2a0c30d0f3d2#:~:text=What%20is%20Hybrid%20Search%3F%20,In">at the cost of extra latency per document</a>. The class will implement or simulate a simple re-ranker. For instance, they might use a distilled cross-encoder model on a subset of passages or even write a heuristic scoring function that rewards overlapping key terms and semantic similarity. The goal is to see improvement in ordering: e.g., previously a relevant chunk was ranked 5th by the vector search, but the re-ranker boosts it to 1st because it truly addresses the query. Participants also consider the engineering trade-offs: how many candidates to re-rank given time constraints, and how to cache or pre-compute as much as possible. By the end, they appreciate how an extra layer of intelligence in retrieval can significantly improve answer quality – and they know how to integrate such a layer in practice.</p>
+        </section>
+        <section id="arc-2-module-4" class="section level-4">
+          <h4>Module 4: Graph-Based Retrieval (GraphRAG)</h4>
+          <p>Now participants explore an emerging retrieval paradigm: GraphRAG, which combines knowledge graphs with retrieval augmented generation. We introduce the limitations of pure vector search in complex multi-hop questions (e.g., when an answer requires connecting two facts that might be in different documents or far apart in one document). GraphRAG addresses this by extracting entities and relationships into a graph structure, enabling retrieval via <a href="https://medium.com/@zilliz_learn/graphrag-explained-enhancing-rag-with-knowledge-graphs-3312065f99e1#:~:text=What%20is%20GraphRAG%20and%20How,Does%20It%20Work">traversing connections rather than just similarity</a>. Students will see an example of building a simple knowledge graph from a document set – identifying key entities (people, topics) and linking them if they co-occur or have known relationships. They won’t implement a full GraphRAG pipeline from scratch (which is complex), but they might use a provided small knowledge graph and simulate how a query could be answered by hopping through this graph for context. We’ll discuss scenarios where GraphRAG shines, such as when data has an inherent structure (like documentation with cross-references or a knowledge base). Real-world results are shared: for instance, <a href="https://aws.amazon.com/blogs/machine-learning/improving-retrieval-augmented-generation-accuracy-with-graphrag/#:~:text=structures%20provide%20enhanced%20reasoning%20and,relationship%20modeling%20capabilities">a graph-enhanced approach improved answer precision by ~35% over vector search alone in complex cases</a>. By module’s end, participants can discern when adding a graph to their RAG system is worth the effort, and they have a rough blueprint of how to do it.</p>
+        </section>
+        <section id="arc-2-module-5" class="section level-4">
+          <h4>Module 5: Crafting a Retrieval Strategy</h4>
+          <p>In the capstone of Arc 3, students will synthesize everything learned about retrieval into a plan tailored to a specific scenario. Each team is given a hypothetical (or real) corpus scenario – for example, a large FAQ site with short Q&A pairs, versus a collection of long research papers, versus a company’s structured wiki. They must propose an optimal retrieval stack for that scenario, considering factors like: data type and size, query patterns, and latency requirements. They will justify choices such as “We’ll use hybrid search with BM25 followed by a cross-encoder, because the data is textual and precision matters more than a few hundred milliseconds of latency” or “We’ll incorporate a graph-based index because our documents have many explicit relationships that we can exploit for multi-hop queries.” Cost and complexity are also considerations: maybe the best strategy uses open-source tools that can be self-hosted cheaply, versus needing a managed service for scale. By the end of the module, each team produces a short design document for their retrieval approach, presenting it to the class. They’ll get feedback to ensure the approach aligns with the corpus and constraints given. This exercise cements their ability to think critically about information retrieval – moving beyond one-size-fits-all to a nuanced engineering decision.</p>
+        </section>
+      </section>
+      <section id="arc-3" class="section level-3">
+        <h3>Arc 4: AI for Testing, QA &amp; Code Review</h3>
+        <section id="arc-3-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Use AI to generate tests, write property checks, and perform first-pass reviews—then ground all that with objective signals: SWE-bench style task framing and security hygiene from the OWASP LLM Top 10. The deliverable is a CI lane that adds value without adding risk.</p>
+        </section>
+        <section id="arc-3-module-1" class="section level-4">
+          <h4>Module 1: Generating Tests with AI Assistance</h4>
+          <p>This module tackles using AI to automate part of the software testing process. Participants will learn how to prompt an LLM to generate unit tests or integration test cases based on code or specifications. For example, given a function and its description, the AI can suggest various input scenarios and expected outputs. Students practice this by feeding a few sample functions (with known behavior) to an AI assistant and reviewing the test cases it produces. They’ll discuss the strengths (AI can quickly enumerate many cases, including edge cases developers might forget) and weaknesses (AI might assume incorrect behavior or miss context). A key skill developed is how to guide the AI: e.g., “Given this function, propose 5 distinct tests including edge conditions”. Importantly, we emphasize verification – any AI-generated test must be run to see if it passes or fails appropriately, ensuring it’s valid. By the end, participants can use AI tools to get a first draft of a test suite and then refine it, saving time in test creation while maintaining rigor.</p>
+        </section>
+        <section id="arc-3-module-2" class="section level-4">
+          <h4>Module 2: AI-Driven Property Testing and Fuzzing</h4>
+          <p>In this module, learners extend beyond example-based tests to more systematic testing approaches augmented by AI. They will explore property-based testing, where instead of enumerating specific cases, one defines general properties (invariants) that outputs should satisfy for any input. Using an AI, participants can generate possible properties by analyzing code or requirements (e.g., “the output list should always be sorted” for a sorting function). They’ll then use a property-testing framework (like Hypothesis for Python) to validate those properties across random inputs. The AI can also assist in fuzz testing by suggesting ranges of inputs or tricky edge values (for instance, very large inputs, nulls, special characters) to probe the system. Students practice by having an AI suggest unusual inputs for a piece of code (maybe a function that parses user data) and see if those inputs reveal any crashes or unexpected behavior. By module’s end, participants appreciate how AI can amplify testing by offering creative test ideas and automating broad explorations, helping uncover issues that example-based tests might miss.</p>
+        </section>
+        <section id="arc-3-module-3" class="section level-4">
+          <h4>Module 3: AI-Assisted Code Reviews</h4>
+          <p>Participants now turn to using AI for improving code quality through reviews. The module shows how an AI can act as a junior reviewer: scanning a code change and pointing out potential problems or improvements. Students will use an AI tool to analyze a prepared pull request (or diff) and produce a review commentary. They learn to prompt for specific concerns, for example, “Review this code for potential bugs, security issues, and style consistency.” The AI’s feedback might include spotted bugs, edge cases, or violations of coding standards. The class discusses which kinds of issues AI tends to catch (e.g. obvious logic errors, missing null checks) and where it struggles (understanding broader context or intent). Participants also practice the workflow of integrating AI into code review pipelines – perhaps using a GitHub Action or similar to automatically get AI suggestions on each PR. A cautionary note is made: AI suggestions should augment, not replace, human judgment; they must be verified. By the end, each participant will have triaged AI-generated review comments on sample code, deciding which are valid and which are off-target. This exercise builds confidence in treating AI as a helpful assistant for code quality, speeding up the review cycle while keeping developers in control.</p>
+        </section>
+        <section id="arc-3-module-4" class="section level-4">
+          <h4>Module 4: Security and Quality Assurance with AI</h4>
+          <p>This module reinforces that AI-driven outputs must be grounded in objective checks to ensure they don’t introduce risk. Participants will learn about framing their testing and review tasks in ways similar to industry benchmarks like SWE-bench, <a href="https://github.com/SWE-bench/SWE-bench#:~:text=SWE,that%20resolves%20the%20described%20problem">which evaluates LLMs on real-world bug fixing tasks</a>. This means setting up scenarios that are concrete (e.g., “given this buggy code, produce a fix”) and then automatically verifying success (does the fix pass all tests?). The class will incorporate security analysis as well, guided by OWASP’s LLM Top 10 guidelines for safe AI usage. For example, they’ll consider <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/#:~:text=LLM01%3A%20Prompt%20Injection">LLM-specific risks like prompt injection and insecure code suggestions </a>. If an AI suggests a code change, does it inadvertently introduce a vulnerability? Students practice using static analysis and security linters alongside AI outputs to catch any issues (like an AI-suggested SQL query lacking proper sanitation). By module’s end, they’ll have a checklist for “AI QA” that includes functional tests, property checks, and security scans. The goal is to ensure that when AI is used in development, its contributions are always vetted by automated gates so that nothing unsafe or subpar slips through.</p>
+        </section>
+        <section id="arc-3-module-5" class="section level-4">
+          <h4>Module 5: CI Integration of AI QA Tools</h4>
+          <p>In the final module of Arc 4, participants bring together all their AI-assisted testing and review techniques into a continuous integration (CI) pipeline. They will design a CI workflow where, for instance, every code commit triggers a series of AI-augmented checks: auto-generated tests run against the new code, AI performs a static review of the diff, and security scans (both AI-inferred and traditional) are executed. Students consider how to safely incorporate these into CI without causing noise or risk – for example, AI findings might be posted as warnings or comments rather than blocking the build, unless they reach a certain confidence threshold. The module also covers maintaining these AI tools: updating prompts or models over time, and monitoring their “false positive” rate so developers don’t lose trust. By setting up a sample CI pipeline (using a CI service or a local simulation with scripts), learners get hands-on experience in automating AI QA. The deliverable is a template CI configuration that adds value (catches bugs or bad code faster) without adding friction – achieving the arc’s goal of a CI lane that helps the team and does not hinder it. Participants will have demonstrated that AI can be a trustworthy co-tester and co-reviewer when surrounded by the right safeguards and verification.</p>
+        </section>
+      </section>
+      <section id="arc-4" class="section level-3">
+        <h3>Arc 5: Agents &amp; Tool Use You Can Trust</h3>
+        <section id="arc-4-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Deterministic orchestration + safety rails. Build task-centric agents with LangGraph (stateful, inspectable), wire in function/tool calling and strict structured outputs, and wrap everything in guardrails (policy filters, content safety, and safe fallbacks). Focus is reliability over “magic”.</p>
+        </section>
+        <section id="arc-4-module-1" class="section level-4">
+          <h4>Module 1: Designing Stateful AI Agents</h4>
+          <p>This module introduces a principled approach to building AI agents that carry state through multi-step tasks. Instead of the “hidden chain-of-thought” approach, participants learn how to orchestrate an agent’s reasoning deterministically. We explore frameworks like LangGraph, which is designed for creating <a href="https://lekha-bhan88.medium.com/5-reasons-why-langgraph-is-a-breakthrough-for-building-stateful-controllable-ai-agents-8f8de4afcbf8#:~:text=As%20enterprise,or%20these%20modern%20agent%20needs">stateful, controllable agent workflows</a>. Students will design a simple agent for a specific task (for example, an agent that gathers information from a couple of tools and summarizes it). They’ll break the task into discrete steps (nodes in a graph) such as: Step 1 – search knowledge base; Step 2 – call calculation tool; Step 3 – draft answer. The shared state (memory) flows between these steps in a structured way, and each step is explicitly defined (no black-box chain where state “just accumulates”). By building a small agent graph on paper or with provided libraries, they see how making state a first-class concept leads to better transparency and debuggability. By the end, participants can articulate the architecture of a reliable agent: one that doesn’t wander off because its next actions are constrained by an explicit plan.</p>
+        </section>
+        <section id="arc-4-module-2" class="section level-4">
+          <h4>Module 2: Tool Use and Function Calling</h4>
+          <p>Agents become much more powerful when they can invoke external tools or functions – but this must be done carefully to maintain reliability. In this module, participants will learn how to wire up an AI agent with tool usage in a controlled manner. They’ll see examples using modern LLM APIs that support function calling (where the model can output a JSON indicating which function to call and with what arguments). We emphasize defining a strict schema for these functions, so the model’s output is parseable and any deviation can be caught. Students practice by adding a tool to their agent from Module 1: for instance, a weather lookup or database query function. They craft prompts or use API features to ensure the LLM only responds with a function call when appropriate, and returns data in the expected structure. The concept of “deterministic orchestration” is applied: the agent framework decides when the model should think vs. when it should invoke a tool, rather than leaving that entirely open-ended. By end of this module, participants have implemented an agent that successfully calls at least one external tool via a specified interface, demonstrating how to tightly integrate an LLM with other system components in a safe, testable way.</p>
+        </section>
+        <section id="arc-4-module-3" class="section level-4">
+          <h4>Module 3: Implementing AI Guardrails</h4>
+          <p>To ensure agents are trustworthy, this module teaches how to wrap them with safety guardrails. Participants will examine the various risks when letting an AI operate (even in a limited capacity): it might output undesirable content, make an unsafe tool call, or just get stuck in a loop. We introduce guardrail libraries and techniques – for example, content filters that catch and block toxic or disallowed outputs, or policy rules that define what the agent is not allowed to do. A key concept is the difference between model alignment and external guardrails: here we focus on the latter, <a href="https://unit42.paloaltonetworks.com/comparing-llm-guardrails-across-genai-platforms/#:~:text=LLM%20guardrails%20are%20an%20essential,understand%20and%20follow%20safety%20guidelines">an external safety layer that checks inputs and outputs against rules</a>. Students implement basic guardrails around their agent from previous modules: e.g., a regex or classifier to detect if the agent’s response contains sensitive data or a prompt injection attempt, and a rule that if triggered, replaces the response with a safe failure message. They also add limits like timeouts or step caps so the agent can’t loop indefinitely. Through scenarios and testing (e.g., giving the agent a prompt that would normally produce a problematic response), participants see the guardrails in action. By the end, they understand how to use tools like Guardrails AI or custom checks to make their agent’s behavior bounded and compliant with requirements, which is essential for deploying agents in the real world.</p>
+        </section>
+        <section id="arc-4-module-4" class="section level-4">
+          <h4>Module 4: Testing and Debugging Agents</h4>
+          <p>This hands-on module focuses on how to verify that an AI agent works as intended and remains robust under various conditions. Participants will learn to apply good old-fashioned software testing to agent workflows. They write unit tests for each tool/function in the agent’s arsenal to ensure those building blocks are solid (e.g., test that the weather API wrapper returns data in the expected format for a sample input). Then, they create integration tests for the agent’s overall behavior, simulating different user requests and checking the agent’s responses. We also delve into “red teaming” the agent – providing deliberately tricky or malicious inputs to probe its defenses. For instance, a prompt that tries to make the agent break the rules or a very confusing task description to see if it can still follow the structured plan. Students will use debugging techniques like logging every agent step, capturing intermediate states, or even stepping through the LangGraph execution flow to inspect what the agent was thinking at each node. This practice reveals how errors manifest (maybe the agent tried to call a tool with wrong arguments, or a guardrail incorrectly blocked a legitimate action). By module’s end, participants are comfortable treating an AI agent like any other software component: something that can be systematically tested, debugged, and made reliable through iterative improvements and monitoring.</p>
+        </section>
+        <section id="arc-4-module-5" class="section level-4">
+          <h4>Module 5: Ensuring Reliable Agent Performance</h4>
+          <p>The final module of Arc 5 is more reflective and strategic, synthesizing all prior lessons on agents to answer: How do we get “reliability over magic”? Participants will consider the trade-offs in agent design and how to keep an agent’s performance dependable. Topics include: limiting the agent’s scope (it’s better to have a narrow, well-defined agent than a jack-of-all-trades that might go off rails), implementing fallback behaviors (if the agent is unsure or hits a guardrail, it gracefully hands off to a human or a simpler rules-based system), and constant monitoring in production (tracking success/failure rates of tasks, user feedback, etc.). The module may include case studies of agent failures and successes from industry to highlight lessons – e.g., where an agent was too autonomous and caused errors, versus a design that kept a human in the loop for final approval and avoided catastrophe. Students will refine their earlier agent designs with these reliability principles: perhaps adding a final confirmation step or tightening the allowed actions. By the end, each team writes a short reliability plan for their agent (covering safety, fallback triggers, monitoring metrics). They leave this arc with the mindset that a slightly less ambitious agent that consistently delivers is far preferable to a “magical” AI that works most of the time but occasionally breaks in unacceptable ways.</p>
+        </section>
+      </section>
+      <section id="arc-5" class="section level-3">
+        <h3>Arc 6: Customisation, Evals &amp; Observability</h3>
+        <section id="arc-5-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Decide when to prompt, when to fine-tune, and when to improve retrieval instead. Instrument your system with GenAI OpenTelemetry conventions; add offline evals (RAGAS/TruLens) and experiment tracking. Goal: a repeatable eval loop that survives model swaps.</p>
+        </section>
+        <section id="arc-5-module-1" class="section level-4">
+          <h4>Module 1: Choosing Prompting vs Tuning vs Retrieval</h4>
+          <p>This module helps participants develop a decision framework for optimizing AI systems. Given a problem where an AI’s output isn’t adequate, what’s the best way to improve it? We compare three approaches: prompt engineering (refining the input prompt or system instructions), model fine-tuning (actually training the model further on domain-specific examples), and retrieval augmentation (improving the data provided to the model, e.g. adding better context documents). Students will examine scenarios – for instance, the AI keeps answering incorrectly about company policies. Should we fine-tune the model on company data, or just feed relevant policy docs via RAG, or simply tweak the prompt to ask the model to be more precise? We go over the pros and cons: prompting is quick and cheap but may hit limits; fine-tuning can yield more permanent improvements but requires data and can cause overfitting; retrieval gives up-to-date info but depends on good search. Participants will work in small groups on case studies, recommending which approach or combination to use and why. We also introduce intermediate methods like parameter-efficient tuning (LoRA, etc.) as alternatives. By the end, they will have a checklist of considerations (e.g. data availability, need for real-time updates, cost constraints) to decide the customization strategy for an AI solution in any given context.</p>
+        </section>
+        <section id="arc-5-module-2" class="section level-4">
+          <h4>Module 2: Observability in GenAI Systems</h4>
+          <p>Participants learn how to instrument AI-driven systems for observability, applying similar principles used in traditional software to the unique aspects of generative AI. We introduce the emerging semantic conventions for tracing and metrics in AI, such as those being <a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/#:~:text=Semantic%20conventions%20for%20generative%20AI,for%20events%2C%20metrics%2C%20and">added to OpenTelemetry for generative AI operations</a>. Students will instrument a small GenAI application (like the Q&A system from Arc 2 or an agent from Arc 5) with tracing: for example, recording spans for stages like “vector search query” and “LLM response generation,” with attributes like the prompt size, model name, and inference latency. They also capture metrics such as number of tokens generated, time spent in each component, and perhaps a custom metric like “percentage of answers with no source found.” We’ll use open-source tools (maybe an OpenTelemetry Python library or a simple logging approach) to emit this data. The class discusses where to store and view it – e.g., feeding it into an APM dashboard or log aggregator. By seeing traces of a query through the system, participants understand how to debug and optimize AI components (spotting, say, that most time is spent in the vector DB vs. the model, or vice versa). They also learn about logging responsibly to avoid sensitive data exposure (traces might contain user queries, so maybe using IDs or partial obfuscation). The takeaway is an instrumentation blueprint that makes GenAI systems less of a black box by surfacing internal behavior and performance metrics in real time.</p>
+        </section>
+        <section id="arc-5-module-3" class="section level-4">
+          <h4>Module 3: Evaluation Techniques for LLM Outputs</h4>
+          <p>This module addresses how to evaluate the quality of responses from AI systems in a repeatable, quantitative way. Participants will explore both automated metrics and human-in-the-loop evaluation. We start with simple metrics: e.g., for classification tasks, accuracy can be measured if ground truth labels exist; for generative Q&A, one might check if the answer contains certain key facts. But more often, we need advanced tools. We introduce frameworks like RAGAS and TruLens, which are designed for evaluating RAG (Retrieval-Augmented Generation) systems on <a href="https://medium.com/@kangusundaresh/a-deep-dive-into-trulens-and-ragas-aca75eb084dc#:~:text=Evaluation%20frameworks%20like%20TruLens%20and,fix%20issues%20in%20your%20pipeline">dimensions like relevance, correctness, and groundedness</a>. Students will set up a small evaluation run: given a set of sample queries and expected reference answers or reference documents, use an evaluation library to score the system’s answers. For instance, RAGAS might compute a groundedness score by checking if the answer’s statements appear in retrieved documents, and TruLens might let us track and rate an answer’s quality with an LLM judge. Participants also learn about the importance of distribution of test queries – including easy and tough cases, so they can detect where the system fails. By the end, each participant will have configured an offline evaluation script that runs their AI system on a test set and produces metrics or a report. This becomes the foundation for an “eval harness” they can use whenever the model or data is updated, ensuring they know if changes are improvements or regressions.</p>
+        </section>
+        <section id="arc-5-module-4" class="section level-4">
+          <h4>Module 4: Experiment Tracking and Model Management</h4>
+          <p>Here, participants learn how to systematically track experiments and versions in AI development, borrowing best practices from ML Ops. The module covers setting up experiment tracking tools (could be as simple as a spreadsheet or as robust as using an open-source platform like MLflow or Weights &amp; Biases) to log what was tried and what the outcomes were. For example, if they adjust a prompt or fine-tune a model, they should record: which model (or prompt) version, what data was used, what evaluation results were obtained. Students will practice by performing a small experiment – say, they alter the prompt to instruct the AI to be more concise – run the evaluation from Module 3, and log the new results vs the old. They’ll see how keeping this history helps make decisions (did the change actually improve accuracy or not?). Model versioning is also discussed: using model naming conventions or IDs, storing previous versions of fine-tuned models, and documenting the differences. The module might briefly introduce model registries or how to handle deployment of new model versions safely. Another aspect is tracking data and prompt changes – ensuring they know what knowledge cutoff a model has, or what prompt template version is in production. By the end, participants will have a template for an experiment log and an understanding of how crucial this discipline is: it allows teams to iterate on AI systems methodically rather than by guesswork, and provides traceability when something goes wrong or when auditors ask how a particular model decision was reached.</p>
+        </section>
+        <section id="arc-5-module-5" class="section level-4">
+          <h4>Module 5: Continuous Improvement and Model Swap Readiness</h4>
+          <p>The final module of Arc 6 puts together all the customization, evaluation, and observability pieces into a strategy for long-term quality maintenance. Participants will design a “continuous eval loop” for their AI system, meaning a process by which the system is regularly tested and improved even as conditions change. We discuss scenario changes like a model API update (e.g., a new version of GPT or an open-source model upgrade) or a significant shift in input data patterns – how do we detect and adapt? Students will outline a plan where, for example, nightly or weekly, the system runs its battery of evaluation tests (from Module 3) on the latest model or latest data and compares against baseline. If performance drops (maybe the new model is worse on some aspect), alerts are raised or the deployment is held back. They also consider A/B testing new models or prompts in shadow mode to gather real user feedback safely before full rollout. The concept of “surviving model swaps” is emphasized: by having good observability (Module 2) and comprehensive evals (Module 3) and logs of what changed (Module 4), one can swap out the underlying model with minimal risk, confident that any major issues will be caught by the safety net. By module’s end, participants will have drafted a maintenance plan for an AI feature – covering how they will continuously measure it, when they decide to update it, and how to ensure it remains as good or better after any change. This instills a product mindset that launching an AI feature is not one-and-done; it requires ongoing care and feeding with the right tools in place.</p>
+        </section>
+      </section>
+      <section id="arc-6" class="section level-3">
+        <h3>Arc 7: LLMOps: Serving, Scaling &amp; Governance</h3>
+        <section id="arc-6-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Choose and trial inference stacks (vLLM, TGI, TensorRT-LLM), set SLOs, and cost/throughput tune. Then thread in governance: ISO/IEC 42001 practices, NIST AI RMF profiles, and the EU AI Act timeline so your rollout plan won’t get torpedoed by compliance.</p>
+        </section>
+        <section id="arc-6-module-1" class="section level-4">
+          <h4>Module 1: Serving LLMs at Scale</h4>
+          <p>This module tackles the infrastructure side of AI engineering: how to deploy and serve large language models efficiently to users. Participants will survey the landscape of LLM inference solutions and their trade-offs. We’ll look at open-source systems like <a href="https://www.designveloper.com/blog/vllm-alternatives/#:~:text=Beyond%20PagedAttention%2C%20vLLM%20also%20comes,with">vLLM (an engine optimized for high-throughput GPU serving using techniques like continuous batching)</a>, Hugging Face’s Text Generation Inference (TGI), and NVIDIA’s <a href="https://www.designveloper.com/blog/vllm-alternatives/#:~:text=Image%3A%20TensorRT">TensorRT-LLM library for accelerated GPU inference</a>. Students will learn the basics of what it takes to serve an LLM: loading the model, handling requests (possibly many in parallel), and delivering responses with low latency. They will compare a couple of approaches by reading case studies or running small-scale experiments if resources permit (for example, trying a 7B parameter model on a local machine with and without an optimized runtime). The discussion includes considerations like support for streaming outputs, fault tolerance (what if a model instance crashes), and autoscaling strategies. By the end, participants should be able to choose an inference stack for a given use case – e.g., “for our chat app with moderate traffic, using TGI on GPU instances with auto-scaling is good; for an offline batch job, maybe a simpler library or even CPU serving works.” They’ll document why they would select one stack over another, understanding the implications for performance and cost.</p>
+        </section>
+        <section id="arc-6-module-2" class="section level-4">
+          <h4>Module 2: Performance Tuning and SLOs</h4>
+          <p>In this module, participants dive into optimizing an LLM deployment to meet specific Service Level Objectives (SLOs) such as latency, throughput, and uptime. They will learn to set realistic SLO targets – for example, 95th percentile latency under 2 seconds for a response, or 99% uptime over a month – based on product requirements. With goals in hand, the focus turns to techniques to achieve them. Topics include model optimizations like quantization (reducing precision to speed up inference), model distillation or using smaller models for less critical requests, and request batching. We also consider horizontal scaling: how many instances are needed to handle X requests per second, and using load balancing. Students might engage in a hands-on exercise analyzing a simple load test of an AI service: given some benchmark data, identify the bottleneck (CPU, GPU, memory, network) and propose solutions (e.g., use a GPU with more memory to avoid swapping, or enable CPU offloading for certain model parts, etc.). They will also discuss cost-performance trade-offs: is it worth doubling the infrastructure cost to cut latency by half, or is there a point of diminishing returns? By the end, each participant will write a brief tuning plan for a hypothetical scenario (like “support 50 concurrent users with responses in under 3 seconds”), listing specific measures to implement. This builds their ability to not just build AI features, but ensure those features run efficiently and reliably under real-world conditions.</p>
+        </section>
+        <section id="arc-6-module-3" class="section level-4">
+          <h4>Module 3: Monitoring Usage and Controlling Costs</h4>
+          <p>Running LLMs in production can be expensive and complex, so this module focuses on operational monitoring and cost management. Participants will learn what metrics to watch in a live AI service: e.g., requests per second, average latency, error rates (like timeouts or failures to generate), and resource utilization (GPU memory, CPU load). They will set up or simulate a monitoring dashboard for an AI component – for instance, using a tool like Prometheus/Grafana or even CloudWatch to track these metrics over time. We emphasize alerting: configuring thresholds to notify when latency spikes or error rates exceed a baseline, which could indicate issues like a model serving instance gone bad or a sudden usage surge. On the cost side, students will analyze the cost per request of different model usage (comparing, say, an OpenAI API call cost vs. running their own model on AWS instances). They’ll learn strategies to control costs, such as caching frequent responses, using cheaper models for low-stakes queries, autoscaling down when traffic is low, or even rate-limiting users. A discussion about capacity planning is included: predicting usage to provision enough resources without over-provisioning. By the end of this module, participants will know how to keep an AI service healthy and within budget, ensuring that having a brilliant model doesn’t bankrupt the project or suffer downtime without anyone noticing. They’ll produce a simple monitoring and cost report plan for their capstone AI feature, to be implemented during deployment.</p>
+        </section>
+        <section id="arc-6-module-4" class="section level-4">
+          <h4>Module 4: AI Governance Frameworks in Practice</h4>
+          <p>This module shifts focus to the governance aspect of AI systems – making sure they are developed and operated responsibly and in compliance with emerging standards. Participants are introduced to ISO/IEC 42001 (the AI management system standard) and the NIST AI Risk Management Framework as guiding documents for AI governance. They will learn that <a href="https://kpmg.com/ch/en/insights/artificial-intelligence/iso-iec-42001.html#:~:text=With%20increasing%20regulatory%20scrutiny%2C%20businesses,adoption%20and%20broader%20digital%20transformation">ISO 42001 provides a structured approach for organizations to manage AI risks (covering things like bias, security, accountability)</a>, and that following it can help in meeting regulatory requirements and building trust. Similarly, <a href="https://www.nist.gov/itl/ai-risk-management-framework#:~:text=In%20collaboration%20with%20the%20private,AI%20products%2C%20services%2C%20and%20systems">NIST’s AI RMF is presented as a voluntary framework for integrating trustworthiness into AI design and use</a>. Students will break into groups to examine short case studies of AI deployments with potential ethical or risk issues (e.g., an AI system that might be biased against certain users). Each group will outline how applying these frameworks could mitigate the issues: for instance, using NIST’s categories (Govern, Map, Measure, Manage) to identify and control risks, or using ISO 42001’s emphasis on continuous monitoring and improvement to detect problems in operation. By the end, participants will have a pragmatic understanding that “governance” isn’t just paperwork – it means implementing concrete practices like documentation, bias testing, human oversight, and incident response plans. Each person will list a few governance actions they will implement for their capstone project’s AI component (like creating a model datasheet, or conducting a bias evaluation on their dataset), bridging the gap between abstract principles and real-world actions.</p>
+        </section>
+        <section id="arc-6-module-5" class="section level-4">
+          <h4>Module 5: Regulatory Compliance and Risk Management</h4>
+          <p>The final module of Arc 7 prepares participants to navigate the fast-evolving regulatory landscape around AI. We cover the key points of the EU AI Act and other relevant laws, focusing on timelines and obligations that an AI engineering team must be aware of. For instance, students learn that <a href="https://www.dataguard.com/eu-ai-act/timeline#:~:text=,isn%E2%80%99t%20on%20the%20market%20yet">the EU AI Act began rolling out in 2024</a> and <a href="https://www.dataguard.com/eu-ai-act/timeline#:~:text=Scenario%20%232%3A%20Operators%20of%20high,AI%20systems">imposes compliance deadlines by 2026 for high-risk AI systems</a>, with requirements depending on the system’s risk category. The module simulates a scenario: say their company wants to deploy a general-purpose AI feature in Europe in 2026 – what must they do now? Participants will identify needed steps such as classifying the system’s risk (using the Act’s definitions), implementing necessary safeguards (e.g., transparency to users, record-keeping, perhaps a conformity assessment if high-risk), and collaborating with compliance officers or legal teams. We also touch on other regions’ initiatives (like U.S. AI Bill of Rights principles or others) to encourage globally aware thinking. Risk management is tied in: referencing NIST AI RMF profiles or internal audit practices to continually assess and mitigate risks. Each student will draft a “compliance checklist” for their capstone project, listing items like “check if our AI is high-risk under EU law – if so, ensure we have human oversight and documentation of training data, etc.” They will also consider future-proofing: how to design with flexibility so that if a new law comes out, the system can be adjusted (for example, if stricter data privacy rules for AI are enacted). Completing this module, participants gain confidence that as engineering leads, they can contribute to making their AI products not just cutting-edge, but also lawful and trustworthy – hence avoiding last-minute roadblocks from regulators or customer concerns.</p>
+        </section>
+      </section>
+      <section id="arc-7" class="section level-3">
+        <h3>Arc 8: Capstone: From Prototype to Product</h3>
+        <section id="arc-7-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Teams ship an end-to-end AI feature with everything you’ve learned: production retrieval (possibly GraphRAG where justified), agentic workflows with safe tool use, structured outputs, eval gates in CI, observability dashboards, and a governance checklist. It’s a dry-run for launch.</p>
+        </section>
+        <section id="arc-7-module-1" class="section level-4">
+          <h4>Module 1: Project Planning and Architecture</h4>
+          <p>At the start of the Capstone arc, teams will solidify their project idea and plan out the architecture, incorporating components from all previous arcs. In this module, each team defines the AI-powered feature or product they aim to build (if not already decided beforehand). They will write a one-page project proposal that outlines: the problem being solved, the users, the AI capabilities required (e.g., “a customer support chatbot that uses our documentation to answer questions”), and success criteria. Then they break down the system architecture: identifying what retrieval mechanism is needed (and whether advanced techniques like GraphRAG from Arc 3 apply to their data), whether an agent is needed for multi-step tasks (Arc 5 concepts), how the LLM will be integrated (just a single call or an agent with tools), and what customizations or evaluations are critical (Arc 6). Each team presents their draft plan to instructors/peers for feedback, focusing on whether their scope is achievable in the remaining weeks and if they’re leveraging the right patterns learned. By the end of Module 1, every team has a clear, refined blueprint of their capstone project, essentially a mini PRD (Product Requirement Document) plus system diagram, which will guide their implementation in subsequent modules.</p>
+        </section>
+        <section id="arc-7-module-2" class="section level-4">
+          <h4>Module 2: Building the Knowledge Base and Retrieval</h4>
+          <p>In Module 2, teams start implementing the back-end data layer for their project – typically the knowledge base or documents and the retrieval system that supplies context to the AI. Drawing on Arc 2 and Arc 3, they will ingest any domain-specific data needed. For example, if building a support chatbot, this might mean loading product manuals or past Q&A logs. They will use appropriate chunking and indexing strategies (maybe even trying out GraphRAG if their data is rich in relationships). Teams set up their vector database or search index and tune it for their use case (for instance, selecting an embedding model that suits their content, or configuring hybrid search if needed). They also implement any needed data pipelines to keep this index up-to-date (like a script to re-ingest docs periodically or on updates). Alongside, they integrate basic observability for this layer (logging when documents are added or how many results are returned for queries). By the end of this module, each project has a working retrieval component: you can query it independently and get relevant info from the knowledge source. This forms a solid foundation for adding the AI logic in the next step.</p>
+        </section>
+        <section id="arc-7-module-3" class="section level-4">
+          <h4>Module 3: Implementing AI Workflows and Tooling</h4>
+          <p>Now teams focus on the core AI logic of their capstone project. In Module 3, they will build the LLM-driven workflows, whether it’s a straightforward Q&A or a complex agent with tools. Teams apply Arc 5’s lessons by creating their agent or orchestrated chain with reliability in mind. For simpler projects, this might be just a well-crafted prompt that takes user question + retrieved context and produces an answer with required format (structured outputs as learned in Arc 2). For more complex ones, they might implement an agent that can call multiple tools: e.g., check a database, then call an API, then answer. Importantly, they incorporate function calling or a similar mechanism to ensure the AI’s actions and outputs are structured and parseable. They also put in guardrails: using content filters and policies from Arc 5 to prevent bad outputs or actions. Essentially, this is where all the “magic” happens – but done in a controlled manner. Teams also start connecting components: the retrieval from Module 2 is now wired into the LLM workflow (the agent uses it to get info). By the end of Module 3, each project should have an end-to-end “alpha” version: given an input (user query or task), the system goes through the steps and returns an output. It might still be rough (not tuned for quality or fully tested), but the skeleton is there. Teams will demonstrate a basic use-case working, showing that their AI can utilize the data and tools to produce a result.</p>
+        </section>
+        <section id="arc-7-module-4" class="section level-4">
+          <h4>Module 4: Integrating Evaluation and Monitoring</h4>
+          <p>With a functioning AI workflow in place, teams now add the critical “safety net” and monitoring features that will make their project production-ready. In Module 4, they integrate evaluation and observability into their pipeline. Each team will set up automated evaluation gates inspired by Arc 4 and Arc 6: for example, incorporate a set of test questions (with known answers or acceptance criteria) that the system is run against whenever changes are made – much like a unit/regression test suite for the AI. They might use RAGAS or TruLens as appropriate to continuously measure answer quality or correctness on these test inputs. These evals could be added to a CI pipeline, so that if the score falls below a threshold, it flags the team. At the same time, teams build monitoring dashboards for their running system (Arc 6 instrumentation). They add logs or telemetry for key events: which tools the agent used, how long each step took, any content filter triggers, etc. If feasible, they set up a simple dashboard (maybe using an open-source tool or even just live logs) to view this data during test runs. Additionally, they ensure their system has fail-safes: if an error occurs or an eval fails, the system might rollback to a previous model or output a default safe response. By end of this module, each project not only works, but is being measured and watched. The teams can demonstrate how they know it’s working properly – e.g., “here’s our test suite pass rate” and “here’s our live monitoring showing latency and no safety rule violations in the last 100 queries.” This transforms their prototype into a robust, maintainable product component.</p>
+        </section>
+        <section id="arc-7-module-5" class="section level-4">
+          <h4>Module 5: Final Validation and Launch Preparation</h4>
+          <p>The capstone concludes with teams rigorously testing and polishing their AI feature as if preparing for a real product launch. In this final module, teams will conduct end-to-end testing with user scenarios, including edge cases and stress tests. They invite a few colleagues or classmates (outside their team) to act as beta users and gather feedback, particularly looking for any confusing outputs or failures. Any critical bugs identified are fixed, and the evaluation metrics from Module 4 are reviewed to ensure all quality benchmarks are met. Next, teams go through a “governance checklist” – essentially a review of ethical and compliance considerations from Arc 7. They verify that their model usage complies with any relevant guidelines (for example, if using a third-party API, are they handling data privacy right? If deployed in EU, do they inform users it’s AI, as might be required?). They document the decisions like model version, data sources with citations for transparency, and any limitations of the system (known failure modes) to accompany a launch. Additionally, they set up operational scripts or instructions for deployment: containerizing the service or writing deployment instructions (cloud setup, etc.), practicing a rollout on a test environment. Finally, each team presents their project in a “launch demo”, showing how a user would use it and explaining the engineering under the hood. They highlight how they incorporated retrieval, agents, eval, and governance. The instructors simulate a “launch go/no-go” meeting, questioning each team on how they’d handle a last-minute concern (like a new regulation or a spike in load). By the end, the teams will have effectively gone through a full development cycle from idea to a nearly production-ready AI feature, applying all the skills from the course. This dry run for launch ensures that when they face real-world AI projects, they’re equipped not just to build them, but to deliver them responsibly and successfully.</p>
+        </section>
+      </section>
+    </section>
+    </main>
+    <footer>
+      <p class="generated-notice">Generated with Theia on 10/26/2025</p>
+    </footer>
+  </article>
+</body>
+</html>

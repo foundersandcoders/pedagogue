@@ -1,4 +1,6 @@
-const themisPalette = {
+import type { ThemisPalette } from "$lib/utils/palette/paletteTypes";
+
+export const themisPalette: ThemisPalette = {
   metadata: {
     requiredImprovements: []
   },
@@ -46,4 +48,4 @@ const themisPalette = {
       }
     }
   }
-}
+};

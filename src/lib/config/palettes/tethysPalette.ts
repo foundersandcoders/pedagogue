@@ -1,4 +1,6 @@
-const tethysPalette = {
+import type { TethysPalette } from "$lib/utils/palette/paletteTypes";
+
+export const tethysPalette: TethysPalette = {
   metadata: {
     requiredImprovements: []
   },
@@ -45,5 +47,5 @@ const tethysPalette = {
         colour: "#0D0803ff"
       }
     }
-  },
-}
+  }
+};

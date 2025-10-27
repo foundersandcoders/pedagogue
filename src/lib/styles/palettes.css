@@ -2,12 +2,25 @@
  * Palette CSS Variables
  * Defines CSS custom properties for module-specific colour palettes
  *
+ * IMPORTANT: This file is now a static reference/documentation for CSS variables.
+ * The source of truth for palette data is: src/lib/config/palettes/
+ *
+ * Palette data flow:
+ * 1. Palette definitions: src/lib/config/palettes/{workflow}Palette.ts
+ * 2. Transformation logic: src/lib/utils/palette/paletteTransformer.ts
+ * 3. Application: src/routes/+layout.svelte applies data-palette attribute
+ *
  * Variables are set dynamically via data attributes on the root element:
  * - [data-palette="metis"] - Metis workflow palette
  * - [data-palette="themis"] - Themis workflow palette
  * - [data-palette="tethys"] - Tethys workflow palette
  * - [data-palette="theia"] - Theia workflow palette
  * - [data-palette="rhea"] - Main application palette (default)
+ *
+ * When updating palettes:
+ * - Edit the TypeScript files in src/lib/config/palettes/
+ * - This CSS file should be updated to match for reference
+ * - Run the app to verify changes appear correctly
  */
 
 /* Rhea: Default Palette */

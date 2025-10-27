@@ -219,12 +219,12 @@
 
 	.upload-area h3 {
 		margin-bottom: 1rem;
-		color: #495057;
+		color: var(--palette-foreground);
 		font-weight: 600;
 	}
 
 	.drop-zone {
-		border: 2px dashed #dee2e6;
+		border: 2px dashed var(--palette-line);
 		border-radius: 8px;
 		padding: 3rem 2rem;
 		text-align: center;
@@ -237,24 +237,24 @@
 	}
 
 	.drop-zone:hover:not(.uploading) {
-		border-color: #007bff;
-		background-color: #f8f9ff;
+		border-color: var(--palette-secondary);
+		background-color: var(--palette-bg-subtle);
 	}
 
 	.drop-zone.drag-over {
-		border-color: #007bff;
-		background-color: #f0f8ff;
+		border-color: var(--palette-secondary);
+		background-color: var(--palette-bg-subtle-alt);
 		border-style: solid;
 	}
 
 	.drop-zone.success {
-		border-color: #28a745;
-		background-color: #f8fff8;
+		border-color: var(--palette-foreground);
+		background-color: var(--palette-bg-subtle-alt);
 	}
 
 	.drop-zone.error {
-		border-color: #dc3545;
-		background-color: #fff8f8;
+		border-color: var(--palette-primary);
+		background-color: var(--palette-bg-subtle-alt);
 	}
 
 	.drop-zone.uploading {
@@ -272,15 +272,15 @@
 	.course-stats {
 		display: flex;
 		gap: 0.5rem;
-		color: #6c757d;
+		color: var(--palette-foreground-alt);
 		font-size: 0.9rem;
 	}
 
 	.warnings {
 		max-width: 500px;
 		text-align: left;
-		background: #fff3cd;
-		border: 1px solid #ffc107;
+		background: var(--palette-bg-subtle-alt);
+		border: 1px solid var(--palette-accent);
 		border-radius: 4px;
 		padding: 1rem;
 		margin-top: 1rem;
@@ -288,14 +288,14 @@
 
 	.warnings-header {
 		font-weight: 600;
-		color: #856404;
+		color: var(--palette-foreground);
 		margin: 0 0 0.5rem 0;
 	}
 
 	.warnings ul {
 		margin: 0;
 		padding-left: 1.5rem;
-		color: #856404;
+		color: var(--palette-foreground);
 		font-size: 0.85rem;
 	}
 
@@ -321,22 +321,22 @@
 	}
 
 	.actions button.primary {
-		background-color: #007bff;
+		background-color: var(--palette-foreground);
 		color: white;
-		border-color: #007bff;
+		border-color: var(--palette-foreground);
 	}
 
 	.actions button.primary:hover {
-		background-color: #0056b3;
-		border-color: #0056b3;
+		background-color: var(--palette-secondary);
+		border-color: var(--palette-secondary);
 	}
 
 	.actions button:not(.primary) {
-		color: #6c757d;
+		color: var(--palette-foreground-alt);
 	}
 
 	.actions button:not(.primary):hover {
-		background-color: #6c757d;
+		background-color: var(--palette-foreground-alt);
 		color: white;
 	}
 
@@ -344,7 +344,7 @@
 		width: 3rem;
 		height: 3rem;
 		border-radius: 50%;
-		background-color: #28a745;
+		background-color: var(--palette-foreground);
 		color: white;
 		display: flex;
 		align-items: center;
@@ -357,7 +357,7 @@
 		width: 3rem;
 		height: 3rem;
 		border-radius: 50%;
-		background-color: #dc3545;
+		background-color: var(--palette-primary);
 		color: white;
 		display: flex;
 		align-items: center;
@@ -366,7 +366,7 @@
 	}
 
 	.error-message {
-		color: #dc3545;
+		color: var(--palette-primary);
 		font-weight: 500;
 		max-width: 400px;
 		word-break: break-word;
@@ -374,8 +374,8 @@
 
 	.retry-button {
 		background: transparent;
-		border: 2px solid #dc3545;
-		color: #dc3545;
+		border: 2px solid var(--palette-primary);
+		color: var(--palette-primary);
 		border-radius: 6px;
 		padding: 0.5rem 1rem;
 		font-size: 0.9rem;
@@ -385,7 +385,7 @@
 	}
 
 	.retry-button:hover {
-		background-color: #dc3545;
+		background-color: var(--palette-primary);
 		color: white;
 	}
 
@@ -403,17 +403,17 @@
 
 	.upload-prompt p {
 		margin: 0;
-		color: #6c757d;
+		color: var(--palette-foreground-alt);
 	}
 
 	.upload-hint {
 		font-size: 0.85rem;
-		color: #999;
+		color: var(--palette-foreground-alt);
 	}
 
 	.spinner {
-		border: 3px solid #f3f3f3;
-		border-top: 3px solid #007bff;
+		border: 3px solid var(--palette-line);
+		border-top: 3px solid var(--palette-secondary);
 		border-radius: 50%;
 		width: 40px;
 		height: 40px;
@@ -431,6 +431,6 @@
 
 	h4 {
 		margin: 0;
-		color: #212529;
+		color: var(--palette-foreground);
 	}
 </style>
