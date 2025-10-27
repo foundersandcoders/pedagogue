@@ -63,7 +63,7 @@
 ---
 
 ## 2. MVP Milestones
-[x] 2.7. Build ModuleGenerationList Component (Step 5) ✅ COMPLETED
+- [x] 2.1. Build ModuleGenerationList Component (Step 5) ✅ COMPLETED
   - Created `src/lib/components/themis/ModuleGenerationList.svelte`
   - Displays all modules from refined course structure
   - Module-by-module generation using existing module workflow
@@ -72,20 +72,20 @@
   - Progress tracking across all modules with SSE streaming
   - Integrated ExportButton for early course exports
   - **Status:** Complete - orchestrates actual content generation using proven module generator
-[x] 2.8. Create /api/themis/module Endpoint ✅ COMPLETED
+- [x] 2.2. Create /api/themis/module Endpoint ✅ COMPLETED
   - Created `src/routes/api/themis/module/+server.ts`
   - Accepts module slot data with course context
   - Calls existing module generation logic with course-aware prompts
   - Returns XML module spec via SSE streaming
   - Supports retry logic and validation
   - **Status:** Complete - API layer for course-aware module generation
-[x] 2.9. Extend Module Generation with Course Context ✅ COMPLETED
+- [x] 2.3. Extend Module Generation with Course Context ✅ COMPLETED
   - Added `buildCourseAwareModulePrompt()` to metisPromptFactory
   - Includes course narrative, arc progression, and preceding modules in prompts
   - Maintains backward compatibility with standalone module generation
   - XML injection prevention via escapeXml utilities
   - **Status:** Complete - reuses existing module generation with course awareness
-[x] 2.10. Build CourseOverview Component (Step 6) ✅ COMPLETED (2025-10-25)
+- [x] 2.4. Build CourseOverview Component (Step 6) ✅ COMPLETED (2025-10-25)
   - Created `src/lib/components/themis/CourseOverview.svelte`
   - Displays complete course with metadata, narratives, and all generated modules
   - Arc-grouped collapsible sections with module previews
@@ -94,14 +94,16 @@
   - Course completion status banner
   - Navigation: back to generation or reset workflow
   - **Status:** Complete - final review and export interface operational
-[ ] 2.11. Add Course XML Schema and Validator 📋 PENDING
+- [ ] 2.5. Radically improve module-to-module coherence at generation
+  - Insert interstitial step: generating module overviews first, allowing later generation of full module spec
+- [ ] 2.6. Add Course XML Schema and Validator 📋 PENDING
   - Define course-level XML schema wrapping multiple modules
   - Validation for complete course structure
   - Include course narratives and metadata
   - **Why eleventh:** Ensures exported courses meet quality standards
   - **Status:** Not yet started - will reuse existing validation patterns
   - **Note:** Current export uses Theia service which handles course-to-markdown/HTML conversion
-[ ] 2.12. Implement Export Functionality 📋 PENDING
+- [ ] 2.7. Implement Export Functionality 📋 PENDING
   - XML export for complete course
   - PDF export option (stretch goal)
   - Individual module file exports

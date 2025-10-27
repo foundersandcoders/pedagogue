@@ -15,19 +15,19 @@ argument-hint: []
       For each `UpdateRoadmapAll/Roadmaps/Roadmap/attribute::active="true"`, go through `Loops/Loop/attribute::i="0"`
     </Step>
     <Step i="2" name="update README">
-      Using all content from files in `UpdateRoadmapAll/Roadmaps`, update @docs/dev/roadmaps/README.md
+      Using all content from files in `UpdateRoadmapAll/Roadmaps`, update @docs/dev/roadmap/README.md
     </Step>
     <Step i="3" name="report to user">
       Tell the user what you changed
     </Step>
   </Steps>
   <Roadmaps>
-    <Roadmap i="0" type="hub" active="true" path="docs/dev/roadmaps/Rhea-MVP.md"  />
-    <Roadmap i="1" type="route" active="true" path="docs/dev/roadmaps/Themis-MVP.md" />
-    <Roadmap i="2" type="route" active="false" path="docs/dev/roadmaps/Tethys-MVP.md" />
-    <Roadmap i="3" type="route" active="true" path="docs/dev/roadmaps/Metis-MVP.md" />
-    <Roadmap i="4" type="util" active="true" path="docs/dev/roadmaps/Theia-MVP.md" />
-    <Roadmap i="5" type="util" active="false" path="docs/dev/roadmaps/Atlas-MVP.md" />
+    <Roadmap i="0" type="hub" active="true" path="docs/dev/roadmap/Rhea-MVP.md"  />
+    <Roadmap i="1" type="route" active="true" path="docs/dev/roadmap/Themis-MVP.md" />
+    <Roadmap i="2" type="route" active="false" path="docs/dev/roadmap/Tethys-MVP.md" />
+    <Roadmap i="3" type="route" active="true" path="docs/dev/roadmap/Metis-MVP.md" />
+    <Roadmap i="4" type="util" active="true" path="docs/dev/roadmap/Theia-MVP.md" />
+    <Roadmap i="5" type="util" active="false" path="docs/dev/roadmap/Atlas-MVP.md" />
   </Roadmaps>
   <Loops>
     <Loop i="0">

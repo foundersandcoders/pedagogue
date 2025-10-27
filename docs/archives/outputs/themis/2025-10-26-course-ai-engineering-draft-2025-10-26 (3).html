@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Engineering Draft (2025-10-26)</title>
+  <style>
+/* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #fff;
+      padding: 2rem;
+    }
+    
+    /* Content Container */
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    /* Header */
+    header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid #e9ecef;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      color: #6c757d;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    
+    .metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 4px;
+    }
+    
+    .metadata-item {
+      font-size: 0.9rem;
+      color: #495057;
+    }
+    
+    .metadata-item strong {
+      color: #212529;
+    }
+    
+    /* Main Content */
+    main {
+      margin-bottom: 3rem;
+    }
+    
+    /* Sections */
+    section {
+      margin-bottom: 2rem;
+    }
+    
+    section.level-2 {
+      margin-top: 2.5rem;
+    }
+    
+    section.level-3 {
+      margin-top: 2rem;
+      margin-left: 1rem;
+    }
+    
+    section.level-4 {
+      margin-top: 1.5rem;
+      margin-left: 2rem;
+    }
+    
+    /* Headings */
+    h2, h3, h4, h5, h6 {
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    
+    h2 {
+      font-size: 2rem;
+      color: #2c3e50;
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 0.5rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      color: #34495e;
+    }
+    
+    h4 {
+      font-size: 1.25rem;
+      color: #495057;
+    }
+    
+    h5 {
+      font-size: 1.1rem;
+      color: #6c757d;
+    }
+    
+    h6 {
+      font-size: 1rem;
+      color: #868e96;
+    }
+    
+    /* Paragraphs */
+    p {
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+    
+    /* Lists */
+    ul, ol {
+      margin: 1rem 0 1rem 2rem;
+    }
+    
+    li {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Definition Lists */
+    dl.definition-list {
+      margin: 1rem 0;
+    }
+    
+    dt {
+      font-weight: 600;
+      color: #495057;
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    dd {
+      margin-left: 2rem;
+      margin-bottom: 0.5rem;
+      color: #6c757d;
+    }
+    
+    /* Footer */
+    footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e9ecef;
+      text-align: center;
+    }
+    
+    .generated-notice {
+      font-size: 0.9rem;
+      color: #adb5bd;
+    }
+    
+    /* Print Styles */
+    @media print {
+      body {
+        padding: 0;
+        font-size: 12pt;
+      }
+    
+      .content {
+        max-width: 100%;
+      }
+    
+      header {
+        page-break-after: avoid;
+      }
+    
+      section {
+        page-break-inside: avoid;
+      }
+    
+      h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+      }
+    
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+    
+      .metadata {
+        background: #f5f5f5;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+    
+      h1 {
+        font-size: 2rem;
+      }
+    
+      h2 {
+        font-size: 1.5rem;
+      }
+    
+      section.level-3, section.level-4 {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <article class="content">
+    <header>
+      <h1>AI Engineering Draft (2025-10-26)</h1>
+      <p class="subtitle">A 40-week facilitated course</p>
+      <aside class="metadata">
+        <span class="metadata-item"><strong>totalWeeks:</strong> 40</span>
+        <span class="metadata-item"><strong>daysPerWeek:</strong> 1</span>
+        <span class="metadata-item"><strong>cohortSize:</strong> 20</span>
+        <span class="metadata-item"><strong>structure:</strong> facilitated</span>
+        <span class="metadata-item"><strong>arcs:</strong> 8</span>
+        <span class="metadata-item"><strong>modules:</strong> 40</span>
+      </aside>
+    </header>
+    <main>
+    <section id="overview" class="section level-2">
+      <h2>Course Overview</h2>
+      <p>A one year course for currently employed developers that want to up-skill to use AI-enhanced workflows and build products that use AI with frontier techniques. The course focusses on three strands, with alternating focus per arc:</p>
+      <p>1. incorporating AI as software feature
+2. incorporating AI to the development workflow
+3. machine learning principles that can be applied to development</p>
+    </section>
+    <section id="logistics" class="section level-2">
+      <h2>Course Logistics</h2>
+      <dl class="definition-list">
+        <dt>Total Duration</dt>
+        <dd>40 weeks</dd>
+        <dt>Days per Week</dt>
+        <dd>1</dd>
+        <dt>Structure</dt>
+        <dd>facilitated</dd>
+        <dt>Start Date</dt>
+        <dd>2026-01-14</dd>
+      </dl>
+    </section>
+    <section id="cohort-info" class="section level-2">
+      <h2>Cohort Information</h2>
+      <dl class="definition-list">
+        <dt>Cohort Size</dt>
+        <dd>20</dd>
+        <dt>Team-Based</dt>
+        <dd>Yes</dd>
+        <dt>Team Size</dt>
+        <dd>4</dd>
+        <dt>Prerequisites</dt>
+        <dd>All participants are :
+1. currently employed as software developers
+2. having their training funded by their employers, and thus need to attain immediately applicable skills
+3. skilled in software development but unfamiliar with AI Engineering
+4. bound to various employer-specific tech stacks and need to be able to apply techniques to it</dd>
+        <dt>Experience Level</dt>
+        <dd>&gt;= 4 years experience, limited experience</dd>
+      </dl>
+    </section>
+    <section id="arcs" class="section level-2">
+      <h2>Course Arcs</h2>
+      <section id="arc-0" class="section level-3">
+        <h3>Arc 1: Pragmatic AI-Assisted Engineering</h3>
+        <section id="arc-0-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Set up a modern AI dev environment and working style. Pick and justify tools (coding assistants, chat, planning), agree team norms, and decide how you’ll measure impact (DORA/SPACE) so “faster” actually means “better”.</p>
+        </section>
+        <section id="modules" class="section level-4">
+          <h4>Modules</h4>
+          <dl class="definition-list">
+            <dt>Module 1: Module 1 (1 weeks)</dt>
+            <dt>Module 2: Module 2 (1 weeks)</dt>
+            <dt>Module 3: Module 3 (1 weeks)</dt>
+            <dt>Module 4: Module 4 (1 weeks)</dt>
+            <dt>Module 5: Module 5 (1 weeks)</dt>
+          </dl>
+        </section>
+      </section>
+      <section id="arc-1" class="section level-3">
+        <h3>Arc 2: Shipping AI Features</h3>
+        <section id="arc-1-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Build a “chat-with-your-docs” feature the right way: clean ingestion, sensible chunking defaults, hybrid retrieval, a simple reranker, and structured outputs the API can trust. Aim: a thin slice that’s observable, testable, and shippable</p>
+        </section>
+        <section id="modules" class="section level-4">
+          <h4>Modules</h4>
+          <dl class="definition-list">
+            <dt>Module 1: Module 1 (1 weeks)</dt>
+            <dt>Module 2: Module 2 (1 weeks)</dt>
+            <dt>Module 3: Module 3 (1 weeks)</dt>
+            <dt>Module 4: Module 4 (1 weeks)</dt>
+            <dt>Module 5: Module 5 (1 weeks)</dt>
+          </dl>
+        </section>
+      </section>
+      <section id="arc-2" class="section level-3">
+        <h3>Arc 3: Embeddings, Hybrid search &amp; GraphRAG</h3>
+        <section id="arc-2-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Go beyond “vector DB + hope”. Compare hybrid BM25+vector recipes, trial cross-encoder rerankers, and learn when graph-style retrieval (GraphRAG) beats local chunk recall. You’ll design a retrieval plan that matches your corpus and latency budget.</p>
+        </section>
+        <section id="modules" class="section level-4">
+          <h4>Modules</h4>
+          <dl class="definition-list">
+            <dt>Module 1: Module 1 (1 weeks)</dt>
+            <dt>Module 2: Module 2 (1 weeks)</dt>
+            <dt>Module 3: Module 3 (1 weeks)</dt>
+            <dt>Module 4: Module 4 (1 weeks)</dt>
+            <dt>Module 5: Module 5 (1 weeks)</dt>
+          </dl>
+        </section>
+      </section>
+      <section id="arc-3" class="section level-3">
+        <h3>Arc 4: AI for Testing, QA &amp; Code Review</h3>
+        <section id="arc-3-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Use AI to generate tests, write property checks, and perform first-pass reviews—then ground all that with objective signals: SWE-bench style task framing and security hygiene from the OWASP LLM Top 10. The deliverable is a CI lane that adds value without adding risk.</p>
+        </section>
+        <section id="modules" class="section level-4">
+          <h4>Modules</h4>
+          <dl class="definition-list">
+            <dt>Module 1: Module 1 (1 weeks)</dt>
+            <dt>Module 2: Module 2 (1 weeks)</dt>
+            <dt>Module 3: Module 3 (1 weeks)</dt>
+            <dt>Module 4: Module 4 (1 weeks)</dt>
+            <dt>Module 5: Module 5 (1 weeks)</dt>
+          </dl>
+        </section>
+      </section>
+      <section id="arc-4" class="section level-3">
+        <h3>Arc 5: Agents &amp; Tool Use You Can Trust</h3>
+        <section id="arc-4-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Deterministic orchestration + safety rails. Build task-centric agents with LangGraph (stateful, inspectable), wire in function/tool calling and strict structured outputs, and wrap everything in guardrails (policy filters, content safety, and safe fallbacks). Focus is reliability over “magic”.</p>
+        </section>
+        <section id="modules" class="section level-4">
+          <h4>Modules</h4>
+          <dl class="definition-list">
+            <dt>Module 1: Module 1 (1 weeks)</dt>
+            <dt>Module 2: Module 2 (1 weeks)</dt>
+            <dt>Module 3: Module 3 (1 weeks)</dt>
+            <dt>Module 4: Module 4 (1 weeks)</dt>
+            <dt>Module 5: Module 5 (1 weeks)</dt>
+          </dl>
+        </section>
+      </section>
+      <section id="arc-5" class="section level-3">
+        <h3>Arc 6: Customisation, Evals &amp; Observability</h3>
+        <section id="arc-5-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Decide when to prompt, when to fine-tune, and when to improve retrieval instead. Instrument your system with GenAI OpenTelemetry conventions; add offline evals (RAGAS/TruLens) and experiment tracking. Goal: a repeatable eval loop that survives model swaps.</p>
+        </section>
+        <section id="modules" class="section level-4">
+          <h4>Modules</h4>
+          <dl class="definition-list">
+            <dt>Module 1: Module 1 (1 weeks)</dt>
+            <dt>Module 2: Module 2 (1 weeks)</dt>
+            <dt>Module 3: Module 3 (1 weeks)</dt>
+            <dt>Module 4: Module 4 (1 weeks)</dt>
+            <dt>Module 5: Module 5 (1 weeks)</dt>
+          </dl>
+        </section>
+      </section>
+      <section id="arc-6" class="section level-3">
+        <h3>Arc 7: LLMOps: Serving, Scaling &amp; Governance</h3>
+        <section id="arc-6-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Choose and trial inference stacks (vLLM, TGI, TensorRT-LLM), set SLOs, and cost/throughput tune. Then thread in governance: ISO/IEC 42001 practices, NIST AI RMF profiles, and the EU AI Act timeline so your rollout plan won’t get torpedoed by compliance.</p>
+        </section>
+        <section id="modules" class="section level-4">
+          <h4>Modules</h4>
+          <dl class="definition-list">
+            <dt>Module 1: Module 1 (1 weeks)</dt>
+            <dt>Module 2: Module 2 (1 weeks)</dt>
+            <dt>Module 3: Module 3 (1 weeks)</dt>
+            <dt>Module 4: Module 4 (1 weeks)</dt>
+            <dt>Module 5: Module 5 (1 weeks)</dt>
+          </dl>
+        </section>
+      </section>
+      <section id="arc-7" class="section level-3">
+        <h3>Arc 8: Capstone: From Prototype to Product</h3>
+        <section id="arc-7-description" class="section level-4">
+          <h4>Description</h4>
+          <p>Teams ship an end-to-end AI feature with everything you’ve learned: production retrieval (possibly GraphRAG where justified), agentic workflows with safe tool use, structured outputs, eval gates in CI, observability dashboards, and a governance checklist. It’s a dry-run for launch.</p>
+        </section>
+        <section id="modules" class="section level-4">
+          <h4>Modules</h4>
+          <dl class="definition-list">
+            <dt>Module 1: Module 1 (1 weeks)</dt>
+            <dt>Module 2: Module 2 (1 weeks)</dt>
+            <dt>Module 3: Module 3 (1 weeks)</dt>
+            <dt>Module 4: Module 4 (1 weeks)</dt>
+            <dt>Module 5: Module 5 (1 weeks)</dt>
+          </dl>
+        </section>
+      </section>
+    </section>
+    </main>
+    <footer>
+      <p class="generated-notice">Generated with Theia on 10/26/2025</p>
+    </footer>
+  </article>
+</body>
+</html>

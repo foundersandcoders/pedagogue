@@ -18,7 +18,7 @@ disable-model-invocation: false
       For $2, go through `UpdateChain/Loops/attribute::i="0"`
     </Step>
     <Step i="2" name="update README">
-      Using all content from within docs/dev/roadmaps, update docs/dev/roadmaps/README.md
+      Using all content from within docs/dev/roadmap, update docs/dev/roadmap/README.md
     </Step>
     <Step i="3" name="report to user">
       Tell the user what you changed
