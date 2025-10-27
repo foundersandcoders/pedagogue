@@ -49,6 +49,10 @@ All colours now flow from TypeScript palette files → Build-time generation →
 - [x] `src/lib/components/metis/ModulePreview.svelte` (10 colour values)
 - [x] `src/lib/components/metis/ChangelogViewer.svelte` (9 colour values)
 
+## Component Conversion Complete! ✅
+
+All 35 component files have been converted to use palette variables.
+
 ## Remaining Work
 
 ### Themis Components (7 files)
@@ -66,11 +70,11 @@ All colours now flow from TypeScript palette files → Build-time generation →
 - [x] `src/lib/components/theia/ExportConfigModal.svelte` (40 colour values)
 
 ### Error Components (2 files)
-- [ ] `src/lib/components/errors/ErrorBoundary.svelte`
-- [ ] `src/lib/components/errors/ErrorAlert.svelte`
+- [x] `src/lib/components/errors/ErrorBoundary.svelte` (1 colour value)
+- [x] `src/lib/components/errors/ErrorAlert.svelte` (17 colour values)
 
-### Other Files
-- [ ] HTML formatter (`src/lib/utils/theia/formatters/htmlFormatter.ts`)
+### Other Files (Optional)
+- [ ] HTML formatter (`src/lib/utils/theia/formatters/htmlFormatter.ts`) - generates static HTML output
 
 ## Statistics
 

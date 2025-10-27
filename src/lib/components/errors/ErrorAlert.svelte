@@ -120,21 +120,21 @@
   }
 
   .error-alert-error {
-    background-color: #fee;
-    border-left-color: #c33;
-    color: #600;
+    background-color: var(--palette-bg-subtle-alt);
+    border-left-color: var(--palette-primary);
+    color: var(--palette-primary);
   }
 
   .error-alert-warning {
-    background-color: #ffc;
-    border-left-color: #c90;
-    color: #630;
+    background-color: var(--palette-bg-subtle-alt);
+    border-left-color: var(--palette-accent);
+    color: var(--palette-foreground);
   }
 
   .error-alert-info {
-    background-color: #def;
-    border-left-color: #39c;
-    color: #036;
+    background-color: var(--palette-bg-subtle);
+    border-left-color: var(--palette-secondary);
+    color: var(--palette-foreground);
   }
 
   .error-alert-header {
@@ -187,34 +187,34 @@
   }
 
   .error-alert-retry {
-    border-color: #39c;
-    color: #39c;
+    border-color: var(--palette-secondary);
+    color: var(--palette-secondary);
   }
 
   .error-alert-retry:hover {
-    background-color: #39c;
+    background-color: var(--palette-secondary);
     color: white;
   }
 
   .error-alert-details {
-    border-color: #666;
-    color: #666;
+    border-color: var(--palette-foreground-alt);
+    color: var(--palette-foreground-alt);
   }
 
   .error-alert-dismiss {
-    border-color: #999;
-    color: #999;
+    border-color: var(--palette-foreground-alt);
+    color: var(--palette-foreground-alt);
   }
 
   .error-alert-details-panel {
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid var(--palette-line);
     font-size: 14px;
   }
 
   .error-alert-details-panel pre {
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--palette-bg-subtle);
     padding: 12px;
     border-radius: 4px;
     overflow-x: auto;

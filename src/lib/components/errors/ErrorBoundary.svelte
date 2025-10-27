@@ -104,7 +104,7 @@
 
   .error-boundary-fallback {
     text-align: center;
-    color: #666;
+    color: var(--palette-foreground-alt);
     margin-top: 16px;
   }
 </style>
