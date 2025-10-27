@@ -56,9 +56,9 @@ All colours now flow from TypeScript palette files → Build-time generation →
 - [x] `src/lib/components/themis/ArcStructurePlanner.svelte` (5 colour values)
 - [x] `src/lib/components/themis/ModuleStructurePlanner.svelte` (25 colour values)
 - [x] `src/lib/components/themis/ModuleWithinArcPlanner.svelte` (30 colour values)
-- [ ] `src/lib/components/themis/CourseStructureReview.svelte`
-- [ ] `src/lib/components/themis/ModuleGenerationList.svelte`
-- [ ] `src/lib/components/themis/CourseOverview.svelte`
+- [x] `src/lib/components/themis/CourseStructureReview.svelte` (already using palette vars)
+- [x] `src/lib/components/themis/ModuleGenerationList.svelte` (9 colour values)
+- [x] `src/lib/components/themis/CourseOverview.svelte` (9 colour values)
 
 ### Theia Components (3 files)
 - [ ] `src/lib/components/theia/CourseStructureUpload.svelte`
