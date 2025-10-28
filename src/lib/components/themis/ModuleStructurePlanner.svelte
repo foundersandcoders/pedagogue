@@ -9,8 +9,26 @@
     back: void;
   }>();
 
+  function countModules(course: CourseData): number {
+    let modules: number = 0;
+    for (const arc of course.arcs) {
+      modules += arc.modules.length;
+    }
+    return modules;
+  }
+
+  function getModules(course: CourseData): ModuleSlot[] {
+    let modules: ModuleSlot[] = [];
+    for (const arc of course.arcs) {
+      modules = modules.concat(arc.modules);
+    }
+    return modules;
+  }
+
   let modules: ModuleSlot[] =
-    courseData.modules.length > 0 ? courseData.modules : [createEmptyModule(1)];
+    countModules(courseData) > 0
+      ? getModules(courseData)
+      : [createEmptyModule(1)];
 
   let errors: { [key: number]: string } = {};
 
