@@ -1,5 +1,12 @@
 # Tethys: Arc Designer
 
+![Tethys Icon](static/tethys/icon.png)
+
+> [!NOTE]
+> <!-- one line defining current status -->
+
+---
+
 ## 1. Tasks
 ### 1.1. Open Tasks
 #### 1.1.1. Due Tasks
@@ -7,6 +14,7 @@
 #### 1.1.2. Other Tasks
 
 ### 1.2. Blocked Tasks
+<!-- No blocked tasks -->
 
 ---
 

@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount, onDestroy } from "svelte";
 	import type { CourseData, ModuleSlot, Arc } from "$lib/types/themis";
-	import { currentCourse, moduleStatusCounts, allModulesComplete } from "$lib/stores/themisStores";
-	import { updateModuleStatus, updateModuleWithGeneratedData, updateModuleWithError } from "$lib/utils/themis/moduleStoreHelpers";
+	import { currentCourse, moduleStatusCounts, allModulesComplete, updateModuleWithOverview } from "$lib/stores/themisStores";
+	import { updateModuleStatus, updateModuleWithGeneratedData, updateModuleWithError, setLastAttemptedGeneration } from "$lib/utils/themis/moduleStoreHelpers";
+	import { buildKnowledgeContext, getPrecedingModules } from "$lib/utils/themis/knowledgeContextBuilder";
 	import ExportButton from "$lib/components/theia/ExportButton.svelte";
 	import ProgressSummary from "./ProgressSummary.svelte";
 	import ArcSection from "./ArcSection.svelte";
@@ -60,8 +61,56 @@
 		expandedArcId = expandedArcId === arcId ? null : arcId;
 	}
 
+	async function generateOverview(module: ModuleSlot, arc: Arc): Promise<void> {
+		// Update status to generating and track attempt type
+		setLastAttemptedGeneration(module.id, 'overview');
+		updateModuleStatus(module.id, 'generating');
+		generatingModuleId = module.id;
+
+		try {
+			// Get preceding modules and build knowledge context
+			const precedingModules = getPrecedingModules(module, courseData);
+
+			// Send request to overview generation endpoint
+			const response = await fetch('/api/themis/module/overview', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					moduleSlot: module,
+					courseContext: {
+						title: courseData.title,
+						courseNarrative: courseData.courseNarrative || '',
+						arcNarrative: arc.arcThemeNarrative || '',
+						precedingModules // Full modules with overview data
+					}
+				})
+			});
+
+			if (!response.ok) {
+				throw new Error(`Overview generation failed: ${response.status}`);
+			}
+
+			const result = await response.json();
+
+			if (!result.success || !result.overview) {
+				throw new Error(result.error || 'Overview generation failed');
+			}
+
+			// Update module with overview
+			updateModuleWithOverview(module.id, result.overview);
+			generatingModuleId = null;
+
+		} catch (error) {
+			console.error('Overview generation error:', error);
+			handleGenerationError(module.id, error instanceof Error ? error.message : 'Overview generation failed');
+		}
+	}
+
 	async function generateModule(module: ModuleSlot, arc: Arc): Promise<void> {
-		// Update status to generating using helper
+		// Update status to generating and track attempt type
+		setLastAttemptedGeneration(module.id, 'full');
 		updateModuleStatus(module.id, 'generating');
 		generatingModuleId = module.id;
 
@@ -84,6 +133,10 @@
 
 			(async () => {
 				try {
+					// Get preceding modules and build knowledge context
+					const precedingModules = getPrecedingModules(module, courseData);
+					const knowledgeContext = buildKnowledgeContext(precedingModules, arc, courseData);
+
 					// Send POST request with SSE streaming
 					const response = await fetch('/api/themis/module', {
 						method: 'POST',
@@ -99,7 +152,8 @@
 								progressionNarrative: courseData.progressionNarrative || '',
 								arcNarrative: arc.arcThemeNarrative || '',
 								arcProgression: arc.arcProgressionNarrative || '',
-								precedingModules: getPrecedingModuleTitles(module, arc)
+								precedingModules: getPrecedingModuleTitles(module, arc),
+								knowledgeContext // Add knowledge context
 							},
 							enableResearch: true
 						})
@@ -232,6 +286,11 @@
 		generateModule(module, arc);
 	}
 
+	function handleGenerateOverview(event: CustomEvent<{ module: ModuleSlot; arc: Arc }>) {
+		const { module, arc } = event.detail;
+		generateOverview(module, arc);
+	}
+
 	function handleViewPreview(event: CustomEvent<{ moduleId: string }>) {
 		previewModuleId = event.detail.moduleId;
 	}
@@ -305,6 +364,7 @@
 				{generatingModuleId}
 				on:toggle={handleToggleArc}
 				on:generateModule={handleGenerateModule}
+				on:generateOverview={handleGenerateOverview}
 				on:viewPreview={handleViewPreview}
 			/>
 		{/each}

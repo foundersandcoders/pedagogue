@@ -13,7 +13,7 @@ Rhea is built with:
 ## Project Structure
 
 ```
-pedagogue/
+rhea/
 ├── src/
 │   ├── routes/              # SvelteKit pages and API endpoints
 │   │   ├── metis/          # Module Generator workflow

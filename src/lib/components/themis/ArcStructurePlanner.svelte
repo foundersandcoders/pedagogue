@@ -1,6 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import type { CourseData, Arc } from "$lib/types/themis";
+  import TitleInputField from "./TitleInputField.svelte";
+  import { createTitleInput, getDisplayTitle } from "$lib/utils/themis/migrations";
 
   export let courseData: CourseData;
 
@@ -18,8 +20,10 @@
     return {
       id: crypto.randomUUID(),
       order,
+      titleInput: createTitleInput('literal', ''),
       title: "",
       description: "",
+      themeInput: createTitleInput('literal', ''),
       theme: "",
       durationWeeks: 4,
       modules: [],
@@ -48,14 +52,24 @@
     let isValid = true;
 
     arcs.forEach((arc, index) => {
-      if (!arc.title?.trim()) {
-        errors[index] = "Arc title is required";
-        isValid = false;
+      // Validate title input
+      if (arc.titleInput.type !== 'undefined') {
+        if (!arc.titleInput.value?.trim()) {
+          errors[index] = arc.titleInput.type === 'literal'
+            ? "Arc title is required"
+            : "Arc title guidance is required";
+          isValid = false;
+        }
       }
 
-      if (!arc.theme?.trim()) {
-        errors[index] = "Arc theme is required";
-        isValid = false;
+      // Validate theme input
+      if (arc.themeInput.type !== 'undefined') {
+        if (!arc.themeInput.value?.trim()) {
+          errors[index] = arc.themeInput.type === 'literal'
+            ? "Arc theme is required"
+            : "Arc theme guidance is required";
+          isValid = false;
+        }
       }
 
       if (
@@ -111,9 +125,11 @@
     ).map((arc, index) => ({
       ...arc,
       durationWeeks: suggestedDuration,
+      titleInput: createTitleInput('prompt', 'Describe the broad thematic focus of this arc'),
       title: `Arc ${arc.order}`,
       description: "Describe the broad thematic focus of this arc",
-      theme: "Enter a theme (e.g., 'Foundation Concepts', 'Agentic Workflows')",
+      themeInput: createTitleInput('prompt', "e.g., 'Foundation Concepts', 'Agentic Workflows'"),
+      theme: "",
     }));
   }
 
@@ -209,31 +225,43 @@
         </div>
 
         <div class="arc-fields">
-          <div class="field">
-            <label for="title-{arc.id}">
-              Arc Title
-              <span class="required">*</span>
-            </label>
-            <input
-              id="title-{arc.id}"
-              type="text"
-              bind:value={arc.title}
+          <div class="field full-width">
+            <TitleInputField
+              value={arc.titleInput}
+              label="Arc Title"
               placeholder="e.g., Foundation Concepts"
-              required
+              required={true}
+              onChange={(newValue) => {
+                arc.titleInput = newValue;
+                // Update display title
+                if (newValue.type === 'literal') {
+                  arc.title = newValue.value;
+                } else if (newValue.type === 'prompt') {
+                  arc.title = `[${newValue.value}]`;
+                } else {
+                  arc.title = '[AI will decide]';
+                }
+              }}
             />
           </div>
 
-          <div class="field">
-            <label for="theme-{arc.id}">
-              Theme
-              <span class="required">*</span>
-            </label>
-            <input
-              id="theme-{arc.id}"
-              type="text"
-              bind:value={arc.theme}
+          <div class="field full-width">
+            <TitleInputField
+              value={arc.themeInput}
+              label="Arc Theme"
               placeholder="e.g., Agentic Workflows"
-              required
+              required={true}
+              onChange={(newValue) => {
+                arc.themeInput = newValue;
+                // Update display theme
+                if (newValue.type === 'literal') {
+                  arc.theme = newValue.value;
+                } else if (newValue.type === 'prompt') {
+                  arc.theme = `[${newValue.value}]`;
+                } else {
+                  arc.theme = '[AI will decide]';
+                }
+              }}
             />
           </div>
 
@@ -512,8 +540,8 @@
   }
 
   .arc-fields {
-    display: grid;
-    grid-template-columns: 1fr 1fr 120px;
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
   }
 

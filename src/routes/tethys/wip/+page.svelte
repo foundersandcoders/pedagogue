@@ -3,7 +3,7 @@
 
 <svelte:head>
   <title>Tethys • Arc Designer</title>
-  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" href="favicons/favicon.ico" />
 </svelte:head>
 
 <div id="tethys-container" class="container">
@@ -14,13 +14,11 @@
     </div>
     <p>AI-powered Arc design for peer-led courses</p>
   </header>
-  
-  <div class="tethys-workflow">
-    <nav class="tethys-steps">
-    </nav>
 
-    <main class="tethys-content">
-    </main>
+  <div class="tethys-workflow">
+    <nav class="tethys-steps"></nav>
+
+    <main class="tethys-content"></main>
   </div>
 </div>
 

@@ -1,30 +1,59 @@
 # Metis: Module Generator
 
+![Metis Icon](static/metis/icon.png)
+
+> [!NOTE]
+> <!-- one line defining current status -->
+
+---
+
 ## 1. Tasks
+
 > [!NOTE]
 > This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmap/Metis-MVP.md#2-mvp-milestones)
 
 ### 1.1. Open Tasks
-
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
 - [ ] 1.1.2.1. Add boilerplate module text after generation
+- [ ] 1.1.2.2. Add different metadata changelog varieties to distinguish between initial AI creation, AI update of human creation, AI update or AI creation etc
+- [ ] 1.1.2.3. Ensure module generation adheres to tech stack requirements
+- [ ] 1.1.2.4. Allow toggling of sub-sections:
+  - 1.1.2.4.1. Subsections to allow
+    - [ ] 1.1.2.4.1.1. `Module[Learning Objectives][Learning Objective]`
+    - [ ] 1.1.2.4.1.2. `"Research Topics"[PrimaryTopics]`
+    - [ ] 1.1.2.4.1.3. `"Research Topics"[PrimaryTopics][Topic]`
+    - [ ] 1.1.2.4.1.4. `"Research Topics"[PrimaryTopics][Topic][Subtopics]`
+    - [ ] 1.1.2.4.1.5. `"Research Topics"[PrimaryTopics][Topic][Subtopics][Subtopic]"`
+    - [ ] 1.1.2.4.1.6. `"Research Topics"[StretchTopics]`
+    - [ ] 1.1.2.4.1.7. `"Research Topics"[StretchTopics][Topic]"`
+    - [ ] 1.1.2.4.1.8. `"Project Briefs"[Brief]`
+    - [ ] 1.1.2.4.1.9. `"Project Briefs"[Brief][Skills]`
+    - [ ] 1.1.2.4.1.10. `"Project Briefs"[Brief][Skills][Skill]`
+    - [ ] 1.1.2.4.1.11. `"Project Briefs"[Brief][Examples]`
+    - [ ] 1.1.2.4.1.12. `"Project Briefs"[Brief][Examples][Example]`
+  - 1.1.2.4.2. Should apply in both Metis and Metis-in-Themis
 
 ### 1.2. Blocked Tasks
+<!-- No Blocked Tasks -->
 
 ---
 
 ## 2. MVP Milestones
-- [ ] 2.10. Implement Cascade Updates for Subsequent Modules
-  - 2.10.1. Check for information in [About Rhea](docs/About-Rhea.md)
-  - 2.10.2. Check for information in [Executive Summary](docs/Executive-Summary.md)
-  - 2.10.3. Work with the user to define this feature
-  - 2.10.4. Record decisions in documentation
-- [ ] 2.11. Session Persistence
-  - 2.11.1. localStorage for progress backup
-  - 2.11.2. Restore on page load with confirmation
-  - 2.11.3. "Clear session" button
+- [ ] 2.1. Allow user to choose granularity/detail level of module generation
+  - 2.1.1. For example, separate booleans at appropriate stage for project briefs, twists, research topics etc
+  - 2.1.2. After generation pass complete, allow user to either progress with existing detail or fill in missing detail levels
+  - 2.1.3. This should be applied in both Metis and Metis-in-Themis
+- [ ] 2.2. Implement Cascade Updates for Subsequent Modules
+  - [ ] 2.2.1. Check for information in [About Rhea](docs/About-Rhea.md)
+  - [ ] 2.2.2. Check for information in [Executive Summary](docs/Executive-Summary.md)
+  - [ ] 2.2.3. Work with the user to define this feature
+  - [ ] 2.2.4. Record decisions in documentation
+- [ ] 2.3. Session Persistence
+  - [ ] 2.3.1. localStorage for progress backup
+  - [ ] 2.3.2. Restore on page load with confirmation
+  - [ ] 2.3.3. "Clear session" button
 
 ---
 
@@ -43,7 +72,6 @@
 ---
 
 ## 4. Work Record
-
 ### 4.1. Completed Milestones
 - 4.1.1. LangChain + Claude Integration
   - Create API route: `src/routes/api/generate/+server.ts`
@@ -109,11 +137,9 @@
   - **Why:** UX polish that makes the tool feel coherent.
 
 ### 4.2. Completed Tasks
-
 #### 4.2.1. Record of Past Deadlines
 
 #### 4.2.2. Record of Other Completed Tasks
-
 - [x] 1.1.2.2. Display streaming response in UI via a scrolling/ephemeral window ✅ COMPLETED
   - SSE (Server-Sent Events) implementation with `progressMessages` array
   - Real-time streaming feedback in `.progress-log` component (src/routes/metis/update/+page.svelte:710-719)

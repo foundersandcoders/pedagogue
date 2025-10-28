@@ -78,3 +78,25 @@ export function updateModuleWithError(
 		return course;
 	});
 }
+
+/**
+ * Set the last attempted generation type for a module (for retry tracking)
+ */
+export function setLastAttemptedGeneration(
+	moduleId: string,
+	generationType: 'overview' | 'full'
+): void {
+	currentCourse.update(course => {
+		if (!course) return course;
+
+		for (const arc of course.arcs) {
+			const module = arc.modules.find(m => m.id === moduleId);
+			if (module) {
+				module.lastAttemptedGeneration = generationType;
+				break;
+			}
+		}
+
+		return course;
+	});
+}

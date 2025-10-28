@@ -1,6 +1,14 @@
 # Themis: Course Builder
 
+![Themis Icon](static/themis/icon.png)
+
+> [!NOTE]
+> <!-- one line defining current status -->
+
+---
+
 ## 1. Tasks
+
 > [!NOTE]
 > This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmap/Themis-MVP.md#2-mvp-milestones)
 
@@ -8,9 +16,10 @@
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
+
 - [ ] 1.1.2.1. Create a milestoning system in the structure outline
   - 1.1.2.1.1. e.g. "by this module, users should be able to do `xyz`"
-- [ ] 1.1.2.2. Replace mandatory arc & modules literal input fiels with literal/prompt/undefined input fields
+- [ ] 1.1.2.2. Replace mandatory arc & modules literal input fields with literal/prompt/undefined input fields
   - 1.1.2.2.1. currently, required fields are inserted into the final output as literals
   - 1.1.2.2.2. this requires the user to already know what they want; more importantly, the AI model uses this input to generate content
   - 1.1.2.2.3. this undermines a core purpose of the app: curriculum generation by non-experts
@@ -46,12 +55,22 @@
   - 1.1.2.13.1. Each store update triggers re-render of the entire ModuleGenerationList. With 20+ modules, this could feel sluggish.
   - 1.1.2.13.2. We could use `{#key moduleId}` blocks or extract `ModuleCard` to a separate component with `export let module` to leverage Svelte's granular reactivity.
 - [ ] 1.1.2.14. Improve handling of bullet lists within modules in `CourseOverview`
+- [ ] 1.1.2.15. Improve text displayed in "Phase 3: Module Planning"
+  - 1.1.2.15.1. ![screenshot of phase 3](assets/screenshots/themis-module-planning.jpg)
+- [ ] 1.1.2.15. Improve text layout in "Phase 4: Structure Review"
+  - 1.1.2.15.1. ![screenshot of phase 4](assets/screenshots/themis-structure-review.jpg)
+- [ ] 1.1.2.16. In "Phase 4: Structure Review", make module previews toggle elements
+- [ ] 1.1.2.17. Allow user to define requirements (as in Metis)
+  - 1.1.2.17.1. This should be definable per Course (Themis), per Arc (Tethys) and per Module (Metis)
+- [ ] 1.1.2.18. Allow multiple toggles to be open/closed without being affected by siblings
 
 ### 1.2. Blocked Tasks
+<!-- No blocked tasks -->
 
 ---
 
 ## 2. MVP Milestones
+
 - [ ] 2.1. Radically improve module-to-module coherence at generation
   - 2.1.1. **IMPORTANT:** confer with user to understand requirements
   - 2.1.2. Insert interstitial step: generating module overviews first, allowing later generation of full module spec
@@ -75,6 +94,7 @@
 ---
 
 ## 3. Beyond MVP: Future Features
+
 - [ ] 3.1. PDF export for complete courses
 - [ ] 3.2. Course templates library
 - [ ] 3.3. Import existing courses for modification
@@ -84,7 +104,9 @@
 ---
 
 ## 4. Work Record
+
 ### 4.1. Completed Milestones
+
 - [x] 4.1.1. Break over-large `/Themis` components into subcomponents ✅ COMPLETED (2025-10-27)
   - **Branch:** `themis/refactor/split-large-components`
   - **Commit:** `e744d71`
@@ -203,9 +225,11 @@
   - **Status:** Complete - final review and export interface operational
 
 ### 4.2. Completed Tasks
+
 #### 4.2.1. Record of Past Deadlines
 
 #### 4.2.2. Record of Other Completed Tasks
+
 - [x] 4.2.2.1. `ModuleGenerationList.svelte` is 895 lines; split it into smaller components ✅ COMPLETED (2025-10-27)
   - Created `ArcSection.svelte`: arc header + module list (140 lines)
   - Created `ModuleCard.svelte`: individual module with status/actions (221 lines)

@@ -269,7 +269,7 @@
 
 <svelte:head>
   <title>Metis • Module Designer</title>
-  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" href="favicons/favicon.ico" />
 </svelte:head>
 
 <div id="metis-container" class="container">

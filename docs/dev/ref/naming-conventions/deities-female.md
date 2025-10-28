@@ -2,26 +2,24 @@
 
 ## 1. Basic Information
 
-### 1.1. Scope & Criteria
 Female and ambiguously gendered deities from **well‑documented polytheistic pantheons** worldwide (no time or geography limits). **Symbolic/mythic beings only** (no deified historical humans). Each entry lists domains and traits you can leverage for tasteful, thematic module names.
-
-### 1.2. Legend
-- **[F]** female deity
-- **[A]** androgynous / dual‑gender / gender‑fluid deity
 
 ---
 
 ## 2. Assigned Names
+
 | Route | Main | Why | Titan | Olympian | Italic |
 | ----- | ---- | --- | ------ | --------- | ------ |
 | x     |      |     | | | |
 
 ### 2a. Modules & Implementations
+
 | Route | Main     | Why | Titan      | Olympian | Italic |
 | ----- | -------- | --- | ---------- | -------- | ------ |
 | Hub   | **Rhea** |     | Gaia       | | |
 
 #### 2a1. Generators
+
 | Route  | Main       | Why | Titan  | Olympian | Italic |
 | ------ | ---------- | --- | ------ | -------- | ------ |
 | Course | **Themis** |     |        | | |
@@ -29,18 +27,21 @@ Female and ambiguously gendered deities from **well‑documented polytheistic pa
 | Module | **Metis**  |     |        | | |
 
 #### 2a2. Tools
+
 | Route            | Main          | Why | Titan  | Olympian | Italic |
 | ---------------- | ------------- | --- | ------ | --------- | ------ |
-| Atom Definer     |               |     | Atlas  | | |
+| Atom Definer     | **Thalassa**  |     |        | | |
 | Content Exporter | **Theia**     |     | Phoebe | | |
 | Save/Load        | **Mnemosyne** |     |        | | |
 
 ### 2b. Functionality
+
 | Route        | Main | Why | Titan     | Olympian | Italic |
 | ------------ | ---- | --- | --------- | --------- | ------ |
 | •            |      |     | | | |
 
 ### 2c. Abstractions
+
 |   | **Concept**           | **Titan**     | **Olympian** | **Italic** |
 | - | --------------------- | ------------- | ------------- | ---------- |
 | • |                       |               | | |
@@ -81,6 +82,7 @@ Female and ambiguously gendered deities from **well‑documented polytheistic pa
 ## 3. Greco-Roman
 ### 3a. Hellenic
 #### 3a1. Titans & Primordials
+
 1. **Ananke**
     - Necessity/Fate
     - **[A]** leaning; often beyond gender

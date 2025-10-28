@@ -2,12 +2,40 @@
  * Type definitions for course generation
  */
 
+/**
+ * Title input type - allows AI to decide, use guidance, or use exact value
+ */
+export type TitleInput =
+	| { type: 'undefined' } // AI decides based on content and context
+	| { type: 'prompt'; value: string } // AI generates from this guidance
+	| { type: 'literal'; value: string }; // Use exactly as provided
+
+/**
+ * Module overview structure - lightweight generation before full module
+ */
+export interface ModuleOverview {
+	generatedTitle?: string; // AI-suggested title (if not literal)
+	generatedTheme?: string; // AI-suggested theme (if not literal)
+	learningObjectives: string[]; // What learners will gain
+	prerequisites: string[]; // What learners need to know first
+	keyConceptsIntroduced: string[]; // Main new topics covered
+	generatedAt: Date;
+}
+
 export interface Arc {
 	id: string;
 	order: number; // 1, 2, 3...
-	title: string;
+
+	// Title handling - supports AI generation or exact values
+	titleInput: TitleInput;
+	title: string; // Current/finalized title (for display and context)
+
 	description: string;
-	theme: string; // Thematic focus (e.g., "Agentic Workflows", "Foundation Concepts")
+
+	// Theme handling - supports AI generation or exact values
+	themeInput: TitleInput;
+	theme: string; // Current/finalized theme (for display and context)
+
 	durationWeeks: number;
 	arcThemeNarrative?: string; // AI-generated narrative explaining the arc's thematic focus
 	arcProgressionNarrative?: string; // AI-generated explanation of how modules within this arc connect
@@ -45,12 +73,27 @@ export interface ModuleSlot {
 	id: string;
 	arcId: string; // Reference to parent arc
 	order: number; // Order within the arc (1, 2, 3...)
-	title: string;
+
+	// Title handling - supports AI generation or exact values
+	titleInput: TitleInput;
+	title: string; // Current/finalized title (for display and context)
+
 	description: string;
+
+	// Theme handling - supports AI generation or exact values (optional)
+	themeInput?: TitleInput;
+	theme?: string; // Current/finalized theme (for display and context)
+
 	durationWeeks: number;
-	status: 'planned' | 'generating' | 'complete' | 'error';
-	learningObjectives?: string[]; // AI-generated objectives
-	keyTopics?: string[]; // AI-generated topics
+	status: 'planned' | 'overview-ready' | 'generating' | 'complete' | 'error';
+	lastAttemptedGeneration?: 'overview' | 'full'; // Track what type of generation was last attempted (for retry)
+
+	// Overview - lightweight generation before full module
+	overview?: ModuleOverview;
+
+	learningObjectives?: string[]; // AI-generated objectives (deprecated - use overview.learningObjectives)
+	keyTopics?: string[]; // AI-generated topics (deprecated - use overview.keyConceptsIntroduced)
+
 	moduleData?: {
 		// Generated module spec (XML)
 		xmlContent: string;

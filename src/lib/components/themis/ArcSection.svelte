@@ -10,6 +10,7 @@
 	const dispatch = createEventDispatcher<{
 		toggle: { arcId: string };
 		generateModule: { module: ModuleSlot; arc: Arc };
+		generateOverview: { module: ModuleSlot; arc: Arc };
 		viewPreview: { moduleId: string };
 	}>();
 
@@ -22,6 +23,10 @@
 
 	function handleGenerateModule(event: CustomEvent<{ module: ModuleSlot; arc: Arc }>) {
 		dispatch('generateModule', event.detail);
+	}
+
+	function handleGenerateOverview(event: CustomEvent<{ module: ModuleSlot; arc: Arc }>) {
+		dispatch('generateOverview', event.detail);
 	}
 
 	function handleViewPreview(event: CustomEvent<{ moduleId: string }>) {
@@ -58,6 +63,7 @@
 					isGenerating={generatingModuleId === module.id}
 					canGenerate={canGenerate}
 					on:generate={handleGenerateModule}
+					on:generateOverview={handleGenerateOverview}
 					on:viewPreview={handleViewPreview}
 				/>
 			{/each}

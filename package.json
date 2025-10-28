@@ -5,7 +5,8 @@
   "scripts": {
     "generate:palettes": "node scripts/generatePaletteCss.js",
     "prebuild": "npm run generate:palettes",
-    "dev": "npm run generate:palettes && vite dev --port 5173",
+    "dev": "npm run prebuild && vite dev --port 5173",
+    "check-build": "npm run prebuild && npm run build && npm run preview",
     "build": "vite build",
     "preview": "vite preview"
   },
