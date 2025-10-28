@@ -1,6 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import type { CourseData, Arc, ModuleSlot } from "$lib/types/themis";
+  import TitleInputField from "./TitleInputField.svelte";
+  import { createTitleInput, getDisplayTitle } from "$lib/utils/themis/migrations";
 
   export let courseData: CourseData;
 
@@ -19,6 +21,7 @@
       id: crypto.randomUUID(),
       arcId,
       order,
+      titleInput: createTitleInput('literal', ''),
       title: "",
       description: "",
       durationWeeks: 1,
@@ -75,6 +78,7 @@
           id: crypto.randomUUID(),
           arcId: arc.id,
           order: i + 1,
+          titleInput: createTitleInput('prompt', `Module ${i + 1} within ${arc.title}`),
           title: `Module ${i + 1}`,
           description: "",
           durationWeeks: suggestedDuration,
@@ -104,9 +108,14 @@
       arc.modules.forEach((module, moduleIndex) => {
         const key = `arc-${arcIndex}-module-${moduleIndex}`;
 
-        if (!module.title?.trim()) {
-          errors[key] = "Module title is required";
-          isValid = false;
+        // Validate module title input
+        if (module.titleInput.type !== 'undefined') {
+          if (!module.titleInput.value?.trim()) {
+            errors[key] = module.titleInput.type === 'literal'
+              ? "Module title is required"
+              : "Module title guidance is required";
+            isValid = false;
+          }
         }
 
         if (
@@ -291,17 +300,23 @@
               </div>
 
               <div class="module-fields">
-                <div class="field">
-                  <label for="title-{module.id}">
-                    Module Title
-                    <span class="required">*</span>
-                  </label>
-                  <input
-                    id="title-{module.id}"
-                    type="text"
-                    bind:value={module.title}
+                <div class="field full-width">
+                  <TitleInputField
+                    value={module.titleInput}
+                    label="Module Title"
                     placeholder="e.g., Introduction to RAG Pipelines"
-                    required
+                    required={true}
+                    onChange={(newValue) => {
+                      module.titleInput = newValue;
+                      // Update display title
+                      if (newValue.type === 'literal') {
+                        module.title = newValue.value;
+                      } else if (newValue.type === 'prompt') {
+                        module.title = `[${newValue.value}]`;
+                      } else {
+                        module.title = '[AI will decide]';
+                      }
+                    }}
                   />
                 </div>
 
