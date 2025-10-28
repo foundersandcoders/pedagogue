@@ -124,7 +124,7 @@
 
 <svelte:head>
   <title>Themis • Course Designer</title>
-  <link rel="icon" href="favicon.ico" />
+  <link rel="icon" href="favicons/favicon.ico" />
 </svelte:head>
 
 <div id="themis-container" class="container">

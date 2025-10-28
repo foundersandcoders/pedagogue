@@ -1,16 +1,18 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { Arc } from "$lib/types/themis"
+  import type { Arc } from "$lib/types/themis";
   import { savedCourses } from "$lib/stores/themisStores";
-  
-  function countModules(arcs: Arc[]) :number {
+
+  function countModules(arcs: Arc[]): number {
     let total = 0;
-    arcs.forEach((arc) => { total += arc.modules.length })
+    arcs.forEach((arc) => {
+      total += arc.modules.length;
+    });
     return total;
   }
 
   onMount(() => {
-    console.log("Welcome to Pedagogue");
+    console.log("Welcome to Rhea");
   });
 </script>
 
@@ -33,10 +35,12 @@
     <!-- TODO: create separate WorkflowCard component -->
     <!-- TODO: address a11y issues from workflow cards -->
     <div class="workflow-cards">
-      <a href="/theia" class="workflow-card theia-card">
+      <a href="/theia/resume" class="workflow-card theia-card">
         <img src="/theia/icon.png" alt="Theia" class="card-icon" />
         <h2>Theia</h2>
-        <p>Upload and manage previously generated course structures and modules.</p>
+        <p>
+          Upload and manage previously generated course structures and modules.
+        </p>
         <div class="card-features">
           <span>✓ Upload course JSON</span>
           <span>✓ Resume workflows</span>
@@ -48,8 +52,10 @@
       <a href="/themis/generate" class="workflow-card themis-card">
         <img src="/themis/icon.png" alt="Themis" class="card-icon" />
         <h2>Themis</h2>
-        <p>Create a complete multi-week course with interconnected modules and
-          learning progressions.</p>
+        <p>
+          Create a complete multi-week course with interconnected modules and
+          learning progressions.
+        </p>
         <div class="card-features">
           <span>✓ Multiple modules</span>
           <span>✓ Course structure</span>
@@ -71,8 +77,10 @@
       <a href="/metis/update" class="workflow-card metis-card">
         <img src="/metis/icon.png" alt="Metis" class="card-icon" />
         <h2>Metis</h2>
-        <p>Create a standalone module specification with projects, skills, and
-          research topics.</p>
+        <p>
+          Create a standalone module specification with projects, skills, and
+          research topics.
+        </p>
         <div class="card-features">
           <span>✓ Project briefs</span>
           <span>✓ Learning objectives</span>
@@ -320,7 +328,7 @@
   }
 
   .course-item:hover {
-    border-color: #D7B130;
+    border-color: #d7b130;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
