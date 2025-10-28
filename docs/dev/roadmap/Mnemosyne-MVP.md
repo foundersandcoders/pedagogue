@@ -1,4 +1,7 @@
 # Mnemosyne: Storage & Retrieval
+
+<!--![Mnemosyne Icon](static/mnemosyne/icon.png)-->
+
 > [!WARNING]
 > Not scheduled until after MVP
 

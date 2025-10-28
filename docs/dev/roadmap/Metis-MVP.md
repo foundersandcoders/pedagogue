@@ -1,5 +1,7 @@
 # Metis: Module Generator
 
+![Metis Icon](static/metis/icon.png)
+
 ## 1. Tasks
 > [!NOTE]
 > This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmap/Metis-MVP.md#2-mvp-milestones)

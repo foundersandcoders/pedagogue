@@ -1,4 +1,7 @@
 # Rhea: Overall Platform
+
+![Rhea Icon](static/icon.png)
+
 > [!IMPORTANT]
 > This document refers to tasks and features that are either (a) not tied to a specific module or (b) applicable to multiple modules
 > For a status report on the entire Rhea project, see [README](./README.md)

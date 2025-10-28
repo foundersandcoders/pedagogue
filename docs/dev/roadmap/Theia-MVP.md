@@ -1,4 +1,6 @@
 # Theia: Content Preview & Export
+![Theia Icon](static/theia/icon.png)
+
 > [!NOTE]
 > Initial MVP implementation complete (2025-10-23). Feature is production-ready and integrated into Metis and Themis workflows.
 

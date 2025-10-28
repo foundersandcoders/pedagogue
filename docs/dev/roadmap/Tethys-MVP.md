@@ -1,5 +1,7 @@
 # Tethys: Arc Designer
 
+![Tethys Icon](static/tethys/icon.png)
+
 ## 1. Tasks
 ### 1.1. Open Tasks
 #### 1.1.1. Due Tasks

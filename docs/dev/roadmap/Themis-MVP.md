@@ -1,5 +1,7 @@
 # Themis: Course Builder
 
+![Themis Icon](static/themis/icon.png)
+
 ## 1. Tasks
 > [!NOTE]
 > This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmap/Themis-MVP.md#2-mvp-milestones)
@@ -46,6 +48,8 @@
   - 1.1.2.13.1. Each store update triggers re-render of the entire ModuleGenerationList. With 20+ modules, this could feel sluggish.
   - 1.1.2.13.2. We could use `{#key moduleId}` blocks or extract `ModuleCard` to a separate component with `export let module` to leverage Svelte's granular reactivity.
 - [ ] 1.1.2.14. Improve handling of bullet lists within modules in `CourseOverview`
+- [ ] 1.1.2.15. Improve text displayed in "Phase 3: Module Planning"
+  - 1.1.2.15.1. ![screenshot of phase 3](assets/screenshots/themis-module-planning.jpg)
 
 ### 1.2. Blocked Tasks
 

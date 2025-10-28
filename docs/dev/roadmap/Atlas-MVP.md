@@ -1,4 +1,7 @@
 # Atlas: Atomic Learning Assembler
+
+![Atlas Icon](static/atlas/icon.png)
+
 > [!NOTE]
 > Not yet in development
 
