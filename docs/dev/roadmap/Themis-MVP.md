@@ -52,6 +52,7 @@
   - 1.1.2.15.1. ![screenshot of phase 3](assets/screenshots/themis-module-planning.jpg)
 - [ ] 1.1.2.15. Improve text layout in "Phase 4: Structure Review"
   - 1.1.2.15.1. ![screenshot of phase 4](assets/screenshots/themis-structure-review.jpg)
+- [ ] 1.1.2.16. In "Phase 4: Structure Review", make module previews toggle elements
 
 ### 1.2. Blocked Tasks
 

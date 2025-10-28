@@ -24,13 +24,16 @@
   - 1.1.2.3.2. Icon/Title line and button line should always be a uniform height across each card while fitting all content
   - 1.1.2.3.3. Card should display description by default; on hover, replace with feature bullet points on hover
 - [ ] 1.1.2.4. Remove all emoji from app
+- [ ] 1.1.2.5. Implement the [Prettify](https://www.totaltypescript.com/concepts/the-prettify-helper) helper utility type
 
 ### 1.2. Blocked Tasks
 
 ---
 
 ## 2. MVP Milestones
-- [ ] 2.1. Update all Svelte legacy approaches and implementations to use Svelte 5
+- [ ] 2.1. Implement Themis-style Theia previews for Metis (and Metis-in-Themis)
+- [ ] 2.2. Update all Svelte legacy approaches and implementations to use Svelte 5
+- [ ] 2.3. Research and implement different models for each separate LangChain AI call
 ---
 
 ## 3. Beyond MVP: Future Features
@@ -45,21 +48,21 @@
   - **Branch:** `feat/new-course-generation`
   - **Commits:** `fea0d91` through `496d44f`
   - **Documentation:** See `/docs/refactoring-progress.md` for comprehensive details
-  [x] 4.1.1.1. Foundation
-    [x] Extract research domains duplication (`src/lib/config/researchDomains.ts`)
-    [x] Clarify schema architecture (deprecated `moduleSchema.ts`, documented `moduleValidator.ts`)
-    [x] Add Zod schemas for type safety (`src/lib/schemas/apiValidator.ts`)
-  [x] 4.1.1.2. Extract AI Utilities
-    [x] AI client factory (`src/lib/factories/agents/agentClientFactory.ts`)
-    [x] Response parser (`src/lib/utils/validation/responseParser.ts`)
-    [x] Prompt builders (`src/lib/factories/prompts/metisPromptFactory.ts`)
-    [x] SSE streaming handler (`src/lib/utils/model/sseHandler.ts`)
-    [x] Retry orchestration (`src/lib/utils/model/retryHandler.ts`)
-  [x] 4.1.1.3. Improve Prompt Composability
-    [x] Break prompts into composable sections (`src/lib/utils/prompt/shared-components.ts`)
-  [x] 4.1.1.4. Quality Improvements
-    [x] Store consolidation utilities (`src/lib/utils/state/metisWorkflowStep.ts`, `src/lib/utils/state/persistenceUtils.ts`)
-    [x] Error handling infrastructure (`src/lib/types/error.ts`, `src/lib/stores/errorStores.ts`, `ErrorBoundary.svelte`, `ErrorAlert.svelte`)
+  - [x] 4.1.1.1. Foundation
+    - [x] Extract research domains duplication (`src/lib/config/researchDomains.ts`)
+    - [x] Clarify schema architecture (deprecated `moduleSchema.ts`, documented `moduleValidator.ts`)
+    - [x] Add Zod schemas for type safety (`src/lib/schemas/apiValidator.ts`)
+  - [x] 4.1.1.2. Extract AI Utilities
+    - [x] AI client factory (`src/lib/factories/agents/agentClientFactory.ts`)
+    - [x] Response parser (`src/lib/utils/validation/responseParser.ts`)
+    - [x] Prompt builders (`src/lib/factories/prompts/metisPromptFactory.ts`)
+    - [x] SSE streaming handler (`src/lib/utils/model/sseHandler.ts`)
+    - [x] Retry orchestration (`src/lib/utils/model/retryHandler.ts`)
+  - [x] 4.1.1.3. Improve Prompt Composability
+    - [x] Break prompts into composable sections (`src/lib/utils/prompt/shared-components.ts`)
+  - [x] 4.1.1.4. Quality Improvements
+    - [x] Store consolidation utilities (`src/lib/utils/state/metisWorkflowStep.ts`, `src/lib/utils/state/persistenceUtils.ts`)
+    - [x] Error handling infrastructure (`src/lib/types/error.ts`, `src/lib/stores/errorStores.ts`, `ErrorBoundary.svelte`, `ErrorAlert.svelte`)
   - **Impact**
     - 670+ lines eliminated across API routes
     - Centralized configurations and utilities
