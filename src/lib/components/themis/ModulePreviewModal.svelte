@@ -27,7 +27,7 @@
 		<div class="modal-content" on:click={handleContentClick}>
 			<div class="modal-header">
 				<h3>{module.title}</h3>
-				<button class="btn-close" on:click={handleClose}>×</button>
+				<button class="btn-close" on:click={handleClose}>&times;</button>
 			</div>
 			<div class="modal-body">
 				<pre class="xml-preview">{module.moduleData.xmlContent}</pre>

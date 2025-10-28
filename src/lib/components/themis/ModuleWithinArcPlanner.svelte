@@ -2,7 +2,10 @@
   import { createEventDispatcher } from "svelte";
   import type { CourseData, Arc, ModuleSlot } from "$lib/types/themis";
   import TitleInputField from "./TitleInputField.svelte";
-  import { createTitleInput, getDisplayTitle } from "$lib/utils/themis/migrations";
+  import {
+    createTitleInput,
+    getDisplayTitle,
+  } from "$lib/utils/themis/migrations";
 
   export let courseData: CourseData;
 
@@ -21,7 +24,7 @@
       id: crypto.randomUUID(),
       arcId,
       order,
-      titleInput: createTitleInput('literal', ''),
+      titleInput: createTitleInput("literal", ""),
       title: "",
       description: "",
       durationWeeks: 1,
@@ -78,7 +81,10 @@
           id: crypto.randomUUID(),
           arcId: arc.id,
           order: i + 1,
-          titleInput: createTitleInput('prompt', `Module ${i + 1} within ${arc.title}`),
+          titleInput: createTitleInput(
+            "prompt",
+            `Module ${i + 1} within ${arc.title}`,
+          ),
           title: `Module ${i + 1}`,
           description: "",
           durationWeeks: suggestedDuration,
@@ -109,11 +115,12 @@
         const key = `arc-${arcIndex}-module-${moduleIndex}`;
 
         // Validate module title input
-        if (module.titleInput.type !== 'undefined') {
+        if (module.titleInput.type !== "undefined") {
           if (!module.titleInput.value?.trim()) {
-            errors[key] = module.titleInput.type === 'literal'
-              ? "Module title is required"
-              : "Module title guidance is required";
+            errors[key] =
+              module.titleInput.type === "literal"
+                ? "Module title is required"
+                : "Module title guidance is required";
             isValid = false;
           }
         }
@@ -205,7 +212,7 @@
         class="suggest-all-btn"
         on:click={autoSuggestModules}
       >
-        ✨ Auto-Suggest Modules for All Arcs
+        Auto-Suggest Modules for All Arcs
       </button>
     </div>
 
@@ -294,7 +301,7 @@
                     on:click={() => removeModule(selectedArcIndex, moduleIndex)}
                     aria-label="Remove module {module.order}"
                   >
-                    ×
+                    &times;
                   </button>
                 {/if}
               </div>
@@ -309,12 +316,12 @@
                     onChange={(newValue) => {
                       module.titleInput = newValue;
                       // Update display title
-                      if (newValue.type === 'literal') {
+                      if (newValue.type === "literal") {
                         module.title = newValue.value;
-                      } else if (newValue.type === 'prompt') {
+                      } else if (newValue.type === "prompt") {
                         module.title = `[${newValue.value}]`;
                       } else {
-                        module.title = '[AI will decide]';
+                        module.title = "[AI will decide]";
                       }
                     }}
                   />
@@ -369,7 +376,6 @@
     {/if}
   {:else}
     <div class="skip-message">
-      <div class="skip-icon">🤖</div>
       <h3>AI will automatically generate modules</h3>
       <p>
         Based on your arc structure, AI will intelligently break down each arc
@@ -592,7 +598,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--palette-foreground), var(--palette-foreground-alt));
+    background: linear-gradient(
+      135deg,
+      var(--palette-foreground),
+      var(--palette-foreground-alt)
+    );
     border-right: 2px solid var(--palette-bg-subtle);
     transition: all 0.3s;
     cursor: pointer;
@@ -728,7 +738,8 @@
   textarea:focus {
     outline: none;
     border-color: var(--palette-foreground);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-foreground) 10%, transparent);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--palette-foreground) 10%, transparent);
   }
 
   textarea {
@@ -765,11 +776,6 @@
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  }
-
-  .skip-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
   }
 
   .skip-message h3 {

@@ -42,7 +42,7 @@
 
   {#if errorMessage}
     <div class="alert alert-warning">
-      <span class="alert-icon">⚠️</span>
+      <span class="alert-icon">!</span>
       <span>{errorMessage}</span>
     </div>
   {/if}

@@ -170,7 +170,7 @@
       </div>
     {:else if uploadState === "success"}
       <div class="upload-status success">
-        <div class="checkmark">✓</div>
+        <div class="checkmark">&check;</div>
         <p><strong>{expectedFile}</strong> uploaded successfully</p>
         <button
           type="button"
@@ -182,7 +182,7 @@
       </div>
     {:else if uploadState === "error"}
       <div class="upload-status error">
-        <div class="error-icon">⚠</div>
+        <div class="error-icon">!</div>
         <p class="error-message">{error}</p>
         <button
           type="button"
@@ -194,7 +194,7 @@
       </div>
     {:else}
       <div class="upload-prompt">
-        <div class="upload-icon">📄</div>
+        <div class="upload-icon">[File]</div>
         <p>Drop <code>{expectedFile}</code> here or click to browse</p>
         <p class="upload-hint">XML files only, max 1MB</p>
       </div>

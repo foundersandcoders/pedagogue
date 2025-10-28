@@ -235,7 +235,7 @@
                 : addTechnology(tech)}
           >
             {tech}
-            {#if formData.content.techs.includes(tech)}✓{/if}
+            {#if formData.content.techs.includes(tech)}&check;{/if}
           </button>
         {/each}
       </div>
@@ -267,7 +267,7 @@
                 type="button"
                 class="remove-tech"
                 on:click={() => removeTechnology(tech)}
-                aria-label="Remove {tech}">×</button
+                aria-label="Remove {tech}">&times;</button
               >
             </span>
           {/each}

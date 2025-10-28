@@ -181,7 +181,7 @@
     <div class="list-header">
       <h3>Modules</h3>
       <button type="button" class="suggest-btn" on:click={suggestModules}>
-        ✨ Auto-Suggest Structure
+        Auto-Suggest Structure
       </button>
     </div>
 
@@ -196,7 +196,7 @@
               on:click={() => removeModule(index)}
               aria-label="Remove module {module.order}"
             >
-              ×
+              &times;
             </button>
           {/if}
         </div>
@@ -357,7 +357,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--palette-foreground), var(--palette-foreground-alt));
+    background: linear-gradient(
+      135deg,
+      var(--palette-foreground),
+      var(--palette-foreground-alt)
+    );
     border-right: 2px solid var(--palette-bg-subtle);
     transition: all 0.3s;
     cursor: pointer;
@@ -522,7 +526,8 @@
   textarea:focus {
     outline: none;
     border-color: var(--palette-foreground);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-foreground) 10%, transparent);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--palette-foreground) 10%, transparent);
   }
 
   textarea {
@@ -590,7 +595,8 @@
   .submit-btn:hover {
     background: var(--palette-secondary);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--palette-foreground) 30%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--palette-foreground) 30%, transparent);
   }
 
   @media (max-width: 768px) {

@@ -42,9 +42,9 @@
           Upload and manage previously generated course structures and modules.
         </p>
         <div class="card-features">
-          <span>✓ Upload course JSON</span>
-          <span>✓ Resume workflows</span>
-          <span>✓ Export formats</span>
+          <span>Upload course JSON</span>
+          <span>Resume workflows</span>
+          <span>Export formats</span>
         </div>
         <div class="card-action">Manage Content →</div>
       </a>
@@ -57,9 +57,9 @@
           learning progressions.
         </p>
         <div class="card-features">
-          <span>✓ Multiple modules</span>
-          <span>✓ Course structure</span>
-          <span>✓ Learning progression</span>
+          <span>Multiple modules</span>
+          <span>Course structure</span>
+          <span>Learning progression</span>
         </div>
         <div class="card-action">Build Course →</div>
       </a>
@@ -82,9 +82,9 @@
           research topics.
         </p>
         <div class="card-features">
-          <span>✓ Project briefs</span>
-          <span>✓ Learning objectives</span>
-          <span>✓ Research topics</span>
+          <span>Project briefs</span>
+          <span>Learning objectives</span>
+          <span>Research topics</span>
         </div>
         <div class="card-action">Generate Module →</div>
       </a>
