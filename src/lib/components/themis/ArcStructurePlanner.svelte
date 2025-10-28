@@ -2,7 +2,10 @@
   import { createEventDispatcher } from "svelte";
   import type { CourseData, Arc } from "$lib/types/themis";
   import TitleInputField from "./TitleInputField.svelte";
-  import { createTitleInput, getDisplayTitle } from "$lib/utils/themis/migrations";
+  import {
+    createTitleInput,
+    getDisplayTitle,
+  } from "$lib/utils/themis/migrations";
 
   export let courseData: CourseData;
 
@@ -20,10 +23,10 @@
     return {
       id: crypto.randomUUID(),
       order,
-      titleInput: createTitleInput('literal', ''),
+      titleInput: createTitleInput("literal", ""),
       title: "",
       description: "",
-      themeInput: createTitleInput('literal', ''),
+      themeInput: createTitleInput("literal", ""),
       theme: "",
       durationWeeks: 4,
       modules: [],
@@ -53,21 +56,23 @@
 
     arcs.forEach((arc, index) => {
       // Validate title input
-      if (arc.titleInput.type !== 'undefined') {
+      if (arc.titleInput.type !== "undefined") {
         if (!arc.titleInput.value?.trim()) {
-          errors[index] = arc.titleInput.type === 'literal'
-            ? "Arc title is required"
-            : "Arc title guidance is required";
+          errors[index] =
+            arc.titleInput.type === "literal"
+              ? "Arc title is required"
+              : "Arc title guidance is required";
           isValid = false;
         }
       }
 
       // Validate theme input
-      if (arc.themeInput.type !== 'undefined') {
+      if (arc.themeInput.type !== "undefined") {
         if (!arc.themeInput.value?.trim()) {
-          errors[index] = arc.themeInput.type === 'literal'
-            ? "Arc theme is required"
-            : "Arc theme guidance is required";
+          errors[index] =
+            arc.themeInput.type === "literal"
+              ? "Arc theme is required"
+              : "Arc theme guidance is required";
           isValid = false;
         }
       }
@@ -125,10 +130,16 @@
     ).map((arc, index) => ({
       ...arc,
       durationWeeks: suggestedDuration,
-      titleInput: createTitleInput('prompt', 'Describe the broad thematic focus of this arc'),
+      titleInput: createTitleInput(
+        "prompt",
+        "Describe the broad thematic focus of this arc",
+      ),
       title: `Arc ${arc.order}`,
       description: "Describe the broad thematic focus of this arc",
-      themeInput: createTitleInput('prompt', "e.g., 'Foundation Concepts', 'Agentic Workflows'"),
+      themeInput: createTitleInput(
+        "prompt",
+        "e.g., 'Foundation Concepts', 'Agentic Workflows'",
+      ),
       theme: "",
     }));
   }
@@ -204,7 +215,7 @@
     <div class="list-header">
       <h3>Arcs</h3>
       <button type="button" class="suggest-btn" on:click={suggestArcs}>
-        ✨ Auto-Suggest Structure
+        Auto-Suggest Structure
       </button>
     </div>
 
@@ -219,7 +230,7 @@
               on:click={() => removeArc(index)}
               aria-label="Remove arc {arc.order}"
             >
-              ×
+              &times;
             </button>
           {/if}
         </div>
@@ -234,12 +245,12 @@
               onChange={(newValue) => {
                 arc.titleInput = newValue;
                 // Update display title
-                if (newValue.type === 'literal') {
+                if (newValue.type === "literal") {
                   arc.title = newValue.value;
-                } else if (newValue.type === 'prompt') {
+                } else if (newValue.type === "prompt") {
                   arc.title = `[${newValue.value}]`;
                 } else {
-                  arc.title = '[AI will decide]';
+                  arc.title = "[AI will decide]";
                 }
               }}
             />
@@ -254,12 +265,12 @@
               onChange={(newValue) => {
                 arc.themeInput = newValue;
                 // Update display theme
-                if (newValue.type === 'literal') {
+                if (newValue.type === "literal") {
                   arc.theme = newValue.value;
-                } else if (newValue.type === 'prompt') {
+                } else if (newValue.type === "prompt") {
                   arc.theme = `[${newValue.value}]`;
                 } else {
-                  arc.theme = '[AI will decide]';
+                  arc.theme = "[AI will decide]";
                 }
               }}
             />
@@ -420,7 +431,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--palette-secondary), var(--palette-primary));
+    background: linear-gradient(
+      135deg,
+      var(--palette-secondary),
+      var(--palette-primary)
+    );
     border-right: 2px solid var(--palette-bg-subtle);
     transition: all 0.3s;
     cursor: pointer;
@@ -585,7 +600,8 @@
   textarea:focus {
     outline: none;
     border-color: var(--palette-secondary);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-secondary) 10%, transparent);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--palette-secondary) 10%, transparent);
   }
 
   textarea {
@@ -653,7 +669,8 @@
   .submit-btn:hover {
     background: var(--palette-primary);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--palette-secondary) 30%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--palette-secondary) 30%, transparent);
   }
 
   @media (max-width: 768px) {

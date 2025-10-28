@@ -25,7 +25,7 @@
 
 	function getStatusIcon(status: ModuleSlot['status']): string {
 		switch (status) {
-			case 'complete': return '✓';
+			case 'complete': return '&check;';
 			case 'generating': return '↻';
 			case 'overview-ready': return '◐';
 			case 'error': return '!';

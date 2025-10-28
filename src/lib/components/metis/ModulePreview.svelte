@@ -87,7 +87,7 @@
         on:click={copyToClipboard}
         disabled={!xmlContent}
       >
-        📋 Copy
+        Copy
       </button>
       <button
         type="button"
@@ -95,7 +95,7 @@
         on:click={downloadXML}
         disabled={!xmlContent || (validation && !validation.valid)}
       >
-        ⬇️ Download XML
+        Download XML
       </button>
     </div>
   </div>
@@ -107,13 +107,13 @@
       class:invalid={!validation.valid}
     >
       {#if validation.valid}
-        <div class="status-icon">✓</div>
+        <div class="status-icon">&check;</div>
         <div class="status-message">
           <strong>Valid Module Specification</strong>
           <p>All required elements are present and properly formatted</p>
         </div>
       {:else}
-        <div class="status-icon">⚠</div>
+        <div class="status-icon">!</div>
         <div class="status-message">
           <strong>Validation Errors</strong>
           <ul>

@@ -12,7 +12,8 @@ import {
 	buildResearchInstructions,
 	buildRetrySection,
 	buildResearchStep,
-	formatInputData
+	formatInputData,
+	buildBritishEnglishInstructions
 } from '$lib/utils/prompt/shared-components';
 
 /**
@@ -34,6 +35,7 @@ export function buildGenerationPrompt(body: GenerateRequest, validationErrors?: 
 	// Build conditional sections
 	const researchInstructions = buildResearchInstructions(body.enableResearch);
 	const retrySection = buildRetrySection(validationErrors);
+	const britishEnglishInstructions = buildBritishEnglishInstructions();
 	const schemaRequirements = getSchemaRequirements();
 
 	return `<Prompt>
@@ -85,6 +87,10 @@ export function buildGenerationPrompt(body: GenerateRequest, validationErrors?: 
         <RetrySection>
           ${retrySection}
         </RetrySection>
+
+        <LanguageInstructions>
+          ${britishEnglishInstructions}
+        </LanguageInstructions>
       </TaskApproach>
 
       <TaskCriteria>
@@ -342,6 +348,7 @@ export function buildModuleOverviewPrompt(
 		: '';
 	const knowledgeContext = buildKnowledgeContextSection(courseContext.precedingModules);
 	const retrySection = buildRetrySection(validationErrors);
+	const britishEnglishInstructions = buildBritishEnglishInstructions();
 
 	return `<Prompt>
 		<Overview>
@@ -386,6 +393,10 @@ export function buildModuleOverviewPrompt(
 			</LearnerKnowledgeContext>
 
 			${retrySection ? `<RetryGuidance>${retrySection}</RetryGuidance>` : ''}
+
+			<LanguageInstructions>
+				${britishEnglishInstructions}
+			</LanguageInstructions>
 		</ModuleContext>
 
 		<Task>

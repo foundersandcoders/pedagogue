@@ -146,7 +146,7 @@
         on:click={handleCancel}
         disabled={isExporting}
       >
-        ×
+        &times;
       </button>
     </div>
 
@@ -227,7 +227,7 @@
             on:click={() => (format = "markdown")}
             disabled={isExporting}
           >
-            📝 Markdown
+            Markdown
           </button>
           <button
             type="button"
@@ -253,7 +253,7 @@
             disabled
             title="PDF export coming soon"
           >
-            📄 PDF <span class="badge">Soon</span>
+            PDF <span class="badge">Soon</span>
           </button>
         </div>
         <p class="help-text format-note">

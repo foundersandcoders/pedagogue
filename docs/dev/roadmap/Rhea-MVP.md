@@ -20,7 +20,6 @@
 #### 1a1. Due Tasks
 
 #### 1a2. Other Tasks
-- [ ] 1a2a. Steer model towards British English in content generation
 - [ ] 1a2b. Add dark mode to UI
   - Should allow user to select light, dark or system
   - requires generating dark palettes for each workflow
@@ -28,7 +27,6 @@
   - 1a2c1. Icon & Title should be on same line
   - 1a2c2. Icon/Title line and button line should always be a uniform height across each card while fitting all content
   - 1a2c3. Card should display description by default; on hover, replace with feature bullet points on hover
-- [ ] 1a2d. Remove all emoji from app
 - [ ] 1a2e. Implement Prettify utility type
   - [Prettify](https://www.totaltypescript.com/concepts/the-prettify-helper)
 - [ ] 1a2g. Research and implement different models for each separate LangChain AI call
@@ -98,6 +96,23 @@
     - Updated type definitions to match rich semantic structure
     - Removed duplicate JSON files
     - Added comprehensive documentation at `docs/dev/ref/palettes/README.md`
+- [x] 4a3. British English & Emoji Cleanup ✅ COMPLETED (2025-10-28)
+  - **Branch:** main (direct implementation)
+  - **Documentation:** `/docs/dev/work-records/2025-10-british-english-emoji-cleanup.md`
+  - [x] 4a3a. Steer model towards British English in content generation
+    - Created `buildBritishEnglishInstructions()` helper in `shared-components.ts`
+    - Integrated into all Metis prompt factories (standalone, course-aware, overview)
+    - Integrated into Themis course structure prompt factory
+    - Covers spelling, terminology, and phrasing conventions
+  - [x] 4a3b. Remove emoji from app
+    - Confirmed UI components already emoji-free
+    - Removed emoji from build script console output (`generatePaletteCss.js`)
+    - Documentation emojis preserved for readability
+  - **Impact:**
+    - All AI-generated content now uses British English consistently
+    - More professional console output for CI/CD environments
+    - 49 total lines changed across 4 files
+    - Zero breaking changes to existing APIs
   - **Architecture:**
     - Single source: `src/lib/config/palettes/{workflow}Palette.ts`
     - Transformation: `src/lib/utils/palette/paletteTransformer.ts`

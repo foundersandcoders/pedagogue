@@ -152,7 +152,7 @@
 {#if hasMetadata}
   <div class="changelog-viewer">
     <div class="changelog-header">
-      <h4>📝 Change Summary</h4>
+      <h4>Change Summary</h4>
       {#if generationInfo}
         <div class="generation-info">
           <span class="info-badge">{generationInfo.source}</span>
@@ -219,7 +219,7 @@
 
     {#if provenanceInfo && provenanceInfo.sectionsNeedingReview.length > 0}
       <div class="needs-review">
-        <h5>⚠️ Sections Requiring Human Review</h5>
+        <h5>Sections Requiring Human Review</h5>
         <ul>
           {#each provenanceInfo.sectionsNeedingReview as section}
             <li>{section}</li>

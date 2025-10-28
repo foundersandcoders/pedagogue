@@ -38,7 +38,9 @@
   onMount(async () => {
     // Check if courseData already has narratives (uploaded course)
     if (courseData.courseNarrative && courseData.progressionNarrative) {
-      console.log('Course uploaded with existing narratives - skipping generation');
+      console.log(
+        "Course uploaded with existing narratives - skipping generation",
+      );
       courseNarrative = courseData.courseNarrative;
       progressionNarrative = courseData.progressionNarrative;
       arcs = [...courseData.arcs];
@@ -235,12 +237,12 @@
     </div>
   {:else if error}
     <div class="error-state">
-      <div class="error-icon">⚠️</div>
+      <div class="error-icon">!</div>
       <h2>Generation Failed</h2>
       <p class="error-message">{error}</p>
       <div class="error-actions">
         <button type="button" class="retry-btn" on:click={handleRegenerate}>
-          🔄 Retry Generation
+          Retry Generation
         </button>
         <button type="button" class="back-btn" on:click={handleBack}>
           ← Back to Module Planning
@@ -255,7 +257,7 @@
         modules. You can edit any field before proceeding.
       </p>
       <button type="button" class="regenerate-btn" on:click={handleRegenerate}>
-        🔄 Regenerate Structure
+        Regenerate Structure
       </button>
     </div>
 
@@ -376,7 +378,7 @@
                         class="edit-toggle"
                         on:click={() => toggleEditModule(module.id)}
                       >
-                        {editingModuleId === module.id ? "✓ Done" : "✏️ Edit"}
+                        {editingModuleId === module.id ? "Done" : "Edit"}
                       </button>
                     </div>
 
@@ -447,7 +449,7 @@
                                       objIndex,
                                     )}
                                 >
-                                  ×
+                                  &times;
                                 </button>
                               </div>
                             {/each}
@@ -487,7 +489,7 @@
                                       topicIndex,
                                     )}
                                 >
-                                  ×
+                                  &times;
                                 </button>
                               </div>
                             {/each}
@@ -728,7 +730,8 @@
   .narrative-content textarea:focus {
     outline: none;
     border-color: var(--palette-secondary);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-secondary) 10%, transparent);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--palette-secondary) 10%, transparent);
   }
 
   /* Arcs Section */
@@ -1000,7 +1003,8 @@
   .field textarea:focus {
     outline: none;
     border-color: var(--palette-foreground);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-foreground) 10%, transparent);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--palette-foreground) 10%, transparent);
   }
 
   .field textarea {
@@ -1106,7 +1110,8 @@
   .download-xml-btn:hover {
     background: color-mix(in srgb, var(--palette-secondary) 85%, black);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--palette-secondary) 30%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--palette-secondary) 30%, transparent);
   }
 
   .submit-btn {
@@ -1117,7 +1122,8 @@
   .submit-btn:hover {
     background: color-mix(in srgb, var(--palette-foreground) 85%, black);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--palette-foreground) 30%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--palette-foreground) 30%, transparent);
   }
 
   @media (max-width: 768px) {

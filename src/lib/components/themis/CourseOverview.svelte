@@ -20,15 +20,21 @@
   // Create exportable content for Theia
   $: exportableContent = {
     type: "course" as const,
-    data: courseData
+    data: courseData,
   };
 
   // Computed statistics
-  $: totalModules = courseData.arcs.reduce((sum, arc) => sum + arc.modules.length, 0);
-  $: completedModules = courseData.arcs.reduce((sum, arc) =>
-    sum + arc.modules.filter(m => m.status === 'complete').length, 0
+  $: totalModules = courseData.arcs.reduce(
+    (sum, arc) => sum + arc.modules.length,
+    0,
   );
-  $: completionPercentage = totalModules > 0 ? (completedModules / totalModules) * 100 : 0;
+  $: completedModules = courseData.arcs.reduce(
+    (sum, arc) =>
+      sum + arc.modules.filter((m) => m.status === "complete").length,
+    0,
+  );
+  $: completionPercentage =
+    totalModules > 0 ? (completedModules / totalModules) * 100 : 0;
   $: allComplete = totalModules > 0 && completedModules === totalModules;
 
   function toggleArc(arcId: string) {
@@ -41,7 +47,9 @@
 
   function toggleModuleSection(moduleId: string, sectionName: string) {
     // Create a new Set to trigger reactivity
-    const currentSections = expandedSections[moduleId] ? new Set(expandedSections[moduleId]) : new Set();
+    const currentSections = expandedSections[moduleId]
+      ? new Set(expandedSections[moduleId])
+      : new Set();
 
     if (currentSections.has(sectionName)) {
       currentSections.delete(sectionName);
@@ -52,7 +60,7 @@
     // Create a completely new object to trigger reactivity
     expandedSections = {
       ...expandedSections,
-      [moduleId]: currentSections
+      [moduleId]: currentSections,
     };
   }
 
@@ -72,94 +80,119 @@
   function parseModuleXML(xmlContent: string) {
     try {
       const parser = new DOMParser();
-      const doc = parser.parseFromString(xmlContent, 'text/xml');
+      const doc = parser.parseFromString(xmlContent, "text/xml");
 
       // Check for parser errors
-      const parserError = doc.querySelector('parsererror');
+      const parserError = doc.querySelector("parsererror");
       if (parserError) {
-        console.error('XML parsing error:', parserError.textContent);
+        console.error("XML parsing error:", parserError.textContent);
         return null;
       }
 
-
       const result = {
-        description: doc.querySelector('Description')?.textContent?.trim() || '',
-        objectives: Array.from(doc.querySelectorAll('LearningObjectives LearningObjective')).map(obj => ({
-          name: obj.getAttribute('name') || '',
-          details: obj.textContent?.trim() || ''
+        description:
+          doc.querySelector("Description")?.textContent?.trim() || "",
+        objectives: Array.from(
+          doc.querySelectorAll("LearningObjectives LearningObjective"),
+        ).map((obj) => ({
+          name: obj.getAttribute("name") || "",
+          details: obj.textContent?.trim() || "",
         })),
         research: {
-          primary: Array.from(doc.querySelectorAll('ResearchTopics PrimaryTopics Topic')).map(topic => ({
-            name: topic.getAttribute('name') || '',
-            description: topic.textContent?.trim() || '',
-            subtopics: Array.from(topic.querySelectorAll('SubTopic')).map(sub => ({
-              name: sub.getAttribute('name') || '',
-              description: sub.textContent?.trim() || ''
-            }))
+          primary: Array.from(
+            doc.querySelectorAll("ResearchTopics PrimaryTopics Topic"),
+          ).map((topic) => ({
+            name: topic.getAttribute("name") || "",
+            description: topic.textContent?.trim() || "",
+            subtopics: Array.from(topic.querySelectorAll("SubTopic")).map(
+              (sub) => ({
+                name: sub.getAttribute("name") || "",
+                description: sub.textContent?.trim() || "",
+              }),
+            ),
           })),
-          stretch: Array.from(doc.querySelectorAll('ResearchTopics StretchTopics Topic')).map(topic => ({
-            name: topic.getAttribute('name') || '',
-            description: topic.textContent?.trim() || ''
-          }))
+          stretch: Array.from(
+            doc.querySelectorAll("ResearchTopics StretchTopics Topic"),
+          ).map((topic) => ({
+            name: topic.getAttribute("name") || "",
+            description: topic.textContent?.trim() || "",
+          })),
         },
-        projects: Array.from(doc.querySelectorAll('Projects Briefs Brief')).map(brief => ({
-          name: brief.getAttribute('name') || '',
-          task: brief.querySelector('Task')?.textContent?.trim() || '',
-          focus: brief.querySelector('Focus')?.textContent?.trim() || '',
-          criteria: brief.querySelector('Criteria')?.textContent?.trim() || '',
-          skills: Array.from(brief.querySelectorAll('Skills Skill')).map(skill => ({
-            name: skill.getAttribute('name') || '',
-            content: skill.textContent?.trim() || ''
-          })),
-          examples: Array.from(brief.querySelectorAll('Examples Example')).map(ex => ({
-            name: ex.getAttribute('name') || '',
-            content: ex.textContent?.trim() || ''
-          }))
+        projects: Array.from(doc.querySelectorAll("Projects Briefs Brief")).map(
+          (brief) => ({
+            name: brief.getAttribute("name") || "",
+            task: brief.querySelector("Task")?.textContent?.trim() || "",
+            focus: brief.querySelector("Focus")?.textContent?.trim() || "",
+            criteria:
+              brief.querySelector("Criteria")?.textContent?.trim() || "",
+            skills: Array.from(brief.querySelectorAll("Skills Skill")).map(
+              (skill) => ({
+                name: skill.getAttribute("name") || "",
+                content: skill.textContent?.trim() || "",
+              }),
+            ),
+            examples: Array.from(
+              brief.querySelectorAll("Examples Example"),
+            ).map((ex) => ({
+              name: ex.getAttribute("name") || "",
+              content: ex.textContent?.trim() || "",
+            })),
+          }),
+        ),
+        twists: Array.from(doc.querySelectorAll("Projects Twists Twist")).map(
+          (twist) => ({
+            name: twist.getAttribute("name") || "",
+            task: twist.querySelector("Task")?.textContent?.trim() || "",
+            examples: Array.from(
+              twist.querySelectorAll("Examples Example"),
+            ).map((ex) => ({
+              name: ex.getAttribute("name") || "",
+              content: ex.textContent?.trim() || "",
+            })),
+          }),
+        ),
+        additionalSkills: Array.from(
+          doc.querySelectorAll("AdditionalSkills Category"),
+        ).map((cat) => ({
+          category: cat.getAttribute("name") || "",
+          skills: Array.from(cat.querySelectorAll("Skills Skill")).map(
+            (skill) => ({
+              name: skill.getAttribute("name") || "",
+              content: skill.textContent?.trim() || "",
+            }),
+          ),
         })),
-        twists: Array.from(doc.querySelectorAll('Projects Twists Twist')).map(twist => ({
-          name: twist.getAttribute('name') || '',
-          task: twist.querySelector('Task')?.textContent?.trim() || '',
-          examples: Array.from(twist.querySelectorAll('Examples Example')).map(ex => ({
-            name: ex.getAttribute('name') || '',
-            content: ex.textContent?.trim() || ''
-          }))
-        })),
-        additionalSkills: Array.from(doc.querySelectorAll('AdditionalSkills Category')).map(cat => ({
-          category: cat.getAttribute('name') || '',
-          skills: Array.from(cat.querySelectorAll('Skills Skill')).map(skill => ({
-            name: skill.getAttribute('name') || '',
-            content: skill.textContent?.trim() || ''
-          }))
-        }))
       };
 
       return result;
     } catch (error) {
-      console.error('Failed to parse module XML:', error);
+      console.error("Failed to parse module XML:", error);
       return null;
     }
   }
 
   function handleBack() {
-    dispatch('back');
+    dispatch("back");
   }
 
   function handleReset() {
-    const confirmed = confirm('Are you sure you want to reset and start a new course? This will clear all current progress.');
+    const confirmed = confirm(
+      "Are you sure you want to reset and start a new course? This will clear all current progress.",
+    );
     if (confirmed) {
       resetCourseWorkflow();
-      dispatch('reset');
+      dispatch("reset");
     }
   }
 
   // Format date helper
   function formatDate(date: Date | string | undefined): string {
-    if (!date) return 'Not set';
-    const d = typeof date === 'string' ? new Date(date) : date;
-    return d.toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
+    if (!date) return "Not set";
+    const d = typeof date === "string" ? new Date(date) : date;
+    return d.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     });
   }
 </script>
@@ -186,18 +219,23 @@
   <!-- Completion Status Banner -->
   {#if !allComplete}
     <div class="status-banner warning">
-      <span class="banner-icon">⚠️</span>
+      <span class="banner-icon">!</span>
       <div class="banner-content">
         <strong>Course Incomplete</strong>
-        <p>{completedModules} of {totalModules} modules generated. Complete all modules before exporting.</p>
+        <p>
+          {completedModules} of {totalModules} modules generated. Complete all modules
+          before exporting.
+        </p>
       </div>
     </div>
   {:else}
     <div class="status-banner success">
-      <span class="banner-icon">✓</span>
+      <span class="banner-icon">&check;</span>
       <div class="banner-content">
         <strong>Course Complete!</strong>
-        <p>All {totalModules} modules have been successfully generated. Ready to export.</p>
+        <p>
+          All {totalModules} modules have been successfully generated. Ready to export.
+        </p>
       </div>
     </div>
   {/if}
@@ -210,23 +248,38 @@
     <div class="metadata-grid">
       <div class="metadata-item">
         <span class="metadata-label">Duration</span>
-        <span class="metadata-value">{courseData.logistics.totalWeeks} weeks</span>
+        <span class="metadata-value"
+          >{courseData.logistics.totalWeeks} weeks</span
+        >
       </div>
       <div class="metadata-item">
         <span class="metadata-label">Frequency</span>
-        <span class="metadata-value">{courseData.logistics.daysPerWeek} day{courseData.logistics.daysPerWeek !== 1 ? 's' : ''}/week</span>
+        <span class="metadata-value"
+          >{courseData.logistics.daysPerWeek} day{courseData.logistics
+            .daysPerWeek !== 1
+            ? "s"
+            : ""}/week</span
+        >
       </div>
       <div class="metadata-item">
         <span class="metadata-label">Start Date</span>
-        <span class="metadata-value">{formatDate(courseData.logistics.startDate)}</span>
+        <span class="metadata-value"
+          >{formatDate(courseData.logistics.startDate)}</span
+        >
       </div>
       <div class="metadata-item">
         <span class="metadata-label">Cohort Size</span>
-        <span class="metadata-value">{courseData.learners.cohortSize} learners</span>
+        <span class="metadata-value"
+          >{courseData.learners.cohortSize} learners</span
+        >
       </div>
       <div class="metadata-item">
         <span class="metadata-label">Structure</span>
-        <span class="metadata-value">{courseData.structure === 'peer-led' ? 'Peer-Led' : 'Facilitated'}</span>
+        <span class="metadata-value"
+          >{courseData.structure === "peer-led"
+            ? "Peer-Led"
+            : "Facilitated"}</span
+        >
       </div>
       <div class="metadata-item">
         <span class="metadata-label">Arcs</span>
@@ -287,17 +340,24 @@
         >
           <div class="arc-header-content">
             <h4>
-              <span class="arc-icon">{expandedArcId === arc.id ? '▼' : '▶'}</span>
+              <span class="arc-icon"
+                >{expandedArcId === arc.id ? "▼" : "▶"}</span
+              >
               Arc {arc.order}: {arc.title}
             </h4>
-            <p class="arc-theme">{arc.theme} • {arc.durationWeeks} week{arc.durationWeeks !== 1 ? 's' : ''}</p>
+            <p class="arc-theme">
+              {arc.theme} • {arc.durationWeeks} week{arc.durationWeeks !== 1
+                ? "s"
+                : ""}
+            </p>
             {#if arc.description}
               <p class="arc-description">{arc.description}</p>
             {/if}
           </div>
           <div class="arc-meta">
             <span class="arc-modules-count">
-              {arc.modules.filter(m => m.status === 'complete').length}/{arc.modules.length} modules
+              {arc.modules.filter((m) => m.status === "complete").length}/{arc
+                .modules.length} modules
             </span>
           </div>
         </button>
@@ -325,17 +385,29 @@
             <!-- Module List -->
             <div class="module-list">
               {#each arc.modules as module (module.id)}
-                {@const moduleContent = module.moduleData?.xmlContent ? parseModuleXML(module.moduleData.xmlContent) : null}
-                <div class="module-card" class:complete={module.status === 'complete'} class:error={module.status === 'error'} class:expanded={expandedModuleId === module.id}>
+                {@const moduleContent = module.moduleData?.xmlContent
+                  ? parseModuleXML(module.moduleData.xmlContent)
+                  : null}
+                <div
+                  class="module-card"
+                  class:complete={module.status === "complete"}
+                  class:error={module.status === "error"}
+                  class:expanded={expandedModuleId === module.id}
+                >
                   <button
                     class="module-header"
-                    on:click={() => module.status === 'complete' && toggleModule(module.id)}
-                    disabled={module.status !== 'complete'}
+                    on:click={() =>
+                      module.status === "complete" && toggleModule(module.id)}
+                    disabled={module.status !== "complete"}
                   >
-                    <div class="module-status" class:status-complete={module.status === 'complete'} class:status-error={module.status === 'error'}>
-                      {#if module.status === 'complete'}
-                        ✓
-                      {:else if module.status === 'error'}
+                    <div
+                      class="module-status"
+                      class:status-complete={module.status === "complete"}
+                      class:status-error={module.status === "error"}
+                    >
+                      {#if module.status === "complete"}
+                        &check;
+                      {:else if module.status === "error"}
                         !
                       {:else}
                         ○
@@ -343,16 +415,25 @@
                     </div>
                     <div class="module-info">
                       <div class="module-title-row">
-                        {#if module.status === 'complete'}
-                          <span class="expand-icon">{expandedModuleId === module.id ? '▼' : '▶'}</span>
+                        {#if module.status === "complete"}
+                          <span class="expand-icon"
+                            >{expandedModuleId === module.id ? "▼" : "▶"}</span
+                          >
                         {/if}
                         <h5>Module {module.order}: {module.title}</h5>
                       </div>
                       <p class="module-description">{module.description}</p>
                       <div class="module-meta">
-                        <span>{module.durationWeeks} week{module.durationWeeks !== 1 ? 's' : ''}</span>
+                        <span
+                          >{module.durationWeeks} week{module.durationWeeks !==
+                          1
+                            ? "s"
+                            : ""}</span
+                        >
                         {#if module.learningObjectives && module.learningObjectives.length > 0}
-                          <span>• {module.learningObjectives.length} objectives</span>
+                          <span
+                            >• {module.learningObjectives.length} objectives</span
+                          >
                         {/if}
                         {#if module.keyTopics && module.keyTopics.length > 0}
                           <span>• {module.keyTopics.length} topics</span>
@@ -361,18 +442,21 @@
                     </div>
                   </button>
 
-                  {#if module.status === 'error'}
+                  {#if module.status === "error"}
                     <div class="error-message">
-                      <strong>Error:</strong> {module.errorMessage || 'Module generation failed'}
+                      <strong>Error:</strong>
+                      {module.errorMessage || "Module generation failed"}
                     </div>
                   {/if}
 
-                  {#if module.status === 'complete' && expandedModuleId === module.id && moduleContent}
+                  {#if module.status === "complete" && expandedModuleId === module.id && moduleContent}
                     <div class="module-content">
                       <!-- Module Description -->
                       {#if moduleContent.description}
                         <div class="content-block">
-                          <p class="module-full-description">{moduleContent.description}</p>
+                          <p class="module-full-description">
+                            {moduleContent.description}
+                          </p>
                         </div>
                       {/if}
 
@@ -381,12 +465,20 @@
                         <div class="content-section">
                           <button
                             class="section-toggle"
-                            on:click|stopPropagation={() => toggleModuleSection(module.id, 'objectives')}
+                            on:click|stopPropagation={() =>
+                              toggleModuleSection(module.id, "objectives")}
                           >
-                            <span class="toggle-icon">{expandedSections[module.id]?.has('objectives') ? '▼' : '▶'}</span>
-                            <h6>Learning Objectives ({moduleContent.objectives.length})</h6>
+                            <span class="toggle-icon"
+                              >{expandedSections[module.id]?.has("objectives")
+                                ? "▼"
+                                : "▶"}</span
+                            >
+                            <h6>
+                              Learning Objectives ({moduleContent.objectives
+                                .length})
+                            </h6>
                           </button>
-                          {#if expandedSections[module.id]?.has('objectives')}
+                          {#if expandedSections[module.id]?.has("objectives")}
                             <div class="section-content">
                               {#each moduleContent.objectives as objective}
                                 <div class="objective-item">
@@ -404,12 +496,20 @@
                         <div class="content-section">
                           <button
                             class="section-toggle"
-                            on:click|stopPropagation={() => toggleModuleSection(module.id, 'research')}
+                            on:click|stopPropagation={() =>
+                              toggleModuleSection(module.id, "research")}
                           >
-                            <span class="toggle-icon">{expandedSections[module.id]?.has('research') ? '▼' : '▶'}</span>
-                            <h6>Research Topics ({moduleContent.research.primary.length})</h6>
+                            <span class="toggle-icon"
+                              >{expandedSections[module.id]?.has("research")
+                                ? "▼"
+                                : "▶"}</span
+                            >
+                            <h6>
+                              Research Topics ({moduleContent.research.primary
+                                .length})
+                            </h6>
                           </button>
-                          {#if expandedSections[module.id]?.has('research')}
+                          {#if expandedSections[module.id]?.has("research")}
                             <div class="section-content">
                               {#each moduleContent.research.primary as topic}
                                 <div class="research-item">
@@ -421,7 +521,8 @@
                                       <ul>
                                         {#each topic.subtopics as subtopic}
                                           <li>
-                                            <strong>{subtopic.name}:</strong> {subtopic.description}
+                                            <strong>{subtopic.name}:</strong>
+                                            {subtopic.description}
                                           </li>
                                         {/each}
                                       </ul>
@@ -435,7 +536,8 @@
                                   <ul>
                                     {#each moduleContent.research.stretch as topic}
                                       <li>
-                                        <strong>{topic.name}:</strong> {topic.description}
+                                        <strong>{topic.name}:</strong>
+                                        {topic.description}
                                       </li>
                                     {/each}
                                   </ul>
@@ -451,26 +553,37 @@
                         <div class="content-section">
                           <button
                             class="section-toggle"
-                            on:click|stopPropagation={() => toggleModuleSection(module.id, 'projects')}
+                            on:click|stopPropagation={() =>
+                              toggleModuleSection(module.id, "projects")}
                           >
-                            <span class="toggle-icon">{expandedSections[module.id]?.has('projects') ? '▼' : '▶'}</span>
-                            <h6>Project Briefs ({moduleContent.projects.length})</h6>
+                            <span class="toggle-icon"
+                              >{expandedSections[module.id]?.has("projects")
+                                ? "▼"
+                                : "▶"}</span
+                            >
+                            <h6>
+                              Project Briefs ({moduleContent.projects.length})
+                            </h6>
                           </button>
-                          {#if expandedSections[module.id]?.has('projects')}
+                          {#if expandedSections[module.id]?.has("projects")}
                             <div class="section-content">
                               {#each moduleContent.projects as project}
                                 <div class="project-item">
                                   <h7>{project.name}</h7>
                                   <p><strong>Task:</strong> {project.task}</p>
                                   <p><strong>Focus:</strong> {project.focus}</p>
-                                  <p><strong>Criteria:</strong> {project.criteria}</p>
+                                  <p>
+                                    <strong>Criteria:</strong>
+                                    {project.criteria}
+                                  </p>
                                   {#if project.skills.length > 0}
                                     <div class="project-skills">
                                       <strong>Skills:</strong>
                                       <ul>
                                         {#each project.skills as skill}
                                           <li>
-                                            <strong>{skill.name}:</strong> {skill.content}
+                                            <strong>{skill.name}:</strong>
+                                            {skill.content}
                                           </li>
                                         {/each}
                                       </ul>
@@ -482,7 +595,8 @@
                                       <ul>
                                         {#each project.examples as example}
                                           <li>
-                                            <strong>{example.name}:</strong> {example.content}
+                                            <strong>{example.name}:</strong>
+                                            {example.content}
                                           </li>
                                         {/each}
                                       </ul>
@@ -500,12 +614,19 @@
                         <div class="content-section">
                           <button
                             class="section-toggle"
-                            on:click|stopPropagation={() => toggleModuleSection(module.id, 'twists')}
+                            on:click|stopPropagation={() =>
+                              toggleModuleSection(module.id, "twists")}
                           >
-                            <span class="toggle-icon">{expandedSections[module.id]?.has('twists') ? '▼' : '▶'}</span>
-                            <h6>Project Twists ({moduleContent.twists.length})</h6>
+                            <span class="toggle-icon"
+                              >{expandedSections[module.id]?.has("twists")
+                                ? "▼"
+                                : "▶"}</span
+                            >
+                            <h6>
+                              Project Twists ({moduleContent.twists.length})
+                            </h6>
                           </button>
-                          {#if expandedSections[module.id]?.has('twists')}
+                          {#if expandedSections[module.id]?.has("twists")}
                             <div class="section-content">
                               {#each moduleContent.twists as twist}
                                 <div class="twist-item">
@@ -517,7 +638,8 @@
                                       <ul>
                                         {#each twist.examples as example}
                                           <li>
-                                            <strong>{example.name}:</strong> {example.content}
+                                            <strong>{example.name}:</strong>
+                                            {example.content}
                                           </li>
                                         {/each}
                                       </ul>
@@ -535,12 +657,20 @@
                         <div class="content-section">
                           <button
                             class="section-toggle"
-                            on:click|stopPropagation={() => toggleModuleSection(module.id, 'skills')}
+                            on:click|stopPropagation={() =>
+                              toggleModuleSection(module.id, "skills")}
                           >
-                            <span class="toggle-icon">{expandedSections[module.id]?.has('skills') ? '▼' : '▶'}</span>
-                            <h6>Additional Skills ({moduleContent.additionalSkills.length} categories)</h6>
+                            <span class="toggle-icon"
+                              >{expandedSections[module.id]?.has("skills")
+                                ? "▼"
+                                : "▶"}</span
+                            >
+                            <h6>
+                              Additional Skills ({moduleContent.additionalSkills
+                                .length} categories)
+                            </h6>
                           </button>
-                          {#if expandedSections[module.id]?.has('skills')}
+                          {#if expandedSections[module.id]?.has("skills")}
                             <div class="section-content">
                               {#each moduleContent.additionalSkills as category}
                                 <div class="skills-category">
@@ -548,7 +678,8 @@
                                   <ul>
                                     {#each category.skills as skill}
                                       <li>
-                                        <strong>{skill.name}:</strong> {skill.content}
+                                        <strong>{skill.name}:</strong>
+                                        {skill.content}
                                       </li>
                                     {/each}
                                   </ul>
@@ -563,7 +694,8 @@
                       <div class="module-actions">
                         <button
                           class="btn btn-sm btn-secondary"
-                          on:click|stopPropagation={() => viewModulePreview(module.id)}
+                          on:click|stopPropagation={() =>
+                            viewModulePreview(module.id)}
                         >
                           View Raw XML
                         </button>
@@ -594,21 +726,32 @@
 <!-- Module Preview Modal -->
 {#if previewModuleId}
   {@const module = courseData.arcs
-    .flatMap(arc => arc.modules)
-    .find(m => m.id === previewModuleId)}
+    .flatMap((arc) => arc.modules)
+    .find((m) => m.id === previewModuleId)}
 
   {#if module && module.moduleData}
     <div class="modal-overlay" on:click={closePreview} role="presentation">
-      <div class="modal-content" on:click|stopPropagation role="dialog" aria-labelledby="modal-title">
+      <div
+        class="modal-content"
+        on:click|stopPropagation
+        role="dialog"
+        aria-labelledby="modal-title"
+      >
         <div class="modal-header">
           <h3 id="modal-title">{module.title}</h3>
-          <button class="btn-close" on:click={closePreview} aria-label="Close preview">×</button>
+          <button
+            class="btn-close"
+            on:click={closePreview}
+            aria-label="Close preview">&times;</button
+          >
         </div>
         <div class="modal-body">
           <pre class="xml-preview">{module.moduleData.xmlContent}</pre>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" on:click={closePreview}>Close</button>
+          <button class="btn btn-secondary" on:click={closePreview}
+            >Close</button
+          >
         </div>
       </div>
     </div>
@@ -1421,7 +1564,7 @@
     border-radius: 6px;
     padding: 1rem;
     overflow-x: auto;
-    font-family: 'Monaco', 'Courier New', monospace;
+    font-family: "Monaco", "Courier New", monospace;
     font-size: 0.875rem;
     line-height: 1.5;
     white-space: pre-wrap;

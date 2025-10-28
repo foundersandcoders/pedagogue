@@ -206,8 +206,8 @@ const outputPath = join(__dirname, '../src/lib/styles/palettes.generated.css');
 
 try {
   writeFileSync(outputPath, css, 'utf-8');
-  console.log('✅ Generated palette CSS:', outputPath);
+  console.log('[SUCCESS] Generated palette CSS:', outputPath);
 } catch (error) {
-  console.error('❌ Failed to generate palette CSS:', error);
+  console.error('[ERROR] Failed to generate palette CSS:', error);
   process.exit(1);
 }

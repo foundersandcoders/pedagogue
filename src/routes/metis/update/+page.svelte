@@ -206,7 +206,7 @@
           ...progressMessages,
           {
             type: "success",
-            text: `✓ Generation complete${currentAttempt > 1 ? ` (succeeded on attempt ${currentAttempt})` : ""}`,
+            text: `Generation complete${currentAttempt > 1 ? ` (succeeded on attempt ${currentAttempt})` : ""}`,
           },
         ];
 
@@ -331,7 +331,7 @@
 
           {#if $canProceedToStep2}
             <div class="proceed-section">
-              <p class="success-message">✓ All files uploaded successfully</p>
+              <p class="success-message">All files uploaded successfully</p>
             </div>
           {/if}
         </section>
@@ -384,9 +384,9 @@
                   {#each progressMessages as message}
                     <div class="progress-message {message.type}">
                       {#if message.type === "success"}
-                        <span class="icon">✓</span>
+                        <span class="icon">&check;</span>
                       {:else if message.type === "warning"}
-                        <span class="icon">⚠</span>
+                        <span class="icon">!</span>
                       {:else if message.type === "error"}
                         <span class="icon">✗</span>
                       {:else}
@@ -400,7 +400,7 @@
             </div>
           {:else if generationError}
             <div class="error-state">
-              <div class="error-icon">⚠</div>
+              <div class="error-icon">!</div>
               <h3>Generation Error</h3>
               <p>{generationError}</p>
               <!-- TODO: update on:click to onclick -->
@@ -417,7 +417,7 @@
               {#if currentAttempt > 1}
                 <div class="generation-meta">
                   <p class="retry-info">
-                    ✓ Generation succeeded after {currentAttempt} attempt{currentAttempt >
+                    Generation succeeded after {currentAttempt} attempt{currentAttempt >
                     1
                       ? "s"
                       : ""}
@@ -427,7 +427,7 @@
 
               {#if validationWarnings.length > 0}
                 <div class="validation-warnings">
-                  <h4>⚠ Validation Warnings</h4>
+                  <h4>Validation Warnings</h4>
                   <ul>
                     {#each validationWarnings as warning}
                       <li>{warning}</li>
@@ -445,7 +445,7 @@
                   class="btn-secondary"
                   on:click={regenerateModule}
                 >
-                  🔄 Regenerate
+                  Regenerate
                 </button>
               </div>
             </div>

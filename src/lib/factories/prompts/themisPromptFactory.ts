@@ -6,7 +6,7 @@
  */
 
 import type { CourseStructureGenerationRequest } from '$lib/schemas/apiValidator';
-import { buildResearchInstructions, buildSupportingDocuments, buildSection } from '$lib/utils/prompt/shared-components';
+import { buildResearchInstructions, buildSupportingDocuments, buildSection, buildBritishEnglishInstructions } from '$lib/utils/prompt/shared-components';
 
 /**
  * Build the course structure generation prompt from input data
@@ -23,6 +23,8 @@ export function buildCourseStructurePrompt(data: CourseStructureGenerationReques
 	const researchInstructions = data.enableResearch
  	? '\n' + buildSection('ResearchInstructions', buildResearchInstructions(true), false)
  	: '';
+
+	const britishEnglishInstructions = '\n' + buildSection('LanguageInstructions', buildBritishEnglishInstructions(), false);
 
  	let arcStructureSection = '';
  	if (data.arcs && data.arcs.length > 0) {
@@ -66,6 +68,7 @@ export function buildCourseStructurePrompt(data: CourseStructureGenerationReques
     ${supportingDocs}
     ${arcStructureSection}
     ${researchInstructions}
+    ${britishEnglishInstructions}
 
     <Instructions>
     The course is organized using ARCS - thematic learning phases that group related modules.

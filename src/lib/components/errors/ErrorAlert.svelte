@@ -36,9 +36,9 @@
   }[error.severity || "error"];
 
   $: severityIcon = {
-    error: "❌",
-    warning: "⚠️",
-    info: "ℹ️",
+    error: "X",
+    warning: "!",
+    info: "i",
   }[error.severity || "error"];
 
   function handleRetry() {

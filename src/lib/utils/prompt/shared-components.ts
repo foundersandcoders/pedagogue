@@ -157,3 +157,34 @@ export function buildSection(tagName: string, content: string, indent: boolean =
     ${indentedContent}
     </${tagName}>`;
 }
+
+/**
+ * Build British English instructions
+ *
+ * Provides clear guidance to ensure AI-generated content uses British English
+ * spelling, terminology, and phrasing conventions.
+ *
+ * @returns Formatted British English instructions
+ */
+export function buildBritishEnglishInstructions(): string {
+	return `IMPORTANT: Use British English throughout your response.
+
+    British spelling conventions:
+    - colour (not color), flavour (not flavor), behaviour (not behavior)
+    - centre (not center), metre (not meter), theatre (not theater)
+    - realise (not realize), organise (not organize), analyse (not analyze)
+    - programme (when referring to a course or curriculum, not computer programs)
+    - licence (noun), license (verb); practice (noun), practise (verb)
+
+    British terminology and phrasing:
+    - "learnt" (not "learned"), "amongst" (not "among")
+    - "at the weekend" (not "on the weekend")
+    - "have got" is acceptable in informal contexts
+
+    This applies to ALL generated content including:
+    - Module descriptions and narratives
+    - Learning objectives
+    - Research topics and guidance
+    - Project briefs and examples
+    - Any instructional text`;
+}
