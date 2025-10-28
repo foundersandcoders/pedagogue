@@ -41,6 +41,18 @@
 		dispatch('generateOverview', { module, arc });
 	}
 
+	function handleRetry() {
+		// Retry the same type of generation that failed
+		// Default to full generation if not tracked (backward compatibility)
+		const attemptType = module.lastAttemptedGeneration || 'full';
+
+		if (attemptType === 'overview') {
+			dispatch('generateOverview', { module, arc });
+		} else {
+			dispatch('generate', { module, arc });
+		}
+	}
+
 	function handleViewPreview() {
 		dispatch('viewPreview', { moduleId: module.id });
 	}
@@ -128,10 +140,10 @@
 		{:else if module.status === 'error'}
 			<button
 				class="btn btn-sm btn-generate"
-				on:click={handleGenerate}
+				on:click={handleRetry}
 				disabled={!canGenerate}
 			>
-				Retry
+				Retry {module.lastAttemptedGeneration === 'overview' ? 'Overview' : 'Generation'}
 			</button>
 		{:else if module.status === 'generating'}
 			<button class="btn btn-sm" disabled>

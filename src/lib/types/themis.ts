@@ -86,6 +86,7 @@ export interface ModuleSlot {
 
 	durationWeeks: number;
 	status: 'planned' | 'overview-ready' | 'generating' | 'complete' | 'error';
+	lastAttemptedGeneration?: 'overview' | 'full'; // Track what type of generation was last attempted (for retry)
 
 	// Overview - lightweight generation before full module
 	overview?: ModuleOverview;

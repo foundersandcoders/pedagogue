@@ -2,7 +2,7 @@
 	import { createEventDispatcher, onMount, onDestroy } from "svelte";
 	import type { CourseData, ModuleSlot, Arc } from "$lib/types/themis";
 	import { currentCourse, moduleStatusCounts, allModulesComplete, updateModuleWithOverview } from "$lib/stores/themisStores";
-	import { updateModuleStatus, updateModuleWithGeneratedData, updateModuleWithError } from "$lib/utils/themis/moduleStoreHelpers";
+	import { updateModuleStatus, updateModuleWithGeneratedData, updateModuleWithError, setLastAttemptedGeneration } from "$lib/utils/themis/moduleStoreHelpers";
 	import { buildKnowledgeContext, getPrecedingModules } from "$lib/utils/themis/knowledgeContextBuilder";
 	import ExportButton from "$lib/components/theia/ExportButton.svelte";
 	import ProgressSummary from "./ProgressSummary.svelte";
@@ -62,7 +62,8 @@
 	}
 
 	async function generateOverview(module: ModuleSlot, arc: Arc): Promise<void> {
-		// Update status to generating
+		// Update status to generating and track attempt type
+		setLastAttemptedGeneration(module.id, 'overview');
 		updateModuleStatus(module.id, 'generating');
 		generatingModuleId = module.id;
 
@@ -108,7 +109,8 @@
 	}
 
 	async function generateModule(module: ModuleSlot, arc: Arc): Promise<void> {
-		// Update status to generating using helper
+		// Update status to generating and track attempt type
+		setLastAttemptedGeneration(module.id, 'full');
 		updateModuleStatus(module.id, 'generating');
 		generatingModuleId = module.id;
 
