@@ -2,6 +2,7 @@ import { writable, derived } from 'svelte/store';
 import type { CourseData, ModuleSlot, Arc } from '$lib/types/themis';
 import { createWorkflowStore } from '$lib/utils/state/metisWorkflowStep';
 import { persistedStore, loadFromLocalStorage, saveToLocalStorage } from '$lib/utils/state/persistenceUtils';
+import { migrateCourseData } from '$lib/utils/themis/migrations';
 
 /**
  * Svelte stores for course generation workflow
@@ -45,9 +46,16 @@ function deserializeCourseData(data: CourseData | null): CourseData | null {
 				if (module.moduleData?.generatedAt) {
 					module.moduleData.generatedAt = new Date(module.moduleData.generatedAt);
 				}
+				// Convert overview dates if present
+				if (module.overview?.generatedAt) {
+					module.overview.generatedAt = new Date(module.overview.generatedAt);
+				}
 			});
 		});
 	}
+
+	// Migrate to new TitleInput structure
+	data = migrateCourseData(data);
 
 	return data;
 }
