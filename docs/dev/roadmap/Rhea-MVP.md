@@ -16,36 +16,17 @@
 - [ ] 1.1.2.2. Add dark mode to UI
   - Should allow user to select light, dark or system
   - requires generating dark palettes for each workflow
+- [ ] 1.1.2.3. Workflow Card layout tweaks
+  - 1.1.2.3.1. Icon & Title should be on same line
+  - 1.1.2.3.2. Icon/Title line and button line should always be a uniform height across each card while fitting all content
+  - 1.1.2.3.3. Card should display description by default; on hover, replace with feature bullet points on hover
 
 ### 1.2. Blocked Tasks
 
 ---
 
 ## 2. MVP Milestones
-- [x] 2.1. Overhaul palette system ✅ COMPLETED (2025-10-25)
-  - **Branch:** `ui/palette-refactor`
-  - **Summary:** Complete refactor of palette system to eliminate duplication and establish single source of truth
-  - [x] 2.1.1. Rationalise palette application and reference
-  - [x] 2.1.2. Use the [palette reference files](docs/dev/ref/palettes) as source of truth for palette definitions
-  - [x] 2.1.3. Create a clear palette reference at `src/lib/config/palettes/`
-      - [x] 2.1.3.1. Export source for all palette usage (`src/lib/config/palettes/*.ts`)
-      - [x] 2.1.3.2. Separate from application logic (`src/lib/utils/palette/paletteTransformer.ts`)
-      - [x] 2.1.3.3. Human-readable (semantic TypeScript structure with colour names)
-      - [x] 2.1.3.4. Human-editable (direct TypeScript objects, no build-time generation)
-  - [x] 2.1.4. Tailwind evaluation: **Decided against** - custom system sufficient for 5 palettes
-  - **Key Changes:**
-    - Moved palette definitions from `docs/dev/ref/palettes/` to `src/lib/config/palettes/`
-    - Eliminated hardcoded `PALETTES` constant duplication in `paletteLoader.ts`
-    - Created `paletteTransformer.ts` for transformation logic
-    - Updated type definitions to match rich semantic structure
-    - Removed duplicate JSON files
-    - Added comprehensive documentation at `docs/dev/ref/palettes/README.md`
-  - **Architecture:**
-    - Single source: `src/lib/config/palettes/{workflow}Palette.ts`
-    - Transformation: `src/lib/utils/palette/paletteTransformer.ts`
-    - Application: `src/routes/+layout.svelte` (via data-palette attribute)
-    - Reference: `src/lib/styles/palettes.css` (static documentation)
-
+- [ ] 2.1. Update all Svelte legacy approaches and implementations to use Svelte 5
 ---
 
 ## 3. Beyond MVP: Future Features
@@ -81,6 +62,29 @@
     - Type-safe schemas with runtime validation
     - Reusable patterns for stores, workflows, and error handling
     - Better separation of concerns throughout codebase
+- [x] 4.1.2 Overhaul palette system ✅ COMPLETED (2025-10-25)
+  - **Branch:** `ui/palette-refactor`
+  - **Summary:** Complete refactor of palette system to eliminate duplication and establish single source of truth
+  - [x] 4.1.1. Rationalise palette application and reference
+  - [x] 4.1.2. Use the [palette reference files](docs/dev/ref/palettes) as source of truth for palette definitions
+  - [x] 4.1.3. Create a clear palette reference at `src/lib/config/palettes/`
+      - [x] 4.1.3.1. Export source for all palette usage (`src/lib/config/palettes/*.ts`)
+      - [x] 4.1.3.2. Separate from application logic (`src/lib/utils/palette/paletteTransformer.ts`)
+      - [x] 4.1.3.3. Human-readable (semantic TypeScript structure with colour names)
+      - [x] 4.1.3.4. Human-editable (direct TypeScript objects, no build-time generation)
+  - [x] 4.1.4. Tailwind evaluation: **Decided against** - custom system sufficient for 5 palettes
+  - **Key Changes:**
+    - Moved palette definitions from `docs/dev/ref/palettes/` to `src/lib/config/palettes/`
+    - Eliminated hardcoded `PALETTES` constant duplication in `paletteLoader.ts`
+    - Created `paletteTransformer.ts` for transformation logic
+    - Updated type definitions to match rich semantic structure
+    - Removed duplicate JSON files
+    - Added comprehensive documentation at `docs/dev/ref/palettes/README.md`
+  - **Architecture:**
+    - Single source: `src/lib/config/palettes/{workflow}Palette.ts`
+    - Transformation: `src/lib/utils/palette/paletteTransformer.ts`
+    - Application: `src/routes/+layout.svelte` (via data-palette attribute)
+    - Reference: `src/lib/styles/palettes.css` (static documentation)
 
 ### 4.2. Completed Tasks
 
