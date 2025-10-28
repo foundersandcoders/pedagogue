@@ -66,7 +66,7 @@ export type MetisPalette = PaletteStructure;
 export type TheiaPalette = PaletteStructure;
 
 // ====== UTILITY MODULES ======
-export type AtlasPalette = UnusedPalette;
+export type ThalassaPalette = UnusedPalette;
 export type MnemosynePalette = UnusedPalette;
 
 // ====== TYPE COMPONENTS & UTILS ======

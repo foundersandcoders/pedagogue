@@ -72,7 +72,7 @@ Rhea can use web search to ensure your curriculum reflects current industry prac
 ### 1.4. Coming Soon
 
 - <strong>Mnemosyne:</strong> long-term storage and versioning
-- <strong>Atlas:</strong> <strong>At</strong>omic <strong>L</strong>earning <strong>As</strong>sembler
+- <strong>Thalassa:</strong> <strong>At</strong>omic <strong>L</strong>earning <strong>As</strong>sembler
 
 ---
 

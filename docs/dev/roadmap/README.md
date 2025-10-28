@@ -16,7 +16,7 @@
 
 ### 1.3. Utility Modules
 - 1.3.1. [**Theia:**](Theia-MVP.md) _Content Preview & Export_
-- 1.3.2. [**Atlas:**](Atlas-MVP.md) _Atomic Learning Assembler_
+- 1.3.2. [**Thalassa:**](Thalassa-MVP.md) _Atomic Learning Assembler_
 - 1.3.3. [**Mnemosyne:**](Mnemosyne-MVP.md) _Storage & Retrieval_
 
 ---
@@ -159,7 +159,7 @@
   </ul>
 </details>
 
-#### 2.3.2. Atlas: Atomic Learning Assembler
+#### 2.3.2. Thalassa: Atomic Learning Assembler
 <details><summary>Status: ~0% MVP</summary>
   <p>Not yet started</p>
 </details>

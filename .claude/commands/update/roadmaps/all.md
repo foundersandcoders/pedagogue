@@ -27,7 +27,7 @@ argument-hint: []
     <Roadmap i="2" type="route" active="false" path="docs/dev/roadmap/Tethys-MVP.md" />
     <Roadmap i="3" type="route" active="true" path="docs/dev/roadmap/Metis-MVP.md" />
     <Roadmap i="4" type="util" active="true" path="docs/dev/roadmap/Theia-MVP.md" />
-    <Roadmap i="5" type="util" active="false" path="docs/dev/roadmap/Atlas-MVP.md" />
+    <Roadmap i="5" type="util" active="false" path="docs/dev/roadmap/Thalassa-MVP.md" />
   </Roadmaps>
   <Loops>
     <Loop i="0">

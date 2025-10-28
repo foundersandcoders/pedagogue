@@ -2,6 +2,11 @@
 
 ![Rhea Icon](static/icon.png)
 
+> [!NOTE]
+> <!-- one line defining current status -->
+
+---
+
 > [!IMPORTANT]
 > This document refers to tasks and features that are either (a) not tied to a specific module or (b) applicable to multiple modules
 > For a status report on the entire Rhea project, see [README](./README.md)
@@ -15,6 +20,7 @@
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
+
 - [ ] 1.1.2.1. Steer model towards British English in content generation
 - [ ] 1.1.2.2. Add dark mode to UI
   - Should allow user to select light, dark or system
@@ -25,12 +31,14 @@
   - 1.1.2.3.3. Card should display description by default; on hover, replace with feature bullet points on hover
 - [ ] 1.1.2.4. Remove all emoji from app
 - [ ] 1.1.2.5. Implement the [Prettify](https://www.totaltypescript.com/concepts/the-prettify-helper) helper utility type
+- [ ] 1.1.2.6. Move workflow-specific components from `src/lib/components/*` to `src/routes/*/components`
 
 ### 1.2. Blocked Tasks
 
 ---
 
 ## 2. MVP Milestones
+
 - [ ] 2.1. Implement Themis-style Theia previews for Metis (and Metis-in-Themis)
 - [ ] 2.2. Update all Svelte legacy approaches and implementations to use Svelte 5
 - [ ] 2.3. Research and implement different models for each separate LangChain AI call

@@ -2,6 +2,11 @@
 
 ![Tethys Icon](static/tethys/icon.png)
 
+> [!NOTE]
+> <!-- one line defining current status -->
+
+---
+
 ## 1. Tasks
 ### 1.1. Open Tasks
 #### 1.1.1. Due Tasks
