@@ -75,11 +75,6 @@
 
 ## 2. MVP Milestones
 
-- [ ] 2.1. Radically improve module-to-module coherence at generation
-  - 2.1.1. **IMPORTANT:** confer with user to understand requirements
-  - 2.1.2. Insert interstitial step: generating module overviews first, allowing later generation of full module spec
-  - 2.1.3. Cumulatively build a reference snipped on what learners will already know by the time a module starts, then pass that snippet to Metis
-  - 2.1.4. Separate all prompt snippets into separate files for increased visibility to devs
 - [ ] 2.2. Add Course XML Schema and Validator 📋 PENDING
   - Define course-level XML schema wrapping multiple modules
   - Validation for complete course structure
@@ -127,7 +122,35 @@
     - Improved maintainability and testability
     - Better component composition and reusability
   - **Why completed:** Addresses roadmap tasks 1.1.2.6 and 1.1.2.7, establishing foundation for future improvements
-- [x] 4.1.2. Create Hub Dashboard and Navigation Structure ✅ COMPLETED
+- [x] 4.1.2. Radically Improve Module-to-Module Coherence ✅ COMPLETED (2025-10-27/28)
+  - **Branch:** `themis/feat/module-coherence`
+  - **PR:** #27 (merged 2025-10-28)
+  - **Commits:** `fcea57c` through `5847ee2` (7 commits)
+  - **Documentation:** `/docs/dev/feature-guides/themis/module-coherence-continuation.md`
+  - **Summary:** Two-phase implementation adding smart title system and overview-first generation workflow
+  - **Phase 1 - Foundation:**
+    - TitleInput type system (undefined/prompt/literal modes) - `src/lib/types/themis.ts`
+    - TitleInputField component (113 lines) - `src/lib/components/themis/TitleInputField.svelte`
+    - Migration utilities for backward compatibility - `src/lib/utils/themis/migrations.ts` (109 lines)
+    - ModuleOverview interface and validation
+  - **Phase 2 - Overview Generation:**
+    - Module overview API endpoint - `src/routes/api/themis/module/overview/+server.ts` (201 lines)
+    - Knowledge context builder - `src/lib/utils/themis/knowledgeContextBuilder.ts` (241 lines)
+    - Overview prompt factory - `src/lib/factories/prompts/metisPromptFactory.ts` (buildModuleOverviewPrompt)
+    - Two-step workflow UI in ModuleGenerationList
+    - 'overview-ready' status tracking
+  - **Key Features:**
+    - Smart titles: AI can decide, be guided, or use exact titles
+    - Lightweight overviews: ~30s generation, 1/3 cost of full module
+    - Knowledge context: Cumulative tracking of learner progress
+    - Reduced repetition: Each module knows what came before
+    - Faster iteration: Review 10 overviews in ~5min vs 10 full modules in ~20min
+  - **Impact:**
+    - 1,479 insertions, 238 deletions across 21 code files
+    - Addresses MVP milestone 2.1 completely
+    - Foundation for improved course coherence and quality
+  - **Why completed:** Solves the critical problem of module content repetition by providing rich context about learner knowledge progression
+- [x] 4.1.3. Create Hub Dashboard and Navigation Structure ✅ COMPLETED
   - Created hub dashboard at `/` with cards for "Generate Module" and "Generate Course"
   - Moved existing module generator to `/module/new`
   - Added breadcrumb navigation in layout for all routes

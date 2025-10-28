@@ -33,6 +33,9 @@
 - [ ] 1a2h. Ensure components use the palette from their native workflow
   Regardless of current route, module generation is part of Metis; using a `/themis` route should show themis' palette, but individual modules that display within the page should have metis' palette applied. Eventually this will apply Tethys to arcs in themis as well.
 - [ ] 1a2i. Move module code from `/api/themis/module` to `/api/metis/*`
+- [ ] 1a2j. Implement test data generation with British English enforcement
+  - Verify that generated modules now use British spelling
+  - Test with both Metis and Themis workflows
 
 ### 1b. Blocked Tasks
 <!-- No blocked tasks -->
@@ -111,13 +114,14 @@
   - **Impact:**
     - All AI-generated content now uses British English consistently
     - More professional console output for CI/CD environments
-    - 49 total lines changed across 4 files
+    - 54+ emoji instances removed from UI components
+    - 49 total lines changed across 4 files (British English)
+    - ~757 lines changed across 20 files (emoji removal)
     - Zero breaking changes to existing APIs
   - **Architecture:**
-    - Single source: `src/lib/config/palettes/{workflow}Palette.ts`
-    - Transformation: `src/lib/utils/palette/paletteTransformer.ts`
-    - Application: `src/routes/+layout.svelte` (via data-palette attribute)
-    - Reference: `src/lib/styles/palettes.css` (static documentation)
+    - Shared component: `src/lib/utils/prompt/shared-components.ts` (British English instructions)
+    - Integration: `src/lib/factories/prompts/{metis,themis}PromptFactory.ts`
+    - Scope: All AI-generated content (objectives, topics, narratives, project briefs)
 
 ### 4b. Completed Tasks
 #### 4b1. Record of Past Deadlines
