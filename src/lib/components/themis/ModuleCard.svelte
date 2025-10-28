@@ -9,6 +9,7 @@
 
 	const dispatch = createEventDispatcher<{
 		generate: { module: ModuleSlot; arc: Arc };
+		generateOverview: { module: ModuleSlot; arc: Arc };
 		viewPreview: { moduleId: string };
 	}>();
 
@@ -16,6 +17,7 @@
 		switch (status) {
 			case 'complete': return 'var(--palette-foreground)';
 			case 'generating': return 'var(--palette-foreground-alt)';
+			case 'overview-ready': return 'var(--palette-foreground-alt)';
 			case 'error': return 'var(--palette-primary)';
 			default: return 'var(--palette-foreground-alt)';
 		}
@@ -25,6 +27,7 @@
 		switch (status) {
 			case 'complete': return '✓';
 			case 'generating': return '↻';
+			case 'overview-ready': return '◐';
 			case 'error': return '!';
 			default: return '○';
 		}
@@ -32,6 +35,10 @@
 
 	function handleGenerate() {
 		dispatch('generate', { module, arc });
+	}
+
+	function handleGenerateOverview() {
+		dispatch('generateOverview', { module, arc });
 	}
 
 	function handleViewPreview() {
@@ -62,14 +69,69 @@
 		</div>
 	{/if}
 
+	{#if module.overview}
+		<div class="overview-section">
+			<h5>Overview</h5>
+			<div class="overview-content">
+				<div class="overview-item">
+					<strong>Learning Objectives:</strong>
+					<ul>
+						{#each module.overview.learningObjectives as objective}
+							<li>{objective}</li>
+						{/each}
+					</ul>
+				</div>
+				<div class="overview-item">
+					<strong>Prerequisites:</strong>
+					<ul>
+						{#each module.overview.prerequisites as prereq}
+							<li>{prereq}</li>
+						{/each}
+					</ul>
+				</div>
+				<div class="overview-item">
+					<strong>Key Concepts:</strong>
+					<ul>
+						{#each module.overview.keyConceptsIntroduced as concept}
+							<li>{concept}</li>
+						{/each}
+					</ul>
+				</div>
+			</div>
+		</div>
+	{/if}
+
 	<div class="module-actions">
-		{#if module.status === 'planned' || module.status === 'error'}
+		{#if module.status === 'planned'}
+			<button
+				class="btn btn-sm btn-overview"
+				on:click={handleGenerateOverview}
+				disabled={!canGenerate}
+			>
+				Generate Overview
+			</button>
+			<button
+				class="btn btn-sm btn-secondary"
+				on:click={handleGenerate}
+				disabled={!canGenerate}
+			>
+				Skip to Full Module
+			</button>
+		{:else if module.status === 'overview-ready'}
 			<button
 				class="btn btn-sm btn-generate"
 				on:click={handleGenerate}
 				disabled={!canGenerate}
 			>
-				{module.status === 'error' ? 'Retry' : 'Generate'}
+				Generate Full Module
+			</button>
+		{:else if module.status === 'error'}
+			<button
+				class="btn btn-sm btn-generate"
+				on:click={handleGenerate}
+				disabled={!canGenerate}
+			>
+				Retry
 			</button>
 		{:else if module.status === 'generating'}
 			<button class="btn btn-sm" disabled>
@@ -164,6 +226,48 @@
 		font-size: 0.875rem;
 	}
 
+	.overview-section {
+		background: var(--palette-bg-subtle);
+		border: 1px solid var(--palette-line);
+		border-radius: 4px;
+		padding: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.overview-section h5 {
+		font-size: 0.95rem;
+		color: var(--palette-foreground);
+		margin: 0 0 0.75rem 0;
+		font-weight: 600;
+	}
+
+	.overview-content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.overview-item {
+		font-size: 0.875rem;
+	}
+
+	.overview-item strong {
+		display: block;
+		color: var(--palette-foreground);
+		margin-bottom: 0.25rem;
+	}
+
+	.overview-item ul {
+		margin: 0;
+		padding-left: 1.5rem;
+		color: var(--palette-foreground-alt);
+	}
+
+	.overview-item li {
+		margin: 0.25rem 0;
+		line-height: 1.5;
+	}
+
 	.module-actions {
 		display: flex;
 		gap: 0.5rem;
@@ -207,6 +311,15 @@
 
 	.btn-generate:hover:not(:disabled) {
 		background: var(--palette-foreground);
+	}
+
+	.btn-overview {
+		background: var(--palette-foreground);
+		color: white;
+	}
+
+	.btn-overview:hover:not(:disabled) {
+		background: var(--palette-foreground-alt);
 	}
 
 	@media (max-width: 768px) {

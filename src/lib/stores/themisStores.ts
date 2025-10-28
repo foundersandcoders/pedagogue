@@ -1,5 +1,5 @@
 import { writable, derived } from 'svelte/store';
-import type { CourseData, ModuleSlot, Arc } from '$lib/types/themis';
+import type { CourseData, ModuleSlot, Arc, ModuleOverview } from '$lib/types/themis';
 import { createWorkflowStore } from '$lib/utils/state/metisWorkflowStep';
 import { persistedStore, loadFromLocalStorage, saveToLocalStorage } from '$lib/utils/state/persistenceUtils';
 import { migrateCourseData } from '$lib/utils/themis/migrations';
@@ -127,14 +127,14 @@ export const moduleStatusCounts = derived(
 	currentCourse,
 	($currentCourse) => {
 		if (!$currentCourse) {
-			return { planned: 0, generating: 0, complete: 0, error: 0 };
+			return { planned: 0, 'overview-ready': 0, generating: 0, complete: 0, error: 0 };
 		}
 
 		const allModules = $currentCourse.arcs.flatMap(arc => arc.modules);
 		return allModules.reduce((counts, module) => {
 			counts[module.status]++;
 			return counts;
-		}, { planned: 0, generating: 0, complete: 0, error: 0 } as Record<ModuleSlot['status'], number>);
+		}, { planned: 0, 'overview-ready': 0, generating: 0, complete: 0, error: 0 } as Record<ModuleSlot['status'], number>);
 	}
 );
 
@@ -206,4 +206,29 @@ export function saveCurrentCourse() {
 
 	// Update savedCourses - auto-saves to localStorage via persistedStore
 	savedCourses.set(courses);
+}
+
+// Update module with generated overview
+export function updateModuleWithOverview(moduleId: string, overview: ModuleOverview) {
+	currentCourse.update(course => {
+		if (!course) return course;
+
+		const updatedArcs = course.arcs.map(arc => ({
+			...arc,
+			modules: arc.modules.map(mod =>
+				mod.id === moduleId
+					? {
+						...mod,
+						overview,
+						status: 'overview-ready' as const,
+						// Update title/theme if they were generated
+						title: overview.generatedTitle || mod.title,
+						theme: overview.generatedTheme || mod.theme
+					}
+					: mod
+			)
+		}));
+
+		return { ...course, arcs: updatedArcs, updatedAt: new Date() };
+	});
 }

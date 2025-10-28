@@ -85,7 +85,7 @@ export interface ModuleSlot {
 	theme?: string; // Current/finalized theme (for display and context)
 
 	durationWeeks: number;
-	status: 'planned' | 'generating' | 'complete' | 'error';
+	status: 'planned' | 'overview-ready' | 'generating' | 'complete' | 'error';
 
 	// Overview - lightweight generation before full module
 	overview?: ModuleOverview;
