@@ -29,7 +29,8 @@
 <details><summary>Status: ~90% MVP</summary>
   <ul>
     <li>Foundation complete</li>
-    <li>UI polish ongoing</li>
+    <li>Component architecture established</li>
+    <li>UI polish ongoing (dark mode, British English, emoji removal pending)</li>
   </ul>
 </details>
 
@@ -48,7 +49,7 @@
 
 #### 2.2.1. Themis: Course Builder
 <details><summary>Status: ~95% MVP ✅</summary>
-  <p>End-to-end workflow complete, component refactoring complete, polish pending</p>
+  <p>End-to-end workflow complete, component refactoring complete, technical debt identified, polish pending</p>
 </details>
 
 <details><summary>Implemented</summary>
@@ -65,14 +66,16 @@
     <li>✅ Course context integration in prompt factory</li>
     <li>✅ CourseOverview component for final review and export (1462 lines)</li>
     <li>📋 Course XML schema and export functionality (pending)</li>
+    <li>📋 Technical debt: SSE parsing vulnerability, race conditions, error handling improvements</li>
   </ul>
 </details>
 
 <details><summary>Next Up</summary>
   <ul>
     <li>Course XML schema validation</li>
-    <li>Module-to-module coherence improvements</li>
-    <li>UI polish and dark mode</li>
+    <li>Module-to-module coherence improvements (highest priority)</li>
+    <li>Technical debt resolution (SSE, error handling)</li>
+    <li>UI polish improvements</li>
   </ul>
 </details>
 
@@ -93,8 +96,8 @@
 </details>
 
 #### 2.2.3. Metis: Module Generator
-<details><summary>Status: ~95% MVP</summary>
-  <p>Feature complete, polish pending</p>
+<details><summary>Status: ~95% MVP ✅</summary>
+  <p>Feature complete, UI updated to match Themis patterns, polish pending</p>
 </details>
 
 <details><summary>Implemented</summary>
@@ -106,15 +109,18 @@
     <li>✅ Changelog and provenance tracking with confidence scoring</li>
     <li>✅ SSE streaming for progress feedback</li>
     <li>✅ Intelligent step navigation with automatic advancement</li>
-    <li>📋 UI improvements (aesthetic refinement, dark mode)</li>
+    <li>✅ UI updated to echo Themis multi-step workflow pattern</li>
     <li>📋 Boilerplate module text insertion</li>
+    <li>📋 Tech stack adherence validation</li>
+    <li>📋 Subsection toggling functionality</li>
   </ul>
 </details>
 
 <details><summary>Next Up</summary>
   <ul>
-    <li>UI polish</li>
-    <li>Integration with <strong>Themis</strong> course-aware generation</li>
+    <li>Boilerplate text insertion</li>
+    <li>Tech stack validation</li>
+    <li>UI polish (dark mode, emoji removal)</li>
   </ul>
 </details>
 
@@ -209,11 +215,12 @@
 
 ## 4. Recent Wins
 > [!NOTE]
-> 6 most recent achievements in this codebase
+> 7 most recent achievements in this codebase
 
-1. **[Themis: Component Refactoring Complete](Themis-MVP.md#411-break-over-large-themis-components-into-subcomponents--completed-2025-10-27)** (2025-10-27) - Split 896-line ModuleGenerationList into focused components (ProgressSummary, ModuleCard, ArcSection, ModulePreviewModal) and centralized store utilities. Main component reduced 51%, improved maintainability and testability.
-2. **[Themis: Complete Module Generation Workflow](Themis-MVP.md#410-complete-module-generation-workflow-steps-5-6--completed-2025-10-25)** (2025-10-25) - End-to-end course generation complete: ModuleGenerationList (897 lines), course-aware API endpoint (193 lines), CourseOverview (1462 lines), SSE streaming, and Theia export integration
-3. **[Rhea: Palette System Overhaul](Rhea-MVP.md#21-overhaul-palette-system--completed-2025-10-25)** (2025-10-25) - Complete refactor establishing single source of truth at `src/lib/config/palettes/`, build-time CSS generation, 56 files converted, 2,817 insertions
-4. **[Theia: Course Structure Upload (JSON)](Theia-MVP.md#412-course-structure-upload-json--completed-2025-10-24)** (2025-10-24) - Complete JSON upload workflow with validation, drag-and-drop interface, and round-trip capability (Themis → export → upload → continue). Theia branding with magenta/cyan palette (2,417 lines)
-5. **[Theia: Content Preview & Export complete](Theia-MVP.md#411-core-export-functionality--completed-2025-10-23)** (2025-10-23) - Production-ready export system with Markdown/HTML/JSON formats, configurable detail levels, and selective section export (2,813 lines)
-6. **[Architectural refactoring complete](Rhea-MVP.md#411-architectural-refactoring-2025-10-20--completed)** (2025-10-20) - 670+ lines eliminated via factories, utilities, and centralized configurations
+1. **[Roadmap Maintenance & Technical Debt Documentation](README.md)** (2025-10-28) - Updated all active roadmaps with current task status, moved completed items to work record (timeout extraction, UI improvements, component organization), documented remaining technical debt in Themis (SSE parsing vulnerability, race conditions, error handling gaps)
+2. **[Themis: Component Refactoring Complete](Themis-MVP.md#411-break-over-large-themis-components-into-subcomponents--completed-2025-10-27)** (2025-10-27) - Split 896-line ModuleGenerationList into focused components (ProgressSummary, ModuleCard, ArcSection, ModulePreviewModal) and centralized store utilities. Main component reduced 51%, improved maintainability and testability.
+3. **[Themis: Complete Module Generation Workflow](Themis-MVP.md#410-complete-module-generation-workflow-steps-5-6--completed-2025-10-25)** (2025-10-25) - End-to-end course generation complete: ModuleGenerationList (897 lines), course-aware API endpoint (193 lines), CourseOverview (1462 lines), SSE streaming, and Theia export integration
+4. **[Rhea: Palette System Overhaul](Rhea-MVP.md#21-overhaul-palette-system--completed-2025-10-25)** (2025-10-25) - Complete refactor establishing single source of truth at `src/lib/config/palettes/`, build-time CSS generation, 56 files converted, 2,817 insertions
+5. **[Theia: Course Structure Upload (JSON)](Theia-MVP.md#412-course-structure-upload-json--completed-2025-10-24)** (2025-10-24) - Complete JSON upload workflow with validation, drag-and-drop interface, and round-trip capability (Themis → export → upload → continue). Theia branding with magenta/cyan palette (2,417 lines)
+6. **[Theia: Content Preview & Export complete](Theia-MVP.md#411-core-export-functionality--completed-2025-10-23)** (2025-10-23) - Production-ready export system with Markdown/HTML/JSON formats, configurable detail levels, and selective section export (2,813 lines)
+7. **[Architectural refactoring complete](Rhea-MVP.md#411-architectural-refactoring-2025-10-20--completed)** (2025-10-20) - 670+ lines eliminated via factories, utilities, and centralized configurations

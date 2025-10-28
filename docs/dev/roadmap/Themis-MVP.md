@@ -38,14 +38,18 @@
 - [ ] 1.1.2.5. Allow "invisible" arcs
   - 1.1.2.5.1. Arcs can be defined as consisting of exactly 1 module each
   - 1.1.2.5.2. In this scenario, the UI should obscure any reference to Arcs whilst still preserving them in the data structure
-- [ ] 1.1.2.6. Timeout values (`src/routes/api/themis/module/+server.ts:52`) should be extracted to constants
 - [ ] 1.1.2.9. Fix Race Condition in SSE Stream Cleanup
-  - 1.1.2.9.1. In `ModuleGenerationList.svelte:160-162`, the reader is removed from `activeReaders` in a `finally` block but, if `onDestroy` runs concurrently with a completing stream, the `reader.cancel()` call might fail or leave streams in an inconsistent state.
+  - 1.1.2.9.1. In `ModuleGenerationList.svelte`, the reader is removed from `activeReaders` in a `finally` block
+  - 1.1.2.9.2. If `onDestroy` runs concurrently with a completing stream, the `reader.cancel()` call might fail or leave streams in an inconsistent state
+  - 1.1.2.9.3. **Status:** Still present after component refactor (2025-10-27)
 - [ ] 1.1.2.10. Fix SSE Parsing Vulnerability
-  - 1.1.2.10.1. `JSON.parse(line.slice(6))` will throw if the server sends malformed JSON. This could crash the entire generation flow.
+  - 1.1.2.10.1. `JSON.parse(line.slice(6))` at `ModuleGenerationList.svelte:189` will throw if the server sends malformed JSON
+  - 1.1.2.10.2. This could crash the entire generation flow
+  - 1.1.2.10.3. **Status:** Still present after component refactor (2025-10-27)
 - [ ] 1.1.2.11. Fix Missing Error Handling in `generateAll`
-  - 1.1.2.11.1. Line 265-267: The function continues generating after errors without checking if a critical failure occurred.
-  - 1.1.2.11.2. If the API endpoint is down, it will attempt to generate all remaining modules.
+  - 1.1.2.11.1. The function continues generating after errors without checking if a critical failure occurred
+  - 1.1.2.11.2. If the API endpoint is down, it will attempt to generate all remaining modules
+  - 1.1.2.11.3. **Status:** PARTIALLY FIXED - now has try-catch but still continues on failure (2025-10-27)
 - [ ] 1.1.2.12. Create a more elegant module generation flow
   - 1.1.2.12.1. The `generateAll` function (line 261) generates modules sequentially with await
   - 1.1.2.12.2. For courses with many modules, this could take hours.
@@ -245,3 +249,8 @@
   - Eliminated duplicate code across ModuleGenerationList
   - **Branch:** `themis/refactor/split-large-components`
   - **Addresses:** Original task 1.1.2.7
+- [x] 4.2.2.3. Timeout values extracted to constants ✅ COMPLETED (2025-10-25)
+  - Timeout values in `src/routes/api/themis/module/+server.ts` extracted to constants
+  - Research-heavy tasks: 300000ms (5 minutes)
+  - Standard tasks: 120000ms (2 minutes)
+  - **Addresses:** Original task 1.1.2.6

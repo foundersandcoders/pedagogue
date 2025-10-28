@@ -36,7 +36,7 @@
   - 1.1.2.4.2. Should apply in both Metis and Metis-in-Themis
 
 ### 1.2. Blocked Tasks
-<!-- No Blocked Tasks -->
+<!-- No blocked tasks -->
 
 ---
 
@@ -140,42 +140,46 @@
 #### 4.2.1. Record of Past Deadlines
 
 #### 4.2.2. Record of Other Completed Tasks
-- [x] 1.1.2.2. Display streaming response in UI via a scrolling/ephemeral window ✅ COMPLETED
+
+##### 4.2.2.1. Metis Documentation
+- [x] 4.2.2.1.1. Add instructions for including an Anthropic API key in `README.md` ✅ COMPLETED
+
+##### 4.2.2.2. Metis: Input Schema
+- [x] 4.2.2.2.1. Update input xml validator to allow attributes in root elements ✅ COMPLETED
+
+##### 4.2.2.3. Metis: Prompt Template
+- [x] 4.2.2.3.1. Steer Claude towards better Twists ✅ COMPLETED
+  - Added ProjectTwistGuidelines explaining twists as conceptual curveballs, not technical features
+  - Included good examples: "The Helpful Saboteur", "The Unreliable Narrator", "The Contrarian", etc.
+  - Added anti-patterns showing what NOT to do (feature additions, capability expansions)
+  - Emphasis on reframing PURPOSE rather than adding FEATURES
+- [x] 4.2.2.3.2. Steer Claude away from "Facilitators should" phrases ✅ COMPLETED
+  - Added guidance to write for LEARNERS, not facilitators (peer-led, self-directed approach)
+- [x] 4.2.2.3.3. Change xml output format to use self-closing tags & attributes ✅ COMPLETED
+
+##### 4.2.2.4. Metis: Response, Output Schema & Export
+- [x] 4.2.2.4.1. Update schema files to match `~/src/data/templates/outputSchema.xml` ✅ COMPLETED
+  - Updated schemaTemplate.ts to include missing <Importance> field in AdditionalSkills section
+  - Ensures schema consistency between template and outputSchema.xml
+- [x] 4.2.2.4.2. Update output schema to use self-closing tags (similar to input schema) ✅ COMPLETED
+- [x] 4.2.2.4.3. Calculate cardinality attributes after generation ✅ COMPLETED
+  - Completed in commit `68bf1f6` (cardinalityCalculator.ts)
+- [x] 4.2.2.4.4. Create an xml output sanitiser ✅ COMPLETED
+  - Completed via xmlCleaner.ts and responseParser.ts
+
+##### 4.2.2.5. Metis: UI Improvements
+- [x] 4.2.2.5.1. Display streaming response in UI via scrolling/ephemeral window ✅ COMPLETED
   - SSE (Server-Sent Events) implementation with `progressMessages` array
   - Real-time streaming feedback in `.progress-log` component (src/routes/metis/update/+page.svelte:710-719)
   - Color-coded messages by type (info, success, warning, error) with appropriate icons
   - Handles event types: connected, progress, content, validation_started, validation_success, validation_failed, complete, error
   - Shows validation attempts and retry information
-- [x] 1.1.2.3. Update generation UI for `/metis/update` to echo layout used in `/themis/generate` ✅ COMPLETED
+  - **Addresses:** Original task 1.1.2.2
+- [x] 4.2.2.5.2. Update generation UI to echo Themis layout ✅ COMPLETED
   - Multi-step workflow pattern with horizontal progress bar (src/routes/metis/update/+page.svelte:285-296)
   - Three steps: "Upload Files" → "Add Context" → "Generate Module"
   - Step indicators with completion status (completed steps show reduced opacity)
   - Active step highlighted with full opacity
   - Automatic step advancement when conditions met
   - Consistent visual pattern with Themis six-step workflow
-
-##### 4.2.2.1. Metis Documentation
-- [x] Add instructions for including an Anthropic API key in `README.md`
-
-##### 4.2.2.2. Metis: Input Schema
-- [x] Update input xml validator to allow attributes in root elements
-
-##### 4.2.2.3. Metis: Prompt Template
-- [x] Steer Claude towards better Twists
-      - Added ProjectTwistGuidelines explaining twists as conceptual curveballs, not technical features
-      - Included good examples: "The Helpful Saboteur", "The Unreliable Narrator", "The Contrarian", etc.
-      - Added anti-patterns showing what NOT to do (feature additions, capability expansions)
-      - Emphasis on reframing PURPOSE rather than adding FEATURES
-- [x] Steer Claude away from "Facilitators should" phrases
-      - Added guidance to write for LEARNERS, not facilitators (peer-led, self-directed approach)
-- [x] Change xml output format to use self-closing tags & attributes
-
-##### 4.2.2.4. Metis: Response, Output Schema & Export
-- [x] Update schema files in to match `~/src/data/templates/outputSchema.xml`
-      - Updated schemaTemplate.ts to include missing <Importance> field in AdditionalSkills section
-      - Ensures schema consistency between template and outputSchema.xml
-- [x] Update output schema to use self-closing tags (similar to input schema)
-- [x] Calculate cardinality attributes after generation
-      - Completed in commit `68bf1f6` (cardinalityCalculator.ts)
-- [x] Create an xml output sanitisier
-      - Completed via xmlCleaner.ts and responseParser.ts
+  - **Addresses:** Original task 1.1.2.3
