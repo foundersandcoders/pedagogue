@@ -89,29 +89,18 @@ export const POST: RequestHandler = async ({ request }) => {
 				);
 
 				// Create Claude client with shorter timeout (overview is much faster)
-				const client = createChatClient({ apiKey, timeout: 60000 });
+				const client = createChatClient({ apiKey, timeout: 60000, maxTokens: 4096, temperature: 1 });
 
-				// Generate overview
-				const response = await client.messages.create({
-					model: 'claude-sonnet-4-20250514',
-					max_tokens: 4096,
-					temperature: 1,
-					messages: [
-						{
-							role: 'user',
-							content: prompt
-						}
-					]
-				});
+				// Generate overview using LangChain
+				const response = await client.invoke(prompt);
 
 				// Extract JSON from response
-				const content = response.content[0];
-				if (content.type !== 'text') {
-					throw new Error('Unexpected response type from Claude');
-				}
+				const responseText = typeof response.content === 'string'
+					? response.content
+					: response.content[0]?.text || '';
 
 				// Parse JSON response
-				const jsonMatch = content.text.match(/\{[\s\S]*\}/);
+				const jsonMatch = responseText.match(/\{[\s\S]*\}/);
 				if (!jsonMatch) {
 					throw new Error('No JSON object found in response');
 				}
