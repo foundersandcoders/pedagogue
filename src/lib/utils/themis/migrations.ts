@@ -66,12 +66,8 @@ function migrateModule(module: any): ModuleSlot {
 export function migrateCourseData(course: CourseData | null): CourseData | null {
 	if (!course) return null;
 
-	// Check if already migrated by looking at first arc
-	if (course.arcs.length > 0 && hasNewTitleStructure(course.arcs[0])) {
-		return course; // Already using new structure
-	}
-
-	// Migrate all arcs and their modules
+	// Always migrate arcs and modules (functions are idempotent)
+	// This ensures modules are migrated even if arcs already have new structure
 	return {
 		...course,
 		arcs: course.arcs.map(arc => migrateArc(arc))

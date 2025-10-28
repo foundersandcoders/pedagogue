@@ -29,7 +29,7 @@ const OverviewRequestSchema = z.object({
 		]).optional(),
 		theme: z.string().optional(),
 		durationWeeks: z.number(),
-		status: z.enum(['planned', 'generating', 'complete', 'error'])
+		status: z.enum(['planned', 'overview-ready', 'generating', 'complete', 'error'])
 	}),
 	courseContext: z.object({
 		title: z.string(),

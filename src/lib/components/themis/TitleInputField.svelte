@@ -7,9 +7,18 @@
   export let onChange: (newValue: TitleInput) => void;
   export let required: boolean = false;
 
+  // Safety check: provide default if value is undefined
+  const safeValue = value || { type: 'undefined' as const };
+
   // Internal state for binding
-  let inputType: 'undefined' | 'prompt' | 'literal' = value.type;
-  let inputValue: string = value.type === 'undefined' ? '' : value.value;
+  let inputType: 'undefined' | 'prompt' | 'literal' = safeValue.type;
+  let inputValue: string = safeValue.type === 'undefined' ? '' : safeValue.value;
+
+  // Update internal state when value prop changes
+  $: if (value) {
+    inputType = value.type;
+    inputValue = value.type === 'undefined' ? '' : value.value;
+  }
 
   // Reactive statement to call onChange when internal state changes
   $: {

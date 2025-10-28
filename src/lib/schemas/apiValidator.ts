@@ -194,7 +194,7 @@ export const ModuleSlotSchema = z.object({
 	title: z.string(),
 	description: z.string(),
 	durationWeeks: z.number().int().positive(),
-	status: z.enum(['planned', 'generating', 'complete', 'error']),
+	status: z.enum(['planned', 'overview-ready', 'generating', 'complete', 'error']),
 	learningObjectives: z.array(z.string()).optional(),
 	keyTopics: z.array(z.string()).optional()
 });
