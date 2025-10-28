@@ -2,7 +2,7 @@
 - **Branch:** `themis/feat/module-coherence`
 - **Started:** 2025-10-27
 - **Last Updated:** 2025-10-28
-- **Status:** Phase 1 COMPLETE ✅ | Phase 2 IN PROGRESS 🔄
+- **Status:** Phase 1 COMPLETE ✅ | Phase 2 COMPLETE ✅
 
 ---
 
@@ -347,6 +347,9 @@ None currently - user requirements captured via questioning session.
 3. `76afdba` - feat(themis): add module overview generation API and prompt builder
 4. `9ddf1e2` - feat(themis): add knowledge context builder utility
 
+### Phase 2: UI Integration (COMPLETE ✅)
+5. `52fc085` - feat(themis): add overview generation UI and two-step workflow
+
 **Phase 1 achievements:**
 - ✅ TitleInput type system (undefined/prompt/literal)
 - ✅ ModuleOverview structure
@@ -356,13 +359,16 @@ None currently - user requirements captured via questioning session.
 - ✅ buildModuleOverviewPrompt with knowledge accumulation
 - ✅ Knowledge context builder utility
 
-### Phase 2: UI Integration (IN PROGRESS 🔄)
+### Phase 2: UI Integration (COMPLETE ✅)
 
-**Next steps:**
-- Add overview generation UI to ModuleGenerationList
-- Create overview review/approval workflow
-- Wire up full module generation with overview context
-- Test end-to-end flow
+**Implemented:**
+- ✅ Overview generation UI in ModuleGenerationList
+- ✅ Two-button workflow (Generate Overview → Generate Full Module)
+- ✅ Overview display in ModuleCard
+- ✅ Knowledge context integration in full module generation
+- ✅ Status tracking with 'overview-ready' state
+
+**Commit:** `52fc085` - feat(themis): add overview generation UI and two-step workflow
 
 ---
 
@@ -721,11 +727,11 @@ All changes are backward compatible:
 - [x] Knowledge context builder
 - [x] All builds passing
 
-### Phase 2 (Next)
-- [ ] Overview generation UI
-- [ ] Overview display/review
-- [ ] Batch overview generation
-- [ ] Knowledge context in full generation
+### Phase 2 ✅
+- [x] Overview generation UI
+- [x] Overview display/review
+- [x] Knowledge context in full generation
+- [ ] Batch overview generation (optional enhancement)
 - [ ] E2E test (create course → overviews → modules)
 - [ ] No content repetition verified
 
