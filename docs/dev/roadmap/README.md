@@ -72,18 +72,32 @@
     <li>✅ Course-aware module generation API endpoint (193 lines)</li>
     <li>✅ Course context integration in prompt factory</li>
     <li>✅ CourseOverview component for final review and export (1462 lines)</li>
-    <li>📋 Course XML schema and export functionality (pending)</li>
+    <li>✅ <strong>NEW:</strong> Course XML schema and validator (courseSchema.xml, courseValidator.ts)</li>
+    <li>✅ <strong>NEW:</strong> Comprehensive validation with temporal consistency checks (15 test cases)</li>
+    <li>📋 Course XML export implementation (depends on schema - now unblocked)</li>
     <li>📋 Technical debt: SSE parsing vulnerability, race conditions, error handling improvements</li>
   </ul>
 </details>
 
 <details><summary>Next Up</summary>
   <ul>
-    <li>Course XML schema validation (highest priority)</li>
+    <li>Course XML export implementation (now unblocked by schema completion)</li>
     <li>Technical debt resolution (SSE, error handling)</li>
     <li>UI polish improvements</li>
   </ul>
 </details>
+</text>
+
+<old_text line=158>
+## 3. Next Milestones
+> [!NOTE]
+> The 5 most significant or important tasks to tackle next.
+
+1. **[Add Course XML Schema and Validator](Themis-MVP.md#2-mvp-milestones)** (Themis 2.2) - Define course-level XML schema wrapping multiple modules with validation
+2. **[Implement XML Export Functionality](Themis-MVP.md#2-mvp-milestones)** (Themis 2.3) - Complete course XML export (depends on 2.2)
+3. **[Add Dark Mode to UI](Rhea-MVP.md#1a2-other-tasks)** (Rhea 1a2b) - User-selectable light/dark/system theme with dark palettes for all workflows
+4. **[Implement Metis boilerplate text insertion](Metis-MVP.md)** - Add standard module text sections for consistent structure
+5. **[Address ARIA violations](Rhea-MVP.md#2-mvp-milestones)** (Rhea 2b) - Improve accessibility across all workflow components
 
 #### 2.2.2. Tethys: Arc Designer
 <details><summary>Status: 0% MVP</summary>
@@ -211,11 +225,11 @@
 > [!NOTE]
 > The 5 most significant or important tasks to tackle next.
 
-1. **[Add Course XML Schema and Validator](Themis-MVP.md#2-mvp-milestones)** (Themis 2.2) - Define course-level XML schema wrapping multiple modules with validation
-2. **[Implement XML Export Functionality](Themis-MVP.md#2-mvp-milestones)** (Themis 2.3) - Complete course XML export (depends on 2.2)
-3. **[Add Dark Mode to UI](Rhea-MVP.md#1a2-other-tasks)** (Rhea 1a2b) - User-selectable light/dark/system theme with dark palettes for all workflows
-4. **[Implement Metis boilerplate text insertion](Metis-MVP.md)** - Add standard module text sections for consistent structure
-5. **[Address ARIA violations](Rhea-MVP.md#2-mvp-milestones)** (Rhea 2b) - Improve accessibility across all workflow components
+1. **[Implement XML Export Functionality](Themis-MVP.md#2-mvp-milestones)** (Themis 2.3) - Complete course XML export with embedded module specifications (unblocked by 2.2 completion)
+2. **[Add Dark Mode to UI](Rhea-MVP.md#1a2-other-tasks)** (Rhea 1a2b) - User-selectable light/dark/system theme with dark palettes for all workflows
+3. **[Implement Metis boilerplate text insertion](Metis-MVP.md)** - Add standard module text sections for consistent structure
+4. **[Address ARIA violations](Rhea-MVP.md#2-mvp-milestones)** (Rhea 2b) - Improve accessibility across all workflow components
+5. **[Resolve Technical Debt in Themis](Themis-MVP.md#1-tasks)** - Fix SSE parsing vulnerability, race conditions, and error handling gaps
 
 ---
 
@@ -223,10 +237,10 @@
 > [!NOTE]
 > 7 most recent achievements in this codebase
 
-1. **[Themis: Module Coherence with Overview-First Generation](Themis-MVP.md#412-radically-improve-module-to-module-coherence--completed-2025-10-2728)** (2025-10-27/28) - Implemented two-phase workflow: smart title system (undefined/prompt/literal modes) and lightweight module overviews before full generation. Knowledge context builder tracks learner progression cumulatively, reducing content repetition. Review 10 overviews in ~5min vs 10 full modules in ~20min. 1,479 insertions across 21 files (PR #27).
-2. **[British English & Emoji Cleanup](Rhea-MVP.md#4a3-british-english--emoji-cleanup--completed-2025-10-28)** (2025-10-28) - Added British English instructions to all prompt factories (Metis standalone, course-aware, overview; Themis structure). Removed emoji from build scripts. All AI-generated content now uses British spelling/terminology consistently (49 lines changed, zero breaking changes).
-3. **[Roadmap Maintenance & Technical Debt Documentation](README.md)** (2025-10-28) - Updated all active roadmaps with current task status, moved completed items to work record (timeout extraction, UI improvements, component organization), documented remaining technical debt in Themis (SSE parsing vulnerability, race conditions, error handling gaps)
-4. **[Themis: Component Refactoring Complete](Themis-MVP.md#411-break-over-large-themis-components-into-subcomponents--completed-2025-10-27)** (2025-10-27) - Split 896-line ModuleGenerationList into focused components (ProgressSummary, ModuleCard, ArcSection, ModulePreviewModal) and centralized store utilities. Main component reduced 51%, improved maintainability and testability.
-5. **[Themis: Complete Module Generation Workflow](Themis-MVP.md#4111-complete-module-generation-workflow-steps-5-6--completed-2025-10-25)** (2025-10-25) - End-to-end course generation complete: ModuleGenerationList (897 lines), course-aware API endpoint (193 lines), CourseOverview (1462 lines), SSE streaming, and Theia export integration
-6. **[Rhea: Palette System Overhaul](Rhea-MVP.md#4a2-overhaul-palette-system--completed-2025-10-25)** (2025-10-25) - Complete refactor establishing single source of truth at `src/lib/config/palettes/`, build-time CSS generation, 56 files converted, 2,817 insertions
-7. **[Theia: Course Structure Upload (JSON)](Theia-MVP.md#412-course-structure-upload-json--completed-2025-10-24)** (2025-10-24) - Complete JSON upload workflow with validation, drag-and-drop interface, and round-trip capability (Themis → export → upload → continue). Theia branding with magenta/cyan palette (2,417 lines)
+1. **[Themis: Course XML Schema and Validator](Themis-MVP.md#2-mvp-milestones)** (2025-10-28) - Created comprehensive course XML schema with hierarchical structure (Course → Arcs → Modules → Specifications). Implemented validator with temporal consistency checks, cardinality constraints, and 15 test cases. Validates complete courses including embedded module specifications. 1,652 lines across 4 files: schema template, validator, tests, and documentation. Task 2.2 complete, unblocks XML export implementation.
+2. **[Themis: Module Coherence with Overview-First Generation](Themis-MVP.md#412-radically-improve-module-to-module-coherence--completed-2025-10-2728)** (2025-10-27/28) - Implemented two-phase workflow: smart title system (undefined/prompt/literal modes) and lightweight module overviews before full generation. Knowledge context builder tracks learner progression cumulatively, reducing content repetition. Review 10 overviews in ~5min vs 10 full modules in ~20min. 1,479 insertions across 21 files (PR #27).
+3. **[British English & Emoji Cleanup](Rhea-MVP.md#4a3-british-english--emoji-cleanup--completed-2025-10-28)** (2025-10-28) - Added British English instructions to all prompt factories (Metis standalone, course-aware, overview; Themis structure). Removed emoji from build scripts. All AI-generated content now uses British spelling/terminology consistently (49 lines changed, zero breaking changes).
+4. **[Roadmap Maintenance & Technical Debt Documentation](README.md)** (2025-10-28) - Updated all active roadmaps with current task status, moved completed items to work record (timeout extraction, UI improvements, component organization), documented remaining technical debt in Themis (SSE parsing vulnerability, race conditions, error handling gaps)
+5. **[Themis: Component Refactoring Complete](Themis-MVP.md#411-break-over-large-themis-components-into-subcomponents--completed-2025-10-27)** (2025-10-27) - Split 896-line ModuleGenerationList into focused components (ProgressSummary, ModuleCard, ArcSection, ModulePreviewModal) and centralized store utilities. Main component reduced 51%, improved maintainability and testability.
+6. **[Themis: Complete Module Generation Workflow](Themis-MVP.md#4111-complete-module-generation-workflow-steps-5-6--completed-2025-10-25)** (2025-10-25) - End-to-end course generation complete: ModuleGenerationList (897 lines), course-aware API endpoint (193 lines), CourseOverview (1462 lines), SSE streaming, and Theia export integration
+7. **[Rhea: Palette System Overhaul](Rhea-MVP.md#4a2-overhaul-palette-system--completed-2025-10-25)** (2025-10-25) - Complete refactor establishing single source of truth at `src/lib/config/palettes/`, build-time CSS generation, 56 files converted, 2,817 insertions

@@ -75,13 +75,19 @@
 
 ## 2. MVP Milestones
 
-- [ ] 2.2. Add Course XML Schema and Validator 📋 PENDING
-  - Define course-level XML schema wrapping multiple modules
-  - Validation for complete course structure
-  - Include course narratives and metadata
+- [x] 2.2. Add Course XML Schema and Validator ✅ COMPLETE (2025-10-28)
+  - ✅ Comprehensive course XML schema template (`courseSchema.xml`)
+  - ✅ Hierarchical structure: Course → Arcs → Modules → Module Specifications
+  - ✅ Full course validator with temporal consistency checks (`courseValidator.ts`)
+  - ✅ 15 comprehensive test cases covering all validation requirements
+  - ✅ Complete documentation (`course-xml-specification.md`)
+  - ✅ Validates course metadata, arc organization, and embedded module specs
+  - ✅ Enforces cardinality constraints (min arcs, modules, objectives, topics, etc.)
+  - ✅ Validates temporal consistency (module weeks ≤ arc weeks ≤ course weeks)
   - **Why eleventh:** Ensures exported courses meet quality standards
-  - **Status:** Not yet started - will reuse existing validation patterns
-  - **Note:** Current export uses Theia service which handles course-to-markdown/HTML conversion
+  - **Status:** Complete - ready for use in XML export implementation (Task 2.3)
+  - **Implementation:** 1,652 lines across 4 files (schema, validator, tests, docs)
+  - **Next Step:** Integrate with course export functionality in Task 2.3
 - [ ] 2.3. Implement Export Functionality 📋 PENDING
   - XML export for complete course
   - PDF export option (stretch goal)
