@@ -50,6 +50,8 @@
 - [ ] 1.1.2.14. Improve handling of bullet lists within modules in `CourseOverview`
 - [ ] 1.1.2.15. Improve text displayed in "Phase 3: Module Planning"
   - 1.1.2.15.1. ![screenshot of phase 3](assets/screenshots/themis-module-planning.jpg)
+- [ ] 1.1.2.15. Improve text layout in "Phase 4: Structure Review"
+  - 1.1.2.15.1. ![screenshot of phase 4](assets/screenshots/themis-structure-review.jpg)
 
 ### 1.2. Blocked Tasks
 

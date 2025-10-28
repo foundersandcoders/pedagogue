@@ -23,6 +23,7 @@
   - 1.1.2.3.1. Icon & Title should be on same line
   - 1.1.2.3.2. Icon/Title line and button line should always be a uniform height across each card while fitting all content
   - 1.1.2.3.3. Card should display description by default; on hover, replace with feature bullet points on hover
+- [ ] 1.1.2.4. Remove all emoji from app
 
 ### 1.2. Blocked Tasks
 
