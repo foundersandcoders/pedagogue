@@ -3,6 +3,12 @@
   import type { CourseData, ModuleSlot } from "$lib/types/themis";
   import ExportButton from "$lib/components/theia/ExportButton.svelte";
   import { resetCourseWorkflow } from "$lib/stores/themisStores";
+  import {
+    downloadCourseXml,
+    serialiseCourseToXml,
+  } from "$lib/utils/validation/outputSerialiser";
+  import { validateCourseXML } from "$lib/schemas/courseValidator";
+  import type { ValidationResult } from "$lib/schemas/courseValidator";
 
   export let courseData: CourseData;
 
@@ -16,6 +22,8 @@
   let expandedModuleId: string | null = null;
   let expandedSections: Record<string, Set<string>> = {}; // moduleId -> Set<sectionName>
   let previewModuleId: string | null = null;
+  let showValidationFeedback = false;
+  let xmlValidationResult: ValidationResult | null = null;
 
   // Create exportable content for Theia
   $: exportableContent = {
@@ -195,6 +203,27 @@
       year: "numeric",
     });
   }
+
+  // Handle XML export with validation
+  function handleXmlExport() {
+    // Generate XML
+    const xmlContent = serialiseCourseToXml(courseData);
+
+    // Validate the generated XML
+    const validation = validateCourseXML(xmlContent);
+    xmlValidationResult = validation;
+    showValidationFeedback = true;
+
+    if (validation.valid) {
+      // Download if valid
+      downloadCourseXml(courseData);
+
+      // Hide feedback after 5 seconds on success
+      setTimeout(() => {
+        showValidationFeedback = false;
+      }, 5000);
+    }
+  }
 </script>
 
 <div class="course-overview">
@@ -205,10 +234,21 @@
         <p>Review your complete course structure and export when ready</p>
       </div>
       <div class="header-actions">
+        <button
+          type="button"
+          class="btn-primary btn-large"
+          on:click={handleXmlExport}
+          disabled={!allComplete}
+          title={allComplete
+            ? "Download complete course as XML"
+            : "Complete all modules before exporting"}
+        >
+          Export XML
+        </button>
         <ExportButton
           content={exportableContent}
-          label="Export Course"
-          variant="primary"
+          label="Export Preview"
+          variant="secondary"
           size="large"
           disabled={!allComplete}
         />
@@ -240,7 +280,76 @@
     </div>
   {/if}
 
-  <!-- Course Metadata -->
+  <!-- XML Validation Feedback -->
+  {#if showValidationFeedback && xmlValidationResult}
+    {#if xmlValidationResult.valid}
+      <div class="status-banner success">
+        <span class="banner-icon">&check;</span>
+        <div class="banner-content">
+          <strong>XML Export Successful</strong>
+          <p>
+            Course XML has been validated and downloaded successfully with all
+            module specifications embedded.
+          </p>
+          {#if xmlValidationResult.warnings.length > 0}
+            <details>
+              <summary>{xmlValidationResult.warnings.length} warning(s)</summary
+              >
+              <ul class="validation-list">
+                {#each xmlValidationResult.warnings as warning}
+                  <li>{warning}</li>
+                {/each}
+              </ul>
+            </details>
+          {/if}
+        </div>
+        <button
+          type="button"
+          class="close-banner"
+          on:click={() => (showValidationFeedback = false)}
+          aria-label="Close"
+        >
+          ×
+        </button>
+      </div>
+    {:else}
+      <div class="status-banner error">
+        <span class="banner-icon">✗</span>
+        <div class="banner-content">
+          <strong>XML Validation Failed</strong>
+          <p>The generated XML contains errors. Please review and try again.</p>
+          <details open>
+            <summary>{xmlValidationResult.errors.length} error(s)</summary>
+            <ul class="validation-list">
+              {#each xmlValidationResult.errors as error}
+                <li>{error}</li>
+              {/each}
+            </ul>
+          </details>
+          {#if xmlValidationResult.warnings.length > 0}
+            <details>
+              <summary>{xmlValidationResult.warnings.length} warning(s)</summary
+              >
+              <ul class="validation-list">
+                {#each xmlValidationResult.warnings as warning}
+                  <li>{warning}</li>
+                {/each}
+              </ul>
+            </details>
+          {/if}
+        </div>
+        <button
+          type="button"
+          class="close-banner"
+          on:click={() => (showValidationFeedback = false)}
+          aria-label="Close"
+        >
+          ×
+        </button>
+      </div>
+    {/if}
+  {/if}
+
   <section class="course-metadata">
     <h3>{courseData.title}</h3>
     <p class="course-description">{courseData.description}</p>
@@ -799,11 +908,12 @@
   /* Status Banner */
   .status-banner {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     padding: 1rem 1.5rem;
     border-radius: 8px;
     margin-bottom: 2rem;
+    position: relative;
   }
 
   .status-banner.success {
@@ -814,6 +924,15 @@
   .status-banner.warning {
     background: var(--palette-bg-subtle-alt);
     border: 1px solid var(--palette-accent);
+  }
+
+  .status-banner.error {
+    background: #fef2f2;
+    border: 1px solid #ef4444;
+  }
+
+  .status-banner.error .banner-icon {
+    color: #ef4444;
   }
 
   .banner-icon {
@@ -830,6 +949,47 @@
     color: var(--palette-foreground-alt);
     margin: 0;
     font-size: 0.9rem;
+  }
+
+  .banner-content details {
+    margin-top: 0.75rem;
+  }
+
+  .banner-content details summary {
+    cursor: pointer;
+    color: var(--palette-foreground);
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .banner-content details ul {
+    margin: 0.5rem 0 0 0;
+    padding-left: 1.5rem;
+    list-style: disc;
+  }
+
+  .banner-content details li {
+    color: var(--palette-foreground-alt);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 0.25rem;
+  }
+
+  .close-banner {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--palette-foreground-alt);
+    cursor: pointer;
+    padding: 0;
+    margin-left: auto;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .close-banner:hover {
+    color: var(--palette-foreground);
   }
 
   /* Course Metadata */

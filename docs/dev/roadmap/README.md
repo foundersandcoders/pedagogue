@@ -52,8 +52,8 @@
 ### 2.2. Workflow Modules
 
 #### 2.2.1. Themis: Course Builder
-<details><summary>Status: ~95% MVP ✅</summary>
-  <p>End-to-end workflow complete, component refactoring complete, technical debt identified, polish pending</p>
+<details><summary>Status: 100% MVP ✅</summary>
+  <p>End-to-end workflow complete, component refactoring complete, XML export implemented, polish pending</p>
 </details>
 
 <details><summary>Implemented</summary>
@@ -74,16 +74,18 @@
     <li>✅ CourseOverview component for final review and export (1462 lines)</li>
     <li>✅ <strong>NEW:</strong> Course XML schema and validator (courseSchema.xml, courseValidator.ts)</li>
     <li>✅ <strong>NEW:</strong> Comprehensive validation with temporal consistency checks (15 test cases)</li>
-    <li>📋 Course XML export implementation (depends on schema - now unblocked)</li>
+    <li>✅ <strong>NEW:</strong> Complete course XML export with embedded module specifications</li>
+    <li>✅ <strong>NEW:</strong> Pre-download validation with user feedback banners</li>
+    <li>✅ <strong>NEW:</strong> Export button with success/error validation in CourseOverview</li>
     <li>📋 Technical debt: SSE parsing vulnerability, race conditions, error handling improvements</li>
   </ul>
 </details>
 
 <details><summary>Next Up</summary>
   <ul>
-    <li>Course XML export implementation (now unblocked by schema completion)</li>
     <li>Technical debt resolution (SSE, error handling)</li>
     <li>UI polish improvements</li>
+    <li>Dark mode implementation</li>
   </ul>
 </details>
 </text>
@@ -225,11 +227,11 @@
 > [!NOTE]
 > The 5 most significant or important tasks to tackle next.
 
-1. **[Implement XML Export Functionality](Themis-MVP.md#2-mvp-milestones)** (Themis 2.3) - Complete course XML export with embedded module specifications (unblocked by 2.2 completion)
-2. **[Add Dark Mode to UI](Rhea-MVP.md#1a2-other-tasks)** (Rhea 1a2b) - User-selectable light/dark/system theme with dark palettes for all workflows
-3. **[Implement Metis boilerplate text insertion](Metis-MVP.md)** - Add standard module text sections for consistent structure
-4. **[Address ARIA violations](Rhea-MVP.md#2-mvp-milestones)** (Rhea 2b) - Improve accessibility across all workflow components
-5. **[Resolve Technical Debt in Themis](Themis-MVP.md#1-tasks)** - Fix SSE parsing vulnerability, race conditions, and error handling gaps
+1. **[Add Dark Mode to UI](Rhea-MVP.md#1a2-other-tasks)** (Rhea 1a2b) - User-selectable light/dark/system theme with dark palettes for all workflows
+2. **[Implement Metis boilerplate text insertion](Metis-MVP.md)** - Add standard module text sections for consistent structure
+3. **[Address ARIA violations](Rhea-MVP.md#2-mvp-milestones)** (Rhea 2b) - Improve accessibility across all workflow components
+4. **[Resolve Technical Debt in Themis](Themis-MVP.md#1-tasks)** - Fix SSE parsing vulnerability, race conditions, and error handling gaps
+5. **[Implement Module XML Upload in Theia](Theia-MVP.md)** - Upload module XML to continue in Metis or preview/export
 
 ---
 
@@ -237,7 +239,8 @@
 > [!NOTE]
 > 7 most recent achievements in this codebase
 
-1. **[Themis: Course XML Schema and Validator](Themis-MVP.md#2-mvp-milestones)** (2025-10-28) - Created comprehensive course XML schema with hierarchical structure (Course → Arcs → Modules → Specifications). Implemented validator with temporal consistency checks, cardinality constraints, and 15 test cases. Validates complete courses including embedded module specifications. 1,652 lines across 4 files: schema template, validator, tests, and documentation. Task 2.2 complete, unblocks XML export implementation.
+1. **[Themis: Complete Course XML Export](Themis-MVP.md#2-mvp-milestones)** (2025-10-28) - Implemented complete course XML export with embedded module specifications. Generates validatable XML matching courseSchema.xml, validates before download, and provides user feedback via success/error banners. Export button in CourseOverview with automatic validation. Themis MVP now 100% feature-complete. 575 lines across 3 files: outputSerialiser.ts (rewrite), CourseOverview.svelte (+127 lines), documentation.
+2. **[Themis: Course XML Schema and Validator](Themis-MVP.md#2-mvp-milestones)** (2025-10-28) - Created comprehensive course XML schema with hierarchical structure (Course → Arcs → Modules → Specifications). Implemented validator with temporal consistency checks, cardinality constraints, and 15 test cases. Validates complete courses including embedded module specifications. 1,652 lines across 4 files: schema template, validator, tests, and documentation. Task 2.2 complete, unblocks XML export implementation.
 2. **[Themis: Module Coherence with Overview-First Generation](Themis-MVP.md#412-radically-improve-module-to-module-coherence--completed-2025-10-2728)** (2025-10-27/28) - Implemented two-phase workflow: smart title system (undefined/prompt/literal modes) and lightweight module overviews before full generation. Knowledge context builder tracks learner progression cumulatively, reducing content repetition. Review 10 overviews in ~5min vs 10 full modules in ~20min. 1,479 insertions across 21 files (PR #27).
 3. **[British English & Emoji Cleanup](Rhea-MVP.md#4a3-british-english--emoji-cleanup--completed-2025-10-28)** (2025-10-28) - Added British English instructions to all prompt factories (Metis standalone, course-aware, overview; Themis structure). Removed emoji from build scripts. All AI-generated content now uses British spelling/terminology consistently (49 lines changed, zero breaking changes).
 4. **[Roadmap Maintenance & Technical Debt Documentation](README.md)** (2025-10-28) - Updated all active roadmaps with current task status, moved completed items to work record (timeout extraction, UI improvements, component organization), documented remaining technical debt in Themis (SSE parsing vulnerability, race conditions, error handling gaps)
