@@ -46,6 +46,8 @@
 
 ## 3. Beyond MVP: Future Features
 
+- [ ] 3.1. Allow defining custom research domains; this supports future generalisation of tool beyond AI engineering contexts
+
 ---
 
 ## 4. Work Record
