@@ -65,6 +65,7 @@
 - [ ] 1.1.2.18. Allow multiple toggles to be open/closed without being affected by siblings
 
 ### 1.2. Blocked Tasks
+<!-- No blocked tasks -->
 
 ---
 

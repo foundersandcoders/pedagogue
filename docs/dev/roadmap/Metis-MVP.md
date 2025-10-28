@@ -13,11 +13,9 @@
 > This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmap/Metis-MVP.md#2-mvp-milestones)
 
 ### 1.1. Open Tasks
-
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
-
 - [ ] 1.1.2.1. Add boilerplate module text after generation
 - [ ] 1.1.2.2. Add different metadata changelog varieties to distinguish between initial AI creation, AI update of human creation, AI update or AI creation etc
 - [ ] 1.1.2.3. Ensure module generation adheres to tech stack requirements
@@ -38,13 +36,11 @@
   - 1.1.2.4.2. Should apply in both Metis and Metis-in-Themis
 
 ### 1.2. Blocked Tasks
-
 <!-- No Blocked Tasks -->
 
 ---
 
 ## 2. MVP Milestones
-
 - [ ] 2.1. Allow user to choose granularity/detail level of module generation
   - 2.1.1. For example, separate booleans at appropriate stage for project briefs, twists, research topics etc
   - 2.1.2. After generation pass complete, allow user to either progress with existing detail or fill in missing detail levels
@@ -62,7 +58,6 @@
 ---
 
 ## 3. Beyond MVP: Future Features
-
 - [ ] Comparison view (original vs. generated with diff)
 - [-] Update confidence scoring
 - [ ] Multiple generation variants
@@ -77,9 +72,7 @@
 ---
 
 ## 4. Work Record
-
 ### 4.1. Completed Milestones
-
 - 4.1.1. LangChain + Claude Integration
   - Create API route: `src/routes/api/generate/+server.ts`
   - LangChain's `ChatAnthropic` for Claude integration
@@ -144,11 +137,9 @@
   - **Why:** UX polish that makes the tool feel coherent.
 
 ### 4.2. Completed Tasks
-
 #### 4.2.1. Record of Past Deadlines
 
 #### 4.2.2. Record of Other Completed Tasks
-
 - [x] 1.1.2.2. Display streaming response in UI via a scrolling/ephemeral window ✅ COMPLETED
   - SSE (Server-Sent Events) implementation with `progressMessages` array
   - Real-time streaming feedback in `.progress-log` component (src/routes/metis/update/+page.svelte:710-719)
@@ -164,15 +155,12 @@
   - Consistent visual pattern with Themis six-step workflow
 
 ##### 4.2.2.1. Metis Documentation
-
 - [x] Add instructions for including an Anthropic API key in `README.md`
 
 ##### 4.2.2.2. Metis: Input Schema
-
 - [x] Update input xml validator to allow attributes in root elements
 
 ##### 4.2.2.3. Metis: Prompt Template
-
 - [x] Steer Claude towards better Twists
       - Added ProjectTwistGuidelines explaining twists as conceptual curveballs, not technical features
       - Included good examples: "The Helpful Saboteur", "The Unreliable Narrator", "The Contrarian", etc.
@@ -183,7 +171,6 @@
 - [x] Change xml output format to use self-closing tags & attributes
 
 ##### 4.2.2.4. Metis: Response, Output Schema & Export
-
 - [x] Update schema files in to match `~/src/data/templates/outputSchema.xml`
       - Updated schemaTemplate.ts to include missing <Importance> field in AdditionalSkills section
       - Ensures schema consistency between template and outputSchema.xml

@@ -12,7 +12,6 @@
 > This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmap/Thalassa-MVP.md#2-mvp-milestones)
 
 ### 1.1. Open Tasks
-
 #### 1.1.1. Due Tasks
 
 #### 1.1.2. Other Tasks
@@ -30,11 +29,9 @@
 ---
 
 ## 4. Work Record
-
 ### 4.1. Completed Milestones
 
 ### 4.2. Completed Tasks
-
 #### 4.2.1. Record of Past Deadlines
 
 #### 4.2.2. Record of Other Completed Tasks

@@ -20,7 +20,6 @@
 #### 1a1. Due Tasks
 
 #### 1a2. Other Tasks
-
 - [ ] 1a2a. Steer model towards British English in content generation
 - [ ] 1a2b. Add dark mode to UI
   - Should allow user to select light, dark or system
@@ -36,13 +35,14 @@
 - [ ] 1a2g. Research and implement different models for each separate LangChain AI call
 - [ ] 1a2h. Ensure components use the palette from their native workflow
   Regardless of current route, module generation is part of Metis; using a `/themis` route should show themis' palette, but individual modules that display within the page should have metis' palette applied. Eventually this will apply Tethys to arcs in themis as well.
+- [ ] 1a2i. Move module code from `/api/themis/module` to `/api/metis/*`
 
 ### 1b. Blocked Tasks
+<!-- No blocked tasks -->
 
 ---
 
 ## 2. MVP Milestones
-
 - [ ] 2a. Implement Themis-style Theia previews for Metis (and Metis-in-Themis)
 - [ ] 2b. Address all ARIA violations
 - [ ] 2c. Update all Svelte legacy approaches and implementations to use Svelte 5
@@ -50,15 +50,12 @@
 ---
 
 ## 3. Beyond MVP: Future Features
-
 - [ ] 3a. Allow defining custom research domains; this supports future generalisation of tool beyond AI engineering contexts
 
 ---
 
 ## 4. Work Record
-
 ### 4a. Completed Milestones
-
 - [x] 4a1. Architectural Refactoring (2025-10-20) ✅ COMPLETED
   - **Branch:** `feat/new-course-generation`
   - **Commits:** `fea0d91` through `496d44f`
@@ -109,11 +106,9 @@
     - Reference: `src/lib/styles/palettes.css` (static documentation)
 
 ### 4b. Completed Tasks
-
 #### 4b1. Record of Past Deadlines
 
 #### 4b2. Record of Other Completed Tasks
-
 - [x] 4b2a. Create an xml output sanitiser
   - Completed via xmlCleaner.ts and responseParser.ts
 - [x] 4b2b. Create colour palettes for Rhea, Themis, Tethys, Metis, and Theia based on their icons

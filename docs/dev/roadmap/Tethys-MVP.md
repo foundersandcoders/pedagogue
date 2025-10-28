@@ -14,6 +14,7 @@
 #### 1.1.2. Other Tasks
 
 ### 1.2. Blocked Tasks
+<!-- No blocked tasks -->
 
 ---
 

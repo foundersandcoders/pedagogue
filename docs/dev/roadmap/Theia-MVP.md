@@ -9,27 +9,23 @@
 ---
 
 ## 1. Tasks
-
 > [!NOTE]
 > This tasklist does not include upcoming [MVP Milestones](docs/dev/roadmap/Theia-MVP.md#2-mvp-milestones)
 
 ### 1.1. Open Tasks
-
 #### 1.1.1. Due Tasks
-
 #### 1.1.2. Other Tasks
-
 - [ ] 1.1.2.2. Add PDF export format (currently marked "coming soon" in UI)
 - [ ] 1.1.2.3. Add export analytics/usage tracking
 - [ ] 1.1.2.4. Implement Module XML upload & workflow resume functionality (see section 2.1.1)
   - Note: JSON course upload is complete; Module XML upload deferred to XML phase
 
 ### 1.2. Blocked Tasks
+<!-- No blocked tasks -->
 
 ---
 
 ## 2. MVP Milestones
-
 - [ ] 2.1. JSON/XML Upload & Workflow Resume — IN PROGRESS
   - **Dependencies:** None for JSON upload (✅ complete), Themis course XML schema for XML upload
   - **Objective:** Enable users to upload previously generated files and either continue work in the original workflow or preview/export them standalone.
@@ -66,7 +62,6 @@
 ---
 
 ## 3. Beyond MVP: Future Features
-
 - [ ] 3.1. Export Formats
   - [ ] PDF generation with custom styling
   - [ ] JSON export for programmatic consumption
@@ -91,7 +86,6 @@
 ## 4. Work Record
 
 ### 4.1. Completed Milestones
-
 - [x] 4.1.1. Core Export Functionality ✅ COMPLETED (2025-10-23)
   **Branch:** `feat/theia`
   **PR:** #14
@@ -177,7 +171,6 @@
 #### 4.2.1. Record of Past Deadlines
 
 #### 4.2.2. Record of Other Completed Tasks
-
 - [x] 4.2.2.1. When file is uploaded, UI should navigate to correct step automatically ✅ COMPLETED
   - CourseStructureUpload.svelte (lines 123-127) dispatches `courseUploaded` event with course data
   - Parent component auto-redirects after successful JSON validation
@@ -193,7 +186,6 @@
 ---
 
 ## 5. Success Criteria
-
 - [ ] Users can upload valid module XML
 - [ ] Successful workflow continuation with pre-populated data
 - [ ] Validation errors are clear and actionable
