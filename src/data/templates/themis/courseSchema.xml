@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Rhea Course Schema v1.0
+
+  This schema defines the complete structure for a Themis-generated course,
+  including course metadata, arc-based organization, and full module specifications.
+
+  Key Features:
+  - Hierarchical: Course → Arcs → Modules → Module Content
+  - Thematic: Arcs provide thematic organization with narratives
+  - Complete: Each module embeds full specification (objectives, research, projects, skills)
+  - Temporal: Tracks duration and sequencing at all levels
+  - Validatable: Uses count attributes for cardinality validation
+
+  Validation Requirements:
+  - Course must have title, description, logistics, learners config
+  - Min 1 arc per course
+  - Min 1 module per arc
+  - Each module must pass Module XML validation (see outputSchema.xml)
+  - Temporal consistency: sum(module weeks) ≤ arc weeks ≤ course weeks
+-->
+<Course name="Course Title" doc_date="YYYY-MM-DD" doc_time="HHMM" version="1.0">
+
+  <!-- =====================================================
+       COURSE PROPERTIES: Metadata, logistics, temporal info
+       ===================================================== -->
+  <CourseProps arcs="N" modules="N" weeks="N" days="N">
+
+    <CourseMetadata>
+      <!-- Versioning and provenance tracking -->
+      <GenerationInfo>
+        <Timestamp>ISO 8601 datetime of course generation</Timestamp>
+        <Source>AI-Generated | Human-Reviewed | Hybrid</Source>
+        <Model>Model identifier used for generation</Model>
+        <Generator>Themis v1.0</Generator>
+      </GenerationInfo>
+      <LastModified>ISO 8601 datetime</LastModified>
+      <Version>1.0</Version>
+      <SchemaVersion>1.0</SchemaVersion>
+    </CourseMetadata>
+
+    <CourseLogistics arcs="N" modules="N">
+      <TotalArcs>N</TotalArcs>
+      <TotalModules>N</TotalModules>
+      <Structure>facilitated | peer-led</Structure>
+    </CourseLogistics>
+
+    <CourseTemporal weeks="N" days="N" start_date="YYYY-MM-DD" end_date="YYYY-MM-DD">
+      <StartDate date="YYYY-MM-DD" />
+      <TotalWeeks number="N" />
+      <DaysPerWeek number="N" />
+      <TotalDays number="N" />
+      <EndDate date="YYYY-MM-DD" />
+    </CourseTemporal>
+
+  </CourseProps>
+
+  <!-- =====================================================
+       COHORT PROPERTIES: Learner assumptions and configuration
+       ===================================================== -->
+  <CohortProps learners="N" team_based="true|false">
+
+    <CohortAssumptions learners="N">
+      <AssumedCohortSize>N</AssumedCohortSize>
+      <TeamBased>true | false</TeamBased>
+      <AssumedTeamSize>N</AssumedTeamSize>
+    </CohortAssumptions>
+
+    <LearnerPrerequisites>
+      Description of prerequisite knowledge and experience
+    </LearnerPrerequisites>
+
+    <LearnerExperience>
+      <PrereqLevel>&lt;= 1 year | 1-3 years | &gt;= 4 years</PrereqLevel>
+      <FocusArea>no experience | limited experience | skilled amateur | current professional</FocusArea>
+    </LearnerExperience>
+
+  </CohortProps>
+
+  <!-- =====================================================
+       COURSE DESCRIPTION: Overall narrative and learning journey
+       ===================================================== -->
+  <CourseDescription paragraphs="N">
+    <DescriptionParagraph order="1">
+      What this course covers, who it's for, and what learners will build
+    </DescriptionParagraph>
+  </CourseDescription>
+
+  <!-- =====================================================
+       COURSE CONTENT: Arc-based structure with full modules
+       ===================================================== -->
+  <CourseContent arcs="N" modules="N">
+
+    <!-- Overall course progression narrative -->
+    <CourseProgression paragraphs="N">
+      <ProgressionParagraph order="1">
+        How the course progresses through its arcs - the temporal and pedagogical journey
+      </ProgressionParagraph>
+    </CourseProgression>
+
+    <!-- ===================================================
+         ARCS: Thematic containers for modules
+         =================================================== -->
+    <Arcs count="N">
+
+      <Arc order="1" name="Arc Title" modules="N" weeks="N">
+
+        <!-- Arc description and thematic focus -->
+        <ArcDescription paragraphs="N">
+          <DescriptionParagraph order="1">
+            What this arc covers and its role in the course
+          </DescriptionParagraph>
+        </ArcDescription>
+
+        <!-- Arc metadata and temporal info -->
+        <ArcProps>
+          <ArcMetadata>
+            <ArcID>UUID or unique identifier</ArcID>
+            <Created>ISO 8601 datetime</Created>
+          </ArcMetadata>
+
+          <ArcLogistics modules="N" />
+
+          <ArcTemporal weeks="N" days="N" start_date="YYYY-MM-DD" end_date="YYYY-MM-DD">
+            <StartDate date="YYYY-MM-DD" />
+            <TotalWeeks number="N" />
+            <TotalDays number="N" />
+            <EndDate date="YYYY-MM-DD" />
+          </ArcTemporal>
+        </ArcProps>
+
+        <!-- Arc content: themes, progression, modules -->
+        <ArcContent modules="N" themes="1">
+
+          <!-- Thematic organization -->
+          <Themes count="1">
+            <ArcTheme name="Theme Name" order="1">
+              AI-generated narrative explaining the arc's thematic focus and pedagogical approach
+            </ArcTheme>
+          </Themes>
+
+          <!-- How modules within this arc connect -->
+          <ArcProgression>
+            <ArcProgressionNarrative>
+              How the modules within this arc build upon each other and support the arc's theme
+            </ArcProgressionNarrative>
+          </ArcProgression>
+
+          <!-- ==============================================
+               MODULES: Full module specifications
+               ============================================== -->
+          <Modules count="N">
+
+            <Module order="1" in_arc="1" name="Module Title" weeks="N" days="N" start_date="YYYY-MM-DD" end_date="YYYY-MM-DD">
+
+              <!-- Module-level description (lightweight context) -->
+              <ModuleDescription>
+                Brief description of what this module covers and builds
+              </ModuleDescription>
+
+              <!-- Module metadata and temporal info -->
+              <ModuleProps>
+                <ModuleMetadata>
+                  <ModuleID>UUID or unique identifier</ModuleID>
+                  <Status>planned | overview-ready | complete | error</Status>
+                  <GeneratedAt>ISO 8601 datetime</GeneratedAt>
+                </ModuleMetadata>
+
+                <ModuleTemporal weeks="N" days="N" start_date="YYYY-MM-DD" end_date="YYYY-MM-DD">
+                  <StartDate date="YYYY-MM-DD" />
+                  <TotalWeeks number="N" />
+                  <TotalDays number="N" />
+                  <EndDate date="YYYY-MM-DD" />
+                </ModuleTemporal>
+              </ModuleProps>
+
+              <!-- ==========================================
+                   MODULE SPECIFICATION: Full Metis-style content
+                   Embeds complete module from outputSchema.xml
+                   ========================================== -->
+              <ModuleSpecification>
+
+                <!-- Optional: Metadata for provenance and change tracking -->
+                <Metadata>
+                  <GenerationInfo>
+                    <Timestamp>ISO 8601 datetime of module generation</Timestamp>
+                    <Source>AI-Generated | Human-Reviewed | Hybrid</Source>
+                    <Model>Model identifier</Model>
+                    <InputSources>
+                      <InputFile type="projects">Filename or identifier</InputFile>
+                      <InputFile type="skills">Filename or identifier</InputFile>
+                      <InputFile type="research">Filename or identifier</InputFile>
+                    </InputSources>
+                  </GenerationInfo>
+
+                  <Changelog>
+                    <Change>
+                      <Section>XPath to changed section</Section>
+                      <Type>content_update | examples_expanded | new_content | removed | reordered</Type>
+                      <Confidence>high | medium | low</Confidence>
+                      <Summary>One sentence description</Summary>
+                      <Rationale>Why this change was made</Rationale>
+                      <ResearchSources>
+                        <Source url="">Title of research source</Source>
+                      </ResearchSources>
+                    </Change>
+                  </Changelog>
+
+                  <ProvenanceTracking>
+                    <LastHumanReview>
+                      <Date>ISO 8601 date</Date>
+                      <Reviewer>Identifier</Reviewer>
+                    </LastHumanReview>
+                    <AIUpdateCount>N</AIUpdateCount>
+                    <SectionsNeedingReview>
+                      <Section confidence="low">XPath to section</Section>
+                    </SectionsNeedingReview>
+                  </ProvenanceTracking>
+                </Metadata>
+
+                <!-- Module overview and objectives -->
+                <ModuleOverview>
+                  <ModuleDescription>
+                    What topics this module covers and what learners will build
+                  </ModuleDescription>
+
+                  <ModuleObjectives>
+                    <!-- Min 3 objectives required -->
+                    <ModuleObjective>
+                      <Name>Memorable name for the objective</Name>
+                      <Details>
+                        Practical skills and theoretical knowledge learners will gain
+                      </Details>
+                    </ModuleObjective>
+                  </ModuleObjectives>
+                </ModuleOverview>
+
+                <!-- Research topics -->
+                <ResearchTopics>
+                  <PrimaryTopics>
+                    <!-- Min 5 primary topics required -->
+                    <PrimaryTopic>
+                      <TopicName>Topic name</TopicName>
+                      <TopicDescription>
+                        Description including research guidance and subdivision suggestions
+                      </TopicDescription>
+                    </PrimaryTopic>
+                  </PrimaryTopics>
+
+                  <StretchTopics>
+                    <!-- Optional stretch topics -->
+                    <StretchTopic>
+                      One sentence description of optional topic
+                    </StretchTopic>
+                  </StretchTopics>
+                </ResearchTopics>
+
+                <!-- Projects: briefs and twists -->
+                <Projects>
+                  <ProjectBriefs>
+                    <!-- Min 2 project briefs required -->
+                    <ProjectBrief>
+                      <Overview>
+                        <Name>Project name</Name>
+                        <Task>One sentence description of outcome</Task>
+                        <Focus>Techniques and technologies</Focus>
+                      </Overview>
+
+                      <Criteria>
+                        Bullet point list of success criteria
+                      </Criteria>
+
+                      <Skills>
+                        <!-- Min 3 skills per brief required -->
+                        <Skill>
+                          <Name>Skill name</Name>
+                          <Details>
+                            Criteria, guidance and explanation
+                          </Details>
+                        </Skill>
+                      </Skills>
+
+                      <Examples>
+                        <!-- Min 3 examples per brief required -->
+                        <Example>
+                          <Name>Example name</Name>
+                          <Description>Brief description</Description>
+                        </Example>
+                      </Examples>
+                    </ProjectBrief>
+                  </ProjectBriefs>
+
+                  <ProjectTwists>
+                    <!-- Min 2 project twists required -->
+                    <ProjectTwist>
+                      <Name>Twist name</Name>
+                      <Task>Challenge the twist poses</Task>
+                      <ExampleUses>
+                        <!-- Min 2 examples per twist required -->
+                        <Example>Brief description of incorporating twist</Example>
+                      </ExampleUses>
+                    </ProjectTwist>
+                  </ProjectTwists>
+                </Projects>
+
+                <!-- Additional skills -->
+                <AdditionalSkills>
+                  <!-- Min 1 category required -->
+                  <SkillsCategory>
+                    <Name>Category name (e.g. "Python")</Name>
+
+                    <!-- Min 1 skill per category required -->
+                    <Skill>
+                      <SkillName>Skill name</SkillName>
+                      <Importance>Recommended | Stretch | etc</Importance>
+                      <SkillDescription>
+                        2 sentences maximum
+                      </SkillDescription>
+                    </Skill>
+                  </SkillsCategory>
+                </AdditionalSkills>
+
+                <!-- Optional notes -->
+                <Notes>
+                  Any content that doesn't fit within the schema
+                </Notes>
+
+              </ModuleSpecification>
+
+            </Module>
+
+          </Modules>
+
+        </ArcContent>
+
+      </Arc>
+
+    </Arcs>
+
+  </CourseContent>
+
+</Course>
