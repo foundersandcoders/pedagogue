@@ -994,7 +994,7 @@
 
   /* Course Metadata */
   .course-metadata {
-    background: white;
+    background: var(--palette-bg-subtle);
     border: 1px solid var(--palette-line);
     border-radius: 8px;
     padding: 2rem;
@@ -1048,7 +1048,7 @@
   }
 
   .stat-card {
-    background: white;
+    background: var(--palette-bg-subtle);
     border: 1px solid var(--palette-line);
     border-radius: 8px;
     padding: 1.5rem;
@@ -1073,7 +1073,7 @@
 
   /* Course Narratives */
   .course-narratives {
-    background: white;
+    background: var(--palette-bg-subtle);
     border: 1px solid var(--palette-line);
     border-radius: 8px;
     padding: 2rem;
@@ -1112,7 +1112,7 @@
   }
 
   .arc-section {
-    background: white;
+    background: var(--palette-bg-subtle);
     border: 1px solid var(--palette-line);
     border-radius: 8px;
     margin-bottom: 1.5rem;
@@ -1343,7 +1343,7 @@
   /* Module Content */
   .module-content {
     padding: 0 1rem 1rem;
-    background: white;
+    background: var(--palette-bg-subtle);
   }
 
   .content-block {
@@ -1394,7 +1394,7 @@
 
   .section-content {
     padding: 1rem;
-    background: white;
+    background: var(--palette-bg-subtle);
   }
 
   /* Objectives */
@@ -1631,7 +1631,7 @@
   }
 
   .btn-secondary {
-    background: white;
+    background: var(--palette-bg-subtle);
     color: var(--palette-foreground);
     border: 1px solid var(--palette-foreground);
   }
@@ -1641,7 +1641,7 @@
   }
 
   .btn-danger {
-    background: white;
+    background: var(--palette-bg-subtle);
     color: var(--palette-primary);
     border: 1px solid var(--palette-primary);
   }
@@ -1673,7 +1673,7 @@
   }
 
   .modal-content {
-    background: white;
+    background: var(--palette-bg-subtle);
     border-radius: 12px;
     max-width: 900px;
     max-height: 80vh;

@@ -500,7 +500,7 @@
 
   header h1 {
     font-size: 3rem;
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
     margin: 0;
   }
 
@@ -510,7 +510,7 @@
   }
 
   .metis-workflow {
-    background: white;
+    background: var(--palette-bg-subtle);
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -543,34 +543,42 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background: var(--palette-bg-nav);
+    background: var(--palette-bg-subtle);
+    color: var(--palette-foreground);
+    border: 2px solid var(--palette-line);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
     margin-right: 0.5rem;
     font-size: 0.9rem;
+    opacity: 0.6;
   }
 
   .step.active .step-number {
     background: var(--palette-foreground);
     color: white;
+    border-color: var(--palette-foreground);
+    opacity: 1;
   }
 
   .step.completed .step-number {
     background: var(--palette-foreground);
     color: white;
+    border-color: var(--palette-foreground);
     opacity: 0.7;
   }
 
   .step-name {
     font-size: 0.9rem;
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
+    opacity: 0.6;
   }
 
   .step.active .step-name {
     color: var(--palette-foreground);
     font-weight: 600;
+    opacity: 1;
   }
 
   .metis-content {
@@ -579,7 +587,7 @@
 
   .upload-section h2 {
     margin-bottom: 1rem;
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
   }
 
   .upload-section p {
@@ -649,12 +657,12 @@
 
   .generation-header h2 {
     margin: 0;
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
   }
 
   .back-button {
-    background: white;
-    color: var(--palette-primary);
+    background: var(--palette-bg-subtle);
+    color: var(--palette-foreground);
     border: 1px solid var(--palette-line);
     border-radius: 6px;
     padding: 0.5rem 1rem;
@@ -897,8 +905,8 @@
   }
 
   .btn-secondary {
-    background: white;
-    color: var(--palette-primary);
+    background: var(--palette-bg-subtle);
+    color: var(--palette-foreground);
     border: 1px solid var(--palette-line);
     border-radius: 6px;
     padding: 0.75rem 1.5rem;

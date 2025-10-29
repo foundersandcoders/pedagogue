@@ -629,7 +629,7 @@
   }
 
   .error-state h2 {
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
     margin-bottom: 1rem;
   }
 
@@ -701,7 +701,7 @@
 
   /* Narrative Sections */
   .narrative-section {
-    background: white;
+    background: var(--palette-bg-subtle);
     border-radius: 8px;
     padding: 2rem;
     margin-bottom: 2rem;
@@ -736,7 +736,7 @@
 
   /* Arcs Section */
   .arcs-section {
-    background: white;
+    background: var(--palette-bg-subtle);
     border-radius: 8px;
     padding: 2rem;
     margin-bottom: 2rem;
@@ -771,7 +771,7 @@
     align-items: center;
     padding: 1.5rem;
     cursor: pointer;
-    background: white;
+    background: var(--palette-bg-subtle);
     transition: background 0.2s;
   }
 
@@ -828,7 +828,7 @@
   }
 
   .arc-info-edit {
-    background: white;
+    background: var(--palette-bg-subtle);
     padding: 1.5rem;
     border-radius: 6px;
     margin-bottom: 1.5rem;
@@ -845,7 +845,7 @@
 
   /* Module Cards */
   .module-card {
-    background: white;
+    background: var(--palette-bg-subtle);
     border-radius: 6px;
     padding: 1.5rem;
     margin-bottom: 1rem;
@@ -894,7 +894,7 @@
 
   .edit-toggle {
     padding: 0.5rem 1rem;
-    background: white;
+    background: var(--palette-bg-subtle);
     border: 1px solid var(--palette-line);
     border-radius: 6px;
     font-size: 0.9rem;
@@ -1093,7 +1093,7 @@
   }
 
   .back-btn {
-    background: white;
+    background: var(--palette-bg-subtle);
     color: var(--palette-foreground-alt);
     border: 1px solid var(--palette-line);
   }

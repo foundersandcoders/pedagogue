@@ -78,3 +78,9 @@ export interface UnusedPalette {
 
 /** Valid workflow names that have defined palettes */
 export type WorkflowName = "metis" | "rhea" | "tethys" | "theia" | "themis";
+
+/** Theme modes - actual rendered theme */
+export type ThemeMode = "light" | "dark";
+
+/** Theme preference - includes system option */
+export type ThemePreference = "light" | "dark" | "system";

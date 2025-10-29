@@ -773,18 +773,19 @@
   .skip-message {
     text-align: center;
     padding: 4rem 2rem;
-    background: white;
+    background: var(--palette-bg-subtle);
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
 
   .skip-message h3 {
-    color: #333;
+    color: var(--palette-foreground);
     margin-bottom: 1rem;
   }
 
   .skip-message p {
-    color: #666;
+    color: var(--palette-foreground);
+    opacity: 0.8;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
@@ -811,9 +812,9 @@
   }
 
   .back-btn {
-    background: white;
-    color: #495057;
-    border: 1px solid #dee2e6;
+    background: var(--palette-bg-subtle);
+    color: var(--palette-foreground);
+    border: 1px solid var(--palette-line);
   }
 
   .back-btn:hover {

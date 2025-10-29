@@ -3,6 +3,11 @@
   import "$lib/styles/palettes.generated.css";
   import { page } from "$app/stores";
   import { activePalette, setPaletteFromRoute } from "$lib/stores/paletteStore";
+  import {
+    effectiveTheme,
+    initSystemThemeDetection,
+  } from "$lib/stores/themeStore";
+  import ThemeSelector from "$lib/components/ui/ThemeSelector.svelte";
 
   let { children } = $props();
 
@@ -10,20 +15,29 @@
   const isHomePage: boolean = $derived($page.url.pathname === "/");
   const showBreadcrumb: boolean = $derived(!isHomePage);
 
+  // Initialize system theme detection on mount
+  $effect(() => {
+    initSystemThemeDetection();
+  });
+
   // Update active palette when route changes
   $effect(() => {
     setPaletteFromRoute($page.url.pathname);
 
-    // Apply palette attribute directly to body element
-    if (typeof document !== 'undefined') {
-      document.body.setAttribute('data-palette', $activePalette);
+    // Apply palette and theme attributes directly to body element
+    if (typeof document !== "undefined") {
+      document.body.setAttribute("data-palette", $activePalette);
+      document.body.setAttribute("data-theme", $effectiveTheme);
     }
   });
 </script>
 
 {#if showBreadcrumb}
   <nav class="breadcrumb">
-    <a href="/" class="breadcrumb-home">← Home</a>
+    <div class="breadcrumb-content">
+      <a href="/" class="breadcrumb-home">← Home</a>
+      <ThemeSelector />
+    </div>
   </nav>
 {/if}
 
@@ -42,8 +56,17 @@
 
   .breadcrumb {
     background: var(--palette-bg-nav);
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--palette-line);
     padding: 1rem 2rem;
+  }
+
+  .breadcrumb-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .breadcrumb-home {

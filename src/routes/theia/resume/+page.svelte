@@ -99,7 +99,7 @@
 
   header h1 {
     font-size: 3rem;
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
     margin: 0;
   }
 

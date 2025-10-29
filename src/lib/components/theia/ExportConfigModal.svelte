@@ -257,7 +257,8 @@
           </button>
         </div>
         <p class="help-text format-note">
-          <strong>Note:</strong> Only JSON exports can be re-imported to continue your workflow. Use Markdown or HTML for sharing and documentation.
+          <strong>Note:</strong> Only JSON exports can be re-imported to continue
+          your workflow. Use Markdown or HTML for sharing and documentation.
         </p>
       </div>
 
@@ -399,7 +400,7 @@
   }
 
   .modal-content {
-    background: white;
+    background: var(--palette-bg-subtle);
     border-radius: 12px;
     max-width: 700px;
     width: 100%;
@@ -548,7 +549,7 @@
     flex: 1;
     padding: 0.75rem 1rem;
     border: 2px solid var(--palette-line);
-    background: white;
+    background: var(--palette-bg-subtle);
     border-radius: 6px;
     font-size: 0.95rem;
     font-weight: 600;
@@ -710,7 +711,7 @@
   }
 
   .btn-secondary {
-    background: white;
+    background: var(--palette-bg-subtle);
     color: var(--palette-foreground);
     border: 1px solid var(--palette-line);
   }
