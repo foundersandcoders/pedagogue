@@ -227,6 +227,42 @@ Open **http://localhost:5173** to start using Rhea.
   </div>
 </details>
 
+<details><summary>🌐 Domain Configuration</summary>
+  <div>
+    <p>Control which websites Claude can research during generation:</p>
+    
+    <h4>Predefined Lists</h4>
+    <ul>
+      <li><strong>AI Engineering</strong> - Curated list of 29 trusted sources (vendor docs, GitHub, Stack Overflow, academic papers)</li>
+      <li><strong>No Restrictions</strong> - Allow research on any domain</li>
+    </ul>
+
+    <h4>Custom Domains</h4>
+    <p>Add your own domains to the allowlist:</p>
+    <ul>
+      <li><code>example.com</code> - Standard domain</li>
+      <li><code>*.github.com</code> - Wildcard for all subdomains</li>
+      <li><code>example.com/blog</code> - Specific path within domain</li>
+    </ul>
+
+    <h4>In Metis (Standalone Modules)</h4>
+    <ul>
+      <li>Select domain list or "No Restrictions"</li>
+      <li>Add custom domains as needed</li>
+      <li>Configuration in "Advanced Research Options"</li>
+    </ul>
+
+    <h4>In Themis (Course Builder)</h4>
+    <p>Hierarchical configuration at three levels:</p>
+    <ul>
+      <li><strong>Course Level</strong> - Set for entire course, or configure per arc</li>
+      <li><strong>Arc Level</strong> - Set for all modules in arc, or configure per module</li>
+      <li><strong>Module Level</strong> - Enable or disable research</li>
+    </ul>
+    <p>Child configurations inherit from parent unless explicitly overridden.</p>
+  </div>
+</details>
+
 <details><summary>✅ Schema Validation</summary>
   <div>
     <p>All generated modules are automatically validated against requirements:</p>
