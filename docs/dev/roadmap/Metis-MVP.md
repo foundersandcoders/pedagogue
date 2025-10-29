@@ -74,19 +74,20 @@
 ---
 
 ## 2. MVP Milestones
+- [ ] 2.1. Implement the "overview"/"full generation" options from Themis
 - [ ] 2.1. Allow granularity selection for module generation
-  - 2.1.1. For example, separate booleans at appropriate stage for project briefs, twists, research topics etc
-  - 2.1.2. After generation pass complete, allow user to either progress with existing detail or fill in missing detail levels
-  - 2.1.3. This should be applied in both Metis and Metis-in-Themis
+  - For example, separate booleans at appropriate stage for project briefs, twists, research topics etc
+  - After generation pass complete, allow user to either progress with existing detail or fill in missing detail levels
+  - This should be applied in both Metis and Metis-in-Themis
 - [ ] 2.2. Implement Cascade Updates for Subsequent Modules
-  - [ ] 2.2.1. Check for information in [About Rhea](docs/About-Rhea.md)
-  - [ ] 2.2.2. Check for information in [Executive Summary](docs/Executive-Summary.md)
-  - [ ] 2.2.3. Work with the user to define this feature
-  - [ ] 2.2.4. Record decisions in documentation
+  - [ ] Check for information in [About Rhea](docs/About-Rhea.md)
+  - [ ] Check for information in [Executive Summary](docs/Executive-Summary.md)
+  - [ ] Work with the user to define this feature
+  - [ ] Record decisions in documentation
 - [ ] 2.3. Create Session Persistence
-  - [ ] 2.3.1. localStorage for progress backup
-  - [ ] 2.3.2. Restore on page load with confirmation
-  - [ ] 2.3.3. "Clear session" button
+  - [ ] `localStorage` for progress backup
+  - [ ] Restore on page load with confirmation
+  - [ ] "Clear session" button
 - [ ] 2.4. Allow web domain whitelist selection
   - should apply to both Metis and Metis-in-Themis
 - [ ] 2.5. Allow web domain whitelist ignoring
