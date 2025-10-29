@@ -2,6 +2,7 @@
   import { createEventDispatcher } from "svelte";
   import type { CourseData, Arc, ModuleSlot } from "$lib/types/themis";
   import TitleInputField from "./TitleInputField.svelte";
+  import ResearchConfigSelector from "./ResearchConfigSelector.svelte";
   import {
     createTitleInput,
     getDisplayTitle,
@@ -29,6 +30,13 @@
       description: "",
       durationWeeks: 1,
       status: "planned",
+      researchConfig: {
+        level: "all",
+        domainConfig: {
+          useList: "ai-engineering",
+          customDomains: [],
+        },
+      },
     };
   }
 
@@ -158,6 +166,15 @@
 
   function handleBack() {
     dispatch("back");
+  }
+
+  function handleModuleResearchConfigChange(
+    arcIndex: number,
+    moduleIndex: number,
+    event: CustomEvent,
+  ) {
+    arcs[arcIndex].modules[moduleIndex].researchConfig = event.detail;
+    arcs = [...arcs]; // Trigger reactivity
   }
 
   // Computed value for current arc
@@ -354,6 +371,28 @@
                     placeholder="What will learners focus on in this module?"
                   ></textarea>
                 </div>
+
+                {#if currentArc.researchConfig?.level === "selective"}
+                  <div class="field full-width research-config-field">
+                    <label>Research Configuration for this Module</label>
+                    <ResearchConfigSelector
+                      researchConfig={module.researchConfig || {
+                        level: "all",
+                        domainConfig: {
+                          useList: "ai-engineering",
+                          customDomains: [],
+                        },
+                      }}
+                      levelType="module"
+                      on:change={(e) =>
+                        handleModuleResearchConfigChange(
+                          selectedArcIndex,
+                          moduleIndex,
+                          e,
+                        )}
+                    />
+                  </div>
+                {/if}
               </div>
 
               {#if errors[`arc-${selectedArcIndex}-module-${moduleIndex}`]}

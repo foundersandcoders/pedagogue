@@ -10,6 +10,7 @@ import { createStreamingClient, withWebSearch } from '$lib/factories/agents/agen
 import { createSSEStream } from '$lib/utils/model/sseHandler';
 import { buildCourseAwareModulePrompt } from '$lib/factories/prompts/metisPromptFactory';
 import { escapeXml, escapeXmlArray } from '$lib/utils/xml/xmlEscape';
+import { getDomains } from '$lib/utils/research/domainResolver';
 
 /**
  * API endpoint for course-aware module generation

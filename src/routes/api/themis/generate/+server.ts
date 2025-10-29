@@ -11,6 +11,7 @@ import {
 import { createChatClient, withWebSearch } from '$lib/factories/agents/agentClientFactory';
 import { extractTextContent, parseCourseStructureResponse } from '$lib/utils/validation/responseParser';
 import { buildCourseStructurePrompt } from '$lib/factories/prompts/themisPromptFactory';
+import { getDomains } from '$lib/utils/research/domainResolver';
 
 /**
  * API endpoint for generating course structure with AI-enhanced module details
@@ -45,10 +46,20 @@ export const POST: RequestHandler = async ({ request }) => {
 		const timeout = body.enableResearch ? 300000 : 120000; // 5min with research, 2min without
 		let model = createChatClient({ apiKey, timeout });
 
-		// Add web search if enabled
+		// Add web search if enabled with domain configuration
 		if (body.enableResearch) {
-			console.log('Enabling web research with trusted domains...');
-			model = withWebSearch(model);
+			console.log('Enabling web research for course structure generation...');
+
+			// Extract domain config from course-level research config
+			const domainConfig = body.researchConfig?.domainConfig;
+
+			// Resolve domains based on configuration
+			const domains = getDomains(domainConfig);
+
+			console.log(`Using ${domains.length > 0 ? domains.length + ' domain restrictions' : 'unrestricted research'}`);
+
+			// Apply web search with resolved domains
+			model = withWebSearch(model, 5, domains);
 		}
 
 		const messages = [

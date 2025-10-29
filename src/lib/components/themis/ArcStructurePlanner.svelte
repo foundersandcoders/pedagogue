@@ -2,6 +2,7 @@
   import { createEventDispatcher } from "svelte";
   import type { CourseData, Arc } from "$lib/types/themis";
   import TitleInputField from "./TitleInputField.svelte";
+  import ResearchConfigSelector from "./ResearchConfigSelector.svelte";
   import {
     createTitleInput,
     getDisplayTitle,
@@ -30,6 +31,13 @@
       theme: "",
       durationWeeks: 4,
       modules: [],
+      researchConfig: {
+        level: "all",
+        domainConfig: {
+          useList: "ai-engineering",
+          customDomains: [],
+        },
+      },
     };
   }
 
@@ -104,6 +112,11 @@
 
   function handleBack() {
     dispatch("back");
+  }
+
+  function handleArcResearchConfigChange(arcIndex: number, event: CustomEvent) {
+    arcs[arcIndex].researchConfig = event.detail;
+    arcs = [...arcs]; // Trigger reactivity
   }
 
   function suggestArcs() {
@@ -303,6 +316,23 @@
               placeholder="Describe the broad focus and learning phase this arc represents..."
             ></textarea>
           </div>
+
+          {#if courseData.researchConfig?.level === "selective"}
+            <div class="field full-width research-config-field">
+              <label>Research Configuration for this Arc</label>
+              <ResearchConfigSelector
+                researchConfig={arc.researchConfig || {
+                  level: "all",
+                  domainConfig: {
+                    useList: "ai-engineering",
+                    customDomains: [],
+                  },
+                }}
+                levelType="arc"
+                on:change={(e) => handleArcResearchConfigChange(index, e)}
+              />
+            </div>
+          {/if}
         </div>
 
         {#if errors[index]}
