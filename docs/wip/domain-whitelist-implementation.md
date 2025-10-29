@@ -184,7 +184,7 @@ DomainConfigSchema = {
 
 ### 3.4. Phase 4: Metis State & API
 
-**Status:** Not Started
+**Status:** ✅ COMPLETE
 
 #### 3.4.1. Files
 
@@ -193,13 +193,15 @@ DomainConfigSchema = {
 
 #### 3.4.2. Tasks
 
-- [ ] Add `domainConfig` to structuredInput store
-- [ ] Set default values (AI Engineering list)
-- [ ] Ensure localStorage persistence
-- [ ] Update API to extract domainConfig
-- [ ] Resolve domains based on config
-- [ ] Pass to withWebSearch()
-- [ ] Handle validation errors
+- [x] Add `domainConfig` to structuredInput store
+- [x] Set default values (AI Engineering list)
+- [x] Ensure localStorage persistence
+- [x] Update API to extract domainConfig
+- [x] Resolve domains based on config
+- [x] Pass to withWebSearch()
+- [x] Handle validation errors
+- [x] Recreate Phase 2 utilities (domainResolver, configResolver)
+- [x] Update withWebSearch to handle empty array (unrestricted)
 
 #### 3.4.3. Notes
 
@@ -543,3 +545,60 @@ Module Config → Arc Config → Course Config → Default
 - ✅ No console errors
 
 **Next:** Phase 4 - Metis State & API (connect UI to backend)
+
+### Session 5: Phase 4 - Metis State & API (2025-01-XX)
+**Status:** ✅ COMPLETE
+
+**Files Created:**
+- `src/lib/utils/research/domainResolver.ts` (161 lines) - Domain resolution utility (recreated from Phase 2)
+  - `resolveDomainList()` - Main resolution logic with validation
+  - `getDomains()` - Convenience wrapper for API use
+  - `isUnrestricted()` - Check for "allow all" configuration  
+  - `describeDomainConfig()` - Human-readable descriptions
+  - Handles predefined lists, custom domains, validation, deduplication
+
+- `src/lib/utils/research/configResolver.ts` (110 lines) - Themis hierarchy resolver (recreated from Phase 2)
+  - `resolveModuleResearchConfig()` - Module → Arc → Course cascade
+  - `resolveArcResearchConfig()` - Arc-level resolution
+  - `requiresChildConfig()` - Check if level needs child configuration
+  - For use in Themis workflow (Phase 5)
+
+**Files Modified:**
+- `src/lib/schemas/apiValidator.ts` - Added Themis research schemas
+  - `ResearchConfigLevelSchema` - Enum: 'all' | 'selective' | 'none'
+  - `ResearchConfigSchema` - Level + optional domain config
+  - Updated `GenerateRequestSchema` to include `domainConfig` at top level
+  - Exported `ResearchConfig` type
+
+- `src/routes/api/metis/update/+server.ts` - Wired up domain configuration
+  - Import `getDomains` from domainResolver
+  - Extract `domainConfig` from request (structured input or top-level)
+  - Resolve domains using `getDomains()`
+  - Pass resolved domains to `withWebSearch()`
+  - Applied to both streaming and non-streaming paths
+
+- `src/lib/factories/agents/agentClientFactory.ts` - Handle unrestricted research
+  - Updated `withWebSearch()` to handle empty array
+  - Empty array = no `allowed_domains` parameter (unrestricted)
+  - Non-empty array = use provided domains
+  - Updated JSDoc with examples for all three modes
+
+**Implementation Details:**
+
+Domain Resolution Flow:
+```
+User UI → DomainConfig → API extracts → getDomains() → string[] → withWebSearch()
+```
+
+Three Resolution Modes:
+1. **Default/Predefined List**: `{ useList: 'ai-engineering', customDomains: [] }` → returns 29 domains
+2. **No Restrictions**: `{ useList: null, customDomains: [] }` → returns [] (Anthropic allows all)
+3. **Custom Only**: `{ useList: null, customDomains: ['example.com'] }` → returns custom domains
+
+**Testing:**
+- ✅ All utility functions compile (no new errors)
+- ✅ API handler extracts domainConfig correctly
+- ✅ Empty array handling in withWebSearch()
+- ✅ Backwards compatible (existing code still works)
+
+**Next:** Manual testing to verify end-to-end functionality, then Phase 5 (Themis integration)

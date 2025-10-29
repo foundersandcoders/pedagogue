@@ -5,6 +5,7 @@ import { GenerateRequestSchema, formatZodError, type GenerateRequest } from '$li
 import { createChatClient, createStreamingClient, withWebSearch } from '$lib/factories/agents/agentClientFactory';
 import { createSSEStream } from '$lib/utils/model/sseHandler';
 import { withRetry } from '$lib/utils/model/retryHandler';
+import { getDomains } from '$lib/utils/research/domainResolver';
 
 /**
  * API endpoint for generating module content using Claude + LangChain
@@ -48,11 +49,19 @@ export const POST: RequestHandler = async ({ request }) => {
 			// Create streaming client with optional web search
 			// Extended timeout for research-heavy tasks (5min with research, 2min without)
 			const timeout = body.enableResearch ? 300000 : 120000;
-			const model = createStreamingClient({
-				apiKey,
-				enableResearch: body.enableResearch,
-				timeout
-			});
+			let model = createChatClient({ apiKey, timeout, streaming: true });
+
+			// Add web search capability with domain configuration
+			if (body.enableResearch) {
+				// Extract domain config from structured input or top-level
+				const domainConfig = body.domainConfig || body.structuredInput?.model?.domainConfig;
+
+				// Resolve domains based on configuration (empty array = no restrictions)
+				const domains = getDomains(domainConfig);
+
+				// Apply web search with resolved domains
+				model = withWebSearch(model, 5, domains);
+			}
 
 			// Return SSE stream for progress updates
 			return createSSEStream({ body, model });
@@ -83,9 +92,16 @@ async function generateModule(body: GenerateRequest, apiKey: string) {
 		const timeout = body.enableResearch ? 300000 : 120000; // 5min with research, 2min without
 		let model = createChatClient({ apiKey, timeout });
 
-		// Conditionally add web search capability
+		// Conditionally add web search capability with domain configuration
 		if (body.enableResearch) {
-			model = withWebSearch(model);
+			// Extract domain config from structured input or top-level
+			const domainConfig = body.domainConfig || body.structuredInput?.model?.domainConfig;
+
+			// Resolve domains based on configuration (empty array = no restrictions)
+			const domains = getDomains(domainConfig);
+
+			// Apply web search with resolved domains
+			model = withWebSearch(model, 5, domains);
 		}
 
 		// Execute generation with retry logic

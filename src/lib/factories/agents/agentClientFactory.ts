@@ -46,25 +46,40 @@ export function createChatClient(options: ChatClientOptions): ChatAnthropic {
  *
  * @param client - Existing ChatAnthropic instance
  * @param maxUses - Maximum number of web searches allowed per request
- * @param domains - Optional custom domain allowlist (defaults to AI_RESEARCH_DOMAINS_FLAT)
+ * @param domains - Domain allowlist (defaults to AI_RESEARCH_DOMAINS_FLAT)
+ *                  Pass empty array for unrestricted research (no domain filtering)
  *
  * @example
+ * // With default AI Engineering domains
  * let client = createChatClient({ apiKey });
- * if (enableResearch) {
- *   client = withWebSearch(client);
- * }
+ * client = withWebSearch(client);
+ *
+ * @example
+ * // With custom domains
+ * client = withWebSearch(client, 5, ['example.com', '*.github.com']);
+ *
+ * @example
+ * // Unrestricted (all domains)
+ * client = withWebSearch(client, 5, []);
  */
 export function withWebSearch(
 	client: ChatAnthropic,
 	maxUses: number = 5,
 	domains: readonly string[] = AI_RESEARCH_DOMAINS_FLAT
 ): Runnable<BaseLanguageModelInput, AIMessageChunk, ChatAnthropicCallOptions> {
-	return client.bindTools([{
+	// Empty array = no restrictions (don't include allowed_domains parameter)
+	const toolConfig: any = {
 		type: 'web_search_20250305',
 		name: 'web_search',
-		max_uses: maxUses,
-		allowed_domains: [...domains]
-	}]);
+		max_uses: maxUses
+	};
+
+	// Only add allowed_domains if domains array is not empty
+	if (domains.length > 0) {
+		toolConfig.allowed_domains = [...domains];
+	}
+
+	return client.bindTools([toolConfig]);
 }
 
 /**

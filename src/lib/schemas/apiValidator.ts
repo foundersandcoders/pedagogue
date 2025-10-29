@@ -34,6 +34,21 @@ export const DomainConfigSchema = z.object({
 export type DomainConfig = z.infer<typeof DomainConfigSchema>;
 
 /**
+ * Research configuration level for hierarchical config in Themis
+ */
+export const ResearchConfigLevelSchema = z.enum(['all', 'selective', 'none']);
+
+/**
+ * Research configuration for course/arc/module
+ */
+export const ResearchConfigSchema = z.object({
+	level: ResearchConfigLevelSchema,
+	domainConfig: DomainConfigSchema.optional()
+});
+
+export type ResearchConfig = z.infer<typeof ResearchConfigSchema>;
+
+/**
  * Structured input data for module generation
  * (Previously typed as Record<string, any>)
  */
@@ -71,7 +86,8 @@ export const GenerateRequestSchema = z.object({
 	researchData: z.any(),
 	structuredInput: StructuredInputSchema.optional(),
 	enableResearch: z.boolean().optional().default(false),
-	useExtendedThinking: z.boolean().optional().default(false)
+	useExtendedThinking: z.boolean().optional().default(false),
+	domainConfig: DomainConfigSchema.optional()
 });
 
 export type GenerateRequest = z.infer<typeof GenerateRequestSchema>;
