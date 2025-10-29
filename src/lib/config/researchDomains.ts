@@ -29,17 +29,17 @@ export const AI_RESEARCH_DOMAINS = [
 	'thenextweb.com',
 	'venturebeat.com',
 	// Blogs & Newsletters
+	'abnormal.ai/blog/category/engineering',
 	'deepgains.substack.com',
 	'newsletter.pragmaticengineer.com',
 	"simonwillison.net",
 	'sundeepteki.org/blog',
 	'writer.com/engineering',
-	'abnormal.ai/blog/category/engineering',
 	// Communities
 	'stackoverflow.com',
 	'news.ycombinator.com',
 	// Academic & Research
-	'arxiv.org',
 	'acm.org',
+	'arxiv.org',
 	'ieee.org',
 ] as const;
