@@ -87,7 +87,7 @@
   - [ ] 2.3.1. localStorage for progress backup
   - [ ] 2.3.2. Restore on page load with confirmation
   - [ ] 2.3.3. "Clear session" button
-- [ ] 2.4. Allow web domain whitelist loading
+- [ ] 2.4. Allow web domain whitelist selection
   - should apply to both Metis and Metis-in-Themis
 - [ ] 2.5. Allow web domain whitelist ignoring
   - should apply to both Metis and Metis-in-Themis
