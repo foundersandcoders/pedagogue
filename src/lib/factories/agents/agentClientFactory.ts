@@ -10,7 +10,7 @@ import type { AIMessageChunk } from '@langchain/core/messages';
 import type { Runnable } from '@langchain/core/runnables';
 import type { ChatAnthropicCallOptions } from '@langchain/anthropic/dist/chat_models';
 import type { ChatClientOptions } from '$lib/types/agent';
-import { AI_RESEARCH_DOMAINS } from '$lib/config/researchDomains.js';
+import { AI_RESEARCH_DOMAINS_FLAT } from '$lib/config/researchDomains.js';
 
 /**
  * Default model configuration for all generation tasks
@@ -46,7 +46,7 @@ export function createChatClient(options: ChatClientOptions): ChatAnthropic {
  *
  * @param client - Existing ChatAnthropic instance
  * @param maxUses - Maximum number of web searches allowed per request
- * @param domains - Optional custom domain allowlist (defaults to AI_RESEARCH_DOMAINS)
+ * @param domains - Optional custom domain allowlist (defaults to AI_RESEARCH_DOMAINS_FLAT)
  *
  * @example
  * let client = createChatClient({ apiKey });
@@ -57,7 +57,7 @@ export function createChatClient(options: ChatClientOptions): ChatAnthropic {
 export function withWebSearch(
 	client: ChatAnthropic,
 	maxUses: number = 5,
-	domains: readonly string[] = AI_RESEARCH_DOMAINS
+	domains: readonly string[] = AI_RESEARCH_DOMAINS_FLAT
 ): Runnable<BaseLanguageModelInput, AIMessageChunk, ChatAnthropicCallOptions> {
 	return client.bindTools([{
 		type: 'web_search_20250305',
