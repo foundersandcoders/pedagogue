@@ -31,7 +31,7 @@
 
 <style>
 	.progress-summary {
-		background: white;
+		background: var(--palette-bg-subtle);
 		border: 1px solid var(--palette-line);
 		border-radius: 8px;
 		padding: 1.5rem;

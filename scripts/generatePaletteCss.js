@@ -277,8 +277,52 @@ ${generateWorkflowVars('theia', theiaPalette)}
   --palette-accent: ${theiaPaletteDark.foreground.alternate.midi};
   --palette-line: ${theiaPaletteDark.line.primary};
 }
+
+/* Workflow-specific variables - Dark theme overrides */
+[data-theme="dark"] {
+  /* Rhea dark overrides */
+  --rhea-bg-main: ${rheaPaletteDark.background.primary.main};
+  --rhea-bg-subtle: ${rheaPaletteDark.background.primary.subtle};
+  --rhea-bg-nav: ${rheaPaletteDark.background.primary.nav};
+  --rhea-bg-alt-main: ${rheaPaletteDark.background.alternate.main};
+  --rhea-bg-alt-subtle: ${rheaPaletteDark.background.alternate.subtle};
+  --rhea-bg-alt-nav: ${rheaPaletteDark.background.alternate.nav};
+
+  /* Metis dark overrides */
+  --metis-bg-main: ${metisPaletteDark.background.primary.main};
+  --metis-bg-subtle: ${metisPaletteDark.background.primary.subtle};
+  --metis-bg-nav: ${metisPaletteDark.background.primary.nav};
+  --metis-bg-alt-main: ${metisPaletteDark.background.alternate.main};
+  --metis-bg-alt-subtle: ${metisPaletteDark.background.alternate.subtle};
+  --metis-bg-alt-nav: ${metisPaletteDark.background.alternate.nav};
+
+  /* Themis dark overrides */
+  --themis-bg-main: ${themisPaletteDark.background.primary.main};
+  --themis-bg-subtle: ${themisPaletteDark.background.primary.subtle};
+  --themis-bg-nav: ${themisPaletteDark.background.primary.nav};
+  --themis-bg-alt-main: ${themisPaletteDark.background.alternate.main};
+  --themis-bg-alt-subtle: ${themisPaletteDark.background.alternate.subtle};
+  --themis-bg-alt-nav: ${themisPaletteDark.background.alternate.nav};
+
+  /* Tethys dark overrides */
+  --tethys-bg-main: ${tethysPaletteDark.background.primary.main};
+  --tethys-bg-subtle: ${tethysPaletteDark.background.primary.subtle};
+  --tethys-bg-nav: ${tethysPaletteDark.background.primary.nav};
+  --tethys-bg-alt-main: ${tethysPaletteDark.background.alternate.main};
+  --tethys-bg-alt-subtle: ${tethysPaletteDark.background.alternate.subtle};
+  --tethys-bg-alt-nav: ${tethysPaletteDark.background.alternate.nav};
+
+  /* Theia dark overrides */
+  --theia-bg-main: ${theiaPaletteDark.background.primary.main};
+  --theia-bg-subtle: ${theiaPaletteDark.background.primary.subtle};
+  --theia-bg-nav: ${theiaPaletteDark.background.primary.nav};
+  --theia-bg-alt-main: ${theiaPaletteDark.background.alternate.main};
+  --theia-bg-alt-subtle: ${theiaPaletteDark.background.alternate.subtle};
+  --theia-bg-alt-nav: ${theiaPaletteDark.background.alternate.nav};
+}
 `;
 }
+
 
 // Generate and write CSS
 const css = generateCss();

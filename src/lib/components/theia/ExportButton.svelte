@@ -98,7 +98,7 @@
   }
 
   .export-btn.secondary {
-    background: white;
+    background: var(--palette-bg-subtle);
     color: var(--palette-foreground);
     border: 1px solid var(--palette-line);
   }

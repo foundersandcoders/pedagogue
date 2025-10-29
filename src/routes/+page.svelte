@@ -155,7 +155,7 @@
 
   header h1 {
     font-size: 3.5rem;
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
     margin: 0;
   }
 
@@ -235,7 +235,7 @@
 
   .workflow-card h2 {
     font-size: 1.75rem;
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
     margin: 0 0 1rem 0;
   }
 
@@ -311,11 +311,11 @@
   .recent-courses {
     margin-top: 4rem;
     padding-top: 2rem;
-    border-top: 1px solid #e9ecef;
+    border-top: 1px solid var(--palette-line);
   }
 
   .recent-courses h3 {
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
   }

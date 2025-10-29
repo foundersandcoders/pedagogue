@@ -500,7 +500,7 @@
 
   header h1 {
     font-size: 3rem;
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
     margin: 0;
   }
 
@@ -510,7 +510,7 @@
   }
 
   .metis-workflow {
-    background: white;
+    background: var(--palette-bg-subtle);
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -587,7 +587,7 @@
 
   .upload-section h2 {
     margin-bottom: 1rem;
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
   }
 
   .upload-section p {
@@ -657,12 +657,12 @@
 
   .generation-header h2 {
     margin: 0;
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
   }
 
   .back-button {
-    background: white;
-    color: var(--palette-primary);
+    background: var(--palette-bg-subtle);
+    color: var(--palette-foreground);
     border: 1px solid var(--palette-line);
     border-radius: 6px;
     padding: 0.5rem 1rem;
@@ -905,8 +905,8 @@
   }
 
   .btn-secondary {
-    background: white;
-    color: var(--palette-primary);
+    background: var(--palette-bg-subtle);
+    color: var(--palette-foreground);
     border: 1px solid var(--palette-line);
     border-radius: 6px;
     padding: 0.75rem 1.5rem;

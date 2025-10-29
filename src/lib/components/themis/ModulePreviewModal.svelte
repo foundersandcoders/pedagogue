@@ -54,7 +54,7 @@
 	}
 
 	.modal-content {
-		background: white;
+		background: var(--palette-bg-subtle);
 		border-radius: 12px;
 		max-width: 900px;
 		max-height: 80vh;
@@ -130,7 +130,7 @@
 	}
 
 	.btn-secondary {
-		background: white;
+		background: var(--palette-bg-subtle);
 		color: var(--palette-foreground);
 		border: 1px solid var(--palette-foreground);
 	}
