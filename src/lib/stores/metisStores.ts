@@ -25,7 +25,11 @@ const DEFAULT_STRUCTURED_INPUT: StructuredInputData = {
 	},
 	model: {
 		enableResearch: true,
-		useExtendedThinking: true
+		useExtendedThinking: true,
+		domainConfig: {
+			useList: 'ai-engineering',
+			customDomains: []
+		}
 	}
 };
 

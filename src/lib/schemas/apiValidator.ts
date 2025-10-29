@@ -6,10 +6,32 @@
  */
 
 import { z } from 'zod';
+import { validateDomain } from '$lib/utils/validation/domainValidator';
 
 // ==================================================================
 // Metis API
 // ==================================================================
+
+/**
+ * Domain configuration for research
+ */
+export const DomainConfigSchema = z.object({
+	useList: z.string().nullable(), // List ID (e.g., 'ai-engineering') or null for no restrictions
+	customDomains: z.array(z.string()).default([])
+}).refine(
+	(data) => {
+		// Validate custom domains if present
+		if (data.customDomains.length > 0) {
+			return data.customDomains.every(domain => validateDomain(domain).valid);
+		}
+		return true;
+	},
+	{
+		message: 'One or more custom domains are invalid'
+	}
+);
+
+export type DomainConfig = z.infer<typeof DomainConfigSchema>;
 
 /**
  * Structured input data for module generation
@@ -33,7 +55,8 @@ export const StructuredInputSchema = z.object({
 	}),
 	model: z.object({
 		enableResearch: z.boolean(),
-		useExtendedThinking: z.boolean()
+		useExtendedThinking: z.boolean(),
+		domainConfig: DomainConfigSchema.optional()
 	})
 });
 

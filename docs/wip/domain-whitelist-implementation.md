@@ -146,7 +146,7 @@ DomainConfigSchema = {
 ---
 
 ### 3.3. Phase 3: Metis UI Components
-**Status:** Not Started  
+**Status:** ✅ COMPLETE
 
 #### 3.3.1. Files
 
@@ -155,15 +155,15 @@ DomainConfigSchema = {
 
 #### 3.3.2. Tasks
 
-- [ ] Create DomainSelector component
-  - [ ] Dropdown: "AI Engineering" / "No Restrictions"
-  - [ ] Custom domain input field
-  - [ ] "Add Domain" button with validation
-  - [ ] Custom domains list with remove buttons
-  - [ ] Show/hide based on parent enableResearch
-- [ ] Integrate DomainSelector into StructuredInputForm
-- [ ] Add to "Advanced Research Options" section
-- [ ] Update form styling
+- [x] Create DomainSelector component
+  - [x] Dropdown: "AI Engineering" / "No Restrictions"
+  - [x] Custom domain input field
+  - [x] "Add Domain" button with validation
+  - [x] Custom domains list with remove buttons
+  - [x] Show/hide based on parent enableResearch
+- [x] Integrate DomainSelector into StructuredInputForm
+- [x] Add to "Advanced Research Options" section
+- [x] Update form styling
 
 #### 3.3.3. Notes
 
@@ -494,3 +494,52 @@ Module Config → Arc Config → Course Config → Default
 ---
 
 **End of Planning Document**
+### Session 4: Phase 3 - Metis UI Components (2025-01-XX)
+**Status:** ✅ COMPLETE
+
+**Files Created:**
+- `src/lib/components/metis/DomainSelector.svelte` (273 lines) - Domain configuration UI
+  - Dropdown to select domain list or "No Restrictions"
+  - Custom domain input with real-time validation
+  - Add/remove custom domains with visual feedback
+  - Shows contextual hints based on selection
+  - Validates wildcards (*.example.com) and subpaths (example.com/path)
+  - Styled consistently with existing Metis forms
+
+- `src/lib/utils/validation/domainValidator.ts` (95 lines) - Core validation (recreated)
+  - Basic domain validation with regex
+  - Supports wildcards, subpaths, ports
+  - Normalization (lowercase, trim)
+  - Batch validation for arrays
+
+**Files Modified:**
+- `src/lib/components/metis/StructuredInputForm.svelte` - Integrated DomainSelector
+  - Added DomainSelector import
+  - Integrated component in "Advanced Research Options" section
+  - Only visible when "Enable Deep Research" is checked
+  - Added handleDomainConfigChange event handler
+  - Styled "Research Configuration" subsection
+
+- `src/lib/stores/metisStores.ts` - Updated default structured input
+  - Added `domainConfig` to DEFAULT_STRUCTURED_INPUT
+  - Default: useList = 'ai-engineering', customDomains = []
+
+- `src/lib/schemas/apiValidator.ts` - Added DomainConfigSchema (recreated)
+  - Created DomainConfigSchema with Zod validation
+  - Added custom refinement for domain validation
+  - Updated StructuredInputSchema.model to include domainConfig
+  - Exported DomainConfig type
+
+**Notes:**
+- Phase 2 files (domainResolver, configResolver) were not actually saved, only domainValidator needed for Phase 3
+- Will need to recreate Phase 2 utilities in Phase 4
+- UI is now functional and visible in Metis workflow
+
+**Testing:**
+- ✅ All files pass TypeScript compilation
+- ✅ DomainSelector component renders correctly
+- ✅ Form integration works with conditional visibility
+- ✅ Default values properly set in stores
+- ✅ No console errors
+
+**Next:** Phase 4 - Metis State & API (connect UI to backend)
