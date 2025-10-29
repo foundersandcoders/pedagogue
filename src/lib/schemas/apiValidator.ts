@@ -246,7 +246,8 @@ export type ModuleSlotData = z.infer<typeof ModuleSlotSchema>;
 export const ModuleGenerationRequestSchema = z.object({
 	moduleSlot: ModuleSlotSchema,
 	courseContext: CourseContextSchema,
-	enableResearch: z.boolean().optional().default(true)
+	enableResearch: z.boolean().optional().default(true),
+	domainConfig: DomainConfigSchema.optional()
 });
 
 export type ModuleGenerationRequest = z.infer<typeof ModuleGenerationRequestSchema>;

@@ -53,11 +53,20 @@ export const POST: RequestHandler = async ({ request }) => {
 			const timeout = body.enableResearch ? 300000 : 120000;
 			let model = createStreamingClient({ apiKey, timeout });
 
-			// Add web search if enabled
+			// Add web search if enabled with domain configuration
 			if (body.enableResearch) {
 				console.log('Enabling web research for course module generation...');
-				model = withWebSearch(model);
+
+				// Extract domain config
+				const domainConfig = body.domainConfig;
+
+				// Resolve domains based on configuration
+				const domains = getDomains(domainConfig);
+
+				// Apply web search with resolved domains
+				model = withWebSearch(model, 5, domains);
 			}
+
 
 			// Convert to Metis format
 			const metisBody = convertToMetisFormat(body);
