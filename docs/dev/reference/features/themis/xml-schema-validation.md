@@ -457,17 +457,17 @@ warnings: [
 
 ## Metrics
 
-| Metric | Value |
-|--------|-------|
-| **Implementation Time** | ~2 hours |
-| **Lines of Code** | 1,652 (new) |
-| **Test Cases** | 15 |
-| **Test Coverage** | Structural, temporal, cardinality, ordering |
-| **Documentation Pages** | 1 (411 lines) |
-| **Files Created** | 4 |
-| **Files Updated** | 2 |
-| **Dependencies Added** | 0 (reused `@xmldom/xmldom`) |
-| **Breaking Changes** | 0 |
+| Metric                  | Value                                       |
+|-------------------------|---------------------------------------------|
+| **Implementation Time** | ~2 hours                                    |
+| **Lines of Code**       | 1,652 (new)                                 |
+| **Test Cases**          | 15                                          |
+| **Test Coverage**       | Structural, temporal, cardinality, ordering |
+| **Documentation Pages** | 1 (411 lines)                               |
+| **Files Created**       | 4                                           |
+| **Files Updated**       | 2                                           |
+| **Dependencies Added**  | 0 (reused `@xmldom/xmldom`)                 |
+| **Breaking Changes**    | 0                                           |
 
 ---
 
