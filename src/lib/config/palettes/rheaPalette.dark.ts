@@ -7,19 +7,19 @@ export const rheaPaletteDark: RheaPalette = {
   colours: {
     dark: {
       name: "depths",
-      colour: "#0A1A18ff"
+      colour: "#060F0Eff"
     },
     background: {
       primary: {
         name: "teal",
-        main: "#0A2623ff",
-        subtle: "#133632ff",
+        main: "#081E1Cff",
+        subtle: "#0C2220ff",
         nav: "#0E2E2Bff",
       },
       alternate: {
         name: "gold",
         main: "#2D2618ff",
-        subtle: "#3A3220ff",
+        subtle: "#2A2418ff",
         nav: "#332A1Cff"
       }
     },

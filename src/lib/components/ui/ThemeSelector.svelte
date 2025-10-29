@@ -36,19 +36,6 @@
     }
   }
 
-  /**
-   * Get icon for theme option
-   */
-  function getThemeIcon(preference: ThemePreference): string {
-    switch (preference) {
-      case "light":
-        return "☀️";
-      case "dark":
-        return "🌙";
-      case "system":
-        return "💻";
-    }
-  }
   const themeOptions: ThemePreference[] = ["light", "dark", "system"];
 </script>
 
@@ -65,8 +52,7 @@
       on:click={() => handleThemeClick(option)}
       on:keydown={(e) => handleKeydown(e, option)}
     >
-      <span class="theme-icon" aria-hidden="true">{getThemeIcon(option)}</span>
-      <span class="theme-label">{getThemeLabel(option)}</span>
+      {getThemeLabel(option)}
     </button>
   {/each}
 </div>
@@ -82,9 +68,6 @@
   }
 
   .theme-option {
-    display: flex;
-    align-items: center;
-    gap: 0.375rem;
     padding: 0.5rem 0.75rem;
     background: transparent;
     border: 1px solid transparent;
@@ -115,31 +98,5 @@
   .theme-option.active:hover {
     background: var(--palette-accent, #555);
     border-color: var(--palette-accent, #555);
-  }
-
-  .theme-icon {
-    font-size: 1rem;
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .theme-label {
-    line-height: 1;
-  }
-
-  /* Responsive: hide labels on small screens */
-  @media (max-width: 640px) {
-    .theme-label {
-      display: none;
-    }
-
-    .theme-option {
-      padding: 0.5rem;
-    }
-
-    .theme-icon {
-      font-size: 1.25rem;
-    }
   }
 </style>

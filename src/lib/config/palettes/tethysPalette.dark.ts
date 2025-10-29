@@ -7,19 +7,19 @@ export const tethysPaletteDark: TethysPalette = {
   colours: {
     dark: {
       name: "abyss",
-      colour: "#0A1214ff"
+      colour: "#060A0Cff"
     },
     background: {
       primary: {
         name: "coral",
-        main: "#2D1A0Fff",
-        subtle: "#3D2615ff",
+        main: "#1F120Aff",
+        subtle: "#25160Cff",
         nav: "#352013ff",
       },
       alternate: {
         name: "teal",
         main: "#0F2623ff",
-        subtle: "#1A3632ff",
+        subtle: "#0E1E1Cff",
         nav: "#142E2Bff"
       }
     },

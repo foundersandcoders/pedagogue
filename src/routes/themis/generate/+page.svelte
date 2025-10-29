@@ -273,7 +273,9 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background: var(--palette-bg-nav);
+    background: var(--palette-bg-subtle);
+    color: var(--palette-foreground);
+    border: 2px solid var(--palette-line);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -281,28 +283,34 @@
     margin-right: 0.5rem;
     font-size: 0.9rem;
     flex-shrink: 0;
+    opacity: 0.6;
   }
 
   .step.active .step-number {
     background: var(--palette-foreground);
     color: white;
+    border-color: var(--palette-foreground);
+    opacity: 1;
   }
 
   .step.completed .step-number {
     background: var(--palette-foreground);
     color: white;
+    border-color: var(--palette-foreground);
     opacity: 0.7;
   }
 
   .step-name {
     font-size: 0.9rem;
-    color: var(--palette-primary);
+    color: var(--palette-foreground);
     white-space: nowrap;
+    opacity: 0.6;
   }
 
   .step.active .step-name {
     color: var(--palette-foreground);
     font-weight: 600;
+    opacity: 1;
   }
 
   .content {

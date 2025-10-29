@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import type { Arc } from "$lib/types/themis";
   import { savedCourses } from "$lib/stores/themisStores";
+  import ThemeSelector from "$lib/components/ui/ThemeSelector.svelte";
 
   function countModules(arcs: Arc[]): number {
     let total = 0;
@@ -23,6 +24,9 @@
 
 <div id="hub-container" class="container">
   <header id="hub-header">
+    <div class="header-controls">
+      <ThemeSelector />
+    </div>
     <div class="header-title">
       <img src="icon.png" alt="Rhea icon" class="header-icon" />
       <h1>Rhea</h1>
@@ -126,6 +130,13 @@
   header {
     text-align: center;
     margin-bottom: 4rem;
+    position: relative;
+  }
+
+  .header-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
   .header-title {
@@ -224,12 +235,12 @@
 
   .workflow-card h2 {
     font-size: 1.75rem;
-    color: #333;
+    color: var(--palette-primary);
     margin: 0 0 1rem 0;
   }
 
   .workflow-card p {
-    color: #666;
+    color: var(--palette-foreground);
     line-height: 1.6;
     margin-bottom: 1.5rem;
     flex-grow: 1;
@@ -241,13 +252,14 @@
     gap: 0.5rem;
     margin-bottom: 1.5rem;
     padding: 1rem;
-    background: #f8f9fa;
+    background: var(--palette-bg-nav);
     border-radius: 8px;
   }
 
   .card-features span {
-    color: #495057;
+    color: var(--palette-foreground);
     font-size: 0.9rem;
+    opacity: 0.9;
   }
 
   .card-action {
@@ -303,7 +315,7 @@
   }
 
   .recent-courses h3 {
-    color: #333;
+    color: var(--palette-primary);
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
   }
@@ -319,8 +331,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem;
-    background: white;
-    border: 1px solid #dee2e6;
+    background: var(--palette-bg-subtle);
+    border: 1px solid var(--palette-line);
     border-radius: 8px;
     text-decoration: none;
     color: inherit;
@@ -328,8 +340,8 @@
   }
 
   .course-item:hover {
-    border-color: #d7b130;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: var(--palette-foreground);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   /*.course-info p {
@@ -339,7 +351,8 @@
   }*/
 
   .course-meta {
-    color: #999;
+    color: var(--palette-foreground);
+    opacity: 0.6;
     font-size: 0.85rem;
   }
 

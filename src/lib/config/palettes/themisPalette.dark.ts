@@ -7,19 +7,19 @@ export const themisPaletteDark: ThemisPalette = {
   colours: {
     dark: {
       name: "midnight",
-      colour: "#12091Eff"
+      colour: "#0A0614ff"
     },
     background: {
       primary: {
         name: "amethyst",
-        main: "#1E1033ff",
-        subtle: "#2A1747ff",
+        main: "#140A24ff",
+        subtle: "#1A0E2Eff",
         nav: "#241339ff",
       },
       alternate: {
         name: "gold",
         main: "#2D2618ff",
-        subtle: "#3D3320ff",
+        subtle: "#2A2418ff",
         nav: "#352D1Cff"
       }
     },

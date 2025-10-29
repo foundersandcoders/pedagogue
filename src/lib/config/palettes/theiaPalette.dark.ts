@@ -7,19 +7,19 @@ export const theiaPaletteDark: TheiaPalette = {
   colours: {
     dark: {
       name: "void",
-      colour: "#14091Aff"
+      colour: "#0A0610ff"
     },
     background: {
       primary: {
         name: "rose",
-        main: "#2D1426ff",
-        subtle: "#3D1F33ff",
+        main: "#1F0E1Aff",
+        subtle: "#26142Aff",
         nav: "#33182Bff",
       },
       alternate: {
         name: "cyan",
-        main: "#0F2630ff",
-        subtle: "#1A3540ff",
+        main: "#0A1A22ff",
+        subtle: "#0E1E28ff",
         nav: "#142B34ff"
       }
     },

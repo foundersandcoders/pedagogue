@@ -7,19 +7,19 @@ export const metisPaletteDark: MetisPalette = {
   colours: {
     dark: {
       name: "void",
-      colour: "#0A1619ff"
+      colour: "#060D10ff"
     },
     background: {
       primary: {
         name: "cyan",
-        main: "#0F2630ff",
-        subtle: "#1A3540ff",
+        main: "#0A1A22ff",
+        subtle: "#0E1E28ff",
         nav: "#142B34ff",
       },
       alternate: {
         name: "coral",
         main: "#2D1A0Fff",
-        subtle: "#3D2615ff",
+        subtle: "#251810ff",
         nav: "#352013ff"
       }
     },
