@@ -1,0 +1,496 @@
+# Domain Whitelist Enhancements - Implementation Plan
+
+**Status:** 🚧 In Progress  
+**Started:** 2025-01-XX  
+**Target Completion:** TBD
+
+---
+
+## 1. Overview
+
+Implementing web domain whitelist enhancements for both Metis (standalone module generator) and Themis (course builder) workflows. This addresses tasks 2.4, 2.5, and 1.2.5 from the [Metis MVP roadmap](docs/dev/roadmap/Metis-MVP.md).
+
+### 1.1. Roadmap Tasks
+
+- **2.4** ✅ Allow web domain whitelist selection (MUST IMPLEMENT)
+- **2.5** ✅ Allow web domain whitelist ignoring (COULD IMPLEMENT)
+- **1.2.5** ✅ Allow web domain whitelist creation (COULD IMPLEMENT)
+
+### 1.2. Key Features
+
+1. Restructure domain configuration from flat array to structured object
+2. UI for selecting predefined domain lists or unrestricted research
+3. Custom domain addition with validation (wildcards, subpaths allowed)
+4. Hierarchical research configuration in Themis (course → arc → module)
+5. Apply to both Metis and Themis workflows
+
+---
+
+## 2. Requirements Summary
+
+### 2.1 Metis Requirements
+
+- Default: "AI Engineering" list when research enabled
+- Dropdown: "AI Engineering" | "No Restrictions"
+- Custom domain input with validation
+- Hidden when "Enable Deep Research" unchecked
+- Located in "Advanced Research Options" section
+
+### 2.2 Themis Requirements
+
+#### 2.2.1. Course Level (Default: "Enable for all")
+
+- "Enable research for all modules in all arcs"
+- "Configure research per arc"
+- "Disable research for all modules"
+
+#### 2.2.2. Arc Level (Default: "Enable for all")
+
+- "Enable research for all modules in this arc"
+- "Configure research per module"
+- "Disable research for this arc"
+
+#### 2.2.3. Module Level (Default: "Enable")
+
+- "Enable research"
+- "Disable research"
+
+### 2.3 Domain Configuration Structure
+
+```typescript
+// New structure for domain lists
+interface DomainList {
+  id: string;
+  name: string;
+  type: "allow" | "ban";
+  categories: DomainListCategory[];
+}
+
+interface DomainListCategory {
+  name: string;
+  sources: Domain[];
+}
+
+interface Domain {
+  name: string;
+  url: string;
+}
+```
+
+### 2.4 Validation Rules
+
+- Format validation: Yes (basic domain format)
+- Wildcards allowed: Yes (e.g., `*.github.com`)
+- Subpaths allowed: Yes (e.g., `github.com/blog`)
+
+---
+
+## 3. Implementation Phases
+
+### 3.1. Phase 1: Type System & Configuration
+
+**Status:** ✅ COMPLETE
+
+#### 3.1.1. Files
+
+- `src/lib/types/config.ts` (NEW)
+- `src/lib/config/researchDomains.ts` (MODIFY)
+
+#### 3.1.2. Tasks
+
+- [x] Create domain list type definitions
+- [x] Restructure AI_RESEARCH_DOMAINS to new format
+  - Categories organized: AI Platforms, Documentation, Developer Resources, News & Analysis, Blogs & Newsletters, Communities, Academic & Research
+- [x] Export flattened array for backward compatibility
+- [x] Add helper to extract all URLs from structured format
+- [x] Update agentClientFactory.ts to use flat array
+
+#### 3.1.3. Notes
+
+- Keep backward compatibility during transition
+- Ensure existing API calls still work
+
+---
+
+### 3.2. Phase 2: Schema & Validation
+
+**Status:** Not Started  
+
+#### 3.2.1. Files
+
+- `src/lib/schemas/apiValidator.ts` (MODIFY)
+
+#### 3.2.2. Tasks
+
+- [ ] Create `DomainConfigSchema` Zod schema
+- [ ] Add `domainConfig` to `StructuredInputSchema`
+- [ ] Add `domainConfig` to `GenerateRequestSchema`
+- [ ] Create Themis hierarchical config schemas
+- [ ] Add validation helpers for domain format
+
+#### 3.2.3. Notes
+
+- Validate domain format (allow wildcards with *)
+- Validate subpaths
+
+#### 3.2.4. Schema Structure
+
+```typescript
+DomainConfigSchema = {
+  useList: string | null,  // list ID or null for no restrictions
+  customDomains: string[]  // user-added domains
+}
+```
+
+
+---
+
+### 3.3. Phase 3: Metis UI Components
+**Status:** Not Started  
+
+#### 3.3.1. Files
+
+- `src/lib/components/metis/DomainSelector.svelte` (NEW)
+- `src/lib/components/metis/StructuredInputForm.svelte` (MODIFY)
+
+#### 3.3.2. Tasks
+
+- [ ] Create DomainSelector component
+  - [ ] Dropdown: "AI Engineering" / "No Restrictions"
+  - [ ] Custom domain input field
+  - [ ] "Add Domain" button with validation
+  - [ ] Custom domains list with remove buttons
+  - [ ] Show/hide based on parent enableResearch
+- [ ] Integrate DomainSelector into StructuredInputForm
+- [ ] Add to "Advanced Research Options" section
+- [ ] Update form styling
+
+#### 3.3.3. Notes
+
+- Only visible when enableResearch is true
+- Default to "AI Engineering" selection
+
+#### 3.3.4. UI Mockup
+
+```
+[✓] Enable Deep Research
+    ├─ Domain List: [AI Engineering ▼]
+    └─ Custom Domains:
+       [example.com           ] [+ Add]
+       • my-custom-site.org    [×]
+```
+
+---
+
+### 3.4. Phase 4: Metis State & API
+
+**Status:** Not Started
+
+#### 3.4.1. Files
+
+- `src/lib/stores/metisStores.ts` (MODIFY)
+- `src/routes/api/metis/update/+server.ts` (MODIFY)
+
+#### 3.4.2. Tasks
+
+- [ ] Add `domainConfig` to structuredInput store
+- [ ] Set default values (AI Engineering list)
+- [ ] Ensure localStorage persistence
+- [ ] Update API to extract domainConfig
+- [ ] Resolve domains based on config
+- [ ] Pass to withWebSearch()
+- [ ] Handle validation errors
+
+#### 3.4.3. Notes
+
+- Empty array = no restrictions in web_search tool
+- Validate custom domains before using
+
+#### 3.4.4. Domain Resolution Logic
+
+##### 3.4.4.1. Version 1: `switch()` Statement
+
+This is preferred if it works with the rest of the workflow
+
+```typescript
+switch(domainConfig.useList) {
+  case null:
+    domains = [];
+    break;
+  case "ai-engineering":
+    domains = [...AI_RESEARCH_DOMAINS_FLAT, ...domainConfig.customDomains];
+  default:
+    domains = domainConfig.customDomains;
+}
+```
+
+##### 3.4.4.2. Version 2: `if()`/`else if()`/`else()` Statement
+
+```typescript
+if (domainConfig.useList === null) {
+  domains = []; // No restrictions
+} else if (domainConfig.useList === 'ai-engineering') {
+  domains = [...AI_RESEARCH_DOMAINS_FLAT, ...domainConfig.customDomains];
+} else {
+  domains = domainConfig.customDomains;
+}
+```
+
+---
+
+### 3.5. Phase 5: Themis Hierarchical Configuration
+**Status:** Not Started  
+
+#### 3.5.1. Files
+
+- `src/lib/types/themis.ts` (MODIFY)
+- `src/lib/components/themis/CourseConfigForm.svelte` (MODIFY)
+- `src/lib/components/themis/ArcStructurePlanner.svelte` (MODIFY)
+- `src/lib/components/themis/ModuleWithinArcPlanner.svelte` (MODIFY)
+- `src/routes/api/themis/generate/+server.ts` (MODIFY)
+- `src/routes/api/themis/modules/generate/+server.ts` (MODIFY)
+
+#### 3.5.2. Tasks
+
+- [ ] Define ResearchConfigLevel type
+- [ ] Add research config to Course/Arc/Module types
+- [ ] CourseConfigForm: Add course-level research config
+- [ ] ArcStructurePlanner: Add arc-level config (conditional)
+- [ ] ModuleWithinArcPlanner: Add module-level toggles (conditional)
+- [ ] Update Themis stores to persist configs
+- [ ] Create config resolution utility
+- [ ] Update structure generation API
+- [ ] Update module generation API
+
+#### 3.5.3. Notes
+
+- Configs cascade down unless overridden
+- UI only shows relevant level based on parent choice
+
+#### 3.5.4. Hierarchy Resolution
+
+```
+Module Config → Arc Config → Course Config → Default
+```
+
+---
+
+### 3.6. Phase 6: Utility Functions
+
+**Status:** Not Started
+
+#### 3.6.1. Files
+
+- `src/lib/utils/research/domainResolver.ts` (NEW)
+- `src/lib/utils/research/configResolver.ts` (NEW)
+
+#### 3.6.2. Tasks
+
+- [ ] Create domainResolver utility
+  - [ ] `resolveDomainList(configId, customDomains)`
+  - [ ] `validateDomain(domain)`
+  - [ ] `flattenDomainList(listId)`
+- [ ] Create configResolver utility (Themis)
+  - [ ] `resolveModuleResearchConfig(module, arc, course)`
+  - [ ] Returns: `{ enabled: boolean, domains: string[] }`
+
+#### 3.6.3. Notes
+
+- These utilities centralize domain logic
+- Reusable across Metis and Themis
+
+---
+
+### 3.7. Phase 7: Agent Factory Updates
+
+**Status:** Not Started
+
+#### 3.7.1. Files
+
+- `src/lib/factories/agents/agentClientFactory.ts` (MODIFY)
+
+#### 3.7.2. Tasks
+
+- [ ] Update withWebSearch JSDoc
+- [ ] Document empty array behavior (no restrictions)
+- [ ] Add usage examples for different modes
+- [ ] Test with various domain configurations
+
+#### 3.7.3. Notes
+
+- Existing functionality should continue working
+- Empty array = remove allowed_domains parameter
+
+---
+
+### 3.8. Phase 8: Documentation
+
+**Status:** Not Started  
+
+#### 3.8.1. Files
+
+- `README.md` (MODIFY)
+- `docs/architecture-decisions.md` or new doc (MODIFY/NEW)
+
+#### 3.8.2. Tasks
+
+- [ ] Document domain configuration in README
+- [ ] Explain predefined lists vs custom
+- [ ] Show domain format examples
+- [ ] Document Themis hierarchical config
+- [ ] Add architecture decision record
+
+#### 3.8.3. Notes
+
+- Update user-facing docs
+- Document design decisions for future reference
+
+---
+
+## 4. Testing Checklist
+
+### 4.1. Metis Testing
+
+- [ ] Select "AI Engineering" → correct domains passed to API
+- [ ] Select "No Restrictions" → empty array passed to API
+- [ ] Add custom domain → appears in request
+- [ ] Add malformed domain → validation error shown
+- [ ] Add domain with wildcard → accepted and works
+- [ ] Add domain with subpath → accepted and works
+- [ ] Toggle research off → domain selector hidden
+- [ ] localStorage persistence → config restored on reload
+
+### 4.2. Themis Testing
+
+- [ ] Course: "Enable all" → all modules inherit
+- [ ] Course: "Per arc" → arc selectors appear
+- [ ] Course: "Disable all" → no research on any module
+- [ ] Arc: "Enable all" → modules inherit
+- [ ] Arc: "Per module" → module toggles appear
+- [ ] Arc: "Disable" → no research for arc modules
+- [ ] Module: Toggle on/off → config respected
+- [ ] Hierarchy resolution → correct domains resolved
+- [ ] Module generation → uses correct config
+
+### 4.3. Integration Testing
+
+- [ ] Generate module with AI Engineering list → research uses those domains
+- [ ] Generate module with no restrictions → research accesses any domain
+- [ ] Generate module with custom domains → custom domains included
+- [ ] SSE progress shows research status
+- [ ] Error handling for network/API issues
+
+---
+
+## 5. Migration Notes
+
+### 5.1. Backward Compatibility
+
+- Export flat array from restructured config
+- Existing code using AI_RESEARCH_DOMAINS continues working
+- Gradual migration to new structure
+
+### 5.2. Breaking Changes
+
+- None expected (additive changes only)
+
+---
+
+## 6. Implementation Log
+
+### 6.1. Session 1: Planning (2025-01-XX)
+
+- Created implementation plan
+- Clarified requirements with user
+- Structured phased approach
+- **Next:** Begin Phase 1
+
+
+### Session 2: Phase 1 - Type System & Configuration (2025-01-XX)
+**Status:** ✅ COMPLETE
+
+**Files Created:**
+- `src/lib/types/config.ts` - Complete type definitions for domain configuration
+  - `Domain` interface: name + url
+  - `DomainListCategory` interface: category name + sources array
+  - `DomainList` interface: id, name, type, categories
+  - `DomainConfig` interface: useList (string | null) + customDomains array
+  - `ResearchConfig` and `ResearchConfigLevel` for Themis hierarchy
+  - All types fully documented with JSDoc
+
+**Files Modified:**
+- `src/lib/config/researchDomains.ts` - Restructured domain list
+  - Converted from flat array to structured DomainList object
+  - 7 categories: AI Platforms (7), Documentation (4), Developer Resources (4), News & Analysis (3), Blogs & Newsletters (6), Communities (2), Academic & Research (3)
+  - Total: 29 domain sources organized by category
+  - Added `AI_RESEARCH_DOMAINS_FLAT` constant for backward compatibility
+  - Added helper functions:
+    - `extractDomainUrls(domainList)` - Flattens structured list to URL array
+    - `getDomainListById(id)` - Retrieves list by ID
+    - `getAllDomainLists()` - Returns array of all available lists
+  
+- `src/lib/factories/agents/agentClientFactory.ts` - Updated imports
+  - Changed from `AI_RESEARCH_DOMAINS` to `AI_RESEARCH_DOMAINS_FLAT`
+  - Maintains existing functionality with no breaking changes
+  - All existing code continues to work
+
+**Testing:**
+- ✅ TypeScript compilation successful (no new errors)
+- ✅ Backward compatibility maintained
+- ✅ All helper functions properly typed
+
+**Next:** Phase 2 - Schema & Validation
+</parameter>
+
+---
+
+## 7. Design Decisions
+
+### 7.1. Decision 1: Whole List Selection vs Individual Domains
+
+**Decision:** Use dropdown for predefined lists (not multi-select individual domains)  
+**Rationale:** Simpler UX, matches user's preference for list-level management  
+**Date:** 2025-01-XX
+
+### 7.2. Decision 2: Hierarchical Config in Themis
+
+**Decision:** Three-level hierarchy (Course → Arc → Module) with explicit override at each level  
+**Rationale:** Maximum flexibility while maintaining clear inheritance pattern  
+**Date:** 2025-01-XX
+
+### 7.3. Decision 3: Empty Array = No Restrictions
+
+**Decision:** Pass empty array to withWebSearch() for unrestricted research  
+**Rationale:** Matches Anthropic API behavior, simpler than null handling  
+**Date:** 2025-01-XX
+
+---
+
+## 8. Questions & Blockers
+
+### 8.1. Resolved
+
+- ✅ Domain selection granularity (whole list vs individual)
+- ✅ Ignore whitelist behavior (empty array = all domains)
+- ✅ Custom domain validation (format, wildcards, subpaths)
+- ✅ UI placement and visibility rules
+- ✅ Default behavior for Metis and Themis
+
+### 8.2. Outstanding
+
+- None currently
+
+---
+
+## 9. Future Enhancements (Beyond Scope)
+
+- Multiple predefined lists (e.g., "Web Dev", "Data Science")
+- Domain blacklists (task 2.6)
+- Combining whitelist + blacklist (task 1.2.4)
+- Import/export custom domain lists
+- Domain usage analytics
+- Suggest domains based on module topic
+
+---
+
+**End of Planning Document**
