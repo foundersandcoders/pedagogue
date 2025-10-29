@@ -2,6 +2,8 @@
  * Type definitions for course generation
  */
 
+import type { ResearchConfig } from '$lib/schemas/apiValidator';
+
 /**
  * Title input type - allows AI to decide, use guidance, or use exact value
  */
@@ -40,6 +42,7 @@ export interface Arc {
 	arcThemeNarrative?: string; // AI-generated narrative explaining the arc's thematic focus
 	arcProgressionNarrative?: string; // AI-generated explanation of how modules within this arc connect
 	modules: ModuleSlot[];
+	researchConfig?: ResearchConfig; // Research configuration for this arc
 }
 
 export interface CourseData {
@@ -65,6 +68,7 @@ export interface CourseData {
 	arcs: Arc[]; // Thematic organizational layer containing modules
 	courseNarrative?: string; // AI-generated overall course narrative
 	progressionNarrative?: string; // AI-generated explanation of how arcs connect (thematically independent but temporally sequenced)
+	researchConfig?: ResearchConfig; // Research configuration for entire course
 	createdAt: Date;
 	updatedAt: Date;
 }
@@ -105,6 +109,7 @@ export interface ModuleSlot {
 		researchData?: any;
 	};
 	errorMessage?: string;
+	researchConfig?: ResearchConfig; // Research configuration for this module
 }
 
 export interface CourseStructureGenerationRequest {
@@ -131,10 +136,13 @@ export interface CourseStructureGenerationRequest {
 			title: string;
 			description: string;
 			durationWeeks: number;
+			researchConfig?: ResearchConfig;
 		}>;
+		researchConfig?: ResearchConfig;
 	}>;
 	enableResearch?: boolean;
 	supportingDocuments?: string[];
+	researchConfig?: ResearchConfig; // Course-level research configuration
 }
 
 export interface CourseStructureGenerationResponse {
@@ -155,7 +163,9 @@ export interface CourseStructureGenerationResponse {
 			suggestedDurationWeeks: number;
 			learningObjectives: string[];
 			keyTopics: string[];
+			researchConfig?: ResearchConfig;
 		}>;
+		researchConfig?: ResearchConfig;
 	}>;
 	progressionNarrative?: string; // How arcs connect across the course
 	errors?: string[];

@@ -53,31 +53,6 @@
         <div class="card-action">Manage Content →</div>
       </a>
 
-      <a href="/themis/generate" class="workflow-card themis-card">
-        <img src="/themis/icon.png" alt="Themis" class="card-icon" />
-        <h2>Themis</h2>
-        <p>
-          Create a complete multi-week course with interconnected modules and
-          learning progressions.
-        </p>
-        <div class="card-features">
-          <span>Multiple modules</span>
-          <span>Course structure</span>
-          <span>Learning progression</span>
-        </div>
-        <div class="card-action">Build Course →</div>
-      </a>
-
-      <a href="/tethys/wip" class="workflow-card tethys-card">
-        <img src="/tethys/icon.png" alt="Tethys" class="card-icon" />
-        <h2>Tethys</h2>
-        <p>Create a linked set of modules.</p>
-        <div class="card-features">
-          <pre>Coming Soon</pre>
-        </div>
-        <div class="card-action">Design Arc →</div>
-      </a>
-
       <a href="/metis/update" class="workflow-card metis-card">
         <img src="/metis/icon.png" alt="Metis" class="card-icon" />
         <h2>Metis</h2>
@@ -91,6 +66,31 @@
           <span>Research topics</span>
         </div>
         <div class="card-action">Generate Module →</div>
+      </a>
+
+      <a href="/tethys/wip" class="workflow-card tethys-card">
+        <img src="/tethys/icon.png" alt="Tethys" class="card-icon" />
+        <h2>Tethys</h2>
+        <p>Create a linked set of modules.</p>
+        <div class="card-features">
+          <pre>Coming Soon</pre>
+        </div>
+        <div class="card-action">Design Arc →</div>
+      </a>
+
+      <a href="/themis/generate" class="workflow-card themis-card">
+        <img src="/themis/icon.png" alt="Themis" class="card-icon" />
+        <h2>Themis</h2>
+        <p>
+          Create a complete multi-week course with interconnected modules and
+          learning progressions.
+        </p>
+        <div class="card-features">
+          <span>Multiple modules</span>
+          <span>Course structure</span>
+          <span>Learning progression</span>
+        </div>
+        <div class="card-action">Build Course →</div>
       </a>
     </div>
 

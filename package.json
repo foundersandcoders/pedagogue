@@ -23,6 +23,7 @@
     "@langchain/anthropic": "^1.0.0",
     "@xmldom/xmldom": "^0.8.11",
     "langchain": "^1.0.1",
+    "svelte-kit": "^1.2.0",
     "zod": "^3.25.76"
   },
   "type": "module"

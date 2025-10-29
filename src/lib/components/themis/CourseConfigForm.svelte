@@ -1,6 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import type { CourseData } from "$lib/types/themis";
+  import ResearchConfigSelector from "./ResearchConfigSelector.svelte";
 
   export let formData: Partial<CourseData> = {
     title: "",
@@ -21,6 +22,13 @@
       },
     },
     structure: "peer-led",
+    researchConfig: {
+      level: "all",
+      domainConfig: {
+        useList: "ai-engineering",
+        customDomains: [],
+      },
+    },
   };
 
   // Ensure all nested objects exist - run immediately on prop change
@@ -138,6 +146,11 @@
   }
 
   function handleChange() {
+    dispatch("change", formData);
+  }
+
+  function handleResearchConfigChange(event: CustomEvent) {
+    formData.researchConfig = event.detail;
     dispatch("change", formData);
   }
 </script>
@@ -387,6 +400,23 @@
         </div>
       </section>
 
+      <!-- Research Configuration -->
+      <section class="form-section">
+        <h3>Research Configuration</h3>
+        <p class="section-description">
+          Configure how AI research is used during module generation. Research
+          helps find current best practices and technologies.
+        </p>
+        <ResearchConfigSelector
+          researchConfig={formData.researchConfig || {
+            level: "all",
+            domainConfig: { useList: "ai-engineering", customDomains: [] },
+          }}
+          levelType="course"
+          on:change={handleResearchConfigChange}
+        />
+      </section>
+
       <!-- Submit -->
       <div class="form-actions">
         <button type="submit" class="submit-btn">
@@ -498,7 +528,8 @@
   textarea:focus {
     outline: none;
     border-color: var(--palette-primary);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--palette-primary) 10%, transparent);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--palette-primary) 10%, transparent);
   }
 
   input.error,
@@ -563,7 +594,8 @@
   .submit-btn:hover {
     background: var(--palette-secondary);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--palette-primary) 30%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--palette-primary) 30%, transparent);
   }
 
   @media (max-width: 768px) {

@@ -6,10 +6,47 @@
  */
 
 import { z } from 'zod';
+import { validateDomain } from '$lib/utils/validation/domainValidator';
 
 // ==================================================================
 // Metis API
 // ==================================================================
+
+/**
+ * Domain configuration for research
+ */
+export const DomainConfigSchema = z.object({
+	useList: z.string().nullable(), // List ID (e.g., 'ai-engineering') or null for no restrictions
+	customDomains: z.array(z.string()).default([])
+}).refine(
+	(data) => {
+		// Validate custom domains if present
+		if (data.customDomains.length > 0) {
+			return data.customDomains.every(domain => validateDomain(domain).valid);
+		}
+		return true;
+	},
+	{
+		message: 'One or more custom domains are invalid'
+	}
+);
+
+export type DomainConfig = z.infer<typeof DomainConfigSchema>;
+
+/**
+ * Research configuration level for hierarchical config in Themis
+ */
+export const ResearchConfigLevelSchema = z.enum(['all', 'selective', 'none']);
+
+/**
+ * Research configuration for course/arc/module
+ */
+export const ResearchConfigSchema = z.object({
+	level: ResearchConfigLevelSchema,
+	domainConfig: DomainConfigSchema.optional()
+});
+
+export type ResearchConfig = z.infer<typeof ResearchConfigSchema>;
 
 /**
  * Structured input data for module generation
@@ -33,7 +70,8 @@ export const StructuredInputSchema = z.object({
 	}),
 	model: z.object({
 		enableResearch: z.boolean(),
-		useExtendedThinking: z.boolean()
+		useExtendedThinking: z.boolean(),
+		domainConfig: DomainConfigSchema.optional()
 	})
 });
 
@@ -48,7 +86,8 @@ export const GenerateRequestSchema = z.object({
 	researchData: z.any(),
 	structuredInput: StructuredInputSchema.optional(),
 	enableResearch: z.boolean().optional().default(false),
-	useExtendedThinking: z.boolean().optional().default(false)
+	useExtendedThinking: z.boolean().optional().default(false),
+	domainConfig: DomainConfigSchema.optional()
 });
 
 export type GenerateRequest = z.infer<typeof GenerateRequestSchema>;
@@ -207,7 +246,8 @@ export type ModuleSlotData = z.infer<typeof ModuleSlotSchema>;
 export const ModuleGenerationRequestSchema = z.object({
 	moduleSlot: ModuleSlotSchema,
 	courseContext: CourseContextSchema,
-	enableResearch: z.boolean().optional().default(true)
+	enableResearch: z.boolean().optional().default(true),
+	domainConfig: DomainConfigSchema.optional()
 });
 
 export type ModuleGenerationRequest = z.infer<typeof ModuleGenerationRequestSchema>;

@@ -9,7 +9,7 @@ Female and ambiguously gendered deities from **well‑documented polytheistic pa
 ## 2. Assigned Names
 
 | Route | Main | Why | Titan | Olympian | Italic |
-| ----- | ---- | --- | ------ | --------- | ------ |
+| ----- | ---- | --- | ----- | -------- | ------ |
 | x     |      |     | | | |
 
 ### 2a. Modules & Implementations
@@ -29,7 +29,8 @@ Female and ambiguously gendered deities from **well‑documented polytheistic pa
 #### 2a2. Tools
 
 | Route            | Main          | Why | Titan  | Olympian | Italic |
-| ---------------- | ------------- | --- | ------ | --------- | ------ |
+| ---------------- | ------------- | --- | ------ | -------- | ------ |
+| Documentation    | **Eos**       |     |        | | |
 | Atom Definer     | **Thalassa**  |     |        | | |
 | Content Exporter | **Theia**     |     | Phoebe | | |
 | Save/Load        | **Mnemosyne** |     |        | | |
@@ -42,19 +43,20 @@ Female and ambiguously gendered deities from **well‑documented polytheistic pa
 
 ### 2c. Abstractions
 
-|   | **Concept**           | **Titan**     | **Olympian** | **Italic** |
+|   | Concept               | Titan         | Olympian      | Italic     |
 | - | --------------------- | ------------- | ------------- | ---------- |
 | • |                       |               | | |
 | x | Balance               | ~_Themis_~    | | |
-|   | Beginnings            | **Eos**       | | |
-|   | Cadence               | **Eos**       | | |
+| x | Beginnings            | ~_Eos_~       | | |
+| x | Cadence               | ~_Eos_~       | | |
 |   | Clarity               | **Phoebe**    | | |
 |   | Constraint            | **Ananke**    | | |
-|   | Cultural Transmission | ~_Mnemosyne_~ | | |
+| x | Cultural Transmission | ~_Mnemosyne_~ | | |
 |   | Cycles                | **Selene**    | | |
 |   | Emergence             | **Hemera**    | | |
 | x | Flow                  | ~_Tethys_~    | | |
 |   | Foundations           | **Gaia**      | | |
+|   | Generative Waters     | ~_Thalassa_~  | | |
 | • |                       |               | | |
 | x | Illumination          | ~_Theia_~     | | |
 |   | Inevitability         | **Nyx**       | | |
@@ -67,14 +69,15 @@ Female and ambiguously gendered deities from **well‑documented polytheistic pa
 | x | Problem Solving       | ~_Metis_~     | | |
 | x | Progenesis            | ~_Rhea_~      | | |
 | x | Provisioning          | ~_Tethys_~    | | |
-|   | Recall                | ~_Mnemosyne_~ | | |
-|   | Records               | ~_Mnemosyne_~ | | |
+| x | Recall                | ~_Mnemosyne_~ | | |
+| x | Records               | ~_Mnemosyne_~ | | |
 |   | Reflection            | **Selene**    | | |
 |   | Renewal               | **Hemera**    | | |
 |   | Rhythm                | **Hemera**    | | |
 |   | Stability             | **Gaia**      | | |
 | x | Strategy              | ~_Metis_~     | | |
 | x | Succession            | ~_Rhea_~      | | |
+| x | Vastness              | ~_Thalassa_~  | | |
 | • |                       |               | | |
 
 ---

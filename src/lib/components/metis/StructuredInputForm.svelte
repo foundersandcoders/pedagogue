@@ -2,6 +2,7 @@
   import { createEventDispatcher } from "svelte";
   import { techList } from "$lib/config/techStack";
   import type { StructuredInputData } from "$lib/stores/metisStores";
+  import DomainSelector from "./DomainSelector.svelte";
 
   export let formData: StructuredInputData = {
     logistics: {
@@ -22,6 +23,10 @@
     model: {
       enableResearch: true,
       useExtendedThinking: true,
+      domainConfig: {
+        useList: "ai-engineering",
+        customDomains: [],
+      },
     },
   };
 
@@ -112,6 +117,11 @@
   }
 
   function handleChange() {
+    dispatch("change", formData);
+  }
+
+  function handleDomainConfigChange(event: CustomEvent) {
+    formData.model.domainConfig = event.detail;
     dispatch("change", formData);
   }
 </script>
@@ -322,6 +332,16 @@
           </span>
         </label>
       </div>
+
+      {#if formData.model.enableResearch}
+        <div class="advanced-research-options">
+          <h4>Research Configuration</h4>
+          <DomainSelector
+            domainConfig={formData.model.domainConfig}
+            on:change={handleDomainConfigChange}
+          />
+        </div>
+      {/if}
     </div>
     <div id="submit-field" class="form-actions">
       <button type="submit" class="submit-btn"> Continue to Review → </button>
@@ -562,6 +582,19 @@
     font-weight: 400;
     color: var(--palette-foreground-alt);
     font-size: 0.9rem;
+  }
+
+  .advanced-research-options {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--palette-line);
+  }
+
+  .advanced-research-options h4 {
+    margin: 0 0 1rem 0;
+    color: var(--palette-foreground);
+    font-size: 1rem;
+    font-weight: 600;
   }
 
   .form-actions {
