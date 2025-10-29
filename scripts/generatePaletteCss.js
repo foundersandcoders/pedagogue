@@ -93,13 +93,22 @@ function generateWorkflowVars(name, palette) {
   ${prefix}-line-alt: ${palette.line.alternate};`;
 }
 
-// Load palettes
+// Load palettes (light and dark variants)
 const palettesDir = join(__dirname, '../src/lib/config/palettes');
+
+// Light palettes
 const rheaPalette = parsePaletteFile(join(palettesDir, 'rheaPalette.ts'));
 const metisPalette = parsePaletteFile(join(palettesDir, 'metisPalette.ts'));
 const themisPalette = parsePaletteFile(join(palettesDir, 'themisPalette.ts'));
 const tethysPalette = parsePaletteFile(join(palettesDir, 'tethysPalette.ts'));
 const theiaPalette = parsePaletteFile(join(palettesDir, 'theiaPalette.ts'));
+
+// Dark palettes
+const rheaPaletteDark = parsePaletteFile(join(palettesDir, 'rheaPalette.dark.ts'));
+const metisPaletteDark = parsePaletteFile(join(palettesDir, 'metisPalette.dark.ts'));
+const themisPaletteDark = parsePaletteFile(join(palettesDir, 'themisPalette.dark.ts'));
+const tethysPaletteDark = parsePaletteFile(join(palettesDir, 'tethysPalette.dark.ts'));
+const theiaPaletteDark = parsePaletteFile(join(palettesDir, 'theiaPalette.dark.ts'));
 
 /**
  * Generate complete CSS file
@@ -132,8 +141,9 @@ ${generateWorkflowVars('tethys', tethysPalette)}
 ${generateWorkflowVars('theia', theiaPalette)}
 }
 
-/* Dynamic palette variables (set by data-palette attribute) */
-[data-palette="rhea"] {
+/* Dynamic palette variables - Light theme (default) */
+[data-palette="rhea"],
+[data-palette="rhea"][data-theme="light"] {
   --palette-primary: ${rheaPalette.dark};
   --palette-secondary: ${rheaPalette.background.primary.main};
   --palette-bg-subtle: ${rheaPalette.background.primary.subtle};
@@ -146,7 +156,8 @@ ${generateWorkflowVars('theia', theiaPalette)}
   --palette-line: ${rheaPalette.line.primary};
 }
 
-[data-palette="metis"] {
+[data-palette="metis"],
+[data-palette="metis"][data-theme="light"] {
   --palette-primary: ${metisPalette.dark};
   --palette-secondary: ${metisPalette.background.primary.main};
   --palette-bg-subtle: ${metisPalette.background.primary.subtle};
@@ -159,7 +170,8 @@ ${generateWorkflowVars('theia', theiaPalette)}
   --palette-line: ${metisPalette.line.primary};
 }
 
-[data-palette="themis"] {
+[data-palette="themis"],
+[data-palette="themis"][data-theme="light"] {
   --palette-primary: ${themisPalette.dark};
   --palette-secondary: ${themisPalette.background.primary.main};
   --palette-bg-subtle: ${themisPalette.background.primary.subtle};
@@ -172,7 +184,8 @@ ${generateWorkflowVars('theia', theiaPalette)}
   --palette-line: ${themisPalette.line.primary};
 }
 
-[data-palette="tethys"] {
+[data-palette="tethys"],
+[data-palette="tethys"][data-theme="light"] {
   --palette-primary: ${tethysPalette.dark};
   --palette-secondary: ${tethysPalette.background.primary.main};
   --palette-bg-subtle: ${tethysPalette.background.primary.subtle};
@@ -185,7 +198,8 @@ ${generateWorkflowVars('theia', theiaPalette)}
   --palette-line: ${tethysPalette.line.primary};
 }
 
-[data-palette="theia"] {
+[data-palette="theia"],
+[data-palette="theia"][data-theme="light"] {
   --palette-primary: ${theiaPalette.dark};
   --palette-secondary: ${theiaPalette.background.primary.main};
   --palette-bg-subtle: ${theiaPalette.background.primary.subtle};
@@ -196,6 +210,72 @@ ${generateWorkflowVars('theia', theiaPalette)}
   --palette-foreground-alt: ${theiaPalette.foreground.alternate.lite};
   --palette-accent: ${theiaPalette.foreground.alternate.midi};
   --palette-line: ${theiaPalette.line.primary};
+}
+
+/* Dynamic palette variables - Dark theme */
+[data-palette="rhea"][data-theme="dark"] {
+  --palette-primary: ${rheaPaletteDark.dark};
+  --palette-secondary: ${rheaPaletteDark.background.primary.main};
+  --palette-bg-subtle: ${rheaPaletteDark.background.primary.subtle};
+  --palette-bg-subtle-alt: ${rheaPaletteDark.background.alternate.subtle};
+  --palette-bg-nav: ${rheaPaletteDark.background.primary.nav};
+  --palette-bg-nav-alt: ${rheaPaletteDark.background.alternate.nav};
+  --palette-foreground: ${rheaPaletteDark.foreground.primary.dark};
+  --palette-foreground-alt: ${rheaPaletteDark.foreground.primary.lite};
+  --palette-accent: ${rheaPaletteDark.foreground.primary.midi};
+  --palette-line: ${rheaPaletteDark.line.primary};
+}
+
+[data-palette="metis"][data-theme="dark"] {
+  --palette-primary: ${metisPaletteDark.dark};
+  --palette-secondary: ${metisPaletteDark.background.primary.main};
+  --palette-bg-subtle: ${metisPaletteDark.background.primary.subtle};
+  --palette-bg-subtle-alt: ${metisPaletteDark.background.alternate.subtle};
+  --palette-bg-nav: ${metisPaletteDark.background.primary.nav};
+  --palette-bg-nav-alt: ${metisPaletteDark.background.alternate.nav};
+  --palette-foreground: ${metisPaletteDark.foreground.alternate.dark};
+  --palette-foreground-alt: ${metisPaletteDark.foreground.alternate.lite};
+  --palette-accent: ${metisPaletteDark.foreground.alternate.midi};
+  --palette-line: ${metisPaletteDark.line.primary};
+}
+
+[data-palette="themis"][data-theme="dark"] {
+  --palette-primary: ${themisPaletteDark.dark};
+  --palette-secondary: ${themisPaletteDark.background.primary.main};
+  --palette-bg-subtle: ${themisPaletteDark.background.primary.subtle};
+  --palette-bg-subtle-alt: ${themisPaletteDark.background.alternate.subtle};
+  --palette-bg-nav: ${themisPaletteDark.background.primary.nav};
+  --palette-bg-nav-alt: ${themisPaletteDark.background.alternate.nav};
+  --palette-foreground: ${themisPaletteDark.foreground.alternate.dark};
+  --palette-foreground-alt: ${themisPaletteDark.foreground.alternate.lite};
+  --palette-accent: ${themisPaletteDark.foreground.alternate.midi};
+  --palette-line: ${themisPaletteDark.line.primary};
+}
+
+[data-palette="tethys"][data-theme="dark"] {
+  --palette-primary: ${tethysPaletteDark.dark};
+  --palette-secondary: ${tethysPaletteDark.background.primary.main};
+  --palette-bg-subtle: ${tethysPaletteDark.background.primary.subtle};
+  --palette-bg-subtle-alt: ${tethysPaletteDark.background.alternate.subtle};
+  --palette-bg-nav: ${tethysPaletteDark.background.primary.nav};
+  --palette-bg-nav-alt: ${tethysPaletteDark.background.alternate.nav};
+  --palette-foreground: ${tethysPaletteDark.foreground.alternate.dark};
+  --palette-foreground-alt: ${tethysPaletteDark.foreground.alternate.lite};
+  --palette-accent: ${tethysPaletteDark.foreground.alternate.midi};
+  --palette-line: ${tethysPaletteDark.line.primary};
+}
+
+[data-palette="theia"][data-theme="dark"] {
+  --palette-primary: ${theiaPaletteDark.dark};
+  --palette-secondary: ${theiaPaletteDark.background.primary.main};
+  --palette-bg-subtle: ${theiaPaletteDark.background.primary.subtle};
+  --palette-bg-subtle-alt: ${theiaPaletteDark.background.alternate.subtle};
+  --palette-bg-nav: ${theiaPaletteDark.background.primary.nav};
+  --palette-bg-nav-alt: ${theiaPaletteDark.background.alternate.nav};
+  --palette-foreground: ${theiaPaletteDark.foreground.alternate.dark};
+  --palette-foreground-alt: ${theiaPaletteDark.foreground.alternate.lite};
+  --palette-accent: ${theiaPaletteDark.foreground.alternate.midi};
+  --palette-line: ${theiaPaletteDark.line.primary};
 }
 `;
 }

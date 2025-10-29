@@ -13,6 +13,7 @@ import type { PaletteStructure } from "./paletteTypes";
  * CSS variable mapping for a palette
  */
 export interface CSSVariableMap {
+  [key: string]: string | undefined;
   "--palette-primary": string;
   "--palette-secondary"?: string;
   "--palette-bg-subtle": string;

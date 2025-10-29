@@ -2,7 +2,14 @@
 
 ## Overview
 
-The Rhea palette system provides workflow-specific colour schemes that automatically apply based on the current route. Each workflow (Metis, Themis, Tethys, Theia, and Rhea) has its own distinct palette.
+The Rhea palette system provides workflow-specific colour schemes that automatically apply based on the current route. Each workflow (Metis, Themis, Tethys, Theia, and Rhea) has its own distinct palette with both **light and dark theme variants**.
+
+**Features:**
+- ✅ Workflow-based colour schemes
+- ✅ Light and dark theme support
+- ✅ System preference detection
+- ✅ Persisted user preference
+- ✅ Smooth theme transitions
 
 ## Architecture
 
@@ -11,24 +18,26 @@ The Rhea palette system provides workflow-specific colour schemes that automatic
 **Location:** `src/lib/config/palettes/`
 
 All palette data is defined in TypeScript files in this directory:
-- `rheaPalette.ts` - Main application palette
-- `metisPalette.ts` - Module generator palette
-- `themisPalette.ts` - Course builder palette
-- `tethysPalette.ts` - Arc designer palette
-- `theiaPalette.ts` - Content manager palette
+- `rheaPalette.ts` / `rheaPalette.dark.ts` - Main application palette (light/dark)
+- `metisPalette.ts` / `metisPalette.dark.ts` - Module generator palette (light/dark)
+- `themisPalette.ts` / `themisPalette.dark.ts` - Course builder palette (light/dark)
+- `tethysPalette.ts` / `tethysPalette.dark.ts` - Arc designer palette (light/dark)
+- `theiaPalette.ts` / `theiaPalette.dark.ts` - Content manager palette (light/dark)
 
 ### Data Flow
 
 ```
-1. Palette Definitions (src/lib/config/palettes/*.ts)
+1. Palette Definitions (src/lib/config/palettes/*.ts + *.dark.ts)
    ↓
-2. Palette Loader (src/lib/utils/palette/paletteLoader.ts)
+2. Theme Store (src/lib/stores/themeStore.ts) - User preference & system detection
    ↓
-3. Palette Transformer (src/lib/utils/palette/paletteTransformer.ts)
+3. Palette Loader (src/lib/utils/palette/paletteLoader.ts) - Select light/dark variant
    ↓
-4. CSS Variables (applied to DOM via data-palette attribute)
+4. Palette Transformer (src/lib/utils/palette/paletteTransformer.ts)
    ↓
-5. Component Styles (reference CSS variables like --palette-primary)
+5. CSS Variables (applied via data-palette + data-theme attributes)
+   ↓
+6. Component Styles (reference CSS variables like --palette-primary)
 ```
 
 ## Palette Structure
@@ -104,68 +113,94 @@ The transformer converts the structured palette into flat CSS variables:
 | `colours.foreground.primary.midi` | `--palette-accent` | Mid-tone accent |
 | `colours.line.primary.colour` | `--palette-line` | Border/divider colour |
 
+**Note:** These mappings apply to both light and dark theme variants. The system automatically selects the appropriate palette based on the user's theme preference.
+
 ## How to Add or Modify a Palette
 
 ### Modifying an Existing Palette
 
-1. **Edit the palette file** in `src/lib/config/palettes/`
+1. **Edit the palette file(s)** in `src/lib/config/palettes/`
    ```typescript
-   // Example: Change Metis foreground colour
-   // File: src/lib/config/palettes/metisPalette.ts
-
+   // Example: Change Metis foreground colour in BOTH light and dark variants
+   
+   // File: src/lib/config/palettes/metisPalette.ts (LIGHT)
    export const metisPalette: MetisPalette = {
-     // ... other properties
      colours: {
-       // ... other colours
        foreground: {
          primary: {
            name: "teal",
-           dark: "#096A78ff",  // Change this hex value
+           dark: "#096A78ff",  // Light theme: darker shade
            midi: "#0E9191ff",
            lite: "#17B8C4ff"
-         },
-         // ...
+         }
+       }
+     }
+   }
+   
+   // File: src/lib/config/palettes/metisPalette.dark.ts (DARK)
+   export const metisPaletteDark: MetisPalette = {
+     colours: {
+       foreground: {
+         primary: {
+           name: "teal",
+           dark: "#3FC4D8ff",  // Dark theme: lighter shade for contrast
+           midi: "#5FD4E6ff",
+           lite: "#7FE0F0ff"
+         }
        }
      }
    }
    ```
 
-2. **Update the reference CSS** in `src/lib/styles/palettes.css` (optional, for documentation)
+2. **Regenerate CSS** to include your changes:
+   ```bash
+   npm run generate:palettes
+   ```
 
 3. **Test the changes:**
    ```bash
    npm run dev
    ```
-   Navigate to the relevant workflow route to see changes
+   Navigate to the relevant workflow route and toggle between light/dark themes
 
 ### Adding a New Palette
 
-1. **Create a new palette file:**
+1. **Create palette files (light and dark variants):**
    ```typescript
-   // File: src/lib/config/palettes/newWorkflowPalette.ts
-
+   // File: src/lib/config/palettes/newWorkflowPalette.ts (LIGHT)
    import type { PaletteStructure } from "$lib/utils/palette/paletteTypes";
 
    export const newWorkflowPalette: PaletteStructure = {
-     metadata: {
-       requiredImprovements: []
-     },
+     metadata: { requiredImprovements: [] },
      colours: {
-       // Define all required colour properties
-       // See existing palettes for structure
+       // Define all required colour properties for LIGHT theme
+       // See existing light palettes for structure
+     }
+   };
+   
+   // File: src/lib/config/palettes/newWorkflowPalette.dark.ts (DARK)
+   export const newWorkflowPaletteDark: PaletteStructure = {
+     metadata: { requiredImprovements: [] },
+     colours: {
+       // Define all required colour properties for DARK theme
+       // Use lighter foregrounds, darker backgrounds
      }
    };
    ```
 
 2. **Register in paletteLoader.ts:**
    ```typescript
-   // Import the new palette
+   // Import both variants
    import { newWorkflowPalette } from "$lib/config/palettes/newWorkflowPalette";
+   import { newWorkflowPaletteDark } from "$lib/config/palettes/newWorkflowPalette.dark";
 
-   // Add to PALETTES object
-   const PALETTES: Record<WorkflowName, PaletteStructure> = {
+   // Add to PALETTES object with theme variants
+   const PALETTES: Record<WorkflowName, Record<ThemeMode, PaletteStructure>> = {
      // ... existing palettes
-     newWorkflow: newWorkflowPalette,
+     newWorkflow: {
+       light: newWorkflowPalette,
+       dark: newWorkflowPaletteDark,
+     },
    };
 
    // Add route mapping in getWorkflowPaletteName()
@@ -179,9 +214,15 @@ The transformer converts the structured palette into flat CSS variables:
    export type WorkflowName = "metis" | "rhea" | "tethys" | "theia" | "themis" | "newWorkflow";
    ```
 
+4. **Update CSS generation script:**
+   - Add palette parsing in `scripts/generatePaletteCss.js`
+   - Include both light and dark selectors in generated CSS
+
 ## Using Palettes in Components
 
-### Via CSS Variables
+### Via CSS Variables (Automatic Theme Support)
+
+CSS variables automatically update when theme changes:
 
 ```svelte
 <style>
@@ -202,22 +243,79 @@ The transformer converts the structured palette into flat CSS variables:
 </style>
 ```
 
-### Programmatically
+### Programmatically (Theme-Aware)
 
 ```typescript
 import { getWorkflowPalette, generateCSSVariables } from "$lib/utils/palette/paletteLoader";
+import { effectiveTheme } from "$lib/stores/themeStore";
+import { get } from "svelte/store";
 
-// Get structured palette data
-const metisPalette = getWorkflowPalette("metis");
+// Get structured palette data for current theme
+const theme = get(effectiveTheme); // 'light' or 'dark'
+const metisPalette = getWorkflowPalette("metis", theme);
 
-// Generate CSS variables object
-const cssVars = generateCSSVariables("metis");
+// Generate CSS variables object for specific theme
+const cssVars = generateCSSVariables("metis", theme);
 // Returns: { '--palette-primary': '#00121Fff', ... }
 
 // Generate CSS string for inline styles
-const cssString = generateCSSVariableString("metis");
+const cssString = generateCSSVariableString("metis", theme);
 // Returns: "--palette-primary: #00121Fff; --palette-foreground: #096A78ff; ..."
 ```
+
+## Dark Mode System
+
+### Theme Store
+
+The theme system provides three preference options:
+- **Light**: Always use light theme
+- **Dark**: Always use dark theme
+- **System**: Follow OS/browser preference (default)
+
+```typescript
+import { themePreference, effectiveTheme } from "$lib/stores/themeStore";
+
+// Set user preference
+themePreference.set("dark");
+
+// Get effective theme (resolves "system" to actual light/dark)
+const theme = get(effectiveTheme); // 'light' or 'dark'
+```
+
+### Theme Selector Component
+
+The `ThemeSelector` component provides UI for theme switching:
+
+```svelte
+<script>
+  import ThemeSelector from "$lib/components/ui/ThemeSelector.svelte";
+</script>
+
+<ThemeSelector />
+```
+
+Located in navigation breadcrumb on all non-home pages.
+
+### How Dark Mode Works
+
+1. **User selects theme** via ThemeSelector (light/dark/system)
+2. **Preference persisted** to localStorage
+3. **System preference detected** via `matchMedia('prefers-color-scheme: dark')`
+4. **Effective theme computed** (resolves "system" to light/dark)
+5. **Layout applies attributes**: `data-palette="metis" data-theme="dark"`
+6. **CSS selectors match**: `[data-palette="metis"][data-theme="dark"]`
+7. **Variables update**: All `--palette-*` variables switch to dark variants
+8. **Components re-render** with new colours automatically
+
+### Dark Palette Design Guidelines
+
+When creating dark palette variants:
+- **Backgrounds**: Use darker tones (15-25% lightness)
+- **Foregrounds**: Use lighter, brighter colours (70-90% lightness)
+- **Contrast**: Maintain 4.5:1 minimum contrast ratio (WCAG AA)
+- **Subtle backgrounds**: 5-10% lighter than main background
+- **Lines/borders**: Use mid-tones visible on dark backgrounds
+- **Identity**: Preserve workflow colour identity (hue consistency)
 
 ## Reference Files
 
@@ -230,6 +328,8 @@ The `.ts` files in `docs/dev/ref/palettes/` are **historical references only** a
 3. **Consistent Mapping:** All palettes follow the same structure for predictable CSS variable generation
 4. **Type Safety:** TypeScript interfaces ensure palette definitions are complete and correct
 5. **Separation of Concerns:** Data (config) is separate from transformation logic (utils)
+6. **Theme Consistency:** Light and dark variants maintain workflow identity while optimizing for readability
+7. **Accessibility First:** All colour combinations meet WCAG contrast requirements
 
 ## Benefits of This Approach
 
@@ -239,6 +339,8 @@ The `.ts` files in `docs/dev/ref/palettes/` are **historical references only** a
 - ✅ **Easy to modify:** Change colours in one place, see results everywhere
 - ✅ **Maintainable:** Clear separation between data and logic
 - ✅ **Documented:** Rich structure includes colour names and metadata
+- ✅ **Dark mode ready:** Full light/dark theme support with system preference detection
+- ✅ **User control:** Persisted theme preference with smooth transitions
 
 ## Common Tasks
 
