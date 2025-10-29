@@ -133,7 +133,7 @@
       <img src="icon.png" alt="Themis icon" class="header-icon" />
       <h1>Themis</h1>
     </div>
-    <p>Build a complete multi-week course with interconnected modules</p>
+    <p>Long-Term Course Design with Coherent Learning Progression</p>
   </header>
 
   <div id="themis-workflow" class="workflow">

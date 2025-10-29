@@ -12,7 +12,7 @@
       <img src="icon.png" alt="Tethys icon" class="header-icon" />
       <h1>Tethys</h1>
     </div>
-    <p>AI-powered Arc design for peer-led courses</p>
+    <p>Multi-Module Arc Design</p>
   </header>
 
   <div class="tethys-workflow">

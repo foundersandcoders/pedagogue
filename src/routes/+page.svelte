@@ -31,7 +31,7 @@
       <img src="icon.png" alt="Rhea icon" class="header-icon" />
       <h1>Rhea</h1>
     </div>
-    <p>AI-powered curriculum design for peer-led courses</p>
+    <p>Curriculum Design Tools for Peer-Led Learning</p>
   </header>
 
   <!-- TODO: possibly create hub component? In case I need sub-hubs when functionality expands -->

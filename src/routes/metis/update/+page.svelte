@@ -278,7 +278,7 @@
       <img src="icon.png" alt="Metis icon" class="header-icon" />
       <h1>Metis</h1>
     </div>
-    <p>AI-powered module specification generator for peer-led courses</p>
+    <p>Module Specification Generator</p>
   </header>
 
   <div class="metis-workflow">

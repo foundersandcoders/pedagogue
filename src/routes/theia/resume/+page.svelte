@@ -37,7 +37,7 @@
       <img src="/theia/icon.png" alt="Theia icon" class="header-icon" />
       <h1>Theia</h1>
     </div>
-    <p>AI-powered content management for peer-led courses</p>
+    <p>Content Manager</p>
   </header>
 
   {#if errorMessage}
